@@ -9,6 +9,7 @@ package com.redbugz.macpaf;
 //
 
 public interface Place {
+  public static final int MAX_SEVERITY = 7;
 
   public String getLevel1();
 
@@ -19,5 +20,7 @@ public interface Place {
   public String getLevel4();
 
   public String getFormatString();
+
+  public String getAbbreviatedFormatString(int severity);
 
 }

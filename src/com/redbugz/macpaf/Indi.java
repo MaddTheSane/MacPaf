@@ -21,7 +21,7 @@ import com.apple.cocoa.foundation.NSBundle;
  */
 public class Indi implements Individual, Cloneable {
   private static final Category log = Category.getInstance(Indi.class.getName());
-  String givens = "Logan Thomas", surname = "Allred", title = "";
+  String givens = "", surname = "", title = "";
   Gender gender = Gender.MALE;
   protected Family familyAsChild = new Fam();
   protected Family familyAsSpouse = new Fam();

@@ -70,7 +70,7 @@ public class MyDocument extends NSDocument {
   private Individual primaryIndividual = new Individual.UnknownIndividual();
 
 //  protected Map indiMap; // = new HashMap();
-  protected Map famMap; // = new HashMap();
+//  protected Map famMap; // = new HashMap();
   protected Map noteMap; // = new HashMap();
   protected Map multimediaMap; // = new HashMap();
   protected Map repositoryMap; // = new HashMap();
@@ -85,8 +85,8 @@ public class MyDocument extends NSDocument {
   public NSWindow reportsWindow; /* IBOutlet */
   public NSWindow importWindow; /* IBOutlet */
   public NSWindow familyEditWindow; /* IBOutlet */
-  public FamilyList familyList; /* IBOutlet */
-  public IndividualList individualList; /* IBOutlet */
+//  public FamilyList familyList; /* IBOutlet */
+//  public IndividualList individualList; /* IBOutlet */
   public SurnameList surnameList; /* IBOutlet */
   public LocationList locationList; /* IBOutlet */
   public NSButton fatherButton; /* IBOutlet */
@@ -100,6 +100,8 @@ public class MyDocument extends NSDocument {
   public NSButton paternalGrandfatherButton; /* IBOutlet */
   public NSButton paternalGrandmotherButton; /* IBOutlet */
   public NSButton spouseButton; /* IBOutlet */
+  public NSButton familyAsSpouseButton; /* IBOutlet */
+  public NSButton familyAsChildButton; /* IBOutlet */
   public NSWindow noteWindow; /* IBOutlet */
   public NSTextView noteTextView; /* IBOutlet */
   public NSMatrix reportsRadio; /* IBOutlet */
@@ -111,12 +113,18 @@ public class MyDocument extends NSDocument {
   private IndividualDetailController individualDetailController = new IndividualDetailController();
   private NSView printableView;
 
+  private IndividualList startupIndividualList;
+  private FamilyList startupFamilyList;
   /**
    * This the internal name for the gedcom file in the .macpaf file package
    */
   private static final String DEFAULT_GEDCOM_FILENAME = "data.ged";
+  /**
+   * This the internal name for the data xml file in the .macpaf file package
+   */
+  private static final String DEFAULT_XML_FILENAME = "data.xml";
 
-/**
+  /**
  * This method was originally started to avoid the bug that in Java-Cocoa applications,
  * constructors get called twice, so if you initialize anything in a constructor, it can get
  * nuked later by another constructor
@@ -130,15 +138,17 @@ public class MyDocument extends NSDocument {
 	  root.addContent(new HeaderJDOM().getElement());
 	  root.addContent(new SubmitterJDOM().getElement());
 //	  indiMap = new HashMap();
-	  famMap = new HashMap();
+//	  famMap = new HashMap();
 	  noteMap = new HashMap();
 	  multimediaMap = new HashMap();
 	  repositoryMap = new HashMap();
 	  sourceMap = new HashMap();
 	  submitterMap = new HashMap();
-	  log.debug("familylist: " + familyList);
-	  familyList = new FamilyList();
-	  individualList = new IndividualList();
+//	  log.debug("familylist: " + familyList);
+//	  familyList = new FamilyList();
+//	  individualList = new IndividualList();
+	  startupIndividualList = new IndividualList();
+	  startupFamilyList = new FamilyList();
 	}
   }
 
@@ -179,7 +189,9 @@ public class MyDocument extends NSDocument {
 	( (NSWindowController) familyEditWindow.delegate()).setDocument(this);
 	if ( ( (NSButton) sender).tag() == 1) {
 	  ( (FamilyEditController) familyEditWindow.delegate()).setFamily(primaryIndividual.getFamilyAsChild());
-	}
+	} else {
+	  ( (FamilyEditController) familyEditWindow.delegate()).setFamily(primaryIndividual.getFamilyAsSpouse());
+    }
 	NSApplication nsapp = NSApplication.sharedApplication();
 	nsapp.beginSheet(familyEditWindow, mainWindow, this, new NSSelector("sheetDidEndShouldClose2", new Class[] {}), null);
 	//nsapp.runModalForWindow(familyEditWindow);
@@ -233,6 +245,12 @@ public class MyDocument extends NSDocument {
 			printInfo().paperSize().width() - printInfo().leftMargin() - printInfo().rightMargin(),
 			printInfo().paperSize().height() - printInfo().topMargin() - printInfo().bottomMargin()), primaryIndividual);
 		break;
+	  case 3:
+		printableView = new PocketPedigreeView(new NSRect(0, 0,
+			printInfo().paperSize().width() - printInfo().leftMargin() - printInfo().rightMargin(),
+			printInfo().paperSize().height() - printInfo().topMargin() - printInfo().bottomMargin()), primaryIndividual,
+										 6);
+		break;
 	  default:
 		printableView = new PedigreeView(new NSRect(0, 0,
 			printInfo().paperSize().width() - printInfo().leftMargin() - printInfo().rightMargin(),
@@ -261,6 +279,8 @@ public class MyDocument extends NSDocument {
   public void setPrimaryIndividual(Individual newIndividual) {
 	primaryIndividual = newIndividual;
 	assignIndividualToButton(primaryIndividual, individualButton);
+	// if primary individual is unknown, change button back to enabled
+	individualButton.setEnabled(true);
 	assignIndividualToButton(primaryIndividual.getPrimarySpouse(), spouseButton);
 	assignIndividualToButton(primaryIndividual.getFather(), fatherButton);
 	assignIndividualToButton(primaryIndividual.getMother(), motherButton);
@@ -271,6 +291,8 @@ public class MyDocument extends NSDocument {
 	noteTextView.setString(primaryIndividual.getNoteText());
 //        pedigreeView.setIndividual(primaryIndividual);
 	individualDetailController.setIndividual(primaryIndividual);
+	familyAsSpouseButton.setTitle("Family: "+primaryIndividual.getFamilyAsSpouse().getId());
+	familyAsChildButton.setTitle("Family: "+primaryIndividual.getFamilyAsChild().getId());
 	spouseTable.reloadData();
 	childrenTable.reloadData();
   }
@@ -312,36 +334,39 @@ public class MyDocument extends NSDocument {
 	else if (sender instanceof NSTableView) {
 	  NSTableView tv = (NSTableView) sender;
 	  NSView superview = individualButton.superview();
-	  log.debug("individualList=" + individualsButtonMap.objectForKey("child" + tv.selectedRow()));
-	  NSPoint individualButtonOrigin = individualButton.frame().origin();
-	  Individual newIndividual = (Individual) individualsButtonMap.objectForKey("child" + tv.selectedRow());
-	  if (tv.tag() == 2) {
-		newIndividual = (Individual) individualsButtonMap.objectForKey("spouse" + tv.selectedRow());
-		individualButtonOrigin = spouseButton.frame().origin();
-	  }
-	  NSRect rowRect = tv.convertRectToView(tv.rectOfRow(tv.selectedRow()), superview);
-	  NSPoint tvOrigin = rowRect.origin();
-	  log.debug("animating from " + tvOrigin + " to " + individualButtonOrigin);
-	  float stepx = (individualButtonOrigin.x() - tvOrigin.x()) / 10;
-	  float stepy = (individualButtonOrigin.y() - tvOrigin.y()) / 10;
-	  NSImage image = new NSImage();
-	  log.debug("rowrect:" + rowRect);
-	  image.addRepresentation(new NSBitmapImageRep(rowRect));
-	  NSImageView view = new NSImageView(rowRect);
-	  view.setImage(image);
-	  superview.addSubview(view);
-	  for (int steps = 0; steps < 10; steps++) {
-		tvOrigin = new NSPoint(tvOrigin.x() + stepx, tvOrigin.y() + stepy);
-		view.setFrameOrigin(tvOrigin);
-		view.display();
-	  }
-	  view.removeFromSuperview();
-	  superview.setNeedsDisplay(true);
-	  if (tv.tag() == 2) {
-		assignIndividualToButton(newIndividual, spouseButton);
-	  }
-	  else {
-		setPrimaryIndividual(newIndividual);
+	  log.info("tableview selectedRow = "+tv.selectedRow());
+	  if (tv.selectedRow() >= 0) {
+		log.debug("individualList=" + individualsButtonMap.objectForKey("child" + tv.selectedRow()));
+		NSPoint individualButtonOrigin = individualButton.frame().origin();
+		Individual newIndividual = (Individual) individualsButtonMap.objectForKey("child" + tv.selectedRow());
+		if (tv.tag() == 2) {
+		  newIndividual = (Individual) individualsButtonMap.objectForKey("spouse" + tv.selectedRow());
+		  individualButtonOrigin = spouseButton.frame().origin();
+		}
+		NSRect rowRect = tv.convertRectToView(tv.rectOfRow(tv.selectedRow()), superview);
+		NSPoint tvOrigin = rowRect.origin();
+		log.debug("animating from " + tvOrigin + " to " + individualButtonOrigin);
+		float stepx = (individualButtonOrigin.x() - tvOrigin.x()) / 10;
+		float stepy = (individualButtonOrigin.y() - tvOrigin.y()) / 10;
+		NSImage image = new NSImage();
+		log.debug("rowrect:" + rowRect);
+		image.addRepresentation(new NSBitmapImageRep(rowRect));
+		NSImageView view = new NSImageView(rowRect);
+		view.setImage(image);
+		superview.addSubview(view);
+		for (int steps = 0; steps < 10; steps++) {
+		  tvOrigin = new NSPoint(tvOrigin.x() + stepx, tvOrigin.y() + stepy);
+		  view.setFrameOrigin(tvOrigin);
+		  view.display();
+		}
+		view.removeFromSuperview();
+		superview.setNeedsDisplay(true);
+		if (tv.tag() == 2) {
+		  assignIndividualToButton(newIndividual, spouseButton);
+		}
+else {
+		  setPrimaryIndividual(newIndividual);
+		}
 	  }
 	}
 	else if (sender instanceof IndividualList) {
@@ -371,22 +396,30 @@ public class MyDocument extends NSDocument {
 	  //myAction(this);
 	  NSAttributedString text = individualButton.attributedTitle();
 	  log.debug("indivButton attrTitle: " + text);
-	  log.debug("indivButton attr at index 5:" + text.attributesAtIndex(5, null));
+//	  log.debug("indivButton attr at index 5:" + text.attributesAtIndex(5, null));
 	  log.debug("individualList: " + individualsButtonMap.count() + "(" + individualsButtonMap + ")");
-	  log.debug("individualList: " + individualList.size()); // + "(" + indiMap + ")");
-	  if (individualList.size() > 0) {
+	  log.debug("startupIndividualList: " + startupIndividualList.size()); // + "(" + indiMap + ")");
+	  System.out.println(" startupIndividualList="+startupIndividualList);
+	  startupIndividualList.document = this;
+	  startupFamilyList.document = this;
+	  individualListTableView.setDataSource(startupIndividualList);
+	  individualListTableView.setDelegate(startupIndividualList);
+	  System.out.println(" startupFamilyList="+startupFamilyList);
+	  familyListTableView.setDataSource(startupFamilyList);
+	  familyListTableView.setDelegate(startupFamilyList);
+	  if (startupIndividualList.size() > 0) {
 		log.debug("indimap");
-		assignIndividualToButton( (Individual) individualList.entrySet().toArray()[0], individualButton);
+		assignIndividualToButton( (Individual) startupIndividualList.getFirstIndividual(), individualButton);
 		setIndividual(individualButton);
 	  }
 	  else {
 		setPrimaryIndividual(Individual.UNKNOWN);
 	  }
 	  // add famMap to FamilyList
-	  for (Iterator iter = famMap.values().iterator(); iter.hasNext(); ) {
-		Family fam = (Family) iter.next();
-		familyList.add(fam);
-	  }
+//	  for (Iterator iter = famMap.values().iterator(); iter.hasNext(); ) {
+//		Family fam = (Family) iter.next();
+//		familyList.add(fam);
+//	  }
 //         NSImage testImage = new NSImage("/Users/logan/Pictures/iPhoto Library/Albums/Proposal/GQ.jpg", false);
 //         testImage.setSize(new NSSize(50f, 50f));
 //         testImage.setScalesWhenResized(true);
@@ -492,15 +525,21 @@ public class MyDocument extends NSDocument {
 //						"/Projects/MacPAFTest/macpaf-screenshot.jpg");
 //				String file4 =
 //					imagesFolder.addFileWithPath(
-//						"/Projects/MacPAFTest/macpaf-screenshot.gif");
+//						"/Projects/Mcreenshot.gif");
+		String dataXmlFilename = DEFAULT_XML_FILENAME;
+		String dataGedcomFilename = DEFAULT_GEDCOM_FILENAME;
+//		if (fileName() != null && fileName().length() > 0) {
+//		  dataXmlFilename = fileName()+".xml";
+//		  dataGedcomFilename = fileName()+".ged";
+//}
 		String xml1 =
 			mainFile.addRegularFileWithContents(
 			new NSData(baos.toByteArray()),
-			"data.xml");
+			dataXmlFilename);
 		String ged1 =
 			mainFile.addRegularFileWithContents(
 			new NSData(baosGed.toByteArray()),
-			DEFAULT_GEDCOM_FILENAME);
+			dataGedcomFilename);
 		log.debug(""
 //					"file1="
 //						+ file1
@@ -558,6 +597,9 @@ public class MyDocument extends NSDocument {
 			String fullPath = fileName() + "/" + wrapper.filename();
 			log.debug("..................Loading gedcom: " + fullPath);
 			loadXMLFile(new File(fullPath));
+			// save individualList in a temporary so I can restore it when the
+			// Cocoa startup sequence calls the constructor twice and clobbers it
+//			startupIndividualList = individualList;
 		  }
 		}
 	  }
@@ -576,6 +618,8 @@ public class MyDocument extends NSDocument {
   public void setFileName(String arg0) {
 	try {
 	  super.setFileName(arg0);
+	  log.debug("setFilename setting lastOpenedDocument to "+fileName());
+	  NSUserDefaults.standardUserDefaults().setObjectForKey(fileName(), "com.redbugz.macpaf.lastOpenedDocument");
 	  log.debug("mydoc.setfilename() done." + arg0);
 	  log.debug("setfilename set file attrs result=" +
 				NSPathUtilities.setFileAttributes(arg0 + "/" + DEFAULT_GEDCOM_FILENAME,
@@ -600,7 +644,7 @@ public class MyDocument extends NSDocument {
 	Document newDoc = XMLTest.docParsedWithKay(file);
 	Element root = newDoc.getRootElement();
 	long end = System.currentTimeMillis();
-	log.debug("Time to parse: " + (end - start) / 1000 + " seconds.");
+	log.debug("Time to parse: " + (end - start) / 1000D + " seconds.");
 	List fams = root.getChildren("FAM");
 	List indis = root.getChildren("INDI");
 	List multimedias = root.getChildren("OBJE");
@@ -639,33 +683,27 @@ public class MyDocument extends NSDocument {
 //                note = new MyNote(noteEl);
 //            }
 //            indi.setNote(note);
-	  try {
-		addIndividual(indi);
-	  }
-	  catch (IndividualList.DuplicateKeyException ex) {
-		String newKey = ex.validKey();
-		String oldKey = indi.getId();
-		/** @todo change all instances of the old key to new key in import document */
-		try {
-		  List needsFixing = XPath.selectNodes(newDoc, "//*[@REF='" + oldKey + "']");
-		  log.debug("needsFixing: "+needsFixing);
-		  Iterator iter = needsFixing.iterator();
-	while (iter.hasNext()) {
-	  Element item = (Element)iter.next();
-	  log.debug("setting REF from "+item.getAttribute("REF") + " to "+newKey);
-	  item.setAttribute("REF", newKey);
-	}
-	indi.setId(newKey);
-	try {
+	  String oldKey = indi.getId();
 	  addIndividual(indi);
-	}
-	catch (Exception ex2) {
-	  ex2.printStackTrace();
-	}
+	  String newKey = indi.getId();
+	  // ID may change when individual is inserted if it is a duplicate
+	  System.out.println("indi oldkey="+oldKey+" newkey="+newKey);
+	  if (!newKey.equals(oldKey)) {
+	  /** @todo change all instances of the old key to new key in import document */
+	  try {
+		String ref = "[@REF='" + oldKey + "']";
+		List needsFixing = XPath.selectNodes(newDoc, "//HUSB"+ref+" | //WIFE"+ref+" | //CHIL"+ref+" | //ALIA"+ref);
+		log.debug("needsFixing: " + needsFixing);
+		Iterator iter = needsFixing.iterator();
+		while (iter.hasNext()) {
+		  Element item = (Element) iter.next();
+		  log.debug("setting REF from " + item.getAttribute("REF") + " to " + newKey);
+		  item.setAttribute("REF", newKey);
 		}
-		catch (JDOMException ex1) {
-		  log.error("problem with xpath during duplicate key fixing", ex);
-		}
+	  }
+	  catch (JDOMException ex1) {
+		log.error("problem with xpath during duplicate key fixing", ex1);
+	  }
 	  }
 	  if (indi.getRin() > 0 && indi.getRin() < firstIndi.getRin()) {
 		log.debug("Setting 1st Individual to: " + indi);
@@ -688,15 +726,16 @@ public class MyDocument extends NSDocument {
 	for (int i = 0; i < fams.size(); i++) {
 	  Element element = (Element) fams.get(i);
 	  Family fam = new FamilyJDOM(element, doc);
-	  try {
+	  String oldKey = fam.getId();
 		addFamily(fam);
-	  }
-	  catch (FamilyList.DuplicateKeyException ex) {
-		String newKey = ex.validKey();
-		String oldKey = fam.getId();
+		// ID may change when family is inserted if there is a duplicate
+		String newKey = fam.getId();
+		System.out.println("oldkey="+oldKey+" newkey="+newKey);
+		if (!newKey.equals(oldKey)) {
 		/** @todo change all instances of the old key to new key in import document */
 		try {
-		  List needsFixing = XPath.selectNodes(newDoc, "//*[@REF='" + oldKey + "']");
+		  String ref = "[@REF='" + oldKey + "']";
+		  List needsFixing = XPath.selectNodes(newDoc, "//FAMC"+ref+" | //FAMS"+ref);
 		  log.debug("needsFixing: "+needsFixing);
 		  Iterator iter = needsFixing.iterator();
 	while (iter.hasNext()) {
@@ -704,18 +743,11 @@ public class MyDocument extends NSDocument {
 	  log.debug("setting REF from "+item.getAttribute("REF") + " to "+newKey);
 	  item.setAttribute("REF", newKey);
 	}
-	fam.setId(newKey);
-	try {
-	  addFamily(fam);
-	}
-	catch (Exception ex3) {
-	  ex3.printStackTrace();
-	}
 		}
 		catch (JDOMException ex1) {
-		  log.error("problem with xpath during duplicate key fixing", ex);
+		  log.error("problem with xpath during duplicate key fixing", ex1);
 		}
-	  }
+		}
 	  if (debug) {
 		log.error("\n *** " + i + " mem:" + rt.freeMemory() / 1024 + " Kb\n");
 	  }
@@ -799,16 +831,34 @@ public class MyDocument extends NSDocument {
 //                log.debug("id=" + obje.getAttributeValue("ID"));
   }
 
-  public void addFamily(Family fam) throws FamilyList.DuplicateKeyException {
-	familyList.add(fam);
+  public void addFamily(Family fam) {
+	System.out.println("MyDocument.addFamily(fam) famList:"+startupFamilyList);
+	startupFamilyList.add(fam);
 	log.debug("added fam with key: "+fam.getId()+" fam marr date: "+fam.getMarriageEvent().getDateString());
-	familyListTableView.reloadData();
+	if (fam instanceof FamilyJDOM) {
+	  log.debug("adding fam to doc: "+fam);
+	  doc.getRootElement().addContent((Content)((FamilyJDOM)fam).getElement().clone());
+}
+	if (familyListTableView != null) {
+	  familyListTableView.reloadData();
+	}
   }
 
-  public void addIndividual(Individual indi) throws IndividualList.DuplicateKeyException {
-	individualList.add(indi);
+  public void addIndividual(Individual indi) {
+	try {
+	  startupIndividualList.add(indi);
+	  if (indi instanceof IndividualJDOM) {
+		log.debug("adding indi to doc: "+indi);
+		doc.getRootElement().addContent((Content)((IndividualJDOM)indi).getElement().clone());
+}
+	}
+	catch (Exception ex) {
+	  ex.printStackTrace(); /** @todo figure out what to do here */
+	}
 	log.debug("added indi with key: "+indi.getId()+" indi name: "+indi.getFullName());
-	individualListTableView.reloadData();
+	if (individualListTableView != null) {
+	  individualListTableView.reloadData();
+	}
   }
 
   public void removeNote(Note note) {
@@ -960,8 +1010,10 @@ public class MyDocument extends NSDocument {
   private void assignIndividualToButton(Individual indiv, NSButton button) {
 	NSAttributedString newLine = new NSAttributedString("\n");
 	NSMutableAttributedString nameText = new NSMutableAttributedString(indiv.getFullName());
+	button.setEnabled(true);
 	if (indiv instanceof Individual.UnknownIndividual) {
 	  nameText = new NSMutableAttributedString("Unknown");
+	  button.setEnabled(false);
 	}
 	NSMutableAttributedString birthdateText = new NSMutableAttributedString("");
 	NSMutableAttributedString birthplaceText = new NSMutableAttributedString("");
@@ -1127,6 +1179,10 @@ public class MyDocument extends NSDocument {
   private void importGEDCOM(File importFile) {
 	log.debug("MyDocument.importGEDCOM():" + importFile);
 	loadXMLFile(importFile);
+	if (primaryIndividual.equals(Individual.UNKNOWN)) {
+	  // set first individual in imported file to primary individual
+	  setPrimaryIndividual(startupIndividualList.getSelectedIndividual());
+  }
   }
 
   public void exportFile(Object sender) { /* IBAction */
@@ -1194,4 +1250,68 @@ public class MyDocument extends NSDocument {
 	return true;
   }
 
+  public void addNewIndividual(Object sender) { /* IBAction */
+	log.debug("addNewIndividual: " + sender);
+	Individual newIndividual = createNewIndividual();
+	addIndividual(newIndividual);
+	setPrimaryIndividual(newIndividual);
+	save();
+	openIndividualEditSheet(this);
+  }
+
+  public void addNewChild(Object sender) { /* IBAction */
+	log.debug("addNewChild: " + sender);
+	Individual newChild = createNewIndividual();
+	addIndividual(newChild);
+	primaryIndividual.getFamilyAsSpouse().addChild(newChild);
+	newChild.setFamilyAsChild(primaryIndividual.getFamilyAsSpouse());
+	setPrimaryIndividual(newChild);
+	save();
+	openIndividualEditSheet(this);
+  }
+
+  public void addNewSpouse(Object sender) { /* IBAction */
+	log.debug("addNewSpouse: " + sender);
+	Individual newSpouse = createNewIndividual();
+	addIndividual(newSpouse);
+	primaryIndividual.addSpouse(newSpouse);
+	newSpouse.addSpouse(primaryIndividual);
+	setPrimaryIndividual(newSpouse);
+	save();
+	openIndividualEditSheet(this);
+  }
+
+  public void addNewFather(Object sender) { /* IBAction */
+	log.debug("addNewFather: " + sender);
+	Individual newFather = createNewIndividual();
+	addIndividual(newFather);
+	primaryIndividual.setFather(newFather);
+	newFather.getFamilyAsSpouse().addChild(primaryIndividual);
+	setPrimaryIndividual(newFather);
+	save();
+	openIndividualEditSheet(this);
+  }
+
+  public void addNewMother(Object sender) { /* IBAction */
+	log.debug("addNewMother: " + sender);
+	Individual newMother = createNewIndividual();
+	addIndividual(newMother);
+	primaryIndividual.setMother(newMother);
+	newMother.getFamilyAsSpouse().addChild(primaryIndividual);
+	setPrimaryIndividual(newMother);
+	save();
+	openIndividualEditSheet(this);
+  }
+
+  public void addNewFamily(Object sender) { /* IBAction */
+	log.debug("addNewFamily: " + sender);
+  }
+
+  public void addNewFamilyAsSpouse(Object sender) { /* IBAction */
+	log.debug("addNewFamilyAsSpouse: " + sender);
+  }
+
+  public void addNewFamilyAsChild(Object sender) { /* IBAction */
+	log.debug("addNewFamilyAsChild: " + sender);
+  }
 }

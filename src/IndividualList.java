@@ -34,6 +34,13 @@ public class IndividualList extends AbstractMap {
   }
 
   public Individual getSelectedIndividual() {
+	if (selectedIndividual == null) {
+	  if (individuals.size() > 0) {
+		selectedIndividual = (Individual) individuals.get(0);
+	  } else {
+		selectedIndividual = Individual.UNKNOWN;
+}
+}
 	return selectedIndividual;
   }
 
@@ -81,7 +88,7 @@ public class IndividualList extends AbstractMap {
 	return null;
   }
 
-  public boolean add(Individual individual) throws IndividualList.DuplicateKeyException {
+  public boolean add(Individual individual) {
 	// if individual has not been assigned a key, create one
 	if (individual.getId() == null || individual.getId().length() == 0) {
 	  log.debug("New individual without a valid key, assigning one ....");
@@ -90,8 +97,7 @@ public class IndividualList extends AbstractMap {
 	  // check to see if this individual has a conflicting ID, if so, change it
 	  if (individualMap.containsKey(individual.getId())) {
 		log.debug("individualMap contains key " + individual.getId() + " already.");
-		String newKey = findValidKey();
-		throw new DuplicateKeyException(newKey);
+		individual.setId(findValidKey());
 	  }
 	}
 	return (individuals.add(individual) && individualMap.put(individual.getId(), individual) != null);
@@ -141,6 +147,19 @@ public class IndividualList extends AbstractMap {
    */
   public Set entrySet() {
 	return individualMap.entrySet();
+  }
+
+  /**
+   * getFirstIndividual
+   *
+   * @return Individual
+   */
+  public Individual getFirstIndividual() {
+	if (individuals != null && individuals.size() > 0) {
+	  return (Individual) individuals.get(0);
+	} else {
+	  return Individual.UNKNOWN;
+}
   }
 
   public static class DuplicateKeyException extends Exception {

@@ -94,4 +94,14 @@ public class MyPlace implements Place {
   public void setLevel4(String level4) {
 	this.level4 = level4;
   }
+
+  /**
+   * getAbbreviatedFormatString
+   *
+   * @param severity int
+   * @return String
+   */
+  public String getAbbreviatedFormatString(int severity) {
+	return getFormatString();
+  }
 }

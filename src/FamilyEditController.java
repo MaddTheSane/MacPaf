@@ -11,8 +11,10 @@ import com.redbugz.macpaf.Fam;
 import com.redbugz.macpaf.Family;
 import com.redbugz.macpaf.Individual;
 import com.redbugz.macpaf.jdom.PlaceJDOM;
+import org.apache.log4j.Category;
 
 public class FamilyEditController extends NSWindowController {
+  private static final Category log = Category.getInstance(FamilyEditController.class.getName());
 
   public NSTableView children; /* IBOutlet */
   public NSButton divorcedSwitch; /* IBOutlet */
@@ -27,11 +29,13 @@ public class FamilyEditController extends NSWindowController {
 
   public void setDocument(NSDocument document) {
 	super.setDocument(document);
+	System.out.println("FamilyEditController.setDocument(document):"+document.fileName());
 	this.document = (MyDocument) document;
 	setFamily( ( (MyDocument) document).getPrimaryIndividual().getFamilyAsSpouse());
   }
 
   public void setFamily(Family family) {
+	System.out.println("FamilyEditController.setFamily(family):"+family);
 	this.family = family;
 	husbandButton.setTitle(family.getFather().getFullName());
 	wifeButton.setTitle(family.getMother().getFullName());
@@ -42,14 +46,14 @@ public class FamilyEditController extends NSWindowController {
   }
 
   public void addChild(Object sender) { /* IBAction */
-	int selectedRow = children.numberOfRows() - 1;
+	int selectedRow = Math.max(0, children.numberOfRows() - 1);
 	if (children.selectedRow() >= 0) {
 	  selectedRow = children.selectedRow();
 	}
-	else {
-	  selectedRow = 0;
-	}
-	family.addChildAtPosition(document.createNewIndividual(), selectedRow);
+	Individual newChild = document.createNewIndividual();
+	document.addIndividual(newChild);
+	newChild.setFamilyAsChild(family);
+	family.addChildAtPosition(newChild, selectedRow);
 	children.reloadData();
 	// todo: alternate code for panther here
 	children.selectRow(selectedRow, false);
@@ -116,14 +120,31 @@ public class FamilyEditController extends NSWindowController {
   }
 
   public void save(Object sender) { /* IBAction */
-	family.getSealingToSpouse().setDateString(marriageForm.cellAtIndex(0).stringValue());
-	family.getSealingToSpouse().setPlace(new PlaceJDOM(marriageForm.cellAtIndex(1).stringValue()));
-	NSApplication.sharedApplication().stopModal();
-	NSApplication.sharedApplication().endSheet(window());
-	window().orderOut(this);
+	if (validate()) {
+	  if (family.getId() == null || family.getId().length() == 0) {
+		log.debug("New family, adding to document: "+family);
+		((MyDocument)document()).addFamily(family);
+	  }
+	  family.getSealingToSpouse().setDateString(marriageForm.cellAtIndex(0).stringValue());
+	  family.getSealingToSpouse().setPlace(new PlaceJDOM(marriageForm.cellAtIndex(1).stringValue()));
+	  NSApplication.sharedApplication().stopModal();
+	  NSApplication.sharedApplication().endSheet(window());
+	  window().orderOut(this);
+	}
+  }
+
+  /**
+   * validate
+   *
+   * @return boolean
+   */
+  private boolean validate() {
+	return true;
   }
 
   public void toggleDivorced(Object sender) { /* IBAction */
+	System.out.println("FamilyEditController.toggleDivorced(sender):"+sender);
+//	if (sender instanceof NSCh
   }
 
   public int numberOfRowsInTableView(NSTableView nsTableView) {

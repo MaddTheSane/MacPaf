@@ -81,7 +81,7 @@ public class FamilyJDOM implements Family {
 	//      mom = new Individual.UnknownFemaleIndividual();
 	//      weddingDate = new Date();
 	element = new Element(FAMILY);
-	setId("0");
+	setId("");
   }
 
   public FamilyJDOM(Element element, Document parentDocument) {
@@ -233,8 +233,8 @@ public class FamilyJDOM implements Family {
   }
 
   public void addChildAtPosition(Individual newChild, int position) {
-	List children = element.getChildren("CHIL");
-	children.add(position, newChild);
+	List children = getChildren();
+	children.add(position, new IndividualJDOM(newChild));
 	setChildren(children);
   }
 
@@ -324,6 +324,14 @@ public class FamilyJDOM implements Family {
 	  element.addContent(rin);
 	}
 	rin.setText(String.valueOf(newRin));
+  }
+
+  /* (non-Javadoc)
+   * @see java.lang.Object#toString()
+   */
+  public String toString() {
+	// TODO Auto-generated method stub
+	return "FamilyJDOM element:" + new XMLOutputter(Format.getPrettyFormat()).outputString(element); //super.toString();
   }
 
 }

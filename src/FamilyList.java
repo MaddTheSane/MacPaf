@@ -17,14 +17,20 @@ public class FamilyList extends AbstractMap {
 
   public MyDocument document; /* IBOutlet */
   private Family selectedFamily = null;
-  private ArrayList families = new ArrayList();
-  private Map familyMap = new HashMap();
+  private ArrayList families;
+  private Map familyMap;
+  long ts;
 
   public FamilyList() {
+	System.out.println("FamilyList.FamilyList()");
 	if (families == null) {
 	  families = new ArrayList();
 	  selectedFamily = null;
+	  ts = System.currentTimeMillis();
 	}
+	if (familyMap == null) {
+	  familyMap = new HashMap();
+}
   }
 
   public Family getSelectedFamily() {
@@ -32,11 +38,13 @@ public class FamilyList extends AbstractMap {
   }
 
   public int numberOfRowsInTableView(NSTableView nsTableView) {
+	System.out.println("FamilyList.numberOfRowsInTableView(nsTableView) famList:"+this);
 	return families.size();
   }
 
   public Object tableViewObjectValueForLocation(NSTableView nsTableView, NSTableColumn nsTableColumn, int i) {
 	try {
+	  System.out.println("FamilyList.tableViewObjectValueForLocation(nsTableView, nsTableColumn, i) famList:"+this);
 	  Family family = (Family) families.get(i);
 	  if (nsTableColumn.headerCell().stringValue().equals("ID")) {
 		return family.getId();
@@ -61,7 +69,7 @@ public class FamilyList extends AbstractMap {
 	return null;
   }
 
-  public boolean add(Family family) throws FamilyList.DuplicateKeyException {
+  public boolean add(Family family) {
 	// if family has not been assigned a key, create one
 	if (family.getId() == null || family.getId().length() == 0) {
 	  log.debug("New family without a valid key, assigning one ....");
@@ -70,8 +78,7 @@ public class FamilyList extends AbstractMap {
 	  // check to see if this family has a conflicting ID, if so, change it
 	  if (familyMap.containsKey(family.getId())) {
 		log.debug("familyMap contains key " + family.getId() + " already.");
-		String newKey = findValidKey();
-		throw new DuplicateKeyException(newKey);
+		family.setId(findValidKey());
 	  }
 	}
 	return (families.add(family) && familyMap.put(family.getId(), family) != null);
@@ -95,11 +102,11 @@ public class FamilyList extends AbstractMap {
   }
 
   private String findValidKey() {
-	log.debug("IndividualList.findValidKey()");
+	log.debug("FamilyList.findValidKey()");
 	int index = familyMap.size();
-	   String newKey = "I" + index;
+	   String newKey = "F" + index;
 	   while (familyMap.containsKey(newKey)) {
-		 newKey = "I" + ++index;
+		 newKey = "F" + ++index;
 	   }
 	   log.debug("found next valid key: "+newKey);
 	return newKey;
@@ -122,5 +129,15 @@ public class FamilyList extends AbstractMap {
 	public String validKey() {
 	  return validKey;
 	}
+  }
+
+  /**
+   * Returns a string representation of the object.
+   *
+   * @return a string representation of the object.
+   * @todo Implement this java.lang.Object method
+   */
+  public String toString() {
+	return ts+":"+families.size()+":"+familyMap.size();
   }
 }

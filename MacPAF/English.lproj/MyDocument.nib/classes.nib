@@ -18,6 +18,7 @@
                 divorcedSwitch = NSButton; 
                 husbandButton = NSButton; 
                 marriageForm = NSForm; 
+                saveButton = NSButton; 
                 sealingDate = NSTextField; 
                 sealingTemple = NSComboBox; 
                 wifeButton = NSButton; 

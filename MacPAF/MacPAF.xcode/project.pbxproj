@@ -60,6 +60,20 @@
 			settings = {
 			};
 		};
+		0237A2CE07B66682003D9778 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			path = CocoaUtils.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		0237A2CF07B66682003D9778 = {
+			fileRef = 0237A2CE07B66682003D9778;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		023F05BC07AD1592005A4D0A = {
 			fileEncoding = 4;
 			isa = PBXFileReference;
@@ -1385,6 +1399,7 @@
 		};
 		02B3D1B0077B11CF0069077B = {
 			children = (
+				0237A2CE07B66682003D9778,
 				024E77CF0782F44800B7A2CC,
 				02B3D1B1077B11CF0069077B,
 				02B3D1B2077B11CF0069077B,
@@ -2364,6 +2379,7 @@
 				0250C09D07AC858500AC3629,
 				023F05BD07AD1592005A4D0A,
 				023F05C107AD16B5005A4D0A,
+				0237A2CF07B66682003D9778,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;

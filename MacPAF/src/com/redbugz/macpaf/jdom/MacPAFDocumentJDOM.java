@@ -439,10 +439,21 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 	 *
 	 * @return Individual
 	 */
-	public Individual createNewIndividual() {
-		Element newIndiElement = new Element(IndividualJDOM.INDIVIDUAL);
-		doc.getRootElement().addContent(newIndiElement);
-		return new IndividualJDOM(newIndiElement, this);
+	public Individual createAndInsertNewIndividual() {
+		Element newIndividualElement = new Element(IndividualJDOM.INDIVIDUAL);
+		doc.getRootElement().addContent(newIndividualElement);
+		return new IndividualJDOM(newIndividualElement, this);
+	}
+	
+	/**
+	 * createNewFamily
+	 *
+	 * @return Family
+	 */
+	public Family createAndInsertNewFamily() {
+		Element newFamilyElement = new Element(FamilyJDOM.FAMILY);
+		doc.getRootElement().addContent(newFamilyElement);
+		return new FamilyJDOM(newFamilyElement, this);
 	}
 	
 	public Map getFamilyMap() {

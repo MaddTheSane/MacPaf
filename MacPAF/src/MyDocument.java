@@ -617,6 +617,16 @@ public static void showUserErrorMessage(String message, String details) {
 	NSAlertPanel.runCriticalAlert(message, details, "OK", null, null);
 }
 
+/**
+ * @param string
+ * @param string2
+ */
+public static boolean confirmCriticalActionMessage(String message, String details, String confirmActionText, String cancelActionText) {
+	int result = NSAlertPanel.runCriticalAlert(message, details, confirmActionText, cancelActionText, null);
+	return result == NSAlertPanel.DefaultReturn;
+}
+
+
 /* (non-Javadoc)
    * @see com.apple.cocoa.application.NSDocument#setFileName(java.lang.String)
    */

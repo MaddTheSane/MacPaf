@@ -1,0 +1,8 @@
+bin
+build
+bak
+.DS_Store
+gedcom
+*.macpaf
+tools
+

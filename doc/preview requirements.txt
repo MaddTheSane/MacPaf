@@ -1,0 +1,15 @@
+Preview release:
+
+Import GEDCOM from Family Records and PAF
+Save .macpaf
+New file
+Edit file
+save file
+export to gedcom
+print reports
+
+gedcoms importable into Family Records and PAF
+
+
+no multimedia
+no match/merge

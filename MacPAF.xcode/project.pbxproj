@@ -1,0 +1,2491 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 39;
+	objects = {
+		02218D9AFECEFA92C02AAC07 = {
+			children = (
+				026ED78105D932E50001D1D2,
+				026ED79C05D932E50001D1D2,
+				026ED7A705D932E50001D1D2,
+				2A37F4B9FDCFA73011CA2CEA,
+				2A37F4B6FDCFA73011CA2CEA,
+				2A37F4B4FDCFA73011CA2CEA,
+				089C165FFE840EACC02AAC07,
+			);
+			isa = PBXGroup;
+			name = Resources;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED71205D932BC0001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			name = ApplicationUtilities.java;
+			path = src/ApplicationUtilities.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED71305D932BC0001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			name = Base64.java;
+			path = src/Base64.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED71405D932BC0001D1D2 = {
+			children = (
+				026ED71505D932BC0001D1D2,
+			);
+			isa = PBXGroup;
+			name = com;
+			path = src/com;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED71505D932BC0001D1D2 = {
+			children = (
+				026ED71605D932BC0001D1D2,
+			);
+			isa = PBXGroup;
+			path = redbugz;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED71605D932BC0001D1D2 = {
+			children = (
+				026ED71705D932BC0001D1D2,
+				026ED71805D932BC0001D1D2,
+				026ED71905D932BC0001D1D2,
+				026ED71A05D932BC0001D1D2,
+				026ED71B05D932BC0001D1D2,
+				026ED71C05D932BC0001D1D2,
+				026ED71D05D932BC0001D1D2,
+				026ED71E05D932BC0001D1D2,
+				026ED71F05D932BC0001D1D2,
+				026ED72C05D932BC0001D1D2,
+				026ED72D05D932BC0001D1D2,
+				026ED72E05D932BC0001D1D2,
+				026ED72F05D932BC0001D1D2,
+				026ED73005D932BC0001D1D2,
+				026ED73105D932BC0001D1D2,
+				026ED73205D932BC0001D1D2,
+				026ED73305D932BC0001D1D2,
+				026ED73405D932BC0001D1D2,
+				026ED73505D932BC0001D1D2,
+				026ED73605D932BC0001D1D2,
+				026ED73705D932BC0001D1D2,
+				026ED73805D932BD0001D1D2,
+				026ED73905D932BD0001D1D2,
+				026ED73A05D932BD0001D1D2,
+				026ED73B05D932BD0001D1D2,
+			);
+			isa = PBXGroup;
+			path = macpaf;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED71705D932BC0001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			path = Address.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED71805D932BC0001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			path = Event.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED71905D932BC0001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			path = Fam.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED71A05D932BC0001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			path = Family.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED71B05D932BC0001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			path = Gender.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED71C05D932BC0001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			path = Header.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED71D05D932BC0001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			path = Indi.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED71E05D932BC0001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			path = Individual.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED71F05D932BC0001D1D2 = {
+			children = (
+				026ED72005D932BC0001D1D2,
+				026ED72105D932BC0001D1D2,
+				026ED72205D932BC0001D1D2,
+				026ED72305D932BC0001D1D2,
+				026ED72405D932BC0001D1D2,
+				026ED72505D932BC0001D1D2,
+				026ED72605D932BC0001D1D2,
+				026ED72705D932BC0001D1D2,
+				026ED72805D932BC0001D1D2,
+				026ED72905D932BC0001D1D2,
+				026ED72A05D932BC0001D1D2,
+				026ED72B05D932BC0001D1D2,
+			);
+			isa = PBXGroup;
+			path = jdom;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED72005D932BC0001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			path = AddressJDOM.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED72105D932BC0001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			path = EventJDOM.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED72205D932BC0001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			path = FamilyJDOM.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED72305D932BC0001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			path = HeaderJDOM.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED72405D932BC0001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			path = IndividualJDOM.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED72505D932BC0001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			path = MultimediaJDOM.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED72605D932BC0001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			path = NoteJDOM.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED72705D932BC0001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			path = OrdinanceJDOM.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED72805D932BC0001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			path = PlaceJDOM.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED72905D932BC0001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			path = SubmissionJDOM.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED72A05D932BC0001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			path = SubmitterJDOM.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED72B05D932BC0001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			path = TempleJDOM.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED72C05D932BC0001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			path = LocationList.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED72D05D932BC0001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			path = Multimedia.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED72E05D932BC0001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			path = MultimediaLink.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED72F05D932BC0001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			path = MyEvent.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED73005D932BC0001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			path = MyNote.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED73105D932BC0001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			path = MyOrdinance.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED73205D932BC0001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			path = MyPlace.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED73305D932BC0001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			path = Note.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED73405D932BC0001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			path = Ordinance.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED73505D932BC0001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			path = Place.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED73605D932BC0001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			path = Submission.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED73705D932BC0001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			path = Submitter.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED73805D932BD0001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			path = SurnameList.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED73905D932BD0001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			path = Temple.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED73A05D932BD0001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			path = TempleList.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED73B05D932BD0001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			path = TempleXML.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED73C05D932BD0001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			name = FamilyEditController.java;
+			path = src/FamilyEditController.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED73D05D932BD0001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			name = FamilyGroupSheetView.java;
+			path = src/FamilyGroupSheetView.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED73E05D932BD0001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			name = FamilyList.java;
+			path = src/FamilyList.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED73F05D932BD0001D1D2 = {
+			children = (
+				026ED74005D932BD0001D1D2,
+				026ED74105D932BD0001D1D2,
+				026ED74205D932BD0001D1D2,
+				026ED74305D932BD0001D1D2,
+			);
+			isa = PBXGroup;
+			name = gedml;
+			path = src/gedml;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED74005D932BD0001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			path = AnselInputStreamReader.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED74105D932BD0001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			path = AnselOutputStreamWriter.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED74205D932BD0001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			path = GedcomOutputter.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED74305D932BD0001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			path = GedcomParser.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED74405D932BD0001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			name = ImportController.java;
+			path = src/ImportController.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED74505D932BD0001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			name = IndividualEditController.java;
+			path = src/IndividualEditController.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED74605D932BD0001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			name = IndividualList.java;
+			path = src/IndividualList.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED74705D932BD0001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			name = IndividualSummaryView.java;
+			path = src/IndividualSummaryView.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED74805D932BD0001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			name = PedigreeView.java;
+			path = src/PedigreeView.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED74905D932BD0001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			name = ReportsController.java;
+			path = src/ReportsController.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED74A05D932BD0001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			name = TestData.java;
+			path = src/TestData.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED74B05D932BD0001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			name = XMLTest.java;
+			path = src/XMLTest.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED74C05D932BD0001D1D2 = {
+			fileRef = 026ED71205D932BC0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED74D05D932BD0001D1D2 = {
+			fileRef = 026ED71305D932BC0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED74E05D932BD0001D1D2 = {
+			fileRef = 026ED71705D932BC0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED74F05D932BD0001D1D2 = {
+			fileRef = 026ED71805D932BC0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED75005D932BD0001D1D2 = {
+			fileRef = 026ED71905D932BC0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED75105D932BD0001D1D2 = {
+			fileRef = 026ED71A05D932BC0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED75205D932BD0001D1D2 = {
+			fileRef = 026ED71B05D932BC0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED75305D932BD0001D1D2 = {
+			fileRef = 026ED71C05D932BC0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED75405D932BD0001D1D2 = {
+			fileRef = 026ED71D05D932BC0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED75505D932BD0001D1D2 = {
+			fileRef = 026ED71E05D932BC0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED75605D932BD0001D1D2 = {
+			fileRef = 026ED72005D932BC0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED75705D932BD0001D1D2 = {
+			fileRef = 026ED72105D932BC0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED75805D932BD0001D1D2 = {
+			fileRef = 026ED72205D932BC0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED75905D932BD0001D1D2 = {
+			fileRef = 026ED72305D932BC0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED75A05D932BD0001D1D2 = {
+			fileRef = 026ED72405D932BC0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED75B05D932BD0001D1D2 = {
+			fileRef = 026ED72505D932BC0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED75C05D932BD0001D1D2 = {
+			fileRef = 026ED72605D932BC0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED75D05D932BD0001D1D2 = {
+			fileRef = 026ED72705D932BC0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED75E05D932BD0001D1D2 = {
+			fileRef = 026ED72805D932BC0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED75F05D932BD0001D1D2 = {
+			fileRef = 026ED72905D932BC0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED76005D932BD0001D1D2 = {
+			fileRef = 026ED72A05D932BC0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED76105D932BD0001D1D2 = {
+			fileRef = 026ED72B05D932BC0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED76205D932BD0001D1D2 = {
+			fileRef = 026ED72C05D932BC0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED76305D932BD0001D1D2 = {
+			fileRef = 026ED72D05D932BC0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED76405D932BD0001D1D2 = {
+			fileRef = 026ED72E05D932BC0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED76505D932BD0001D1D2 = {
+			fileRef = 026ED72F05D932BC0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED76605D932BD0001D1D2 = {
+			fileRef = 026ED73005D932BC0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED76705D932BD0001D1D2 = {
+			fileRef = 026ED73105D932BC0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED76805D932BD0001D1D2 = {
+			fileRef = 026ED73205D932BC0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED76905D932BD0001D1D2 = {
+			fileRef = 026ED73305D932BC0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED76A05D932BD0001D1D2 = {
+			fileRef = 026ED73405D932BC0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED76B05D932BD0001D1D2 = {
+			fileRef = 026ED73505D932BC0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED76C05D932BD0001D1D2 = {
+			fileRef = 026ED73605D932BC0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED76D05D932BD0001D1D2 = {
+			fileRef = 026ED73705D932BC0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED76E05D932BD0001D1D2 = {
+			fileRef = 026ED73805D932BD0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED76F05D932BD0001D1D2 = {
+			fileRef = 026ED73905D932BD0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED77005D932BD0001D1D2 = {
+			fileRef = 026ED73A05D932BD0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED77105D932BD0001D1D2 = {
+			fileRef = 026ED73B05D932BD0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED77205D932BD0001D1D2 = {
+			fileRef = 026ED73C05D932BD0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED77305D932BD0001D1D2 = {
+			fileRef = 026ED73D05D932BD0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED77405D932BD0001D1D2 = {
+			fileRef = 026ED73E05D932BD0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED77505D932BD0001D1D2 = {
+			fileRef = 026ED74005D932BD0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED77605D932BD0001D1D2 = {
+			fileRef = 026ED74105D932BD0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED77705D932BD0001D1D2 = {
+			fileRef = 026ED74205D932BD0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED77805D932BD0001D1D2 = {
+			fileRef = 026ED74305D932BD0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED77905D932BD0001D1D2 = {
+			fileRef = 026ED74405D932BD0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED77A05D932BD0001D1D2 = {
+			fileRef = 026ED74505D932BD0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED77B05D932BD0001D1D2 = {
+			fileRef = 026ED74605D932BD0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED77C05D932BD0001D1D2 = {
+			fileRef = 026ED74705D932BD0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED77D05D932BD0001D1D2 = {
+			fileRef = 026ED74805D932BD0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED77E05D932BD0001D1D2 = {
+			fileRef = 026ED74905D932BD0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED77F05D932BD0001D1D2 = {
+			fileRef = 026ED74A05D932BD0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED78005D932BD0001D1D2 = {
+			fileRef = 026ED74B05D932BD0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED78105D932E50001D1D2 = {
+			children = (
+				026ED78205D932E50001D1D2,
+				026ED78305D932E50001D1D2,
+				026ED78405D932E50001D1D2,
+				026ED78505D932E50001D1D2,
+				026ED78605D932E50001D1D2,
+				026ED78705D932E50001D1D2,
+				026ED78805D932E50001D1D2,
+				026ED78905D932E50001D1D2,
+				026ED78A05D932E50001D1D2,
+				026ED78B05D932E50001D1D2,
+				026ED78C05D932E50001D1D2,
+				026ED78D05D932E50001D1D2,
+				026ED78E05D932E50001D1D2,
+				026ED78F05D932E50001D1D2,
+				026ED79005D932E50001D1D2,
+				026ED79105D932E50001D1D2,
+				026ED79205D932E50001D1D2,
+				026ED79305D932E50001D1D2,
+				026ED79405D932E50001D1D2,
+				026ED79505D932E50001D1D2,
+				026ED79605D932E50001D1D2,
+				026ED79705D932E50001D1D2,
+				026ED79805D932E50001D1D2,
+				026ED79905D932E50001D1D2,
+				026ED79A05D932E50001D1D2,
+				026ED79B05D932E50001D1D2,
+			);
+			isa = PBXGroup;
+			path = gedcom;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED78205D932E50001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			path = AllredMed.ged;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED78305D932E50001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			path = allredsmall.ged;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED78405D932E50001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			path = ashby.GED;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED78505D932E50001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			path = Ellee.GED;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED78605D932E50001D1D2 = {
+			isa = PBXFileReference;
+			lastKnownFileType = file;
+			path = emptyPAF;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED78705D932E50001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			path = emptyPAF.GED;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED78805D932E50001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			path = ex.Ged;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED78905D932E50001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			path = example.ged;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED78A05D932E50001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			path = expo.2.ged;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED78B05D932E50001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			path = expo.ged;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED78C05D932E50001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			path = expo.ged.ged;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED78D05D932E50001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			path = expor.GED;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED78E05D932E50001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			path = export.ged;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED78F05D932E50001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			path = g55sample.ged;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED79005D932E50001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			path = KENNEDY.GED;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED79105D932E50001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = text.html;
+			path = kennedy.html;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED79205D932E50001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = text.plist.xml;
+			path = kennedy.xml;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED79305D932E50001D1D2 = {
+			isa = PBXFileReference;
+			lastKnownFileType = file;
+			path = new;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED79405D932E50001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			path = savetest.ged;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED79505D932E50001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			path = "savetest.ged List";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED79605D932E50001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			path = small.ged;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED79705D932E50001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			path = stress.ged;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED79805D932E50001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			path = stress2.ged;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED79905D932E50001D1D2 = {
+			isa = PBXFileReference;
+			lastKnownFileType = file;
+			path = test1;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED79A05D932E50001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			path = test1.GED;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED79B05D932E50001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			path = testexpo.GED;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED79C05D932E50001D1D2 = {
+			children = (
+				026ED79D05D932E50001D1D2,
+				026ED79E05D932E50001D1D2,
+				026ED79F05D932E50001D1D2,
+				026ED7A005D932E50001D1D2,
+				026ED7A105D932E50001D1D2,
+				026ED7A205D932E50001D1D2,
+				026ED7A305D932E50001D1D2,
+				026ED7A405D932E50001D1D2,
+				026ED7A505D932E50001D1D2,
+				026ED7A605D932E50001D1D2,
+			);
+			isa = PBXGroup;
+			path = images;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED79D05D932E50001D1D2 = {
+			isa = PBXFileReference;
+			lastKnownFileType = image.png;
+			path = "familyrecords-screenshot.png";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED79E05D932E50001D1D2 = {
+			isa = PBXFileReference;
+			lastKnownFileType = image.pict;
+			path = indivsummary.pict;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED79F05D932E50001D1D2 = {
+			isa = PBXFileReference;
+			lastKnownFileType = image.gif;
+			path = "macpaf-screenshot.gif";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED7A005D932E50001D1D2 = {
+			isa = PBXFileReference;
+			lastKnownFileType = image.jpeg;
+			path = "macpaf-screenshot.jpg";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED7A105D932E50001D1D2 = {
+			isa = PBXFileReference;
+			lastKnownFileType = image.png;
+			path = "macpaf-screenshot.png";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED7A205D932E50001D1D2 = {
+			isa = PBXFileReference;
+			lastKnownFileType = image.tiff;
+			path = "macpaf-screenshot.tiff";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED7A305D932E50001D1D2 = {
+			isa = PBXFileReference;
+			lastKnownFileType = image.gif;
+			path = notepad.gif;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED7A405D932E50001D1D2 = {
+			isa = PBXFileReference;
+			lastKnownFileType = image.tiff;
+			path = "oldmacpaf-screenshot.tiff";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED7A505D932E50001D1D2 = {
+			isa = PBXFileReference;
+			lastKnownFileType = image.gif;
+			path = tree.gif;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED7A605D932E50001D1D2 = {
+			isa = PBXFileReference;
+			lastKnownFileType = image.icns;
+			path = Tree.icns;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED7A705D932E50001D1D2 = {
+			children = (
+				026ED7A805D932E50001D1D2,
+				026ED7A905D932E50001D1D2,
+				026ED7AA05D932E50001D1D2,
+				026ED7AF05D932E50001D1D2,
+				026ED7B005D932E50001D1D2,
+				026ED7B105D932E50001D1D2,
+				026ED7B205D932E50001D1D2,
+				026ED7B305D932E50001D1D2,
+				026ED7B405D932E50001D1D2,
+				026ED7B505D932E50001D1D2,
+				026ED7B605D932E50001D1D2,
+				026ED7B705D932E50001D1D2,
+			);
+			isa = PBXGroup;
+			path = resources;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED7A805D932E50001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = text.plist.xml;
+			path = GedcomToHtml.xsl;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED7A905D932E50001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = text.plist.xml;
+			path = GedcomToXml.xsl;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED7AA05D932E50001D1D2 = {
+			children = (
+				026ED7AB05D932E50001D1D2,
+				026ED7AC05D932E50001D1D2,
+				026ED7AD05D932E50001D1D2,
+				026ED7AE05D932E50001D1D2,
+			);
+			isa = PBXGroup;
+			path = startup.macpaf;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED7AB05D932E50001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			path = .typeAttributes.dict;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED7AC05D932E50001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			path = data.ged;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED7AD05D932E50001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = text.plist.xml;
+			path = data.xml;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED7AE05D932E50001D1D2 = {
+			children = (
+			);
+			isa = PBXGroup;
+			path = multimedia;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED7AF05D932E50001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = text.plist.xml;
+			path = "Temple Codes (official).xml";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED7B005D932E50001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			path = "Temple Codes.csv";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED7B105D932E50001D1D2 = {
+			isa = PBXFileReference;
+			lastKnownFileType = file;
+			path = "Temple Codes.xls";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED7B205D932E50001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			path = "Temple List";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED7B305D932E50001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			path = "Temple List.csv";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED7B405D932E50001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = text.plist.xml;
+			path = "Temple List.plist";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED7B505D932E50001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = text.plist.xml;
+			path = "temple-mapping.xml";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED7B605D932E50001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = text.plist.xml;
+			path = TempleList.xml;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED7B705D932E50001D1D2 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = text.plist.xml;
+			path = XmlToGedcom.xsl;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED7B805D932E50001D1D2 = {
+			fileRef = 026ED78205D932E50001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED7B905D932E50001D1D2 = {
+			fileRef = 026ED78305D932E50001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED7BA05D932E50001D1D2 = {
+			fileRef = 026ED78405D932E50001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED7BB05D932E50001D1D2 = {
+			fileRef = 026ED78505D932E50001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED7BC05D932E50001D1D2 = {
+			fileRef = 026ED78605D932E50001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED7BD05D932E50001D1D2 = {
+			fileRef = 026ED78705D932E50001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED7BE05D932E50001D1D2 = {
+			fileRef = 026ED78805D932E50001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED7BF05D932E50001D1D2 = {
+			fileRef = 026ED78905D932E50001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED7C005D932E50001D1D2 = {
+			fileRef = 026ED78A05D932E50001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED7C105D932E50001D1D2 = {
+			fileRef = 026ED78B05D932E50001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED7C205D932E50001D1D2 = {
+			fileRef = 026ED78C05D932E50001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED7C305D932E50001D1D2 = {
+			fileRef = 026ED78D05D932E50001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED7C405D932E50001D1D2 = {
+			fileRef = 026ED78E05D932E50001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED7C505D932E50001D1D2 = {
+			fileRef = 026ED78F05D932E50001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED7C605D932E50001D1D2 = {
+			fileRef = 026ED79005D932E50001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED7C705D932E50001D1D2 = {
+			fileRef = 026ED79105D932E50001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED7C805D932E50001D1D2 = {
+			fileRef = 026ED79205D932E50001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED7C905D932E50001D1D2 = {
+			fileRef = 026ED79305D932E50001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED7CA05D932E50001D1D2 = {
+			fileRef = 026ED79405D932E50001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED7CB05D932E50001D1D2 = {
+			fileRef = 026ED79505D932E50001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED7CC05D932E50001D1D2 = {
+			fileRef = 026ED79605D932E50001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED7CD05D932E50001D1D2 = {
+			fileRef = 026ED79705D932E50001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED7CE05D932E50001D1D2 = {
+			fileRef = 026ED79805D932E50001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED7CF05D932E50001D1D2 = {
+			fileRef = 026ED79905D932E50001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED7D005D932E50001D1D2 = {
+			fileRef = 026ED79A05D932E50001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED7D105D932E50001D1D2 = {
+			fileRef = 026ED79B05D932E50001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED7D205D932E50001D1D2 = {
+			fileRef = 026ED79D05D932E50001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED7D305D932E50001D1D2 = {
+			fileRef = 026ED79E05D932E50001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED7D405D932E50001D1D2 = {
+			fileRef = 026ED79F05D932E50001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED7D505D932E50001D1D2 = {
+			fileRef = 026ED7A005D932E50001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED7D605D932E50001D1D2 = {
+			fileRef = 026ED7A105D932E50001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED7D705D932E50001D1D2 = {
+			fileRef = 026ED7A205D932E50001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED7D805D932E50001D1D2 = {
+			fileRef = 026ED7A305D932E50001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED7D905D932E50001D1D2 = {
+			fileRef = 026ED7A405D932E50001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED7DA05D932E50001D1D2 = {
+			fileRef = 026ED7A505D932E50001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED7DB05D932E50001D1D2 = {
+			fileRef = 026ED7A605D932E50001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED7DC05D932E50001D1D2 = {
+			fileRef = 026ED7A805D932E50001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED7DD05D932E50001D1D2 = {
+			fileRef = 026ED7A905D932E50001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED7DE05D932E50001D1D2 = {
+			fileRef = 026ED7AB05D932E50001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED7DF05D932E50001D1D2 = {
+			fileRef = 026ED7AC05D932E50001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED7E005D932E50001D1D2 = {
+			fileRef = 026ED7AD05D932E50001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED7E105D932E50001D1D2 = {
+			fileRef = 026ED7AF05D932E50001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED7E205D932E50001D1D2 = {
+			fileRef = 026ED7B005D932E50001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED7E305D932E50001D1D2 = {
+			fileRef = 026ED7B105D932E50001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED7E405D932E50001D1D2 = {
+			fileRef = 026ED7B205D932E50001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED7E505D932E50001D1D2 = {
+			fileRef = 026ED7B305D932E50001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED7E605D932E50001D1D2 = {
+			fileRef = 026ED7B405D932E50001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED7E705D932E50001D1D2 = {
+			fileRef = 026ED7B505D932E50001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED7E805D932E50001D1D2 = {
+			fileRef = 026ED7B605D932E50001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED7E905D932E50001D1D2 = {
+			fileRef = 026ED7B705D932E50001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED7F205D9330B0001D1D2 = {
+			isa = PBXFileReference;
+			lastKnownFileType = archive.jar;
+			name = "castor-0.9.4.3.jar";
+			path = "lib/castor-0.9.4.3.jar";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED7F305D9330B0001D1D2 = {
+			isa = PBXFileReference;
+			lastKnownFileType = archive.jar;
+			name = gedcom.jar;
+			path = lib/gedcom.jar;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED7F405D9330B0001D1D2 = {
+			isa = PBXFileReference;
+			lastKnownFileType = archive.jar;
+			name = "jaxen-core.jar";
+			path = "lib/jaxen-core.jar";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED7F505D9330B0001D1D2 = {
+			isa = PBXFileReference;
+			lastKnownFileType = archive.jar;
+			name = "jaxen-jdom.jar";
+			path = "lib/jaxen-jdom.jar";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED7F605D9330B0001D1D2 = {
+			isa = PBXFileReference;
+			lastKnownFileType = archive.jar;
+			name = jdom.jar;
+			path = lib/jdom.jar;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED7F705D9330B0001D1D2 = {
+			isa = PBXFileReference;
+			lastKnownFileType = archive.jar;
+			name = saxpath.jar;
+			path = lib/saxpath.jar;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED7F805D9330B0001D1D2 = {
+			isa = PBXFileReference;
+			lastKnownFileType = archive.jar;
+			name = xerces.jar;
+			path = lib/xerces.jar;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		026ED7F905D9330B0001D1D2 = {
+			fileRef = 026ED7F205D9330B0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED7FA05D9330B0001D1D2 = {
+			fileRef = 026ED7F305D9330B0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED7FB05D9330B0001D1D2 = {
+			fileRef = 026ED7F405D9330B0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED7FC05D9330B0001D1D2 = {
+			fileRef = 026ED7F505D9330B0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED7FD05D9330B0001D1D2 = {
+			fileRef = 026ED7F605D9330B0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED7FE05D9330B0001D1D2 = {
+			fileRef = 026ED7F705D9330B0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		026ED7FF05D9330B0001D1D2 = {
+			fileRef = 026ED7F805D9330B0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		027C6AD405D9445900C91D7B = {
+			buildActionMask = 2147483647;
+			dstPath = lib;
+			dstSubfolderSpec = 15;
+			files = (
+				027C6AD905D9447B00C91D7B,
+				027C6ADA05D9447B00C91D7B,
+				027C6ADB05D9447B00C91D7B,
+				027C6ADC05D9447B00C91D7B,
+				027C6ADD05D9447B00C91D7B,
+				027C6ADE05D9447B00C91D7B,
+				027C6ADF05D9447B00C91D7B,
+			);
+			isa = PBXCopyFilesBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		027C6AD905D9447B00C91D7B = {
+			fileRef = 026ED7F205D9330B0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		027C6ADA05D9447B00C91D7B = {
+			fileRef = 026ED7F305D9330B0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		027C6ADB05D9447B00C91D7B = {
+			fileRef = 026ED7F405D9330B0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		027C6ADC05D9447B00C91D7B = {
+			fileRef = 026ED7F505D9330B0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		027C6ADD05D9447B00C91D7B = {
+			fileRef = 026ED7F605D9330B0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		027C6ADE05D9447B00C91D7B = {
+			fileRef = 026ED7F705D9330B0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		027C6ADF05D9447B00C91D7B = {
+			fileRef = 026ED7F805D9330B0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		02907685060568E800F1763A = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			name = IndividualDetailController.java;
+			path = src/IndividualDetailController.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		02907686060568E800F1763A = {
+			fileRef = 02907685060568E800F1763A;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+//020
+//021
+//022
+//023
+//024
+//040
+//041
+//042
+//043
+//044
+		043355CEFE303625C02AAC07 = {
+			buildActionMask = 2147483647;
+			files = (
+			);
+			isa = PBXJavaArchiveBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+//040
+//041
+//042
+//043
+//044
+//080
+//081
+//082
+//083
+//084
+		080E96D9FE201CDB7F000001 = {
+			fileRef = 2A37F4B9FDCFA73011CA2CEA;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		080E96DAFE201CDB7F000001 = {
+			fileRef = 2A37F4B6FDCFA73011CA2CEA;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		080E96DBFE201CDB7F000001 = {
+			fileRef = 2A37F4B4FDCFA73011CA2CEA;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		089C165FFE840EACC02AAC07 = {
+			children = (
+				089C1660FE840EACC02AAC07,
+			);
+			isa = PBXVariantGroup;
+			name = InfoPlist.strings;
+			path = "";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		089C1660FE840EACC02AAC07 = {
+			fileEncoding = 10;
+			isa = PBXFileReference;
+			lastKnownFileType = text.plist.strings;
+			name = English;
+			path = English.lproj/InfoPlist.strings;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		089C1661FE840EACC02AAC07 = {
+			fileRef = 089C165FFE840EACC02AAC07;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+//080
+//081
+//082
+//083
+//084
+//100
+//101
+//102
+//103
+//104
+		1058C7A7FEA54F5311CA2CBB = {
+			fallbackIsa = PBXFileReference;
+			isa = PBXFrameworkReference;
+			lastKnownFileType = wrapper.framework;
+			name = Cocoa.framework;
+			path = /System/Library/Frameworks/Cocoa.framework;
+			refType = 0;
+			sourceTree = "<absolute>";
+		};
+		1058C7A9FEA54F5311CA2CBB = {
+			fileRef = 1058C7A7FEA54F5311CA2CBB;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+//100
+//101
+//102
+//103
+//104
+//110
+//111
+//112
+//113
+//114
+		116DBC1EFEF5915911CA2CEA = {
+			fileRef = 2A37F4ACFDCFA73011CA2CEA;
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+				);
+			};
+		};
+//110
+//111
+//112
+//113
+//114
+//170
+//171
+//172
+//173
+//174
+		1758732CFF379DAD11CA2CBB = {
+			explicitFileType = wrapper.application;
+			fallbackIsa = PBXFileReference;
+			isa = PBXApplicationReference;
+			path = MacPAF.app;
+			refType = 3;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+//170
+//171
+//172
+//173
+//174
+//190
+//191
+//192
+//193
+//194
+		19C28FB0FE9D524F11CA2CBB = {
+			children = (
+				1758732CFF379DAD11CA2CBB,
+			);
+			isa = PBXGroup;
+			name = Products;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+//190
+//191
+//192
+//193
+//194
+//2A0
+//2A1
+//2A2
+//2A3
+//2A4
+		2A37F4A9FDCFA73011CA2CEA = {
+			buildSettings = {
+			};
+			buildStyles = (
+				4A9504D6FFE6A4CB11CA0CBA,
+				4A9504D7FFE6A4CB11CA0CBA,
+			);
+			hasScannedForEncodings = 1;
+			isa = PBXProject;
+			mainGroup = 2A37F4AAFDCFA73011CA2CEA;
+			projectDirPath = "";
+			targets = (
+				2A37F4C6FDCFA73011CA2CEA,
+			);
+		};
+		2A37F4AAFDCFA73011CA2CEA = {
+			children = (
+				32DBCF800370BD9700C91783,
+				32DBCF810370BDA300C91783,
+				02218D9AFECEFA92C02AAC07,
+				2A37F4C3FDCFA73011CA2CEA,
+				19C28FB0FE9D524F11CA2CBB,
+			);
+			isa = PBXGroup;
+			name = MacPAF;
+			path = "";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		2A37F4ACFDCFA73011CA2CEA = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			name = MyDocument.java;
+			path = src/MyDocument.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		2A37F4B0FDCFA73011CA2CEA = {
+			fileEncoding = 30;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.objc;
+			path = main.m;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		2A37F4B4FDCFA73011CA2CEA = {
+			children = (
+				2A37F4B5FDCFA73011CA2CEA,
+			);
+			isa = PBXVariantGroup;
+			name = MyDocument.nib;
+			path = "";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		2A37F4B5FDCFA73011CA2CEA = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper.nib;
+			name = English;
+			path = English.lproj/MyDocument.nib;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		2A37F4B6FDCFA73011CA2CEA = {
+			children = (
+				2A37F4B7FDCFA73011CA2CEA,
+			);
+			isa = PBXVariantGroup;
+			name = MainMenu.nib;
+			path = "";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		2A37F4B7FDCFA73011CA2CEA = {
+			isa = PBXFileReference;
+			lastKnownFileType = wrapper.nib;
+			name = English;
+			path = English.lproj/MainMenu.nib;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		2A37F4B9FDCFA73011CA2CEA = {
+			children = (
+				2A37F4BAFDCFA73011CA2CEA,
+			);
+			isa = PBXVariantGroup;
+			name = Credits.rtf;
+			path = "";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		2A37F4BAFDCFA73011CA2CEA = {
+			isa = PBXFileReference;
+			lastKnownFileType = text.rtf;
+			name = English;
+			path = English.lproj/Credits.rtf;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		2A37F4C3FDCFA73011CA2CEA = {
+			children = (
+				026ED7F205D9330B0001D1D2,
+				026ED7F305D9330B0001D1D2,
+				026ED7F405D9330B0001D1D2,
+				026ED7F505D9330B0001D1D2,
+				026ED7F605D9330B0001D1D2,
+				026ED7F705D9330B0001D1D2,
+				026ED7F805D9330B0001D1D2,
+				1058C7A7FEA54F5311CA2CBB,
+				2A37F4C5FDCFA73011CA2CEA,
+				2A37F4C4FDCFA73011CA2CEA,
+			);
+			isa = PBXGroup;
+			name = Frameworks;
+			path = "";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		2A37F4C4FDCFA73011CA2CEA = {
+			fallbackIsa = PBXFileReference;
+			isa = PBXFrameworkReference;
+			lastKnownFileType = wrapper.framework;
+			name = AppKit.framework;
+			path = /System/Library/Frameworks/AppKit.framework;
+			refType = 0;
+			sourceTree = "<absolute>";
+		};
+		2A37F4C5FDCFA73011CA2CEA = {
+			fallbackIsa = PBXFileReference;
+			isa = PBXFrameworkReference;
+			lastKnownFileType = wrapper.framework;
+			name = Foundation.framework;
+			path = /System/Library/Frameworks/Foundation.framework;
+			refType = 0;
+			sourceTree = "<absolute>";
+		};
+		2A37F4C6FDCFA73011CA2CEA = {
+			buildPhases = (
+				2A37F4C7FDCFA73011CA2CEA,
+				2A37F4C9FDCFA73011CA2CEA,
+				2A37F4CEFDCFA73011CA2CEA,
+				043355CEFE303625C02AAC07,
+				2A37F4D1FDCFA73011CA2CEA,
+				027C6AD405D9445900C91D7B,
+			);
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = "";
+				INSTALL_PATH = "$(HOME)/Applications";
+				JAVAC_SOURCE_FILE_ENCODING = "UTF-8";
+				JAVA_COMPILER_SOURCE_VERSION = 1.4;
+				JAVA_COMPILER_TARGET_VM_VERSION = 1.4;
+				JAVA_SOURCE_SUBDIR = .;
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRECOMPILE_PREFIX_HEADER = YES;
+				PREFIX_HEADER = MacPAF_Prefix.h;
+				PRODUCT_NAME = MacPAF;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = "-Wmost -Wno-four-char-constants -Wno-unknown-pragmas";
+				WRAPPER_EXTENSION = app;
+			};
+			dependencies = (
+			);
+			isa = PBXApplicationTarget;
+			name = MacPAF;
+			productInstallPath = "$(HOME)/Applications";
+			productName = MacPAF;
+			productReference = 1758732CFF379DAD11CA2CBB;
+			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
+<!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
+<plist version=\"1.0\">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>macpaf</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string></string>
+			<key>CFBundleTypeName</key>
+			<string>MacPAF File</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSTypeIsPackage</key>
+			<true/>
+			<key>NSDocumentClass</key>
+			<string>MyDocument</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>ged</string>
+				<string>GED</string>
+				<string>Ged</string>
+				<string>xml</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>GEDCOM File (.ged)</string>
+			<key>CFBundleTypeOSTypes</key>
+			<array>
+				<string>TEXT</string>
+				<string>FAMP</string>
+			</array>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>NSDocumentClass</key>
+			<string>MyDocument</string>
+		</dict>
+	</array>
+	<key>CFBundleExecutable</key>
+	<string>MacPAF</string>
+	<key>CFBundleGetInfoString</key>
+	<string>0.1</string>
+	<key>CFBundleIconFile</key>
+	<string>Tree</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.redbugz.MacPAF</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>MacPAF</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>0.1</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>0.1</string>
+	<key>Java</key>
+	<dict>
+		<key>JVMVersion</key>
+		<string>1.4+</string>
+		<key>VMOptions</key>
+		<string>-Xmx256m</string>
+	</dict>
+	<key>NSJavaNeeded</key>
+	<string>YES</string>
+	<key>NSJavaPath</key>
+	<array>
+		<string>MacPAF.jar</string>
+		<string>lib/castor-0.9.4.3.jar</string>
+		<string>lib/gedcom.jar</string>
+		<string>lib/jaxen-core.jar</string>
+		<string>lib/jaxen-jdom.jar</string>
+		<string>lib/jdom.jar</string>
+		<string>lib/saxpath.jar</string>
+		<string>lib/xerces.jar</string>
+	</array>
+	<key>NSJavaRoot</key>
+	<string>Contents/Resources/Java</string>
+	<key>NSMainNibFile</key>
+	<string>MainMenu</string>
+	<key>NSPrincipalClass</key>
+	<string>NSApplication</string>
+</dict>
+</plist>
+";
+		};
+		2A37F4C7FDCFA73011CA2CEA = {
+			buildActionMask = 2147483647;
+			files = (
+				32DBCF830370BDBC00C91783,
+			);
+			isa = PBXHeadersBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2A37F4C9FDCFA73011CA2CEA = {
+			buildActionMask = 2147483647;
+			files = (
+				080E96D9FE201CDB7F000001,
+				080E96DAFE201CDB7F000001,
+				080E96DBFE201CDB7F000001,
+				089C1661FE840EACC02AAC07,
+				026ED7B805D932E50001D1D2,
+				026ED7B905D932E50001D1D2,
+				026ED7BA05D932E50001D1D2,
+				026ED7BB05D932E50001D1D2,
+				026ED7BC05D932E50001D1D2,
+				026ED7BD05D932E50001D1D2,
+				026ED7BE05D932E50001D1D2,
+				026ED7BF05D932E50001D1D2,
+				026ED7C005D932E50001D1D2,
+				026ED7C105D932E50001D1D2,
+				026ED7C205D932E50001D1D2,
+				026ED7C305D932E50001D1D2,
+				026ED7C405D932E50001D1D2,
+				026ED7C505D932E50001D1D2,
+				026ED7C605D932E50001D1D2,
+				026ED7C705D932E50001D1D2,
+				026ED7C805D932E50001D1D2,
+				026ED7C905D932E50001D1D2,
+				026ED7CA05D932E50001D1D2,
+				026ED7CB05D932E50001D1D2,
+				026ED7CC05D932E50001D1D2,
+				026ED7CD05D932E50001D1D2,
+				026ED7CE05D932E50001D1D2,
+				026ED7CF05D932E50001D1D2,
+				026ED7D005D932E50001D1D2,
+				026ED7D105D932E50001D1D2,
+				026ED7D205D932E50001D1D2,
+				026ED7D305D932E50001D1D2,
+				026ED7D405D932E50001D1D2,
+				026ED7D505D932E50001D1D2,
+				026ED7D605D932E50001D1D2,
+				026ED7D705D932E50001D1D2,
+				026ED7D805D932E50001D1D2,
+				026ED7D905D932E50001D1D2,
+				026ED7DA05D932E50001D1D2,
+				026ED7DB05D932E50001D1D2,
+				026ED7DC05D932E50001D1D2,
+				026ED7DD05D932E50001D1D2,
+				026ED7DE05D932E50001D1D2,
+				026ED7DF05D932E50001D1D2,
+				026ED7E005D932E50001D1D2,
+				026ED7E105D932E50001D1D2,
+				026ED7E205D932E50001D1D2,
+				026ED7E305D932E50001D1D2,
+				026ED7E405D932E50001D1D2,
+				026ED7E505D932E50001D1D2,
+				026ED7E605D932E50001D1D2,
+				026ED7E705D932E50001D1D2,
+				026ED7E805D932E50001D1D2,
+				026ED7E905D932E50001D1D2,
+			);
+			isa = PBXResourcesBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2A37F4CEFDCFA73011CA2CEA = {
+			buildActionMask = 2147483647;
+			files = (
+				2A37F4D0FDCFA73011CA2CEA,
+				116DBC1EFEF5915911CA2CEA,
+				026ED74C05D932BD0001D1D2,
+				026ED74D05D932BD0001D1D2,
+				026ED74E05D932BD0001D1D2,
+				026ED74F05D932BD0001D1D2,
+				026ED75005D932BD0001D1D2,
+				026ED75105D932BD0001D1D2,
+				026ED75205D932BD0001D1D2,
+				026ED75305D932BD0001D1D2,
+				026ED75405D932BD0001D1D2,
+				026ED75505D932BD0001D1D2,
+				026ED75605D932BD0001D1D2,
+				026ED75705D932BD0001D1D2,
+				026ED75805D932BD0001D1D2,
+				026ED75905D932BD0001D1D2,
+				026ED75A05D932BD0001D1D2,
+				026ED75B05D932BD0001D1D2,
+				026ED75C05D932BD0001D1D2,
+				026ED75D05D932BD0001D1D2,
+				026ED75E05D932BD0001D1D2,
+				026ED75F05D932BD0001D1D2,
+				026ED76005D932BD0001D1D2,
+				026ED76105D932BD0001D1D2,
+				026ED76205D932BD0001D1D2,
+				026ED76305D932BD0001D1D2,
+				026ED76405D932BD0001D1D2,
+				026ED76505D932BD0001D1D2,
+				026ED76605D932BD0001D1D2,
+				026ED76705D932BD0001D1D2,
+				026ED76805D932BD0001D1D2,
+				026ED76905D932BD0001D1D2,
+				026ED76A05D932BD0001D1D2,
+				026ED76B05D932BD0001D1D2,
+				026ED76C05D932BD0001D1D2,
+				026ED76D05D932BD0001D1D2,
+				026ED76E05D932BD0001D1D2,
+				026ED76F05D932BD0001D1D2,
+				026ED77005D932BD0001D1D2,
+				026ED77105D932BD0001D1D2,
+				026ED77205D932BD0001D1D2,
+				026ED77305D932BD0001D1D2,
+				026ED77405D932BD0001D1D2,
+				026ED77505D932BD0001D1D2,
+				026ED77605D932BD0001D1D2,
+				026ED77705D932BD0001D1D2,
+				026ED77805D932BD0001D1D2,
+				026ED77905D932BD0001D1D2,
+				026ED77A05D932BD0001D1D2,
+				026ED77B05D932BD0001D1D2,
+				026ED77C05D932BD0001D1D2,
+				026ED77D05D932BD0001D1D2,
+				026ED77E05D932BD0001D1D2,
+				026ED77F05D932BD0001D1D2,
+				026ED78005D932BD0001D1D2,
+				02907686060568E800F1763A,
+			);
+			isa = PBXSourcesBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2A37F4D0FDCFA73011CA2CEA = {
+			fileRef = 2A37F4B0FDCFA73011CA2CEA;
+			isa = PBXBuildFile;
+			settings = {
+				ATTRIBUTES = (
+				);
+			};
+		};
+		2A37F4D1FDCFA73011CA2CEA = {
+			buildActionMask = 2147483647;
+			files = (
+				1058C7A9FEA54F5311CA2CBB,
+				026ED7F905D9330B0001D1D2,
+				026ED7FA05D9330B0001D1D2,
+				026ED7FB05D9330B0001D1D2,
+				026ED7FC05D9330B0001D1D2,
+				026ED7FD05D9330B0001D1D2,
+				026ED7FE05D9330B0001D1D2,
+				026ED7FF05D9330B0001D1D2,
+			);
+			isa = PBXFrameworksBuildPhase;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+//2A0
+//2A1
+//2A2
+//2A3
+//2A4
+//320
+//321
+//322
+//323
+//324
+		32DBCF800370BD9700C91783 = {
+			children = (
+				026ED71205D932BC0001D1D2,
+				026ED71305D932BC0001D1D2,
+				026ED71405D932BC0001D1D2,
+				026ED73C05D932BD0001D1D2,
+				026ED73D05D932BD0001D1D2,
+				026ED73E05D932BD0001D1D2,
+				026ED73F05D932BD0001D1D2,
+				026ED74405D932BD0001D1D2,
+				026ED74505D932BD0001D1D2,
+				026ED74605D932BD0001D1D2,
+				026ED74705D932BD0001D1D2,
+				02907685060568E800F1763A,
+				026ED74805D932BD0001D1D2,
+				026ED74905D932BD0001D1D2,
+				026ED74A05D932BD0001D1D2,
+				026ED74B05D932BD0001D1D2,
+				2A37F4ACFDCFA73011CA2CEA,
+			);
+			isa = PBXGroup;
+			name = Classes;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		32DBCF810370BDA300C91783 = {
+			children = (
+				32DBCF820370BDBC00C91783,
+				2A37F4B0FDCFA73011CA2CEA,
+			);
+			isa = PBXGroup;
+			name = "Other Sources";
+			path = "";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		32DBCF820370BDBC00C91783 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.c.h;
+			path = MacPAF_Prefix.h;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		32DBCF830370BDBC00C91783 = {
+			fileRef = 32DBCF820370BDBC00C91783;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+//320
+//321
+//322
+//323
+//324
+//4A0
+//4A1
+//4A2
+//4A3
+//4A4
+		4A9504D6FFE6A4CB11CA0CBA = {
+			buildRules = (
+			);
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OPTIMIZATION_CFLAGS = "-O0";
+				ZERO_LINK = YES;
+			};
+			isa = PBXBuildStyle;
+			name = Development;
+		};
+		4A9504D7FFE6A4CB11CA0CBA = {
+			buildRules = (
+			);
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				ZERO_LINK = NO;
+			};
+			isa = PBXBuildStyle;
+			name = Deployment;
+		};
+	};
+	rootObject = 2A37F4A9FDCFA73011CA2CEA;
+}

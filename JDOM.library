@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<library>
+  <!--JBuilder Library Definition File-->
+  <fullname>JDOM</fullname>
+  <class>
+    <path>[lib/jaxen-jdom.jar]</path>
+    <path>[lib/jaxen-core.jar]</path>
+    <path>[lib/saxpath.jar]</path>
+    <path>[lib/jdom.jar]</path>
+    <path>[lib/xerces.jar]</path>
+  </class>
+  <lastmodsaved>1077479484427</lastmodsaved>
+</library>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="lib/xerces.jar"/>
+	<classpathentry kind="lib" path="lib/saxpath.jar"/>
+	<classpathentry sourcepath="/Projects/jdom-b10/src/java" kind="lib" path="lib/jdom.jar"/>
+	<classpathentry kind="lib" path="lib/jaxen-jdom.jar"/>
+	<classpathentry kind="lib" path="lib/jaxen-core.jar"/>
+	<classpathentry kind="lib" path="lib/gedcom.jar"/>
+	<classpathentry kind="lib" path="lib/castor-0.9.4.3.jar"/>
+	<classpathentry kind="lib" path="CocoaLib"/>
+	<classpathentry kind="output" path="build/"/>
+</classpath>

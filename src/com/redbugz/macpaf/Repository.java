@@ -18,6 +18,7 @@ public interface Repository {
   public static final String RIN = "RIN";
 
   public String getId();
+  public void setId(String string);
 
   public String getName();
   
@@ -35,6 +36,14 @@ public interface Repository {
 	 */
 	public String getName() {
 		return "";
+	}
+
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.Repository#setId(java.lang.String)
+	 */
+	public void setId(String string) {
+		// TODO Auto-generated method stub
+		
 	}
   	
   }

@@ -49,6 +49,7 @@ public interface Source {
 //+1 <<CHANGE_DATE>>  {0:1}
 
   public String getId();
+  public void setId(String string);
 
   public String getText();
   public String getTitle();
@@ -74,6 +75,14 @@ public interface Source {
 	 */
 	public String getTitle() {
 		return "";
+	}
+
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.Source#setId(java.lang.String)
+	 */
+	public void setId(String string) {
+		// TODO Auto-generated method stub
+		
 	}
   	
   }

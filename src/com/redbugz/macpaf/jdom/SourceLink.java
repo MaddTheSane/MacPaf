@@ -15,29 +15,58 @@ import com.redbugz.macpaf.Source;
  * Window - Preferences - Java - Code Style - Code Templates
  */
 public class SourceLink implements Source {
+	private Source actualSource = null;
+	private MacPAFDocumentJDOM document = null;
+	String id = "";
+
+	SourceLink(MacPAFDocumentJDOM doc) {
+		document = doc;
+	}
+	
+	SourceLink(String id, MacPAFDocumentJDOM doc) {
+		this(doc);
+		setId(id);
+	}
+
+	/**
+	 * @return
+	 */
+	private Source getSource() {
+		if (actualSource == null) {
+			actualSource = document.getSource(id);
+		}
+		return actualSource;
+	}
 
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Source#getId()
 	 */
 	public String getId() {
-		// TODO Auto-generated method stub
-		return null;
+		return id;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.Source#setId(java.lang.String)
+	 */
+	public void setId(String id) {
+		if (id == null) {
+			id = "";
+		}
+		this.id = id;
 	}
 
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Source#getText()
 	 */
 	public String getText() {
-		// TODO Auto-generated method stub
-		return null;
+		return getSource().getText();
 	}
 
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Source#getTitle()
 	 */
 	public String getTitle() {
-		// TODO Auto-generated method stub
-		return null;
+		return getSource().getTitle();
 	}
 
 }

@@ -29,12 +29,6 @@ public class FamilyJDOM implements Family {
   //   Date weddingDate;
   //   private String id;
   //   private Event marriageEvent = EventJDOM.createMarriageEventInstance();
-  private static final String REF = "REF";
-  private static final String FAMILY = "FAM";
-  private static final String HUSBAND = "HUSB";
-  private static final String WIFE = "WIFE";
-  private static final String RIN = "RIN";
-  private static final String ID = "ID";
   protected Element element = new Element(FAMILY);
   private MacPAFDocumentJDOM document = null;
 
@@ -76,24 +70,31 @@ public class FamilyJDOM implements Family {
   // spouse="+getFather().getFamilyAsSpouse().getMother().getFullName());
   //   }
 
-  public FamilyJDOM(MacPAFDocumentJDOM parentDocument) {
-	document = parentDocument;
-	//      dad = new Individual.UnknownMaleIndividual();
-	//      mom = new Individual.UnknownFemaleIndividual();
-	//      weddingDate = new Date();
-	element = new Element(FAMILY);
-	setId("");
-  }
+//  public FamilyJDOM(MacPAFDocumentJDOM parentDocument) {
+//	document = parentDocument;
+//	//      dad = new Individual.UnknownMaleIndividual();
+//	//      mom = new Individual.UnknownFemaleIndividual();
+//	//      weddingDate = new Date();
+//	element = new Element(FAMILY);
+//	setId("");
+//  }
 
   public FamilyJDOM(Element element, MacPAFDocumentJDOM parentDocument) {
-	document = parentDocument;
+  	if (parentDocument == null) {
+  		throw new IllegalArgumentException("Cannot create FamilyJDOM with null parentDocument");
+  	}
 	if (element == null) {
-	  element = new Element(FAMILY);
+		throw new IllegalArgumentException("cannot create new FamilyJDOM with null element");
+//	  element = new Element(FAMILY);
 	}
+	document = parentDocument;
 	this.element = element;
   }
 
   public FamilyJDOM(Family oldFamily, MacPAFDocumentJDOM parentDocument) {
+  	if (parentDocument == null) {
+  		throw new IllegalArgumentException("Cannot create FamilyJDOM with null parentDocument");
+  	}
 	document = parentDocument;
 	if (oldFamily instanceof FamilyJDOM) {
 	  this.element = ( (FamilyJDOM) oldFamily).getElement();
@@ -249,12 +250,12 @@ public class FamilyJDOM implements Family {
   }
 
   public String getId() {
-	return element.getAttributeValue("ID");
+	return element.getAttributeValue(ID);
   }
 
   public void setId(String id) {
 	//      this.id = id;
-	element.setAttribute("ID", id);
+	element.setAttribute(ID, id);
   }
 
   public void setMarriageEvent(Event marriageEvent) {

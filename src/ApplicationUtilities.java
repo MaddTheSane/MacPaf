@@ -43,15 +43,15 @@ public class ApplicationUtilities {
 	  else {
 		NSDocumentController.sharedDocumentController().openUntitledDocumentOfType(MyDocument.MACPAF, true);
 	  }
+	}
+	catch (Exception ex) {
+	  ex.printStackTrace();
+	}
 	  // close splash screen
 	  splashScreen.setReleasedWhenClosed(true);
 	  splashScreen.close();
 	  splashScreen = null;
 	  didFinish = true;
-	}
-	catch (Exception ex) {
-	  ex.printStackTrace();
-	}
   }
 
   public boolean applicationShouldOpenUntitledFile(NSApplication sender) {

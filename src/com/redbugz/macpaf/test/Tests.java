@@ -17,6 +17,8 @@ import com.apple.cocoa.foundation.NSData;
 import com.redbugz.macpaf.util.Base64;
 import com.redbugz.macpaf.util.Hex;
 import com.redbugz.macpaf.util.MultimediaUtils;
+import com.redbugz.macpaf.util.StringUtils;
+import com.redbugz.macpaf.util.XMLTest;
 
 /**
  * @author logan
@@ -107,5 +109,19 @@ public static void testImageFiles() {
 		e.printStackTrace();
 	}
 }
+
+public static void testTrimLeadingWhitespace() {
+	log.debug("whitespace test:");
+	log.debug("|" + StringUtils.trimLeadingWhitespace(null) + "|");
+	log.debug("|" + StringUtils.trimLeadingWhitespace("") + "|");
+	log.debug("|" + StringUtils.trimLeadingWhitespace(" ") + "|");
+	log.debug("|" + StringUtils.trimLeadingWhitespace("A") + "|");
+	log.debug("|" + StringUtils.trimLeadingWhitespace(" A") + "|");
+	log.debug("|" + StringUtils.trimLeadingWhitespace("A ") + "|");
+	log.debug("|" + StringUtils.trimLeadingWhitespace("Lots of space at end         ") + "|");
+	log.debug("|" + StringUtils.trimLeadingWhitespace("     Lots of whitespace at beginning") + "|");
+	log.debug("|" + StringUtils.trimLeadingWhitespace("     Lots of whitespace at both ends        ") + "|");
+	log.debug("whitespace test done.");
+  }
 
 }

@@ -35,11 +35,20 @@ public class MultimediaJDOM implements Multimedia {
   private static final String RIN = "RIN";
 
   Element element = new Element("OBJE");
+private MacPAFDocumentJDOM document;
 
   /**
    * @param element
+ * @param parentDocument TODO
    */
-  public MultimediaJDOM(Element element) {
+  public MultimediaJDOM(Element element, MacPAFDocumentJDOM parentDocument) {
+  	if (parentDocument == null) {
+  		throw new IllegalArgumentException("Cannot create MultimediaJDOM with null parentDocument");
+  	}
+	if (element == null) {
+  		throw new IllegalArgumentException("Cannot create MultimediaJDOM with null element");
+	}
+	document = parentDocument;
 	this.element = element;
   }
 

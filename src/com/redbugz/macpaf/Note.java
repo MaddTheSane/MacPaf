@@ -17,6 +17,7 @@ public interface Note {
   public static final String REF = "REF";
 
   public String getId();
+  public void setId(String string);
 
   public String getText();
   
@@ -34,6 +35,14 @@ public interface Note {
 	 */
 	public String getText() {
 		return "";
+	}
+
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.Note#setId(java.lang.String)
+	 */
+	public void setId(String string) {
+		// TODO Auto-generated method stub
+		
 	}
   	
   }

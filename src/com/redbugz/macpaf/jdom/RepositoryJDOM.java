@@ -1,8 +1,6 @@
 /*
  * Created on Oct 3, 2004
  *
- * TODO To change the template for this generated file go to
- * Window - Preferences - Java - Code Style - Code Templates
  */
 package com.redbugz.macpaf.jdom;
 
@@ -16,21 +14,24 @@ import com.redbugz.macpaf.Repository;
 /**
  * @author logan
  *
- * TODO To change the template for this generated type comment go to
- * Window - Preferences - Java - Code Style - Code Templates
  */
 public class RepositoryJDOM implements Repository {
 	  private static final Category log = Category.getInstance(RepositoryJDOM.class.getName());
-
-	   private String id = "";
-	   private StringBuffer text = new StringBuffer();
-	  Element element = new Element(REPOSITORY);
 	  private static final String newLine = System.getProperty("line.separator");
 
-	  public RepositoryJDOM(Element element) {
+//	  private StringBuffer text = new StringBuffer();
+	  Element element = new Element(REPOSITORY);
+private MacPAFDocumentJDOM document = null;
+	  
+	  public RepositoryJDOM(Element element, MacPAFDocumentJDOM parentDocument) {
+	  	if (parentDocument == null) {
+	  		throw new IllegalArgumentException("Cannot create RepositoryJDOM with null parentDocument");
+	  	}
 		if (element == null) {
-		  element = new Element(REPOSITORY);
+			throw new IllegalArgumentException("Cannot create RepositoryJDOM with null element");
+//		  element = new Element(REPOSITORY);
 		}
+	  	document = parentDocument;
 		this.element = element;
 		log.debug("RepositoryJDOM() element=\n" + new XMLOutputter(Format.getPrettyFormat()).outputString(element));
 	  }
@@ -49,16 +50,26 @@ public class RepositoryJDOM implements Repository {
 	 * @see com.redbugz.macpaf.Repository#getId()
 	 */
 	public String getId() {
-		// TODO Auto-generated method stub
-		return null;
+		return element.getAttributeValue(ID);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.Repository#setId(java.lang.String)
+	 */
+	public void setId(String id) {
+		element.setAttribute(ID, id);
 	}
 
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Repository#getName()
 	 */
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		String name = "";
+		Element nameElement = element.getChild(NAME);
+		if (nameElement != null) {
+			name = nameElement.getTextTrim();
+		}
+		return name;
 	}
 
 }

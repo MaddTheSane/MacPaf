@@ -33,19 +33,26 @@ public class SourceJDOM implements Source {
 	  Element element = new Element(SOURCE);
 	  private static final String newLine = System.getProperty("line.separator");
 
-	  public SourceJDOM(Element element) {
+	private MacPAFDocumentJDOM document = null;
+
+	  public SourceJDOM(Element element, MacPAFDocumentJDOM parentDocument) {
+	  	if (parentDocument == null) {
+	  		throw new IllegalArgumentException("Cannot create SourceJDOM with null parentDocument");
+	  	}
 		if (element == null) {
-		  element = new Element(SOURCE);
+	  		throw new IllegalArgumentException("Cannot create SourceJDOM with null element");
+//		  element = new Element(SOURCE);
 		}
+		document = parentDocument;
 		this.element = element;
 		log.debug("SourceJDOM() element=\n" + new XMLOutputter(Format.getPrettyFormat()).outputString(element));
 	  }
 
-	  public SourceJDOM(Source oldSource) {
-		if (oldSource instanceof SourceJDOM) {
-		  this.element = ( (SourceJDOM) oldSource).getElement();
-		}
-	  }
+//	  public SourceJDOM(Source oldSource) {
+//		if (oldSource instanceof SourceJDOM) {
+//		  this.element = ( (SourceJDOM) oldSource).getElement();
+//		}
+//	  }
 
 	  public Element getElement() {
 		return element;
@@ -69,7 +76,7 @@ public class SourceJDOM implements Source {
 			  // TODO Auto-generated catch block
 			  e1.printStackTrace();
 			}
-			element = new SourceJDOM(sourceNode).getElement();
+			element = new SourceJDOM(sourceNode, null).getElement();
 
 		  }
 		  catch (JDOMException e) {

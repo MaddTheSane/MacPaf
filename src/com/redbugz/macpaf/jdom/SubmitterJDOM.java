@@ -8,6 +8,7 @@ package com.redbugz.macpaf.jdom;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -23,9 +24,14 @@ import com.redbugz.macpaf.Submitter;
  * Window - Preferences - Java - Code Generation - Code and Comments
  */
 public class SubmitterJDOM implements Submitter {
-  Element element = new Element(SUBMITTER);
+	private MacPAFDocumentJDOM document = null;
+	private Element element = new Element(SUBMITTER);
 
-  public SubmitterJDOM() {
+  public SubmitterJDOM(MacPAFDocumentJDOM parentDocument) {
+  	if (parentDocument == null) {
+  		throw new IllegalArgumentException("Cannot create SubmitterJDOM with null parentDocument");
+  	}
+  	document = parentDocument;
 	element.setAttribute("ID", "S1");
 	List elements = new ArrayList();
 	elements.add(new Element(NAME).setText(""));
@@ -36,7 +42,14 @@ public class SubmitterJDOM implements Submitter {
 		"dd MMM yyyy").format(new Date()))));
   }
 
-  public SubmitterJDOM(Element element) {
+  public SubmitterJDOM(Element element, MacPAFDocumentJDOM parentDocument) {
+  	if (parentDocument == null) {
+  		throw new IllegalArgumentException("Cannot create SubmitterJDOM with null parentDocument");
+  	}
+  	if (element == null) {
+  		throw new IllegalArgumentException("Cannot create SubmitterJDOM with null element");
+  	}
+  	document = parentDocument;
 	this.element = element;
   }
 
@@ -80,7 +93,7 @@ public class SubmitterJDOM implements Submitter {
    */
   public MultimediaLink getMultimediaLink() {
 	// TODO Auto-generated method stub
-	return null;
+	return new MultimediaLink(document);
   }
 
   /* (non-Javadoc)
@@ -96,7 +109,7 @@ public class SubmitterJDOM implements Submitter {
    */
   public List getLanguagePreferences() {
 	// TODO Auto-generated method stub
-	return null;
+	return Collections.EMPTY_LIST;
   }
 
   /* (non-Javadoc)
@@ -112,15 +125,14 @@ public class SubmitterJDOM implements Submitter {
    */
   public String getRFN() {
 	// TODO Auto-generated method stub
-	return null;
+	return "";
   }
 
   /* (non-Javadoc)
    * @see Submitter#setRFN()
    */
-  public String setRFN() {
-	// TODO Auto-generated method stub
-	return null;
+  public void setRFN(String rfn) {
+
   }
 
   /* (non-Javadoc)
@@ -128,7 +140,7 @@ public class SubmitterJDOM implements Submitter {
    */
   public Integer getRIN() {
 	// TODO Auto-generated method stub
-	return null;
+	return new Integer(0);
   }
 
   /* (non-Javadoc)
@@ -144,7 +156,7 @@ public class SubmitterJDOM implements Submitter {
    */
   public Date getChangeDate() {
 	// TODO Auto-generated method stub
-	return null;
+	return new Date();
   }
 
   /* (non-Javadoc)

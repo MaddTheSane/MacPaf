@@ -16,7 +16,14 @@ import com.redbugz.macpaf.jdom.FamilyJDOM;
 public interface Family {
   public static final Family UNKNOWN_FAMILY = new UnknownFamily();
 
-public Individual getFather();
+  public static final String REF = "REF";
+  public static final String FAMILY = "FAM";
+  public static final String HUSBAND = "HUSB";
+  public static final String WIFE = "WIFE";
+  public static final String RIN = "RIN";
+  public static final String ID = "ID";
+
+  public Individual getFather();
 
   public void setFather(Individual father);
 

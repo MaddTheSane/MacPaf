@@ -19,7 +19,7 @@ import com.redbugz.macpaf.Ordinance;
  *
  */
 public class IndividualLink implements Individual {
-	private IndividualJDOM actualIndividual = null;
+	private Individual actualIndividual = null;
 	private MacPAFDocumentJDOM document = null;
 	String id = "";
 	

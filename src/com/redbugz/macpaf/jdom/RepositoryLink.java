@@ -15,21 +15,51 @@ import com.redbugz.macpaf.Repository;
  * Window - Preferences - Java - Code Style - Code Templates
  */
 public class RepositoryLink implements Repository {
+	private Repository actualRepository = null;
+	private MacPAFDocumentJDOM document = null;
+	String id = "";
+
+	RepositoryLink(MacPAFDocumentJDOM doc) {
+		document = doc;
+	}
+	
+	RepositoryLink(String id, MacPAFDocumentJDOM doc) {
+		this(doc);
+		setId(id);
+	}
+
+	/**
+	 * @return
+	 */
+	private Repository getRepository() {
+		if (actualRepository == null) {
+			actualRepository = document.getRepository(id);
+		}
+		return actualRepository;
+	}
 
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Repository#getId()
 	 */
 	public String getId() {
-		// TODO Auto-generated method stub
-		return null;
+		return id;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.Repository#setId(java.lang.String)
+	 */
+	public void setId(String id) {
+		if (id == null) {
+			id = "";
+		}
+		this.id = id;
 	}
 
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Repository#getName()
 	 */
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		return getRepository().getName();
 	}
 
 }

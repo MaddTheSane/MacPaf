@@ -39,8 +39,8 @@ public class MyDocument extends NSDocument implements Observer {
   private static final Category log = Category.getInstance(MyDocument.class.getName());
 
   {
-  	Tests.testBase64();
-  	Tests.testImageFiles();
+//  	Tests.testBase64();
+//  	Tests.testImageFiles();
 	log.debug(System.getProperty("user.dir"));
 	log.debug(System.getProperty("user.home"));
 //	System.exit(99);

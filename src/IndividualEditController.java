@@ -7,14 +7,17 @@
 //
 
 import org.apache.log4j.Category;
+import org.apache.xalan.processor.StopParseException;
+
 import com.apple.cocoa.application.*;
 import com.apple.cocoa.application.NSComboBox.*;
 import com.apple.cocoa.foundation.NSData;
+import com.apple.cocoa.foundation.NSSelector;
+import com.apple.cocoa.foundation.NSSystem;
 import com.redbugz.macpaf.Gender;
 import com.redbugz.macpaf.Individual;
-import com.redbugz.macpaf.Temple;
 import com.redbugz.macpaf.jdom.PlaceJDOM;
-import com.redbugz.macpaf.jdom.TempleJDOM;
+import com.redbugz.macpaf.util.CocoaUtils;
 import com.redbugz.macpaf.util.MultimediaUtils;
 import com.redbugz.macpaf.util.StringUtils;
 
@@ -48,10 +51,11 @@ public class IndividualEditController extends NSWindowController {
 
   public void cancel(Object sender) { /* IBAction */
 //      NSApplication.sharedApplication().stopModal();
-	NSApplication.sharedApplication().endSheet(window());
-	window().orderOut(this);
+//	NSApplication.sharedApplication().endSheet(window());
+//	window().orderOut(this);
+	NSApplication.sharedApplication().stopModalWithCode(0);
   }
-
+  
   public void showWindow(Object o) {
 	super.showWindow(o);
 	log.debug("showWindow o=" + o + " surname=" + surname);
@@ -63,8 +67,7 @@ public class IndividualEditController extends NSWindowController {
 		log.debug("IndividualEditController.save() individual b4:" + individual);
 		MyDocument myDocument = ( (MyDocument) document());
 		if (individual instanceof Individual.UnknownIndividual) {
-		  individual = myDocument.createNewIndividual();
-		  myDocument.addIndividual(individual);
+		  individual = myDocument.createAndInsertNewIndividual();
 		}
 		individual.setSurname(surname.stringValue());
 		individual.setGivenNames(givenNames.stringValue());
@@ -83,11 +86,11 @@ public class IndividualEditController extends NSWindowController {
 		individual.getBurialEvent().setDateString(burialForm.cellAtIndex(0).stringValue());
 		individual.getBurialEvent().setPlace(new PlaceJDOM(burialForm.cellAtIndex(1).stringValue()));
 		individual.getLDSBaptism().setDateString(baptismDate.stringValue());
-		individual.getLDSBaptism().setTemple(templeForComboBox(baptismTemple));
+		individual.getLDSBaptism().setTemple(CocoaUtils.templeForComboBox(baptismTemple));
 		individual.getLDSEndowment().setDateString(endowmentDate.stringValue());
-		individual.getLDSEndowment().setTemple(templeForComboBox(endowmentTemple));
+		individual.getLDSEndowment().setTemple(CocoaUtils.templeForComboBox(endowmentTemple));
 		individual.getLDSSealingToParents().setDateString(sealingToParentDate.stringValue());
-		individual.getLDSSealingToParents().setTemple(templeForComboBox(sealingToParentTemple));
+		individual.getLDSSealingToParents().setTemple(CocoaUtils.templeForComboBox(sealingToParentTemple));
 
 		myDocument.setPrimaryIndividual(individual);
 		log.debug("IndividualEditController.save() individual aft:" + individual);
@@ -99,31 +102,7 @@ public class IndividualEditController extends NSWindowController {
 	  // TODO Auto-generated catch block
 	  log.error("Exception: ", e);
 	}
-	cancel(sender);
-  }
-
-  /**
-   * @param comboBox
-   * @return
-   */
-  private Temple templeForComboBox(NSComboBox comboBox) {
-	TempleJDOM temple = new TempleJDOM();
-	NSComboBox.DataSource dataSource = (DataSource) comboBox.dataSource();
-	log.debug("IndividualEditController.templeForComboBox() stringValue:" + comboBox.stringValue());
-	int index = dataSource.comboBoxIndexOfItem(comboBox, comboBox.stringValue());
-	log.debug("IndividualEditController.templeForComboBox() index:" + index);
-	if (index >= 0 && index < dataSource.numberOfItemsInComboBox(comboBox)) {
-	  Temple selection = (Temple) dataSource.comboBoxObjectValueForItemAtIndex(comboBox, index);
-	  log.debug("IndividualEditController.templeForComboBox() selection:" + selection);
-	  temple = new TempleJDOM(selection);
-	}
-	else {
-	  log.debug("IndividualEditController.templeForComboBox() setCode stringValue:" + comboBox.stringValue());
-	  temple.setCode(comboBox.stringValue());
-	}
-//		temple = new TempleJDOM(TempleList.templeWithCode(((Temple)sealingToParentTemple.objectValueOfSelectedItem()).getCode()));
-	log.debug("IndividualEditController.templeForComboBox() returning temple:" + temple);
-	return temple;
+	NSApplication.sharedApplication().stopModalWithCode(0);
   }
 
   /**
@@ -173,17 +152,23 @@ public class IndividualEditController extends NSWindowController {
 	rin.setStringValue(String.valueOf(individual.getRin()));
   }
 
-  public void openIndividualEditSheet(Object sender) { /* IBAction */
-	NSApplication nsapp = NSApplication.sharedApplication();
-	nsapp.beginSheet(this.window(), this.window().parentWindow(), null, null, null);
-	nsapp.runModalForWindow(this.window());
-	nsapp.endSheet(this.window());
-	this.window().orderOut(this);
-  }
+//  public void openIndividualEditSheet(Object sender) { /* IBAction */
+//	NSApplication nsapp = NSApplication.sharedApplication();
+//	nsapp.beginSheet(this.window(), this.window().parentWindow(), null, null, null);
+//	nsapp.runModalForWindow(this.window());
+//	nsapp.endSheet(this.window());
+//	this.window().orderOut(this);
+//  }
 
   public void windowWillLoad() {
 	super.windowWillLoad();
 	log.debug("windowWillLoad surname=" + surname);
 	log.debug("windowwillload doc=" + document());
   }
+/**
+ * @return Returns the individual.
+ */
+public Individual getIndividual() {
+	return individual;
+}
 }

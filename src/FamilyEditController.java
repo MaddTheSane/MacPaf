@@ -7,10 +7,14 @@
 //
 
 import com.apple.cocoa.application.*;
+import com.apple.cocoa.foundation.NSSelector;
+import com.apple.cocoa.foundation.NSSystem;
 import com.redbugz.macpaf.Family;
 import com.redbugz.macpaf.Individual;
+import com.redbugz.macpaf.jdom.FamilyJDOM;
 import com.redbugz.macpaf.jdom.PlaceJDOM;
 import com.redbugz.macpaf.test.TestFamily;
+import com.redbugz.macpaf.util.CocoaUtils;
 
 import org.apache.log4j.Category;
 
@@ -24,6 +28,7 @@ public class FamilyEditController extends NSWindowController {
   public NSTextField sealingDate; /* IBOutlet */
   public NSComboBox sealingTemple; /* IBOutlet */
   public NSButton wifeButton; /* IBOutlet */
+  public NSButton saveButton; /* IBOutlet */
 
   private Family family = Family.UNKNOWN_FAMILY;
   private MyDocument document = null;
@@ -37,6 +42,11 @@ public class FamilyEditController extends NSWindowController {
 
   public void setFamily(Family family) {
 	System.out.println("FamilyEditController.setFamily(family):"+family);
+	if (family instanceof Family.UnknownFamily) {
+		saveButton.setTitle("Add Family");
+	} else {
+		saveButton.setTitle("Save Family");
+	}
 	this.family = family;
 	husbandButton.setTitle(family.getFather().getFullName());
 	wifeButton.setTitle(family.getMother().getFullName());
@@ -44,6 +54,7 @@ public class FamilyEditController extends NSWindowController {
 	marriageForm.cellAtIndex(1).setStringValue(family.getMarriageEvent().getPlace().getFormatString());
 	sealingDate.setStringValue(family.getSealingToSpouse().getDateString());
 	sealingTemple.setStringValue(family.getSealingToSpouse().getTemple().getCode());
+//	divorcedSwitch.setState(family.getMarriageEvent().?NSCell.OnState:NSCell.OffState);
   }
 
   public void addChild(Object sender) { /* IBAction */
@@ -51,7 +62,7 @@ public class FamilyEditController extends NSWindowController {
 	if (children.selectedRow() >= 0) {
 	  selectedRow = children.selectedRow();
 	}
-	Individual newChild = document.createNewIndividual();
+	Individual newChild = document.createAndInsertNewIndividual();
 	document.addIndividual(newChild);
 	newChild.setFamilyAsChild(family);
 	family.addChildAtPosition(newChild, selectedRow);
@@ -99,35 +110,56 @@ public class FamilyEditController extends NSWindowController {
 	( (IndividualEditController) individualEditWindow.delegate()).setIndividual(family.getFather());
 	NSApplication nsapp = NSApplication.sharedApplication();
 	nsapp.beginSheet(individualEditWindow, window(), null, null, null);
-	//nsapp.runModalForWindow(individualEditWindow);
+	try {
+		Thread.sleep(15000);
+		//nsapp.runModalForWindow(individualEditWindow);
 //       nsapp.endSheet(individualEditWindow);
 //       individualEditWindow.orderOut(this);
 //       window().display();
+	} catch (InterruptedException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
   }
 
   public void editWife(Object sender) { /* IBAction */
-//       window().close();
-	NSApplication.sharedApplication().endSheet(window());
-//       document.openIndividualEditSheet(husbandButton);
-	NSWindow individualEditWindow = document.individualEditWindow;
-	( (NSWindowController) individualEditWindow.delegate()).setDocument(document);
-	( (IndividualEditController) individualEditWindow.delegate()).setIndividual(family.getMother());
-	NSApplication nsapp = NSApplication.sharedApplication();
-	nsapp.beginSheet(individualEditWindow, window(), null, null, null);
-	//nsapp.runModalForWindow(individualEditWindow);
-//       nsapp.endSheet(individualEditWindow);
-//       individualEditWindow.orderOut(this);
-//       window().display();
+  	editIndividualInSheet(family.getMother(), document.individualEditWindow, "wife");
   }
+  
+  public void editIndividualInSheet(Individual individual, NSWindow window, Object contextInfo) {
+//	( (NSWindowController) individualEditWindow.delegate()).setDocument(document);
+//	( (IndividualEditController) individualEditWindow.delegate()).setIndividual(family.getMother());
+//	NSApplication nsapp = NSApplication.sharedApplication();
+//	nsapp.beginSheet(individualEditWindow, window(), null, null, null);
+//  	setIndividual(individual);
+//	NSApplication nsapp = NSApplication.sharedApplication();
+//	nsapp.beginSheet(window(), window, this, new NSSelector("sheetDidEnd::", new Class[] {getClass()}), null);
+  }
+  
+  public void sheetDidEnd(NSWindow sheet, int returnCode, Object contextInfo) {
+    NSSystem.log("Called did-end selector");
+    log.debug("sheetdidend context:"+contextInfo);
+	log.debug("after beginsheet, do we have the right individual?:"+document.getPrimaryIndividual());
+//	if ("wife".equals(contextInfo)) {
+//	family.setMother(document.getPrimaryIndividual());
+//	} else if ("husband")
+//    if (returnCode == NSAlertPanel.DefaultReturn) {
+//        NSSystem.log("Rows are to be deleted");
+//    }
+  }  	
+
+
 
   public void save(Object sender) { /* IBAction */
 	if (validate()) {
-	  if (family.getId() == null || family.getId().length() == 0) {
-		log.debug("New family, adding to document: "+family);
-		((MyDocument)document()).addFamily(family);
+	  if (family instanceof Family.UnknownFamily) {
+	  	family = document.createAndInsertNewFamily();
+		log.debug("New family, added to document: "+family);
 	  }
-	  family.getSealingToSpouse().setDateString(marriageForm.cellAtIndex(0).stringValue());
-	  family.getSealingToSpouse().setPlace(new PlaceJDOM(marriageForm.cellAtIndex(1).stringValue()));
+	  family.getMarriageEvent().setDateString(marriageForm.cellAtIndex(0).stringValue());
+	  family.getMarriageEvent().setPlace(new PlaceJDOM(marriageForm.cellAtIndex(1).stringValue()));
+	  family.getSealingToSpouse().setDateString(sealingDate.stringValue());
+	  family.getSealingToSpouse().setTemple(CocoaUtils.templeForComboBox(sealingTemple));
 	  NSApplication.sharedApplication().stopModal();
 	  NSApplication.sharedApplication().endSheet(window());
 	  window().orderOut(this);

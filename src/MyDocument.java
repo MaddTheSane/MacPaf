@@ -167,7 +167,7 @@ public class MyDocument extends NSDocument implements Observer {
     }
 	NSApplication nsapp = NSApplication.sharedApplication();
 	nsapp.beginSheet(familyEditWindow, mainWindow, this, new NSSelector("sheetDidEndShouldClose2", new Class[] {}), null);
-	//nsapp.runModalForWindow(familyEditWindow);
+	//nsapp.runModalForWindow(familyEditWindow);  
 	//nsapp.endSheet(familyEditWindow);
 	//familyEditWindow.orderOut(this);
   }
@@ -930,8 +930,12 @@ try {
 	save();
   }
 
-  public Individual createNewIndividual() {
-	return doc.createNewIndividual();//new IndividualJDOM(doc);
+  public Individual createAndInsertNewIndividual() {
+	return doc.createAndInsertNewIndividual();//new IndividualJDOM(doc);
+  }
+
+  public Family createAndInsertNewFamily() {
+	return doc.createAndInsertNewFamily();//new IndividualJDOM(doc);
   }
 
   /**
@@ -956,7 +960,7 @@ try {
   public void addNewIndividual(Object sender) { /* IBAction */
 	log.debug("addNewIndividual: " + sender);
 	try {
-		Individual newIndividual = createNewIndividual();
+		Individual newIndividual = createAndInsertNewIndividual();
 		addIndividual(newIndividual);
 		setPrimaryIndividual(newIndividual);
 		save();
@@ -970,7 +974,7 @@ try {
   public void addNewChild(Object sender) { /* IBAction */
 	log.debug("addNewChild: " + sender);
 	try {
-		Individual newChild = createNewIndividual();
+		Individual newChild = createAndInsertNewIndividual();
 		addIndividual(newChild);
 		primaryIndividual.getFamilyAsSpouse().addChild(newChild);
 		newChild.setFamilyAsChild(primaryIndividual.getFamilyAsSpouse());
@@ -986,7 +990,7 @@ try {
   public void addNewSpouse(Object sender) { /* IBAction */
 	log.debug("addNewSpouse: " + sender);
 	try {
-		Individual newSpouse = createNewIndividual();
+		Individual newSpouse = createAndInsertNewIndividual();
 		addIndividual(newSpouse);
 		primaryIndividual.addSpouse(newSpouse);
 		newSpouse.addSpouse(primaryIndividual);
@@ -1002,7 +1006,7 @@ try {
   public void addNewFather(Object sender) { /* IBAction */
 	log.debug("addNewFather: " + sender);
 	try {
-		Individual newFather = createNewIndividual();
+		Individual newFather = createAndInsertNewIndividual();
 		addIndividual(newFather);
 		primaryIndividual.setFather(newFather);
 		newFather.getFamilyAsSpouse().addChild(primaryIndividual);
@@ -1018,7 +1022,7 @@ try {
   public void addNewMother(Object sender) { /* IBAction */
 	log.debug("addNewMother: " + sender);
 	try {
-		Individual newMother = createNewIndividual();
+		Individual newMother = createAndInsertNewIndividual();
 		addIndividual(newMother);
 		primaryIndividual.setMother(newMother);
 		newMother.getFamilyAsSpouse().addChild(primaryIndividual);

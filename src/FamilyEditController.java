@@ -6,7 +6,10 @@
 //  Copyright (c) 2002-2004 RedBugz Software. All rights reserved.
 //
 
+import java.util.Enumeration;
+
 import com.apple.cocoa.application.*;
+import com.apple.cocoa.foundation.NSMutableArray;
 import com.apple.cocoa.foundation.NSSelector;
 import com.apple.cocoa.foundation.NSSystem;
 import com.redbugz.macpaf.Family;
@@ -32,6 +35,8 @@ public class FamilyEditController extends NSWindowController {
 
   private Family family = Family.UNKNOWN_FAMILY;
   private MyDocument document = null;
+  
+  private NSMutableArray undoStack = new NSMutableArray();
 
   public void setDocument(NSDocument document) {
 	super.setDocument(document);
@@ -63,6 +68,7 @@ public class FamilyEditController extends NSWindowController {
 	  selectedRow = children.selectedRow();
 	}
 	Individual newChild = document.createAndInsertNewIndividual();
+	undoStack.addObject(newChild);
 	document.addIndividual(newChild);
 	newChild.setFamilyAsChild(family);
 	family.addChildAtPosition(newChild, selectedRow);
@@ -79,9 +85,23 @@ public class FamilyEditController extends NSWindowController {
   }
 
   public void cancel(Object sender) { /* IBAction */
-	NSApplication.sharedApplication().stopModal();
-	NSApplication.sharedApplication().endSheet(window());
-	window().orderOut(this);
+//	NSApplication.sharedApplication().stopModal();
+  	boolean doCancel = true;
+  	if (undoStack.count() > 0) {
+  		doCancel = ! MyDocument.confirmCriticalActionMessage("Discard the changes you made to this family?", "Details", "Yes", "No");
+  	}
+  	if (doCancel) {
+		// undo the changes made
+  		Enumeration enumeration = undoStack.objectEnumerator();
+  		while (enumeration.hasMoreElements()) {
+			Individual indiv = (Individual) enumeration.nextElement();
+			log.info("Undoing creation of individual:"+indiv.getFullName());
+//			document.deleteIndividual(indiv);
+		}
+  		undoStack.removeAllObjects();
+  		NSApplication.sharedApplication().endSheet(window());
+  		window().orderOut(this);  		
+  	}
   }
 
   public void editChild(Object sender) { /* IBAction */
@@ -127,13 +147,14 @@ public class FamilyEditController extends NSWindowController {
   }
   
   public void editIndividualInSheet(Individual individual, NSWindow window, Object contextInfo) {
-//	( (NSWindowController) individualEditWindow.delegate()).setDocument(document);
-//	( (IndividualEditController) individualEditWindow.delegate()).setIndividual(family.getMother());
-//	NSApplication nsapp = NSApplication.sharedApplication();
-//	nsapp.beginSheet(individualEditWindow, window(), null, null, null);
+	( (NSWindowController) window.delegate()).setDocument(document);
+	( (IndividualEditController) window.delegate()).setIndividual(family.getMother());
+	NSApplication nsapp = NSApplication.sharedApplication();
+//	nsapp.beginSheet(window, window(), null, null, null);
 //  	setIndividual(individual);
 //	NSApplication nsapp = NSApplication.sharedApplication();
-//	nsapp.beginSheet(window(), window, this, new NSSelector("sheetDidEnd::", new Class[] {getClass()}), null);
+	nsapp.endSheet(window());
+	nsapp.beginSheet(window(), window, this, new NSSelector("sheetDidEnd::", new Class[] {getClass()}), null);
   }
   
   public void sheetDidEnd(NSWindow sheet, int returnCode, Object contextInfo) {

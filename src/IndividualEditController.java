@@ -162,8 +162,8 @@ public class IndividualEditController extends NSWindowController {
 
   public void windowWillLoad() {
 	super.windowWillLoad();
-	log.debug("windowWillLoad surname=" + surname);
-	log.debug("windowwillload doc=" + document());
+	log.debug("IEC.windowWillLoad surname=" + surname);
+	log.debug("IEC.windowwillload doc=" + document());
   }
 /**
  * @return Returns the individual.

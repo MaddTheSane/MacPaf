@@ -1,4 +1,5 @@
 package com.redbugz.macpaf;
+
 import java.util.Date;
 import java.util.List;
 
@@ -18,24 +19,31 @@ import java.util.List;
 public interface Submitter {
   public static final String SUBMITTER = "SUBM";
 
-	public String getName();
-	public void setName(String name);
+  public String getName();
 
-	public Address getAddress();
-	public void setAddress(Address address);
+  public void setName(String name);
 
-	public MultimediaLink getMultimediaLink();
-	public void setMultimediaLink(MultimediaLink multimediaLink);
+  public Address getAddress();
 
-	public List getLanguagePreferences();
-	public void setLanguagePreferences(List languagePreferences);
+  public void setAddress(Address address);
 
-	public String getRFN();
-	public String setRFN();
+  public MultimediaLink getMultimediaLink();
 
-	public Integer getRIN();
-	public void setRIN(Integer rin);
+  public void setMultimediaLink(MultimediaLink multimediaLink);
 
-	public Date getChangeDate();
-	public void setChangeDate(Date changeDate);
+  public List getLanguagePreferences();
+
+  public void setLanguagePreferences(List languagePreferences);
+
+  public String getRFN();
+
+  public String setRFN();
+
+  public Integer getRIN();
+
+  public void setRIN(Integer rin);
+
+  public Date getChangeDate();
+
+  public void setChangeDate(Date changeDate);
 }

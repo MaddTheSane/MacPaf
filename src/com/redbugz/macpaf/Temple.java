@@ -1,76 +1,77 @@
 package com.redbugz.macpaf;
+
 //
 //  Temple.java
 //  MacPAFTest
 //
 //  Created by Logan Allred on Sun Feb 16 2003.
-//  Copyright (c) 2003 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2002-2004 RedBugz Software. All rights reserved.
 //
-
 
 public class Temple implements Cloneable {
 
-    private String name = "";
-    private String code = "";
-    private String oldCode = "";
-    private int number = 0;
+  private String name = "";
+  private String code = "";
+  private String oldCode = "";
+  private int number = 0;
+
 //    private Date openDate;
- //   private Date closeDate;
-    private String openDate = "";
-    private String closeDate = "";
-    
-    public Temple() {}
-    
-    public String getCode() {
-        return code;
-    }
+  //   private Date closeDate;
+  private String openDate = "";
+  private String closeDate = "";
 
-    public void setCode(String newCode) {
-        code = newCode;
-    }
+  public Temple() {}
 
-    public void setName(String newName) {
-        name = newName;
-    }
+  public String getCode() {
+	return code;
+  }
 
-    public void setOldCode(String code) {
-        oldCode = code;
-    }
+  public void setCode(String newCode) {
+	code = newCode;
+  }
 
-    public void setNumber(int num) {
-        number = num;
-    }
+  public void setName(String newName) {
+	name = newName;
+  }
 
-    public void setOpenDate(String date) {
-        this.openDate = date;
-    }
+  public void setOldCode(String code) {
+	oldCode = code;
+  }
 
-    public void setCloseDate(String date) {
-        closeDate = date;
-    }
+  public void setNumber(int num) {
+	number = num;
+  }
 
-    public String getCloseDate() {
-        return closeDate;
-    }
+  public void setOpenDate(String date) {
+	this.openDate = date;
+  }
 
-    public String getOpenDate() {
-        return openDate;
-    }
+  public void setCloseDate(String date) {
+	closeDate = date;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public String getCloseDate() {
+	return closeDate;
+  }
 
-    public String getOldCode() {
-        return oldCode;
-    }
+  public String getOpenDate() {
+	return openDate;
+  }
 
-    public int getNumber() {
-        return number;
-    }
+  public String getName() {
+	return name;
+  }
 
-    public String toString() {
-        return code + " - " + name;
-    }
+  public String getOldCode() {
+	return oldCode;
+  }
+
+  public int getNumber() {
+	return number;
+  }
+
+  public String toString() {
+	return code + " - " + name;
+  }
 
 }

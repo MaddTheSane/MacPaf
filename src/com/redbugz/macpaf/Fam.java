@@ -1,8 +1,11 @@
 package com.redbugz.macpaf;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+
+import org.apache.log4j.Category;
 
 /**
  * Created by IntelliJ IDEA.
@@ -12,110 +15,121 @@ import java.util.List;
  * To change this template use Options | File Templates.
  */
 public class Fam implements Family, Cloneable {
-   Individual dad, mom;
-   List children = new ArrayList();
-   Date weddingDate;
-   private String id;
-   private Event marriageEvent = new MyEvent();
+  Individual dad, mom;
+  List children = new ArrayList();
+  Date weddingDate;
+  private String id;
+  private Event marriageEvent = new MyEvent();
+  private static final Category log = Category.getInstance(Fam.class.getName());
 
-   public Fam(Individual dad, Individual mom, Individual[] children, Date weddingDate) {
-      System.out.println("fam constr dad="+dad+" mom="+mom+" children="+children+" date="+weddingDate);
-      try {
-         this.dad = dad;
-         this.mom = mom;
-         if (children != null) {
-         this.children = Arrays.asList(children);
-         }
-         this.weddingDate = weddingDate;
-         if (dad instanceof Indi && mom instanceof Indi) {
-            ((Indi) this.dad).addFamilyAsSpouse(this);
-            ((Indi) this.mom).addFamilyAsSpouse(this);
-            for (int i = 0; i < this.children.size(); i++) {
-               Individual child = (Individual) this.children.get(i);
-               if (child instanceof Indi) {
-                  ((Indi) child).familyAsChild = this;
-               }
-            }
-         }
-      } catch (Exception e) {
-         e.printStackTrace();  //To change body of catch statement use Options | File Templates.
-      }
-      System.out.println("dad="+this.dad);
-      System.out.println("mom="+this.mom);
-      System.out.println("children="+getChildren().size());
-      System.out.println("wedding="+this.weddingDate);
-      System.out.println("dad fam="+getFather().getFamilyAsSpouse()+" with spouse="+getFather().getFamilyAsSpouse().getMother().getFullName());
-   }
+  public Fam(Individual dad, Individual mom, Individual[] children, Date weddingDate) {
+	log.debug("fam constr dad=" + dad + " mom=" + mom + " children=" + children + " date=" + weddingDate);
+	try {
+	  this.dad = dad;
+	  this.mom = mom;
+	  if (children != null) {
+		this.children = Arrays.asList(children);
+	  }
+	  this.weddingDate = weddingDate;
+	  if (dad instanceof Indi && mom instanceof Indi) {
+		( (Indi)this.dad).addFamilyAsSpouse(this);
+		( (Indi)this.mom).addFamilyAsSpouse(this);
+		for (int i = 0; i < this.children.size(); i++) {
+		  Individual child = (Individual)this.children.get(i);
+		  if (child instanceof Indi) {
+			( (Indi) child).familyAsChild = this;
+		  }
+		}
+	  }
+	}
+	catch (Exception e) {
+	  log.error("Exception: ", e); //To change body of catch statement use Options | File Templates.
+	}
+	log.debug("dad=" + this.dad);
+	log.debug("mom=" + this.mom);
+	log.debug("children=" + getChildren().size());
+	log.debug("wedding=" + this.weddingDate);
+	log.debug("dad fam=" + getFather().getFamilyAsSpouse() + " with spouse=" +
+			  getFather().getFamilyAsSpouse().getMother().getFullName());
+  }
 
-   public Fam() {
-      dad = new Individual.UnknownMaleIndividual();
-      mom = new Individual.UnknownFemaleIndividual();
-      weddingDate = new Date();
-   }
+  public Fam() {
+	dad = new Individual.UnknownMaleIndividual();
+	mom = new Individual.UnknownFemaleIndividual();
+	weddingDate = new Date();
+  }
 
-   public Individual getFather() {
-      return dad;
-   }
+  public Individual getFather() {
+	return dad;
+  }
 
-   public void setFather(Individual father) {
-      dad = father;
-   }
+  public void setFather(Individual father) {
+	dad = father;
+  }
 
-   public Individual getMother() {
-      return mom;
-   }
+  public Individual getMother() {
+	return mom;
+  }
 
-   public void setMother(Individual mother) {
-      mom = mother;
-   }
+  public void setMother(Individual mother) {
+	mom = mother;
+  }
 
-   public List getChildren() {
-      if (children == null) {
-         return new ArrayList();
-      }
-      return children;
-   }
+  public List getChildren() {
+	if (children == null) {
+	  return new ArrayList();
+	}
+	return children;
+  }
 
-   public void setChildren(List children) {
-      this.children = children;
-   }
+  public void setChildren(List children) {
+	this.children = children;
+  }
 
-   public void addChild(Individual newChild) {
-      children.add(newChild);
-   }
+  public void addChild(Individual newChild) {
+	children.add(newChild);
+  }
 
-   public void addChildAtPosition(Individual newChild, int position) {
-      children.add(position, newChild);
-   }
+  public void addChildAtPosition(Individual newChild, int position) {
+	children.add(position, newChild);
+  }
 
-   public Ordinance getSealingToSpouse() {
-      return new MyOrdinance();
-   }
+  public Ordinance getSealingToSpouse() {
+	return new MyOrdinance();
+  }
 
-   public void setSealingToSpouse(Ordinance sealing) {
-   }
+  public void setSealingToSpouse(Ordinance sealing) {
+  }
 
-   public String getId() {
-      return id;
-   }
+  public String getId() {
+	return id;
+  }
 
-   public void setId(String id) {
-      this.id = id;
-   }
+  public void setId(String id) {
+	this.id = id;
+  }
 
-   public void setMarriageEvent(MyEvent marrEvent) {
-      marriageEvent = marrEvent;
-   }
+  public int getRin() {
+	return -1; /** @todo implement */
+  }
 
-   public Event getMarriageEvent() {
-      return marriageEvent;
-   }
+  public void setRin(int newRin) {
+/** @todo  implement me*/
+  }
 
-/* (non-Javadoc)
- * @see com.redbugz.macpaf.Family#removeChildAtPosition(int)
- */
-public void removeChildAtPosition(int position) {
+  public void setMarriageEvent(MyEvent marrEvent) {
+	marriageEvent = marrEvent;
+  }
+
+  public Event getMarriageEvent() {
+	return marriageEvent;
+  }
+
+  /* (non-Javadoc)
+   * @see com.redbugz.macpaf.Family#removeChildAtPosition(int)
+   */
+  public void removeChildAtPosition(int position) {
 	// TODO Auto-generated method stub
-	
-}
+
+  }
 }

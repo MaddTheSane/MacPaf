@@ -3,7 +3,7 @@
 //  MacPAFTest
 //
 //  Created by Logan Allred on Sun Feb 16 2003.
-//  Copyright (c) 2003 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2002-2004 RedBugz Software. All rights reserved.
 //
 
 package com.redbugz.macpaf;
@@ -12,235 +12,267 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import org.apache.log4j.Category;
 import com.apple.cocoa.foundation.NSBundle;
-import java.util.Collection;
-import java.util.Arrays;
 
 public interface Individual {
-   public static Individual UNKNOWN = new UnknownIndividual();
-   public static Individual UNKNOWN_MALE = new UnknownMaleIndividual();
-   public static Individual UNKNOWN_FEMALE = new UnknownFemaleIndividual();
+  public static Individual UNKNOWN = new UnknownIndividual();
+  public static Individual UNKNOWN_MALE = new UnknownMaleIndividual();
+  public static Individual UNKNOWN_FEMALE = new UnknownFemaleIndividual();
 
-   public String getGivenNames();
-   public void setGivenNames(String givenNames);
+  public String getGivenNames();
 
-   public String getSurname();
-   public void setSurname(String surname);
+  public void setGivenNames(String givenNames);
 
-   public String getFullName();
-   public void setFullName(String prefix, String givenNames, String surname, String suffix);
+  public String getSurname();
 
-   public String getNamePrefix();
-   public void setNamePrefix(String prefix);
+  public void setSurname(String surname);
 
-   public String getNameSuffix();
-   public void setNameSuffix(String suffix);
+  public String getFullName();
 
-   public Gender getGender();
-   public void setGender(Gender gender);
+  public void setFullName(String prefix, String givenNames, String surname, String suffix);
 
-   public Event getBirthEvent();
-   public void setBirthEvent(Event birthEvent);
+  public String getNamePrefix();
 
-   public Event getChristeningEvent();
-   public void setChristeningEvent(Event christeningEvent);
+  public void setNamePrefix(String prefix);
 
-   public Event getDeathEvent();
-   public void setDeathEvent(Event deathEvent);
+  public String getNameSuffix();
 
-   public Event getBurialEvent();
-   public void setBurialEvent(Event burialEvent);
+  public void setNameSuffix(String suffix);
 
-   public Ordinance getLDSBaptism();
-   public void setLDSBaptism(Ordinance ldsBaptism);
+  public Gender getGender();
 
-   public Ordinance getLDSConfirmation();
-   public void setLDSConfirmation(Ordinance ldsConfirmation);
+  public void setGender(Gender gender);
 
-   public Ordinance getLDSEndowment();
-   public void setLDSEndowment(Ordinance ldsEndowment);
+  public Event getBirthEvent();
 
-   public Ordinance getLDSSealingToParents();
-   public void setLDSSealingToParent(Ordinance sealingToParent);
+  public void setBirthEvent(Event birthEvent);
 
-   public boolean childrensOrdinancesAreCompleted();
+  public Event getChristeningEvent();
 
-   public String getId();
-   public void setId(String id);
+  public void setChristeningEvent(Event christeningEvent);
 
-   public int getRin();
-   public void setRin(int rin);
+  public Event getDeathEvent();
 
-   public String getAFN();
-   public void setAFN(String afn);
+  public void setDeathEvent(Event deathEvent);
 
-   public boolean isLocked();
-   public void setLocked(boolean lockedFlag);
+  public Event getBurialEvent();
 
-   public boolean isPrivate();
-   public void setPrivate(boolean privateFlag);
+  public void setBurialEvent(Event burialEvent);
 
-   public URL getImagePath();
-   public void setImagePath(URL path);
+  public Ordinance getLDSBaptism();
 
-   public Individual getPrimarySpouse();
-   public void setPrimarySpouse(Individual primarySpouse);
+  public void setLDSBaptism(Ordinance ldsBaptism);
 
-   public List getSpouseList();
-   public void setSpouseList(List spouses);
-   public void addSpouse(Individual newSpouse);
-   public void removeSpouse(Individual removedSpouse);
+  public Ordinance getLDSConfirmation();
 
-   public Individual getFather();
-   public void setFather(Individual father);
+  public void setLDSConfirmation(Ordinance ldsConfirmation);
 
-   public Individual getMother();
-   public void setMother(Individual mother);
+  public Ordinance getLDSEndowment();
 
-   public Family getFamilyAsChild();
-   public void setFamilyAsChild(Family fam);
+  public void setLDSEndowment(Ordinance ldsEndowment);
 
-   public Family getFamilyAsSpouse();
-   public void setFamilyAsSpouse(Family fam);
+  public Ordinance getLDSSealingToParents();
 
-   public List getAssociations();
-   public List getNotes();
-   public String getNoteText();
+  public void setLDSSealingToParent(Ordinance sealingToParent);
+
+  public boolean childrensOrdinancesAreCompleted();
+
+  public String getId();
+
+  public void setId(String id);
+
+  public int getRin();
+
+  public void setRin(int rin);
+
+  public String getAFN();
+
+  public void setAFN(String afn);
+
+  public boolean isLocked();
+
+  public void setLocked(boolean lockedFlag);
+
+  public boolean isPrivate();
+
+  public void setPrivate(boolean privateFlag);
+
+  public URL getImagePath();
+
+  public void setImagePath(URL path);
+
+  public Individual getPrimarySpouse();
+
+  public void setPrimarySpouse(Individual primarySpouse);
+
+  public List getSpouseList();
+
+  public void setSpouseList(List spouses);
+
+  public void addSpouse(Individual newSpouse);
+
+  public void removeSpouse(Individual removedSpouse);
+
+  public Individual getFather();
+
+  public void setFather(Individual father);
+
+  public Individual getMother();
+
+  public void setMother(Individual mother);
+
+  public Family getFamilyAsChild();
+
+  public void setFamilyAsChild(Family fam);
+
+  public Family getFamilyAsSpouse();
+
+  public void setFamilyAsSpouse(Family fam);
+
+  public List getAssociations();
+
+  public List getNotes();
+
+  public String getNoteText();
 
   public List getEvents();
 
-  static public class UnknownIndividual implements Individual{
-      public String getGivenNames() {
-         return "";
-      }
+  static public class UnknownIndividual implements Individual {
+	private static final Category log = Category.getInstance(UnknownIndividual.class.getName());
+	public String getGivenNames() {
+	  return "";
+	}
 
-      public String getSurname() {
-         return "";//"Unknown";
-      }
+	public String getSurname() {
+	  return ""; //"Unknown";
+	}
 
-      public String getFullName() {
-         return "";//"Unknown";
-      }
+	public String getFullName() {
+	  return ""; //"Unknown";
+	}
 
-      public String getNamePrefix() {
-         return "";
-      }
+	public String getNamePrefix() {
+	  return "";
+	}
 
-      public Gender getGender() {
-         return Gender.UNKNOWN;
-      }
+	public Gender getGender() {
+	  return Gender.UNKNOWN;
+	}
 
-      public Event getBirthEvent() {
-         return new MyEvent();
-      }
+	public Event getBirthEvent() {
+	  return new MyEvent();
+	}
 
-      public Event getChristeningEvent() {
-         return new MyEvent();
-      }
+	public Event getChristeningEvent() {
+	  return new MyEvent();
+	}
 
-      public Event getDeathEvent() {
-         return new MyEvent();
-      }
+	public Event getDeathEvent() {
+	  return new MyEvent();
+	}
 
-      public Event getBurialEvent() {
-         return new MyEvent();
-      }
+	public Event getBurialEvent() {
+	  return new MyEvent();
+	}
 
-      public Ordinance getLDSBaptism() {
-         return new MyOrdinance();
-      }
+	public Ordinance getLDSBaptism() {
+	  return new MyOrdinance();
+	}
 
-      public Ordinance getLDSConfirmation() {
-         return new MyOrdinance();
-      }
+	public Ordinance getLDSConfirmation() {
+	  return new MyOrdinance();
+	}
 
-      public Ordinance getLDSEndowment() {
-         return new MyOrdinance();
-      }
+	public Ordinance getLDSEndowment() {
+	  return new MyOrdinance();
+	}
 
-      public Ordinance getLDSSealingToParents() {
-         return new MyOrdinance();
-      }
+	public Ordinance getLDSSealingToParents() {
+	  return new MyOrdinance();
+	}
 
-      public boolean childrensOrdinancesAreCompleted() {
-         return false;
-      }
+	public boolean childrensOrdinancesAreCompleted() {
+	  return false;
+	}
 
-      public String getId() {
-         return "";
-      }
+	public String getId() {
+	  return "";
+	}
 
-      public int getRin() {
-         return 0;
-      }
+	public int getRin() {
+	  return 0;
+	}
 
-      public boolean isLocked() {
-         return false;
-      }
+	public boolean isLocked() {
+	  return false;
+	}
 
-      public boolean isPrivate() {
-         return false;
-      }
+	public boolean isPrivate() {
+	  return false;
+	}
 
-      public URL getImagePath() {
-         try {
-            return new File(NSBundle.mainBundle().pathForResource("tree","gif")).toURL();
-         } catch (MalformedURLException e) {
-            e.printStackTrace();  //To change body of catch statement use Options | File Templates.
-         }
-         return null;
-      }
+	public URL getImagePath() {
+	  try {
+		return new File(NSBundle.mainBundle().pathForResource("tree", "gif")).toURL();
+	  }
+	  catch (MalformedURLException e) {
+		log.error("Exception: ", e); //To change body of catch statement use Options | File Templates.
+	  }
+	  return null;
+	}
 
-      public void setImagePath(URL path) {
-      }
+	public void setImagePath(URL path) {
+	}
 
-      public Individual getPrimarySpouse() {
-         return this;
-      }
+	public Individual getPrimarySpouse() {
+	  return this;
+	}
 
-      public Individual getFather() {
-         return this;
-      }
+	public Individual getFather() {
+	  return this;
+	}
 
-      public Individual getMother() {
-         return this;
-      }
+	public Individual getMother() {
+	  return this;
+	}
 
-      public Family getFamilyAsChild() {
-         return new Fam();
-      }
+	public Family getFamilyAsChild() {
+	  return new Fam();
+	}
 
-      public Family getFamilyAsSpouse() {
-         return new Fam();
-      }
+	public Family getFamilyAsSpouse() {
+	  return new Fam();
+	}
 
-      public void setFamilyAsSpouse(Family fam) {
-      }
+	public void setFamilyAsSpouse(Family fam) {
+	}
 
-      public void setFamilyAsChild(Family fam) {
-      }
+	public void setFamilyAsChild(Family fam) {
+	}
 
-      public List getSpouseList() {
-         return new ArrayList();
-      }
+	public List getSpouseList() {
+	  return new ArrayList();
+	}
 
-      public void setSpouseList(List spouses) {
-      }
+	public void setSpouseList(List spouses) {
+	}
 
-      public List getAssociations() {
-         return Collections.EMPTY_LIST;
-      }
+	public List getAssociations() {
+	  return Collections.EMPTY_LIST;
+	}
 
-      public List getNotes() {
-         return Arrays.asList(new MyNote[] {new MyNote()});
-      }
+	public List getNotes() {
+	  return Arrays.asList(new MyNote[] {new MyNote()});
+	}
 
-      public String getNoteText() {
-        return "";
-      }
+	public String getNoteText() {
+	  return "";
+	}
 
 //      public void addSpouse(Individual newSpouse) {
 //      }
@@ -248,7 +280,7 @@ public interface Individual {
 	 * @see Individual#addSpouse(Individual)
 	 */
 	public void addSpouse(Individual newSpouse) {
-		// TODO Auto-generated method stub
+	  // TODO Auto-generated method stub
 
 	}
 
@@ -256,15 +288,15 @@ public interface Individual {
 	 * @see Individual#getNameSuffix()
 	 */
 	public String getNameSuffix() {
-		// TODO Auto-generated method stub
-		return "";
+	  // TODO Auto-generated method stub
+	  return "";
 	}
 
 	/* (non-Javadoc)
 	 * @see Individual#removeSpouse(Individual)
 	 */
 	public void removeSpouse(Individual removedSpouse) {
-		// TODO Auto-generated method stub
+	  // TODO Auto-generated method stub
 
 	}
 
@@ -272,7 +304,7 @@ public interface Individual {
 	 * @see Individual#setBirthEvent(Event)
 	 */
 	public void setBirthEvent(Event birthEvent) {
-		// TODO Auto-generated method stub
+	  // TODO Auto-generated method stub
 
 	}
 
@@ -280,7 +312,7 @@ public interface Individual {
 	 * @see Individual#setburialEvent(Event)
 	 */
 	public void setBurialEvent(Event burialEvent) {
-		// TODO Auto-generated method stub
+	  // TODO Auto-generated method stub
 
 	}
 
@@ -288,7 +320,7 @@ public interface Individual {
 	 * @see Individual#setChristeningEvent(Event)
 	 */
 	public void setChristeningEvent(Event christeningEvent) {
-		// TODO Auto-generated method stub
+	  // TODO Auto-generated method stub
 
 	}
 
@@ -296,7 +328,7 @@ public interface Individual {
 	 * @see Individual#setDeathEvent(Event)
 	 */
 	public void setDeathEvent(Event deathEvent) {
-		// TODO Auto-generated method stub
+	  // TODO Auto-generated method stub
 
 	}
 
@@ -304,7 +336,7 @@ public interface Individual {
 	 * @see Individual#setFather(Individual)
 	 */
 	public void setFather(Individual father) {
-		// TODO Auto-generated method stub
+	  // TODO Auto-generated method stub
 
 	}
 
@@ -316,7 +348,7 @@ public interface Individual {
 		String givenNames,
 		String surname,
 		String suffix) {
-		// TODO Auto-generated method stub
+	  // TODO Auto-generated method stub
 
 	}
 
@@ -324,7 +356,7 @@ public interface Individual {
 	 * @see Individual#setGender(Gender)
 	 */
 	public void setGender(Gender gender) {
-		// TODO Auto-generated method stub
+	  // TODO Auto-generated method stub
 
 	}
 
@@ -332,7 +364,7 @@ public interface Individual {
 	 * @see Individual#setGivenNames(java.lang.String)
 	 */
 	public void setGivenNames(String givenNames) {
-		// TODO Auto-generated method stub
+	  // TODO Auto-generated method stub
 
 	}
 
@@ -340,7 +372,7 @@ public interface Individual {
 	 * @see Individual#setId(java.lang.String)
 	 */
 	public void setId(String id) {
-		// TODO Auto-generated method stub
+	  // TODO Auto-generated method stub
 
 	}
 
@@ -348,7 +380,7 @@ public interface Individual {
 	 * @see Individual#setLDSBaptism(Ordinance)
 	 */
 	public void setLDSBaptism(Ordinance ldsBaptism) {
-		// TODO Auto-generated method stub
+	  // TODO Auto-generated method stub
 
 	}
 
@@ -356,7 +388,7 @@ public interface Individual {
 	 * @see Individual#setLDSConfirmation(Ordinance)
 	 */
 	public void setLDSConfirmation(Ordinance ldsConfirmation) {
-		// TODO Auto-generated method stub
+	  // TODO Auto-generated method stub
 
 	}
 
@@ -364,7 +396,7 @@ public interface Individual {
 	 * @see Individual#setLDSEndowment(Ordinance)
 	 */
 	public void setLDSEndowment(Ordinance ldsEndowment) {
-		// TODO Auto-generated method stub
+	  // TODO Auto-generated method stub
 
 	}
 
@@ -372,7 +404,7 @@ public interface Individual {
 	 * @see Individual#setLDSSealingToParent(Ordinance)
 	 */
 	public void setLDSSealingToParent(Ordinance sealingToParent) {
-		// TODO Auto-generated method stub
+	  // TODO Auto-generated method stub
 
 	}
 
@@ -380,7 +412,7 @@ public interface Individual {
 	 * @see Individual#setLocked(boolean)
 	 */
 	public void setLocked(boolean lockedFlag) {
-		// TODO Auto-generated method stub
+	  // TODO Auto-generated method stub
 
 	}
 
@@ -388,7 +420,7 @@ public interface Individual {
 	 * @see Individual#setMother(Individual)
 	 */
 	public void setMother(Individual mother) {
-		// TODO Auto-generated method stub
+	  // TODO Auto-generated method stub
 
 	}
 
@@ -396,7 +428,7 @@ public interface Individual {
 	 * @see Individual#setNamePrefix(java.lang.String)
 	 */
 	public void setNamePrefix(String prefix) {
-		// TODO Auto-generated method stub
+	  // TODO Auto-generated method stub
 
 	}
 
@@ -404,7 +436,7 @@ public interface Individual {
 	 * @see Individual#setNameSuffix(java.lang.String)
 	 */
 	public void setNameSuffix(String suffix) {
-		// TODO Auto-generated method stub
+	  // TODO Auto-generated method stub
 
 	}
 
@@ -412,7 +444,7 @@ public interface Individual {
 	 * @see Individual#setPrimarySpouse(Individual)
 	 */
 	public void setPrimarySpouse(Individual primarySpouse) {
-		// TODO Auto-generated method stub
+	  // TODO Auto-generated method stub
 
 	}
 
@@ -420,7 +452,7 @@ public interface Individual {
 	 * @see Individual#setPrivate(boolean)
 	 */
 	public void setPrivate(boolean privateFlag) {
-		// TODO Auto-generated method stub
+	  // TODO Auto-generated method stub
 
 	}
 
@@ -428,7 +460,7 @@ public interface Individual {
 	 * @see Individual#setRin(int)
 	 */
 	public void setRin(int rin) {
-		// TODO Auto-generated method stub
+	  // TODO Auto-generated method stub
 
 	}
 
@@ -436,7 +468,7 @@ public interface Individual {
 	 * @see Individual#setSurname(java.lang.String)
 	 */
 	public void setSurname(String surname) {
-		// TODO Auto-generated method stub
+	  // TODO Auto-generated method stub
 
 	}
 
@@ -444,62 +476,62 @@ public interface Individual {
 	 * @see Individual#getAFN()
 	 */
 	public String getAFN() {
-		// TODO Auto-generated method stub
-		return null;
+	  // TODO Auto-generated method stub
+	  return null;
 	}
 
 	/* (non-Javadoc)
 	 * @see Individual#setAFN(java.lang.String)
 	 */
 	public void setAFN(String afn) {
-		// TODO Auto-generated method stub
+	  // TODO Auto-generated method stub
 
 	}
 
-    /**
-     * getEvents
-     *
-     * @return List
-     */
-    public List getEvents() {
-      return Collections.EMPTY_LIST;
-    }
+	/**
+	 * getEvents
+	 *
+	 * @return List
+	 */
+	public List getEvents() {
+	  return Collections.EMPTY_LIST;
+	}
 
   }
 
-   public class UnknownMaleIndividual extends UnknownIndividual {
-      public Gender getGender() {
-         return Gender.MALE;
-      }
+  public class UnknownMaleIndividual extends UnknownIndividual {
+	public Gender getGender() {
+	  return Gender.MALE;
+	}
 
-      public Individual getPrimarySpouse() {
-         return UNKNOWN_FEMALE;
-      }
+	public Individual getPrimarySpouse() {
+	  return UNKNOWN_FEMALE;
+	}
 
-      public Individual getFather() {
-         return UNKNOWN_MALE;
-      }
+	public Individual getFather() {
+	  return UNKNOWN_MALE;
+	}
 
-      public Individual getMother() {
-         return UNKNOWN_FEMALE;
-      }
-   }
+	public Individual getMother() {
+	  return UNKNOWN_FEMALE;
+	}
+  }
 
-   public class UnknownFemaleIndividual extends UnknownIndividual {
-      public Gender getGender() {
-         return Gender.FEMALE;
-      }
+  public class UnknownFemaleIndividual extends UnknownIndividual {
+	public Gender getGender() {
+	  return Gender.FEMALE;
+	}
 
-      public Individual getPrimarySpouse() {
-         return UNKNOWN_FEMALE;
-      }
+	public Individual getPrimarySpouse() {
+	  return UNKNOWN_FEMALE;
+	}
 
-      public Individual getFather() {
-         return UNKNOWN_MALE;
-      }
+	public Individual getFather() {
+	  return UNKNOWN_MALE;
+	}
 
-      public Individual getMother() {
-         return UNKNOWN_FEMALE;
-      }
-   }
+	public Individual getMother() {
+	  return UNKNOWN_FEMALE;
+	}
+  }
 }

@@ -1,7 +1,10 @@
-
 import java.util.GregorianCalendar;
 
-import com.redbugz.macpaf.*;
+import com.redbugz.macpaf.Fam;
+import com.redbugz.macpaf.Family;
+import com.redbugz.macpaf.Gender;
+import com.redbugz.macpaf.Indi;
+import com.redbugz.macpaf.Individual;
 
 /**
  * Created by IntelliJ IDEA.
@@ -11,23 +14,28 @@ import com.redbugz.macpaf.*;
  * To change this template use Options | File Templates.
  */
 public class TestData {
-   Individual logan = new Indi("Logan Thomas", "Allred", Gender.MALE);
-   Individual bec = new Indi("Rebecca Renee", "Beadle", Gender.FEMALE);
-   Individual bryce = new Indi("Bryce Cory", "Allred", Gender.MALE);
-   Individual jayden = new Indi("Jayden Kathleen", "Allred", Gender.FEMALE);
-   Individual mom = new Indi("Janice", "Thompson", Gender.FEMALE);
-   Individual dad = new Indi("Cory Wendell", "Allred", Gender.MALE);
-   Individual bev = new Indi("Beverly", "Allred", Gender.FEMALE);
-   Individual gpaAllred = new Indi("Wendell Union", "Allred", Gender.MALE);
-   Individual gmaAllred = new Indi("Virginia", "Booth", Gender.FEMALE);
-   Individual gmaNorma = new Indi("Norma Jean", "Hall", Gender.FEMALE);
-   Individual gpaThompson = new Indi("Joseph Ralph", "Thompson", Gender.MALE);
-   Individual gmaThompson = new Indi("Dorothy", "Wood", Gender.FEMALE);
-   Family log_bec = new Fam(logan, bec, new Individual[]{bryce, jayden}, new GregorianCalendar(2000, 6, 23).getTime());
-   Family mom_dad = new Fam(dad, mom, new Individual[]{logan}, null);
-   Family units = new Fam(gpaAllred, gmaAllred, new Individual[]{bev}, null);
-   Family units2 = new Fam(gpaAllred, gmaNorma, new Individual[]{dad}, null);
-   Family thompson = new Fam(gpaThompson, gmaThompson, new Individual[]{mom}, null);
+  Individual logan = new Indi("Logan Thomas", "Allred", Gender.MALE);
+  Individual bec = new Indi("Rebecca Renee", "Beadle", Gender.FEMALE);
+  Individual bryce = new Indi("Bryce Cory", "Allred", Gender.MALE);
+  Individual jayden = new Indi("Jayden Kathleen", "Allred", Gender.FEMALE);
+  Individual mom = new Indi("Janice", "Thompson", Gender.FEMALE);
+  Individual dad = new Indi("Cory Wendell", "Allred", Gender.MALE);
+  Individual bev = new Indi("Beverly", "Allred", Gender.FEMALE);
+  Individual gpaAllred = new Indi("Wendell Union", "Allred", Gender.MALE);
+  Individual gmaAllred = new Indi("Virginia", "Booth", Gender.FEMALE);
+  Individual gmaNorma = new Indi("Norma Jean", "Hall", Gender.FEMALE);
+  Individual gpaThompson = new Indi("Joseph Ralph", "Thompson", Gender.MALE);
+  Individual gmaThompson = new Indi("Dorothy", "Wood", Gender.FEMALE);
+  Family log_bec = new Fam(logan, bec, new Individual[] {bryce, jayden}
+						   , new GregorianCalendar(2000, 6, 23).getTime());
+  Family mom_dad = new Fam(dad, mom, new Individual[] {logan}
+						   , null);
+  Family units = new Fam(gpaAllred, gmaAllred, new Individual[] {bev}
+						 , null);
+  Family units2 = new Fam(gpaAllred, gmaNorma, new Individual[] {dad}
+						  , null);
+  Family thompson = new Fam(gpaThompson, gmaThompson, new Individual[] {mom}
+							, null);
 
 //   public void createTestData() {
 //      assignIndividualToButton(logan, individualButton);

@@ -1,4 +1,5 @@
 package com.redbugz.macpaf;
+
 /*
  * Created on Oct 5, 2003
  *
@@ -13,11 +14,17 @@ package com.redbugz.macpaf;
  * Window - Preferences - Java - Code Generation - Code and Comments
  */
 public interface Submission {
-	public Submitter getSubmitter();
-	public String getFamilyFile();
-	public String getTempleCode();
-	public Integer getAncestorsGenerations();
-	public Integer getDescendantsGenerations();
-	public Boolean getOrdinanceProcessFlag();
-	public Integer getRIN();
+  public Submitter getSubmitter();
+
+  public String getFamilyFile();
+
+  public String getTempleCode();
+
+  public Integer getAncestorsGenerations();
+
+  public Integer getDescendantsGenerations();
+
+  public Boolean getOrdinanceProcessFlag();
+
+  public Integer getRIN();
 }

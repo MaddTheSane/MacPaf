@@ -1,11 +1,9 @@
 /* IndividualDetailController */
-import com.redbugz.macpaf.*;
-
-
-import com.apple.cocoa.foundation.*;
+import org.apache.log4j.Category;
 import com.apple.cocoa.application.*;
+import com.apple.cocoa.foundation.NSObject;
 import com.redbugz.macpaf.Event;
-import java.util.*;
+import com.redbugz.macpaf.Individual;
 
 /**
  * <p>Title: </p>
@@ -17,6 +15,7 @@ import java.util.*;
  */
 
 public class IndividualDetailController extends NSObject {
+  private static final Category log = Category.getInstance(IndividualDetailController.class.getName());
   private static final String newLine = System.getProperty("line.separator");
 
   Individual individual = Individual.UNKNOWN;
@@ -38,19 +37,19 @@ public class IndividualDetailController extends NSObject {
    * @param primaryIndividual Individual
    */
   public void setIndividual(Individual primaryIndividual) {
-    if (primaryIndividual == null) {
-      primaryIndividual = Individual.UNKNOWN;
-    }
-    System.out.println("IndividualDetailController.setIndividual(primaryIndividual) setting individual to "+primaryIndividual);
-    individual = primaryIndividual;
+	if (primaryIndividual == null) {
+	  primaryIndividual = Individual.UNKNOWN;
+	}
+	log.debug("IndividualDetailController.setIndividual(primaryIndividual) setting individual to " + primaryIndividual);
+	individual = primaryIndividual;
 
-    infoText.setStringValue(individual.getFullName()+newLine+individual.getBirthEvent().getDateString());
-    detailsText.setStringValue("Gender: "+individual.getGender().getLongString());
-    locked.setState(individual.isLocked()?NSCell.OnState:NSCell.OffState);
-    privacy.setState(individual.isPrivate()?NSCell.OnState:NSCell.OffState);
-    noteText.setString(individual.getNoteText());
-    eventTable.reloadData();
-    photo.setImage(new NSImage(individual.getImagePath()));
+	infoText.setStringValue(individual.getFullName() + newLine + individual.getBirthEvent().getDateString());
+	detailsText.setStringValue("Gender: " + individual.getGender().getLongString());
+	locked.setState(individual.isLocked() ? NSCell.OnState : NSCell.OffState);
+	privacy.setState(individual.isPrivate() ? NSCell.OnState : NSCell.OffState);
+	noteText.setString(individual.getNoteText());
+	eventTable.reloadData();
+	photo.setImage(new NSImage(individual.getImagePath()));
   }
 
   /**
@@ -60,7 +59,7 @@ public class IndividualDetailController extends NSObject {
    * @return int
    */
   public int numberOfRowsInTableView(NSTableView nSTableView) {
-    return individual.getEvents().size();
+	return individual.getEvents().size();
   }
 
   /**
@@ -72,15 +71,16 @@ public class IndividualDetailController extends NSObject {
    * @return Object
    */
   public Object tableViewObjectValueForLocation(NSTableView nSTableView,
-                                                NSTableColumn nSTableColumn,
-                                                int int2) {
-    Event event = (Event) individual.getEvents().get(int2);
-    if ("date".equalsIgnoreCase(nSTableColumn.identifier().toString())) {
-      return event.getDateString();
-    } else if ("place".equalsIgnoreCase(nSTableColumn.identifier().toString())) {
-      return event.getPlace().getFormatString();
-    }
-    return "Unknown";
+												NSTableColumn nSTableColumn,
+												int int2) {
+	Event event = (Event) individual.getEvents().get(int2);
+	if ("date".equalsIgnoreCase(nSTableColumn.identifier().toString())) {
+	  return event.getDateString();
+	}
+	else if ("place".equalsIgnoreCase(nSTableColumn.identifier().toString())) {
+	  return event.getPlace().getFormatString();
+	}
+	return "Unknown";
   }
 
   /**
@@ -92,9 +92,9 @@ public class IndividualDetailController extends NSObject {
    * @param int3 int
    */
   public void tableViewSetObjectValueForLocation(NSTableView nSTableView,
-                                                 Object object,
-                                                 NSTableColumn nSTableColumn,
-                                                 int int3) {
+												 Object object,
+												 NSTableColumn nSTableColumn,
+												 int int3) {
   }
 
 }

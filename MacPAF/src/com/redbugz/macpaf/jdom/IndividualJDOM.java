@@ -19,6 +19,8 @@ import org.jdom.output.XMLOutputter;
 import org.jdom.xpath.XPath;
 import com.apple.cocoa.foundation.NSBundle;
 import com.redbugz.macpaf.*;
+import com.apple.cocoa.application.NSAlertPanel;
+import com.apple.cocoa.foundation.NSSelector;
 
 /**
  * Created by IntelliJ IDEA.
@@ -535,14 +537,13 @@ public class IndividualJDOM implements Individual, Cloneable {
 		  log.debug("child xpath:" + xpath.getXPath());
 		  Element famNode = (Element) xpath.selectSingleNode(element);
 		  log.debug("famNode: " + famNode);
+		  familyAsChild = new FamilyJDOM(famNode, document);
 		  try {
-			new XMLOutputter(Format.getPrettyFormat()).output(famNode, System.out);
+			new XMLOutputter(Format.getPrettyFormat()).output(familyAsChild.getElement(), System.out);
 		  }
 		  catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		  }
-		  familyAsChild = new FamilyJDOM(famNode, document);
 		}
 	  }
 	  catch (JDOMException e) {
@@ -557,12 +558,57 @@ public class IndividualJDOM implements Individual, Cloneable {
 	  familyAsSpouse = new FamilyJDOM(document);
 	  try {
 		Element famLink = element.getChild(FAMILY_SPOUSE_LINK);
+		System.out.println("famLink="+famLink);
 		if (famLink != null) {
 		  XPath xpath = XPath.newInstance("//FAM[@ID='" + famLink.getAttributeValue(REF) + "']");
 		  log.debug("spouse xpath:" + xpath.getXPath());
 		  Element famNode = (Element) xpath.selectSingleNode(element);
 		  log.debug("famNode: " + famNode);
 		  familyAsSpouse = new FamilyJDOM(famNode, document);
+		  if (famNode == null) {
+			if (Gender.MALE == getGender()) {
+			  familyAsSpouse.setFather(this);
+} else if (Gender.FEMALE == getGender()) {
+  familyAsSpouse.setMother(this);
+} else {
+  // attempting to add a person as a spouse with no gender specified, need further information
+  /** @todo fix this alert sheet */
+  NSAlertPanel.beginAlertSheet (
+
+		  "Do you really want to delete the selected rows?",
+
+							  // sheet message
+
+		  "Delete",           // default button
+
+		  null,               // no third button
+
+		  "Cancel",           // other button label
+
+		  null,             // window attached to
+
+		  this,               // modal delegate
+
+		  new NSSelector("sheetDidEnd::", new Class[] {getClass()}),
+
+							  // did-end selector
+
+		  null,               // no did-dismiss selector
+
+		  null,               // context info
+
+		  "There is no undo for this operation.");
+
+							  // additional text
+
+}
+}
+		  try {
+			new XMLOutputter(Format.getPrettyFormat()).output(familyAsSpouse.getElement(), System.out);
+		  }
+		  catch (IOException e1) {
+			e1.printStackTrace();
+		  }
 		}
 	  }
 	  catch (JDOMException e) {

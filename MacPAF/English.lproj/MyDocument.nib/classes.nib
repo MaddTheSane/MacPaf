@@ -93,6 +93,8 @@
             LANGUAGE = Java; 
             OUTLETS = {
                 childrenTable = NSTableView; 
+                familyAsChildButton = NSButton; 
+                familyAsSpouseButton = NSButton; 
                 familyEditWindow = NSWindow; 
                 familyList = FamilyList; 
                 familyListTableView = NSTableView; 

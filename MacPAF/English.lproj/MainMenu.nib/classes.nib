@@ -7,7 +7,19 @@
             SUPERCLASS = "java.lang.Object"; 
         }, 
         {
-            ACTIONS = {exportFile = id; importFile = id; openReportsSheet = id; }; 
+            ACTIONS = {
+                addNewChild = id; 
+                addNewFamily = id; 
+                addNewFamilyAsChild = id; 
+                addNewFamilyAsSpouse = id; 
+                addNewFather = id; 
+                addNewIndividual = id; 
+                addNewMother = id; 
+                addNewSpouse = id; 
+                exportFile = id; 
+                importFile = id; 
+                openReportsSheet = id; 
+            }; 
             CLASS = FirstResponder; 
             LANGUAGE = ObjC; 
             SUPERCLASS = NSObject; 

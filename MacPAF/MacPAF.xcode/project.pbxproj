@@ -7,7 +7,6 @@
 	objects = {
 		02218D9AFECEFA92C02AAC07 = {
 			children = (
-				026ED78105D932E50001D1D2,
 				026ED79C05D932E50001D1D2,
 				026ED7A705D932E50001D1D2,
 				2A37F4B9FDCFA73011CA2CEA,
@@ -901,201 +900,9 @@
 			settings = {
 			};
 		};
-		026ED78105D932E50001D1D2 = {
-			children = (
-				026ED78205D932E50001D1D2,
-				026ED78305D932E50001D1D2,
-				026ED78405D932E50001D1D2,
-				026ED78505D932E50001D1D2,
-				026ED78605D932E50001D1D2,
-				026ED78705D932E50001D1D2,
-				026ED78905D932E50001D1D2,
-				026ED78F05D932E50001D1D2,
-				026ED79005D932E50001D1D2,
-				026ED79105D932E50001D1D2,
-				026ED79205D932E50001D1D2,
-				026ED79305D932E50001D1D2,
-				026ED79405D932E50001D1D2,
-				026ED79505D932E50001D1D2,
-				026ED79605D932E50001D1D2,
-				026ED79705D932E50001D1D2,
-				026ED79805D932E50001D1D2,
-				026ED79905D932E50001D1D2,
-				026ED79A05D932E50001D1D2,
-				026ED79B05D932E50001D1D2,
-			);
-			isa = PBXGroup;
-			path = gedcom;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		026ED78205D932E50001D1D2 = {
-			fileEncoding = 4;
-			isa = PBXFileReference;
-			lastKnownFileType = text;
-			path = AllredMed.ged;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		026ED78305D932E50001D1D2 = {
-			fileEncoding = 4;
-			isa = PBXFileReference;
-			lastKnownFileType = text;
-			path = allredsmall.ged;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		026ED78405D932E50001D1D2 = {
-			fileEncoding = 4;
-			isa = PBXFileReference;
-			lastKnownFileType = text;
-			path = ashby.GED;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		026ED78505D932E50001D1D2 = {
-			fileEncoding = 4;
-			isa = PBXFileReference;
-			lastKnownFileType = text;
-			path = Ellee.GED;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		026ED78605D932E50001D1D2 = {
-			isa = PBXFileReference;
-			lastKnownFileType = file;
-			path = emptyPAF;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		026ED78705D932E50001D1D2 = {
-			fileEncoding = 4;
-			isa = PBXFileReference;
-			lastKnownFileType = text;
-			path = emptyPAF.GED;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		026ED78905D932E50001D1D2 = {
-			fileEncoding = 4;
-			isa = PBXFileReference;
-			lastKnownFileType = text;
-			path = example.ged;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		026ED78F05D932E50001D1D2 = {
-			fileEncoding = 4;
-			isa = PBXFileReference;
-			lastKnownFileType = text;
-			path = g55sample.ged;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		026ED79005D932E50001D1D2 = {
-			fileEncoding = 4;
-			isa = PBXFileReference;
-			lastKnownFileType = text;
-			path = KENNEDY.GED;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		026ED79105D932E50001D1D2 = {
-			fileEncoding = 4;
-			isa = PBXFileReference;
-			lastKnownFileType = text.html;
-			path = kennedy.html;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		026ED79205D932E50001D1D2 = {
-			fileEncoding = 4;
-			isa = PBXFileReference;
-			lastKnownFileType = text.plist.xml;
-			path = kennedy.xml;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		026ED79305D932E50001D1D2 = {
-			isa = PBXFileReference;
-			lastKnownFileType = file;
-			path = new;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		026ED79405D932E50001D1D2 = {
-			fileEncoding = 4;
-			isa = PBXFileReference;
-			lastKnownFileType = text;
-			path = savetest.ged;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		026ED79505D932E50001D1D2 = {
-			fileEncoding = 4;
-			isa = PBXFileReference;
-			lastKnownFileType = text;
-			path = "savetest.ged List";
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		026ED79605D932E50001D1D2 = {
-			fileEncoding = 4;
-			isa = PBXFileReference;
-			lastKnownFileType = text;
-			path = small.ged;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		026ED79705D932E50001D1D2 = {
-			fileEncoding = 4;
-			isa = PBXFileReference;
-			lastKnownFileType = text;
-			path = stress.ged;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		026ED79805D932E50001D1D2 = {
-			fileEncoding = 4;
-			isa = PBXFileReference;
-			lastKnownFileType = text;
-			path = stress2.ged;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		026ED79905D932E50001D1D2 = {
-			isa = PBXFileReference;
-			lastKnownFileType = file;
-			path = test1;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		026ED79A05D932E50001D1D2 = {
-			fileEncoding = 4;
-			isa = PBXFileReference;
-			lastKnownFileType = text;
-			path = test1.GED;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		026ED79B05D932E50001D1D2 = {
-			fileEncoding = 4;
-			isa = PBXFileReference;
-			lastKnownFileType = text;
-			path = testexpo.GED;
-			refType = 4;
-			sourceTree = "<group>";
-		};
 		026ED79C05D932E50001D1D2 = {
 			children = (
-				026ED79D05D932E50001D1D2,
-				026ED79E05D932E50001D1D2,
-				026ED79F05D932E50001D1D2,
-				026ED7A005D932E50001D1D2,
-				026ED7A105D932E50001D1D2,
-				026ED7A205D932E50001D1D2,
 				026ED7A305D932E50001D1D2,
-				026ED7A405D932E50001D1D2,
 				026ED7A505D932E50001D1D2,
 				026ED7A605D932E50001D1D2,
 			);
@@ -1104,59 +911,10 @@
 			refType = 4;
 			sourceTree = "<group>";
 		};
-		026ED79D05D932E50001D1D2 = {
-			isa = PBXFileReference;
-			lastKnownFileType = image.png;
-			path = "familyrecords-screenshot.png";
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		026ED79E05D932E50001D1D2 = {
-			isa = PBXFileReference;
-			lastKnownFileType = image.pict;
-			path = indivsummary.pict;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		026ED79F05D932E50001D1D2 = {
-			isa = PBXFileReference;
-			lastKnownFileType = image.gif;
-			path = "macpaf-screenshot.gif";
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		026ED7A005D932E50001D1D2 = {
-			isa = PBXFileReference;
-			lastKnownFileType = image.jpeg;
-			path = "macpaf-screenshot.jpg";
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		026ED7A105D932E50001D1D2 = {
-			isa = PBXFileReference;
-			lastKnownFileType = image.png;
-			path = "macpaf-screenshot.png";
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		026ED7A205D932E50001D1D2 = {
-			isa = PBXFileReference;
-			lastKnownFileType = image.tiff;
-			path = "macpaf-screenshot.tiff";
-			refType = 4;
-			sourceTree = "<group>";
-		};
 		026ED7A305D932E50001D1D2 = {
 			isa = PBXFileReference;
 			lastKnownFileType = image.gif;
 			path = notepad.gif;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		026ED7A405D932E50001D1D2 = {
-			isa = PBXFileReference;
-			lastKnownFileType = image.tiff;
-			path = "oldmacpaf-screenshot.tiff";
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -1196,7 +954,7 @@
 		026ED7A805D932E50001D1D2 = {
 			fileEncoding = 4;
 			isa = PBXFileReference;
-			lastKnownFileType = text.plist.xml;
+			lastKnownFileType = text.xml;
 			path = GedcomToHtml.xsl;
 			refType = 4;
 			sourceTree = "<group>";
@@ -1204,7 +962,7 @@
 		026ED7A905D932E50001D1D2 = {
 			fileEncoding = 4;
 			isa = PBXFileReference;
-			lastKnownFileType = text.plist.xml;
+			lastKnownFileType = text.xml;
 			path = GedcomToXml.xsl;
 			refType = 4;
 			sourceTree = "<group>";
@@ -1212,7 +970,7 @@
 		026ED7AF05D932E50001D1D2 = {
 			fileEncoding = 4;
 			isa = PBXFileReference;
-			lastKnownFileType = text.plist.xml;
+			lastKnownFileType = text.xml;
 			path = "Temple Codes (official).xml";
 			refType = 4;
 			sourceTree = "<group>";
@@ -1251,7 +1009,7 @@
 		026ED7B405D932E50001D1D2 = {
 			fileEncoding = 4;
 			isa = PBXFileReference;
-			lastKnownFileType = text.plist.xml;
+			lastKnownFileType = text.xml;
 			path = "Temple List.plist";
 			refType = 4;
 			sourceTree = "<group>";
@@ -1259,7 +1017,7 @@
 		026ED7B505D932E50001D1D2 = {
 			fileEncoding = 4;
 			isa = PBXFileReference;
-			lastKnownFileType = text.plist.xml;
+			lastKnownFileType = text.xml;
 			path = "temple-mapping.xml";
 			refType = 4;
 			sourceTree = "<group>";
@@ -1267,7 +1025,7 @@
 		026ED7B605D932E50001D1D2 = {
 			fileEncoding = 4;
 			isa = PBXFileReference;
-			lastKnownFileType = text.plist.xml;
+			lastKnownFileType = text.xml;
 			path = TempleList.xml;
 			refType = 4;
 			sourceTree = "<group>";
@@ -1275,175 +1033,13 @@
 		026ED7B705D932E50001D1D2 = {
 			fileEncoding = 4;
 			isa = PBXFileReference;
-			lastKnownFileType = text.plist.xml;
+			lastKnownFileType = text.xml;
 			path = XmlToGedcom.xsl;
 			refType = 4;
 			sourceTree = "<group>";
 		};
-		026ED7B805D932E50001D1D2 = {
-			fileRef = 026ED78205D932E50001D1D2;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		026ED7B905D932E50001D1D2 = {
-			fileRef = 026ED78305D932E50001D1D2;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		026ED7BA05D932E50001D1D2 = {
-			fileRef = 026ED78405D932E50001D1D2;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		026ED7BB05D932E50001D1D2 = {
-			fileRef = 026ED78505D932E50001D1D2;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		026ED7BC05D932E50001D1D2 = {
-			fileRef = 026ED78605D932E50001D1D2;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		026ED7BD05D932E50001D1D2 = {
-			fileRef = 026ED78705D932E50001D1D2;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		026ED7BF05D932E50001D1D2 = {
-			fileRef = 026ED78905D932E50001D1D2;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		026ED7C505D932E50001D1D2 = {
-			fileRef = 026ED78F05D932E50001D1D2;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		026ED7C605D932E50001D1D2 = {
-			fileRef = 026ED79005D932E50001D1D2;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		026ED7C705D932E50001D1D2 = {
-			fileRef = 026ED79105D932E50001D1D2;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		026ED7C805D932E50001D1D2 = {
-			fileRef = 026ED79205D932E50001D1D2;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		026ED7C905D932E50001D1D2 = {
-			fileRef = 026ED79305D932E50001D1D2;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		026ED7CA05D932E50001D1D2 = {
-			fileRef = 026ED79405D932E50001D1D2;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		026ED7CB05D932E50001D1D2 = {
-			fileRef = 026ED79505D932E50001D1D2;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		026ED7CC05D932E50001D1D2 = {
-			fileRef = 026ED79605D932E50001D1D2;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		026ED7CD05D932E50001D1D2 = {
-			fileRef = 026ED79705D932E50001D1D2;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		026ED7CE05D932E50001D1D2 = {
-			fileRef = 026ED79805D932E50001D1D2;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		026ED7CF05D932E50001D1D2 = {
-			fileRef = 026ED79905D932E50001D1D2;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		026ED7D005D932E50001D1D2 = {
-			fileRef = 026ED79A05D932E50001D1D2;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		026ED7D105D932E50001D1D2 = {
-			fileRef = 026ED79B05D932E50001D1D2;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		026ED7D205D932E50001D1D2 = {
-			fileRef = 026ED79D05D932E50001D1D2;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		026ED7D305D932E50001D1D2 = {
-			fileRef = 026ED79E05D932E50001D1D2;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		026ED7D405D932E50001D1D2 = {
-			fileRef = 026ED79F05D932E50001D1D2;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		026ED7D505D932E50001D1D2 = {
-			fileRef = 026ED7A005D932E50001D1D2;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		026ED7D605D932E50001D1D2 = {
-			fileRef = 026ED7A105D932E50001D1D2;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		026ED7D705D932E50001D1D2 = {
-			fileRef = 026ED7A205D932E50001D1D2;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
 		026ED7D805D932E50001D1D2 = {
 			fileRef = 026ED7A305D932E50001D1D2;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		026ED7D905D932E50001D1D2 = {
-			fileRef = 026ED7A405D932E50001D1D2;
 			isa = PBXBuildFile;
 			settings = {
 			};
@@ -1606,6 +1202,21 @@
 		};
 		026ED7FE05D9330B0001D1D2 = {
 			fileRef = 026ED7F705D9330B0001D1D2;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		02753D02066A46890059C930 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			name = PocketPedigreeView.java;
+			path = src/PocketPedigreeView.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		02753D03066A46890059C930 = {
+			fileRef = 02753D02066A46890059C930;
 			isa = PBXBuildFile;
 			settings = {
 			};
@@ -1822,8 +1433,7 @@
 //103
 //104
 		1058C7A7FEA54F5311CA2CBB = {
-			fallbackIsa = PBXFileReference;
-			isa = PBXFrameworkReference;
+			isa = PBXFileReference;
 			lastKnownFileType = wrapper.framework;
 			name = Cocoa.framework;
 			path = /System/Library/Frameworks/Cocoa.framework;
@@ -1866,8 +1476,7 @@
 //174
 		1758732CFF379DAD11CA2CBB = {
 			explicitFileType = wrapper.application;
-			fallbackIsa = PBXFileReference;
-			isa = PBXApplicationReference;
+			isa = PBXFileReference;
 			path = MacPAF.app;
 			refType = 3;
 			sourceTree = BUILT_PRODUCTS_DIR;
@@ -1903,6 +1512,8 @@
 //2A4
 		2A37F4A9FDCFA73011CA2CEA = {
 			buildSettings = {
+				MACOSX_DEPLOYMENT_TARGET = 10.1;
+				SDKROOT = /Developer/SDKs/MacOSX10.1.5.sdk;
 			};
 			buildStyles = (
 				4A9504D6FFE6A4CB11CA0CBA,
@@ -2025,8 +1636,7 @@
 			sourceTree = "<group>";
 		};
 		2A37F4C4FDCFA73011CA2CEA = {
-			fallbackIsa = PBXFileReference;
-			isa = PBXFrameworkReference;
+			isa = PBXFileReference;
 			lastKnownFileType = wrapper.framework;
 			name = AppKit.framework;
 			path = /System/Library/Frameworks/AppKit.framework;
@@ -2034,8 +1644,7 @@
 			sourceTree = "<absolute>";
 		};
 		2A37F4C5FDCFA73011CA2CEA = {
-			fallbackIsa = PBXFileReference;
-			isa = PBXFrameworkReference;
+			isa = PBXFileReference;
 			lastKnownFileType = wrapper.framework;
 			name = Foundation.framework;
 			path = /System/Library/Frameworks/Foundation.framework;
@@ -2191,34 +1800,7 @@
 				080E96DAFE201CDB7F000001,
 				080E96DBFE201CDB7F000001,
 				089C1661FE840EACC02AAC07,
-				026ED7B805D932E50001D1D2,
-				026ED7B905D932E50001D1D2,
-				026ED7BA05D932E50001D1D2,
-				026ED7BB05D932E50001D1D2,
-				026ED7BC05D932E50001D1D2,
-				026ED7BD05D932E50001D1D2,
-				026ED7BF05D932E50001D1D2,
-				026ED7C505D932E50001D1D2,
-				026ED7C605D932E50001D1D2,
-				026ED7C705D932E50001D1D2,
-				026ED7C805D932E50001D1D2,
-				026ED7C905D932E50001D1D2,
-				026ED7CA05D932E50001D1D2,
-				026ED7CB05D932E50001D1D2,
-				026ED7CC05D932E50001D1D2,
-				026ED7CD05D932E50001D1D2,
-				026ED7CE05D932E50001D1D2,
-				026ED7CF05D932E50001D1D2,
-				026ED7D005D932E50001D1D2,
-				026ED7D105D932E50001D1D2,
-				026ED7D205D932E50001D1D2,
-				026ED7D305D932E50001D1D2,
-				026ED7D405D932E50001D1D2,
-				026ED7D505D932E50001D1D2,
-				026ED7D605D932E50001D1D2,
-				026ED7D705D932E50001D1D2,
 				026ED7D805D932E50001D1D2,
-				026ED7D905D932E50001D1D2,
 				026ED7DA05D932E50001D1D2,
 				026ED7DB05D932E50001D1D2,
 				026ED7DC05D932E50001D1D2,
@@ -2296,6 +1878,7 @@
 				026ED77F05D932BD0001D1D2,
 				026ED78005D932BD0001D1D2,
 				02907686060568E800F1763A,
+				02753D03066A46890059C930,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2351,6 +1934,7 @@
 				026ED74705D932BD0001D1D2,
 				02907685060568E800F1763A,
 				026ED74805D932BD0001D1D2,
+				02753D02066A46890059C930,
 				026ED74905D932BD0001D1D2,
 				026ED74A05D932BD0001D1D2,
 				026ED74B05D932BD0001D1D2,
@@ -2397,8 +1981,6 @@
 //4A3
 //4A4
 		4A9504D6FFE6A4CB11CA0CBA = {
-			buildRules = (
-			);
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -2412,8 +1994,6 @@
 			name = Development;
 		};
 		4A9504D7FFE6A4CB11CA0CBA = {
-			buildRules = (
-			);
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;

@@ -477,7 +477,7 @@ public interface Individual {
 	 */
 	public String getAFN() {
 	  // TODO Auto-generated method stub
-	  return null;
+	  return "";
 	}
 
 	/* (non-Javadoc)

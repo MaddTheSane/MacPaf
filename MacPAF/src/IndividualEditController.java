@@ -58,6 +58,11 @@ public class IndividualEditController extends NSWindowController {
 	try {
 	  if (validate()) {
 		log.debug("IndividualEditController.save() individual b4:" + individual);
+		MyDocument myDocument = ( (MyDocument) document());
+		if (individual instanceof Individual.UnknownIndividual) {
+		  individual = myDocument.createNewIndividual();
+		  myDocument.addIndividual(individual);
+		}
 		individual.setSurname(surname.stringValue());
 		individual.setGivenNames(givenNames.stringValue());
 		individual.setNamePrefix(prefix.stringValue());
@@ -81,10 +86,9 @@ public class IndividualEditController extends NSWindowController {
 		individual.getLDSSealingToParents().setDateString(sealingToParentDate.stringValue());
 		individual.getLDSSealingToParents().setTemple(templeForComboBox(sealingToParentTemple));
 
-		MyDocument document = ( (MyDocument) document());
-		document.setPrimaryIndividual(individual);
+		myDocument.setPrimaryIndividual(individual);
 		log.debug("IndividualEditController.save() individual aft:" + individual);
-		document.save();
+		myDocument.save();
 
 	  }
 	}

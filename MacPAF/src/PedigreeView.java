@@ -191,75 +191,7 @@ public class PedigreeView extends NSView {
 	  drawIndividualInRect(individual, indivRect.rectByOffsettingRect(0, (p2.y() + p3.y()) / 2 - indivRect.height()),
 						   20);
 
-//       NSBezierPath.strokeLineFromPoint(new NSPoint(leftX, lineY), new NSPoint(rightX, lineY));
-//       NSBezierPath.strokeLineFromPoint(new NSPoint(leftX, lineY-rowHeight), new NSPoint(leftX, lineY));
-//       NSBezierPath.strokeLineFromPoint(new NSPoint(leftX-genWidth, lineY-(rowHeight/2)), new NSPoint(leftX, lineY-(rowHeight/2)));
-//       NSGraphics.drawAttributedString(new NSAttributedString(" Florence Rheuamah Porter", new NSDictionary(times9, NSAttributedString.FontAttributeName)), new NSPoint(leftX, lineY));
-//          NSGraphics.drawAttributedString(nameText, new NSPoint(leftX, lineY-NSGraphics.sizeOfAttributedString(nameText).height()));
-//       lineY += rowHeight;
-//       NSBezierPath.strokeLineFromPoint(new NSPoint(leftX, lineY), new NSPoint(rightX, lineY));
-//       NSGraphics.drawAttributedString(new NSAttributedString(" Henry Ivan Hall", new NSDictionary(times9, NSAttributedString.FontAttributeName)), new NSPoint(leftX, lineY));
-//          NSGraphics.drawAttributedString(nameText, new NSPoint(leftX, lineY-NSGraphics.sizeOfAttributedString(nameText).height()));
-//       lineY += rowHeight;
-//       NSBezierPath.strokeLineFromPoint(new NSPoint(leftX, lineY), new NSPoint(rightX, lineY));
-//       NSGraphics.drawAttributedString(new NSAttributedString(" Alma Gertrude Funke", new NSDictionary(times9, NSAttributedString.FontAttributeName)), new NSPoint(leftX, lineY));
-//          NSGraphics.drawAttributedString(nameText, new NSPoint(leftX, lineY-NSGraphics.sizeOfAttributedString(nameText).height()));
-//       NSBezierPath.strokeLineFromPoint(new NSPoint(leftX, lineY-rowHeight), new NSPoint(leftX, lineY));
-//       NSBezierPath.strokeLineFromPoint(new NSPoint(leftX-genWidth, lineY-(rowHeight/2)), new NSPoint(leftX, lineY-(rowHeight/2)));
-//       lineY += rowHeight;
-//       NSBezierPath.strokeLineFromPoint(new NSPoint(leftX, lineY), new NSPoint(rightX, lineY));
-//       NSGraphics.drawAttributedString(new NSAttributedString(" Joseph Smith Thompson", new NSDictionary(times9, NSAttributedString.FontAttributeName)), new NSPoint(leftX, lineY));
-//          NSGraphics.drawAttributedString(nameText, new NSPoint(leftX, lineY-NSGraphics.sizeOfAttributedString(nameText).height()));
-//       lineY += rowHeight;
-//       NSBezierPath.strokeLineFromPoint(new NSPoint(leftX, lineY), new NSPoint(rightX, lineY));
-//       NSGraphics.drawAttributedString(new NSAttributedString(" Grace Bleak", new NSDictionary(times9, NSAttributedString.FontAttributeName)), new NSPoint(leftX, lineY));
-//          NSGraphics.drawAttributedString(nameText, new NSPoint(leftX, lineY-NSGraphics.sizeOfAttributedString(nameText).height()));
-//       NSBezierPath.strokeLineFromPoint(new NSPoint(leftX, lineY-rowHeight), new NSPoint(leftX, lineY));
-//       NSBezierPath.strokeLineFromPoint(new NSPoint(leftX-genWidth, lineY-(rowHeight/2)), new NSPoint(leftX, lineY-(rowHeight/2)));
-//       lineY += rowHeight;
-//       NSBezierPath.strokeLineFromPoint(new NSPoint(leftX, lineY), new NSPoint(rightX, lineY));
-//       NSGraphics.drawAttributedString(new NSAttributedString(" Leonard Ashby Wood", new NSDictionary(times9, NSAttributedString.FontAttributeName)), new NSPoint(leftX, lineY));
-//          NSGraphics.drawAttributedString(nameText, new NSPoint(leftX, lineY-NSGraphics.sizeOfAttributedString(nameText).height()));
-//       lineY += rowHeight;
-//       NSBezierPath.strokeLineFromPoint(new NSPoint(leftX, lineY), new NSPoint(rightX, lineY));
-//       NSGraphics.drawAttributedString(new NSAttributedString(" Norma Fay Justesen", new NSDictionary(times9, NSAttributedString.FontAttributeName)), new NSPoint(leftX, lineY));
-//          NSGraphics.drawAttributedString(nameText, new NSPoint(leftX, lineY-NSGraphics.sizeOfAttributedString(nameText).height()));
-//       NSBezierPath.strokeLineFromPoint(new NSPoint(leftX, lineY-rowHeight), new NSPoint(leftX, lineY));
-//       NSBezierPath.strokeLineFromPoint(new NSPoint(leftX-genWidth, lineY-(rowHeight/2)), new NSPoint(leftX, lineY-(rowHeight/2)));
 
-
-	  // generation 2
-//       NSBezierPath.strokeLineFromPoint(new NSPoint(0, rect.midY()), new NSPoint(genWidth, rect.midY()));
-//       NSBezierPath.strokeLineFromPoint(new NSPoint(0, rect.midY()), new NSPoint(genWidth, rect.midY()));
-//       NSBezierPath.strokeLineFromPoint(new NSPoint(0, rect.midY()), new NSPoint(genWidth, rect.midY()));
-//       NSBezierPath.strokeLineFromPoint(new NSPoint(0, rect.midY()), new NSPoint(genWidth, rect.midY()));
-
-
-//       List genRects = new ArrayList(rows);
-//       for (int k=0; k < rows; k++) {
-//          genRects.add(new NSPoint());
-//       }
-//       for (Iterator iterator = genRects.iterator(); iterator.hasNext();) {
-//          Object o = (Object) iterator.next();
-//
-//       }
-//       for (int gen=generations; gen > 0; gen--) {
-//          int rows = (int) Math.round(Math.pow(2, gen-1));
-//          for (int j=rows; j > 0; j--) {
-//             log.debug("drawing generation "+gen+" #"+j+"\nleft from "+(rect.width()*(gen-1)/generations)+" to "+(rect.width()*gen/generations));
-//             final NSPoint leftPoint = new NSPoint(rect.width()*(gen-1)/generations,rect.height()*j/rows);
-//             log.debug("leftPoint="+leftPoint);
-//             final NSPoint rightPoint = new NSPoint(rect.width()*gen/generations,rect.height()*j/rows);
-//             log.debug("rightPoint="+rightPoint);
-//             NSBezierPath.strokeLineFromPoint( leftPoint, rightPoint);
-//          }
-//       }
-//       NSBezierPath.strokeLineFromPoint(new NSPoint(0,rect.midY()), new NSPoint(100,rect.midY()));
-//       NSBezierPath.strokeLineFromPoint(new NSPoint(0,rect.midY()), new NSPoint(100,rect.midY()));
-//       NSBezierPath.strokeLineFromPoint(new NSPoint(0,rect.midY()), new NSPoint(100,rect.midY()));
-//       NSBezierPath.strokeLineFromPoint(new NSPoint(0,rect.midY()), new NSPoint(100,rect.midY()));
-//       NSBezierPath.strokeLineFromPoint(new NSPoint(0,rect.midY()), new NSPoint(100,rect.midY()));
-//       NSBezierPath.strokeLineFromPoint(new NSPoint(0,rect.midY()), new NSPoint(100,rect.midY()));
 	}
 	catch (Exception e) {
 	  log.error("Exception: ", e); //To change body of catch statement use Options | File Templates.

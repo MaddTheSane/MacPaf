@@ -13,6 +13,7 @@ import com.apple.cocoa.application.NSPanel;
 import com.apple.cocoa.application.NSProgressIndicator;
 import com.apple.cocoa.foundation.NSNotification;
 import com.apple.cocoa.foundation.NSUserDefaults;
+import java.io.File;
 
 public class ApplicationUtilities {
   public NSPanel splashScreen; /* IBOutlet */
@@ -29,20 +30,27 @@ public class ApplicationUtilities {
 
   public void applicationDidFinishLaunching(NSNotification aNotification) {
 	log.debug("applicationDidFinishLaunching:" + aNotification + " isreleased=" + splashScreen.isReleasedWhenClosed());
-	// open last opened document
-	String lastOpenedDocument = NSUserDefaults.standardUserDefaults().stringForKey(
-		"com.redbugz.macpaf.lastOpenedDocument");
-	if (lastOpenedDocument != null) {
-	  NSDocumentController.sharedDocumentController().openDocumentWithContentsOfFile(lastOpenedDocument, true);
+	try {
+	  // open last opened document
+	  String lastOpenedDocument = NSUserDefaults.standardUserDefaults().stringForKey(
+		  "com.redbugz.macpaf.lastOpenedDocument");
+	  System.out.println("lastOpenedDocument=" + lastOpenedDocument);
+	  if (lastOpenedDocument != null) {System.out.println(" exists:"+new File(lastOpenedDocument).exists());}
+	  if (lastOpenedDocument != null && new File(lastOpenedDocument).exists()) {
+		NSDocumentController.sharedDocumentController().openDocumentWithContentsOfFile(lastOpenedDocument, true);
+	  }
+	  else {
+		NSDocumentController.sharedDocumentController().openUntitledDocumentOfType(MyDocument.MACPAF, true);
+	  }
+	  // close splash screen
+	  splashScreen.setReleasedWhenClosed(true);
+	  splashScreen.close();
+	  splashScreen = null;
+	  didFinish = true;
 	}
-	else {
-	  NSDocumentController.sharedDocumentController().openUntitledDocumentOfType(MyDocument.MACPAF, true);
+	catch (Exception ex) {
+	  ex.printStackTrace();
 	}
-	// close splash screen
-	splashScreen.setReleasedWhenClosed(true);
-	splashScreen.close();
-	splashScreen = null;
-	didFinish = true;
   }
 
   public boolean applicationShouldOpenUntitledFile(NSApplication sender) {

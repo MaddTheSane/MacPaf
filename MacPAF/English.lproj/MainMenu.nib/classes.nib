@@ -19,6 +19,8 @@
                 exportFile = id; 
                 importFile = id; 
                 openReportsSheet = id; 
+                showFamilyList = id; 
+                showIndividualList = id; 
             }; 
             CLASS = FirstResponder; 
             LANGUAGE = ObjC; 

@@ -1,0 +1,17 @@
+{
+    IBClasses = (
+        {
+            CLASS = ApplicationUtilities; 
+            LANGUAGE = Java; 
+            OUTLETS = {progress = NSProgressIndicator; splashScreen = NSPanel; }; 
+            SUPERCLASS = "java.lang.Object"; 
+        }, 
+        {
+            ACTIONS = {exportFile = id; importFile = id; openReportsSheet = id; }; 
+            CLASS = FirstResponder; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSObject; 
+        }
+    ); 
+    IBVersion = 1; 
+}

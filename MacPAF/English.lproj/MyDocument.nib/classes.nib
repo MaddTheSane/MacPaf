@@ -1,0 +1,174 @@
+{
+    IBClasses = (
+        {
+            ACTIONS = {
+                addChild = id; 
+                cancel = id; 
+                editChild = id; 
+                editHusband = id; 
+                editWife = id; 
+                removeChild = id; 
+                save = id; 
+                toggleDivorced = id; 
+            }; 
+            CLASS = FamilyEditController; 
+            LANGUAGE = Java; 
+            OUTLETS = {
+                children = NSTableView; 
+                divorcedSwitch = NSButton; 
+                husbandButton = NSButton; 
+                marriageForm = NSForm; 
+                sealingDate = NSTextField; 
+                sealingTemple = NSComboBox; 
+                wifeButton = NSButton; 
+            }; 
+            SUPERCLASS = NSWindowController; 
+        }, 
+        {
+            CLASS = FamilyList; 
+            LANGUAGE = Java; 
+            OUTLETS = {document = MyDocument; }; 
+            SUPERCLASS = "java.lang.Object"; 
+        }, 
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            CLASS = IndividualDetailController; 
+            LANGUAGE = Java; 
+            OUTLETS = {
+                detailsText = NSTextField; 
+                eventTable = NSTableView; 
+                infoText = NSTextField; 
+                locked = NSButtonCell; 
+                noteText = NSTextView; 
+                photo = NSImageView; 
+                privacy = NSButtonCell; 
+            }; 
+            SUPERCLASS = "java.lang.Object"; 
+        }, 
+        {
+            ACTIONS = {cancel = id; save = id; }; 
+            CLASS = IndividualEditController; 
+            LANGUAGE = Java; 
+            OUTLETS = {
+                afn = NSTextField; 
+                baptismDate = NSTextField; 
+                baptismTemple = NSComboBox; 
+                birthForm = NSForm; 
+                burialForm = NSForm; 
+                christeningForm = NSForm; 
+                deathForm = NSForm; 
+                endowmentDate = NSTextField; 
+                endowmentTemple = NSComboBox; 
+                gender = NSPopUpButton; 
+                givenNames = NSTextField; 
+                photo = NSImageView; 
+                prefix = NSComboBox; 
+                rin = NSTextField; 
+                sealingToParentDate = NSTextField; 
+                sealingToParentTemple = NSComboBox; 
+                suffix = NSComboBox; 
+                surname = NSComboBox; 
+            }; 
+            SUPERCLASS = NSWindowController; 
+        }, 
+        {
+            CLASS = IndividualList; 
+            LANGUAGE = Java; 
+            OUTLETS = {document = MyDocument; }; 
+            SUPERCLASS = "java.lang.Object"; 
+        }, 
+        {
+            ACTIONS = {
+                cancel = id; 
+                closeFamilyEditSheet = id; 
+                closeIndividualEditSheet = id; 
+                openFamilyEditSheet = id; 
+                openIndividualEditSheet = id; 
+                saveFamily = id; 
+                saveIndividual = id; 
+                setIndividual = id; 
+                setPrintableView = id; 
+            }; 
+            CLASS = MyDocument; 
+            LANGUAGE = Java; 
+            OUTLETS = {
+                childrenTable = NSTableView; 
+                familyEditWindow = NSWindow; 
+                familyList = FamilyList; 
+                fatherButton = NSButton; 
+                individualButton = NSButton; 
+                individualDetailController = IndividualDetailController; 
+                individualEditWindow = NSWindow; 
+                individualFamilyButton = NSButton; 
+                individualList = IndividualList; 
+                maternalGrandfatherButton = NSButton; 
+                maternalGrandmotherButton = NSButton; 
+                motherButton = NSButton; 
+                noteTextView = NSTextView; 
+                noteWindow = NSWindow; 
+                parentFamilyButton = NSButton; 
+                paternalGrandfatherButton = NSButton; 
+                paternalGrandmotherButton = NSButton; 
+                pedigreeView = PedigreeView; 
+                reportsRadio = NSMatrix; 
+                reportsWindow = NSWindow; 
+                spouseButton = NSButton; 
+                spouseTable = NSTableView; 
+            }; 
+            SUPERCLASS = NSDocument; 
+        }, 
+        {CLASS = MyObject; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {add = id; cancel = id; myAction = id; save = id; update = id; }; 
+            CLASS = MyView; 
+            LANGUAGE = Java; 
+            OUTLETS = {
+                button = NSButton; 
+                label = NSTextField; 
+                myOutlet = NSRulerView; 
+                test = id; 
+                text = NSTextField; 
+            }; 
+            SUPERCLASS = NSView; 
+        }, 
+        {CLASS = PedigreeView; LANGUAGE = ObjC; SUPERCLASS = NSView; }, 
+        {
+            ACTIONS = {cancel = id; save = id; }; 
+            CLASS = ReportsController; 
+            LANGUAGE = Java; 
+            OUTLETS = {reportsRadio = NSMatrix; }; 
+            SUPERCLASS = NSWindowController; 
+        }, 
+        {
+            CLASS = "com.apple.cocoa.foundation.NSGregorianDateFormatter"; 
+            LANGUAGE = Java; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
+            CLASS = "com.redbugz.macpaf.DateFormatter"; 
+            LANGUAGE = Java; 
+            SUPERCLASS = NSFormatter; 
+        }, 
+        {
+            CLASS = "com.redbugz.macpaf.DateFormatter1"; 
+            LANGUAGE = Java; 
+            SUPERCLASS = NSFormatter; 
+        }, 
+        {
+            CLASS = "com.redbugz.macpaf.LocationList"; 
+            LANGUAGE = Java; 
+            SUPERCLASS = "java.lang.Object"; 
+        }, 
+        {
+            CLASS = "com.redbugz.macpaf.SurnameList"; 
+            LANGUAGE = Java; 
+            SUPERCLASS = "java.lang.Object"; 
+        }, 
+        {
+            CLASS = "com.redbugz.macpaf.TempleList"; 
+            LANGUAGE = Java; 
+            SUPERCLASS = "java.lang.Object"; 
+        }
+    ); 
+    IBVersion = 1; 
+}

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapping>
+  <class name="com.redbugz.macpaf.TempleXML">
+    <map-to xml="temple-list"/>
+    <field collection="vector" name="templeList" type="com.redbugz.macpaf.Temple">
+      <bind-xml name="temple"/>
+    </field>
+  </class>
+  <class name="com.redbugz.macpaf.Temple">
+    <map-to xml="temple"/>
+    <field name="name" type="java.lang.String">
+      <bind-xml name="name" node="element"/>
+    </field>
+    <field name="code" type="java.lang.String">
+      <bind-xml name="code" node="element"/>
+    </field>
+    <field name="oldCode" type="java.lang.String">
+      <bind-xml name="oldcode" node="element"/>
+    </field>
+    <field name="number" type="integer">
+      <bind-xml name="number" node="element"/>
+    </field>
+    <!--
+    <field name="openDate" type="java.util.Date">
+      <bind-xml name="open-date" node="element"/>
+    </field>
+    <field name="closeDate" type="java.util.Date">
+      <bind-xml name="close-date" node="element"/>
+    </field>
+    -->
+    <field name="openDate" type="string">
+      <bind-xml name="open-date" node="element"/>
+    </field>
+    <field name="closeDate" type="string">
+      <bind-xml name="close-date" node="element"/>
+    </field>
+  </class>
+</mapping>
+

@@ -1,65 +1,24 @@
-package com.redbugz.macpaf;
+/*
+ * Created on Dec 22, 2004
+ *
+ * TODO To change the template for this generated file go to
+ * Window - Preferences - Java - Code Style - Code Templates
+ */
+package com.redbugz.macpaf.test;
 
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
-/*
- * Created on Oct 5, 2003
- *
- * To change the template for this generated file go to
- * Window - Preferences - Java - Code Generation - Code and Comments
- */
+import com.redbugz.macpaf.Multimedia;
 
 /**
  * @author logan
  *
- * To change the template for this generated type comment go to
- * Window - Preferences - Java - Code Generation - Code and Comments
+ * TODO To change the template for this generated type comment go to
+ * Window - Preferences - Java - Code Style - Code Templates
  */
-public interface Multimedia {
-  public static Multimedia UNKNOWN_MULTIMEDIA = new UnknownMultimedia();
-
-  public static final String JPEG_FORMAT = "jpeg";
-  public static final String GIF_FORMAT = "gif";
-  public static final String BITMAP_FORMAT = "bmp";
-  public static final String PICT_FORMAT = "PICT";
-  public static final String OLE_FORMAT = "ole";
-  public static final String PCX_FORMAT = "pcx";
-  public static final String TIFF_FORMAT = "tiff";
-  public static final String WAV_FORMAT = "wav";
-  
-  public String getId();
-
-  public void setId(String id);
-
-  public String getFormat();
-
-  public void setFormat(String format);
-
-  public String getTitle();
-
-  public void setTitle(String title);
-
-  public List getNotes(); // List of Note
-
-  public void setNotes(List noteList);
-
-  public byte[] getBytes();
-
-  public void setBytes(byte[] bytes);
-
-  public Integer getRIN();
-
-  public void setRIN(Integer rin);
-
-  public Date getChangeDate();
-
-  public void setChangeDate(Date changeDate);
-
-  public boolean isImage();
-
-  static class UnknownMultimedia implements Multimedia {
+public class MyMultimedia implements Multimedia {
 
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Multimedia#getId()
@@ -177,7 +136,8 @@ public interface Multimedia {
 	 * @see com.redbugz.macpaf.Multimedia#isImage()
 	 */
 	public boolean isImage() {
+		// TODO Auto-generated method stub
 		return false;
 	}
-  }
+
 }

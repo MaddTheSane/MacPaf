@@ -9,6 +9,7 @@ package com.redbugz.macpaf;
 //
 
 public interface Place {
+	  public static final Place UNKNOWN_PLACE = new UnknownPlace();
   public static final int MAX_SEVERITY = 7;
 
   public String getLevel1();
@@ -23,4 +24,49 @@ public interface Place {
 
   public String getAbbreviatedFormatString(int severity);
 
+  static class UnknownPlace implements Place {
+
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.Place#getLevel1()
+	 */
+	public String getLevel1() {
+		return "";
+	}
+
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.Place#getLevel2()
+	 */
+	public String getLevel2() {
+		return "";
+	}
+
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.Place#getLevel3()
+	 */
+	public String getLevel3() {
+		return "";
+	}
+
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.Place#getLevel4()
+	 */
+	public String getLevel4() {
+		return "";
+	}
+
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.Place#getFormatString()
+	 */
+	public String getFormatString() {
+		return "";
+	}
+
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.Place#getAbbreviatedFormatString(int)
+	 */
+	public String getAbbreviatedFormatString(int severity) {
+		return "";
+	}
+  	
+  }
 }

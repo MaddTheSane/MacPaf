@@ -1,80 +1,53 @@
-package com.redbugz.macpaf;
+package com.redbugz.macpaf.jdom;
 
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+
+import com.redbugz.macpaf.Multimedia;
 
 /*
  * Created on Oct 5, 2003
  *
- * To change the template for this generated file go to
- * Window - Preferences - Java - Code Generation - Code and Comments
- */
-
-/**
  * @author logan
  *
- * To change the template for this generated type comment go to
- * Window - Preferences - Java - Code Generation - Code and Comments
  */
-public interface Multimedia {
-  public static Multimedia UNKNOWN_MULTIMEDIA = new UnknownMultimedia();
+public class MultimediaLink implements Multimedia {
+	private Multimedia actualMultimedia = null;
+	private MacPAFDocumentJDOM document = null;
+	String id = "";
 
-  public static final String JPEG_FORMAT = "jpeg";
-  public static final String GIF_FORMAT = "gif";
-  public static final String BITMAP_FORMAT = "bmp";
-  public static final String PICT_FORMAT = "PICT";
-  public static final String OLE_FORMAT = "ole";
-  public static final String PCX_FORMAT = "pcx";
-  public static final String TIFF_FORMAT = "tiff";
-  public static final String WAV_FORMAT = "wav";
-  
-  public String getId();
+	MultimediaLink(MacPAFDocumentJDOM doc) {
+		document = doc;
+	}
+	
+	MultimediaLink(String id, MacPAFDocumentJDOM doc) {
+		this(doc);
+		setId(id);
+	}
 
-  public void setId(String id);
-
-  public String getFormat();
-
-  public void setFormat(String format);
-
-  public String getTitle();
-
-  public void setTitle(String title);
-
-  public List getNotes(); // List of Note
-
-  public void setNotes(List noteList);
-
-  public byte[] getBytes();
-
-  public void setBytes(byte[] bytes);
-
-  public Integer getRIN();
-
-  public void setRIN(Integer rin);
-
-  public Date getChangeDate();
-
-  public void setChangeDate(Date changeDate);
-
-  public boolean isImage();
-
-  static class UnknownMultimedia implements Multimedia {
+	/**
+	 * @return
+	 */
+	private Multimedia getMultimedia() {
+		if (actualMultimedia == null) {
+			actualMultimedia = document.getMultimedia(id);
+		}
+		return actualMultimedia;
+	}
 
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Multimedia#getId()
 	 */
 	public String getId() {
 		// TODO Auto-generated method stub
-		return "";
+		return getMultimedia().getId();
 	}
 
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Multimedia#setId(java.lang.String)
 	 */
 	public void setId(String id) {
-		// TODO Auto-generated method stub
-
+		this.id = id;
 	}
 
 	/* (non-Javadoc)
@@ -82,7 +55,7 @@ public interface Multimedia {
 	 */
 	public String getFormat() {
 		// TODO Auto-generated method stub
-		return "";
+		return getMultimedia().getFormat();
 	}
 
 	/* (non-Javadoc)
@@ -90,7 +63,7 @@ public interface Multimedia {
 	 */
 	public void setFormat(String format) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	/* (non-Javadoc)
@@ -98,7 +71,7 @@ public interface Multimedia {
 	 */
 	public String getTitle() {
 		// TODO Auto-generated method stub
-		return "";
+		return getMultimedia().getTitle();
 	}
 
 	/* (non-Javadoc)
@@ -106,7 +79,7 @@ public interface Multimedia {
 	 */
 	public void setTitle(String title) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	/* (non-Javadoc)
@@ -114,7 +87,7 @@ public interface Multimedia {
 	 */
 	public List getNotes() {
 		// TODO Auto-generated method stub
-		return Collections.EMPTY_LIST;
+		return getMultimedia().getNotes();
 	}
 
 	/* (non-Javadoc)
@@ -122,7 +95,7 @@ public interface Multimedia {
 	 */
 	public void setNotes(List noteList) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	/* (non-Javadoc)
@@ -130,7 +103,7 @@ public interface Multimedia {
 	 */
 	public byte[] getBytes() {
 		// TODO Auto-generated method stub
-		return new byte[0];
+		return getMultimedia().getBytes();
 	}
 
 	/* (non-Javadoc)
@@ -138,7 +111,7 @@ public interface Multimedia {
 	 */
 	public void setBytes(byte[] bytes) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	/* (non-Javadoc)
@@ -146,7 +119,7 @@ public interface Multimedia {
 	 */
 	public Integer getRIN() {
 		// TODO Auto-generated method stub
-		return new Integer(-1);
+		return getMultimedia().getRIN();
 	}
 
 	/* (non-Javadoc)
@@ -154,7 +127,7 @@ public interface Multimedia {
 	 */
 	public void setRIN(Integer rin) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	/* (non-Javadoc)
@@ -162,7 +135,7 @@ public interface Multimedia {
 	 */
 	public Date getChangeDate() {
 		// TODO Auto-generated method stub
-		return new Date();
+		return getMultimedia().getChangeDate();
 	}
 
 	/* (non-Javadoc)
@@ -170,14 +143,13 @@ public interface Multimedia {
 	 */
 	public void setChangeDate(Date changeDate) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Multimedia#isImage()
 	 */
 	public boolean isImage() {
-		return false;
+		return getMultimedia().isImage();
 	}
-  }
 }

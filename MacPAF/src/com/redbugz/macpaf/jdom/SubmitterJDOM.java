@@ -14,7 +14,6 @@ import java.util.List;
 import org.jdom.Content;
 import org.jdom.Element;
 import com.redbugz.macpaf.Address;
-import com.redbugz.macpaf.MultimediaLink;
 import com.redbugz.macpaf.Submitter;
 
 /**
@@ -29,11 +28,10 @@ public class SubmitterJDOM implements Submitter {
   public SubmitterJDOM() {
 	element.setAttribute("ID", "S1");
 	List elements = new ArrayList();
-	elements.add(new Element("NAME").setText("Logan Allred"));
-	elements.addAll(new AddressJDOM("579 Lambert Dr.", "", "Orem", "UT", "84097", "USA", "(801) 607-4697").getElements());
+	elements.add(new Element(NAME).setText(""));
 	element.setContent(elements);
-	element.addContent(new Element("LANG").setText("English"));
-	element.addContent(new Element("RIN").setText("1"));
+	element.addContent(new Element(LANGUAGE).setText("English"));
+	element.addContent(new Element(RIN).setText("1"));
 	element.addContent( (Content)new Element("CHAN").addContent(new Element("DATE").setText(new SimpleDateFormat(
 		"dd MMM yyyy").format(new Date()))));
   }
@@ -156,5 +154,19 @@ public class SubmitterJDOM implements Submitter {
 	// TODO Auto-generated method stub
 
   }
+
+/* (non-Javadoc)
+ * @see com.redbugz.macpaf.Submitter#getId()
+ */
+public String getId() {
+	return element.getAttributeValue(ID);
+}
+
+/* (non-Javadoc)
+ * @see com.redbugz.macpaf.Submitter#setId(java.lang.String)
+ */
+public void setId(String id) {
+	element.setAttribute(ID, id);
+}
 
 }

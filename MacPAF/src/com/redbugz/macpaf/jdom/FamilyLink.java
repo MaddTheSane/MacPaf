@@ -1,60 +1,32 @@
-//
-//  Family.java
-//  MacPAFTest
-//
-//  Created by Logan Allred on Sun Feb 16 2003.
-//  Copyright (c) 2002-2004 RedBugz Software. All rights reserved.
-//
+/*
+ * Created on Nov 22, 2004
+ *
+ * TODO To change the template for this generated file go to
+ * Window - Preferences - Java - Code Style - Code Templates
+ */
+package com.redbugz.macpaf.jdom;
 
-package com.redbugz.macpaf;
-
-import java.util.Collections;
 import java.util.List;
 
-import com.redbugz.macpaf.jdom.FamilyJDOM;
+import com.redbugz.macpaf.Event;
+import com.redbugz.macpaf.Family;
+import com.redbugz.macpaf.Individual;
+import com.redbugz.macpaf.Ordinance;
 
-public interface Family {
-  public static final Family UNKNOWN_FAMILY = new UnknownFamily();
-
-public Individual getFather();
-
-  public void setFather(Individual father);
-
-  public Individual getMother();
-
-  public void setMother(Individual mother);
-
-  public List getChildren();
-
-  public void setChildren(List children);
-
-  public void addChild(Individual newChild);
-
-  public void addChildAtPosition(Individual newChild, int position);
-
-  public void removeChildAtPosition(int position);
-
-  public Ordinance getSealingToSpouse();
-
-  public void setSealingToSpouse(Ordinance sealing);
-
-  public String getId();
-
-  public void setId(String newId);
-
-  public int getRin();
-
-  public void setRin(int newRin);
-
-  public Event getMarriageEvent();
-  
-  public static class UnknownFamily implements Family {
+/**
+ * @author logan
+ *
+ * TODO To change the template for this generated type comment go to
+ * Window - Preferences - Java - Code Style - Code Templates
+ */
+public class FamilyLink implements Family {
 
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Family#getFather()
 	 */
 	public Individual getFather() {
-		return Individual.UNKNOWN_MALE;
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	/* (non-Javadoc)
@@ -62,14 +34,15 @@ public Individual getFather();
 	 */
 	public void setFather(Individual father) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Family#getMother()
 	 */
 	public Individual getMother() {
-		return Individual.UNKNOWN_FEMALE;
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	/* (non-Javadoc)
@@ -77,14 +50,15 @@ public Individual getFather();
 	 */
 	public void setMother(Individual mother) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Family#getChildren()
 	 */
 	public List getChildren() {
-		return Collections.EMPTY_LIST;
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	/* (non-Javadoc)
@@ -92,7 +66,7 @@ public Individual getFather();
 	 */
 	public void setChildren(List children) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	/* (non-Javadoc)
@@ -100,7 +74,7 @@ public Individual getFather();
 	 */
 	public void addChild(Individual newChild) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	/* (non-Javadoc)
@@ -108,7 +82,7 @@ public Individual getFather();
 	 */
 	public void addChildAtPosition(Individual newChild, int position) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	/* (non-Javadoc)
@@ -116,14 +90,15 @@ public Individual getFather();
 	 */
 	public void removeChildAtPosition(int position) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Family#getSealingToSpouse()
 	 */
 	public Ordinance getSealingToSpouse() {
-		return Ordinance.UNKNOWN_ORDINANCE;
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	/* (non-Javadoc)
@@ -131,14 +106,15 @@ public Individual getFather();
 	 */
 	public void setSealingToSpouse(Ordinance sealing) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Family#getId()
 	 */
 	public String getId() {
-		return "";
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	/* (non-Javadoc)
@@ -146,14 +122,15 @@ public Individual getFather();
 	 */
 	public void setId(String newId) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Family#getRin()
 	 */
 	public int getRin() {
-		return -1;
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	/* (non-Javadoc)
@@ -161,7 +138,7 @@ public Individual getFather();
 	 */
 	public void setRin(int newRin) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	/* (non-Javadoc)
@@ -169,8 +146,7 @@ public Individual getFather();
 	 */
 	public Event getMarriageEvent() {
 		// TODO Auto-generated method stub
-		return Event.UNKNOWN_EVENT;
+		return null;
 	}
-  	
-  }
+
 }

@@ -1,5 +1,7 @@
 package com.redbugz.macpaf;
 
+import java.util.Date;
+
 //
 //  Ordinance.java
 //  MacPAFTest
@@ -9,6 +11,7 @@ package com.redbugz.macpaf;
 //
 
 public interface Ordinance extends Event {
+	public static final Ordinance UNKNOWN_ORDINANCE = new UnknownOrdinance();
   // Ordinance status codes
   public static final String BIC = "BIC"; // Born in the covenant receiving blessing of child to parent sealing.
   public static final String CHILD = "Child"; // Died before eight years old, ordinance not required
@@ -33,4 +36,90 @@ public interface Ordinance extends Event {
 
   public boolean isCompleted();
 
+  static class UnknownOrdinance implements Ordinance {
+
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.Ordinance#getTemple()
+	 */
+	public Temple getTemple() {
+		return Temple.UNKNOWN_TEMPLE;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.Ordinance#setTemple(com.redbugz.macpaf.Temple)
+	 */
+	public void setTemple(Temple temple) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.Ordinance#getStatus()
+	 */
+	public String getStatus() {
+		return "";
+	}
+
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.Ordinance#setStatus(java.lang.String)
+	 */
+	public void setStatus(String status) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.Ordinance#isCompleted()
+	 */
+	public boolean isCompleted() {
+		return false;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.Event#getDate()
+	 */
+	public Date getDate() {
+		// TODO Auto-generated method stub
+		return new Date();
+	}
+
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.Event#setDate(java.util.Date)
+	 */
+	public void setDate(Date date) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.Event#getDateString()
+	 */
+	public String getDateString() {
+		return "";
+	}
+
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.Event#setDateString(java.lang.String)
+	 */
+	public void setDateString(String dateString) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.Event#getPlace()
+	 */
+	public Place getPlace() {
+		return Place.UNKNOWN_PLACE;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.Event#setPlace(com.redbugz.macpaf.Place)
+	 */
+	public void setPlace(Place place) {
+		// TODO Auto-generated method stub
+		
+	}
+  	
+  }
 }

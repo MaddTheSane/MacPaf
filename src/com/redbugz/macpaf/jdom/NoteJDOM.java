@@ -77,26 +77,26 @@ public class NoteJDOM implements Note {
   }
 
   public String getText() {
-	if (element.getAttribute(REF) != null) {
-	  try {
-		XPath xpath = XPath.newInstance("//NOTE[@ID='" + element.getAttributeValue(REF) + "']");
-		log.debug("note xpath:" + xpath.getXPath());
-		Element noteNode = (Element) xpath.selectSingleNode(element);
-		log.debug("noteNode: " + noteNode);
-		try {
-		  new XMLOutputter(Format.getPrettyFormat()).output(noteNode, System.out);
-		}
-		catch (IOException e1) {
-		  // TODO Auto-generated catch block
-		  e1.printStackTrace();
-		}
-		element = new NoteJDOM(noteNode).getElement();
-
-	  }
-	  catch (JDOMException e) {
-		log.error("Exception: ", e); //To change body of catch statement use Options | File Templates.
-	  }
-	}
+//	if (element.getAttribute(REF) != null) {
+//	  try {
+//		XPath xpath = XPath.newInstance("//NOTE[@ID='" + element.getAttributeValue(REF) + "']");
+//		log.debug("note xpath:" + xpath.getXPath());
+//		Element noteNode = (Element) xpath.selectSingleNode(element);
+//		log.debug("noteNode: " + noteNode);
+//		try {
+//		  new XMLOutputter(Format.getPrettyFormat()).output(noteNode, System.out);
+//		}
+//		catch (IOException e1) {
+//		  // TODO Auto-generated catch block
+//		  e1.printStackTrace();
+//		}
+//		element = new NoteJDOM(noteNode).getElement();
+//
+//	  }
+//	  catch (JDOMException e) {
+//		log.error("Exception: ", e); //To change body of catch statement use Options | File Templates.
+//	  }
+//	}
 
 	String text = element.getText();
 //     try {
@@ -105,7 +105,8 @@ public class NoteJDOM implements Note {
 	while (iter.hasNext()) {
 	  Element item = (Element) iter.next();
 	  if (CONTINUATION.equalsIgnoreCase(item.getName())) {
-		text += newLine;
+	  	// TODO handle whitespace issues with exactness
+		text += newLine + item.getText();
 	  }
 	  else if (CONCATENATION.equalsIgnoreCase(item.getName())) {
 		text += item.getText();

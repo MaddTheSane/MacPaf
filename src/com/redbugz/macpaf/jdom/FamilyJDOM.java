@@ -6,7 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.apache.log4j.Category;
-import org.jdom.Document;
+//import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.JDOMException;
 import org.jdom.output.Format;
@@ -29,13 +29,14 @@ public class FamilyJDOM implements Family {
   //   Date weddingDate;
   //   private String id;
   //   private Event marriageEvent = EventJDOM.createMarriageEventInstance();
+  private static final String REF = "REF";
   private static final String FAMILY = "FAM";
   private static final String HUSBAND = "HUSB";
   private static final String WIFE = "WIFE";
   private static final String RIN = "RIN";
   private static final String ID = "ID";
   protected Element element = new Element(FAMILY);
-  private Document document = null;
+  private MacPAFDocumentJDOM document = null;
 
   //   int numberOfChildren = -1;
   private Individual father;
@@ -75,7 +76,7 @@ public class FamilyJDOM implements Family {
   // spouse="+getFather().getFamilyAsSpouse().getMother().getFullName());
   //   }
 
-  public FamilyJDOM(Document parentDocument) {
+  public FamilyJDOM(MacPAFDocumentJDOM parentDocument) {
 	document = parentDocument;
 	//      dad = new Individual.UnknownMaleIndividual();
 	//      mom = new Individual.UnknownFemaleIndividual();
@@ -84,7 +85,7 @@ public class FamilyJDOM implements Family {
 	setId("");
   }
 
-  public FamilyJDOM(Element element, Document parentDocument) {
+  public FamilyJDOM(Element element, MacPAFDocumentJDOM parentDocument) {
 	document = parentDocument;
 	if (element == null) {
 	  element = new Element(FAMILY);
@@ -92,7 +93,7 @@ public class FamilyJDOM implements Family {
 	this.element = element;
   }
 
-  public FamilyJDOM(Family oldFamily, Document parentDocument) {
+  public FamilyJDOM(Family oldFamily, MacPAFDocumentJDOM parentDocument) {
 	document = parentDocument;
 	if (oldFamily instanceof FamilyJDOM) {
 	  this.element = ( (FamilyJDOM) oldFamily).getElement();
@@ -114,25 +115,25 @@ public class FamilyJDOM implements Family {
 
   public Individual getFather() {
 	if (father == null) {
-	  father = new IndividualJDOM(document);
+	  father = Individual.UNKNOWN_MALE;
 	  try {
 		Element fatherLink = element.getChild(HUSBAND);
 		if (fatherLink != null) {
-		  XPath xpath = XPath.newInstance("//INDI[@ID='" + fatherLink.getAttributeValue("REF") + "']");
-		  log.debug("father xpath:" + xpath.getXPath());
-		  Element indiNode = (Element) xpath.selectSingleNode(element);
-		  log.debug("indiNode: " + indiNode);
-		  try {
-			new XMLOutputter(Format.getPrettyFormat()).output(indiNode, System.out);
+//		  XPath xpath = XPath.newInstance("//INDI[@ID='" + fatherLink.getAttributeValue(REF) + "']");
+//		  log.debug("father xpath:" + xpath.getXPath());
+//		  Element indiNode = (Element) xpath.selectSingleNode(element);
+//		  log.debug("indiNode: " + indiNode);
+//		  try {
+//			new XMLOutputter(Format.getPrettyFormat()).output(indiNode, System.out);
+//		  }
+//		  catch (IOException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+			  father = new IndividualLink(fatherLink.getAttributeValue(REF), document);
 		  }
-		  catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		  }
-		  father = new IndividualJDOM(indiNode, document);
-		}
+//		}
 	  }
-	  catch (JDOMException e) {
+	  catch (Exception e) {
 		log.error("Exception: ", e); //To change body of catch statement use Options | File Templates.
 	  }
 	}
@@ -143,30 +144,30 @@ public class FamilyJDOM implements Family {
 	//      dad = father;
 	element.removeChild(HUSBAND);
 	element.addContent(
-		new Element(HUSBAND).setAttribute("REF", father.getId()));
+		new Element(HUSBAND).setAttribute(REF, father.getId()));
   }
 
   public Individual getMother() {
 	if (mother == null) {
-	  mother = new IndividualJDOM(document);
+	  mother = Individual.UNKNOWN_FEMALE;
 	  try {
 		Element motherLink = element.getChild(WIFE);
 		if (motherLink != null) {
-		  XPath xpath = XPath.newInstance("//INDI[@ID='" + motherLink.getAttributeValue("REF") + "']");
-		  log.debug("mother xpath:" + xpath.getXPath());
-		  Element indiNode = (Element) xpath.selectSingleNode(element);
-		  log.debug("indiNode: " + indiNode);
-		  try {
-			new XMLOutputter(Format.getPrettyFormat()).output(indiNode, System.out);
-		  }
-		  catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		  }
-		  mother = new IndividualJDOM(indiNode, document);
+//		  XPath xpath = XPath.newInstance("//INDI[@ID='" + motherLink.getAttributeValue(REF) + "']");
+//		  log.debug("mother xpath:" + xpath.getXPath());
+//		  Element indiNode = (Element) xpath.selectSingleNode(element);
+//		  log.debug("indiNode: " + indiNode);
+//		  try {
+//			new XMLOutputter(Format.getPrettyFormat()).output(indiNode, System.out);
+//		  }
+//		  catch (IOException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		  }
+		  mother = new IndividualLink(motherLink.getAttributeValue(REF), document);
 		}
 	  }
-	  catch (JDOMException e) {
+	  catch (Exception e) {
 		log.error("Exception: ", e); //To change body of catch statement use Options | File Templates.
 	  }
 	}
@@ -177,7 +178,7 @@ public class FamilyJDOM implements Family {
 	//      mom = mother;
 	element.removeChild(WIFE);
 	element.addContent(
-		new Element(WIFE).setAttribute("REF", mother.getId()));
+		new Element(WIFE).setAttribute(REF, mother.getId()));
   }
 
   public List getChildren() {
@@ -189,25 +190,25 @@ public class FamilyJDOM implements Family {
 	  children = new ArrayList();
 	  for (Iterator iter = childrenElements.iterator(); iter.hasNext(); ) {
 //			Individual child = new IndividualJDOM((Element) iter.next(), document);
-		Individual child = new IndividualJDOM(document);
+		Individual child = Individual.UNKNOWN;
 		try {
 		  Element childLink = (Element) iter.next();
 		  if (childLink != null) {
-			XPath xpath = XPath.newInstance("//INDI[@ID='" + childLink.getAttributeValue("REF") + "']");
-			log.debug("child xpath:" + xpath.getXPath());
-			Element childNode = (Element) xpath.selectSingleNode(element);
-			log.debug("childNode: " + childNode);
-			try {
-			  new XMLOutputter(Format.getPrettyFormat()).output(childNode, System.out);
-			}
-			catch (IOException e1) {
-			  // TODO Auto-generated catch block
-			  e1.printStackTrace();
-			}
-			child = new IndividualJDOM(childNode, document);
+//			XPath xpath = XPath.newInstance("//INDI[@ID='" + childLink.getAttributeValue(REF) + "']");
+//			log.debug("child xpath:" + xpath.getXPath());
+//			Element childNode = (Element) xpath.selectSingleNode(element);
+//			log.debug("childNode: " + childNode);
+//			try {
+//			  new XMLOutputter(Format.getPrettyFormat()).output(childNode, System.out);
+//			}
+//			catch (IOException e1) {
+//			  // TODO Auto-generated catch block
+//			  e1.printStackTrace();
+//			}
+			child = new IndividualLink(childLink.getAttributeValue(REF), document);
 		  }
 		}
-		catch (JDOMException e) {
+		catch (Exception e) {
 		  log.error("Exception: ", e); //To change body of catch statement use Options | File Templates.
 		}
 		children.add(child);
@@ -222,24 +223,25 @@ public class FamilyJDOM implements Family {
 	for (Iterator iter = children.iterator(); iter.hasNext(); ) {
 	  Individual child = (Individual) iter.next();
 	  element.addContent(
-		  new Element("CHIL").setAttribute("REF", child.getId()));
+		  new Element("CHIL").setAttribute(REF, child.getId()));
 	}
   }
 
   public void addChild(Individual newChild) {
 	//      children.add(newChild);
 	element.addContent(
-		new Element("CHIL").setAttribute("REF", newChild.getId()));
+		new Element("CHIL").setAttribute(REF, newChild.getId()));
   }
 
   public void addChildAtPosition(Individual newChild, int position) {
 	List children = getChildren();
-	children.add(position, new IndividualJDOM(newChild));
+	children.add(position, new IndividualLink(newChild.getId(), document));
 	setChildren(children);
   }
 
   public Ordinance getSealingToSpouse() {
-	return OrdinanceJDOM.createSealingToSpouseInstance();
+	OrdinanceJDOM ord = new OrdinanceJDOM(element.getChild(OrdinanceJDOM.LDS_SEALING_SPOUSE));
+	return ord;
   }
 
   public void setSealingToSpouse(Ordinance sealing) {
@@ -293,7 +295,7 @@ public class FamilyJDOM implements Family {
    */
   public void removeChildAtPosition(int position) {
 	IndividualJDOM child = (IndividualJDOM) getChildren().get(position);
-	child.element.detach();
+	child.getElement().detach();
 	// force list of children to reload next time
 	children = null;
   }
@@ -330,7 +332,6 @@ public class FamilyJDOM implements Family {
    * @see java.lang.Object#toString()
    */
   public String toString() {
-	// TODO Auto-generated method stub
 	return "FamilyJDOM element:" + new XMLOutputter(Format.getPrettyFormat()).outputString(element); //super.toString();
   }
 

@@ -5,11 +5,12 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
 import org.apache.log4j.Category;
-import org.jdom.Document;
+//import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.JDOMException;
 import org.jdom.Text;
@@ -19,15 +20,19 @@ import org.jdom.output.XMLOutputter;
 import org.jdom.xpath.XPath;
 import com.apple.cocoa.foundation.NSBundle;
 import com.redbugz.macpaf.*;
+import com.sun.tools.javac.v8.comp.Todo;
 import com.apple.cocoa.application.NSAlertPanel;
 import com.apple.cocoa.foundation.NSSelector;
 
 /**
+ * This class is a wrapper around a JDOM Element that represents an Individual.
+ * Most of the data is stored in the Element and children Elements, as the JDOM
+ * document is the official record of the data.
+ * 
  * Created by IntelliJ IDEA.
  * User: logan
  * Date: Mar 16, 2003
  * Time: 3:29:46 PM
- * To change this template use Options | File Templates.
  */
 public class IndividualJDOM implements Individual, Cloneable {
   private static final Category log = Category.getInstance(IndividualJDOM.class.getName());
@@ -54,22 +59,23 @@ public class IndividualJDOM implements Individual, Cloneable {
   public static final String LOCKED = "locked";
   public static final String PRIVACY = "privacy";
 
-  Element element = new Element(INDIVIDUAL);
-  List events = null;
+  private Element element = null;//new Element(INDIVIDUAL);
+  private List events = new ArrayList();
 
-  Document document = null;
+  private MacPAFDocumentJDOM document = null;
   private FamilyJDOM familyAsChild;
   private FamilyJDOM familyAsSpouse;
 
-  public IndividualJDOM(Document parentDocument) {
-	document = parentDocument;
-	element = new Element(INDIVIDUAL);
-  }
+//  public IndividualJDOM(MacPAFDocumentJDOM parentDocument) {
+//	document = parentDocument;
+//	element = new Element(INDIVIDUAL);
+//  }
 
-  public IndividualJDOM(Element element, Document parentDocument) {
+  public IndividualJDOM(Element element, MacPAFDocumentJDOM parentDocument) {
 	document = parentDocument;
 	if (element == null) {
-	  element = new Element(INDIVIDUAL);
+		throw new IllegalArgumentException("element is null: IndividualJDOM must be bound to a valid Element.");
+//	  element = new Element(INDIVIDUAL);
 	}
 	this.element = element;
 	setFullName(getNameString());
@@ -96,6 +102,8 @@ public class IndividualJDOM implements Individual, Cloneable {
 //		if (element.getChild("SLGC") != null) {
 //			sealingToParents = new OrdinanceJDOM(element.getChild("SLGC"));
 //		}
+	// some debugging of multimedia
+	// todo: clean this up	
 	final Element obje = element.getChild("OBJE");
 	if (obje != null) {
 	  log.debug("Person has multimedia object:" + obje);
@@ -457,7 +465,11 @@ public class IndividualJDOM implements Individual, Cloneable {
   }
 
   public String getId() {
-	return element.getAttributeValue(ID);
+	String id = element.getAttributeValue(ID);
+	if (id == null) {
+		id = "";
+	}
+	return id;
   }
 
   public int getRin() {
@@ -492,6 +504,7 @@ public class IndividualJDOM implements Individual, Cloneable {
 //		}
 // todo implement
 //        return null;
+//		return getMultimediaLink().getURL();
 	  return new File(
 		  NSBundle.mainBundle().pathForResource("tree", "gif"))
 		  .toURL();
@@ -501,6 +514,10 @@ public class IndividualJDOM implements Individual, Cloneable {
 	  log.error("Exception: ", e);
 	}
 	return null;
+  }
+  
+  private Multimedia getMultimediaLink() {
+  	return new MultimediaJDOM(element.getChild("OBJE"));
   }
 
   public void setImagePath(URL path) {
@@ -874,6 +891,38 @@ public class IndividualJDOM implements Individual, Cloneable {
   }
 
   public static final String eventNodeNames = "BIRT | CHR | DEAT | BURI | CREM | ADOP | BAPM | BARM | BASM | BLES | CHRA | CONF | FCOM | ORDN | NATU | EMIG | IMMI | CENS | PROB | WILL | GRAD | RETI | BAPL | CONL | ENDL | SLGC | EVEN";
+
+/* (non-Javadoc)
+ * @see com.redbugz.macpaf.Individual#getPreferredImage()
+ */
+public Multimedia getPreferredImage() {
+	Multimedia image = Multimedia.UNKNOWN_MULTIMEDIA;
+	Iterator iter = getAllMultimedia().iterator();
+	while (iter.hasNext()) {
+		Multimedia multimedia = (Multimedia) iter.next();
+		if (multimedia.isImage()) {
+			image = multimedia;
+			break;
+		}
+	}
+	return image;
+}
+
+/* (non-Javadoc)
+ * @see com.redbugz.macpaf.Individual#getMultimediaLinks()
+ */
+public List getAllMultimedia() {
+	List list = new ArrayList();
+	for (Iterator iter = element.getChildren("OBJE").iterator(); iter.hasNext();) {
+		Element element = (Element) iter.next();
+		if (element.getAttributeValue("REF") != null) {
+			list.add(new MultimediaLink(element.getAttributeValue("REF"), document));
+		} else {
+			list.add(new MultimediaJDOM(element));
+		}
+	}
+	return list;
+}
 
 //  public static final String eventNodeNames = "/BIRT | /CHR | /DEAT | /BURI | /CREM | /ADOP | /BAPM | /BARM | /BASM | /BLES | /CHRA | /CONF | /FCOM | /ORDN | /NATU | /EMIG | /IMMI | /CENS | /PROB | /WILL | /GRAD | /RETI | /EVEN";
 //  public static final String eventNodeNames = "//BIRT | //CHR | //DEAT | //BURI | //CREM | //ADOP | //BAPM | //BARM | //BASM | //BLES | //CHRA | //CONF | //FCOM | //ORDN | //NATU | //EMIG | //IMMI | //CENS | //PROB | //WILL | //GRAD | //RETI | //EVEN";

@@ -3,6 +3,8 @@ package com.redbugz.macpaf;
 import java.util.Date;
 import java.util.List;
 
+import com.redbugz.macpaf.jdom.MultimediaLink;
+
 /*
  * Created on Oct 5, 2003
  *
@@ -18,6 +20,12 @@ import java.util.List;
  */
 public interface Submitter {
   public static final String SUBMITTER = "SUBM";
+  public static final String NAME = "NAME";
+  public static final String LANGUAGE = "LANG";
+  public static final String RFN = "RFN";
+  public static final String RIN = "RIN";
+  public static final String ID = "ID";
+
 
   public String getName();
 
@@ -46,4 +54,12 @@ public interface Submitter {
   public Date getChangeDate();
 
   public void setChangeDate(Date changeDate);
+
+/**
+ * @return
+ */
+public String getId();
+
+public void setId(String id);
 }
+

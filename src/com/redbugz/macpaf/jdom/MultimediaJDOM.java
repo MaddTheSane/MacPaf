@@ -6,12 +6,19 @@
  */
 package com.redbugz.macpaf.jdom;
 
+import java.io.File;
+import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.jdom.Element;
 import com.redbugz.macpaf.Multimedia;
+import com.redbugz.macpaf.util.Base64;
+import com.redbugz.macpaf.util.MultimediaUtils;
 
 /**
  * @author logan
@@ -20,6 +27,7 @@ import com.redbugz.macpaf.Multimedia;
  * Window - Preferences - Java - Code Generation - Code and Comments
  */
 public class MultimediaJDOM implements Multimedia {
+	private static final Logger log = Logger.getLogger(MultimediaJDOM.class);
   private static final String ID = "ID";
   private static final String FORMAT = "FORM";
   private static final String TITLE = "TITLE";
@@ -39,11 +47,40 @@ public class MultimediaJDOM implements Multimedia {
    * @see Multimedia#getBytes()
    */
   public byte[] getBytes() {
-	// TODO Auto-generated method stub
-	return new byte[0];
+  	int numBytes = 0;
+  	Element obje = element;
+    log.debug("ref=" + obje.getAttributeValue("REF"));
+    log.debug("form=" + obje.getChildText("FORM"));
+    log.debug("title=" + obje.getChildText("TITL"));
+    log.debug("file=" + obje.getChildText("FILE"));
+    log.debug("blob=" + obje.getChildText("BLOB"));
+    Element file = obje.getChild("FILE");
+    if (file != null) {
+    		try {
+				return MultimediaUtils.getBytesFromFile(MultimediaUtils.findFile(file.getTextTrim()));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    }
+    Element blob = obje.getChild("BLOB");
+    if (blob != null) {
+    StringBuffer buf = new StringBuffer(blob.getText());
+    List conts = blob.getChildren("CONT");
+    for (int j = 0; j < conts.size(); j++) {
+        Element cont = (Element) conts.get(j);
+        buf.append(cont.getText());
+    }
+    log.debug("content=" + buf.toString());
+    log.debug("buflen=" + buf.length());
+    
+	// TODO fix Base64 to use gedcom multimedia mapping
+	return Base64.decode(buf.toString());
+    }
+    return new byte[0];
   }
-
-  /* (non-Javadoc)
+  
+/* (non-Javadoc)
    * @see Multimedia#getChangeDate()
    */
   public Date getChangeDate() {
@@ -142,5 +179,23 @@ public class MultimediaJDOM implements Multimedia {
 	// TODO Auto-generated method stub
 
   }
+
+/* (non-Javadoc)
+ * @see com.redbugz.macpaf.Multimedia#isImage()
+ */
+public boolean isImage() {
+	if ((JPEG_FORMAT+BITMAP_FORMAT+GIF_FORMAT+PCX_FORMAT+PICT_FORMAT).indexOf(getFormat()) >= 0) {
+		return true;
+	}
+	return false;
+}
+
+/**
+ * @return
+ */
+public Element getElement() {
+	// TODO Auto-generated method stub
+	return element;
+}
 
 }

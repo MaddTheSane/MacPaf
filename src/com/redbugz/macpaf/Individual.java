@@ -18,6 +18,11 @@ import java.util.List;
 
 import org.apache.log4j.Category;
 import com.apple.cocoa.foundation.NSBundle;
+import com.redbugz.macpaf.test.MyEvent;
+import com.redbugz.macpaf.test.MyMultimedia;
+import com.redbugz.macpaf.test.MyNote;
+import com.redbugz.macpaf.test.MyOrdinance;
+import com.redbugz.macpaf.test.TestFamily;
 
 public interface Individual {
   public static Individual UNKNOWN = new UnknownIndividual();
@@ -105,6 +110,9 @@ public interface Individual {
   public URL getImagePath();
 
   public void setImagePath(URL path);
+  
+  public Multimedia getPreferredImage();
+  public List getAllMultimedia();
 
   public Individual getPrimarySpouse();
 
@@ -242,11 +250,11 @@ public interface Individual {
 	}
 
 	public Family getFamilyAsChild() {
-	  return new Fam();
+	  return new TestFamily();
 	}
 
 	public Family getFamilyAsSpouse() {
-	  return new Fam();
+	  return new TestFamily();
 	}
 
 	public void setFamilyAsSpouse(Family fam) {
@@ -495,6 +503,21 @@ public interface Individual {
 	 */
 	public List getEvents() {
 	  return Collections.EMPTY_LIST;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.Individual#getPreferredImage()
+	 */
+	public Multimedia getPreferredImage() {
+		// TODO Auto-generated method stub
+		return Multimedia.UNKNOWN_MULTIMEDIA;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.Individual#getAllMultimedia()
+	 */
+	public List getAllMultimedia() {
+		return Collections.EMPTY_LIST;
 	}
 
   }

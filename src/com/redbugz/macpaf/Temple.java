@@ -9,6 +9,7 @@ package com.redbugz.macpaf;
 //
 
 public class Temple implements Cloneable {
+	public static final Temple UNKNOWN_TEMPLE = new Temple();
 
   private String name = "";
   private String code = "";

@@ -7,10 +7,11 @@
 //
 
 import com.apple.cocoa.application.*;
-import com.redbugz.macpaf.Fam;
 import com.redbugz.macpaf.Family;
 import com.redbugz.macpaf.Individual;
 import com.redbugz.macpaf.jdom.PlaceJDOM;
+import com.redbugz.macpaf.test.TestFamily;
+
 import org.apache.log4j.Category;
 
 public class FamilyEditController extends NSWindowController {
@@ -24,7 +25,7 @@ public class FamilyEditController extends NSWindowController {
   public NSComboBox sealingTemple; /* IBOutlet */
   public NSButton wifeButton; /* IBOutlet */
 
-  private Family family = new Fam();
+  private Family family = new TestFamily();
   private MyDocument document = null;
 
   public void setDocument(NSDocument document) {

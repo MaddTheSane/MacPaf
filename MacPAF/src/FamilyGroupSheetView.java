@@ -14,6 +14,9 @@ import org.apache.log4j.Category;
 import com.apple.cocoa.application.*;
 import com.apple.cocoa.foundation.*;
 import com.redbugz.macpaf.*;
+import com.redbugz.macpaf.test.MyEvent;
+import com.redbugz.macpaf.test.MyIndividual;
+import com.redbugz.macpaf.test.MyOrdinance;
 
 public class FamilyGroupSheetView extends NSView {
   private static final Category log = Category.getInstance(FamilyGroupSheetView.class.getName());
@@ -272,7 +275,7 @@ public class FamilyGroupSheetView extends NSView {
   private float drawIndividualDetailInRect(Individual individual, NSRect rect, boolean isChild) {
 	log.debug("drawIndividualDetailInRect(" + individual + ", " + rect + ")");
 	if (individual == null) {
-	  individual = new Indi();
+	  individual = new MyIndividual();
 //      colors[currColor++].set();
 //      NSGraphics.frameRectWithWidth(rect, 3);
 	}

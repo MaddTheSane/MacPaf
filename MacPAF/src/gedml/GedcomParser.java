@@ -231,10 +231,10 @@ public class GedcomParser implements XMLReader, Locator {
 		  ;
 
 		  xref = "";
-		  if (line.startsWith("@")) {
+		  if (line.startsWith("@") && !line.startsWith("@#")) {
 			token2 = firstWord(line);
 			if (token2.length() == 1 || !token2.endsWith("@")) {
-			  throw new SAXException("Bad pointer value");
+			  throw new SAXException("Bad pointer value:"+token2);
 			}
 
 			xref = token2.substring(1, token2.length() - 1);

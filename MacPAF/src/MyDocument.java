@@ -11,7 +11,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.Enumeration;
+import java.util.Observable;
+import java.util.Observer;
 
 import org.apache.log4j.Category;
 import com.apple.cocoa.application.*;
@@ -21,6 +24,10 @@ import com.redbugz.macpaf.Individual;
 import com.redbugz.macpaf.LocationList;
 import com.redbugz.macpaf.SurnameList;
 import com.redbugz.macpaf.jdom.MacPAFDocumentJDOM;
+import com.redbugz.macpaf.test.Tests;
+import com.redbugz.macpaf.util.Base64;
+import com.redbugz.macpaf.util.Hex;
+import com.redbugz.macpaf.util.MultimediaUtils;
 
 /**
 * @todo This document is getting too large. I need to subclass NSDocumentController and move
@@ -28,20 +35,23 @@ import com.redbugz.macpaf.jdom.MacPAFDocumentJDOM;
 * several smaller nib files.
 */
 
-public class MyDocument extends NSDocument {
+public class MyDocument extends NSDocument implements Observer {
   private static final Category log = Category.getInstance(MyDocument.class.getName());
 
   {
+  	Tests.testBase64();
+  	Tests.testImageFiles();
 	log.debug(System.getProperty("user.dir"));
 	log.debug(System.getProperty("user.home"));
+//	System.exit(99);
 	log.debug("><><><><><><>><><><<><><><><><><><><><><><><><><> MyDocument initializer");
-	initDoc();
+	//initDoc();
   }
 
   public static final String GEDCOM = "GEDCOM File (.ged)";
   public static final String MACPAF = "MacPAF File";
 
-  MacPAFDocumentJDOM doc = null;//new MacPAFDocumentJDOM();
+  MacPAFDocumentJDOM doc;// = null;//new MacPAFDocumentJDOM();
 
   // Maps the buttons to the individuals they represent
   protected NSMutableDictionary individualsButtonMap = new NSMutableDictionary();
@@ -107,9 +117,15 @@ public class MyDocument extends NSDocument {
  */
   private void initDoc() {
 	log.error("MyDocument.initDoc()");
+	try {
 	if (doc == null) {
 	  log.error("????????????????????????????????????????????????????? doc is null, making new doc");
 	  doc = new MacPAFDocumentJDOM();
+	  doc.addObserver(this);
+	}
+	}
+	catch (Exception e) {
+	  log.error("Exception: ", e); //To change body of catch statement use Options | File Templates.
 	}
   }
 
@@ -122,12 +138,7 @@ public class MyDocument extends NSDocument {
   public MyDocument(String fileName, String fileType) {
 	super(fileName, fileType);
 	log.error("MyDocument.MyDocument(" + fileName + ", " + fileType + ")");
-	try {
 	  initDoc();
-	}
-	catch (Exception e) {
-	  log.error("Exception: ", e); //To change body of catch statement use Options | File Templates.
-	}
   }
 
 //   public void closeFamilyEditSheet(Object sender) { /* IBAction */
@@ -660,13 +671,14 @@ else {
 	text.appendAttributedString(newLine);
 	text.appendAttributedString(ordinancesText);
 	button.setAttributedTitle(text);
-	URL imageURL = indiv.getImagePath();
-	if (imageURL != null && imageURL.toString().length() > 0) {
-	  NSImage testImage = new NSImage(imageURL);
+//	URL imageURL = indiv.getImagePath();
+//	if (imageURL != null && imageURL.toString().length() > 0) {
+	  NSImage testImage = MultimediaUtils.makeImageFromMultimedia(indiv.getPreferredImage());
+	  log.debug("button image:"+testImage);
 	  testImage.setSize(new NSSize(50f, 50f));
 	  testImage.setScalesWhenResized(true);
 	  button.setImage(testImage);
-	}
+//	}
 	individualsButtonMap.setObjectForKey(indiv, button.toString());
   }
 
@@ -956,4 +968,14 @@ else {
 	individualListWindow.setDelegate(this);
 	individualListWindow.makeKeyAndOrderFront(sender);
   }
+
+/* (non-Javadoc)
+ * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
+ */
+public void update(Observable o, Object arg) {
+	log.debug("MyDocument.update(): o="+o+" : arg="+arg);
+	// The MacPAFDocumentJDOM has changed
+	// @todo: do something here
+	updateChangeCount(NSDocument.ChangeDone);
+}
 }

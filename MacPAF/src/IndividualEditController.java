@@ -9,11 +9,13 @@
 import org.apache.log4j.Category;
 import com.apple.cocoa.application.*;
 import com.apple.cocoa.application.NSComboBox.*;
+import com.apple.cocoa.foundation.NSData;
 import com.redbugz.macpaf.Gender;
 import com.redbugz.macpaf.Individual;
 import com.redbugz.macpaf.Temple;
 import com.redbugz.macpaf.jdom.PlaceJDOM;
 import com.redbugz.macpaf.jdom.TempleJDOM;
+import com.redbugz.macpaf.util.MultimediaUtils;
 
 public class IndividualEditController extends NSWindowController {
   private static final Category log = Category.getInstance(IndividualEditController.class.getName());
@@ -156,7 +158,7 @@ public class IndividualEditController extends NSWindowController {
 	deathForm.cellAtIndex(1).setStringValue(individual.getDeathEvent().getPlace().getFormatString());
 	burialForm.cellAtIndex(0).setStringValue(individual.getBurialEvent().getDateString());
 	burialForm.cellAtIndex(1).setStringValue(individual.getBurialEvent().getPlace().getFormatString());
-	photo.setImage(new NSImage(individual.getImagePath()));
+	photo.setImage(MultimediaUtils.makeImageFromMultimedia(individual.getPreferredImage()));
 	baptismDate.setStringValue(individual.getLDSBaptism().getDateString());
 	baptismTemple.setStringValue(individual.getLDSBaptism().getTemple().getCode());
 	endowmentDate.setStringValue(individual.getLDSEndowment().getDateString());

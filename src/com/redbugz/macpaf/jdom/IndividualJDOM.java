@@ -488,7 +488,7 @@ private void saveName() {
   }
 
   public String getId() {
-	String id = element.getAttributeValue(ID);
+	String id = element.getAttributeValue(ID, "");
 	if (id == null) {
 		id = "";
 	}

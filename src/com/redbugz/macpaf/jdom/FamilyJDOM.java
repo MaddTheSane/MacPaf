@@ -250,7 +250,7 @@ public class FamilyJDOM implements Family {
   }
 
   public String getId() {
-	return element.getAttributeValue(ID);
+	return element.getAttributeValue(ID, "");
   }
 
   public void setId(String id) {

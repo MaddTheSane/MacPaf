@@ -32,6 +32,7 @@ public interface Header {
   public static final String CHARACTER = "CHAR";
   public static final String FORM = "FORM";
   public static final String ID = "ID";
+  public static final String REF = "REF";
 
   public static final String APPROVED_SYSTEM_ID = "MacPAF";
   public static final String NAME_OF_PRODUCT = "MacPAF";

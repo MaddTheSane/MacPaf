@@ -25,7 +25,7 @@ public class FamilyEditController extends NSWindowController {
   public NSComboBox sealingTemple; /* IBOutlet */
   public NSButton wifeButton; /* IBOutlet */
 
-  private Family family = new TestFamily();
+  private Family family = Family.UNKNOWN_FAMILY;
   private MyDocument document = null;
 
   public void setDocument(NSDocument document) {

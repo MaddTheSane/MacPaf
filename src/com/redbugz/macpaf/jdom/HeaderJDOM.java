@@ -44,7 +44,7 @@ public class HeaderJDOM implements Header {
 
 	element.addContent(source);
 	element.addContent(new Element(DATE).setText(new SimpleDateFormat("dd MMM yyyy").format(new Date())));
-	element.addContent(new Element(SUBMITTER).setAttribute(ID, "S1"));
+	element.addContent(new Element(SUBMITTER).setAttribute(REF, "S1"));
 	element.addContent( (Content)new Element(GEDCOM).addContent(new Element(VERSION).setText(GEDCOM_VERSION_55)).
 					   addContent(new Element(FORM).setText(FORM_LINEAGE_LINKED)));
 	element.addContent(new Element(CHARACTER).setText(ANSEL));

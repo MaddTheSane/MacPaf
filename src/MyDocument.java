@@ -270,6 +270,8 @@ public class MyDocument extends NSDocument implements Observer {
 		noteTextView.setString(primaryIndividual.getNoteText());
 //        pedigreeView.setIndividual(primaryIndividual);
 		individualDetailController.setIndividual(primaryIndividual);
+		log.debug("famsp id:"+primaryIndividual.getFamilyAsSpouse().getId());
+		log.debug("famch id:"+primaryIndividual.getFamilyAsChild().getId());
 		familyAsSpouseButton.setTitle("Family: "+primaryIndividual.getFamilyAsSpouse().getId());
 		familyAsChildButton.setTitle("Family: "+primaryIndividual.getFamilyAsChild().getId());
 		spouseTable.reloadData();
@@ -611,7 +613,7 @@ else {
  * @param string
  * @param string2
  */
-private void showUserErrorMessage(String message, String details) {
+public static void showUserErrorMessage(String message, String details) {
 	NSAlertPanel.runCriticalAlert(message, details, "OK", null, null);
 }
 

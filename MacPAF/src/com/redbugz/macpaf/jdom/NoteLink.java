@@ -15,13 +15,44 @@ import com.redbugz.macpaf.Note;
  * Window - Preferences - Java - Code Style - Code Templates
  */
 public class NoteLink implements Note {
+	private Note actualNote = null;
+	private MacPAFDocumentJDOM document = null;
+	String id = "";
+
+	NoteLink(MacPAFDocumentJDOM doc) {
+		document = doc;
+	}
+	
+	NoteLink(String id, MacPAFDocumentJDOM doc) {
+		this(doc);
+		setId(id);
+	}
+
+	/**
+	 * @return
+	 */
+	private Note getNote() {
+		if (actualNote == null) {
+			actualNote = document.getNote(id);
+		}
+		return actualNote;
+	}
 
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Note#getId()
 	 */
 	public String getId() {
-		// TODO Auto-generated method stub
-		return null;
+		return id;
+	}
+
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.Note#setId(java.lang.String)
+	 */
+	public void setId(String id) {
+		if (id == null) {
+			id = "";
+		}
+		this.id = id;
 	}
 
 	/* (non-Javadoc)
@@ -29,7 +60,7 @@ public class NoteLink implements Note {
 	 */
 	public String getText() {
 		// TODO Auto-generated method stub
-		return null;
+		return getNote().getText();
 	}
 
 }

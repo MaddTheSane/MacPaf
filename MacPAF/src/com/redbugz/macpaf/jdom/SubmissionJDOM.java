@@ -18,8 +18,16 @@ import com.redbugz.macpaf.Submitter;
  */
 public class SubmissionJDOM implements Submission {
   Element element = new Element("SUBN");
+private MacPAFDocumentJDOM document;
 
-  public SubmissionJDOM(Element element) {
+  public SubmissionJDOM(Element element, MacPAFDocumentJDOM parentDocument) {
+  	if (parentDocument == null) {
+  		throw new IllegalArgumentException("Cannot create SubmissionJDOM with null parentDocument");
+  	}
+	if (element == null) {
+  		throw new IllegalArgumentException("Cannot create SubmissionJDOM with null element");
+	}
+	document = parentDocument;
 	this.element = element;
   }
 
@@ -28,7 +36,7 @@ public class SubmissionJDOM implements Submission {
    */
   public Submitter getSubmitter() {
 	// TODO Auto-generated method stub
-	return new SubmitterJDOM();
+	return new SubmitterLink(document);
   }
 
   /* (non-Javadoc)

@@ -134,6 +134,7 @@ public class GedcomOutputter extends DefaultHandler {
    */
 
   private void flushLine() throws SAXException {
+  	// todo is trim correct for notes?
 	String text = line.text.toString().trim();
 	int base = line.level;
 	int prevnl = 0;

@@ -25,8 +25,7 @@ public class SubmitterLink implements Submitter {
 	
 	SubmitterLink(String id, MacPAFDocumentJDOM doc) {
 		this(doc);
-//		setId(id);
-		this.id=id;
+		setId(id);
 	}
 
 	/**
@@ -43,127 +42,115 @@ public class SubmitterLink implements Submitter {
 	 * @see com.redbugz.macpaf.Submitter#getName()
 	 */
 	public String getName() {
-		// TODO Auto-generated method stub
-		return null;
+		return getSubmitter().getName();
 	}
 
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Submitter#setName(java.lang.String)
 	 */
 	public void setName(String name) {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Submitter#getAddress()
 	 */
 	public Address getAddress() {
-		// TODO Auto-generated method stub
-		return null;
+		return getSubmitter().getAddress();
 	}
 
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Submitter#setAddress(com.redbugz.macpaf.Address)
 	 */
 	public void setAddress(Address address) {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Submitter#getMultimediaLink()
 	 */
 	public MultimediaLink getMultimediaLink() {
-		// TODO Auto-generated method stub
-		return null;
+		return getSubmitter().getMultimediaLink();
 	}
 
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Submitter#setMultimediaLink(com.redbugz.macpaf.jdom.MultimediaLink)
 	 */
 	public void setMultimediaLink(MultimediaLink multimediaLink) {
-		// TODO Auto-generated method stub
-		
+		getSubmitter().setMultimediaLink(multimediaLink);
 	}
 
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Submitter#getLanguagePreferences()
 	 */
 	public List getLanguagePreferences() {
-		// TODO Auto-generated method stub
-		return null;
+		return getSubmitter().getLanguagePreferences();
 	}
 
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Submitter#setLanguagePreferences(java.util.List)
 	 */
 	public void setLanguagePreferences(List languagePreferences) {
-		// TODO Auto-generated method stub
-		
+		getSubmitter().setLanguagePreferences(languagePreferences);
 	}
 
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Submitter#getRFN()
 	 */
 	public String getRFN() {
-		// TODO Auto-generated method stub
-		return null;
+		return getSubmitter().getRFN();
 	}
 
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Submitter#setRFN()
 	 */
-	public String setRFN() {
-		// TODO Auto-generated method stub
-		return null;
+	public void setRFN(String rfn) {
+		getSubmitter().setRFN(rfn);
 	}
 
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Submitter#getRIN()
 	 */
 	public Integer getRIN() {
-		// TODO Auto-generated method stub
-		return null;
+		return getSubmitter().getRIN();
 	}
 
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Submitter#setRIN(java.lang.Integer)
 	 */
 	public void setRIN(Integer rin) {
-		// TODO Auto-generated method stub
-		
+		getSubmitter().setRIN(rin);
 	}
 
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Submitter#getChangeDate()
 	 */
 	public Date getChangeDate() {
-		// TODO Auto-generated method stub
-		return null;
+		return getSubmitter().getChangeDate();
 	}
 
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Submitter#setChangeDate(java.util.Date)
 	 */
 	public void setChangeDate(Date changeDate) {
-		// TODO Auto-generated method stub
-		
+		getSubmitter().setChangeDate(changeDate);
 	}
 
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Submitter#getId()
 	 */
 	public String getId() {
-		return getSubmitter().getId();
+		return id;
 	}
 
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Submitter#setId(java.lang.String)
 	 */
 	public void setId(String id) {
-		getSubmitter().setId(id);
+		if (id == null) {
+			id = "";
+		}
+		this.id = id;
 	}
-
 
 }

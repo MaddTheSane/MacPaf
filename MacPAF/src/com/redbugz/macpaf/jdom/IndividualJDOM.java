@@ -1,16 +1,15 @@
 package com.redbugz.macpaf.jdom;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
 import org.apache.log4j.Category;
-//import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.JDOMException;
 import org.jdom.Text;
@@ -18,11 +17,15 @@ import org.jdom.filter.ContentFilter;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
 import org.jdom.xpath.XPath;
+
 import com.apple.cocoa.foundation.NSBundle;
-import com.redbugz.macpaf.*;
-import com.sun.tools.javac.v8.comp.Todo;
-import com.apple.cocoa.application.NSAlertPanel;
-import com.apple.cocoa.foundation.NSSelector;
+import com.redbugz.macpaf.Event;
+import com.redbugz.macpaf.Family;
+import com.redbugz.macpaf.Gender;
+import com.redbugz.macpaf.Individual;
+import com.redbugz.macpaf.Multimedia;
+import com.redbugz.macpaf.Note;
+import com.redbugz.macpaf.Ordinance;
 
 /**
  * This class is a wrapper around a JDOM Element that represents an Individual.
@@ -63,8 +66,12 @@ public class IndividualJDOM implements Individual, Cloneable {
   private List events = new ArrayList();
 
   private MacPAFDocumentJDOM document = null;
-  private FamilyJDOM familyAsChild;
-  private FamilyJDOM familyAsSpouse;
+  private Family familyAsChild;
+  private Family familyAsSpouse;
+private static final Collection commonNamePrefixes = Arrays.asList(new String[] {
+		"Dr.", "Prof.", "Gen.", "Sir", "Adm.", "Lt.", "Lt. Cmmdr.", "Lord", "Pvt.",
+		"Mr.", "Mrs.", "Miss", "Ms."
+});
 
 //  public IndividualJDOM(MacPAFDocumentJDOM parentDocument) {
 //	document = parentDocument;
@@ -72,11 +79,14 @@ public class IndividualJDOM implements Individual, Cloneable {
 //  }
 
   public IndividualJDOM(Element element, MacPAFDocumentJDOM parentDocument) {
-	document = parentDocument;
+  	if (parentDocument == null) {
+  		throw new IllegalArgumentException("Cannot create IndividualJDOM with null parentDocument");
+  	}
 	if (element == null) {
 		throw new IllegalArgumentException("element is null: IndividualJDOM must be bound to a valid Element.");
 //	  element = new Element(INDIVIDUAL);
 	}
+	document = parentDocument;
 	this.element = element;
 	setFullName(getNameString());
 //		String iName = element.getChildText(NAME);
@@ -115,37 +125,37 @@ public class IndividualJDOM implements Individual, Cloneable {
 	}
   }
 
-  public IndividualJDOM(Individual newIndividual) {
-	if (newIndividual instanceof IndividualJDOM) {
-	  element = ( (IndividualJDOM) newIndividual).getElement();
-	}
-	else {
-	  setAFN(newIndividual.getAFN());
-	  setBirthEvent(newIndividual.getBirthEvent());
-	  setBurialEvent(newIndividual.getBurialEvent());
-	  setChristeningEvent(newIndividual.getChristeningEvent());
-	  setDeathEvent(newIndividual.getDeathEvent());
-	  setFamilyAsChild(newIndividual.getFamilyAsChild());
-	  setFamilyAsSpouse(newIndividual.getFamilyAsSpouse());
-	  setFather(newIndividual.getFather());
-	  setFullName(newIndividual.getNamePrefix(), newIndividual.getGivenNames(), newIndividual.getSurname(),
-				  newIndividual.getNameSuffix());
-	  setGender(newIndividual.getGender());
-	  setId(newIndividual.getId());
-	  setImagePath(newIndividual.getImagePath());
-	  setLDSBaptism(newIndividual.getLDSBaptism());
-	  setLDSConfirmation(newIndividual.getLDSConfirmation());
-	  setLDSEndowment(newIndividual.getLDSEndowment());
-	  setLDSSealingToParent(newIndividual.getLDSSealingToParents());
-	  setLocked(newIndividual.isLocked());
-	  setMother(newIndividual.getMother());
-	  setNotes(newIndividual.getNotes());
-	  setPrimarySpouse(newIndividual.getPrimarySpouse());
-	  setPrivate(newIndividual.isPrivate());
-	  setRin(newIndividual.getRin());
-	  setSpouseList(newIndividual.getSpouseList());
-	}
-  }
+//  public IndividualJDOM(Individual newIndividual) {
+//	if (newIndividual instanceof IndividualJDOM) {
+//	  element = ( (IndividualJDOM) newIndividual).getElement();
+//	}
+//	else {
+//	  setAFN(newIndividual.getAFN());
+//	  setBirthEvent(newIndividual.getBirthEvent());
+//	  setBurialEvent(newIndividual.getBurialEvent());
+//	  setChristeningEvent(newIndividual.getChristeningEvent());
+//	  setDeathEvent(newIndividual.getDeathEvent());
+//	  setFamilyAsChild(newIndividual.getFamilyAsChild());
+//	  setFamilyAsSpouse(newIndividual.getFamilyAsSpouse());
+//	  setFather(newIndividual.getFather());
+//	  setFullName(newIndividual.getNamePrefix(), newIndividual.getGivenNames(), newIndividual.getSurname(),
+//				  newIndividual.getNameSuffix());
+//	  setGender(newIndividual.getGender());
+//	  setId(newIndividual.getId());
+//	  setImagePath(newIndividual.getImagePath());
+//	  setLDSBaptism(newIndividual.getLDSBaptism());
+//	  setLDSConfirmation(newIndividual.getLDSConfirmation());
+//	  setLDSEndowment(newIndividual.getLDSEndowment());
+//	  setLDSSealingToParent(newIndividual.getLDSSealingToParents());
+//	  setLocked(newIndividual.isLocked());
+//	  setMother(newIndividual.getMother());
+//	  setNotes(newIndividual.getNotes());
+//	  setPrimarySpouse(newIndividual.getPrimarySpouse());
+//	  setPrivate(newIndividual.isPrivate());
+//	  setRin(newIndividual.getRin());
+//	  setSpouseList(newIndividual.getSpouseList());
+//	}
+//  }
 
   public void setGivenNames(String givenNames) {
 	if (givenNames == null) {
@@ -247,7 +257,7 @@ public class IndividualJDOM implements Individual, Cloneable {
 	log.error("name:" + name);
 	log.error("surname:" + firstSlashIndex + "-" + lastSlashIndex);
 	if (firstSlashIndex >= 0) {
-	  setGivenNames(name.substring(0, firstSlashIndex));
+	  setBestGuessPrefixAndGivenNames(name.substring(0, firstSlashIndex));
 	  if (lastSlashIndex >= 0 && lastSlashIndex > firstSlashIndex) {
 		setSurname(name.substring(firstSlashIndex + 1, lastSlashIndex));
 		setNameSuffix(name.substring(lastSlashIndex + 1).trim());
@@ -262,20 +272,33 @@ public class IndividualJDOM implements Individual, Cloneable {
 	}
   }
 
-  private void saveName() {
+  /**
+ * @param string
+ */
+private void setBestGuessPrefixAndGivenNames(String string) {
+	int givenIndex = 0;
+	Iterator iter = commonNamePrefixes.iterator();
+	while (iter.hasNext() && givenIndex == 0) {
+		String prefix = (String) iter.next();
+		if (string.trim().startsWith(prefix)) {
+			givenIndex = string.indexOf(prefix)+prefix.length();
+		}
+	}
+	setNamePrefix(string.substring(0, givenIndex).trim());
+	setGivenNames(string.substring(givenIndex).trim());
+}
+
+private void saveName() {
 	String name = getNamePrefix();
-	if (name.length() > 0) {
+	if (getNamePrefix().length() > 0) {
 	  name += " ";
 	}
 	name += getGivenNames();
-	if (name.length() > 0) {
+	if (getGivenNames().length() > 0) {
 	  name += " ";
 	}
 	if (getSurname().length() > 0) {
-	  name += "/" + getSurname() + "/";
-	}
-	if (name.length() > 0) {
-	  name += " ";
+	  name += "/" + getSurname() + "/ ";
 	}
 	name += getNameSuffix();
 	log.debug("saveName name=" + name.trim());
@@ -517,7 +540,7 @@ public class IndividualJDOM implements Individual, Cloneable {
   }
   
   private Multimedia getMultimediaLink() {
-  	return new MultimediaJDOM(element.getChild("OBJE"));
+  	return new MultimediaJDOM(element.getChild("OBJE"), null);
   }
 
   public void setImagePath(URL path) {
@@ -546,24 +569,25 @@ public class IndividualJDOM implements Individual, Cloneable {
 
   public Family getFamilyAsChild() {
 	if (familyAsChild == null) {
-	  familyAsChild = new FamilyJDOM(document);
+	  familyAsChild = Family.UNKNOWN_FAMILY;//JDOM(document);
 	  try {
 		Element famLink = element.getChild(FAMILY_CHILD_LINK);
 		if (famLink != null) {
-		  XPath xpath = XPath.newInstance("//FAM[@ID='" + famLink.getAttributeValue(REF) + "']");
-		  log.debug("child xpath:" + xpath.getXPath());
-		  Element famNode = (Element) xpath.selectSingleNode(element);
-		  log.debug("famNode: " + famNode);
-		  familyAsChild = new FamilyJDOM(famNode, document);
-		  try {
-			new XMLOutputter(Format.getPrettyFormat()).output(familyAsChild.getElement(), System.out);
-		  }
-		  catch (IOException e1) {
-			e1.printStackTrace();
-		  }
+//		  XPath xpath = XPath.newInstance("//FAM[@ID='" + famLink.getAttributeValue(REF) + "']");
+//		  log.debug("child xpath:" + xpath.getXPath());
+//		  Element famNode = (Element) xpath.selectSingleNode(element);
+//		  log.debug("famNode: " + famNode);
+//		  familyAsChild = new FamilyJDOM(famNode, document);
+//		  try {
+//			new XMLOutputter(Format.getPrettyFormat()).output(familyAsChild.getElement(), System.out);
+//		  }
+//		  catch (IOException e1) {
+//			e1.printStackTrace();
+//		  }
+			familyAsChild = new FamilyLink(famLink.getAttributeValue(REF), document);
 		}
 	  }
-	  catch (JDOMException e) {
+	  catch (Exception e) {
 		log.error("Exception: ", e); //To change body of catch statement use Options | File Templates.
 	  }
 	}
@@ -572,63 +596,63 @@ public class IndividualJDOM implements Individual, Cloneable {
 
   public Family getFamilyAsSpouse() {
 	if (familyAsSpouse == null) {
-	  familyAsSpouse = new FamilyJDOM(document);
+	  familyAsSpouse = Family.UNKNOWN_FAMILY;
 	  try {
 		Element famLink = element.getChild(FAMILY_SPOUSE_LINK);
 		System.out.println("famLink="+famLink);
 		if (famLink != null) {
-		  XPath xpath = XPath.newInstance("//FAM[@ID='" + famLink.getAttributeValue(REF) + "']");
-		  log.debug("spouse xpath:" + xpath.getXPath());
-		  Element famNode = (Element) xpath.selectSingleNode(element);
-		  log.debug("famNode: " + famNode);
-		  familyAsSpouse = new FamilyJDOM(famNode, document);
-		  if (famNode == null) {
-			if (Gender.MALE == getGender()) {
-			  familyAsSpouse.setFather(this);
-} else if (Gender.FEMALE == getGender()) {
-  familyAsSpouse.setMother(this);
-} else {
-  // attempting to add a person as a spouse with no gender specified, need further information
-  /** @todo fix this alert sheet */
-  NSAlertPanel.beginAlertSheet (
-
-		  "Do you really want to delete the selected rows?",
-
-							  // sheet message
-
-		  "Delete",           // default button
-
-		  null,               // no third button
-
-		  "Cancel",           // other button label
-
-		  null,             // window attached to
-
-		  this,               // modal delegate
-
-		  new NSSelector("sheetDidEnd::", new Class[] {getClass()}),
-
-							  // did-end selector
-
-		  null,               // no did-dismiss selector
-
-		  null,               // context info
-
-		  "There is no undo for this operation.");
-
-							  // additional text
-
-}
-}
-		  try {
-			new XMLOutputter(Format.getPrettyFormat()).output(familyAsSpouse.getElement(), System.out);
-		  }
-		  catch (IOException e1) {
-			e1.printStackTrace();
-		  }
+//		  XPath xpath = XPath.newInstance("//FAM[@ID='" + famLink.getAttributeValue(REF) + "']");
+//		  log.debug("spouse xpath:" + xpath.getXPath());
+//		  Element famNode = (Element) xpath.selectSingleNode(element);
+//		  log.debug("famNode: " + famNode);
+		  familyAsSpouse = new FamilyLink(famLink.getAttributeValue(REF), document);
+//		  if (famNode == null) {
+//			if (Gender.MALE == getGender()) {
+//			  familyAsSpouse.setFather(this);
+//} else if (Gender.FEMALE == getGender()) {
+//  familyAsSpouse.setMother(this);
+//} else {
+//  // attempting to add a person as a spouse with no gender specified, need further information
+//  /** @todo fix this alert sheet */
+//  NSAlertPanel.beginAlertSheet (
+//
+//		  "Do you really want to delete the selected rows?",
+//
+//							  // sheet message
+//
+//		  "Delete",           // default button
+//
+//		  null,               // no third button
+//
+//		  "Cancel",           // other button label
+//
+//		  null,             // window attached to
+//
+//		  this,               // modal delegate
+//
+//		  new NSSelector("sheetDidEnd::", new Class[] {getClass()}),
+//
+//							  // did-end selector
+//
+//		  null,               // no did-dismiss selector
+//
+//		  null,               // context info
+//
+//		  "There is no undo for this operation.");
+//
+//							  // additional text
+//
+//}
+//}
+//		  try {
+//			new XMLOutputter(Format.getPrettyFormat()).output(familyAsSpouse.getElement(), System.out);
+//		  }
+//		  catch (IOException e1) {
+//			e1.printStackTrace();
+//		  }
 		}
 	  }
-	  catch (JDOMException e) {
+	  catch (Exception e) {
 		log.error("Exception: ", e); //To change body of catch statement use Options | File Templates.
 	  }
 	}
@@ -706,7 +730,7 @@ public class IndividualJDOM implements Individual, Cloneable {
 	Iterator iter = children.iterator();
 	while (iter.hasNext()) {
 	  Element item = (Element) iter.next();
-	  notes.add(new NoteJDOM(item));
+	  notes.add(new NoteJDOM(item, null));
 	}
 	return notes;
 //		}
@@ -918,7 +942,7 @@ public List getAllMultimedia() {
 		if (element.getAttributeValue("REF") != null) {
 			list.add(new MultimediaLink(element.getAttributeValue("REF"), document));
 		} else {
-			list.add(new MultimediaJDOM(element));
+			list.add(new MultimediaJDOM(element, null));
 		}
 	}
 	return list;

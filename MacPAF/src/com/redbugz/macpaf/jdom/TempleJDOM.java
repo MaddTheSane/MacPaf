@@ -46,7 +46,12 @@ public class TempleJDOM extends Temple {
    * @see com.redbugz.macpaf.Temple#getCode()
    */
   public String getCode() {
+  	System.out.println("TempleJDOM.getCode():"+element.getTextTrim());
 	return element.getTextTrim();
+  }
+  
+  public void setCode(String newCode) {
+  	element.setText(newCode);
   }
 
 }

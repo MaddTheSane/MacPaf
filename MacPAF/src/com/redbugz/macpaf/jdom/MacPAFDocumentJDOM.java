@@ -28,6 +28,7 @@ import com.redbugz.macpaf.Source;
 import com.redbugz.macpaf.Submitter;
 import com.redbugz.macpaf.util.StringUtils;
 import com.redbugz.macpaf.util.XMLTest;
+import com.redbugz.macpaf.validation.UnknownGedcomLinkException;
 
 public class MacPAFDocumentJDOM extends Observable implements Observer {
 	private static final Category log = Category.getInstance(MacPAFDocumentJDOM.class.getName());
@@ -45,6 +46,14 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 	protected Map repositories = new HashMap();
 	protected Map submitters = new HashMap();
 	
+	private int nextFamilyId = 1;
+	private int nextIndividualId = 1;
+	private int nextMultimediaId = 1;
+	private int nextNotesId = 1;
+	private int nextSourcesId = 1;
+	private int nextRepositoriesId = 1;
+	private int nextSubmittersId = 1;
+
 	File gedcomFile = null;
 	File xmlFile = null;
 	
@@ -57,13 +66,17 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 		Element root = new Element("GED");
 		doc = new Document(root);
 		root.addContent(new HeaderJDOM().getElement());
-		root.addContent(new SubmitterJDOM().getElement());
+		root.addContent(new SubmitterJDOM(this).getElement());
 	}
 	
 	public void addFamily(Family newFamily) {
 		System.out.println("MacPAFDocumentJDOM.addFamily(newFamily)");
+		// todo: figure out how to handle RIN vs ID, blank vs dups
+//		if (newFamily.getRin())
 		if (StringUtils.isEmpty(newFamily.getId())) {
-			throw new IllegalArgumentException("Cannot add a new family with a blank ID");
+			newFamily.setId("I"+getNextAvailableFamilyId());
+			log.info("Family added with blank Id. Assigning Id: "+newFamily.getId());
+//			throw new IllegalArgumentException("Cannot add a new family with a blank ID");
 		}
 		families.put(newFamily.getId(), newFamily);
 		log.debug("added fam with key: " + newFamily.getId() + " fam marr date: " + newFamily.getMarriageEvent().getDateString());
@@ -77,7 +90,9 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 	public void addIndividual(Individual newIndividual) {
 		System.out.println("MacPAFDocumentJDOM.addIndividual():"+newIndividual);
 		if (StringUtils.isEmpty(newIndividual.getId())) {
-			throw new IllegalArgumentException("Cannot add a new individual with a blank ID");
+			newIndividual.setId("I"+getNextAvailableIndividualId());
+			log.info("Individual added with blank Id. Assigning Id: "+newIndividual.getId());
+//			throw new IllegalArgumentException("Cannot add a new individual with a blank ID");
 		}
 		individuals.put(newIndividual.getId(), newIndividual);
 		log.debug("added individual with key: " + newIndividual.getId() + " name: " + newIndividual.getFullName());
@@ -93,9 +108,14 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 	private void addSubmitter(Submitter newSubmitter) {
 		System.out.println("MacPAFDocumentJDOM.addSubmitter():"+newSubmitter);
 		if (StringUtils.isEmpty(newSubmitter.getId())) {
-			throw new IllegalArgumentException("Cannot add a new multimedia with a blank ID");
+			newSubmitter.setId("I"+getNextAvailableSubmitterId());
+			log.info("Submitter added with blank Id. Assigning Id: "+newSubmitter.getId());
+//			throw new IllegalArgumentException("Cannot add a new multimedia with a blank ID");
 		}
-		multimedia.put(newSubmitter.getId(), newSubmitter);
+		if (submitters.containsKey(newSubmitter.getId())) {
+			log.warn("new submitter has same Id as existing submitter ("+newSubmitter.getId()+"). Re-assigning new Id...");
+		}
+		submitters.put(newSubmitter.getId(), newSubmitter);
 		log.debug("added submitter with key: " + newSubmitter.getId() + " name: " + newSubmitter.getName());
 		if (newSubmitter instanceof SubmitterJDOM) {
 			log.debug("adding submitter to doc: "+newSubmitter);
@@ -109,7 +129,9 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 	private void addRepository(Repository newRepository) {
 		System.out.println("MacPAFDocumentJDOM.addRepository():"+newRepository);
 		if (StringUtils.isEmpty(newRepository.getId())) {
-			throw new IllegalArgumentException("Cannot add a new repository with a blank ID");
+			newRepository.setId("I"+getNextAvailableRepositoryId());
+			log.info("Repository added with blank Id. Assigning Id: "+newRepository.getId());
+//		throw new IllegalArgumentException("Cannot add a new repository with a blank ID");
 		}
 		repositories.put(newRepository.getId(), newRepository);
 		log.debug("added repository with key: " + newRepository.getId() + " name: " + newRepository.getName());
@@ -125,7 +147,9 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 	private void addSource(Source newSource) {
 		System.out.println("MacPAFDocumentJDOM.addSource():"+newSource);
 		if (StringUtils.isEmpty(newSource.getId())) {
-			throw new IllegalArgumentException("Cannot add a new source with a blank ID");
+			newSource.setId("I"+getNextAvailableSourceId());
+			log.info("Source added with blank Id. Assigning Id: "+newSource.getId());
+//		throw new IllegalArgumentException("Cannot add a new source with a blank ID");
 		}
 		sources.put(newSource.getId(), newSource);
 		log.debug("added source with key: " + newSource.getId() + " title: " + newSource.getTitle());
@@ -143,7 +167,9 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 	public void addNote(Note newNote) {
 		System.out.println("MacPAFDocumentJDOM.addNote():"+newNote);
 		if (StringUtils.isEmpty(newNote.getId())) {
-			throw new IllegalArgumentException("Cannot add a new note with a blank ID");
+			newNote.setId("I"+getNextAvailableNoteId());
+			log.info("Note added with blank Id. Assigning Id: "+newNote.getId());
+//		throw new IllegalArgumentException("Cannot add a new note with a blank ID");
 		}
 		notes.put(newNote.getId(), newNote);
 		log.debug("added note with key: " + newNote.getId() + " text: " + newNote.getText());
@@ -161,7 +187,9 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 	public void addMultimedia(Multimedia newMultimedia) {
 		System.out.println("MacPAFDocumentJDOM.addMultimedia():"+newMultimedia);
 		if (StringUtils.isEmpty(newMultimedia.getId())) {
-			throw new IllegalArgumentException("Cannot add a new multimedia with a blank ID");
+			newMultimedia.setId("I"+getNextAvailableMultimediaId());
+			log.info("Multimedia added with blank Id. Assigning Id: "+newMultimedia.getId());
+//		throw new IllegalArgumentException("Cannot add a new multimedia with a blank ID");
 		}
 		multimedia.put(newMultimedia.getId(), newMultimedia);
 		log.debug("added multimedia with key: " + newMultimedia.getId() + " title: " + newMultimedia.getTitle());
@@ -209,7 +237,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 		List sourceElements = root.getChildren("SOUR");
 		List submitterElements = root.getChildren("SUBM");
 		log.debug("header: " + new HeaderJDOM(root.getChild("HEAD")));
-		log.debug("submission record: " + new SubmitterJDOM(root.getChild("SUBN")));
+//		log.debug("submission record: " + new SubmitterJDOM(root.getChild("SUBN"), this));
 		log.debug("file has:\n\t" + individualElements.size() + " individuals\n\t" + familyElements.size() + " families\n\t" + noteElements.size() +
 				" notes\n\t" + multimediaElements.size() + " multimedia objects\n\t" + sourceElements.size() + " sources\n\t" +
 				repositoryElements.size() + " repositories\n\t" + submitterElements.size() + " submitters\n");
@@ -333,7 +361,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 		for (int i = 0; i < multimediaElements.size(); i++) {
 			Element obje = (Element) multimediaElements.get(i);
 			if (obje != null) {
-				addMultimedia(new MultimediaJDOM(obje));
+				addMultimedia(new MultimediaJDOM(obje, null));
 //			    byte[] raw = Base64.decode(buf.toString());
 //			    log.debug("decoded=" + raw);
 //			    NSImageView nsiv = new NSImageView(new NSRect(0, 0, 100, 100));
@@ -352,7 +380,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 			if (debug) {
 				log.debug("element:" + element.getContent());
 			}
-			Note note = new NoteJDOM(element);
+			Note note = new NoteJDOM(element, null);
 			addNote(note);
 		}
 		log.debug("notes: " + noteElements.size());
@@ -365,7 +393,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 			if (debug) {
 				log.debug("element:" + element.getContent());
 			}
-			Source source = new SourceJDOM(element);
+			Source source = new SourceJDOM(element, null);
 			addSource(source);
 		}
 		log.debug("sources: " + sourceElements.size());
@@ -378,7 +406,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 			if (debug) {
 				log.debug("element:" + element.getContent());
 			}
-			Repository repository = new RepositoryJDOM(element);
+			Repository repository = new RepositoryJDOM(element, null);
 			addRepository(repository);
 		}
 		log.debug("repositories: " + repositoryElements.size());
@@ -391,7 +419,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 			if (debug) {
 				log.debug("element:" + element.getContent());
 			}
-			Submitter submitter = new SubmitterJDOM(element);
+			Submitter submitter = new SubmitterJDOM(element, this);
 			addSubmitter(submitter);
 		}	
 		log.debug("submitters: " + submitterElements.size());
@@ -449,6 +477,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 	public FamilyJDOM getFamily(String id) {
 		FamilyJDOM family = (FamilyJDOM) families.get(id);
 		if (family == null) {
+			throw new UnknownGedcomLinkException("Cannot find family with Id="+id+". There are "+families.size()+" families in this file.");
 //			throw new IllegalStateException("No family with that ID in the document.");
 //			family = Family.UNKNOWN_FAMILY;
 		}
@@ -461,6 +490,10 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 	 */
 	public IndividualJDOM getIndividual(String id) {
 		IndividualJDOM individual = (IndividualJDOM) individuals.get(id);
+		if (individual == null) {
+			throw new UnknownGedcomLinkException("Cannot find individual with Id="+id+". There are "+individuals.size()+" individuals in this file.");
+//			individual = Individual.UNKNOWN;
+		}
 		return individual;
 	}
 
@@ -468,10 +501,11 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 	 * @param id
 	 * @return
 	 */
-	public Multimedia getMultimedia(String id) {
-		Multimedia media = (MultimediaJDOM) multimedia.get(id);
+	public MultimediaJDOM getMultimedia(String id) {
+		MultimediaJDOM media = (MultimediaJDOM) multimedia.get(id);
 		if (media == null) {
-			media = Multimedia.UNKNOWN_MULTIMEDIA;
+			throw new UnknownGedcomLinkException("Cannot find multimedia with Id="+id+". There are "+multimedia.size()+" multimedia in this file.");
+//			media = Multimedia.UNKNOWN_MULTIMEDIA;
 		}
 		return media;
 	}
@@ -482,6 +516,10 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 	 */
 	public NoteJDOM getNote(String id) {
 		NoteJDOM note = (NoteJDOM) notes.get(id);
+		if (note == null) {
+//			note = Note.UNKNOWN_MULTIMEDIA;
+			throw new UnknownGedcomLinkException("Cannot find note with Id="+id+". There are "+notes.size()+" notes in this file.");
+		}
 		return note;
 	}
 
@@ -491,6 +529,10 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 	 */
 	public SourceJDOM getSource(String id) {
 		SourceJDOM source = (SourceJDOM) sources.get(id);
+		if (source == null) {
+			throw new UnknownGedcomLinkException("Cannot find source with Id="+id+". There are "+sources.size()+" sources in this file.");
+//			source = Source.UNKNOWN_MULTIMEDIA;
+		}
 		return source;
 	}
 
@@ -500,6 +542,10 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 	 */
 	public RepositoryJDOM getRepository(String id) {
 		RepositoryJDOM repository = (RepositoryJDOM) repositories.get(id);
+		if (repository == null) {
+			throw new UnknownGedcomLinkException("Cannot find repository with Id="+id+". There are "+repositories.size()+" repositories in this file.");
+//			repository = Repository.UNKNOWN_MULTIMEDIA;
+		}
 		return repository;
 	}
 
@@ -509,7 +555,53 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 	 */
 	public SubmitterJDOM getSubmitter(String id) {
 		SubmitterJDOM submitter = (SubmitterJDOM) submitters.get(id);
+		if (submitter == null) {
+//			submitter = Submitter.UNKNOWN_MULTIMEDIA;
+			throw new UnknownGedcomLinkException("Cannot find submitter with Id="+id+". There are "+submitters.size()+" submitters in this file.");
+		}
 		return submitter;
+	}
+	/**
+	 * @return Returns the nextFamilyId.
+	 */
+	public int getNextAvailableFamilyId() {
+		return nextFamilyId++;
+	}
+	/**
+	 * @return Returns the nextIndividualId.
+	 */
+	public int getNextAvailableIndividualId() {
+		return nextIndividualId++;
+	}
+	/**
+	 * @return Returns the nextMultimediaId.
+	 */
+	public int getNextAvailableMultimediaId() {
+		return nextMultimediaId++;
+	}
+	/**
+	 * @return Returns the nextNoteId.
+	 */
+	public int getNextAvailableNoteId() {
+		return nextNotesId++;
+	}
+	/**
+	 * @return Returns the nextRepositoryId.
+	 */
+	public int getNextAvailableRepositoryId() {
+		return nextRepositoriesId++;
+	}
+	/**
+	 * @return Returns the nextSourcesId.
+	 */
+	public int getNextAvailableSourceId() {
+		return nextSourcesId++;
+	}
+	/**
+	 * @return Returns the nextSubmitterId.
+	 */
+	public int getNextAvailableSubmitterId() {
+		return nextSubmittersId++;
 	}
 }
 

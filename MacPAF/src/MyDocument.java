@@ -41,6 +41,7 @@ public class MyDocument extends NSDocument implements Observer {
   {
 //  	Tests.testBase64();
 //  	Tests.testImageFiles();
+  	Tests.testTrimLeadingWhitespace();
 	log.debug(System.getProperty("user.dir"));
 	log.debug(System.getProperty("user.home"));
 //	System.exit(99);
@@ -62,7 +63,7 @@ public class MyDocument extends NSDocument implements Observer {
   private Individual primaryIndividual = new Individual.UnknownIndividual();
 
   // This was originally to check for the constructor getting called twice
-  public boolean firstconstr = true;
+//  public boolean firstconstr = true;
 
   // All of the outlets in the nib
   public NSWindow mainWindow; /* IBOutlet */
@@ -199,40 +200,45 @@ public class MyDocument extends NSDocument implements Observer {
   }
 
   public void setPrintableView(Object sender) { /* IBAction */
-	log.debug("setPrintableView selected=" + reportsRadio.selectedTag());
-	printInfo().setTopMargin(36);
-	printInfo().setBottomMargin(36);
-	printInfo().setLeftMargin(72);
-	printInfo().setRightMargin(36);
-	setPrintInfo(printInfo());
-	switch (reportsRadio.selectedTag()) {
-	  case 0:
-		printableView = new PedigreeView(new NSRect(0, 0,
-			printInfo().paperSize().width() - printInfo().leftMargin() - printInfo().rightMargin(),
-			printInfo().paperSize().height() - printInfo().topMargin() - printInfo().bottomMargin()), primaryIndividual,
-										 4);
-		break;
-	  case 1:
-		printableView = new FamilyGroupSheetView(new NSRect(0, 0,
-			printInfo().paperSize().width() - printInfo().leftMargin() - printInfo().rightMargin(),
-			printInfo().paperSize().height() - printInfo().topMargin() - printInfo().bottomMargin()), primaryIndividual);
-		break;
-	  case 3:
-		printableView = new PocketPedigreeView(new NSRect(0, 0,
-			printInfo().paperSize().width() - printInfo().leftMargin() - printInfo().rightMargin(),
-			printInfo().paperSize().height() - printInfo().topMargin() - printInfo().bottomMargin()), primaryIndividual,
-										 6);
-		break;
-	  default:
-		printableView = new PedigreeView(new NSRect(0, 0,
-			printInfo().paperSize().width() - printInfo().leftMargin() - printInfo().rightMargin(),
-			printInfo().paperSize().height() - printInfo().topMargin() - printInfo().bottomMargin()), primaryIndividual,
-										 4);
-	}
+	try {
+		log.debug("setPrintableView selected=" + reportsRadio.selectedTag());
+		printInfo().setTopMargin(36);
+		printInfo().setBottomMargin(36);
+		printInfo().setLeftMargin(72);
+		printInfo().setRightMargin(36);
+		setPrintInfo(printInfo());
+		switch (reportsRadio.selectedTag()) {
+		  case 0:
+			printableView = new PedigreeView(new NSRect(0, 0,
+				printInfo().paperSize().width() - printInfo().leftMargin() - printInfo().rightMargin(),
+				printInfo().paperSize().height() - printInfo().topMargin() - printInfo().bottomMargin()), primaryIndividual,
+											 4);
+			break;
+		  case 1:
+			printableView = new FamilyGroupSheetView(new NSRect(0, 0,
+				printInfo().paperSize().width() - printInfo().leftMargin() - printInfo().rightMargin(),
+				printInfo().paperSize().height() - printInfo().topMargin() - printInfo().bottomMargin()), primaryIndividual);
+			break;
+		  case 3:
+			printableView = new PocketPedigreeView(new NSRect(0, 0,
+				printInfo().paperSize().width() - printInfo().leftMargin() - printInfo().rightMargin(),
+				printInfo().paperSize().height() - printInfo().topMargin() - printInfo().bottomMargin()), primaryIndividual,
+											 6);
+			break;
+		  default:
+			printableView = new PedigreeView(new NSRect(0, 0,
+				printInfo().paperSize().width() - printInfo().leftMargin() - printInfo().rightMargin(),
+				printInfo().paperSize().height() - printInfo().topMargin() - printInfo().bottomMargin()), primaryIndividual,
+											 4);
+		}
 //      printableView = new PedigreeView(new NSRect(0,0,printInfo().paperSize().width()-printInfo().leftMargin()-printInfo().rightMargin(),printInfo().paperSize().height()-printInfo().topMargin()-printInfo().bottomMargin()), primaryIndividual, 4);
 //      printableView = new FamilyGroupSheetView(new NSRect(0,0,printInfo().paperSize().width()-printInfo().leftMargin()-printInfo().rightMargin(),printInfo().paperSize().height()-printInfo().topMargin()-printInfo().bottomMargin()), primaryIndividual);
 //      printableView = new IndividualSummaryView(new NSRect(0,0,printInfo().paperSize().width()-printInfo().leftMargin()-printInfo().rightMargin(),printInfo().paperSize().height()-printInfo().topMargin()-printInfo().bottomMargin()), primaryIndividual);
-  }
+
+	} catch (Exception e) {
+		e.printStackTrace();
+	}  
+}
 
 //   public void saveFamily(Object sender) { /* IBAction */
 //// save family info
@@ -249,105 +255,115 @@ public class MyDocument extends NSDocument implements Observer {
   }
 
   public void setPrimaryIndividual(Individual newIndividual) {
-	primaryIndividual = newIndividual;
-	assignIndividualToButton(primaryIndividual, individualButton);
-	// if primary individual is unknown, change button back to enabled
-	individualButton.setEnabled(true);
-	assignIndividualToButton(primaryIndividual.getPrimarySpouse(), spouseButton);
-	assignIndividualToButton(primaryIndividual.getFather(), fatherButton);
-	assignIndividualToButton(primaryIndividual.getMother(), motherButton);
-	assignIndividualToButton(primaryIndividual.getFather().getFather(), paternalGrandfatherButton);
-	assignIndividualToButton(primaryIndividual.getFather().getMother(), paternalGrandmotherButton);
-	assignIndividualToButton(primaryIndividual.getMother().getFather(), maternalGrandfatherButton);
-	assignIndividualToButton(primaryIndividual.getMother().getMother(), maternalGrandmotherButton);
-	noteTextView.setString(primaryIndividual.getNoteText());
+	try {
+		primaryIndividual = newIndividual;
+		assignIndividualToButton(primaryIndividual, individualButton);
+		// if primary individual is unknown, change button back to enabled
+		individualButton.setEnabled(true);
+		assignIndividualToButton(primaryIndividual.getPrimarySpouse(), spouseButton);
+		assignIndividualToButton(primaryIndividual.getFather(), fatherButton);
+		assignIndividualToButton(primaryIndividual.getMother(), motherButton);
+		assignIndividualToButton(primaryIndividual.getFather().getFather(), paternalGrandfatherButton);
+		assignIndividualToButton(primaryIndividual.getFather().getMother(), paternalGrandmotherButton);
+		assignIndividualToButton(primaryIndividual.getMother().getFather(), maternalGrandfatherButton);
+		assignIndividualToButton(primaryIndividual.getMother().getMother(), maternalGrandmotherButton);
+		noteTextView.setString(primaryIndividual.getNoteText());
 //        pedigreeView.setIndividual(primaryIndividual);
-	individualDetailController.setIndividual(primaryIndividual);
-	familyAsSpouseButton.setTitle("Family: "+primaryIndividual.getFamilyAsSpouse().getId());
-	familyAsChildButton.setTitle("Family: "+primaryIndividual.getFamilyAsChild().getId());
-	spouseTable.reloadData();
-	childrenTable.reloadData();
+		individualDetailController.setIndividual(primaryIndividual);
+		familyAsSpouseButton.setTitle("Family: "+primaryIndividual.getFamilyAsSpouse().getId());
+		familyAsChildButton.setTitle("Family: "+primaryIndividual.getFamilyAsChild().getId());
+		spouseTable.reloadData();
+		childrenTable.reloadData();
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
   }
 
   public void setIndividual(Object sender) { /* IBAction */
-	log.debug("setIndividual to " + sender);
-	if (sender instanceof NSButton) {
-	  try {
-		log.debug("individuals=" + individualsButtonMap.objectForKey(sender.toString()));
-		Individual newIndividual = (Individual) individualsButtonMap.objectForKey(sender.toString());
-		NSButton animateButton = (NSButton) sender;
+	try {
+		log.debug("setIndividual to " + sender);
+		if (sender instanceof NSButton) {
+		  try {
+			log.debug("individuals=" + individualsButtonMap.objectForKey(sender.toString()));
+			Individual newIndividual = (Individual) individualsButtonMap.objectForKey(sender.toString());
+			NSButton animateButton = (NSButton) sender;
 
-		NSPoint individualButtonOrigin = individualButton.frame().origin();
-		NSPoint animateButtonOrigin = animateButton.frame().origin();
-		log.debug("animating from " + animateButtonOrigin + " to " + individualButtonOrigin);
-		if (!animateButtonOrigin.equals(individualButtonOrigin)) {
-		  float stepx = (individualButtonOrigin.x() - animateButtonOrigin.x()) / 10;
-		  float stepy = (individualButtonOrigin.y() - animateButtonOrigin.y()) / 10;
-		  NSImage image = new NSImage();
-		  log.debug("animatebutton.bounds:" + animateButton.bounds());
-		  image.addRepresentation(new NSBitmapImageRep(animateButton.bounds()));
-		  NSImageView view = new NSImageView(animateButton.frame());
-		  view.setImage(image);
-		  animateButton.superview().addSubview(view);
-		  for (int steps = 0; steps < 10; steps++) {
-			animateButtonOrigin = new NSPoint(animateButtonOrigin.x() + stepx, animateButtonOrigin.y() + stepy);
-			view.setFrameOrigin(animateButtonOrigin);
-			view.display();
+			NSPoint individualButtonOrigin = individualButton.frame().origin();
+			NSPoint animateButtonOrigin = animateButton.frame().origin();
+			log.debug("animating from " + animateButtonOrigin + " to " + individualButtonOrigin);
+			if (!animateButtonOrigin.equals(individualButtonOrigin)) {
+			  float stepx = (individualButtonOrigin.x() - animateButtonOrigin.x()) / 10;
+			  float stepy = (individualButtonOrigin.y() - animateButtonOrigin.y()) / 10;
+			  NSImage image = new NSImage();
+			  log.debug("animatebutton.bounds:" + animateButton.bounds());
+			  image.addRepresentation(new NSBitmapImageRep(animateButton.bounds()));
+			  NSImageView view = new NSImageView(animateButton.frame());
+			  view.setImage(image);
+			  animateButton.superview().addSubview(view);
+			  for (int steps = 0; steps < 10; steps++) {
+				animateButtonOrigin = new NSPoint(animateButtonOrigin.x() + stepx, animateButtonOrigin.y() + stepy);
+				view.setFrameOrigin(animateButtonOrigin);
+				view.display();
+			  }
+			  view.removeFromSuperview();
+			  animateButton.superview().setNeedsDisplay(true);
+			}
+			setPrimaryIndividual(newIndividual);
 		  }
-		  view.removeFromSuperview();
-		  animateButton.superview().setNeedsDisplay(true);
+		  catch (Exception e) {
+			log.error("Exception: ", e);
+		  }
 		}
-		setPrimaryIndividual(newIndividual);
-	  }
-	  catch (Exception e) {
-		log.error("Exception: ", e);
-	  }
-	}
-	else if (sender instanceof NSTableView) {
-	  NSTableView tv = (NSTableView) sender;
-	  NSView superview = individualButton.superview();
-	  log.info("tableview selectedRow = "+tv.selectedRow());
-	  if (tv.selectedRow() >= 0) {
-		log.debug("individualList=" + individualsButtonMap.objectForKey("child" + tv.selectedRow()));
-		NSPoint individualButtonOrigin = individualButton.frame().origin();
-		Individual newIndividual = (Individual) individualsButtonMap.objectForKey("child" + tv.selectedRow());
-		if (tv.tag() == 2) {
-		  newIndividual = (Individual) individualsButtonMap.objectForKey("spouse" + tv.selectedRow());
-		  individualButtonOrigin = spouseButton.frame().origin();
-		}
-		NSRect rowRect = tv.convertRectToView(tv.rectOfRow(tv.selectedRow()), superview);
-		NSPoint tvOrigin = rowRect.origin();
-		log.debug("animating from " + tvOrigin + " to " + individualButtonOrigin);
-		float stepx = (individualButtonOrigin.x() - tvOrigin.x()) / 10;
-		float stepy = (individualButtonOrigin.y() - tvOrigin.y()) / 10;
-		NSImage image = new NSImage();
-		log.debug("rowrect:" + rowRect);
-		image.addRepresentation(new NSBitmapImageRep(rowRect));
-		NSImageView view = new NSImageView(rowRect);
-		view.setImage(image);
-		superview.addSubview(view);
-		for (int steps = 0; steps < 10; steps++) {
-		  tvOrigin = new NSPoint(tvOrigin.x() + stepx, tvOrigin.y() + stepy);
-		  view.setFrameOrigin(tvOrigin);
-		  view.display();
-		}
-		view.removeFromSuperview();
-		superview.setNeedsDisplay(true);
-		if (tv.tag() == 2) {
-		  assignIndividualToButton(newIndividual, spouseButton);
-		}
+		else if (sender instanceof NSTableView) {
+		  NSTableView tv = (NSTableView) sender;
+		  NSView superview = individualButton.superview();
+		  log.info("tableview selectedRow = "+tv.selectedRow());
+		  if (tv.selectedRow() >= 0) {
+			log.debug("individualList=" + individualsButtonMap.objectForKey("child" + tv.selectedRow()));
+			NSPoint individualButtonOrigin = individualButton.frame().origin();
+			Individual newIndividual = (Individual) individualsButtonMap.objectForKey("child" + tv.selectedRow());
+			if (tv.tag() == 2) {
+			  newIndividual = (Individual) individualsButtonMap.objectForKey("spouse" + tv.selectedRow());
+			  individualButtonOrigin = spouseButton.frame().origin();
+			}
+			NSRect rowRect = tv.convertRectToView(tv.rectOfRow(tv.selectedRow()), superview);
+			NSPoint tvOrigin = rowRect.origin();
+			log.debug("animating from " + tvOrigin + " to " + individualButtonOrigin);
+			float stepx = (individualButtonOrigin.x() - tvOrigin.x()) / 10;
+			float stepy = (individualButtonOrigin.y() - tvOrigin.y()) / 10;
+			NSImage image = new NSImage();
+			log.debug("rowrect:" + rowRect);
+			image.addRepresentation(new NSBitmapImageRep(rowRect));
+			NSImageView view = new NSImageView(rowRect);
+			view.setImage(image);
+			superview.addSubview(view);
+			for (int steps = 0; steps < 10; steps++) {
+			  tvOrigin = new NSPoint(tvOrigin.x() + stepx, tvOrigin.y() + stepy);
+			  view.setFrameOrigin(tvOrigin);
+			  view.display();
+			}
+			view.removeFromSuperview();
+			superview.setNeedsDisplay(true);
+			if (tv.tag() == 2) {
+			  assignIndividualToButton(newIndividual, spouseButton);
+			}
 else {
-		  setPrimaryIndividual(newIndividual);
+			  setPrimaryIndividual(newIndividual);
+			}
+		  }
 		}
-	  }
-	}
-	else if (sender instanceof IndividualList) {
-	  IndividualList iList = (IndividualList) sender;
-	  setPrimaryIndividual(iList.getSelectedIndividual());
-	}
-	else if (sender instanceof FamilyList) {
-	  FamilyList iList = (FamilyList) sender;
-	  setPrimaryIndividual(iList.getSelectedFamily().getFather());
+		else if (sender instanceof IndividualList) {
+		  IndividualList iList = (IndividualList) sender;
+		  setPrimaryIndividual(iList.getSelectedIndividual());
+		}
+		else if (sender instanceof FamilyList) {
+		  FamilyList iList = (FamilyList) sender;
+		  setPrimaryIndividual(iList.getSelectedFamily().getFather());
+		}
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
 	}
 
   }
@@ -583,10 +599,23 @@ else {
 	  // TODO Auto-generated catch block
 	  log.error("Exception: ", e);
 	}
+	showUserErrorMessage("There was a problem opening the file:\n"+nsFileWrapper.filename()+".",
+			"This is usually caused by a corrupt file. If the file is a GEDCOM file, it may not be the right version"+
+			" or it may not conform to the GEDCOM 5.5 specification. If this is a MacPAF file, it is missing "+
+			"some required data or the data has become corrupted. This can often be fixed by manually inspecting "+
+			"the contents of the file. Please contact support to see if this can be fixed.");
 	return false;
   }
 
-  /* (non-Javadoc)
+  /**
+ * @param string
+ * @param string2
+ */
+private void showUserErrorMessage(String message, String details) {
+	NSAlertPanel.runCriticalAlert(message, details, "OK", null, null);
+}
+
+/* (non-Javadoc)
    * @see com.apple.cocoa.application.NSDocument#setFileName(java.lang.String)
    */
   public void setFileName(String arg0) {
@@ -633,68 +662,78 @@ else {
 	}
   }
 
-  public NSData dataRepresentationOfType(String aType) {
-	// Insert code here to create and return the data for your document.
-	log.debug("MyDocument.dataRepresentationOfType():" + aType);
-	return new NSAttributedString("some data goes here").RTFFromRange(new NSRange(0, 15), new NSDictionary());
-  }
-
-  public boolean loadDataRepresentation(NSData data, String aType) {
-	// Insert code here to read your document from the given data.
-	log.debug("MyDocument.loadDataRepresentation():" + aType);
-	log.debug("load data:" + aType + ":" + new NSStringReference(data, NSStringReference.ASCIIStringEncoding));
-	return true;
-  }
+//  public NSData dataRepresentationOfType(String aType) {
+//	// Insert code here to create and return the data for your document.
+//	log.debug("MyDocument.dataRepresentationOfType():" + aType);
+//	return new NSAttributedString("some data goes here").RTFFromRange(new NSRange(0, 15), new NSDictionary());
+//  }
+//
+//  public boolean loadDataRepresentation(NSData data, String aType) {
+//	// Insert code here to read your document from the given data.
+//	log.debug("MyDocument.loadDataRepresentation():" + aType);
+//	log.debug("load data:" + aType + ":" + new NSStringReference(data, NSStringReference.ASCIIStringEncoding));
+//	return true;
+//  }
 
   private void assignIndividualToButton(Individual indiv, NSButton button) {
-	NSAttributedString newLine = new NSAttributedString("\n");
-	NSMutableAttributedString nameText = new NSMutableAttributedString(indiv.getFullName());
-	button.setEnabled(true);
-	if (indiv instanceof Individual.UnknownIndividual) {
-	  nameText = new NSMutableAttributedString("Unknown");
-	  button.setEnabled(false);
-	}
-	NSMutableAttributedString birthdateText = new NSMutableAttributedString("");
-	NSMutableAttributedString birthplaceText = new NSMutableAttributedString("");
-	NSMutableAttributedString ordinancesText = new NSMutableAttributedString("bepsc");
-	if (indiv.getBirthEvent() != null) {
-	  birthdateText = new NSMutableAttributedString(indiv.getBirthEvent().getDateString());
-	  if (indiv.getBirthEvent().getPlace() != null) {
-		birthplaceText = new NSMutableAttributedString(indiv.getBirthEvent().getPlace().getFormatString());
-	  }
-	}
-	NSMutableAttributedString text = nameText;
-	text.appendAttributedString(newLine);
-	text.appendAttributedString(birthdateText);
-	text.appendAttributedString(newLine);
-	text.appendAttributedString(birthplaceText);
-	text.appendAttributedString(newLine);
-	text.appendAttributedString(ordinancesText);
-	button.setAttributedTitle(text);
+	try {
+		NSAttributedString newLine = new NSAttributedString("\n");
+		NSMutableAttributedString nameText = new NSMutableAttributedString(indiv.getFullName());
+		button.setEnabled(true);
+		if (indiv instanceof Individual.UnknownIndividual) {
+		  nameText = new NSMutableAttributedString("Unknown");
+		  button.setEnabled(false);
+		}
+		NSMutableAttributedString birthdateText = new NSMutableAttributedString("");
+		NSMutableAttributedString birthplaceText = new NSMutableAttributedString("");
+		NSMutableAttributedString ordinancesText = new NSMutableAttributedString("bepsc");
+		if (indiv.getBirthEvent() != null) {
+		  birthdateText = new NSMutableAttributedString(indiv.getBirthEvent().getDateString());
+		  if (indiv.getBirthEvent().getPlace() != null) {
+			birthplaceText = new NSMutableAttributedString(indiv.getBirthEvent().getPlace().getFormatString());
+		  }
+		}
+		NSMutableAttributedString text = nameText;
+		text.appendAttributedString(newLine);
+		text.appendAttributedString(birthdateText);
+		text.appendAttributedString(newLine);
+		text.appendAttributedString(birthplaceText);
+		text.appendAttributedString(newLine);
+		text.appendAttributedString(ordinancesText);
+		button.setAttributedTitle(text);
 //	URL imageURL = indiv.getImagePath();
 //	if (imageURL != null && imageURL.toString().length() > 0) {
-	  NSImage testImage = MultimediaUtils.makeImageFromMultimedia(indiv.getPreferredImage());
-	  log.debug("button image:"+testImage);
-	  testImage.setSize(new NSSize(50f, 50f));
-	  testImage.setScalesWhenResized(true);
-	  button.setImage(testImage);
+		  NSImage testImage = MultimediaUtils.makeImageFromMultimedia(indiv.getPreferredImage());
+		  log.debug("button image:"+testImage);
+		  testImage.setSize(new NSSize(50f, 50f));
+		  testImage.setScalesWhenResized(true);
+		  button.setImage(testImage);
 //	}
-	individualsButtonMap.setObjectForKey(indiv, button.toString());
+		individualsButtonMap.setObjectForKey(indiv, button.toString());
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
   }
 
   public int numberOfRowsInTableView(NSTableView nsTableView) {
-	log.debug("MyDocument.numberOfRowsInTableView():" + nsTableView.tag());
-	if (nsTableView.tag() == 1) {
-	  if (primaryIndividual.getFamilyAsSpouse() != null) {
-		int numChildren = primaryIndividual.getFamilyAsSpouse().getChildren().size();
-		log.debug("numberOfRowsInTableView children: " + numChildren);
-		return numChildren;
-	  }
-	}
-	else if (nsTableView.tag() == 2) {
-	  int numSpouses = primaryIndividual.getSpouseList().size();
-	  log.debug("numberOfRowsInTableView spouses: " + numSpouses);
-	  return numSpouses;
+	try {
+		log.debug("MyDocument.numberOfRowsInTableView():" + nsTableView.tag());
+		if (nsTableView.tag() == 1) {
+		  if (primaryIndividual.getFamilyAsSpouse() != null) {
+			int numChildren = primaryIndividual.getFamilyAsSpouse().getChildren().size();
+			log.debug("numberOfRowsInTableView children: " + numChildren);
+			return numChildren;
+		  }
+		}
+		else if (nsTableView.tag() == 2) {
+		  int numSpouses = primaryIndividual.getSpouseList().size();
+		  log.debug("numberOfRowsInTableView spouses: " + numSpouses);
+		  return numSpouses;
+		}
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
 	}
 	return 0;
   }
@@ -727,28 +766,33 @@ else {
 
   public void printShowingPrintPanel(boolean showPanels) {
 	log.debug("printshowingprintpanel:" + showPanels);
-	// Obtain a custom view that will be printed
-	printInfo().setTopMargin(36);
-	printInfo().setBottomMargin(36);
-	printInfo().setLeftMargin(72);
-	printInfo().setRightMargin(36);
-	setPrintInfo(printInfo());
+	try {
+		// Obtain a custom view that will be printed
+		printInfo().setTopMargin(36);
+		printInfo().setBottomMargin(36);
+		printInfo().setLeftMargin(72);
+		printInfo().setRightMargin(36);
+		setPrintInfo(printInfo());
 //       NSView printView = printableView;
 
-	// Construct the print operation and setup Print panel
-	NSPrintOperation op = NSPrintOperation.printOperationWithView(printableView, printInfo());
-	log.debug("papersize: " + printInfo().paperSize());
-	log.debug("left margin: " + printInfo().leftMargin());
-	log.debug("right margin: " + printInfo().rightMargin());
-	log.debug("top margin: " + printInfo().topMargin());
-	log.debug("bottom margin: " + printInfo().bottomMargin());
-	op.setShowPanels(showPanels);
-	if (showPanels) {
-	  // Add accessory view, if needed
-	}
+		// Construct the print operation and setup Print panel
+		NSPrintOperation op = NSPrintOperation.printOperationWithView(printableView, printInfo());
+		log.debug("papersize: " + printInfo().paperSize());
+		log.debug("left margin: " + printInfo().leftMargin());
+		log.debug("right margin: " + printInfo().rightMargin());
+		log.debug("top margin: " + printInfo().topMargin());
+		log.debug("bottom margin: " + printInfo().bottomMargin());
+		op.setShowPanels(showPanels);
+		if (showPanels) {
+		  // Add accessory view, if needed
+		}
 
-	// Run operation, which shows the Print panel if showPanels was YES
-	runModalPrintOperation(op, null, null, null);
+		// Run operation, which shows the Print panel if showPanels was YES
+		runModalPrintOperation(op, null, null, null);
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
   }
 
 //   private NSView printableView() {
@@ -791,7 +835,7 @@ else {
 //            root.addContent(fam2.getElement());
 //		log.debug("root="+root);
 	}
-	catch (RuntimeException e) {
+	catch (Exception e) {
 	  log.error("Exception: ", e);
 	}
 	saveDocument(this);
@@ -800,13 +844,18 @@ else {
 
   public void importFile(Object sender) { /* IBAction */
 	log.debug("importFile: " + sender);
-//        NSApplication nsapp = NSApplication.sharedApplication();
-//        nsapp.beginSheet(importWindow, mainWindow, this, null, null);
-	NSOpenPanel panel = NSOpenPanel.openPanel();
-//panther only?        panel.setMessage("Please select a GEDCOM file to import into this MacPAF file.");
-	panel.beginSheetForDirectory(null, null, new NSArray(new Object[] {"GED"}), mainWindow,
-								 this,
-								 new NSSelector("openPanelDidEnd", new Class[] {NSOpenPanel.class, int.class, Object.class}), null);
+try {
+	//        NSApplication nsapp = NSApplication.sharedApplication();
+	//        nsapp.beginSheet(importWindow, mainWindow, this, null, null);
+		NSOpenPanel panel = NSOpenPanel.openPanel();
+	//panther only?        panel.setMessage("Please select a GEDCOM file to import into this MacPAF file.");
+		panel.beginSheetForDirectory(null, null, new NSArray(new Object[] {"GED"}), mainWindow,
+									 this,
+									 new NSSelector("openPanelDidEnd", new Class[] {NSOpenPanel.class, int.class, Object.class}), null);
+} catch (Exception e) {
+	// TODO Auto-generated catch block
+	e.printStackTrace();
+}
   }
 
   public void openPanelDidEnd(NSOpenPanel sheet, int returnCode, Object contextInfo) {
@@ -818,29 +867,39 @@ else {
 
   private void importGEDCOM(File importFile) {
 	log.debug("MyDocument.importGEDCOM():" + importFile);
-	doc.loadXMLFile(importFile);
-	if (primaryIndividual.equals(Individual.UNKNOWN)) {
-	  // set first individual in imported file to primary individual
-	  setPrimaryIndividual(individualList.getSelectedIndividual());
+	try {
+		doc.loadXMLFile(importFile);
+		if (primaryIndividual.equals(Individual.UNKNOWN)) {
+		  // set first individual in imported file to primary individual
+		  setPrimaryIndividual(individualList.getSelectedIndividual());
   }
   individualListTableView.reloadData();
   familyListTableView.reloadData();
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
   }
 
   public void exportFile(Object sender) { /* IBAction */
 	log.debug("exportFile: " + sender);
-//        save();
-	NSSavePanel panel = NSSavePanel.savePanel();
-	panel.setCanSelectHiddenExtension(true);
-	panel.setExtensionHidden(false);
-//panther only?        panel.setMessage("Choose the name and location for the exported GEDCOM file.\n\nThe file name should end with .ged");
-//        panel.setNameFieldLabel("Name Field Label:");
-//        panel.setPrompt("Prompt:");
-	panel.setRequiredFileType("ged");
-//        panel.setTitle("Title");
-	panel.beginSheetForDirectory(null, null, mainWindow, this,
-								 new NSSelector("savePanelDidEndReturnCode", new Class[] {NSSavePanel.class, int.class,
-												Object.class}), null);
+try {
+	//        save();
+		NSSavePanel panel = NSSavePanel.savePanel();
+		panel.setCanSelectHiddenExtension(true);
+		panel.setExtensionHidden(false);
+	//panther only?        panel.setMessage("Choose the name and location for the exported GEDCOM file.\n\nThe file name should end with .ged");
+	//        panel.setNameFieldLabel("Name Field Label:");
+	//        panel.setPrompt("Prompt:");
+		panel.setRequiredFileType("ged");
+	//        panel.setTitle("Title");
+		panel.beginSheetForDirectory(null, null, mainWindow, this,
+									 new NSSelector("savePanelDidEndReturnCode", new Class[] {NSSavePanel.class, int.class,
+													Object.class}), null);
+} catch (Exception e) {
+	// TODO Auto-generated catch block
+	e.printStackTrace();
+}
   }
 
   public void savePanelDidEndReturnCode(NSSavePanel sheet, int returnCode, Object contextInfo) {
@@ -894,55 +953,80 @@ else {
 
   public void addNewIndividual(Object sender) { /* IBAction */
 	log.debug("addNewIndividual: " + sender);
-	Individual newIndividual = createNewIndividual();
-	addIndividual(newIndividual);
-	setPrimaryIndividual(newIndividual);
-	save();
-	openIndividualEditSheet(this);
+	try {
+		Individual newIndividual = createNewIndividual();
+		addIndividual(newIndividual);
+		setPrimaryIndividual(newIndividual);
+		save();
+		openIndividualEditSheet(this);
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
   }
 
   public void addNewChild(Object sender) { /* IBAction */
 	log.debug("addNewChild: " + sender);
-	Individual newChild = createNewIndividual();
-	addIndividual(newChild);
-	primaryIndividual.getFamilyAsSpouse().addChild(newChild);
-	newChild.setFamilyAsChild(primaryIndividual.getFamilyAsSpouse());
-	setPrimaryIndividual(newChild);
-	save();
-	openIndividualEditSheet(this);
+	try {
+		Individual newChild = createNewIndividual();
+		addIndividual(newChild);
+		primaryIndividual.getFamilyAsSpouse().addChild(newChild);
+		newChild.setFamilyAsChild(primaryIndividual.getFamilyAsSpouse());
+		setPrimaryIndividual(newChild);
+		save();
+		openIndividualEditSheet(this);
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
   }
 
   public void addNewSpouse(Object sender) { /* IBAction */
 	log.debug("addNewSpouse: " + sender);
-	Individual newSpouse = createNewIndividual();
-	addIndividual(newSpouse);
-	primaryIndividual.addSpouse(newSpouse);
-	newSpouse.addSpouse(primaryIndividual);
-	setPrimaryIndividual(newSpouse);
-	save();
-	openIndividualEditSheet(this);
+	try {
+		Individual newSpouse = createNewIndividual();
+		addIndividual(newSpouse);
+		primaryIndividual.addSpouse(newSpouse);
+		newSpouse.addSpouse(primaryIndividual);
+		setPrimaryIndividual(newSpouse);
+		save();
+		openIndividualEditSheet(this);
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
   }
 
   public void addNewFather(Object sender) { /* IBAction */
 	log.debug("addNewFather: " + sender);
-	Individual newFather = createNewIndividual();
-	addIndividual(newFather);
-	primaryIndividual.setFather(newFather);
-	newFather.getFamilyAsSpouse().addChild(primaryIndividual);
-	setPrimaryIndividual(newFather);
-	save();
-	openIndividualEditSheet(this);
+	try {
+		Individual newFather = createNewIndividual();
+		addIndividual(newFather);
+		primaryIndividual.setFather(newFather);
+		newFather.getFamilyAsSpouse().addChild(primaryIndividual);
+		setPrimaryIndividual(newFather);
+		save();
+		openIndividualEditSheet(this);
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
   }
 
   public void addNewMother(Object sender) { /* IBAction */
 	log.debug("addNewMother: " + sender);
-	Individual newMother = createNewIndividual();
-	addIndividual(newMother);
-	primaryIndividual.setMother(newMother);
-	newMother.getFamilyAsSpouse().addChild(primaryIndividual);
-	setPrimaryIndividual(newMother);
-	save();
-	openIndividualEditSheet(this);
+	try {
+		Individual newMother = createNewIndividual();
+		addIndividual(newMother);
+		primaryIndividual.setMother(newMother);
+		newMother.getFamilyAsSpouse().addChild(primaryIndividual);
+		setPrimaryIndividual(newMother);
+		save();
+		openIndividualEditSheet(this);
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
   }
 
   public void addNewFamily(Object sender) { /* IBAction */

@@ -45,7 +45,7 @@ public interface Submitter {
 
   public String getRFN();
 
-  public String setRFN();
+  public void setRFN(String rfn);
 
   public Integer getRIN();
 
@@ -55,11 +55,8 @@ public interface Submitter {
 
   public void setChangeDate(Date changeDate);
 
-/**
- * @return
- */
-public String getId();
-
-public void setId(String id);
+  public String getId();
+  
+  public void setId(String id);
 }
 

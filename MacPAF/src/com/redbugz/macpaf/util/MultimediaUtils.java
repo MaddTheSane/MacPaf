@@ -133,7 +133,7 @@ public class MultimediaUtils {
 			}
 			// lastly search the users home directory
 			File homeDir = new File(System.getProperty("user.home"));
-			file = recursiveFileSearch(homeDir, name);
+//			file = recursiveFileSearch(homeDir, name);
 		}
 		return file;
 	}

@@ -97,7 +97,7 @@ public class XMLTest {
 		  if (line.length() > 5) {
 			tag = line.substring(2, 6).trim();
 //                  content = line.substring(6);
-			content = trimLeadingWhitespace(line.substring(6));
+			content = StringUtils.trimLeadingWhitespace(line.substring(6));
 		  }
 		  Element newElem = (Element)new Element(tag).addContent(content);
 		  if (level > currLevel) {
@@ -166,38 +166,6 @@ public class XMLTest {
 	catch (IOException e) {
 	  log.error("Exception: ", e);
 	}
-  }
-
-  public static void testTrimLeadingWhitespace() {
-	log.debug("whitespace test:");
-	log.debug("|" + trimLeadingWhitespace(null) + "|");
-	log.debug("|" + trimLeadingWhitespace("") + "|");
-	log.debug("|" + trimLeadingWhitespace(" ") + "|");
-	log.debug("|" + trimLeadingWhitespace("A") + "|");
-	log.debug("|" + trimLeadingWhitespace(" A") + "|");
-	log.debug("|" + trimLeadingWhitespace("A ") + "|");
-	log.debug("|" + trimLeadingWhitespace("Lots of space at end         ") + "|");
-	log.debug("|" + trimLeadingWhitespace("     Lots of whitespace at beginning") + "|");
-	log.debug("|" + trimLeadingWhitespace("     Lots of whitespace at both ends        ") + "|");
-	log.debug("whitespace test done.");
-  }
-
-  private static String trimLeadingWhitespace(String s) {
-	if (s == null) {
-	  return null;
-	}
-	if (s.length() <= 1) {
-	  return s.trim();
-	}
-	// if last character is not whitespace, return s.trim()
-	if (!Character.isWhitespace(s.charAt(s.length() - 1))) {
-	  return s.trim();
-	}
-	int index = 0;
-	while (Character.isWhitespace(s.charAt(index))) {index++;
-	}
-	;
-	return s.substring(0, index).trim() + s.substring(index);
   }
 
   private static void debug(String message) {

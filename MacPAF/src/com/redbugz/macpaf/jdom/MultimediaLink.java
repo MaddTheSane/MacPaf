@@ -39,14 +39,16 @@ public class MultimediaLink implements Multimedia {
 	 * @see com.redbugz.macpaf.Multimedia#getId()
 	 */
 	public String getId() {
-		// TODO Auto-generated method stub
-		return getMultimedia().getId();
+		return id;
 	}
 
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Multimedia#setId(java.lang.String)
 	 */
 	public void setId(String id) {
+		if (id == null) {
+			id = "";
+		}
 		this.id = id;
 	}
 
@@ -54,7 +56,6 @@ public class MultimediaLink implements Multimedia {
 	 * @see com.redbugz.macpaf.Multimedia#getFormat()
 	 */
 	public String getFormat() {
-		// TODO Auto-generated method stub
 		return getMultimedia().getFormat();
 	}
 
@@ -62,15 +63,13 @@ public class MultimediaLink implements Multimedia {
 	 * @see com.redbugz.macpaf.Multimedia#setFormat(java.lang.String)
 	 */
 	public void setFormat(String format) {
-		// TODO Auto-generated method stub
-		
+		getMultimedia().setFormat(format);
 	}
 
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Multimedia#getTitle()
 	 */
 	public String getTitle() {
-		// TODO Auto-generated method stub
 		return getMultimedia().getTitle();
 	}
 
@@ -78,15 +77,13 @@ public class MultimediaLink implements Multimedia {
 	 * @see com.redbugz.macpaf.Multimedia#setTitle(java.lang.String)
 	 */
 	public void setTitle(String title) {
-		// TODO Auto-generated method stub
-		
+		getMultimedia().setTitle(title);
 	}
 
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Multimedia#getNotes()
 	 */
 	public List getNotes() {
-		// TODO Auto-generated method stub
 		return getMultimedia().getNotes();
 	}
 
@@ -94,15 +91,13 @@ public class MultimediaLink implements Multimedia {
 	 * @see com.redbugz.macpaf.Multimedia#setNotes(java.util.List)
 	 */
 	public void setNotes(List noteList) {
-		// TODO Auto-generated method stub
-		
+		getMultimedia().setNotes(noteList);
 	}
 
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Multimedia#getBytes()
 	 */
 	public byte[] getBytes() {
-		// TODO Auto-generated method stub
 		return getMultimedia().getBytes();
 	}
 
@@ -110,15 +105,13 @@ public class MultimediaLink implements Multimedia {
 	 * @see com.redbugz.macpaf.Multimedia#setBytes(byte[])
 	 */
 	public void setBytes(byte[] bytes) {
-		// TODO Auto-generated method stub
-		
+		getMultimedia().setBytes(bytes);
 	}
 
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Multimedia#getRIN()
 	 */
 	public Integer getRIN() {
-		// TODO Auto-generated method stub
 		return getMultimedia().getRIN();
 	}
 
@@ -126,15 +119,13 @@ public class MultimediaLink implements Multimedia {
 	 * @see com.redbugz.macpaf.Multimedia#setRIN(java.lang.Integer)
 	 */
 	public void setRIN(Integer rin) {
-		// TODO Auto-generated method stub
-		
+		getMultimedia().setRIN(rin);
 	}
 
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Multimedia#getChangeDate()
 	 */
 	public Date getChangeDate() {
-		// TODO Auto-generated method stub
 		return getMultimedia().getChangeDate();
 	}
 
@@ -142,8 +133,7 @@ public class MultimediaLink implements Multimedia {
 	 * @see com.redbugz.macpaf.Multimedia#setChangeDate(java.util.Date)
 	 */
 	public void setChangeDate(Date changeDate) {
-		// TODO Auto-generated method stub
-		
+		getMultimedia().setChangeDate(changeDate);
 	}
 
 	/* (non-Javadoc)
@@ -152,4 +142,5 @@ public class MultimediaLink implements Multimedia {
 	public boolean isImage() {
 		return getMultimedia().isImage();
 	}
+
 }

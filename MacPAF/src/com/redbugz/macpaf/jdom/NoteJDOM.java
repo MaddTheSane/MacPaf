@@ -27,12 +27,15 @@ public class NoteJDOM implements Note {
   Element element = new Element(NOTE);
   private static final String newLine = System.getProperty("line.separator");
 
-  public NoteJDOM(Element element) {
+  public NoteJDOM(Element element, MacPAFDocumentJDOM parentDocument) {
+  	if (parentDocument == null) {
+  		throw new IllegalArgumentException("Cannot create NoteJDOM with null parentDocument");
+  	}
 	if (element == null) {
-	  element = new Element(NOTE);
+  		throw new IllegalArgumentException("Cannot create NoteJDOM with null element");
 	}
 	this.element = element;
-	log.debug("MyNote() element=\n" + new XMLOutputter(Format.getPrettyFormat()).outputString(element));
+	log.debug("NoteJDOM() element=\n" + new XMLOutputter(Format.getPrettyFormat()).outputString(element));
 
 //      if (element != null) {
 //      String idStr = element.getAttributeValue("ID");
@@ -58,15 +61,15 @@ public class NoteJDOM implements Note {
 	log.debug("MyNote() text:" + getText());
   }
 
-  public NoteJDOM(Note oldNote) {
-	if (oldNote instanceof NoteJDOM) {
-	  this.element = ( (NoteJDOM) oldNote).getElement();
-	}
-  }
+//  public NoteJDOM(Note oldNote) {
+//	if (oldNote instanceof NoteJDOM) {
+//	  this.element = ( (NoteJDOM) oldNote).getElement();
+//	}
+//  }
 
-  public NoteJDOM() {
-	setText("This is an empty note.");
-  }
+//  public NoteJDOM() {
+//	setText("This is an empty note.");
+//  }
 
   public Element getElement() {
 	return element;

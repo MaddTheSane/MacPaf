@@ -1,8 +1,6 @@
 /*
  * Created on Nov 22, 2004
  *
- * TODO To change the template for this generated file go to
- * Window - Preferences - Java - Code Style - Code Templates
  */
 package com.redbugz.macpaf.jdom;
 
@@ -16,137 +14,144 @@ import com.redbugz.macpaf.Ordinance;
 /**
  * @author logan
  *
- * TODO To change the template for this generated type comment go to
- * Window - Preferences - Java - Code Style - Code Templates
  */
 public class FamilyLink implements Family {
+	private Family actualFamily = null;
+	private MacPAFDocumentJDOM document = null;
+	String id = "";
 
-	/* (non-Javadoc)
-	 * @see com.redbugz.macpaf.Family#getFather()
-	 */
-	public Individual getFather() {
-		// TODO Auto-generated method stub
-		return null;
+	FamilyLink(MacPAFDocumentJDOM doc) {
+		document = doc;
+	}
+	
+	FamilyLink(String id, MacPAFDocumentJDOM doc) {
+		this(doc);
+		setId(id);
 	}
 
-	/* (non-Javadoc)
-	 * @see com.redbugz.macpaf.Family#setFather(com.redbugz.macpaf.Individual)
+	/**
+	 * @return
 	 */
-	public void setFather(Individual father) {
-		// TODO Auto-generated method stub
-
-	}
-
-	/* (non-Javadoc)
-	 * @see com.redbugz.macpaf.Family#getMother()
-	 */
-	public Individual getMother() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/* (non-Javadoc)
-	 * @see com.redbugz.macpaf.Family#setMother(com.redbugz.macpaf.Individual)
-	 */
-	public void setMother(Individual mother) {
-		// TODO Auto-generated method stub
-
-	}
-
-	/* (non-Javadoc)
-	 * @see com.redbugz.macpaf.Family#getChildren()
-	 */
-	public List getChildren() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/* (non-Javadoc)
-	 * @see com.redbugz.macpaf.Family#setChildren(java.util.List)
-	 */
-	public void setChildren(List children) {
-		// TODO Auto-generated method stub
-
-	}
-
-	/* (non-Javadoc)
-	 * @see com.redbugz.macpaf.Family#addChild(com.redbugz.macpaf.Individual)
-	 */
-	public void addChild(Individual newChild) {
-		// TODO Auto-generated method stub
-
-	}
-
-	/* (non-Javadoc)
-	 * @see com.redbugz.macpaf.Family#addChildAtPosition(com.redbugz.macpaf.Individual, int)
-	 */
-	public void addChildAtPosition(Individual newChild, int position) {
-		// TODO Auto-generated method stub
-
-	}
-
-	/* (non-Javadoc)
-	 * @see com.redbugz.macpaf.Family#removeChildAtPosition(int)
-	 */
-	public void removeChildAtPosition(int position) {
-		// TODO Auto-generated method stub
-
-	}
-
-	/* (non-Javadoc)
-	 * @see com.redbugz.macpaf.Family#getSealingToSpouse()
-	 */
-	public Ordinance getSealingToSpouse() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	/* (non-Javadoc)
-	 * @see com.redbugz.macpaf.Family#setSealingToSpouse(com.redbugz.macpaf.Ordinance)
-	 */
-	public void setSealingToSpouse(Ordinance sealing) {
-		// TODO Auto-generated method stub
-
+	private Family getFamily() {
+		if (actualFamily == null) {
+			actualFamily = document.getFamily(id);
+		}
+		return actualFamily;
 	}
 
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Family#getId()
 	 */
 	public String getId() {
-		// TODO Auto-generated method stub
-		return null;
+		return id;
 	}
 
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Family#setId(java.lang.String)
 	 */
-	public void setId(String newId) {
-		// TODO Auto-generated method stub
+	public void setId(String id) {
+		if (id == null) {
+			id = "";
+		}
+		this.id = id;
+	}
 
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.Family#getFather()
+	 */
+	public Individual getFather() {
+		return getFamily().getFather();
+	}
+
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.Family#setFather(com.redbugz.macpaf.Individual)
+	 */
+	public void setFather(Individual father) {
+		getFamily().setFather(father);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.Family#getMother()
+	 */
+	public Individual getMother() {
+		return getFamily().getMother();
+	}
+
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.Family#setMother(com.redbugz.macpaf.Individual)
+	 */
+	public void setMother(Individual mother) {
+		getFamily().setMother(mother);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.Family#getChildren()
+	 */
+	public List getChildren() {
+		return getFamily().getChildren();
+	}
+
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.Family#setChildren(java.util.List)
+	 */
+	public void setChildren(List children) {
+		getFamily().setChildren(children);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.Family#addChild(com.redbugz.macpaf.Individual)
+	 */
+	public void addChild(Individual newChild) {
+		getFamily().addChild(newChild);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.Family#addChildAtPosition(com.redbugz.macpaf.Individual, int)
+	 */
+	public void addChildAtPosition(Individual newChild, int position) {
+		getFamily().addChildAtPosition(newChild, position);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.Family#removeChildAtPosition(int)
+	 */
+	public void removeChildAtPosition(int position) {
+		getFamily().removeChildAtPosition(position);
+	}
+
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.Family#getSealingToSpouse()
+	 */
+	public Ordinance getSealingToSpouse() {
+		return getFamily().getSealingToSpouse();
+	}
+
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.Family#setSealingToSpouse(com.redbugz.macpaf.Ordinance)
+	 */
+	public void setSealingToSpouse(Ordinance sealing) {
+		getFamily().setSealingToSpouse(sealing);
 	}
 
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Family#getRin()
 	 */
 	public int getRin() {
-		// TODO Auto-generated method stub
-		return 0;
+		return getFamily().getRin();
 	}
 
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Family#setRin(int)
 	 */
 	public void setRin(int newRin) {
-		// TODO Auto-generated method stub
-
+		getFamily().setRin(newRin);
 	}
 
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Family#getMarriageEvent()
 	 */
 	public Event getMarriageEvent() {
-		// TODO Auto-generated method stub
-		return null;
+		return getFamily().getMarriageEvent();
 	}
 
 }

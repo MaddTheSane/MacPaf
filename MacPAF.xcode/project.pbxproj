@@ -74,6 +74,29 @@
 			settings = {
 			};
 		};
+		0250C09B07AC858500AC3629 = {
+			children = (
+				0250C09C07AC858500AC3629,
+			);
+			isa = PBXGroup;
+			path = validation;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		0250C09C07AC858500AC3629 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = sourcecode.java;
+			path = UnknownGedcomLinkException.java;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		0250C09D07AC858500AC3629 = {
+			fileRef = 0250C09C07AC858500AC3629;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		025957D206FE4C61002B654B = {
 			fileEncoding = 4;
 			isa = PBXFileReference;
@@ -857,6 +880,7 @@
 				02B3D1A6077B11CF0069077B,
 				02B3D1A7077B11CF0069077B,
 				02B3D1B0077B11CF0069077B,
+				0250C09B07AC858500AC3629,
 			);
 			isa = PBXGroup;
 			path = macpaf;
@@ -2277,6 +2301,7 @@
 				02B3D1E8077B11CF0069077B,
 				02B3D1E9077B11CF0069077B,
 				024E77D00782F44800B7A2CC,
+				0250C09D07AC858500AC3629,
 			);
 			isa = PBXSourcesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;

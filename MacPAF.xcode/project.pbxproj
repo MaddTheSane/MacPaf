@@ -22,8 +22,8 @@
 		023701D7062056080087E765 = {
 			isa = PBXFileReference;
 			lastKnownFileType = archive.jar;
-			name = "log4j-1.2.8.jar";
-			path = "lib/log4j-1.2.8.jar";
+			name = "log4j-1.2.9.jar";
+			path = "lib/log4j-1.2.9.jar";
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2242,7 +2242,7 @@
 		<string>lib/saxpath.jar</string>
 		<string>lib/xerces.jar</string>
 		<string>lib/</string>
-		<string>lib/log4j-1.2.8.jar</string>
+		<string>lib/log4j-1.2.9.jar</string>
 		<string>lib/xalan.jar</string>
 		<string>lib/xml-apis.jar</string>
 	</array>

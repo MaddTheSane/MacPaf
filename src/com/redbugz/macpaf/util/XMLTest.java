@@ -15,7 +15,7 @@ import java.io.OutputStream;
 
 import javax.swing.tree.TreeNode;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 import org.jdom.Document;
 //import org.com.redbugz.macpaf.jdom.Parent;
 import org.jdom.Element;
@@ -30,7 +30,7 @@ import lee.gedcom.GEDParser;
 import lee.gedcom.GEDReader;
 
 public class XMLTest {
-  private static final Category log = Category.getInstance(XMLTest.class.getName());
+  private static final Logger log = Logger.getLogger(XMLTest.class);
 
   private static boolean debugging = false;
 

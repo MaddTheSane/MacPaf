@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 import org.jdom.Content;
 import org.jdom.Element;
 import org.jdom.Text;
@@ -27,7 +27,7 @@ import com.redbugz.macpaf.Submitter;
  * Window - Preferences - Java - Code Generation - Code and Comments
  */
 public class HeaderJDOM implements Header {
-  private static final Category log = Category.getInstance(HeaderJDOM.class.getName());
+  private static final Logger log = Logger.getLogger(HeaderJDOM.class);
   Element element = new Element(HEADER);
 
   public HeaderJDOM() {

@@ -6,7 +6,7 @@
 //  Copyright (c) 2002-2004 RedBugz Software. All rights reserved.
 //
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 import org.apache.xalan.processor.StopParseException;
 
 import com.apple.cocoa.application.*;
@@ -22,7 +22,7 @@ import com.redbugz.macpaf.util.MultimediaUtils;
 import com.redbugz.macpaf.util.StringUtils;
 
 public class IndividualEditController extends NSWindowController {
-  private static final Category log = Category.getInstance(IndividualEditController.class.getName());
+  private static final Logger log = Logger.getLogger(IndividualEditController.class);
 
   public NSTextField baptismDate; /* IBOutlet */
   public NSComboBox baptismTemple; /* IBOutlet */
@@ -53,7 +53,8 @@ public class IndividualEditController extends NSWindowController {
 //      NSApplication.sharedApplication().stopModal();
 //	NSApplication.sharedApplication().endSheet(window());
 //	window().orderOut(this);
-	NSApplication.sharedApplication().stopModalWithCode(0);
+//	NSApplication.sharedApplication().stopModalWithCode(0);
+  	NSApplication.sharedApplication().endSheet(window());
   }
   
   public void showWindow(Object o) {
@@ -102,7 +103,8 @@ public class IndividualEditController extends NSWindowController {
 	  // TODO Auto-generated catch block
 	  log.error("Exception: ", e);
 	}
-	NSApplication.sharedApplication().stopModalWithCode(0);
+//	NSApplication.sharedApplication().stopModalWithCode(0);
+	  NSApplication.sharedApplication().endSheet(window());
   }
 
   /**

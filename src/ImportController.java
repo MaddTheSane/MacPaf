@@ -6,7 +6,7 @@
 //  Copyright (c) 2002-2004 RedBugz Software. All rights reserved.
 //
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 import com.apple.cocoa.application.NSApplication;
 import com.apple.cocoa.application.NSDocument;
 import com.apple.cocoa.application.NSMatrix;
@@ -14,7 +14,7 @@ import com.apple.cocoa.application.NSWindowController;
 import com.redbugz.macpaf.Individual;
 
 public class ImportController extends NSWindowController {
-  private static final Category log = Category.getInstance(ImportController.class.getName());
+  private static final Logger log = Logger.getLogger(ImportController.class);
 
   public NSMatrix importRadio; /* IBOutlet */
   MyDocument doc;
@@ -25,7 +25,7 @@ public class ImportController extends NSWindowController {
   }
 
   public void cancel(Object sender) { /* IBAction */
-	NSApplication.sharedApplication().stopModal();
+//	NSApplication.sharedApplication().stopModal();
 	NSApplication.sharedApplication().endSheet(window());
 	window().orderOut(this);
   }
@@ -57,9 +57,9 @@ public class ImportController extends NSWindowController {
   public void openReportsSheet(Object sender) { /* IBAction */
 	NSApplication nsapp = NSApplication.sharedApplication();
 	nsapp.beginSheet(this.window(), this.window().parentWindow(), null, null, null);
-	nsapp.runModalForWindow(this.window());
-	nsapp.endSheet(this.window());
-	this.window().orderOut(this);
+//	nsapp.runModalForWindow(this.window());
+//	nsapp.endSheet(this.window());
+//	this.window().orderOut(this);
   }
 
   public void windowWillLoad() {

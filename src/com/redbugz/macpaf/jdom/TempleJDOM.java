@@ -1,6 +1,6 @@
 package com.redbugz.macpaf.jdom;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 import org.jdom.Element;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
@@ -11,7 +11,7 @@ import com.redbugz.macpaf.Temple;
  * change this template use Options | File Templates.
  */
 public class TempleJDOM extends Temple {
-  private static final Category log = Category.getInstance(TempleJDOM.class.getName());
+  private static final Logger log = Logger.getLogger(TempleJDOM.class);
   public static final String TEMPLE = "TEMP";
 
   Element element = new Element(TEMPLE);

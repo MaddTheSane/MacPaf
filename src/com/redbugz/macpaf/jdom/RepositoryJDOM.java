@@ -4,7 +4,7 @@
  */
 package com.redbugz.macpaf.jdom;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 import org.jdom.Element;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
@@ -16,7 +16,7 @@ import com.redbugz.macpaf.Repository;
  *
  */
 public class RepositoryJDOM implements Repository {
-	  private static final Category log = Category.getInstance(RepositoryJDOM.class.getName());
+	  private static final Logger log = Logger.getLogger(RepositoryJDOM.class);
 	  private static final String newLine = System.getProperty("line.separator");
 
 //	  private StringBuffer text = new StringBuffer();

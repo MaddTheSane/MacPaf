@@ -16,7 +16,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 import com.apple.cocoa.foundation.NSBundle;
 import com.redbugz.macpaf.test.MyEvent;
 import com.redbugz.macpaf.test.MyMultimedia;
@@ -151,7 +151,7 @@ public interface Individual {
   public List getEvents();
 
   static public class UnknownIndividual implements Individual {
-	private static final Category log = Category.getInstance(UnknownIndividual.class.getName());
+	private static final Logger log = Logger.getLogger(UnknownIndividual.class);
 	public String getGivenNames() {
 	  return "";
 	}

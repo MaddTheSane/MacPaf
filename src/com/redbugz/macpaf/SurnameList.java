@@ -10,11 +10,11 @@ package com.redbugz.macpaf;
 
 import java.util.Vector;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 import com.apple.cocoa.application.NSComboBox;
 
 public class SurnameList implements NSComboBox.DataSource {
-  private static final Category log = Category.getInstance(SurnameList.class.getName());
+  private static final Logger log = Logger.getLogger(SurnameList.class);
   private Vector surnames = new Vector();
   private static SurnameList instance = null;
 

@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 import org.jdom.Element;
 import org.jdom.JDOMException;
 import org.jdom.output.Format;
@@ -20,7 +20,7 @@ import com.redbugz.macpaf.Note;
  * To change this template use Options | File Templates.
  */
 public class NoteJDOM implements Note {
-  private static final Category log = Category.getInstance(NoteJDOM.class.getName());
+  private static final Logger log = Logger.getLogger(NoteJDOM.class);
 
 //   private String id = "";
 //   private StringBuffer text = new StringBuffer();

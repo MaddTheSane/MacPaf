@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 import org.jdom.Element;
 import org.jdom.JDOMException;
 import org.jdom.output.Format;
@@ -26,7 +26,7 @@ import com.redbugz.macpaf.Source;
  * Window - Preferences - Java - Code Style - Code Templates
  */
 public class SourceJDOM implements Source {
-	  private static final Category log = Category.getInstance(SourceJDOM.class.getName());
+	  private static final Logger log = Logger.getLogger(SourceJDOM.class);
 
 	   private String id = "";
 	   private StringBuffer text = new StringBuffer();

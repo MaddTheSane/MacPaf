@@ -13,7 +13,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Vector;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 import org.exolab.castor.mapping.Mapping;
 import org.exolab.castor.xml.Unmarshaller;
 import org.xml.sax.InputSource;
@@ -21,7 +21,7 @@ import com.apple.cocoa.application.NSComboBox;
 import com.apple.cocoa.foundation.NSBundle;
 
 public class LocationList implements NSComboBox.DataSource {
-  private static final Category log = Category.getInstance(LocationList.class.getName());
+  private static final Logger log = Logger.getLogger(LocationList.class);
   private String[] templeStrings = {"Location 1", "Location 2", "Orem", "Provo, Utah, Utah, USA", "OTHER"};
   private Vector temples = new Vector();
   private static LocationList instance;

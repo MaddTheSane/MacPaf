@@ -11,11 +11,11 @@ package com.redbugz.macpaf;
 import java.util.Iterator;
 import java.util.Vector;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 import com.apple.cocoa.application.NSComboBox;
 
 public class TempleXML implements NSComboBox.DataSource {
-  private static final Category log = Category.getInstance(TempleXML.class.getName());
+  private static final Logger log = Logger.getLogger(TempleXML.class);
   private String[] templeStrings = {"SLAKE", "MTIMP", "SGEORG", "NAUVO", "OTHER"};
   private Vector temples = new Vector();
   private static TempleXML instance;

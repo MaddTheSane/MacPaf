@@ -1,6 +1,6 @@
 package com.redbugz.macpaf.jdom;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 import org.jdom.Element;
 import com.redbugz.macpaf.Ordinance;
 import com.redbugz.macpaf.Temple;
@@ -13,7 +13,7 @@ import com.redbugz.macpaf.Temple;
  * To change this template use Options | File Templates.
  */
 public class OrdinanceJDOM extends EventJDOM implements Ordinance {
-  private static final Category log = Category.getInstance(OrdinanceJDOM.class.getName());
+  private static final Logger log = Logger.getLogger(OrdinanceJDOM.class);
   public static final String LDS_BAPTISM = "BAPL";
   public static final String LDS_CONFIRMATION = "CONL";
   public static final String LDS_ENDOWMENT = "ENDL";

@@ -19,10 +19,10 @@ import com.redbugz.macpaf.jdom.PlaceJDOM;
 import com.redbugz.macpaf.test.TestFamily;
 import com.redbugz.macpaf.util.CocoaUtils;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 
 public class FamilyEditController extends NSWindowController {
-  private static final Category log = Category.getInstance(FamilyEditController.class.getName());
+  private static final Logger log = Logger.getLogger(FamilyEditController.class);
 
   public NSTableView children; /* IBOutlet */
   public NSButton divorcedSwitch; /* IBOutlet */
@@ -181,7 +181,7 @@ public class FamilyEditController extends NSWindowController {
 	  family.getMarriageEvent().setPlace(new PlaceJDOM(marriageForm.cellAtIndex(1).stringValue()));
 	  family.getSealingToSpouse().setDateString(sealingDate.stringValue());
 	  family.getSealingToSpouse().setTemple(CocoaUtils.templeForComboBox(sealingTemple));
-	  NSApplication.sharedApplication().stopModal();
+//	  NSApplication.sharedApplication().stopModal();
 	  NSApplication.sharedApplication().endSheet(window());
 	  window().orderOut(this);
 	}

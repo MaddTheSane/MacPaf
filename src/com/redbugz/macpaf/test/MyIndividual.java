@@ -8,7 +8,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 import org.jdom.Element;
 import com.apple.cocoa.foundation.NSBundle;
 import com.redbugz.macpaf.Event;
@@ -28,7 +28,7 @@ import com.redbugz.macpaf.Individual.UnknownIndividual;
  * To change this template use Options | File Templates.
  */
 public class MyIndividual implements Individual, Cloneable {
-  private static final Category log = Category.getInstance(MyIndividual.class.getName());
+  private static final Logger log = Logger.getLogger(MyIndividual.class);
   String givens = "", surname = "", title = "";
   Gender gender = Gender.MALE;
   protected Family familyAsChild = new TestFamily();

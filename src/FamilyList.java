@@ -2,7 +2,7 @@
 
 import java.util.*;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 import com.apple.cocoa.application.NSTableColumn;
 import com.apple.cocoa.application.NSTableView;
 import com.apple.cocoa.foundation.NSNotification;
@@ -10,7 +10,7 @@ import com.redbugz.macpaf.Family;
 import java.util.List;
 
 public class FamilyList extends AbstractMap {
-  private static final Category log = Category.getInstance(FamilyList.class.getName());
+  private static final Logger log = Logger.getLogger(FamilyList.class);
 
   public MyDocument document; /* IBOutlet */
   private Family selectedFamily = null;

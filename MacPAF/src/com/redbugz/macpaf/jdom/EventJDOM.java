@@ -6,7 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 import org.jdom.Element;
 import com.redbugz.macpaf.Event;
 import com.redbugz.macpaf.Family;
@@ -20,7 +20,7 @@ import com.redbugz.macpaf.Place;
  * To change this template use Options | File Templates.
  */
 public class EventJDOM implements Event {
-  private static final Category log = Category.getInstance(EventJDOM.class.getName());
+  private static final Logger log = Logger.getLogger(EventJDOM.class);
   private Date date = new GregorianCalendar(2000, 6, 23).getTime();
   private String dateString = "";
   private Place place = new PlaceJDOM();

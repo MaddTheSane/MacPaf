@@ -10,7 +10,7 @@ import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 import org.jdom.Content;
 import org.jdom.Document;
 import org.jdom.Element;
@@ -31,7 +31,7 @@ import com.redbugz.macpaf.util.XMLTest;
 import com.redbugz.macpaf.validation.UnknownGedcomLinkException;
 
 public class MacPAFDocumentJDOM extends Observable implements Observer {
-	private static final Category log = Category.getInstance(MacPAFDocumentJDOM.class.getName());
+	private static final Logger log = Logger.getLogger(MacPAFDocumentJDOM.class);
 
 	/**
 	 * This is the main jdom document that holds all of the data

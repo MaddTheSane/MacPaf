@@ -6,7 +6,7 @@
 //  Copyright (c) 2002-2004 RedBugz Software. All rights reserved.
 //
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 import com.apple.cocoa.application.NSApplication;
 import com.apple.cocoa.application.NSDocumentController;
 import com.apple.cocoa.application.NSPanel;
@@ -19,7 +19,7 @@ public class ApplicationUtilities {
   public NSPanel splashScreen; /* IBOutlet */
   public NSProgressIndicator progress; /* IBOutlet */
   public static boolean didFinish = false;
-  private static final Category log = Category.getInstance(ApplicationUtilities.class.getName());
+  private static final Logger log = Logger.getLogger(ApplicationUtilities.class);
 
   public void applicationWillFinishLaunching(NSNotification aNotification) {
 	log.debug("applicationWillFinishLaunching:" + aNotification);

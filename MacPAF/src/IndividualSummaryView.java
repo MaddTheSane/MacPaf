@@ -6,7 +6,7 @@
 //  Copyright (c) 2002-2004 RedBugz Software. All rights reserved.
 //
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 import com.apple.cocoa.application.NSGraphics;
 import com.apple.cocoa.application.NSView;
 import com.apple.cocoa.foundation.NSAttributedString;
@@ -15,7 +15,7 @@ import com.apple.cocoa.foundation.NSRect;
 import com.redbugz.macpaf.Individual;
 
 public class IndividualSummaryView extends NSView {
-  private static final Category log = Category.getInstance(IndividualSummaryView.class.getName());
+  private static final Logger log = Logger.getLogger(IndividualSummaryView.class);
   private Individual individual;
 
   public IndividualSummaryView(NSRect frame, Individual individual) {

@@ -1,5 +1,5 @@
 /* IndividualDetailController */
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 import com.apple.cocoa.application.*;
 import com.apple.cocoa.foundation.NSObject;
 import com.redbugz.macpaf.Event;
@@ -15,7 +15,7 @@ import com.redbugz.macpaf.Individual;
  */
 
 public class IndividualDetailController extends NSObject {
-  private static final Category log = Category.getInstance(IndividualDetailController.class.getName());
+  private static final Logger log = Logger.getLogger(IndividualDetailController.class);
   private static final String newLine = System.getProperty("line.separator");
 
   Individual individual = Individual.UNKNOWN;

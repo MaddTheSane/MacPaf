@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 import com.apple.cocoa.application.NSTableColumn;
 import com.apple.cocoa.application.NSTableView;
 import com.apple.cocoa.foundation.NSNotification;
@@ -22,7 +22,7 @@ import java.util.List;
  * @see NSTableView.Notifications
  */
 public class IndividualList extends AbstractMap {
-  private static final Category log = Category.getInstance(IndividualList.class.getName());
+  private static final Logger log = Logger.getLogger(IndividualList.class);
 
   public MyDocument document; /* IBOutlet */
   private Individual selectedIndividual; // = null;

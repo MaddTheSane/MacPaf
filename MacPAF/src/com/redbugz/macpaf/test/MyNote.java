@@ -2,7 +2,7 @@ package com.redbugz.macpaf.test;
 
 import java.util.List;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 import org.jdom.Element;
 
 import com.redbugz.macpaf.Note;
@@ -15,7 +15,7 @@ import com.redbugz.macpaf.Note;
  * To change this template use Options | File Templates.
  */
 public class MyNote implements Note {
-  private static final Category log = Category.getInstance(MyNote.class.getName());
+  private static final Logger log = Logger.getLogger(MyNote.class);
   private String id = "";
   private StringBuffer text = new StringBuffer();
 

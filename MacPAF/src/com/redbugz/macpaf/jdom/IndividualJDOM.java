@@ -9,7 +9,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 import org.jdom.Element;
 import org.jdom.JDOMException;
 import org.jdom.Text;
@@ -38,7 +38,7 @@ import com.redbugz.macpaf.Ordinance;
  * Time: 3:29:46 PM
  */
 public class IndividualJDOM implements Individual, Cloneable {
-  private static final Category log = Category.getInstance(IndividualJDOM.class.getName());
+  private static final Logger log = Logger.getLogger(IndividualJDOM.class);
   private static final String REF = "REF";
   public static final String INDIVIDUAL = "INDI";
   public static final String RESTRICTION = "RESN";

@@ -8,7 +8,7 @@ package com.redbugz.macpaf.util;
 //  Copyright 2005 __MyCompanyName__. All rights reserved.
 //
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 
 import com.apple.cocoa.foundation.*;
 import com.apple.cocoa.application.*;
@@ -18,7 +18,7 @@ import com.redbugz.macpaf.jdom.TempleJDOM;
 
 
 public class CocoaUtils {
-	  private static final Category log = Category.getInstance(CocoaUtils.class.getName());
+	  private static final Logger log = Logger.getLogger(CocoaUtils.class);
 
 	/**
 	   * @param comboBox

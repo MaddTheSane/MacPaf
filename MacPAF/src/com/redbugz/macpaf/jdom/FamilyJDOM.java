@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 //import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.JDOMException;
@@ -22,7 +22,7 @@ import com.redbugz.macpaf.Ordinance;
  * change this template use Options | File Templates.
  */
 public class FamilyJDOM implements Family {
-  private static final Category log = Category.getInstance(FamilyJDOM.class.getName());
+  private static final Logger log = Logger.getLogger(FamilyJDOM.class);
 
   //   Individual dad, mom;
   //   List children = new ArrayList();

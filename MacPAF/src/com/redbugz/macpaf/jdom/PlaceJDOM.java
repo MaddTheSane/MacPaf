@@ -2,7 +2,7 @@ package com.redbugz.macpaf.jdom;
 
 import java.util.StringTokenizer;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 import org.jdom.Element;
 import com.redbugz.macpaf.Place;
 import java.util.Map;
@@ -16,7 +16,7 @@ import java.util.HashMap;
  * To change this template use Options | File Templates.
  */
 public class PlaceJDOM implements Place {
-  private static final Category log = Category.getInstance(PlaceJDOM.class.getName());
+  private static final Logger log = Logger.getLogger(PlaceJDOM.class);
   public static final String PLACE = "PLAC";
 
   private static final Map stateAbbreviations = new HashMap(60);

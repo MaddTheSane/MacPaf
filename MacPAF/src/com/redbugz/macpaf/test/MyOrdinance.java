@@ -1,6 +1,6 @@
 package com.redbugz.macpaf.test;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 import org.jdom.Element;
 
 import com.redbugz.macpaf.Ordinance;
@@ -15,7 +15,7 @@ import com.redbugz.macpaf.TempleList;
  * To change this template use Options | File Templates.
  */
 public class MyOrdinance extends MyEvent implements Ordinance {
-  private static final Category log = Category.getInstance(MyOrdinance.class.getName());
+  private static final Logger log = Logger.getLogger(MyOrdinance.class);
   String status = "Incomplete";
   private Temple temple = new Temple();
 

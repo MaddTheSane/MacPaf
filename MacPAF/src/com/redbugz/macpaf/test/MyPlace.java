@@ -2,7 +2,7 @@ package com.redbugz.macpaf.test;
 
 import java.util.StringTokenizer;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 import org.jdom.Element;
 
 import com.redbugz.macpaf.Place;
@@ -15,7 +15,7 @@ import com.redbugz.macpaf.Place;
  * To change this template use Options | File Templates.
  */
 public class MyPlace implements Place {
-  private static final Category log = Category.getInstance(MyPlace.class.getName());
+  private static final Logger log = Logger.getLogger(MyPlace.class);
   protected String level1 = "";
   protected String level2 = "";
   protected String level3 = "";

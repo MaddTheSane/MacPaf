@@ -10,7 +10,7 @@ import java.util.GregorianCalendar;
 import java.util.Iterator;
 import java.util.List;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 import com.apple.cocoa.application.*;
 import com.apple.cocoa.foundation.*;
 import com.redbugz.macpaf.*;
@@ -19,7 +19,7 @@ import com.redbugz.macpaf.test.MyIndividual;
 import com.redbugz.macpaf.test.MyOrdinance;
 
 public class FamilyGroupSheetView extends NSView {
-  private static final Category log = Category.getInstance(FamilyGroupSheetView.class.getName());
+  private static final Logger log = Logger.getLogger(FamilyGroupSheetView.class);
 
 //   private NSMutableAttributedString nameText;
   private Individual individual;

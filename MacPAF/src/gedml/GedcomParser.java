@@ -6,7 +6,7 @@ import java.net.URL;
 import java.util.Locale;
 import java.util.Stack;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 import org.xml.sax.*;
 import org.xml.sax.ContentHandler;
 import org.xml.sax.helpers.AttributesImpl;
@@ -27,7 +27,7 @@ import com.redbugz.macpaf.util.StringUtils;
  */
 
 public class GedcomParser implements XMLReader, Locator {
-  private static final Category log = Category.getInstance(GedcomParser.class.getName());
+  private static final Logger log = Logger.getLogger(GedcomParser.class);
 
   private ContentHandler contentHandler;
   private ErrorHandler errorHandler;

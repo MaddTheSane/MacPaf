@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 
 import com.redbugz.macpaf.Event;
 import com.redbugz.macpaf.Family;
@@ -27,7 +27,7 @@ public class TestFamily implements Family, Cloneable {
   Date weddingDate;
   private String id;
   private Event marriageEvent = new MyEvent();
-  private static final Category log = Category.getInstance(TestFamily.class.getName());
+  private static final Logger log = Logger.getLogger(TestFamily.class);
 
   public TestFamily(Individual dad, Individual mom, Individual[] children, Date weddingDate) {
 	log.debug("fam constr dad=" + dad + " mom=" + mom + " children=" + children + " date=" + weddingDate);

@@ -16,7 +16,7 @@ import java.util.Enumeration;
 import java.util.Observable;
 import java.util.Observer;
 
-import org.apache.log4j.Category;
+import org.apache.log4j.Logger;
 import com.apple.cocoa.application.*;
 import com.apple.cocoa.foundation.*;
 import com.redbugz.macpaf.Family;
@@ -36,7 +36,7 @@ import com.redbugz.macpaf.util.MultimediaUtils;
 */
 
 public class MyDocument extends NSDocument implements Observer {
-  private static final Category log = Category.getInstance(MyDocument.class.getName());
+  private static final Logger log = Logger.getLogger(MyDocument.class);
 
   {
 //  	Tests.testBase64();

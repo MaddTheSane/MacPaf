@@ -12,10 +12,10 @@ import com.redbugz.macpaf.Individual;
 import org.apache.log4j.Category;
 import com.redbugz.macpaf.Ordinance;
 import com.redbugz.macpaf.Event;
-import com.redbugz.macpaf.MyEvent;
 import com.redbugz.macpaf.Gender;
 import com.apple.cocoa.application.NSFont;
 import com.redbugz.macpaf.Place;
+import com.redbugz.macpaf.test.MyEvent;
 
 
 public class PocketPedigreeView extends NSView {

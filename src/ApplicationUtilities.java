@@ -23,6 +23,7 @@ public class ApplicationUtilities {
 
   public void applicationWillFinishLaunching(NSNotification aNotification) {
 	log.debug("applicationWillFinishLaunching:" + aNotification);
+	  System.out.println("java.version:"+System.getProperty("java.version"));
 	if (progress != null) {
 	  progress.startAnimation(this);
 	}

@@ -12,8 +12,8 @@ import com.apple.cocoa.foundation.*;
 import com.redbugz.macpaf.Event;
 import com.redbugz.macpaf.Gender;
 import com.redbugz.macpaf.Individual;
-import com.redbugz.macpaf.MyEvent;
 import com.redbugz.macpaf.Ordinance;
+import com.redbugz.macpaf.test.MyEvent;
 
 public class PedigreeView extends NSView {
   private static final Category log = Category.getInstance(PedigreeView.class.getName());

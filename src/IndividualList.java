@@ -11,6 +11,7 @@ import com.apple.cocoa.application.NSTableColumn;
 import com.apple.cocoa.application.NSTableView;
 import com.apple.cocoa.foundation.NSNotification;
 import com.redbugz.macpaf.Individual;
+import java.util.List;
 
 /**
 * Provides a data source for the NSTableView displaying the list of Individuals in the file
@@ -25,7 +26,7 @@ public class IndividualList extends AbstractMap {
 
   public MyDocument document; /* IBOutlet */
   private Individual selectedIndividual; // = null;
-  private ArrayList individuals = new ArrayList();
+//  private List individuals = new ArrayList();
   private Map individualMap = new HashMap();
 
   public IndividualList() {
@@ -35,8 +36,8 @@ public class IndividualList extends AbstractMap {
 
   public Individual getSelectedIndividual() {
 	if (selectedIndividual == null) {
-	  if (individuals.size() > 0) {
-		selectedIndividual = (Individual) individuals.get(0);
+	  if (individualMap.size() > 0) {
+		selectedIndividual = (Individual) individualMap.values().toArray()[0];
 	  } else {
 		selectedIndividual = Individual.UNKNOWN;
 }
@@ -60,7 +61,7 @@ public class IndividualList extends AbstractMap {
 	  NSTableColumn nsTableColumn,
 	  int i) {
 	try {
-	  Individual individual = (Individual) individuals.get(i);
+	  Individual individual = (Individual) individualMap.values().toArray()[i];
 	  if (nsTableColumn.headerCell().stringValue().equals("ID")) {
 		return individual.getId();
 	  }
@@ -100,7 +101,7 @@ public class IndividualList extends AbstractMap {
 		individual.setId(findValidKey());
 	  }
 	}
-	return (individuals.add(individual) && individualMap.put(individual.getId(), individual) != null);
+	return (/*individuals.add(individual) && */individualMap.put(individual.getId(), individual) != null);
   }
 
   private String findValidKey() {
@@ -115,7 +116,7 @@ public class IndividualList extends AbstractMap {
   }
 
   public void remove(Individual individual) {
-	individuals.remove(individual);
+//	individuals.remove(individual);
 	individualMap.remove(individual.getId());
   }
 
@@ -127,7 +128,7 @@ public class IndividualList extends AbstractMap {
 		"IndividualList tableViewSelectionDidChange():" + aNotification);
 	NSTableView nsTableView = (NSTableView) aNotification.object();
 	selectedIndividual =
-		(Individual) individuals.get(nsTableView.selectedRow());
+		(Individual) individualMap.values().toArray()[nsTableView.selectedRow()];
 	document.setIndividual(this);
   }
 
@@ -155,11 +156,15 @@ public class IndividualList extends AbstractMap {
    * @return Individual
    */
   public Individual getFirstIndividual() {
-	if (individuals != null && individuals.size() > 0) {
-	  return (Individual) individuals.get(0);
+	if (individualMap != null && individualMap.size() > 0) {
+	  return (Individual) individualMap.values().toArray()[0];
 	} else {
 	  return Individual.UNKNOWN;
 }
+  }
+  public void setIndividualMap(Map individualMap) {
+    this.individualMap = individualMap;
+//	individuals = new ArrayList(individualMap.values());
   }
 
   public static class DuplicateKeyException extends Exception {

@@ -1,33 +1,30 @@
 /* FamilyList */
 
-import java.util.ArrayList;
+import java.util.*;
 
 import org.apache.log4j.Category;
 import com.apple.cocoa.application.NSTableColumn;
 import com.apple.cocoa.application.NSTableView;
 import com.apple.cocoa.foundation.NSNotification;
 import com.redbugz.macpaf.Family;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.AbstractMap;
-import java.util.Set;
+import java.util.List;
 
 public class FamilyList extends AbstractMap {
   private static final Category log = Category.getInstance(FamilyList.class.getName());
 
   public MyDocument document; /* IBOutlet */
   private Family selectedFamily = null;
-  private ArrayList families;
+//  private List families;
   private Map familyMap;
   long ts;
 
   public FamilyList() {
 	System.out.println("FamilyList.FamilyList()");
-	if (families == null) {
-	  families = new ArrayList();
+//	if (families == null) {
+//	  families = new ArrayList();
 	  selectedFamily = null;
 	  ts = System.currentTimeMillis();
-	}
+//	}
 	if (familyMap == null) {
 	  familyMap = new HashMap();
 }
@@ -39,13 +36,13 @@ public class FamilyList extends AbstractMap {
 
   public int numberOfRowsInTableView(NSTableView nsTableView) {
 	System.out.println("FamilyList.numberOfRowsInTableView(nsTableView) famList:"+this);
-	return families.size();
+	return familyMap.size();
   }
 
   public Object tableViewObjectValueForLocation(NSTableView nsTableView, NSTableColumn nsTableColumn, int i) {
 	try {
 	  System.out.println("FamilyList.tableViewObjectValueForLocation(nsTableView, nsTableColumn, i) famList:"+this);
-	  Family family = (Family) families.get(i);
+	  Family family = (Family) familyMap.values().toArray()[i];
 	  if (nsTableColumn.headerCell().stringValue().equals("ID")) {
 		return family.getId();
 	  }
@@ -81,13 +78,13 @@ public class FamilyList extends AbstractMap {
 		family.setId(findValidKey());
 	  }
 	}
-	return (families.add(family) && familyMap.put(family.getId(), family) != null);
+	return (/*families.add(family) && */familyMap.put(family.getId(), family) != null);
   }
 
   public void tableViewSelectionDidChange(NSNotification aNotification) {
 	log.debug("FamilyList tableViewSelectionDidChange():" + aNotification);
 	NSTableView nsTableView = (NSTableView) aNotification.object();
-	selectedFamily = (Family) families.get(nsTableView.selectedRow());
+	selectedFamily = (Family) familyMap.values().toArray()[nsTableView.selectedRow()];
 	nsTableView.reloadData();
 	document.setIndividual(this);
   }
@@ -138,6 +135,10 @@ public class FamilyList extends AbstractMap {
    * @todo Implement this java.lang.Object method
    */
   public String toString() {
-	return ts+":"+families.size()+":"+familyMap.size();
+	return ts+":"+familyMap.size(); //":"+families.size()+
+  }
+  public void setFamilyMap(Map familyMap) {
+    this.familyMap = familyMap;
+//	families = new ArrayList( familyMap.values() );
   }
 }

@@ -28,7 +28,7 @@ public class SubmissionJDOM implements Submission {
    */
   public Submitter getSubmitter() {
 	// TODO Auto-generated method stub
-	return null;
+	return new SubmitterJDOM();
   }
 
   /* (non-Javadoc)
@@ -36,7 +36,7 @@ public class SubmissionJDOM implements Submission {
    */
   public String getFamilyFile() {
 	// TODO Auto-generated method stub
-	return null;
+	return "";
   }
 
   /* (non-Javadoc)
@@ -44,7 +44,7 @@ public class SubmissionJDOM implements Submission {
    */
   public String getTempleCode() {
 	// TODO Auto-generated method stub
-	return null;
+	return "";
   }
 
   /* (non-Javadoc)
@@ -52,7 +52,7 @@ public class SubmissionJDOM implements Submission {
    */
   public Integer getAncestorsGenerations() {
 	// TODO Auto-generated method stub
-	return null;
+	return new Integer(0);
   }
 
   /* (non-Javadoc)
@@ -60,7 +60,7 @@ public class SubmissionJDOM implements Submission {
    */
   public Integer getDescendantsGenerations() {
 	// TODO Auto-generated method stub
-	return null;
+	return new Integer(0);
   }
 
   /* (non-Javadoc)
@@ -68,7 +68,7 @@ public class SubmissionJDOM implements Submission {
    */
   public Boolean getOrdinanceProcessFlag() {
 	// TODO Auto-generated method stub
-	return null;
+	return Boolean.FALSE;
   }
 
   /* (non-Javadoc)
@@ -76,7 +76,7 @@ public class SubmissionJDOM implements Submission {
    */
   public Integer getRIN() {
 	// TODO Auto-generated method stub
-	return null;
+	return new Integer(0);
   }
 
 }

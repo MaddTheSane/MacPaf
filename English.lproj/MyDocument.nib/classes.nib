@@ -30,6 +30,11 @@
             OUTLETS = {document = MyDocument; }; 
             SUPERCLASS = "java.lang.Object"; 
         }, 
+        {
+            CLASS = FamilyListController; 
+            LANGUAGE = Java; 
+            SUPERCLASS = NSWindowController; 
+        }, 
         {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
         {
             CLASS = IndividualDetailController; 
@@ -78,6 +83,13 @@
             SUPERCLASS = "java.lang.Object"; 
         }, 
         {
+            ACTIONS = {search = id; selectIndividual = id; }; 
+            CLASS = IndividualListController; 
+            LANGUAGE = Java; 
+            OUTLETS = {individualListTableView = NSTableView; }; 
+            SUPERCLASS = NSWindowController; 
+        }, 
+        {
             ACTIONS = {
                 cancel = id; 
                 closeFamilyEditSheet = id; 
@@ -98,6 +110,7 @@
                 familyEditWindow = NSWindow; 
                 familyList = FamilyList; 
                 familyListTableView = NSTableView; 
+                familyListWindow = NSWindow; 
                 fatherButton = NSButton; 
                 individualButton = NSButton; 
                 individualDetailController = IndividualDetailController; 
@@ -105,6 +118,7 @@
                 individualFamilyButton = NSButton; 
                 individualList = IndividualList; 
                 individualListTableView = NSTableView; 
+                individualListWindow = NSWindow; 
                 maternalGrandfatherButton = NSButton; 
                 maternalGrandmotherButton = NSButton; 
                 motherButton = NSButton; 
@@ -142,6 +156,12 @@
             LANGUAGE = Java; 
             OUTLETS = {reportsRadio = NSMatrix; }; 
             SUPERCLASS = NSWindowController; 
+        }, 
+        {
+            CLASS = SortableTableViewController; 
+            LANGUAGE = Java; 
+            OUTLETS = {dataSource = "NSTableView.DataSource"; tableView = NSTableView; }; 
+            SUPERCLASS = NSObject; 
         }, 
         {
             CLASS = "com.apple.cocoa.foundation.NSGregorianDateFormatter"; 

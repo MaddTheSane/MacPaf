@@ -1,3 +1,4 @@
+package com.redbugz.macpaf.util;
 //
 //  XMLTest.java
 //  Redwood

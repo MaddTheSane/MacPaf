@@ -16,6 +16,16 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>CocoaFoundation</name>
+			<type>2</type>
+			<location>/System/Library/Java</location>
+		</link>
+		<link>
+			<name>CocoaAppKit</name>
+			<type>2</type>
+			<location>/System/Library/Java</location>
+		</link>
+		<link>
 			<name>CocoaLib</name>
 			<type>2</type>
 			<location>/System/Library/Java</location>

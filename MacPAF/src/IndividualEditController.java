@@ -16,6 +16,7 @@ import com.redbugz.macpaf.Temple;
 import com.redbugz.macpaf.jdom.PlaceJDOM;
 import com.redbugz.macpaf.jdom.TempleJDOM;
 import com.redbugz.macpaf.util.MultimediaUtils;
+import com.redbugz.macpaf.util.StringUtils;
 
 public class IndividualEditController extends NSWindowController {
   private static final Category log = Category.getInstance(IndividualEditController.class.getName());
@@ -129,7 +130,10 @@ public class IndividualEditController extends NSWindowController {
    * @return
    */
   private boolean validate() {
-	// TODO Auto-generated method stub
+  	if (StringUtils.isEmpty(""+surname.stringValue()+givenNames.stringValue()+suffix.stringValue())) {
+  		MyDocument.showUserErrorMessage("Please enter at least one name.", "For this Individual to be saved, at least one name (Given, Middle, or Surname) must be entered.");
+  		return false;
+  	}
 	return true;
   }
 

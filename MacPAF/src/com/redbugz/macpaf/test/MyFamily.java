@@ -10,8 +10,6 @@ import org.apache.log4j.Category;
 import com.redbugz.macpaf.Event;
 import com.redbugz.macpaf.Family;
 import com.redbugz.macpaf.Individual;
-import com.redbugz.macpaf.MyEvent;
-import com.redbugz.macpaf.MyOrdinance;
 import com.redbugz.macpaf.Ordinance;
 import com.redbugz.macpaf.Individual.UnknownFemaleIndividual;
 import com.redbugz.macpaf.Individual.UnknownMaleIndividual;

@@ -173,35 +173,35 @@ public interface Individual {
 	}
 
 	public Event getBirthEvent() {
-	  return new MyEvent();
+	  return Event.UNKNOWN_EVENT;
 	}
 
 	public Event getChristeningEvent() {
-	  return new MyEvent();
+	  return Event.UNKNOWN_EVENT;
 	}
 
 	public Event getDeathEvent() {
-	  return new MyEvent();
+	  return Event.UNKNOWN_EVENT;
 	}
 
 	public Event getBurialEvent() {
-	  return new MyEvent();
+	  return Event.UNKNOWN_EVENT;
 	}
 
 	public Ordinance getLDSBaptism() {
-	  return new MyOrdinance();
+	  return Ordinance.UNKNOWN_ORDINANCE;
 	}
 
 	public Ordinance getLDSConfirmation() {
-	  return new MyOrdinance();
+	  return Ordinance.UNKNOWN_ORDINANCE;
 	}
 
 	public Ordinance getLDSEndowment() {
-	  return new MyOrdinance();
+	  return Ordinance.UNKNOWN_ORDINANCE;
 	}
 
 	public Ordinance getLDSSealingToParents() {
-	  return new MyOrdinance();
+	  return Ordinance.UNKNOWN_ORDINANCE;
 	}
 
 	public boolean childrensOrdinancesAreCompleted() {
@@ -250,11 +250,11 @@ public interface Individual {
 	}
 
 	public Family getFamilyAsChild() {
-	  return new TestFamily();
+	  return Family.UNKNOWN_FAMILY;
 	}
 
 	public Family getFamilyAsSpouse() {
-	  return new TestFamily();
+	  return Family.UNKNOWN_FAMILY;
 	}
 
 	public void setFamilyAsSpouse(Family fam) {

@@ -1,4 +1,5 @@
 package com.redbugz.macpaf;
+
 /**
  * Created by IntelliJ IDEA.
  * User: logan
@@ -13,6 +14,7 @@ public interface Note {
   public static final String ID = "ID";
   public static final String REF = "REF";
 
-   public String getId();
-   public String getText();
+  public String getId();
+
+  public String getText();
 }

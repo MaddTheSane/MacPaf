@@ -20,6 +20,47 @@
 			refType = 4;
 			sourceTree = "<group>";
 		};
+		023701D7062056080087E765 = {
+			isa = PBXFileReference;
+			lastKnownFileType = archive.jar;
+			name = "log4j-1.2.8.jar";
+			path = "lib/log4j-1.2.8.jar";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		023701D8062056080087E765 = {
+			fileRef = 023701D7062056080087E765;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		023701ED062056EF0087E765 = {
+			fileRef = 023701D7062056080087E765;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		02370211062059920087E765 = {
+			fileEncoding = 4;
+			isa = PBXFileReference;
+			lastKnownFileType = text;
+			name = log4j.properties;
+			path = lib/log4j.properties;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		0237023006205C5B0087E765 = {
+			fileRef = 02370211062059920087E765;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		0237024606205EE30087E765 = {
+			fileRef = 02370211062059920087E765;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
 		026ED71205D932BC0001D1D2 = {
 			fileEncoding = 4;
 			isa = PBXFileReference;
@@ -868,13 +909,7 @@
 				026ED78505D932E50001D1D2,
 				026ED78605D932E50001D1D2,
 				026ED78705D932E50001D1D2,
-				026ED78805D932E50001D1D2,
 				026ED78905D932E50001D1D2,
-				026ED78A05D932E50001D1D2,
-				026ED78B05D932E50001D1D2,
-				026ED78C05D932E50001D1D2,
-				026ED78D05D932E50001D1D2,
-				026ED78E05D932E50001D1D2,
 				026ED78F05D932E50001D1D2,
 				026ED79005D932E50001D1D2,
 				026ED79105D932E50001D1D2,
@@ -941,59 +976,11 @@
 			refType = 4;
 			sourceTree = "<group>";
 		};
-		026ED78805D932E50001D1D2 = {
-			fileEncoding = 4;
-			isa = PBXFileReference;
-			lastKnownFileType = text;
-			path = ex.Ged;
-			refType = 4;
-			sourceTree = "<group>";
-		};
 		026ED78905D932E50001D1D2 = {
 			fileEncoding = 4;
 			isa = PBXFileReference;
 			lastKnownFileType = text;
 			path = example.ged;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		026ED78A05D932E50001D1D2 = {
-			fileEncoding = 4;
-			isa = PBXFileReference;
-			lastKnownFileType = text;
-			path = expo.2.ged;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		026ED78B05D932E50001D1D2 = {
-			fileEncoding = 4;
-			isa = PBXFileReference;
-			lastKnownFileType = text;
-			path = expo.ged;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		026ED78C05D932E50001D1D2 = {
-			fileEncoding = 4;
-			isa = PBXFileReference;
-			lastKnownFileType = text;
-			path = expo.ged.ged;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		026ED78D05D932E50001D1D2 = {
-			fileEncoding = 4;
-			isa = PBXFileReference;
-			lastKnownFileType = text;
-			path = expor.GED;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		026ED78E05D932E50001D1D2 = {
-			fileEncoding = 4;
-			isa = PBXFileReference;
-			lastKnownFileType = text;
-			path = export.ged;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -1191,7 +1178,6 @@
 			children = (
 				026ED7A805D932E50001D1D2,
 				026ED7A905D932E50001D1D2,
-				026ED7AA05D932E50001D1D2,
 				026ED7AF05D932E50001D1D2,
 				026ED7B005D932E50001D1D2,
 				026ED7B105D932E50001D1D2,
@@ -1220,50 +1206,6 @@
 			isa = PBXFileReference;
 			lastKnownFileType = text.plist.xml;
 			path = GedcomToXml.xsl;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		026ED7AA05D932E50001D1D2 = {
-			children = (
-				026ED7AB05D932E50001D1D2,
-				026ED7AC05D932E50001D1D2,
-				026ED7AD05D932E50001D1D2,
-				026ED7AE05D932E50001D1D2,
-			);
-			isa = PBXGroup;
-			path = startup.macpaf;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		026ED7AB05D932E50001D1D2 = {
-			fileEncoding = 4;
-			isa = PBXFileReference;
-			lastKnownFileType = text;
-			path = .typeAttributes.dict;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		026ED7AC05D932E50001D1D2 = {
-			fileEncoding = 4;
-			isa = PBXFileReference;
-			lastKnownFileType = text;
-			path = data.ged;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		026ED7AD05D932E50001D1D2 = {
-			fileEncoding = 4;
-			isa = PBXFileReference;
-			lastKnownFileType = text.plist.xml;
-			path = data.xml;
-			refType = 4;
-			sourceTree = "<group>";
-		};
-		026ED7AE05D932E50001D1D2 = {
-			children = (
-			);
-			isa = PBXGroup;
-			path = multimedia;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -1374,44 +1316,8 @@
 			settings = {
 			};
 		};
-		026ED7BE05D932E50001D1D2 = {
-			fileRef = 026ED78805D932E50001D1D2;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
 		026ED7BF05D932E50001D1D2 = {
 			fileRef = 026ED78905D932E50001D1D2;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		026ED7C005D932E50001D1D2 = {
-			fileRef = 026ED78A05D932E50001D1D2;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		026ED7C105D932E50001D1D2 = {
-			fileRef = 026ED78B05D932E50001D1D2;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		026ED7C205D932E50001D1D2 = {
-			fileRef = 026ED78C05D932E50001D1D2;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		026ED7C305D932E50001D1D2 = {
-			fileRef = 026ED78D05D932E50001D1D2;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		026ED7C405D932E50001D1D2 = {
-			fileRef = 026ED78E05D932E50001D1D2;
 			isa = PBXBuildFile;
 			settings = {
 			};
@@ -1566,24 +1472,6 @@
 			settings = {
 			};
 		};
-		026ED7DE05D932E50001D1D2 = {
-			fileRef = 026ED7AB05D932E50001D1D2;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		026ED7DF05D932E50001D1D2 = {
-			fileRef = 026ED7AC05D932E50001D1D2;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
-		026ED7E005D932E50001D1D2 = {
-			fileRef = 026ED7AD05D932E50001D1D2;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
 		026ED7E105D932E50001D1D2 = {
 			fileRef = 026ED7AF05D932E50001D1D2;
 			isa = PBXBuildFile;
@@ -1686,14 +1574,6 @@
 			refType = 4;
 			sourceTree = "<group>";
 		};
-		026ED7F805D9330B0001D1D2 = {
-			isa = PBXFileReference;
-			lastKnownFileType = archive.jar;
-			name = xerces.jar;
-			path = lib/xerces.jar;
-			refType = 4;
-			sourceTree = "<group>";
-		};
 		026ED7F905D9330B0001D1D2 = {
 			fileRef = 026ED7F205D9330B0001D1D2;
 			isa = PBXBuildFile;
@@ -1730,12 +1610,6 @@
 			settings = {
 			};
 		};
-		026ED7FF05D9330B0001D1D2 = {
-			fileRef = 026ED7F805D9330B0001D1D2;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
 		027C6AD405D9445900C91D7B = {
 			buildActionMask = 2147483647;
 			dstPath = lib;
@@ -1747,7 +1621,11 @@
 				027C6ADC05D9447B00C91D7B,
 				027C6ADD05D9447B00C91D7B,
 				027C6ADE05D9447B00C91D7B,
-				027C6ADF05D9447B00C91D7B,
+				02C50B5306212E8700B54464,
+				02C50B5406212E8700B54464,
+				02C50B5506212E8700B54464,
+				023701ED062056EF0087E765,
+				0237024606205EE30087E765,
 			);
 			isa = PBXCopyFilesBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1788,12 +1666,6 @@
 			settings = {
 			};
 		};
-		027C6ADF05D9447B00C91D7B = {
-			fileRef = 026ED7F805D9330B0001D1D2;
-			isa = PBXBuildFile;
-			settings = {
-			};
-		};
 		02907685060568E800F1763A = {
 			fileEncoding = 4;
 			isa = PBXFileReference;
@@ -1805,6 +1677,66 @@
 		};
 		02907686060568E800F1763A = {
 			fileRef = 02907685060568E800F1763A;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		02C50B0E0621296600B54464 = {
+			isa = PBXFileReference;
+			lastKnownFileType = archive.jar;
+			name = xalan.jar;
+			path = lib/xalan.jar;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		02C50B0F0621296600B54464 = {
+			isa = PBXFileReference;
+			lastKnownFileType = archive.jar;
+			name = xerces.jar;
+			path = lib/xerces.jar;
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		02C50B100621296600B54464 = {
+			isa = PBXFileReference;
+			lastKnownFileType = archive.jar;
+			name = "xml-apis.jar";
+			path = "lib/xml-apis.jar";
+			refType = 4;
+			sourceTree = "<group>";
+		};
+		02C50B110621296700B54464 = {
+			fileRef = 02C50B0E0621296600B54464;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		02C50B120621296800B54464 = {
+			fileRef = 02C50B0F0621296600B54464;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		02C50B130621296800B54464 = {
+			fileRef = 02C50B100621296600B54464;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		02C50B5306212E8700B54464 = {
+			fileRef = 02C50B0E0621296600B54464;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		02C50B5406212E8700B54464 = {
+			fileRef = 02C50B0F0621296600B54464;
+			isa = PBXBuildFile;
+			settings = {
+			};
+		};
+		02C50B5506212E8700B54464 = {
+			fileRef = 02C50B100621296600B54464;
 			isa = PBXBuildFile;
 			settings = {
 			};
@@ -2071,13 +2003,17 @@
 		};
 		2A37F4C3FDCFA73011CA2CEA = {
 			children = (
+				02370211062059920087E765,
+				023701D7062056080087E765,
 				026ED7F205D9330B0001D1D2,
 				026ED7F305D9330B0001D1D2,
 				026ED7F405D9330B0001D1D2,
 				026ED7F505D9330B0001D1D2,
 				026ED7F605D9330B0001D1D2,
 				026ED7F705D9330B0001D1D2,
-				026ED7F805D9330B0001D1D2,
+				02C50B0E0621296600B54464,
+				02C50B0F0621296600B54464,
+				02C50B100621296600B54464,
 				1058C7A7FEA54F5311CA2CBB,
 				2A37F4C5FDCFA73011CA2CEA,
 				2A37F4C4FDCFA73011CA2CEA,
@@ -2120,8 +2056,9 @@
 				HEADER_SEARCH_PATHS = "";
 				INSTALL_PATH = "$(HOME)/Applications";
 				JAVAC_SOURCE_FILE_ENCODING = "UTF-8";
-				JAVA_COMPILER_SOURCE_VERSION = 1.4;
-				JAVA_COMPILER_TARGET_VM_VERSION = 1.4;
+				JAVA_COMPILER_DEPRECATED_WARNINGS = YES;
+				JAVA_COMPILER_SOURCE_VERSION = 1.3;
+				JAVA_COMPILER_TARGET_VM_VERSION = 1.3;
 				JAVA_SOURCE_SUBDIR = .;
 				LIBRARY_SEARCH_PATHS = "";
 				OTHER_CFLAGS = "";
@@ -2208,9 +2145,9 @@
 	<key>Java</key>
 	<dict>
 		<key>JVMVersion</key>
-		<string>1.4+</string>
+		<string>1.3+</string>
 		<key>VMOptions</key>
-		<string>-Xmx256m</string>
+		<string>-Xmx256m -Dlog4j.debug=true</string>
 	</dict>
 	<key>NSJavaNeeded</key>
 	<string>YES</string>
@@ -2224,6 +2161,10 @@
 		<string>lib/jdom.jar</string>
 		<string>lib/saxpath.jar</string>
 		<string>lib/xerces.jar</string>
+		<string>lib/</string>
+		<string>lib/log4j-1.2.8.jar</string>
+		<string>lib/xalan.jar</string>
+		<string>lib/xml-apis.jar</string>
 	</array>
 	<key>NSJavaRoot</key>
 	<string>Contents/Resources/Java</string>
@@ -2256,13 +2197,7 @@
 				026ED7BB05D932E50001D1D2,
 				026ED7BC05D932E50001D1D2,
 				026ED7BD05D932E50001D1D2,
-				026ED7BE05D932E50001D1D2,
 				026ED7BF05D932E50001D1D2,
-				026ED7C005D932E50001D1D2,
-				026ED7C105D932E50001D1D2,
-				026ED7C205D932E50001D1D2,
-				026ED7C305D932E50001D1D2,
-				026ED7C405D932E50001D1D2,
 				026ED7C505D932E50001D1D2,
 				026ED7C605D932E50001D1D2,
 				026ED7C705D932E50001D1D2,
@@ -2288,9 +2223,6 @@
 				026ED7DB05D932E50001D1D2,
 				026ED7DC05D932E50001D1D2,
 				026ED7DD05D932E50001D1D2,
-				026ED7DE05D932E50001D1D2,
-				026ED7DF05D932E50001D1D2,
-				026ED7E005D932E50001D1D2,
 				026ED7E105D932E50001D1D2,
 				026ED7E205D932E50001D1D2,
 				026ED7E305D932E50001D1D2,
@@ -2308,6 +2240,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A37F4D0FDCFA73011CA2CEA,
+				0237023006205C5B0087E765,
 				116DBC1EFEF5915911CA2CEA,
 				026ED74C05D932BD0001D1D2,
 				026ED74D05D932BD0001D1D2,
@@ -2385,7 +2318,10 @@
 				026ED7FC05D9330B0001D1D2,
 				026ED7FD05D9330B0001D1D2,
 				026ED7FE05D9330B0001D1D2,
-				026ED7FF05D9330B0001D1D2,
+				023701D8062056080087E765,
+				02C50B110621296700B54464,
+				02C50B120621296800B54464,
+				02C50B130621296800B54464,
 			);
 			isa = PBXFrameworksBuildPhase;
 			runOnlyForDeploymentPostprocessing = 0;

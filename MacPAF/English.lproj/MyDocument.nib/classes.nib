@@ -95,12 +95,14 @@
                 childrenTable = NSTableView; 
                 familyEditWindow = NSWindow; 
                 familyList = FamilyList; 
+                familyListTableView = NSTableView; 
                 fatherButton = NSButton; 
                 individualButton = NSButton; 
                 individualDetailController = IndividualDetailController; 
                 individualEditWindow = NSWindow; 
                 individualFamilyButton = NSButton; 
                 individualList = IndividualList; 
+                individualListTableView = NSTableView; 
                 maternalGrandfatherButton = NSButton; 
                 maternalGrandmotherButton = NSButton; 
                 motherButton = NSButton; 

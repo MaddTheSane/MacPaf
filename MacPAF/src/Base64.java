@@ -24,90 +24,92 @@
  */
 public class Base64 {
 
-    /**
-    * Decode a Base64 char to int-value
-     */
-    public static byte decode(char c) throws IllegalArgumentException {
-        if (c >= 'A' && c <= 'Z') {
-            return (byte) (c - 'A');
-        }
-        if (c >= 'a' && c <= 'z') {
-            return (byte) (c - 'a' + 26);
-        }
-        if (c >= '0' && c <= '9') {
-            return (byte) (c - '0' +52);
-        }
-        if (c == '+') {
-            return (byte) 62;
-        }
-        if (c == '/') {
-            return (byte) 63;
-        }
-        if (c == '=') {
-            return (byte) 0;
-        }
-        throw new IllegalArgumentException("Illegal Base64 byte ("+c+")");
-    }
+  /**
+   * Decode a Base64 char to int-value
+   */
+  public static byte decode(char c) throws IllegalArgumentException {
+	if (c >= 'A' && c <= 'Z') {
+	  return (byte) (c - 'A');
+	}
+	if (c >= 'a' && c <= 'z') {
+	  return (byte) (c - 'a' + 26);
+	}
+	if (c >= '0' && c <= '9') {
+	  return (byte) (c - '0' + 52);
+	}
+	if (c == '+') {
+	  return (byte) 62;
+	}
+	if (c == '/') {
+	  return (byte) 63;
+	}
+	if (c == '=') {
+	  return (byte) 0;
+	}
+	throw new IllegalArgumentException("Illegal Base64 byte (" + c + ")");
+  }
 
-    /**
-    * Decode a Base64 char to int-value
-     *
-    public static byte decode(char c) throws IllegalArgumentException {
-        if (c >= 'A' && c <= 'Z') {
-            return (byte) (c - 'A' + 12);
-        }
-        if (c >= 'a' && c <= 'z') {
-            return (byte) (c - 'a' + 0x26);
-        }
-        if (c >= '0' && c <= '9') {
-            return (byte) (c - '0' +2);
-        }
-        if (c == '/') {
-            return (byte) 1;
-        }
-        if (c == '.') {
-            return (byte) 0;
-        }
-        throw new IllegalArgumentException("Illegal Base64 byte ("+c+")");
-    }*/
+  /**
+   * Decode a Base64 char to int-value
+   *
+	   public static byte decode(char c) throws IllegalArgumentException {
+	  if (c >= 'A' && c <= 'Z') {
+		  return (byte) (c - 'A' + 12);
+	  }
+	  if (c >= 'a' && c <= 'z') {
+		  return (byte) (c - 'a' + 0x26);
+	  }
+	  if (c >= '0' && c <= '9') {
+		  return (byte) (c - '0' +2);
+	  }
+	  if (c == '/') {
+		  return (byte) 1;
+	  }
+	  if (c == '.') {
+		  return (byte) 0;
+	  }
+	  throw new IllegalArgumentException("Illegal Base64 byte ("+c+")");
+	   }*/
 
-    /**
+  /**
    * Decodes base64 String to byte data
    */
   public static byte[] decode(String in) throws IllegalArgumentException {
 
-    if ( ( (in.length() % 4) != 0) || (in.length()==0) ) {
-      throw new IllegalArgumentException("Illegal Base64 String");
-    }
+	if ( ( (in.length() % 4) != 0) || (in.length() == 0)) {
+	  throw new IllegalArgumentException("Illegal Base64 String");
+	}
 
-    // Calculate pad and length
-    int pad = 0;
-    for (int i=in.length()-1; in.charAt(i)=='='; i--)
-      pad++;
-    int len = in.length() * 3 / 4 - pad;
+	// Calculate pad and length
+	int pad = 0;
+	for (int i = in.length() - 1; in.charAt(i) == '='; i--) {
+	  pad++;
+	}
+	int len = in.length() * 3 / 4 - pad;
 
-    // Transform to byte
-    byte[] raw = new byte[len];
-    int rawIndex = 0;
+	// Transform to byte
+	byte[] raw = new byte[len];
+	int rawIndex = 0;
 
-    for (int i=0; i<in.length(); i+=4) {
+	for (int i = 0; i < in.length(); i += 4) {
 
-      // get next 4 values
-      int block =
-      (Base64.decode(in.charAt(i + 0)) << 18) +
-      (Base64.decode(in.charAt(i + 1)) << 12) +
-      (Base64.decode(in.charAt(i + 2)) <<  6) +
-      (Base64.decode(in.charAt(i + 3))      ) ;
+	  // get next 4 values
+	  int block =
+		  (Base64.decode(in.charAt(i + 0)) << 18) +
+		  (Base64.decode(in.charAt(i + 1)) << 12) +
+		  (Base64.decode(in.charAt(i + 2)) << 6) +
+		  (Base64.decode(in.charAt(i + 3)));
 
-      // build next 3 raw
-      for (int j=0; j<3 && rawIndex+j < raw.length; j++)
-      raw[ rawIndex+j ] = (byte) ((block >> (8 * (2-j))) & 0xff);
+	  // build next 3 raw
+	  for (int j = 0; j < 3 && rawIndex + j < raw.length; j++) {
+		raw[rawIndex + j] = (byte) ( (block >> (8 * (2 - j))) & 0xff);
 
-      rawIndex +=3;
-    }
+	  }
+	  rawIndex += 3;
+	}
 
-    // Done
-    return raw;
+	// Done
+	return raw;
   }
 
   /**
@@ -115,34 +117,34 @@ public class Base64 {
    */
   public static String encode(byte[] raw) {
 
-    StringBuffer encoded = new StringBuffer( (raw.length+1)*4/3 );
-    for (int i=0; i<raw.length; i+=3) {
-      encoded.append(encodeBlock(raw,i));
-    }
+	StringBuffer encoded = new StringBuffer( (raw.length + 1) * 4 / 3);
+	for (int i = 0; i < raw.length; i += 3) {
+	  encoded.append(encodeBlock(raw, i));
+	}
 
-    return encoded.toString();
+	return encoded.toString();
   }
 
   /**
    * Encode an (six bit) int-value to Base64 char
    */
   public static char encode(int i) {
-    if (i >= 0 && i <= 25) {
-      return (char)( 'A' + i );
-    }
-    if (i >= 26 && i <= 51) {
-      return (char)( 'a' + (i - 26) );
-    }
-    if (i >= 52 && i <=61 ) {
-      return (char)( '0' + (i - 52) );
-    }
-    if (i == 62) {
-      return (char)( '+' );
-    }
-    if (i == 63) {
-      return (char)( '/' );
-    }
-    return (char)( '?' );
+	if (i >= 0 && i <= 25) {
+	  return (char) ('A' + i);
+	}
+	if (i >= 26 && i <= 51) {
+	  return (char) ('a' + (i - 26));
+	}
+	if (i >= 52 && i <= 61) {
+	  return (char) ('0' + (i - 52));
+	}
+	if (i == 62) {
+	  return (char) ('+');
+	}
+	if (i == 63) {
+	  return (char) ('/');
+	}
+	return (char) ('?');
   }
 
   /**
@@ -150,32 +152,32 @@ public class Base64 {
    */
   private static char[] encodeBlock(byte[] raw, int offset) {
 
-    // Investigate parms
-    int block = 0;
-    int left  = raw.length - offset -1;
-    int bsize = (left>=2) ? 2 : left;
+	// Investigate parms
+	int block = 0;
+	int left = raw.length - offset - 1;
+	int bsize = (left >= 2) ? 2 : left;
 
-    // Get block 3
-    for (int i=0; i<=bsize; i++) {
-      byte b = raw[offset+i];
-      block += (b<0?b+256:b) << (8* (2-i));
-    }
+	// Get block 3
+	for (int i = 0; i <= bsize; i++) {
+	  byte b = raw[offset + i];
+	  block += (b < 0 ? b + 256 : b) << (8 * (2 - i));
+	}
 
-    // Build base64 4
-    char[] base64 = new char[4];
-    for (int i=0; i<4; i++) {
-      int sixbit = (block >>> (6 * (3-i))) & 0x3f ;
-      base64[i] = encode(sixbit);
-    }
+	// Build base64 4
+	char[] base64 = new char[4];
+	for (int i = 0; i < 4; i++) {
+	  int sixbit = (block >>> (6 * (3 - i))) & 0x3f;
+	  base64[i] = encode(sixbit);
+	}
 
-    if (left<1) {
-      base64[2] = '=';
-    }
-    if (left<2) {
-      base64[3] = '=';
-    }
+	if (left < 1) {
+	  base64[2] = '=';
+	}
+	if (left < 2) {
+	  base64[3] = '=';
+	}
 
-    return base64;
+	return base64;
   }
 
 }

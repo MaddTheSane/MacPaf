@@ -8,6 +8,8 @@
     <path>[lib/saxpath.jar]</path>
     <path>[lib/jdom.jar]</path>
     <path>[lib/xerces.jar]</path>
+    <path>[lib/xml-apis.jar]</path>
+    <path>[lib/xalan.jar]</path>
   </class>
-  <lastmodsaved>1077479484427</lastmodsaved>
+  <lastmodsaved>1081144217504</lastmodsaved>
 </library>

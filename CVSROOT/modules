@@ -26,7 +26,7 @@
 # spread out over the entire source repository.
 
 # This is the main project reference to the current MacPAF directory
-MacPAF	MacPAF-initial
+MacPAF	MacPAF
 
 # and an alias for convenience
 macpaf	-a	MacPAF

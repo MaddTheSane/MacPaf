@@ -10,6 +10,6 @@
 	<classpathentry kind="lib" path="lib/gedcom.jar"/>
 	<classpathentry kind="lib" path="lib/castor-0.9.4.3.jar"/>
 	<classpathentry kind="lib" path="CocoaLib"/>
-	<classpathentry kind="lib" path="lib/log4j-1.2.8.jar"/>
+	<classpathentry kind="lib" path="lib/log4j-1.2.9.jar"/>
 	<classpathentry kind="output" path="build/"/>
 </classpath>

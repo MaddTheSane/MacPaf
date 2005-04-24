@@ -112,11 +112,11 @@ public class XMLTest {
 			}
 		  }
 		  else if (level == currLevel) {
-			currElem.getParent().addContent(newElem);
+			currElem.getParent().getContent().add(newElem);
 		  }
 		  else {
 			currElem = (Element) currElem.getParent();
-			currElem.getParent().addContent(newElem);
+			currElem.getParent().getContent().add(newElem);
 		  }
 		  currLevel = level;
 		  currElem = newElem;

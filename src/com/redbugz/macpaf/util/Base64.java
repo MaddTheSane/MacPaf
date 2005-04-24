@@ -1,10 +1,5 @@
 package com.redbugz.macpaf.util;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
-
-import javax.imageio.stream.IIOByteBuffer;
-
 /**
  * Encodes and decodes to and from Base64 notation.
  * Based on code from Robert Harder. I have modified the code to use the different mappings for GEDCOM multimedia encoding/decoding:

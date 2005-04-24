@@ -679,8 +679,8 @@
 		026ED7F605D9330B0001D1D2 = {
 			isa = PBXFileReference;
 			lastKnownFileType = archive.jar;
-			name = jdom.jar;
-			path = lib/jdom.jar;
+			name = "jdom-1.0.jar";
+			path = "lib/jdom-1.0.jar";
 			refType = 4;
 			sourceTree = "<group>";
 		};

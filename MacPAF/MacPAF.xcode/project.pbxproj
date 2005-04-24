@@ -2238,7 +2238,7 @@
 		<string>lib/gedcom.jar</string>
 		<string>lib/jaxen-core.jar</string>
 		<string>lib/jaxen-jdom.jar</string>
-		<string>lib/jdom.jar</string>
+		<string>lib/jdom-1.0.jar</string>
 		<string>lib/saxpath.jar</string>
 		<string>lib/xerces.jar</string>
 		<string>lib/</string>

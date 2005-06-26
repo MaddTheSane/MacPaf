@@ -13,5 +13,6 @@
 	<classpathentry sourcepath="/Projects/Tools/logging-log4j-1.2.9/src/java" kind="lib" path="lib/log4j-1.2.9.jar"/>
 	<classpathentry sourcepath="/Projects/Tools/jdom-1.0/src/java" kind="lib" path="lib/jdom-1.0.jar"/>
 	<classpathentry kind="lib" path="lib/castor-0.9.4.3.jar"/>
+	<classpathentry sourcepath="ECLIPSE_HOME/plugins/org.eclipse.jdt.source_3.0.0/src/org.junit_3.8.1/junitsrc.zip" kind="var" path="JUNIT_HOME/junit.jar"/>
 	<classpathentry kind="output" path="build/"/>
 </classpath>

@@ -8,24 +8,32 @@
 
 import java.util.Enumeration;
 
-import com.apple.cocoa.application.*;
+import org.apache.log4j.Logger;
+
+import com.apple.cocoa.application.NSApplication;
+import com.apple.cocoa.application.NSButton;
+import com.apple.cocoa.application.NSComboBox;
+import com.apple.cocoa.application.NSDocument;
+import com.apple.cocoa.application.NSForm;
+import com.apple.cocoa.application.NSTableColumn;
+import com.apple.cocoa.application.NSTableView;
+import com.apple.cocoa.application.NSTextField;
+import com.apple.cocoa.application.NSWindow;
+import com.apple.cocoa.application.NSWindowController;
+import com.apple.cocoa.foundation.NSDictionary;
 import com.apple.cocoa.foundation.NSMutableArray;
 import com.apple.cocoa.foundation.NSSelector;
 import com.apple.cocoa.foundation.NSSystem;
 import com.redbugz.macpaf.Family;
+import com.redbugz.macpaf.Gender;
 import com.redbugz.macpaf.Individual;
-import com.redbugz.macpaf.jdom.FamilyJDOM;
 import com.redbugz.macpaf.jdom.PlaceJDOM;
-import com.redbugz.macpaf.test.TestFamily;
 import com.redbugz.macpaf.util.CocoaUtils;
-
-import org.apache.log4j.Logger;
 
 public class FamilyEditController extends NSWindowController {
   private static final Logger log = Logger.getLogger(FamilyEditController.class);
 
   public NSTableView children; /* IBOutlet */
-  public NSButton divorcedSwitch; /* IBOutlet */
   public NSButton husbandButton; /* IBOutlet */
   public NSForm marriageForm; /* IBOutlet */
   public NSTextField sealingDate; /* IBOutlet */
@@ -38,6 +46,10 @@ public class FamilyEditController extends NSWindowController {
   
   private NSMutableArray undoStack = new NSMutableArray();
 
+private static final String EDIT_HUSBAND_KEY = null;
+
+private static final String EDIT_WIFE_KEY = null;
+
   public void setDocument(NSDocument document) {
 	super.setDocument(document);
 	System.out.println("FamilyEditController.setDocument(document):"+document.fileName());
@@ -49,6 +61,8 @@ public class FamilyEditController extends NSWindowController {
 	System.out.println("FamilyEditController.setFamily(family):"+family);
 	if (family instanceof Family.UnknownFamily) {
 		saveButton.setTitle("Add Family");
+		family = document.createAndInsertNewFamily();
+		undoStack.addObject(family);
 	} else {
 		saveButton.setTitle("Save Family");
 	}
@@ -59,7 +73,6 @@ public class FamilyEditController extends NSWindowController {
 	marriageForm.cellAtIndex(1).setStringValue(family.getMarriageEvent().getPlace().getFormatString());
 	sealingDate.setStringValue(family.getSealingToSpouse().getDateString());
 	sealingTemple.setStringValue(family.getSealingToSpouse().getTemple().getCode());
-//	divorcedSwitch.setState(family.getMarriageEvent().?NSCell.OnState:NSCell.OffState);
   }
 
   public void addChild(Object sender) { /* IBAction */
@@ -69,7 +82,6 @@ public class FamilyEditController extends NSWindowController {
 	}
 	Individual newChild = document.createAndInsertNewIndividual();
 	undoStack.addObject(newChild);
-	document.addIndividual(newChild);
 	newChild.setFamilyAsChild(family);
 	family.addChildAtPosition(newChild, selectedRow);
 	children.reloadData();
@@ -88,15 +100,23 @@ public class FamilyEditController extends NSWindowController {
 //	NSApplication.sharedApplication().stopModal();
   	boolean doCancel = true;
   	if (undoStack.count() > 0) {
-  		doCancel = ! MyDocument.confirmCriticalActionMessage("Discard the changes you made to this family?", "Details", "Yes", "No");
+  		doCancel = MyDocument.confirmCriticalActionMessage("Discard the changes you made to this family?", "Details", "Yes", "No");
   	}
   	if (doCancel) {
 		// undo the changes made
   		Enumeration enumeration = undoStack.objectEnumerator();
   		while (enumeration.hasMoreElements()) {
-			Individual indiv = (Individual) enumeration.nextElement();
-			log.info("Undoing creation of individual:"+indiv.getFullName());
-//			document.deleteIndividual(indiv);
+  			Object objectToUndo = enumeration.nextElement();
+  			if (objectToUndo instanceof Individual) {
+				Individual indiv = (Individual) objectToUndo;
+  				log.info("Undoing creation of individual:"+indiv.getFullName());
+  				document.doc.removeIndividual(indiv);  				
+  			}
+  			if (objectToUndo instanceof Family) {
+				Family familyToUndo = (Family) objectToUndo;
+				log.info("Undoing creation of family: "+family.toString());
+				document.doc.removeFamily(familyToUndo);
+			}
 		}
   		undoStack.removeAllObjects();
   		NSApplication.sharedApplication().endSheet(window());
@@ -122,51 +142,69 @@ public class FamilyEditController extends NSWindowController {
   }
 
   public void editHusband(Object sender) { /* IBAction */
-//       window().close();
 	NSApplication.sharedApplication().endSheet(window());
-//       document.openIndividualEditSheet(husbandButton);
 	NSWindow individualEditWindow = document.individualEditWindow;
 	( (NSWindowController) individualEditWindow.delegate()).setDocument(document);
-	( (IndividualEditController) individualEditWindow.delegate()).setIndividual(family.getFather());
-	NSApplication nsapp = NSApplication.sharedApplication();
-	nsapp.beginSheet(individualEditWindow, window(), null, null, null);
-	try {
-		Thread.sleep(15000);
-		//nsapp.runModalForWindow(individualEditWindow);
-//       nsapp.endSheet(individualEditWindow);
-//       individualEditWindow.orderOut(this);
-//       window().display();
-	} catch (InterruptedException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
+	Individual father = family.getFather();
+	if (father instanceof Individual.UnknownIndividual) {
+		father = document.createAndInsertNewIndividual();
+		// todo: decide if undoing invidual creation here is appropriate, since it's different from FR 2.3.1
+		undoStack.addObject(father);
+		
+		father.setGender(Gender.MALE);
+		father.setFamilyAsSpouse(family);
+		family.setFather(father);
 	}
-  }
-
-  public void editWife(Object sender) { /* IBAction */
-  	editIndividualInSheet(family.getMother(), document.individualEditWindow, "wife");
+	( (IndividualEditController) individualEditWindow.delegate()).setIndividual(father);
+	NSApplication.sharedApplication().beginSheet(individualEditWindow, window(), this, CocoaUtils.didEndSelector(), new NSDictionary(father, EDIT_HUSBAND_KEY));
+	// sheet up here, control will pass to didEndSelector after closed
   }
   
-  public void editIndividualInSheet(Individual individual, NSWindow window, Object contextInfo) {
-	( (NSWindowController) window.delegate()).setDocument(document);
-	( (IndividualEditController) window.delegate()).setIndividual(family.getMother());
-	NSApplication nsapp = NSApplication.sharedApplication();
-//	nsapp.beginSheet(window, window(), null, null, null);
-//  	setIndividual(individual);
-//	NSApplication nsapp = NSApplication.sharedApplication();
-	nsapp.endSheet(window());
-	nsapp.beginSheet(window(), window, this, new NSSelector("sheetDidEnd::", new Class[] {getClass()}), null);
+  public void editWife(Object sender) { /* IBAction */
+	NSApplication.sharedApplication().endSheet(window());
+	NSWindow individualEditWindow = document.individualEditWindow;
+	( (NSWindowController) individualEditWindow.delegate()).setDocument(document);
+	Individual mother = family.getMother();
+	if (mother instanceof Individual.UnknownIndividual) {
+		mother = document.createAndInsertNewIndividual();
+		// todo: decide if undoing invidual creation here is appropriate, since it's different from FR 2.3.1
+		undoStack.addObject(mother);
+		
+		mother.setGender(Gender.FEMALE);
+		mother.setFamilyAsSpouse(family);
+		family.setMother(mother);
+	}
+	( (IndividualEditController) individualEditWindow.delegate()).setIndividual(family.getMother());
+	NSApplication.sharedApplication().beginSheet(individualEditWindow, window(), this, CocoaUtils.didEndSelector(), new NSDictionary(family.getMother(), EDIT_WIFE_KEY));
+	// sheet up here, control will pass to didEndSelector after closed
   }
+  
+//  public void editIndividualInSheet(Individual individual, NSWindow window, Object contextInfo) {
+//	( (NSWindowController) window.delegate()).setDocument(document);
+//	( (IndividualEditController) window.delegate()).setIndividual(family.getMother());
+//	NSApplication nsapp = NSApplication.sharedApplication();
+////	nsapp.beginSheet(window, window(), null, null, null);
+////  	setIndividual(individual);
+////	NSApplication nsapp = NSApplication.sharedApplication();
+//	nsapp.endSheet(window());
+//	nsapp.beginSheet(window(), window, this, new NSSelector("sheetDidEnd::", new Class[] {getClass()}), null);
+//  }
   
   public void sheetDidEnd(NSWindow sheet, int returnCode, Object contextInfo) {
     NSSystem.log("Called did-end selector");
     log.debug("sheetdidend context:"+contextInfo);
-	log.debug("after beginsheet, do we have the right individual?:"+document.getPrimaryIndividual());
-//	if ("wife".equals(contextInfo)) {
-//	family.setMother(document.getPrimaryIndividual());
-//	} else if ("husband")
-//    if (returnCode == NSAlertPanel.DefaultReturn) {
-//        NSSystem.log("Rows are to be deleted");
-//    }
+    if (contextInfo != null) {
+	    	NSDictionary info = (NSDictionary)contextInfo;
+	    	String key = (String) info.allKeys().lastObject();
+		Individual individual = (Individual) info.allValues().lastObject();
+	    	log.debug("after sheetdidend, do we have the right individual?:"+individual.getFullName());
+	    	if (EDIT_WIFE_KEY.equals(key)) {
+				family.setMother(individual);
+	    	} else if (EDIT_HUSBAND_KEY.equals(key)) {
+	    		family.setFather(individual);
+	    	}
+    }
+	sheet.orderOut(this);
   }  	
 
 
@@ -181,6 +219,8 @@ public class FamilyEditController extends NSWindowController {
 	  family.getMarriageEvent().setPlace(new PlaceJDOM(marriageForm.cellAtIndex(1).stringValue()));
 	  family.getSealingToSpouse().setDateString(sealingDate.stringValue());
 	  family.getSealingToSpouse().setTemple(CocoaUtils.templeForComboBox(sealingTemple));
+	  
+	  undoStack.removeAllObjects();
 //	  NSApplication.sharedApplication().stopModal();
 	  NSApplication.sharedApplication().endSheet(window());
 	  window().orderOut(this);
@@ -194,11 +234,6 @@ public class FamilyEditController extends NSWindowController {
    */
   private boolean validate() {
 	return true;
-  }
-
-  public void toggleDivorced(Object sender) { /* IBAction */
-	System.out.println("FamilyEditController.toggleDivorced(sender):"+sender);
-//	if (sender instanceof NSCh
   }
 
   public int numberOfRowsInTableView(NSTableView nsTableView) {

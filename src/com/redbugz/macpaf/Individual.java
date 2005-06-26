@@ -288,15 +288,13 @@ public interface Individual {
 	 * @see Individual#addSpouse(Individual)
 	 */
 	public void addSpouse(Individual newSpouse) {
-	  // TODO Auto-generated method stub
-
+		throw new UnsupportedOperationException("Cannot modify an UnknownIndividual");
 	}
 
 	/* (non-Javadoc)
 	 * @see Individual#getNameSuffix()
 	 */
 	public String getNameSuffix() {
-	  // TODO Auto-generated method stub
 	  return "";
 	}
 
@@ -304,48 +302,42 @@ public interface Individual {
 	 * @see Individual#removeSpouse(Individual)
 	 */
 	public void removeSpouse(Individual removedSpouse) {
-	  // TODO Auto-generated method stub
-
+		throw new UnsupportedOperationException("Cannot modify an UnknownIndividual");
 	}
 
 	/* (non-Javadoc)
 	 * @see Individual#setBirthEvent(Event)
 	 */
 	public void setBirthEvent(Event birthEvent) {
-	  // TODO Auto-generated method stub
-
+		throw new UnsupportedOperationException("Cannot modify an UnknownIndividual");
 	}
 
 	/* (non-Javadoc)
 	 * @see Individual#setburialEvent(Event)
 	 */
 	public void setBurialEvent(Event burialEvent) {
-	  // TODO Auto-generated method stub
-
+		throw new UnsupportedOperationException("Cannot modify an UnknownIndividual");
 	}
 
 	/* (non-Javadoc)
 	 * @see Individual#setChristeningEvent(Event)
 	 */
 	public void setChristeningEvent(Event christeningEvent) {
-	  // TODO Auto-generated method stub
-
+		throw new UnsupportedOperationException("Cannot modify an UnknownIndividual");
 	}
 
 	/* (non-Javadoc)
 	 * @see Individual#setDeathEvent(Event)
 	 */
 	public void setDeathEvent(Event deathEvent) {
-	  // TODO Auto-generated method stub
-
+		throw new UnsupportedOperationException("Cannot modify an UnknownIndividual");
 	}
 
 	/* (non-Javadoc)
 	 * @see Individual#setFather(Individual)
 	 */
 	public void setFather(Individual father) {
-	  // TODO Auto-generated method stub
-
+		throw new UnsupportedOperationException("Cannot modify an UnknownIndividual");
 	}
 
 	/* (non-Javadoc)
@@ -356,135 +348,118 @@ public interface Individual {
 		String givenNames,
 		String surname,
 		String suffix) {
-	  // TODO Auto-generated method stub
-
+		throw new UnsupportedOperationException("Cannot modify an UnknownIndividual");
 	}
 
 	/* (non-Javadoc)
 	 * @see Individual#setGender(Gender)
 	 */
 	public void setGender(Gender gender) {
-	  // TODO Auto-generated method stub
-
+		throw new UnsupportedOperationException("Cannot modify an UnknownIndividual");
 	}
 
 	/* (non-Javadoc)
 	 * @see Individual#setGivenNames(java.lang.String)
 	 */
 	public void setGivenNames(String givenNames) {
-	  // TODO Auto-generated method stub
-
+		throw new UnsupportedOperationException("Cannot modify an UnknownIndividual");
 	}
 
 	/* (non-Javadoc)
 	 * @see Individual#setId(java.lang.String)
 	 */
 	public void setId(String id) {
-	  // TODO Auto-generated method stub
-
+		throw new UnsupportedOperationException("Cannot modify an UnknownIndividual");
 	}
 
 	/* (non-Javadoc)
 	 * @see Individual#setLDSBaptism(Ordinance)
 	 */
 	public void setLDSBaptism(Ordinance ldsBaptism) {
-	  // TODO Auto-generated method stub
-
+		throw new UnsupportedOperationException("Cannot modify an UnknownIndividual");
 	}
 
 	/* (non-Javadoc)
 	 * @see Individual#setLDSConfirmation(Ordinance)
 	 */
 	public void setLDSConfirmation(Ordinance ldsConfirmation) {
-	  // TODO Auto-generated method stub
-
+		throw new UnsupportedOperationException("Cannot modify an UnknownIndividual");
 	}
 
 	/* (non-Javadoc)
 	 * @see Individual#setLDSEndowment(Ordinance)
 	 */
 	public void setLDSEndowment(Ordinance ldsEndowment) {
-	  // TODO Auto-generated method stub
-
+		throw new UnsupportedOperationException("Cannot modify an UnknownIndividual");
 	}
 
 	/* (non-Javadoc)
 	 * @see Individual#setLDSSealingToParent(Ordinance)
 	 */
 	public void setLDSSealingToParent(Ordinance sealingToParent) {
-	  // TODO Auto-generated method stub
-
+		throw new UnsupportedOperationException("Cannot modify an UnknownIndividual");
 	}
 
 	/* (non-Javadoc)
 	 * @see Individual#setLocked(boolean)
 	 */
 	public void setLocked(boolean lockedFlag) {
-	  // TODO Auto-generated method stub
-
+		throw new UnsupportedOperationException("Cannot modify an UnknownIndividual");
 	}
 
 	/* (non-Javadoc)
 	 * @see Individual#setMother(Individual)
 	 */
 	public void setMother(Individual mother) {
-	  // TODO Auto-generated method stub
-
+		throw new UnsupportedOperationException("Cannot modify an UnknownIndividual");
 	}
 
 	/* (non-Javadoc)
 	 * @see Individual#setNamePrefix(java.lang.String)
 	 */
 	public void setNamePrefix(String prefix) {
-	  // TODO Auto-generated method stub
-
+		throw new UnsupportedOperationException("Cannot modify an UnknownIndividual");
 	}
 
 	/* (non-Javadoc)
 	 * @see Individual#setNameSuffix(java.lang.String)
 	 */
 	public void setNameSuffix(String suffix) {
-	  // TODO Auto-generated method stub
-
+		throw new UnsupportedOperationException("Cannot modify an UnknownIndividual");
 	}
 
 	/* (non-Javadoc)
 	 * @see Individual#setPrimarySpouse(Individual)
 	 */
 	public void setPrimarySpouse(Individual primarySpouse) {
-	  // TODO Auto-generated method stub
-
+		throw new UnsupportedOperationException("Cannot modify an UnknownIndividual");
 	}
 
 	/* (non-Javadoc)
 	 * @see Individual#setPrivate(boolean)
 	 */
 	public void setPrivate(boolean privateFlag) {
-	  // TODO Auto-generated method stub
-
+		throw new UnsupportedOperationException("Cannot modify an UnknownIndividual");
 	}
 
 	/* (non-Javadoc)
 	 * @see Individual#setRin(int)
 	 */
 	public void setRin(int rin) {
-	  // TODO Auto-generated method stub
-
+		throw new UnsupportedOperationException("Cannot modify an UnknownIndividual");
 	}
 
 	/* (non-Javadoc)
 	 * @see Individual#setSurname(java.lang.String)
 	 */
 	public void setSurname(String surname) {
-	  // TODO Auto-generated method stub
-
+		throw new UnsupportedOperationException("Cannot modify an UnknownIndividual");
 	}
 
 	/* (non-Javadoc)
 	 * @see Individual#getAFN()
 	 */
 	public String getAFN() {
-	  // TODO Auto-generated method stub
 	  return "";
 	}
 
@@ -492,8 +467,7 @@ public interface Individual {
 	 * @see Individual#setAFN(java.lang.String)
 	 */
 	public void setAFN(String afn) {
-	  // TODO Auto-generated method stub
-
+		throw new UnsupportedOperationException("Cannot modify an UnknownIndividual");
 	}
 
 	/**
@@ -509,7 +483,6 @@ public interface Individual {
 	 * @see com.redbugz.macpaf.Individual#getPreferredImage()
 	 */
 	public Multimedia getPreferredImage() {
-		// TODO Auto-generated method stub
 		return Multimedia.UNKNOWN_MULTIMEDIA;
 	}
 
@@ -546,7 +519,7 @@ public interface Individual {
 	}
 
 	public Individual getPrimarySpouse() {
-	  return UNKNOWN_FEMALE;
+	  return UNKNOWN_MALE;
 	}
 
 	public Individual getFather() {

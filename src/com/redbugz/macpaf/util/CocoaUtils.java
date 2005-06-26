@@ -44,4 +44,11 @@ public class CocoaUtils {
 		return temple;
 	  }
 
+	/**
+	 * @return
+	 */
+	public static NSSelector didEndSelector() {
+		return new NSSelector("sheetDidEnd", new Class[] {NSWindow.class, int.class, Object.class} );
+	}
+
 }

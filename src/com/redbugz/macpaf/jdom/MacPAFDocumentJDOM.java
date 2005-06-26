@@ -49,10 +49,10 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 	private int nextFamilyId = 1;
 	private int nextIndividualId = 1;
 	private int nextMultimediaId = 1;
-	private int nextNotesId = 1;
-	private int nextSourcesId = 1;
-	private int nextRepositoriesId = 1;
-	private int nextSubmittersId = 1;
+	private int nextNoteId = 1;
+	private int nextSourceId = 1;
+	private int nextRepositoryId = 1;
+	private int nextSubmitterId = 1;
 
 	File gedcomFile = null;
 	File xmlFile = null;
@@ -74,7 +74,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 		// todo: figure out how to handle RIN vs ID, blank vs dups
 //		if (newFamily.getRin())
 		if (StringUtils.isEmpty(newFamily.getId())) {
-			newFamily.setId("I"+getNextAvailableFamilyId());
+			newFamily.setId("F"+getNextAvailableFamilyId());
 			log.info("Family added with blank Id. Assigning Id: "+newFamily.getId());
 //			throw new IllegalArgumentException("Cannot add a new family with a blank ID");
 		}
@@ -82,7 +82,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 		log.debug("added fam with key: " + newFamily.getId() + " fam marr date: " + newFamily.getMarriageEvent().getDateString());
 		if (newFamily instanceof FamilyJDOM) {
 			log.debug("adding fam to doc: " + newFamily);
-			doc.getRootElement().addContent((Content) ((FamilyJDOM) newFamily).getElement().clone());
+			doc.getRootElement().addContent((Content) ((FamilyJDOM) newFamily).getElement());
 		}
 		setChanged();
 	}
@@ -441,8 +441,9 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 	 */
 	public Individual createAndInsertNewIndividual() {
 		Element newIndividualElement = new Element(IndividualJDOM.INDIVIDUAL);
-		doc.getRootElement().addContent(newIndividualElement);
-		return new IndividualJDOM(newIndividualElement, this);
+		IndividualJDOM newIndividual = new IndividualJDOM(newIndividualElement, this);
+		addIndividual(newIndividual);
+		return newIndividual;
 	}
 	
 	/**
@@ -452,8 +453,17 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 	 */
 	public Family createAndInsertNewFamily() {
 		Element newFamilyElement = new Element(FamilyJDOM.FAMILY);
-		doc.getRootElement().addContent(newFamilyElement);
-		return new FamilyJDOM(newFamilyElement, this);
+		FamilyJDOM newFamily = new FamilyJDOM(newFamilyElement, this);
+		addFamily(newFamily);
+		return newFamily;
+	}
+	
+	public void removeIndividual(Individual individualToRemove) {
+		log.warn("MPDJ.removeIndividual instructed to remove individual from document: "+individualToRemove.getFullName());
+	}
+	
+	public void removeFamily (Family familyToRemove) {
+		log.warn("MPDJ.removeFamily instructed to remove family from document: "+familyToRemove.toString());
 	}
 	
 	public Map getFamilyMap() {
@@ -594,25 +604,25 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 	 * @return Returns the nextNoteId.
 	 */
 	public int getNextAvailableNoteId() {
-		return nextNotesId++;
+		return nextNoteId++;
 	}
 	/**
 	 * @return Returns the nextRepositoryId.
 	 */
 	public int getNextAvailableRepositoryId() {
-		return nextRepositoriesId++;
+		return nextRepositoryId++;
 	}
 	/**
 	 * @return Returns the nextSourcesId.
 	 */
 	public int getNextAvailableSourceId() {
-		return nextSourcesId++;
+		return nextSourceId++;
 	}
 	/**
 	 * @return Returns the nextSubmitterId.
 	 */
 	public int getNextAvailableSubmitterId() {
-		return nextSubmittersId++;
+		return nextSubmitterId++;
 	}
 }
 

@@ -26,6 +26,7 @@ import com.redbugz.macpaf.SurnameList;
 import com.redbugz.macpaf.jdom.MacPAFDocumentJDOM;
 import com.redbugz.macpaf.test.Tests;
 import com.redbugz.macpaf.util.Base64;
+import com.redbugz.macpaf.util.CocoaUtils;
 import com.redbugz.macpaf.util.Hex;
 import com.redbugz.macpaf.util.MultimediaUtils;
 
@@ -139,7 +140,7 @@ public class MyDocument extends NSDocument implements Observer {
   public MyDocument(String fileName, String fileType) {
 	super(fileName, fileType);
 	log.error("MyDocument.MyDocument(" + fileName + ", " + fileType + ")");
-	  initDoc();
+	initDoc();
   }
 
 //   public void closeFamilyEditSheet(Object sender) { /* IBAction */
@@ -161,15 +162,13 @@ public class MyDocument extends NSDocument implements Observer {
   public void openFamilyEditSheet(Object sender) { /* IBAction */
 	( (NSWindowController) familyEditWindow.delegate()).setDocument(this);
 	if ( ( (NSButton) sender).tag() == 1) {
-	  ( (FamilyEditController) familyEditWindow.delegate()).setFamily(primaryIndividual.getFamilyAsChild());
+	( (FamilyEditController) familyEditWindow.delegate()).setFamily(primaryIndividual.getFamilyAsChild());
 	} else {
 	  ( (FamilyEditController) familyEditWindow.delegate()).setFamily(primaryIndividual.getFamilyAsSpouse());
     }
 	NSApplication nsapp = NSApplication.sharedApplication();
 	nsapp.beginSheet(familyEditWindow, mainWindow, this, new NSSelector("sheetDidEndShouldClose2", new Class[] {}), null);
-	//nsapp.runModalForWindow(familyEditWindow);  
-	//nsapp.endSheet(familyEditWindow);
-	//familyEditWindow.orderOut(this);
+	// sheet is up here, control passes to the sheet controller
   }
 
   public void sheetDidEndShouldClose2() {
@@ -179,11 +178,16 @@ public class MyDocument extends NSDocument implements Observer {
   public void openIndividualEditSheet(Object sender) { /* IBAction */
 	( (NSWindowController) individualEditWindow.delegate()).setDocument(this);
 	NSApplication nsapp = NSApplication.sharedApplication();
-	nsapp.beginSheet(individualEditWindow, mainWindow, null, null, null);
-	//nsapp.runModalForWindow(individualEditWindow);
-//      nsapp.endSheet(individualEditWindow);
-//      individualEditWindow.orderOut(this);
+	nsapp.beginSheet(individualEditWindow, mainWindow, this, CocoaUtils.didEndSelector(), null);
+	// sheet is up here, control passes to the sheet controller
   }
+  
+  public void sheetDidEnd(NSWindow sheet, int returnCode, Object contextInfo) {
+    log.debug("Called did-end selector");
+    log.debug("sheetdidend contextInfo:"+contextInfo);
+    sheet.orderOut(this);
+  }  	
+
 
   public void openReportsSheet(Object sender) { /* IBAction */
 	( (NSWindowController) reportsWindow.delegate()).setDocument(this);

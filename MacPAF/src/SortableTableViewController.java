@@ -1,11 +1,14 @@
 /* SortableTableViewController */
 
+import java.net.URL;
+
 import com.apple.cocoa.application.NSDraggingInfo;
 import com.apple.cocoa.application.NSPasteboard;
 import com.apple.cocoa.application.NSTableColumn;
 import com.apple.cocoa.application.NSTableView;
 import com.apple.cocoa.application.NSTableView.DataSource;
 import com.apple.cocoa.foundation.NSArray;
+import com.apple.cocoa.foundation.NSIndexSet;
 import com.apple.cocoa.foundation.NSObject;
 
 /**
@@ -113,5 +116,19 @@ public class SortableTableViewController extends NSObject implements NSTableView
   private NSTableView.DataSource dataSource() {
 	return (DataSource) tableView.dataSource();
   }
+
+/* (non-Javadoc)
+ * @see com.apple.cocoa.application.NSTableView.DataSource#tableViewWriteRowsToPasteboard(com.apple.cocoa.application.NSTableView, com.apple.cocoa.foundation.NSIndexSet, com.apple.cocoa.application.NSPasteboard)
+ */
+public boolean tableViewWriteRowsToPasteboard(NSTableView arg0, NSIndexSet arg1, NSPasteboard arg2) {
+	return dataSource().tableViewWriteRowsToPasteboard(arg0, arg1, arg2);
+}
+
+/* (non-Javadoc)
+ * @see com.apple.cocoa.application.NSTableView.DataSource#tableViewNamesOfPromisedFilesDroppedAtDestination(com.apple.cocoa.application.NSTableView, java.net.URL, com.apple.cocoa.foundation.NSIndexSet)
+ */
+public NSArray tableViewNamesOfPromisedFilesDroppedAtDestination(NSTableView arg0, URL arg1, NSIndexSet arg2) {
+	return dataSource().tableViewNamesOfPromisedFilesDroppedAtDestination(arg0, arg1, arg2);
+}
 
 }

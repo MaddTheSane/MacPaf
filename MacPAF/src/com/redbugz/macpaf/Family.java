@@ -68,8 +68,7 @@ public interface Family {
 	 * @see com.redbugz.macpaf.Family#setFather(com.redbugz.macpaf.Individual)
 	 */
 	public void setFather(Individual father) {
-		// TODO Auto-generated method stub
-		
+		throw new UnsupportedOperationException("Cannot modify an UnknownFamily");
 	}
 
 	/* (non-Javadoc)
@@ -83,8 +82,7 @@ public interface Family {
 	 * @see com.redbugz.macpaf.Family#setMother(com.redbugz.macpaf.Individual)
 	 */
 	public void setMother(Individual mother) {
-		// TODO Auto-generated method stub
-		
+		throw new UnsupportedOperationException("Cannot modify an UnknownFamily");
 	}
 
 	/* (non-Javadoc)
@@ -98,32 +96,28 @@ public interface Family {
 	 * @see com.redbugz.macpaf.Family#setChildren(java.util.List)
 	 */
 	public void setChildren(List children) {
-		// TODO Auto-generated method stub
-		
+		throw new UnsupportedOperationException("Cannot modify an UnknownFamily");
 	}
 
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Family#addChild(com.redbugz.macpaf.Individual)
 	 */
 	public void addChild(Individual newChild) {
-		// TODO Auto-generated method stub
-		
+		throw new UnsupportedOperationException("Cannot modify an UnknownFamily");
 	}
 
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Family#addChildAtPosition(com.redbugz.macpaf.Individual, int)
 	 */
 	public void addChildAtPosition(Individual newChild, int position) {
-		// TODO Auto-generated method stub
-		
+		throw new UnsupportedOperationException("Cannot modify an UnknownFamily");
 	}
 
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Family#removeChildAtPosition(int)
 	 */
 	public void removeChildAtPosition(int position) {
-		// TODO Auto-generated method stub
-		
+		throw new UnsupportedOperationException("Cannot modify an UnknownFamily");
 	}
 
 	/* (non-Javadoc)
@@ -137,8 +131,7 @@ public interface Family {
 	 * @see com.redbugz.macpaf.Family#setSealingToSpouse(com.redbugz.macpaf.Ordinance)
 	 */
 	public void setSealingToSpouse(Ordinance sealing) {
-		// TODO Auto-generated method stub
-		
+		throw new UnsupportedOperationException("Cannot modify an UnknownFamily");
 	}
 
 	/* (non-Javadoc)
@@ -152,8 +145,7 @@ public interface Family {
 	 * @see com.redbugz.macpaf.Family#setId(java.lang.String)
 	 */
 	public void setId(String newId) {
-		// TODO Auto-generated method stub
-		
+		throw new UnsupportedOperationException("Cannot modify an UnknownFamily");
 	}
 
 	/* (non-Javadoc)
@@ -167,15 +159,13 @@ public interface Family {
 	 * @see com.redbugz.macpaf.Family#setRin(int)
 	 */
 	public void setRin(int newRin) {
-		// TODO Auto-generated method stub
-		
+		throw new UnsupportedOperationException("Cannot modify an UnknownFamily");
 	}
 
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Family#getMarriageEvent()
 	 */
 	public Event getMarriageEvent() {
-		// TODO Auto-generated method stub
 		return Event.UNKNOWN_EVENT;
 	}
   	

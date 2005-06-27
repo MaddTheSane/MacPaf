@@ -46,13 +46,13 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 	protected Map repositories = new HashMap();
 	protected Map submitters = new HashMap();
 	
-	private int nextFamilyId = 1;
-	private int nextIndividualId = 1;
-	private int nextMultimediaId = 1;
-	private int nextNoteId = 1;
-	private int nextSourceId = 1;
-	private int nextRepositoryId = 1;
-	private int nextSubmitterId = 1;
+	private int nextFamilyId = 0;
+	private int nextIndividualId = 0;
+	private int nextMultimediaId = 0;
+	private int nextNoteId = 0;
+	private int nextSourceId = 0;
+	private int nextRepositoryId = 0;
+	private int nextSubmitterId = 0;
 
 	File gedcomFile = null;
 	File xmlFile = null;
@@ -82,7 +82,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 		log.debug("added fam with key: " + newFamily.getId() + " fam marr date: " + newFamily.getMarriageEvent().getDateString());
 		if (newFamily instanceof FamilyJDOM) {
 			log.debug("adding fam to doc: " + newFamily);
-			doc.getRootElement().addContent((Content) ((FamilyJDOM) newFamily).getElement());
+			doc.getRootElement().addContent((Content) ((FamilyJDOM) newFamily).getElement().clone());
 		}
 		setChanged();
 	}
@@ -108,7 +108,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 	private void addSubmitter(Submitter newSubmitter) {
 		System.out.println("MacPAFDocumentJDOM.addSubmitter():"+newSubmitter);
 		if (StringUtils.isEmpty(newSubmitter.getId())) {
-			newSubmitter.setId("I"+getNextAvailableSubmitterId());
+			newSubmitter.setId("T"+getNextAvailableSubmitterId());
 			log.info("Submitter added with blank Id. Assigning Id: "+newSubmitter.getId());
 //			throw new IllegalArgumentException("Cannot add a new multimedia with a blank ID");
 		}
@@ -129,7 +129,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 	private void addRepository(Repository newRepository) {
 		System.out.println("MacPAFDocumentJDOM.addRepository():"+newRepository);
 		if (StringUtils.isEmpty(newRepository.getId())) {
-			newRepository.setId("I"+getNextAvailableRepositoryId());
+			newRepository.setId("R"+getNextAvailableRepositoryId());
 			log.info("Repository added with blank Id. Assigning Id: "+newRepository.getId());
 //		throw new IllegalArgumentException("Cannot add a new repository with a blank ID");
 		}
@@ -147,7 +147,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 	private void addSource(Source newSource) {
 		System.out.println("MacPAFDocumentJDOM.addSource():"+newSource);
 		if (StringUtils.isEmpty(newSource.getId())) {
-			newSource.setId("I"+getNextAvailableSourceId());
+			newSource.setId("S"+getNextAvailableSourceId());
 			log.info("Source added with blank Id. Assigning Id: "+newSource.getId());
 //		throw new IllegalArgumentException("Cannot add a new source with a blank ID");
 		}
@@ -167,7 +167,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 	public void addNote(Note newNote) {
 		System.out.println("MacPAFDocumentJDOM.addNote():"+newNote);
 		if (StringUtils.isEmpty(newNote.getId())) {
-			newNote.setId("I"+getNextAvailableNoteId());
+			newNote.setId("N"+getNextAvailableNoteId());
 			log.info("Note added with blank Id. Assigning Id: "+newNote.getId());
 //		throw new IllegalArgumentException("Cannot add a new note with a blank ID");
 		}
@@ -187,7 +187,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 	public void addMultimedia(Multimedia newMultimedia) {
 		System.out.println("MacPAFDocumentJDOM.addMultimedia():"+newMultimedia);
 		if (StringUtils.isEmpty(newMultimedia.getId())) {
-			newMultimedia.setId("I"+getNextAvailableMultimediaId());
+			newMultimedia.setId("M"+getNextAvailableMultimediaId());
 			log.info("Multimedia added with blank Id. Assigning Id: "+newMultimedia.getId());
 //		throw new IllegalArgumentException("Cannot add a new multimedia with a blank ID");
 		}
@@ -459,14 +459,22 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 	}
 	
 	public void removeIndividual(Individual individualToRemove) {
-		log.warn("MPDJ.removeIndividual instructed to remove individual from document: "+individualToRemove.getFullName());
+		// TODO naive implementation, still need to handle links to this individual
+		log.warn("removeIndividual() instructed to remove individual from document: "+individualToRemove.getFullName());
+		IndividualJDOM jdomIndividual = getIndividual(individualToRemove.getId());
+		jdomIndividual.getElement().detach();
+		individuals.remove(individualToRemove.getId());
 	}
 	
 	public void removeFamily (Family familyToRemove) {
-		log.warn("MPDJ.removeFamily instructed to remove family from document: "+familyToRemove.toString());
+		// TODO naive implementation, still need to handle links to this family
+		log.warn("removeFamily() instructed to remove family from document: "+familyToRemove.toString());
+		FamilyJDOM jdomFamily = getFamily(familyToRemove.getId());
+		jdomFamily.getElement().detach();
+		families.remove(familyToRemove.getId());
 	}
 	
-	public Map getFamilyMap() {
+	public Map getFamiliesMap() {
 		return families;
 	}
 	
@@ -586,43 +594,100 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 	 * @return Returns the nextFamilyId.
 	 */
 	public int getNextAvailableFamilyId() {
-		return nextFamilyId++;
+		return ++nextFamilyId;
 	}
 	/**
 	 * @return Returns the nextIndividualId.
 	 */
 	public int getNextAvailableIndividualId() {
-		return nextIndividualId++;
+		return ++nextIndividualId;
 	}
 	/**
 	 * @return Returns the nextMultimediaId.
 	 */
 	public int getNextAvailableMultimediaId() {
-		return nextMultimediaId++;
+		return ++nextMultimediaId;
 	}
 	/**
 	 * @return Returns the nextNoteId.
 	 */
 	public int getNextAvailableNoteId() {
-		return nextNoteId++;
+		return ++nextNoteId;
 	}
 	/**
 	 * @return Returns the nextRepositoryId.
 	 */
 	public int getNextAvailableRepositoryId() {
-		return nextRepositoryId++;
+		return ++nextRepositoryId;
 	}
 	/**
 	 * @return Returns the nextSourcesId.
 	 */
 	public int getNextAvailableSourceId() {
-		return nextSourceId++;
+		return ++nextSourceId;
 	}
 	/**
 	 * @return Returns the nextSubmitterId.
 	 */
 	public int getNextAvailableSubmitterId() {
-		return nextSubmitterId++;
+		return ++nextSubmitterId;
+	}
+
+	/**
+	 * @return
+	 */
+	public Individual getPrimaryIndividual() {
+		return primaryIndividual;
+	}
+
+	/**
+	 * @return
+	 */
+	public Note createAndInsertNewNote() {
+		Element newNoteElement = new Element(NoteJDOM.NOTE);
+		NoteJDOM newNote = new NoteJDOM(newNoteElement, this);
+		addNote(newNote);
+		return newNote;
+	}
+
+	/**
+	 * @return
+	 */
+	public Submitter createAndInsertNewSubmitter() {
+		Element newSubmitterElement = new Element(SubmitterJDOM.SUBMITTER);
+		SubmitterJDOM newSubmitter = new SubmitterJDOM(newSubmitterElement, this);
+		addSubmitter(newSubmitter);
+		return newSubmitter;
+	}
+
+	/**
+	 * @return
+	 */
+	public Multimedia createAndInsertNewMultimedia() {
+		Element newMultimediaElement = new Element(MultimediaJDOM.MULTIMEDIA);
+		MultimediaJDOM newMultimedia = new MultimediaJDOM(newMultimediaElement, this);
+		addMultimedia(newMultimedia);
+		return newMultimedia;
+	}
+
+	/**
+	 * @return
+	 */
+	public Source createAndInsertNewSource() {
+		Element newSourceElement = new Element(SourceJDOM.SOURCE);
+		SourceJDOM newSource = new SourceJDOM(newSourceElement, this);
+		addSource(newSource);
+		return newSource;
+	}
+
+	/**
+	 * @return
+	 */
+	public Repository createAndInsertNewRepository() {
+		Element newRepositoryElement = new Element(RepositoryJDOM.REPOSITORY);
+		RepositoryJDOM newRepository = new RepositoryJDOM(newRepositoryElement, this);
+		addRepository(newRepository);
+		return newRepository;
 	}
 }
 

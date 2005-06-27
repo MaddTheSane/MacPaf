@@ -264,7 +264,7 @@ public class FamilyJDOM implements Family {
   }
 
   public Event getMarriageEvent() {
-	return new EventJDOM(element.getChild("MARR"));
+	return new EventJDOM(makeChildElement(Family.MARRIAGE));
   }
 
   /**
@@ -277,7 +277,7 @@ public class FamilyJDOM implements Family {
 		  new Integer(element.getChildTextTrim("NCHI")).intValue();
 	}
 	catch (Exception e) {
-	  return getChildren().size();
+	  numberOfChildren = getChildren().size();
 	}
 	return numberOfChildren;
   }
@@ -328,6 +328,23 @@ public class FamilyJDOM implements Family {
 	}
 	rin.setText(String.valueOf(newRin));
   }
+  
+  private Element makeChildElement(String elementName) {
+	return makeChildElement(elementName, element);
+  }
+
+  private Element makeChildElement(String elementName, Element parentElement) {
+	if (parentElement == null) {
+	  throw new IllegalArgumentException("FamilyJDOM.makeChildElement("+elementName+",null): parentElement cannot be null");
+	}
+	Element child = parentElement.getChild(elementName);
+	if (child == null) {
+	  child = new Element(elementName);
+	  parentElement.addContent(child);
+	}
+	return child;
+  }
+
 
   /* (non-Javadoc)
    * @see java.lang.Object#toString()

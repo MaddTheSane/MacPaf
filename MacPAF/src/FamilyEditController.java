@@ -46,15 +46,15 @@ public class FamilyEditController extends NSWindowController {
   
   private NSMutableArray undoStack = new NSMutableArray();
 
-private static final String EDIT_HUSBAND_KEY = null;
+private static final String EDIT_HUSBAND_KEY = "EditHusband";
 
-private static final String EDIT_WIFE_KEY = null;
+private static final String EDIT_WIFE_KEY = "EditWife";
 
   public void setDocument(NSDocument document) {
 	super.setDocument(document);
 	System.out.println("FamilyEditController.setDocument(document):"+document.fileName());
 	this.document = (MyDocument) document;
-	setFamily( ( (MyDocument) document).getPrimaryIndividual().getFamilyAsSpouse());
+	//setFamily( ( (MyDocument) document).getPrimaryIndividual().getFamilyAsSpouse());
   }
 
   public void setFamily(Family family) {
@@ -63,6 +63,13 @@ private static final String EDIT_WIFE_KEY = null;
 		saveButton.setTitle("Add Family");
 		family = document.createAndInsertNewFamily();
 		undoStack.addObject(family);
+		if (Gender.MALE.equals(document.getPrimaryIndividual().getGender())) {
+			family.setFather(document.getPrimaryIndividual());
+		} else if (Gender.FEMALE.equals(document.getPrimaryIndividual().getGender())) {
+			family.setMother(document.getPrimaryIndividual());
+		} else {
+			// unknown gender, prompt user
+		}
 	} else {
 		saveButton.setTitle("Save Family");
 	}

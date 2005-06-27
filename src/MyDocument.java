@@ -397,7 +397,7 @@ else {
 	  individualList.document = this;
 	  familyList.document = this;
 	  individualList.setIndividualMap(doc.getIndividualsMap());
-	  familyList.setFamilyMap(doc.getFamilyMap());
+	  familyList.setFamilyMap(doc.getFamiliesMap());
 	  individualListTableView.setDataSource(individualList);
 	  individualListTableView.setDelegate(individualList);
 	  System.out.println(" familyList="+familyList);

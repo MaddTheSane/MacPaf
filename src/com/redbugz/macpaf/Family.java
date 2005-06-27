@@ -22,6 +22,8 @@ public interface Family {
   public static final String WIFE = "WIFE";
   public static final String RIN = "RIN";
   public static final String ID = "ID";
+  public static final String MARRIAGE = "MARR";
+
 
   public Individual getFather();
 

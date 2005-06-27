@@ -33,8 +33,9 @@ public class MultimediaJDOM implements Multimedia {
   private static final String TITLE = "TITLE";
   private static final String BLOB = "BLOB";
   private static final String RIN = "RIN";
+  public static final String MULTIMEDIA = "OBJE";
 
-  Element element = new Element("OBJE");
+  Element element = new Element(MULTIMEDIA);
 private MacPAFDocumentJDOM document;
 
   /**
@@ -185,8 +186,7 @@ private MacPAFDocumentJDOM document;
    * @see com.redbugz.macpaf.Multimedia#setId(java.lang.String)
    */
   public void setId(String id) {
-	// TODO Auto-generated method stub
-
+  	element.setAttribute(ID, id);
   }
 
 /* (non-Javadoc)

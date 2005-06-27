@@ -863,7 +863,7 @@ private void saveName() {
 
   private Element makeChildElement(String elementName, Element parentElement) {
 	if (parentElement == null) {
-	  throw new IllegalArgumentException("IndividualJDOM.makeChildElement(): parentElement cannot be null");
+	  throw new IllegalArgumentException("IndividualJDOM.makeChildElement("+elementName+",null): parentElement cannot be null");
 	}
 	Element child = parentElement.getChild(elementName);
 	if (child == null) {

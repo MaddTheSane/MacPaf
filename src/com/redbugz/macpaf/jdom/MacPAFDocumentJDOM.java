@@ -78,6 +78,11 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 			log.info("Family added with blank Id. Assigning Id: "+newFamily.getId());
 //			throw new IllegalArgumentException("Cannot add a new family with a blank ID");
 		}
+		while (families.containsKey(newFamily.getId())) {
+			String oldKey = newFamily.getId();
+			newFamily.setId("F"+getNextAvailableFamilyId());
+			log.warn("Attempt to insert family with duplicate key. Reassigning key from "+oldKey+" to "+newFamily.getId());
+		}
 		families.put(newFamily.getId(), newFamily);
 		log.debug("added fam with key: " + newFamily.getId() + " fam marr date: " + newFamily.getMarriageEvent().getDateString());
 		if (newFamily instanceof FamilyJDOM) {
@@ -93,6 +98,11 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 			newIndividual.setId("I"+getNextAvailableIndividualId());
 			log.info("Individual added with blank Id. Assigning Id: "+newIndividual.getId());
 //			throw new IllegalArgumentException("Cannot add a new individual with a blank ID");
+		}
+		while (individuals.containsKey(newIndividual.getId())) {
+			String oldId = newIndividual.getId();
+			newIndividual.setId("I"+getNextAvailableIndividualId());
+			log.warn("Attempt to insert individual with duplicate key, reassigning key from "+oldId+" to "+newIndividual.getId());
 		}
 		individuals.put(newIndividual.getId(), newIndividual);
 		log.debug("added individual with key: " + newIndividual.getId() + " name: " + newIndividual.getFullName());

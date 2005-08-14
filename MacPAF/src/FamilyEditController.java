@@ -174,7 +174,7 @@ private static final String EDIT_WIFE_KEY = "EditWife";
 	Individual mother = family.getMother();
 	if (mother instanceof Individual.UnknownIndividual) {
 		mother = document.createAndInsertNewIndividual();
-		// todo: decide if undoing invidual creation here is appropriate, since it's different from FR 2.3.1
+		// todo: decide if undoing individual creation here is appropriate, since it's different from FR 2.3.1
 		undoStack.addObject(mother);
 		
 		mother.setGender(Gender.FEMALE);

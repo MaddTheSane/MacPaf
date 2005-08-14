@@ -16,6 +16,7 @@ import com.redbugz.macpaf.Event;
 import com.redbugz.macpaf.Family;
 import com.redbugz.macpaf.Individual;
 import com.redbugz.macpaf.Ordinance;
+import com.redbugz.macpaf.util.JDOMUtils;
 
 /**
  * Created by IntelliJ IDEA. User: logan Date: Mar 16, 2003 Time: 3:39:21 PM To
@@ -176,7 +177,7 @@ public class FamilyJDOM implements Family {
   }
 
   public void setMother(Individual mother) {
-	//      mom = mother;
+	this.mother = mother;
 	element.removeChild(WIFE);
 	element.addContent(
 		new Element(WIFE).setAttribute(REF, mother.getId()));
@@ -264,7 +265,7 @@ public class FamilyJDOM implements Family {
   }
 
   public Event getMarriageEvent() {
-	return new EventJDOM(makeChildElement(Family.MARRIAGE));
+	return new EventJDOM(JDOMUtils.findOrMakeChildElement(Family.MARRIAGE, element));
   }
 
   /**
@@ -329,23 +330,6 @@ public class FamilyJDOM implements Family {
 	rin.setText(String.valueOf(newRin));
   }
   
-  private Element makeChildElement(String elementName) {
-	return makeChildElement(elementName, element);
-  }
-
-  private Element makeChildElement(String elementName, Element parentElement) {
-	if (parentElement == null) {
-	  throw new IllegalArgumentException("FamilyJDOM.makeChildElement("+elementName+",null): parentElement cannot be null");
-	}
-	Element child = parentElement.getChild(elementName);
-	if (child == null) {
-	  child = new Element(elementName);
-	  parentElement.addContent(child);
-	}
-	return child;
-  }
-
-
   /* (non-Javadoc)
    * @see java.lang.Object#toString()
    */

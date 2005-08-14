@@ -9,7 +9,6 @@
                 editWife = id; 
                 removeChild = id; 
                 save = id; 
-                toggleDivorced = id; 
             }; 
             CLASS = FamilyEditController; 
             LANGUAGE = Java; 

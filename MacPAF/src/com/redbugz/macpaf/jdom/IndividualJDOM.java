@@ -66,8 +66,8 @@ public class IndividualJDOM implements Individual, Cloneable {
   private List events = new ArrayList();
 
   private MacPAFDocumentJDOM document = null;
-  private Family familyAsChild;
-  private Family familyAsSpouse;
+//  private Family familyAsChild;
+//  private Family familyAsSpouse;
 private static final Collection commonNamePrefixes = Arrays.asList(new String[] {
 		"Dr.", "Prof.", "Gen.", "Sir", "Adm.", "Lt.", "Lt. Cmmdr.", "Lord", "Pvt.",
 		"Mr.", "Mrs.", "Miss", "Ms."
@@ -220,7 +220,7 @@ private static final Collection commonNamePrefixes = Arrays.asList(new String[] 
 	}
 	name = nameBuf.toString();
 //	log.debug("name  after slashes removed:|" + name + "|");
-	return name.trim();
+	return getId()+":"+name.trim();
   }
 
   /* (non-Javadoc)
@@ -545,7 +545,7 @@ private void saveName() {
 
   public void setImagePath(URL path) {
 //		imageURL = path;
-// todo implement
+	  throw new UnsupportedOperationException("setImagePath not implemented in IndividualJDOM");
   }
 
   public Individual getPrimarySpouse() {
@@ -568,8 +568,8 @@ private void saveName() {
   }
 
   public Family getFamilyAsChild() {
-	if (familyAsChild == null) {
-	  familyAsChild = Family.UNKNOWN_FAMILY;//JDOM(document);
+//	if (familyAsChild == null) {
+	  Family familyAsChild = Family.UNKNOWN_FAMILY;//JDOM(document);
 	  try {
 		Element famLink = element.getChild(FAMILY_CHILD_LINK);
 		if (famLink != null) {
@@ -590,13 +590,13 @@ private void saveName() {
 	  catch (Exception e) {
 		log.error("Exception: ", e); //To change body of catch statement use Options | File Templates.
 	  }
-	}
+//	}
 	return familyAsChild;
   }
 
   public Family getFamilyAsSpouse() {
-	if (familyAsSpouse == null) {
-	  familyAsSpouse = Family.UNKNOWN_FAMILY;
+//	if (familyAsSpouse == null) {
+	  Family familyAsSpouse = Family.UNKNOWN_FAMILY;
 	  try {
 		Element famLink = element.getChild(FAMILY_SPOUSE_LINK);
 		System.out.println("famLink="+famLink);
@@ -655,7 +655,7 @@ private void saveName() {
 	  catch (Exception e) {
 		log.error("Exception: ", e); //To change body of catch statement use Options | File Templates.
 	  }
-	}
+//	}
 	return familyAsSpouse;
   }
 
@@ -666,12 +666,14 @@ private void saveName() {
 //			this.note = note;
 //		}
 // todo implement
+	  throw new UnsupportedOperationException("setNotes not implemented in IndividualJDOM");
   }
 
   public void setFamilyAsSpouse(Family fam) {
 //		familyAsSpouse = fam;
 //		addFamilyAsSpouse(fam);
-// todo implement
+		element.removeChildren(FAMILY_SPOUSE_LINK);
+		element.addContent(new Element(FAMILY_SPOUSE_LINK).setAttribute(REF, fam.getId()));
   }
 
   public List getSpouseList() {
@@ -706,7 +708,7 @@ private void saveName() {
 //				spouseList.add(family.getFather());
 //			}
 //		}
-// todo implement
+
 	return spouseList;
   }
 
@@ -723,7 +725,6 @@ private void saveName() {
   }
 
   public List getNotes() {
-// todo implement
 //		if (note == null) {
 	List notes = new ArrayList();
 	List children = element.getChildren(NoteJDOM.NOTE);

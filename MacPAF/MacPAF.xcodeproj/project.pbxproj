@@ -213,6 +213,11 @@
 		027D36B60707D41E00F146F8 /* Metal Window.psd in Resources */ = {isa = PBXBuildFile; fileRef = 027D36B20707D41E00F146F8 /* Metal Window.psd */; };
 		027D36B70707D42100F146F8 /* Page.psd in Resources */ = {isa = PBXBuildFile; fileRef = 027D36B30707D41E00F146F8 /* Page.psd */; };
 		02907686060568E800F1763A /* IndividualDetailController.java in Sources */ = {isa = PBXBuildFile; fileRef = 02907685060568E800F1763A /* IndividualDetailController.java */; };
+		02A778EA08AFB24C007897F4 /* JDOMUtils.java in Sources */ = {isa = PBXBuildFile; fileRef = 02A778E908AFB24C007897F4 /* JDOMUtils.java */; };
+		02A7790108B011E6007897F4 /* FamilyListController.java in Sources */ = {isa = PBXBuildFile; fileRef = 02A778FF08B011E6007897F4 /* FamilyListController.java */; };
+		02A7790208B011E6007897F4 /* IndividualListController.java in Sources */ = {isa = PBXBuildFile; fileRef = 02A7790008B011E6007897F4 /* IndividualListController.java */; };
+		02A77AF008B0425A007897F4 /* IndividualListWindow.nib in Resources */ = {isa = PBXBuildFile; fileRef = 02A77AEE08B0425A007897F4 /* IndividualListWindow.nib */; };
+		02A77AF508B0445C007897F4 /* FamilyListWindow.nib in Resources */ = {isa = PBXBuildFile; fileRef = 02A77AF308B0445C007897F4 /* FamilyListWindow.nib */; };
 		02B3D1B5077B11CF0069077B /* Address.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D17D077B11CD0069077B /* Address.java */; };
 		02B3D1B6077B11CF0069077B /* Event.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D17E077B11CD0069077B /* Event.java */; };
 		02B3D1B7077B11CF0069077B /* Family.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D17F077B11CD0069077B /* Family.java */; };
@@ -385,6 +390,11 @@
 		027D36B20707D41E00F146F8 /* Metal Window.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Metal Window.psd"; sourceTree = "<group>"; };
 		027D36B30707D41E00F146F8 /* Page.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = Page.psd; sourceTree = "<group>"; };
 		02907685060568E800F1763A /* IndividualDetailController.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = IndividualDetailController.java; path = src/IndividualDetailController.java; sourceTree = "<group>"; };
+		02A778E908AFB24C007897F4 /* JDOMUtils.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = JDOMUtils.java; sourceTree = "<group>"; };
+		02A778FF08B011E6007897F4 /* FamilyListController.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = FamilyListController.java; path = src/FamilyListController.java; sourceTree = "<group>"; };
+		02A7790008B011E6007897F4 /* IndividualListController.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = IndividualListController.java; path = src/IndividualListController.java; sourceTree = "<group>"; };
+		02A77AEF08B0425A007897F4 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/IndividualListWindow.nib; sourceTree = "<group>"; };
+		02A77AF408B0445C007897F4 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/FamilyListWindow.nib; sourceTree = "<group>"; };
 		02B3D17D077B11CD0069077B /* Address.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = Address.java; sourceTree = "<group>"; };
 		02B3D17E077B11CD0069077B /* Event.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = Event.java; sourceTree = "<group>"; };
 		02B3D17F077B11CD0069077B /* Family.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = Family.java; sourceTree = "<group>"; };
@@ -485,6 +495,8 @@
 				2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */,
 				2A37F4B4FDCFA73011CA2CEA /* MyDocument.nib */,
 				089C165FFE840EACC02AAC07 /* InfoPlist.strings */,
+				02A77AEE08B0425A007897F4 /* IndividualListWindow.nib */,
+				02A77AF308B0445C007897F4 /* FamilyListWindow.nib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -641,6 +653,7 @@
 		02B3D1B0077B11CF0069077B /* util */ = {
 			isa = PBXGroup;
 			children = (
+				02A778E908AFB24C007897F4 /* JDOMUtils.java */,
 				0237A2CE07B66682003D9778 /* CocoaUtils.java */,
 				024E77CF0782F44800B7A2CC /* MultimediaUtils.java */,
 				02B3D1B1077B11CF0069077B /* Base64.java */,
@@ -701,6 +714,8 @@
 				026ED73C05D932BD0001D1D2 /* FamilyEditController.java */,
 				026ED73D05D932BD0001D1D2 /* FamilyGroupSheetView.java */,
 				026ED73E05D932BD0001D1D2 /* FamilyList.java */,
+				02A778FF08B011E6007897F4 /* FamilyListController.java */,
+				02A7790008B011E6007897F4 /* IndividualListController.java */,
 				026ED73F05D932BD0001D1D2 /* gedml */,
 				026ED74405D932BD0001D1D2 /* ImportController.java */,
 				026ED74505D932BD0001D1D2 /* IndividualEditController.java */,
@@ -801,6 +816,8 @@
 				027D36B70707D42100F146F8 /* Page.psd in Resources */,
 				026BF51807AD765200CBA37C /* Family.png in Resources */,
 				026BF51A07AD992300CBA37C /* Individual.png in Resources */,
+				02A77AF008B0425A007897F4 /* IndividualListWindow.nib in Resources */,
+				02A77AF508B0445C007897F4 /* FamilyListWindow.nib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -891,12 +908,31 @@
 				023F05BD07AD1592005A4D0A /* MyFamily.java in Sources */,
 				023F05C107AD16B5005A4D0A /* MultimediaLink.java in Sources */,
 				0237A2CF07B66682003D9778 /* CocoaUtils.java in Sources */,
+				02A778EA08AFB24C007897F4 /* JDOMUtils.java in Sources */,
+				02A7790108B011E6007897F4 /* FamilyListController.java in Sources */,
+				02A7790208B011E6007897F4 /* IndividualListController.java in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		02A77AEE08B0425A007897F4 /* IndividualListWindow.nib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				02A77AEF08B0425A007897F4 /* English */,
+			);
+			name = IndividualListWindow.nib;
+			sourceTree = "<group>";
+		};
+		02A77AF308B0445C007897F4 /* FamilyListWindow.nib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				02A77AF408B0445C007897F4 /* English */,
+			);
+			name = FamilyListWindow.nib;
+			sourceTree = "<group>";
+		};
 		089C165FFE840EACC02AAC07 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

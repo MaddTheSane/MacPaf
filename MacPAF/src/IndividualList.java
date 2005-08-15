@@ -79,7 +79,7 @@ public class IndividualList extends AbstractMap {
 		  "Birth place")) {
 		return individual.getBirthEvent().getPlace().getFormatString();
 	  }
-	  log.debug(
+	  log.warn(
 		  "IndividualList unidentified column:" + nsTableColumn);
 	}
 	catch (Exception e) {

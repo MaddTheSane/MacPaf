@@ -71,8 +71,8 @@ public class MyDocument extends NSDocument implements Observer {
   public NSWindow reportsWindow; /* IBOutlet */
   public NSWindow importWindow; /* IBOutlet */
   public NSWindow familyEditWindow; /* IBOutlet */
-  public NSWindow familyListWindow; /* IBOutlet */
-  public NSWindow individualListWindow; /* IBOutlet */
+  public FamilyListController familyListWindowController; /* IBOutlet */
+  public IndividualListController individualListWindowController; /* IBOutlet */
   public FamilyList familyList; /* IBOutlet */
   public IndividualList individualList; /* IBOutlet */
   public SurnameList surnameList; /* IBOutlet */
@@ -96,8 +96,8 @@ public class MyDocument extends NSDocument implements Observer {
   public NSTableView childrenTable; /* IBOutlet */
   public NSTableView spouseTable; /* IBOutlet */
   public PedigreeView pedigreeView; /* IBOutlet */
-  public NSTableView individualListTableView; /* IBOutlet */
-  public NSTableView familyListTableView; /* IBOutlet */
+//  public NSTableView individualListTableView; /* IBOutlet */
+//  public NSTableView familyListTableView; /* IBOutlet */
   private IndividualDetailController individualDetailController = new IndividualDetailController();
   private NSView printableView;
 
@@ -293,6 +293,9 @@ public class MyDocument extends NSDocument implements Observer {
 		  try {
 			log.debug("individuals=" + individualsButtonMap.objectForKey(sender.toString()));
 			Individual newIndividual = (Individual) individualsButtonMap.objectForKey(sender.toString());
+			if (newIndividual == null) {
+				newIndividual = Individual.UNKNOWN;
+			}
 			NSButton animateButton = (NSButton) sender;
 
 			NSPoint individualButtonOrigin = individualButton.frame().origin();
@@ -398,11 +401,6 @@ else {
 	  familyList.document = this;
 	  individualList.setIndividualMap(doc.getIndividualsMap());
 	  familyList.setFamilyMap(doc.getFamiliesMap());
-	  individualListTableView.setDataSource(individualList);
-	  individualListTableView.setDelegate(individualList);
-	  System.out.println(" familyList="+familyList);
-	  familyListTableView.setDataSource(familyList);
-	  familyListTableView.setDelegate(familyList);
 	  if (individualList.size() > 0) {
 		log.debug("indimap");
 		assignIndividualToButton( (Individual) individualList.getFirstIndividual(), individualButton);
@@ -656,9 +654,10 @@ public static boolean confirmCriticalActionMessage(String message, String detail
   public void addFamily(Family newFamily) {
 	try {
 	  doc.addFamily(newFamily);
-	  if (familyListTableView != null) {
-		familyListTableView.reloadData();
-	  }
+	  // TODO notification
+//	  if (familyListTableView != null) {
+//		familyListTableView.reloadData();
+//	  }
 	}
 	catch (Exception ex) {
 	  ex.printStackTrace();
@@ -669,9 +668,10 @@ public static boolean confirmCriticalActionMessage(String message, String detail
 	try {
 	  doc.addIndividual(newIndividual);
 	  log.debug("added newIndividual with key: "+newIndividual.getId()+" newIndividual name: "+newIndividual.getFullName());
-	  if (individualListTableView != null) {
-		individualListTableView.reloadData();
-	  }
+	  // TODO notification
+//	  if (individualListTableView != null) {
+//		individualListTableView.reloadData();
+//	  }
 	}
 	catch (Exception ex) {
 	  ex.printStackTrace(); /** @todo figure out what to do here */
@@ -889,8 +889,8 @@ try {
 		  // set first individual in imported file to primary individual
 		  setPrimaryIndividual(individualList.getSelectedIndividual());
   }
-  individualListTableView.reloadData();
-  familyListTableView.reloadData();
+//  individualListTableView.reloadData();
+//  familyListTableView.reloadData();
 	} catch (Exception e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
@@ -1063,14 +1063,29 @@ try {
 
   public void showFamilyList(Object sender) { /* IBAction */
 	log.debug("showFamilyList: " + sender);
-	familyListWindow.setDelegate(this);
-	familyListWindow.makeKeyAndOrderFront(sender);
+	try {
+		if (familyListWindowController == null) {
+			familyListWindowController = new FamilyListController(familyList);
+		}
+		familyListWindowController.showWindow(this);
+		log.debug(familyListWindowController.familyCountText.stringValue());
+		log.debug(familyListWindowController.window());
+		log.debug(	familyListWindowController.owner());
+		familyListWindowController.window().makeKeyAndOrderFront(this);
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+
+
   }
 
   public void showIndividualList(Object sender) { /* IBAction */
 	log.debug("showIndividualList: " + sender);
-	individualListWindow.setDelegate(this);
-	individualListWindow.makeKeyAndOrderFront(sender);
+	if (individualListWindowController == null) {
+		individualListWindowController = new IndividualListController();
+	}
+	individualListWindowController.showWindow(this);
   }
 
 /* (non-Javadoc)

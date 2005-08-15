@@ -1,17 +1,14 @@
 package com.redbugz.macpaf.jdom;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-//import org.jdom.Document;
 import org.jdom.Element;
-import org.jdom.JDOMException;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
-import org.jdom.xpath.XPath;
+
 import com.redbugz.macpaf.Event;
 import com.redbugz.macpaf.Family;
 import com.redbugz.macpaf.Individual;
@@ -34,9 +31,9 @@ public class FamilyJDOM implements Family {
   private MacPAFDocumentJDOM document = null;
 
   //   int numberOfChildren = -1;
-  private Individual father;
-  private Individual mother;
-  private List children;
+//  private Individual father;
+//  private Individual mother;
+//  private List children;
 
   //   private FamilyJDOM(Individual dad, Individual mom, Individual[]
   // children, Date weddingDate) {
@@ -116,8 +113,8 @@ public class FamilyJDOM implements Family {
   }
 
   public Individual getFather() {
-	if (father == null) {
-	  father = Individual.UNKNOWN_MALE;
+//	if (father == null) {
+	  Individual father = Individual.UNKNOWN_MALE;
 	  try {
 		Element fatherLink = element.getChild(HUSBAND);
 		if (fatherLink != null) {
@@ -138,7 +135,7 @@ public class FamilyJDOM implements Family {
 	  catch (Exception e) {
 		log.error("Exception: ", e); //To change body of catch statement use Options | File Templates.
 	  }
-	}
+//	}
 	return father; //dad;
   }
 
@@ -150,8 +147,8 @@ public class FamilyJDOM implements Family {
   }
 
   public Individual getMother() {
-	if (mother == null) {
-	  mother = Individual.UNKNOWN_FEMALE;
+//	if (mother == null) {
+	 Individual mother = Individual.UNKNOWN_FEMALE;
 	  try {
 		Element motherLink = element.getChild(WIFE);
 		if (motherLink != null) {
@@ -172,24 +169,25 @@ public class FamilyJDOM implements Family {
 	  catch (Exception e) {
 		log.error("Exception: ", e); //To change body of catch statement use Options | File Templates.
 	  }
-	}
+//	}
 	return mother; //dad;		return new IndividualJDOM(element.getChild(WIFE), document); //mom;
   }
 
   public void setMother(Individual mother) {
-	this.mother = mother;
-	element.removeChild(WIFE);
-	element.addContent(
-		new Element(WIFE).setAttribute(REF, mother.getId()));
+//	this.mother = mother;
+	  JDOMUtils.findOrMakeChildElement(WIFE, element).setAttribute(REF, mother.getId());
+//	element.removeChild(WIFE);
+//	element.addContent(
+//		new Element(WIFE).setAttribute(REF, mother.getId()));
   }
 
   public List getChildren() {
-	if (children == null) {
+//	if (children == null) {
 	  List childrenElements = element.getChildren("CHIL");
 	  if (childrenElements == null) {
 		childrenElements = new ArrayList();
 	  }
-	  children = new ArrayList();
+	  List children = new ArrayList();
 	  for (Iterator iter = childrenElements.iterator(); iter.hasNext(); ) {
 //			Individual child = new IndividualJDOM((Element) iter.next(), document);
 		Individual child = Individual.UNKNOWN;
@@ -215,7 +213,7 @@ public class FamilyJDOM implements Family {
 		}
 		children.add(child);
 	  }
-	}
+//	}
 	return children;
   }
 
@@ -242,12 +240,18 @@ public class FamilyJDOM implements Family {
   }
 
   public Ordinance getSealingToSpouse() {
-	OrdinanceJDOM ord = new OrdinanceJDOM(element.getChild(OrdinanceJDOM.LDS_SEALING_SPOUSE));
-	return ord;
+	return new OrdinanceJDOM(JDOMUtils.findOrMakeChildElement(OrdinanceJDOM.LDS_SEALING_SPOUSE, element));
   }
 
   public void setSealingToSpouse(Ordinance sealing) {
-	// todo implement this method
+	  Ordinance sealingToSpouse = getSealingToSpouse();
+	  if (sealingToSpouse instanceof Ordinance.UnknownOrdinance) {
+		  if (sealing instanceof OrdinanceJDOM) {
+			  sealingToSpouse = new OrdinanceJDOM(((OrdinanceJDOM)sealing).getElement());
+		  }
+		  element.addContent(((OrdinanceJDOM) sealingToSpouse).getElement());
+	  }
+	  // TODO not sure what to do here yet
   }
 
   public String getId() {
@@ -260,7 +264,6 @@ public class FamilyJDOM implements Family {
   }
 
   public void setMarriageEvent(Event marriageEvent) {
-	//      this.marriageEvent = marriageEvent;
 	element.addContent(new EventJDOM(marriageEvent).getElement());
   }
 
@@ -299,7 +302,7 @@ public class FamilyJDOM implements Family {
 	IndividualJDOM child = (IndividualJDOM) getChildren().get(position);
 	child.getElement().detach();
 	// force list of children to reload next time
-	children = null;
+//	children = null;
   }
 
   /**
@@ -322,11 +325,11 @@ public class FamilyJDOM implements Family {
    * @param newRin int
    */
   public void setRin(int newRin) {
-	Element rin = element.getChild(RIN);
-	if (rin == null) {
-	  rin = new Element(RIN);
-	  element.addContent(rin);
-	}
+	Element rin = JDOMUtils.findOrMakeChildElement(RIN, element);
+//	if (rin == null) {
+//	  rin = new Element(RIN);
+//	  element.addContent(rin);
+//	}
 	rin.setText(String.valueOf(newRin));
   }
   

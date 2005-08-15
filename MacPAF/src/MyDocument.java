@@ -1083,7 +1083,7 @@ try {
   public void showIndividualList(Object sender) { /* IBAction */
 	log.debug("showIndividualList: " + sender);
 	if (individualListWindowController == null) {
-		individualListWindowController = new IndividualListController();
+		individualListWindowController = new IndividualListController(individualList);
 	}
 	individualListWindowController.showWindow(this);
   }

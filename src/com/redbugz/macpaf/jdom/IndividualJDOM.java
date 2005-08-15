@@ -26,6 +26,7 @@ import com.redbugz.macpaf.Individual;
 import com.redbugz.macpaf.Multimedia;
 import com.redbugz.macpaf.Note;
 import com.redbugz.macpaf.Ordinance;
+import com.redbugz.macpaf.util.JDOMUtils;
 
 /**
  * This class is a wrapper around a JDOM Element that represents an Individual.
@@ -63,7 +64,7 @@ public class IndividualJDOM implements Individual, Cloneable {
   public static final String PRIVACY = "privacy";
 
   private Element element = null;//new Element(INDIVIDUAL);
-  private List events = new ArrayList();
+//  private List events = new ArrayList();
 
   private MacPAFDocumentJDOM document = null;
 //  private Family familyAsChild;
@@ -161,7 +162,7 @@ private static final Collection commonNamePrefixes = Arrays.asList(new String[] 
 	if (givenNames == null) {
 	  givenNames = "";
 	}
-	Element name = makeChildElement(NAME_GIVEN, makeChildElement(NAME));
+	Element name = JDOMUtils.findOrMakeChildElement(NAME_GIVEN, JDOMUtils.findOrMakeChildElement(NAME, element));
 	name.removeContent(new ContentFilter(ContentFilter.TEXT));
 	name.addContent(0, new Text(givenNames.trim()));
 	saveName();
@@ -181,7 +182,7 @@ private static final Collection commonNamePrefixes = Arrays.asList(new String[] 
 	if (surname == null) {
 	  surname = "";
 	}
-	Element name = makeChildElement(NAME_SURNAME, makeChildElement(NAME));
+	Element name = JDOMUtils.findOrMakeChildElement(NAME_SURNAME, JDOMUtils.findOrMakeChildElement(NAME, element));
 	name.removeContent(new ContentFilter(ContentFilter.TEXT));
 	name.addContent(0, new Text(surname));
 	saveName();
@@ -196,7 +197,7 @@ private static final Collection commonNamePrefixes = Arrays.asList(new String[] 
   }
 
   private void setName(String name) {
-	Element nameElement = makeChildElement(NAME);
+	Element nameElement = JDOMUtils.findOrMakeChildElement(NAME, element);
 	nameElement.removeContent(new ContentFilter(ContentFilter.TEXT));
 	nameElement.addContent(0, new Text(name));
   }
@@ -366,7 +367,7 @@ private void saveName() {
 	if (prefix == null) {
 	  prefix = "";
 	}
-	Element name = makeChildElement(NAME_PREFIX, makeChildElement(NAME));
+	Element name = JDOMUtils.findOrMakeChildElement(NAME_PREFIX, JDOMUtils.findOrMakeChildElement(NAME, element));
 	name.removeContent(new ContentFilter(ContentFilter.TEXT));
 	name.addContent(0, new Text(prefix));
 	saveName();
@@ -379,7 +380,7 @@ private void saveName() {
 	if (suffix == null) {
 	  suffix = "";
 	}
-	Element name = makeChildElement(NAME_SUFFIX, makeChildElement(NAME));
+	Element name = JDOMUtils.findOrMakeChildElement(NAME_SUFFIX, JDOMUtils.findOrMakeChildElement(NAME, element));
 	name.removeContent(new ContentFilter(ContentFilter.TEXT));
 	name.addContent(0, new Text(suffix));
 	saveName();
@@ -418,7 +419,7 @@ private void saveName() {
   }
 
   public Event getBirthEvent() {
-	return new EventJDOM(makeChildElement(EventJDOM.BIRTH));
+	return new EventJDOM(JDOMUtils.findOrMakeChildElement(EventJDOM.BIRTH, element));
   }
 
   public void setBirthEvent(Event event) {
@@ -438,31 +439,31 @@ private void saveName() {
   }
 
   public Event getChristeningEvent() {
-	return new EventJDOM(makeChildElement(EventJDOM.CHRISTENING));
+	return new EventJDOM(JDOMUtils.findOrMakeChildElement(EventJDOM.CHRISTENING, element));
   }
 
   public Event getDeathEvent() {
-	return new EventJDOM(makeChildElement(EventJDOM.DEATH));
+	return new EventJDOM(JDOMUtils.findOrMakeChildElement(EventJDOM.DEATH, element));
   }
 
   public Event getBurialEvent() {
-	return new EventJDOM(makeChildElement(EventJDOM.BURIAL));
+	return new EventJDOM(JDOMUtils.findOrMakeChildElement(EventJDOM.BURIAL, element));
   }
 
   public Ordinance getLDSBaptism() {
-	return new OrdinanceJDOM(makeChildElement(OrdinanceJDOM.LDS_BAPTISM));
+	return new OrdinanceJDOM(JDOMUtils.findOrMakeChildElement(OrdinanceJDOM.LDS_BAPTISM, element));
   }
 
   public Ordinance getLDSConfirmation() {
-	return new OrdinanceJDOM(makeChildElement(OrdinanceJDOM.LDS_CONFIRMATION));
+	return new OrdinanceJDOM(JDOMUtils.findOrMakeChildElement(OrdinanceJDOM.LDS_CONFIRMATION, element));
   }
 
   public Ordinance getLDSEndowment() {
-	return new OrdinanceJDOM(makeChildElement(OrdinanceJDOM.LDS_ENDOWMENT));
+	return new OrdinanceJDOM(JDOMUtils.findOrMakeChildElement(OrdinanceJDOM.LDS_ENDOWMENT, element));
   }
 
   public Ordinance getLDSSealingToParents() {
-	return new OrdinanceJDOM(makeChildElement(OrdinanceJDOM.LDS_SEALING_PARENTS));
+	return new OrdinanceJDOM(JDOMUtils.findOrMakeChildElement(OrdinanceJDOM.LDS_SEALING_PARENTS, element));
   }
 
   public boolean childrensOrdinancesAreCompleted() {
@@ -804,7 +805,7 @@ private void saveName() {
    * @see Individual#setLocked(boolean)
    */
   public void setLocked(boolean lockedFlag) {
-	makeChildElement(RESTRICTION).setText(LOCKED);
+	JDOMUtils.findOrMakeChildElement(RESTRICTION, element).setText(LOCKED);
   }
 
   /* (non-Javadoc)
@@ -827,14 +828,14 @@ private void saveName() {
    * @see Individual#setPrivate(boolean)
    */
   public void setPrivate(boolean privateFlag) {
-	makeChildElement(RESTRICTION).setText(PRIVACY);
+	JDOMUtils.findOrMakeChildElement(RESTRICTION, element).setText(PRIVACY);
   }
 
   /* (non-Javadoc)
    * @see Individual#setRin(int)
    */
   public void setRin(int rin) {
-	makeChildElement(RIN).setText("" + rin);
+	JDOMUtils.findOrMakeChildElement(RIN, element).setText("" + rin);
   }
 
   /* (non-Javadoc)
@@ -855,23 +856,7 @@ private void saveName() {
 	if (afn == null) {
 	  afn = "";
 	}
-	makeChildElement(AFN).setText(afn);
-  }
-
-  private Element makeChildElement(String elementName) {
-	return makeChildElement(elementName, element);
-  }
-
-  private Element makeChildElement(String elementName, Element parentElement) {
-	if (parentElement == null) {
-	  throw new IllegalArgumentException("IndividualJDOM.makeChildElement("+elementName+",null): parentElement cannot be null");
-	}
-	Element child = parentElement.getChild(elementName);
-	if (child == null) {
-	  child = new Element(elementName);
-	  parentElement.addContent(child);
-	}
-	return child;
+	JDOMUtils.findOrMakeChildElement(AFN, element).setText(afn);
   }
 
   public Element getElement() {
@@ -883,7 +868,7 @@ private void saveName() {
    */
   public String toString() {
 	// TODO Auto-generated method stub
-	return "IndividualJDOM elemnt:" + new XMLOutputter(Format.getPrettyFormat()).outputString(element); //super.toString();
+	return "IndividualJDOM element:" + new XMLOutputter(Format.getPrettyFormat()).outputString(element); //super.toString();
   }
 
   /**
@@ -893,9 +878,9 @@ private void saveName() {
    */
   public List getEvents() {
 //    log.debug("IndividualJDOM.getEvents()");
-	if (events == null) {
+//	if (events == null) {
 	  log.debug("IndividualJDOM.getEvents() creating event list");
-	  events = new ArrayList();
+	  List events = new ArrayList();
 	  try {
 		XPath xpath = XPath.newInstance(eventNodeNames);
 		log.debug("xpath = " + xpath);
@@ -910,7 +895,7 @@ private void saveName() {
 	  catch (JDOMException ex) {
 		ex.printStackTrace();
 	  }
-	}
+//	}
 
 	return events;
   }

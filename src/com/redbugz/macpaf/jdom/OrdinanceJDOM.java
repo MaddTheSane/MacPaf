@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 import org.jdom.Element;
 import com.redbugz.macpaf.Ordinance;
 import com.redbugz.macpaf.Temple;
+import com.redbugz.macpaf.util.JDOMUtils;
 
 /**
  * Created by IntelliJ IDEA.
@@ -23,7 +24,7 @@ public class OrdinanceJDOM extends EventJDOM implements Ordinance {
 
   public OrdinanceJDOM(Element element) {
 	super(element);
-	log.debug("MyOrdinance status=" + getStatus() + " temple=" + getTemple().getName());
+	log.debug("OrdinanceJDOM status=" + getStatus() + " temple=" + getTemple().getName());
   }
 
   public static OrdinanceJDOM createBaptismInstance() {
@@ -47,11 +48,7 @@ public class OrdinanceJDOM extends EventJDOM implements Ordinance {
   }
 
   public Temple getTemple() {
-	Temple temple = new TempleJDOM(element.getChild(TempleJDOM.TEMPLE));
-	if (temple == null) {
-	  temple = new TempleJDOM();
-	}
-	return temple;
+	return new TempleJDOM(JDOMUtils.findOrMakeChildElement(TempleJDOM.TEMPLE, element));
   }
 
   public String getStatus() {
@@ -64,8 +61,7 @@ public class OrdinanceJDOM extends EventJDOM implements Ordinance {
 
   public void setTemple(Temple temple) {
 	log.debug("OrdinanceJDOM.setTemple():" + temple);
-	element.removeChildren(TempleJDOM.TEMPLE);
-	element.addContent(new Element(TempleJDOM.TEMPLE).setText(temple.getCode()));
+	JDOMUtils.findOrMakeChildElement(TempleJDOM.TEMPLE, element).setText(temple.getCode());
   }
 
   public boolean isCompleted() {
@@ -73,7 +69,6 @@ public class OrdinanceJDOM extends EventJDOM implements Ordinance {
   }
 
   public void setStatus(String ordinanceStatus) {
-	element.removeChildren(STATUS);
-	element.addContent(new Element(STATUS).setText(ordinanceStatus));
+	JDOMUtils.findOrMakeChildElement(STATUS, element).setText(ordinanceStatus);
   }
 }

@@ -50,6 +50,8 @@ private static final String EDIT_HUSBAND_KEY = "EditHusband";
 
 private static final String EDIT_WIFE_KEY = "EditWife";
 
+private static final String EDIT_CHILD_KEY = "EditChild";
+
   public void setDocument(NSDocument document) {
 	super.setDocument(document);
 	System.out.println("FamilyEditController.setDocument(document):"+document.fileName());
@@ -138,14 +140,11 @@ private static final String EDIT_WIFE_KEY = "EditWife";
 //       document.openIndividualEditSheet(husbandButton);
 	NSWindow individualEditWindow = document.individualEditWindow;
 	( (NSWindowController) individualEditWindow.delegate()).setDocument(document);
-	( (IndividualEditController) individualEditWindow.delegate()).setIndividual( (Individual) family.getChildren().get(
-		tv.selectedRow()));
-	NSApplication nsapp = NSApplication.sharedApplication();
-	nsapp.beginSheet(individualEditWindow, window(), null, null, null);
-	//nsapp.runModalForWindow(individualEditWindow);
-//       nsapp.endSheet(individualEditWindow);
-//       individualEditWindow.orderOut(this);
-//       window().display();
+	Individual childToEdit = (Individual) family.getChildren().get(
+		tv.selectedRow());
+	( (IndividualEditController) individualEditWindow.delegate()).setIndividual( childToEdit);
+	NSApplication.sharedApplication().beginSheet(individualEditWindow, window(), this, CocoaUtils.didEndSelector(), new NSDictionary(childToEdit, EDIT_CHILD_KEY));
+	// sheet up here, control will pass to didEndSelector after closed
   }
 
   public void editHusband(Object sender) { /* IBAction */
@@ -209,6 +208,8 @@ private static final String EDIT_WIFE_KEY = "EditWife";
 				family.setMother(individual);
 	    	} else if (EDIT_HUSBAND_KEY.equals(key)) {
 	    		family.setFather(individual);
+	    	} else if (EDIT_CHILD_KEY.equals(key)) {
+//	    		family.set
 	    	}
     }
 	sheet.orderOut(this);

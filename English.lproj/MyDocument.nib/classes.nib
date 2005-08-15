@@ -31,8 +31,15 @@
             SUPERCLASS = "java.lang.Object"; 
         }, 
         {
+            ACTIONS = {search = id; selectFamily = id; }; 
             CLASS = FamilyListController; 
             LANGUAGE = Java; 
+            OUTLETS = {
+                familyCountText = NSTextField; 
+                familyList = FamilyList; 
+                familyListTableView = NSTableView; 
+                searchField = NSTextField; 
+            }; 
             SUPERCLASS = NSWindowController; 
         }, 
         {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
@@ -86,7 +93,12 @@
             ACTIONS = {search = id; selectIndividual = id; }; 
             CLASS = IndividualListController; 
             LANGUAGE = Java; 
-            OUTLETS = {individualListTableView = NSTableView; }; 
+            OUTLETS = {
+                individualCountText = NSTextField; 
+                individualList = IndividualList; 
+                individualListTableView = NSTableView; 
+                searchField = NSTextField; 
+            }; 
             SUPERCLASS = NSWindowController; 
         }, 
         {
@@ -109,16 +121,14 @@
                 familyAsSpouseButton = NSButton; 
                 familyEditWindow = NSWindow; 
                 familyList = FamilyList; 
-                familyListTableView = NSTableView; 
-                familyListWindow = NSWindow; 
+                familyListWindowController = FamilyListController; 
                 fatherButton = NSButton; 
                 individualButton = NSButton; 
                 individualDetailController = IndividualDetailController; 
                 individualEditWindow = NSWindow; 
                 individualFamilyButton = NSButton; 
                 individualList = IndividualList; 
-                individualListTableView = NSTableView; 
-                individualListWindow = NSWindow; 
+                individualListController = IndividualListController; 
                 maternalGrandfatherButton = NSButton; 
                 maternalGrandmotherButton = NSButton; 
                 motherButton = NSButton; 
@@ -135,7 +145,6 @@
             }; 
             SUPERCLASS = NSDocument; 
         }, 
-        {CLASS = MyObject; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
         {
             ACTIONS = {add = id; cancel = id; myAction = id; save = id; update = id; }; 
             CLASS = MyView; 

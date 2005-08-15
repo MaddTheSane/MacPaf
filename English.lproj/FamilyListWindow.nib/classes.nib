@@ -1,0 +1,18 @@
+{
+    IBClasses = (
+        {
+            ACTIONS = {search = id; selectFamily = id; }; 
+            CLASS = FamilyListController; 
+            LANGUAGE = Java; 
+            OUTLETS = {
+                familyCountText = NSTextField; 
+                familyList = FamilyList; 
+                familyListTableView = NSTableView; 
+                searchField = NSTextField; 
+            }; 
+            SUPERCLASS = NSWindowController; 
+        }, 
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }
+    ); 
+    IBVersion = 1; 
+}

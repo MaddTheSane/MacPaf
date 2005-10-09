@@ -1,11 +1,27 @@
 {
     IBClasses = (
         {
+            CLASS = FamilyDetailController; 
+            LANGUAGE = Java; 
+            OUTLETS = {
+                childrenTable = NSTableView; 
+                eventTable = NSTableView; 
+                husbandDetailsText = NSTextField; 
+                husbandNotesText = NSTextView; 
+                husbandPhoto = NSImageView; 
+                noteText = NSTextView; 
+                wifeDetailsText = NSTextField; 
+                wifePhoto = NSImageView; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
             ACTIONS = {search = id; selectFamily = id; }; 
             CLASS = FamilyListController; 
             LANGUAGE = Java; 
             OUTLETS = {
-                familyCountText = NSTextField; 
+                familyCountText = FamilyDetailController; 
+                familyDetailController = id; 
                 familyList = FamilyList; 
                 familyListTableView = NSTableView; 
                 searchField = NSTextField; 

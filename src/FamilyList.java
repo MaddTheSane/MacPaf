@@ -13,7 +13,7 @@ public class FamilyList extends AbstractMap {
   private static final Logger log = Logger.getLogger(FamilyList.class);
 
   public MyDocument document; /* IBOutlet */
-  private Family selectedFamily = null;
+  private Family selectedFamily = Family.UNKNOWN_FAMILY;
 //  private List families;
   private Map familyMap;
   long ts;
@@ -22,7 +22,7 @@ public class FamilyList extends AbstractMap {
 	System.out.println("FamilyList.FamilyList()");
 //	if (families == null) {
 //	  families = new ArrayList();
-	  selectedFamily = null;
+	  selectedFamily = Family.UNKNOWN_FAMILY;
 	  ts = System.currentTimeMillis();
 //	}
 	if (familyMap == null) {
@@ -35,13 +35,13 @@ public class FamilyList extends AbstractMap {
   }
 
   public int numberOfRowsInTableView(NSTableView nsTableView) {
-	System.out.println("FamilyList.numberOfRowsInTableView(nsTableView) famList:"+this);
+//	System.out.println("FamilyList.numberOfRowsInTableView(nsTableView) famList:"+this);
 	return familyMap.size();
   }
 
   public Object tableViewObjectValueForLocation(NSTableView nsTableView, NSTableColumn nsTableColumn, int i) {
 	try {
-	  System.out.println("FamilyList.tableViewObjectValueForLocation(nsTableView, nsTableColumn, i) famList:"+this);
+//	  System.out.println("FamilyList.tableViewObjectValueForLocation(nsTableView, nsTableColumn, i) famList:"+this);
 	  Family family = (Family) familyMap.values().toArray()[i];
 	  if (nsTableColumn.headerCell().stringValue().equals("ID")) {
 		return family.getId();
@@ -83,10 +83,15 @@ public class FamilyList extends AbstractMap {
 
   public void tableViewSelectionDidChange(NSNotification aNotification) {
 	log.debug("FamilyList tableViewSelectionDidChange():" + aNotification);
-	NSTableView nsTableView = (NSTableView) aNotification.object();
-	selectedFamily = (Family) familyMap.values().toArray()[nsTableView.selectedRow()];
-	nsTableView.reloadData();
-	document.setIndividual(this);
+	try {
+		NSTableView nsTableView = (NSTableView) aNotification.object();
+		selectedFamily = (Family) familyMap.values().toArray()[nsTableView.selectedRow()];
+		nsTableView.reloadData();
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+//	document.setIndividual(this);
   }
 
   /**

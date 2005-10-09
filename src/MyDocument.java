@@ -77,6 +77,7 @@ public class MyDocument extends NSDocument implements Observer {
   public IndividualList individualList; /* IBOutlet */
   public SurnameList surnameList; /* IBOutlet */
   public LocationList locationList; /* IBOutlet */
+  public HistoryController historyController; /* IBOutlet */
   public NSButton fatherButton; /* IBOutlet */
   public NSButton individualButton; /* IBOutlet */
   public NSWindow individualEditWindow; /* IBOutlet */
@@ -1087,6 +1088,47 @@ try {
 	}
 	individualListWindowController.showWindow(this);
   }
+  
+	public void forgetIndividual(Object sender) { /* IBAction */
+    	log.debug("MyDocument.forgetIndividual():"+sender);
+    	historyController.forgetIndividual(getPrimaryIndividual());
+    }
+
+    public void recallIndividual(Object sender) { /* IBAction */
+    	log.debug("MyDocument.recallIndividual():"+sender);
+    	historyController.recallIndividual(((NSMenuItem) sender).tag());
+    }
+
+    public void recallLastFoundIndividual(Object sender) { /* IBAction */
+    	log.debug("MyDocument.recallLastFoundIndividual():"+sender);
+    	historyController.recallLastFoundIndividual();
+    }
+
+    public void recallLastSavedIndividual(Object sender) { /* IBAction */
+    	log.debug("MyDocument.recallLastSavedIndividual():"+sender);
+    	historyController.recallLastSavedIndividual();
+    }
+
+    public void rememberIndividual(Individual individual) { /* IBAction */
+    	log.debug("MyDocument.rememberIndividual():"+individual);
+    	historyController.rememberIndividual(getPrimaryIndividual());
+	}
+    
+	public boolean validateMenuItem(_NSObsoleteMenuItemProtocol menuItem) {
+		if ("History".equals(menuItem.menu().title())) {
+			log.debug("MyDocument.validateMenuItem():"+menuItem);
+			log.debug("tag:"+menuItem.tag());
+			log.debug("action:"+menuItem.action().name());
+			log.debug("target:"+menuItem.target());
+			log.debug("representedObject:"+menuItem.representedObject());
+			log.debug("menu:"+menuItem.menu().title());
+			log.debug("menu DELEGATE:"+menuItem.menu().delegate());
+			return historyController.validateMenuItem(menuItem);
+		} else {
+			return  super.validateMenuItem((NSMenuItem) menuItem);
+		}
+	}
+
 
 /* (non-Javadoc)
  * @see java.util.Observer#update(java.util.Observable, java.lang.Object)

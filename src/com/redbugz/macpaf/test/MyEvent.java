@@ -80,4 +80,8 @@ public class MyEvent implements Event {
   public void setPlace(Place place) {
 	this.place = place;
   }
+
+public String getEventTypeString() {
+	return "MyEvent";
+}
 }

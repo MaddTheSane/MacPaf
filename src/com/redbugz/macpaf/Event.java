@@ -24,6 +24,8 @@ public interface Event {
   public Place getPlace();
 
   public void setPlace(Place place);
+  
+  public String getEventTypeString();
 
   static class UnknownEvent implements Event {
 
@@ -70,6 +72,10 @@ public interface Event {
 	public void setPlace(Place place) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public String getEventTypeString() {
+		return "Unknown";
 	}
   	
   }

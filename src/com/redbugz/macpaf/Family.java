@@ -54,6 +54,10 @@ public interface Family {
   public int getRin();
 
   public void setRin(int newRin);
+  
+  public List getEvents();
+  
+//  public List getOrdinances();
 
   public Event getMarriageEvent();
   
@@ -169,6 +173,11 @@ public interface Family {
 	 */
 	public Event getMarriageEvent() {
 		return Event.UNKNOWN_EVENT;
+	}
+
+	public List getEvents() {
+		// TODO Auto-generated method stub
+		return Collections.EMPTY_LIST;
 	}
   	
   }

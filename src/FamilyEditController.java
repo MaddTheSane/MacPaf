@@ -103,6 +103,7 @@ private static final String EDIT_CHILD_KEY = "EditChild";
 	if (children.selectedRow() >= 0) {
 	  family.removeChildAtPosition(children.selectedRow());
 	}
+	children.reloadData();
   }
 
   public void cancel(Object sender) { /* IBAction */
@@ -206,16 +207,17 @@ private static final String EDIT_CHILD_KEY = "EditChild";
 	    	log.debug("after sheetdidend, do we have the right individual?:"+individual.getFullName());
 	    	if (EDIT_WIFE_KEY.equals(key)) {
 				family.setMother(individual);
+				wifeButton.setTitle(individual.getFullName());
 	    	} else if (EDIT_HUSBAND_KEY.equals(key)) {
 	    		family.setFather(individual);
-	    	} else if (EDIT_CHILD_KEY.equals(key)) {
-//	    		family.set
+	    		husbandButton.setTitle(individual.getFullName());
+	    	} else if (key.startsWith(EDIT_CHILD_KEY)) {
+//	    		family.getChildren().get()
+	    		children.reloadData();
 	    	}
     }
 	sheet.orderOut(this);
   }  	
-
-
 
   public void save(Object sender) { /* IBAction */
 	if (validate()) {

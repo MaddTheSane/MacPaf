@@ -1,6 +1,7 @@
 /* IndividualDetailController */
 import org.apache.log4j.Logger;
 import com.apple.cocoa.application.*;
+import com.apple.cocoa.foundation.NSNotification;
 import com.apple.cocoa.foundation.NSObject;
 import com.redbugz.macpaf.Event;
 import com.redbugz.macpaf.Individual;
@@ -48,6 +49,7 @@ public class IndividualDetailController extends NSObject {
 	locked.setState(individual.isLocked() ? NSCell.OnState : NSCell.OffState);
 	privacy.setState(individual.isPrivate() ? NSCell.OnState : NSCell.OffState);
 	noteText.setString(individual.getNoteText());
+	eventTable.setDataSource(this);
 	eventTable.reloadData();
 	photo.setImage(new NSImage(individual.getImagePath()));
   }
@@ -79,6 +81,8 @@ public class IndividualDetailController extends NSObject {
 	}
 	else if ("place".equalsIgnoreCase(nSTableColumn.identifier().toString())) {
 	  return event.getPlace().getFormatString();
+	} else if ("type".equalsIgnoreCase(nSTableColumn.identifier().toString())) {
+		return event.getEventTypeString();
 	}
 	return "Unknown";
   }
@@ -96,5 +100,4 @@ public class IndividualDetailController extends NSObject {
 												 NSTableColumn nSTableColumn,
 												 int int3) {
   }
-
 }

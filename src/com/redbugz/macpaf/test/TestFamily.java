@@ -139,4 +139,10 @@ public class TestFamily implements Family, Cloneable {
 	// TODO Auto-generated method stub
 
   }
+
+public List getEvents() {
+	List list = new ArrayList();
+	list.add(getMarriageEvent());
+	return list;
+}
 }

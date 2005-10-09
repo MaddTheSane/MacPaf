@@ -512,4 +512,9 @@ public List getAllMultimedia() {
 	return null;
 }
 
+public String toString() {
+	// TODO Auto-generated method stub
+	return super.toString()+"{"+getFullName()+"}";
+}
+
 }

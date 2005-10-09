@@ -732,7 +732,7 @@ private void saveName() {
 	Iterator iter = children.iterator();
 	while (iter.hasNext()) {
 	  Element item = (Element) iter.next();
-	  notes.add(new NoteJDOM(item, null));
+	  notes.add(new NoteJDOM(item, document));
 	}
 	return notes;
 //		}
@@ -895,8 +895,29 @@ private void saveName() {
 	  catch (JDOMException ex) {
 		ex.printStackTrace();
 	  }
+	  log.debug("IndividualJDOM.getEvents() creating event list2");
+	  List events2 = new ArrayList();
+	  try {
+		
+		List eventNodes = element.getChildren();//xpath.selectNodes(element); //, eventNodeNames);
+		log.debug("child events: " + eventNodes.size());
+		Iterator iter = eventNodes.iterator();
+		while (iter.hasNext()) {
+			
+		  Element next = (Element) iter.next();
+		  if (eventNodeNames.indexOf(next.getName()) >= 0) {
+		EventJDOM item = new EventJDOM( next);
+		  events2.add(item);
+		  }
+		}
+	  }
+	  catch (Exception ex) {
+		ex.printStackTrace();
+	  }
+	  
 //	}
-
+log.debug("returning events: "+events.size());
+log.debug("not returning events2: "+events2.size());
 	return events;
   }
 
@@ -928,7 +949,7 @@ public List getAllMultimedia() {
 		if (element.getAttributeValue("REF") != null) {
 			list.add(new MultimediaLink(element.getAttributeValue("REF"), document));
 		} else {
-			list.add(new MultimediaJDOM(element, null));
+			list.add(new MultimediaJDOM(element, document));
 		}
 	}
 	return list;

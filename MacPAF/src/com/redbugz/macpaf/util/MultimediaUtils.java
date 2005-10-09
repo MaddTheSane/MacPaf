@@ -79,6 +79,9 @@ public class MultimediaUtils {
 
 	//Returns the contents of the file in a byte array.
 	  public static byte[] getBytesFromFile(File file) throws IOException {
+		  if (!file.canRead()) {
+			  return new byte[0];
+		  }
 	      InputStream is = new FileInputStream(file);
 	  
 	      // Get the size of the file

@@ -12,6 +12,7 @@ public class IndividualListController extends NSWindowController {
     public IndividualList individualList; /* IBOutlet */
     public NSTableView individualListTableView; /* IBOutlet */
     public NSTextField searchField; /* IBOutlet */
+    public IndividualDetailController individualDetailController; /* IBOutlet */
 
 	public IndividualListController(IndividualList dataSource) {
 		super("IndividualListWindow");
@@ -29,6 +30,7 @@ public class IndividualListController extends NSWindowController {
 	public void windowDidLoad() {
 		super.windowDidLoad();
 		individualListTableView.setDataSource(individualList);
+		individualListTableView.setDelegate(this);
 		individualCountText.setStringValue("Number of Individuals: "+individualList.size());
 	}
 	
@@ -36,5 +38,11 @@ public class IndividualListController extends NSWindowController {
 		return displayName + ": "+"Individual List";
 	}
 
+	  
+	  public void tableViewSelectionDidChange(NSNotification aNotification) {
+		  log.debug("ILC.tableViewSelectionDidChange():"+aNotification);
+		  individualList.tableViewSelectionDidChange(aNotification);
+		  individualDetailController.setIndividual(individualList.getSelectedIndividual());
+	  }
 
 }

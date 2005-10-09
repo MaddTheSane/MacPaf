@@ -340,4 +340,11 @@ public class FamilyJDOM implements Family {
 	return "FamilyJDOM element:" + new XMLOutputter(Format.getPrettyFormat()).outputString(element); //super.toString();
   }
 
+public List getEvents() {
+	// TODO: get all the events
+	List list = new ArrayList();
+	list.add(getMarriageEvent());
+	return list;
+}
+
 }

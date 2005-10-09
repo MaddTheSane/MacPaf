@@ -129,7 +129,7 @@ public class IndividualList extends AbstractMap {
 	NSTableView nsTableView = (NSTableView) aNotification.object();
 	selectedIndividual =
 		(Individual) individualMap.values().toArray()[nsTableView.selectedRow()];
-	document.setIndividual(this);
+//	document.setIndividual(this);
   }
 
   /**

@@ -17,8 +17,13 @@
                 addNewMother = id; 
                 addNewSpouse = id; 
                 exportFile = id; 
+                forgetIndividual = id; 
                 importFile = id; 
                 openReportsSheet = id; 
+                recallIndividual = id; 
+                recallLastFoundIndividual = id; 
+                recallLastSavedIndividual = id; 
+                rememberIndividual = id; 
                 showFamilyList = id; 
                 showIndividualList = id; 
             }; 

@@ -233,6 +233,10 @@ public class EventJDOM implements Event {
 	}
 	return source;
   }
+  
+  public String getEventTypeString() {
+	  return element.getName();
+  }
 
   /**
    * @param type The type to set.

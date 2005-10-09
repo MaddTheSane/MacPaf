@@ -151,6 +151,9 @@
 /* End PBXApplicationTarget section */
 
 /* Begin PBXBuildFile section */
+		0218FF4108F98E4900F67E81 /* AllTests.java in Sources */ = {isa = PBXBuildFile; fileRef = 0218FF3F08F98E4800F67E81 /* AllTests.java */; };
+		0218FF4208F98E4A00F67E81 /* HistoryControllerTest.java in Sources */ = {isa = PBXBuildFile; fileRef = 0218FF4008F98E4900F67E81 /* HistoryControllerTest.java */; };
+		022DDB4808E36C1E00AAA6B1 /* FamilyDetailController.java in Sources */ = {isa = PBXBuildFile; fileRef = 022DDB4708E36C1D00AAA6B1 /* FamilyDetailController.java */; };
 		023701D8062056080087E765 /* log4j-1.2.9.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 023701D7062056080087E765 /* log4j-1.2.9.jar */; };
 		023701ED062056EF0087E765 /* log4j-1.2.9.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 023701D7062056080087E765 /* log4j-1.2.9.jar */; };
 		0237023006205C5B0087E765 /* log4j.properties in Sources */ = {isa = PBXBuildFile; fileRef = 02370211062059920087E765 /* log4j.properties */; };
@@ -161,6 +164,8 @@
 		024E77D00782F44800B7A2CC /* MultimediaUtils.java in Sources */ = {isa = PBXBuildFile; fileRef = 024E77CF0782F44800B7A2CC /* MultimediaUtils.java */; };
 		0250C09D07AC858500AC3629 /* UnknownGedcomLinkException.java in Sources */ = {isa = PBXBuildFile; fileRef = 0250C09C07AC858500AC3629 /* UnknownGedcomLinkException.java */; };
 		025957D306FE4C62002B654B /* SortableTableViewController.java in Sources */ = {isa = PBXBuildFile; fileRef = 025957D206FE4C61002B654B /* SortableTableViewController.java */; };
+		0260D11308F9D6E100F9A745 /* junit.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 0260D11208F9D6E000F9A745 /* junit.jar */; };
+		0260D12208F9DAA800F9A745 /* saxpath.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 026ED7F705D9330B0001D1D2 /* saxpath.jar */; };
 		026BF51807AD765200CBA37C /* Family.png in Resources */ = {isa = PBXBuildFile; fileRef = 026BF51707AD765200CBA37C /* Family.png */; };
 		026BF51A07AD992300CBA37C /* Individual.png in Resources */ = {isa = PBXBuildFile; fileRef = 026BF51907AD992300CBA37C /* Individual.png */; };
 		026ED74C05D932BD0001D1D2 /* ApplicationUtilities.java in Sources */ = {isa = PBXBuildFile; fileRef = 026ED71205D932BC0001D1D2 /* ApplicationUtilities.java */; };
@@ -204,7 +209,6 @@
 		027C6ADB05D9447B00C91D7B /* jaxen-core.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 026ED7F405D9330B0001D1D2 /* jaxen-core.jar */; };
 		027C6ADC05D9447B00C91D7B /* jaxen-jdom.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 026ED7F505D9330B0001D1D2 /* jaxen-jdom.jar */; };
 		027C6ADD05D9447B00C91D7B /* jdom-1.0.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 026ED7F605D9330B0001D1D2 /* jdom-1.0.jar */; };
-		027C6ADE05D9447B00C91D7B /* saxpath.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 026ED7F705D9330B0001D1D2 /* saxpath.jar */; };
 		027D36AB0707D05600F146F8 /* MainToolbar.java in Sources */ = {isa = PBXBuildFile; fileRef = 027D36AA0707D05600F146F8 /* MainToolbar.java */; };
 		027D36AE0707D2BE00F146F8 /* Disc Add.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 027D36AC0707D2BE00F146F8 /* Disc Add.tiff */; };
 		027D36AF0707D2BE00F146F8 /* Drawer.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 027D36AD0707D2BE00F146F8 /* Drawer.tiff */; };
@@ -271,6 +275,7 @@
 		02B3D1E7077B11CF0069077B /* Hex.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D1B2077B11CF0069077B /* Hex.java */; };
 		02B3D1E8077B11CF0069077B /* StringUtils.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D1B3077B11CF0069077B /* StringUtils.java */; };
 		02B3D1E9077B11CF0069077B /* XMLTest.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D1B4077B11CF0069077B /* XMLTest.java */; };
+		02B8AC5108F045D700AE39EC /* HistoryController.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B8AC5008F045D700AE39EC /* HistoryController.java */; };
 		02C50B110621296700B54464 /* xalan.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 02C50B0E0621296600B54464 /* xalan.jar */; };
 		02C50B120621296800B54464 /* xerces.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 02C50B0F0621296600B54464 /* xerces.jar */; };
 		02C50B130621296800B54464 /* xml-apis.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 02C50B100621296600B54464 /* xml-apis.jar */; };
@@ -324,7 +329,7 @@
 				027C6ADB05D9447B00C91D7B /* jaxen-core.jar in CopyFiles */,
 				027C6ADC05D9447B00C91D7B /* jaxen-jdom.jar in CopyFiles */,
 				027C6ADD05D9447B00C91D7B /* jdom-1.0.jar in CopyFiles */,
-				027C6ADE05D9447B00C91D7B /* saxpath.jar in CopyFiles */,
+				0260D12208F9DAA800F9A745 /* saxpath.jar in CopyFiles */,
 				02C50B5306212E8700B54464 /* xalan.jar in CopyFiles */,
 				02C50B5406212E8700B54464 /* xerces.jar in CopyFiles */,
 				02C50B5506212E8700B54464 /* xml-apis.jar in CopyFiles */,
@@ -336,6 +341,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0218FF3F08F98E4800F67E81 /* AllTests.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = AllTests.java; path = src/AllTests.java; sourceTree = "<group>"; };
+		0218FF4008F98E4900F67E81 /* HistoryControllerTest.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = HistoryControllerTest.java; path = src/HistoryControllerTest.java; sourceTree = "<group>"; };
+		022DDB4708E36C1D00AAA6B1 /* FamilyDetailController.java */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.java; name = FamilyDetailController.java; path = src/FamilyDetailController.java; sourceTree = "<group>"; };
 		023701D7062056080087E765 /* log4j-1.2.9.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; name = "log4j-1.2.9.jar"; path = "lib/log4j-1.2.9.jar"; sourceTree = "<group>"; };
 		02370211062059920087E765 /* log4j.properties */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = log4j.properties; path = lib/log4j.properties; sourceTree = "<group>"; };
 		0237A2CE07B66682003D9778 /* CocoaUtils.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = CocoaUtils.java; sourceTree = "<group>"; };
@@ -344,6 +352,7 @@
 		024E77CF0782F44800B7A2CC /* MultimediaUtils.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = MultimediaUtils.java; sourceTree = "<group>"; };
 		0250C09C07AC858500AC3629 /* UnknownGedcomLinkException.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = UnknownGedcomLinkException.java; sourceTree = "<group>"; };
 		025957D206FE4C61002B654B /* SortableTableViewController.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = SortableTableViewController.java; path = src/SortableTableViewController.java; sourceTree = "<group>"; };
+		0260D11208F9D6E000F9A745 /* junit.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; name = junit.jar; path = lib/junit.jar; sourceTree = "<group>"; };
 		026BF51707AD765200CBA37C /* Family.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Family.png; sourceTree = "<group>"; };
 		026BF51907AD992300CBA37C /* Individual.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Individual.png; sourceTree = "<group>"; };
 		026ED71205D932BC0001D1D2 /* ApplicationUtilities.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = ApplicationUtilities.java; path = src/ApplicationUtilities.java; sourceTree = "<group>"; };
@@ -448,6 +457,7 @@
 		02B3D1B2077B11CF0069077B /* Hex.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = Hex.java; sourceTree = "<group>"; };
 		02B3D1B3077B11CF0069077B /* StringUtils.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = StringUtils.java; sourceTree = "<group>"; };
 		02B3D1B4077B11CF0069077B /* XMLTest.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = XMLTest.java; sourceTree = "<group>"; };
+		02B8AC5008F045D700AE39EC /* HistoryController.java */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.java; name = HistoryController.java; path = src/HistoryController.java; sourceTree = "<group>"; };
 		02C50B0E0621296600B54464 /* xalan.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; name = xalan.jar; path = lib/xalan.jar; sourceTree = "<group>"; };
 		02C50B0F0621296600B54464 /* xerces.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; name = xerces.jar; path = lib/xerces.jar; sourceTree = "<group>"; };
 		02C50B100621296600B54464 /* xml-apis.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; name = "xml-apis.jar"; path = "lib/xml-apis.jar"; sourceTree = "<group>"; };
@@ -480,12 +490,22 @@
 				02C50B110621296700B54464 /* xalan.jar in Frameworks */,
 				02C50B120621296800B54464 /* xerces.jar in Frameworks */,
 				02C50B130621296800B54464 /* xml-apis.jar in Frameworks */,
+				0260D11308F9D6E100F9A745 /* junit.jar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0218FF4908F98E5E00F67E81 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				0218FF3F08F98E4800F67E81 /* AllTests.java */,
+				0218FF4008F98E4900F67E81 /* HistoryControllerTest.java */,
+			);
+			name = Tests;
+			sourceTree = "<group>";
+		};
 		02218D9AFECEFA92C02AAC07 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -676,17 +696,19 @@
 			isa = PBXGroup;
 			children = (
 				32DBCF800370BD9700C91783 /* Classes */,
+				0218FF4908F98E5E00F67E81 /* Tests */,
 				32DBCF810370BDA300C91783 /* Other Sources */,
 				02218D9AFECEFA92C02AAC07 /* Resources */,
-				2A37F4C3FDCFA73011CA2CEA /* Frameworks */,
+				2A37F4C3FDCFA73011CA2CEA /* MacPAF */,
 				19C28FB0FE9D524F11CA2CBB /* Products */,
 			);
 			name = MacPAF;
 			sourceTree = "<group>";
 		};
-		2A37F4C3FDCFA73011CA2CEA /* Frameworks */ = {
+		2A37F4C3FDCFA73011CA2CEA /* MacPAF */ = {
 			isa = PBXGroup;
 			children = (
+				0260D11208F9D6E000F9A745 /* junit.jar */,
 				02370211062059920087E765 /* log4j.properties */,
 				023701D7062056080087E765 /* log4j-1.2.9.jar */,
 				026ED7F205D9330B0001D1D2 /* castor-0.9.4.3.jar */,
@@ -702,7 +724,7 @@
 				2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */,
 				2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */,
 			);
-			name = Frameworks;
+			name = MacPAF;
 			sourceTree = "<group>";
 		};
 		32DBCF800370BD9700C91783 /* Classes */ = {
@@ -728,6 +750,8 @@
 				026ED74A05D932BD0001D1D2 /* TestData.java */,
 				2A37F4ACFDCFA73011CA2CEA /* MyDocument.java */,
 				025957D206FE4C61002B654B /* SortableTableViewController.java */,
+				022DDB4708E36C1D00AAA6B1 /* FamilyDetailController.java */,
+				02B8AC5008F045D700AE39EC /* HistoryController.java */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -911,6 +935,10 @@
 				02A778EA08AFB24C007897F4 /* JDOMUtils.java in Sources */,
 				02A7790108B011E6007897F4 /* FamilyListController.java in Sources */,
 				02A7790208B011E6007897F4 /* IndividualListController.java in Sources */,
+				022DDB4808E36C1E00AAA6B1 /* FamilyDetailController.java in Sources */,
+				02B8AC5108F045D700AE39EC /* HistoryController.java in Sources */,
+				0218FF4108F98E4900F67E81 /* AllTests.java in Sources */,
+				0218FF4208F98E4A00F67E81 /* HistoryControllerTest.java in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

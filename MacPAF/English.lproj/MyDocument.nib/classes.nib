@@ -44,6 +44,18 @@
         }, 
         {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
         {
+            ACTIONS = {
+                forgetIndividual = id; 
+                recallIndividual = id; 
+                recallLastFoundIndividual = id; 
+                recallLastSavedIndividual = id; 
+                rememberIndividual = id; 
+            }; 
+            CLASS = HistoryController; 
+            LANGUAGE = Java; 
+            SUPERCLASS = "java.lang.Object"; 
+        }, 
+        {
             CLASS = IndividualDetailController; 
             LANGUAGE = Java; 
             OUTLETS = {
@@ -123,6 +135,7 @@
                 familyList = FamilyList; 
                 familyListWindowController = FamilyListController; 
                 fatherButton = NSButton; 
+                historyController = HistoryController; 
                 individualButton = NSButton; 
                 individualDetailController = IndividualDetailController; 
                 individualEditWindow = NSWindow; 

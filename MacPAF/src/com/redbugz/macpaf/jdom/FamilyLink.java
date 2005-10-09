@@ -154,4 +154,8 @@ public class FamilyLink implements Family {
 		return getFamily().getMarriageEvent();
 	}
 
+	public List getEvents() {
+		return getFamily().getEvents();
+	}
+
 }

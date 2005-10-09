@@ -120,6 +120,10 @@ public interface Ordinance extends Event {
 		// TODO Auto-generated method stub
 		
 	}
+
+	public String getEventTypeString() {
+		return "Unknown";
+	}
   	
   }
 }

@@ -29,6 +29,7 @@ import com.redbugz.macpaf.Gender;
 import com.redbugz.macpaf.Individual;
 import com.redbugz.macpaf.jdom.PlaceJDOM;
 import com.redbugz.macpaf.util.CocoaUtils;
+import com.redbugz.macpaf.validation.ValidationException;
 
 public class FamilyEditController extends NSWindowController {
   private static final Logger log = Logger.getLogger(FamilyEditController.class);
@@ -220,20 +221,25 @@ private static final String EDIT_CHILD_KEY = "EditChild";
   }  	
 
   public void save(Object sender) { /* IBAction */
-	if (validate()) {
-	  if (family instanceof Family.UnknownFamily) {
-	  	family = document.createAndInsertNewFamily();
-		log.debug("New family, added to document: "+family);
-	  }
-	  family.getMarriageEvent().setDateString(marriageForm.cellAtIndex(0).stringValue());
-	  family.getMarriageEvent().setPlace(new PlaceJDOM(marriageForm.cellAtIndex(1).stringValue()));
-	  family.getSealingToSpouse().setDateString(sealingDate.stringValue());
-	  family.getSealingToSpouse().setTemple(CocoaUtils.templeForComboBox(sealingTemple));
-	  
-	  undoStack.removeAllObjects();
+	try {
+		if (validate()) {
+		  if (family instanceof Family.UnknownFamily) {
+		  	family = document.createAndInsertNewFamily();
+			log.debug("New family, added to document: "+family);
+		  }
+		  family.getMarriageEvent().setDateString(marriageForm.cellAtIndex(0).stringValue());
+		  family.getMarriageEvent().setPlace(new PlaceJDOM(marriageForm.cellAtIndex(1).stringValue()));
+		  family.getSealingToSpouse().setDateString(sealingDate.stringValue());
+		  family.getSealingToSpouse().setTemple(CocoaUtils.templeForComboBox(sealingTemple));
+		  
+		  undoStack.removeAllObjects();
 //	  NSApplication.sharedApplication().stopModal();
-	  NSApplication.sharedApplication().endSheet(window());
-	  window().orderOut(this);
+		  NSApplication.sharedApplication().endSheet(window());
+		  window().orderOut(this);
+		}
+	} catch (ValidationException e) {
+		e.printStackTrace();
+		MyDocument.showUserErrorMessage(e.getMessage(), e.getDetails());
 	}
   }
 
@@ -243,6 +249,10 @@ private static final String EDIT_CHILD_KEY = "EditChild";
    * @return boolean
    */
   private boolean validate() {
+	if (family.getFather() instanceof Individual.UnknownIndividual && family.getMother() instanceof Individual.UnknownIndividual
+			&& family.getChildren().size() == 0) {
+		throw new ValidationException("A family with no members cannot be saved.","You need to add either a father, mother, or child to this family before you can save the changes to this family.");
+	}
 	return true;
   }
 

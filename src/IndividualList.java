@@ -36,12 +36,8 @@ public class IndividualList extends AbstractMap {
 
   public Individual getSelectedIndividual() {
 	if (selectedIndividual == null) {
-	  if (individualMap.size() > 0) {
-		selectedIndividual = (Individual) individualMap.values().toArray()[0];
-	  } else {
 		selectedIndividual = Individual.UNKNOWN;
-}
-}
+	}
 	return selectedIndividual;
   }
 
@@ -126,9 +122,14 @@ public class IndividualList extends AbstractMap {
   public void tableViewSelectionDidChange(NSNotification aNotification) {
 	log.debug(
 		"IndividualList tableViewSelectionDidChange():" + aNotification);
-	NSTableView nsTableView = (NSTableView) aNotification.object();
-	selectedIndividual =
-		(Individual) individualMap.values().toArray()[nsTableView.selectedRow()];
+	try {
+		NSTableView nsTableView = (NSTableView) aNotification.object();
+		selectedIndividual =
+			(Individual) individualMap.values().toArray()[nsTableView.selectedRow()];
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 //	document.setIndividual(this);
   }
 

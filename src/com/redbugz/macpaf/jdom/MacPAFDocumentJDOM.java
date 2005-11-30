@@ -87,13 +87,16 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 		log.debug("added fam with key: " + newFamily.getId() + " fam marr date: " + newFamily.getMarriageEvent().getDateString());
 		if (newFamily instanceof FamilyJDOM) {
 			log.debug("adding fam to doc: " + newFamily);
-			doc.getRootElement().addContent((Content) ((FamilyJDOM) newFamily).getElement().clone());
+			doc.getRootElement().addContent((Content) ((FamilyJDOM) newFamily).getElement());
 		}
 		setChanged();
 	}
 	
 	public void addIndividual(Individual newIndividual) {
 		System.out.println("MacPAFDocumentJDOM.addIndividual():"+newIndividual);
+		if (newIndividual instanceof Individual.UnknownIndividual) {
+			throw new IllegalArgumentException("Expected IndividualJDOM, received: "+newIndividual.getClass().getName());
+		}
 		if (StringUtils.isEmpty(newIndividual.getId())) {
 			newIndividual.setId("I"+getNextAvailableIndividualId());
 			log.info("Individual added with blank Id. Assigning Id: "+newIndividual.getId());
@@ -106,10 +109,8 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 		}
 		individuals.put(newIndividual.getId(), newIndividual);
 		log.debug("added individual with key: " + newIndividual.getId() + " name: " + newIndividual.getFullName());
-		if (newIndividual instanceof IndividualJDOM) {
-			log.debug("adding individual to doc: "+newIndividual);
-			doc.getRootElement().addContent((Content)((IndividualJDOM)newIndividual).getElement().clone());
-		}
+		log.debug("adding individual to doc: "+newIndividual);
+		doc.getRootElement().addContent((Content)((IndividualJDOM)newIndividual).getElement());
 	}
 	
 	/**
@@ -129,7 +130,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 		log.debug("added submitter with key: " + newSubmitter.getId() + " name: " + newSubmitter.getName());
 		if (newSubmitter instanceof SubmitterJDOM) {
 			log.debug("adding submitter to doc: "+newSubmitter);
-			doc.getRootElement().addContent((Content)((SubmitterJDOM)newSubmitter).getElement().clone());
+			doc.getRootElement().addContent((Content)((SubmitterJDOM)newSubmitter).getElement());
 		}
 	}
 	
@@ -147,7 +148,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 		log.debug("added repository with key: " + newRepository.getId() + " name: " + newRepository.getName());
 		if (newRepository instanceof RepositoryJDOM) {
 			log.debug("adding repository to doc: "+newRepository);
-			doc.getRootElement().addContent((Content)((RepositoryJDOM)newRepository).getElement().clone());
+			doc.getRootElement().addContent((Content)((RepositoryJDOM)newRepository).getElement());
 		}
 	}
 	
@@ -165,7 +166,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 		log.debug("added source with key: " + newSource.getId() + " title: " + newSource.getTitle());
 		if (newSource instanceof SourceJDOM) {
 			log.debug("adding source to doc: "+newSource);
-			doc.getRootElement().addContent((Content)((SourceJDOM)newSource).getElement().clone());
+			doc.getRootElement().addContent((Content)((SourceJDOM)newSource).getElement());
 		}
 	}
 	
@@ -185,7 +186,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 		log.debug("added note with key: " + newNote.getId() + " text: " + newNote.getText());
 		if (newNote instanceof NoteJDOM) {
 			log.debug("adding note to doc: "+newNote);
-			doc.getRootElement().addContent((Content)((NoteJDOM)newNote).getElement().clone());
+			doc.getRootElement().addContent((Content)((NoteJDOM)newNote).getElement());
 		}
 	}
 	
@@ -205,7 +206,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 		log.debug("added multimedia with key: " + newMultimedia.getId() + " title: " + newMultimedia.getTitle());
 		if (newMultimedia instanceof MultimediaJDOM) {
 			log.debug("adding multimedia to doc: "+newMultimedia);
-			doc.getRootElement().addContent((Content)((MultimediaJDOM)newMultimedia).getElement().clone());
+			doc.getRootElement().addContent((Content)((MultimediaJDOM)newMultimedia).getElement());
 		}
 	}
 	
@@ -246,6 +247,9 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 		List repositoryElements = root.getChildren("REPO");
 		List sourceElements = root.getChildren("SOUR");
 		List submitterElements = root.getChildren("SUBM");
+		// detach the root from the children nodes so they can be imported into the new document
+		root.detach();
+		
 		log.debug("header: " + new HeaderJDOM(root.getChild("HEAD")));
 //		log.debug("submission record: " + new SubmitterJDOM(root.getChild("SUBN"), this));
 		log.debug("file has:\n\t" + individualElements.size() + " individuals\n\t" + familyElements.size() + " families\n\t" + noteElements.size() +
@@ -259,8 +263,14 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 		log.debug("-------------------Individuals");
 		log.debug("------------------------------");
 		Individual firstIndi = Individual.UNKNOWN;
-		for (int i = 0; i < individualElements.size(); i++) {
-			Element element = (Element) individualElements.get(i);
+		for (Iterator iterator = individualElements.iterator(); iterator.hasNext();) {
+//			type element = (type) iter.next();
+			
+//		}
+//		for (int i = 0; i < individualElements.size(); i++) {
+			Element element = (Element) iterator.next();
+			// this removes this element from it's parent so it can be inserted into the new doc
+			iterator.remove();
 			if (debug) {
 				log.debug("element:" + element.getContent());
 			}
@@ -296,7 +306,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 				firstIndi = indi;
 			}
 			if (debug) {
-				log.error("\n *** " + i + " mem:" + rt.freeMemory() / 1024 + " Kb\n");
+				log.error("\n *** " + " mem:" + rt.freeMemory() / 1024 + " Kb\n");
 			}
 			if (rt.freeMemory() < 50000) {
 				if (debug) {
@@ -310,8 +320,13 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 		log.debug("------------------------------");
 		log.debug("----------------------Families");
 		log.debug("------------------------------");
-		for (int i = 0; i < familyElements.size(); i++) {
-			Element element = (Element) familyElements.get(i);
+		for (Iterator iterator = familyElements.iterator(); iterator.hasNext();) {
+			Element element = (Element) iterator.next();
+			// this removes this element from it's parent so it can be inserted into the new doc
+			iterator.remove();
+//		}
+//		for (int i = 0; i < familyElements.size(); i++) {
+//			Element element = (Element) familyElements.get(i);
 			Family fam = new FamilyJDOM(element, this);
 			String oldKey = fam.getId();
 			addFamily(fam);
@@ -336,7 +351,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 				}
 			}
 			if (debug) {
-				log.error("\n *** " + i + " mem:" + rt.freeMemory() / 1024 + " Kb\n");
+				log.error("\n *** " + " mem:" + rt.freeMemory() / 1024 + " Kb\n");
 			}
 			if (rt.freeMemory() < 50000) {
 				if (debug) {
@@ -367,9 +382,13 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 		log.debug("------------------------------");
 		log.debug("--------------------Multimedia");
 		log.debug("------------------------------");
+		for (Iterator iterator = multimediaElements.iterator(); iterator.hasNext();) {
+			Element obje = (Element) iterator.next();
+			// this removes this element from it's parent so it can be inserted into the new doc
+			iterator.remove();
 		
-		for (int i = 0; i < multimediaElements.size(); i++) {
-			Element obje = (Element) multimediaElements.get(i);
+//		for (int i = 0; i < multimediaElements.size(); i++) {
+//			Element obje = (Element) multimediaElements.get(i);
 			if (obje != null) {
 				addMultimedia(new MultimediaJDOM(obje, null));
 //			    byte[] raw = Base64.decode(buf.toString());
@@ -385,8 +404,12 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 		log.debug("------------------------------");
 		log.debug("-------------------------Notes");
 		log.debug("------------------------------");
-		for (int i = 0; i < noteElements.size(); i++) {
-			Element element = (Element) noteElements.get(i);
+		for (Iterator iterator = noteElements.iterator(); iterator.hasNext();) {
+			Element element = (Element) iterator.next();
+			// this removes this element from it's parent so it can be inserted into the new doc
+			iterator.remove();
+//		for (int i = 0; i < noteElements.size(); i++) {
+//			Element element = (Element) noteElements.get(i);
 			if (debug) {
 				log.debug("element:" + element.getContent());
 			}
@@ -398,8 +421,12 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 		log.debug("------------------------------");
 		log.debug("-----------------------Sources");
 		log.debug("------------------------------");
-		for (int i = 0; i < sourceElements.size(); i++) {
-			Element element = (Element) sourceElements.get(i);
+		for (Iterator iterator = sourceElements.iterator(); iterator.hasNext();) {
+			Element element = (Element) iterator.next();
+			// this removes this element from it's parent so it can be inserted into the new doc
+			iterator.remove();
+//		for (int i = 0; i < sourceElements.size(); i++) {
+//			Element element = (Element) sourceElements.get(i);
 			if (debug) {
 				log.debug("element:" + element.getContent());
 			}
@@ -411,8 +438,12 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 		log.debug("------------------------------");
 		log.debug("------------------Repositories");
 		log.debug("------------------------------");
-		for (int i = 0; i < repositoryElements.size(); i++) {
-			Element element = (Element) repositoryElements.get(i);
+		for (Iterator iterator = repositoryElements.iterator(); iterator.hasNext();) {
+			Element element = (Element) iterator.next();
+			// this removes this element from it's parent so it can be inserted into the new doc
+			iterator.remove();
+//		for (int i = 0; i < repositoryElements.size(); i++) {
+//			Element element = (Element) repositoryElements.get(i);
 			if (debug) {
 				log.debug("element:" + element.getContent());
 			}
@@ -424,8 +455,12 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 		log.debug("------------------------------");
 		log.debug("--------------------Submitters");
 		log.debug("------------------------------");
-		for (int i = 0; i < submitterElements.size(); i++) {
-			Element element = (Element) submitterElements.get(i);
+		for (Iterator iterator = submitterElements.iterator(); iterator.hasNext();) {
+			Element element = (Element) iterator.next();
+			// this removes this element from it's parent so it can be inserted into the new doc
+			iterator.remove();
+//		for (int i = 0; i < submitterElements.size(); i++) {
+//			Element element = (Element) submitterElements.get(i);
 			if (debug) {
 				log.debug("element:" + element.getContent());
 			}
@@ -496,7 +531,6 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
 	 */
 	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
 		System.out.println("MacPAFDocumentJDOM.update() observable="+o+", object="+arg);
 		setChanged();
 		notifyObservers();

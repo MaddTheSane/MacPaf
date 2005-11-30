@@ -128,11 +128,11 @@ public interface Individual {
 
   public Individual getFather();
 
-  public void setFather(Individual father);
+//  public void setFather(Individual father);
 
   public Individual getMother();
 
-  public void setMother(Individual mother);
+//  public void setMother(Individual mother);
 
   public Family getFamilyAsChild();
 

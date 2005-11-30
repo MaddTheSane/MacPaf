@@ -14,6 +14,7 @@ import org.jdom.Element;
 import org.jdom.JDOMException;
 import org.jdom.Text;
 import org.jdom.filter.ContentFilter;
+import org.jdom.filter.Filter;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
 import org.jdom.xpath.XPath;
@@ -79,16 +80,16 @@ private static final Collection commonNamePrefixes = Arrays.asList(new String[] 
 //	element = new Element(INDIVIDUAL);
 //  }
 
-  public IndividualJDOM(Element element, MacPAFDocumentJDOM parentDocument) {
+  public IndividualJDOM(Element newElement, MacPAFDocumentJDOM parentDocument) {
   	if (parentDocument == null) {
   		throw new IllegalArgumentException("Cannot create IndividualJDOM with null parentDocument");
   	}
-	if (element == null) {
-		throw new IllegalArgumentException("element is null: IndividualJDOM must be bound to a valid Element.");
+	if (newElement == null) {
+		throw new IllegalArgumentException("newElement is null: IndividualJDOM must be bound to a valid Element.");
 //	  element = new Element(INDIVIDUAL);
 	}
 	document = parentDocument;
-	this.element = element;
+	element = newElement;
 	setFullName(getNameString());
 //		String iName = element.getChildText(NAME);
 //		int surnameStart = iName.indexOf("/");
@@ -115,7 +116,7 @@ private static final Collection commonNamePrefixes = Arrays.asList(new String[] 
 //		}
 	// some debugging of multimedia
 	// todo: clean this up	
-	final Element obje = element.getChild("OBJE");
+	final Element obje = newElement.getChild("OBJE");
 	if (obje != null) {
 	  log.debug("Person has multimedia object:" + obje);
 	  log.debug("ref=" + obje.getAttributeValue(REF));
@@ -221,7 +222,8 @@ private static final Collection commonNamePrefixes = Arrays.asList(new String[] 
 	}
 	name = nameBuf.toString();
 //	log.debug("name  after slashes removed:|" + name + "|");
-	return getId()+":"+name.trim();
+	return name.trim();
+//	return getId()+":"+name.trim();
   }
 
   /* (non-Javadoc)
@@ -423,19 +425,39 @@ private void saveName() {
   }
 
   public void setBirthEvent(Event event) {
-	element.addContent(new EventJDOM(event).getElement());
+	  if (event instanceof Event.UnknownEvent) {
+		  // do nothing
+		  return;
+	  } else {
+		  JDOMUtils.replaceFirstChildElement(element, new EventJDOM(event).getElement());
+	  }
   }
 
   public void setDeathEvent(Event event) {
-	element.addContent(new EventJDOM(event).getElement());
+	  if (event instanceof Event.UnknownEvent) {
+		  // do nothing
+		  return;
+	  } else {
+		  JDOMUtils.replaceFirstChildElement(element, new EventJDOM(event).getElement());
+	  }
   }
 
   public void setBurialEvent(Event event) {
-	element.addContent(new EventJDOM(event).getElement());
+	  if (event instanceof Event.UnknownEvent) {
+		  // do nothing
+		  return;
+	  } else {
+		  JDOMUtils.replaceFirstChildElement(element, new EventJDOM(event).getElement());
+	  }
   }
 
   public void setChristeningEvent(Event event) {
-	element.addContent(new EventJDOM(event).getElement());
+	  if (event instanceof Event.UnknownEvent) {
+		  // do nothing
+		  return;
+	  } else {
+		  JDOMUtils.replaceFirstChildElement(element, new EventJDOM(event).getElement());
+	  }
   }
 
   public Event getChristeningEvent() {
@@ -757,48 +779,69 @@ private void saveName() {
    * @see Individual#removeSpouse(Individual)
    */
   public void removeSpouse(Individual removedSpouse) {
-	// TODO Auto-generated method stub
-
+	  for (Iterator iter = element.getChildren(IndividualJDOM.FAMILY_SPOUSE_LINK).iterator(); iter.hasNext();) {
+		Element spouseElement = (Element) iter.next();
+		if (spouseElement.getAttributeValue(IndividualJDOM.REF).equals(removedSpouse.getId())) {
+			log.warn("removing spouse with id="+removedSpouse.getId()+" from individual:"+getId());
+			iter.remove();
+		}
+	}
   }
 
-  /* (non-Javadoc)
-   * @see Individual#setFather(Individual)
-   */
-  public void setFather(Individual father) {
-	// TODO Auto-generated method stub
-
-  }
+//  /* (non-Javadoc)
+//   * @see Individual#setFather(Individual)
+//   */
+//  public void setFather(Individual father) {
+//	// TODO Auto-generated method stub
+//
+//  }
 
   /* (non-Javadoc)
    * @see Individual#setLDSBaptism(Ordinance)
    */
   public void setLDSBaptism(Ordinance ldsBaptism) {
-	// TODO Auto-generated method stub
-
+	  if (ldsBaptism instanceof Ordinance.UnknownOrdinance) {
+		  // do nothing
+		  return;
+	  } else {
+		  JDOMUtils.replaceFirstChildElement(element, new OrdinanceJDOM(ldsBaptism).getElement());
+	  }
   }
 
   /* (non-Javadoc)
    * @see Individual#setLDSConfirmation(Ordinance)
    */
   public void setLDSConfirmation(Ordinance ldsConfirmation) {
-	// TODO Auto-generated method stub
-
+	  if (ldsConfirmation instanceof Ordinance.UnknownOrdinance) {
+		  // do nothing
+		  return;
+	  } else {
+		  JDOMUtils.replaceFirstChildElement(element, new OrdinanceJDOM(ldsConfirmation).getElement());
+	  }
   }
 
   /* (non-Javadoc)
    * @see Individual#setLDSEndowment(Ordinance)
    */
   public void setLDSEndowment(Ordinance ldsEndowment) {
-	// TODO Auto-generated method stub
-
+	  if (ldsEndowment instanceof Ordinance.UnknownOrdinance) {
+		  // do nothing
+		  return;
+	  } else {
+		  JDOMUtils.replaceFirstChildElement(element, new OrdinanceJDOM(ldsEndowment).getElement());
+	  }
   }
 
   /* (non-Javadoc)
    * @see Individual#setLDSSealingToParent(Ordinance)
    */
   public void setLDSSealingToParent(Ordinance sealingToParent) {
-	// TODO Auto-generated method stub
-
+	  if (sealingToParent instanceof Ordinance.UnknownOrdinance) {
+		  // do nothing
+		  return;
+	  } else {
+		  JDOMUtils.replaceFirstChildElement(element, new OrdinanceJDOM(sealingToParent).getElement());
+	  }
   }
 
   /* (non-Javadoc)
@@ -808,13 +851,13 @@ private void saveName() {
 	JDOMUtils.findOrMakeChildElement(RESTRICTION, element).setText(LOCKED);
   }
 
-  /* (non-Javadoc)
-   * @see Individual#setMother(Individual)
-   */
-  public void setMother(Individual mother) {
-	// TODO Auto-generated method stub
-
-  }
+//  /* (non-Javadoc)
+//   * @see Individual#setMother(Individual)
+//   */
+//  public void setMother(Individual mother) {
+//	// TODO Auto-generated method stub
+//
+//  }
 
   /* (non-Javadoc)
    * @see Individual#setPrimarySpouse(Individual)
@@ -867,7 +910,6 @@ private void saveName() {
    * @see java.lang.Object#toString()
    */
   public String toString() {
-	// TODO Auto-generated method stub
 	return "IndividualJDOM element:" + new XMLOutputter(Format.getPrettyFormat()).outputString(element); //super.toString();
   }
 
@@ -945,11 +987,11 @@ public Multimedia getPreferredImage() {
 public List getAllMultimedia() {
 	List list = new ArrayList();
 	for (Iterator iter = element.getChildren("OBJE").iterator(); iter.hasNext();) {
-		Element element = (Element) iter.next();
-		if (element.getAttributeValue("REF") != null) {
-			list.add(new MultimediaLink(element.getAttributeValue("REF"), document));
+		Element theElement = (Element) iter.next();
+		if (theElement.getAttributeValue("REF") != null) {
+			list.add(new MultimediaLink(theElement.getAttributeValue("REF"), document));
 		} else {
-			list.add(new MultimediaJDOM(element, document));
+			list.add(new MultimediaJDOM(theElement, document));
 		}
 	}
 	return list;

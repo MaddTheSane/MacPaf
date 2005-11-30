@@ -20,9 +20,9 @@ public class TempleJDOM extends Temple {
 	element = new Element(TEMPLE);
   }
 
-  public TempleJDOM(Element element) {
-	if (element != null) {
-	  this.element = element;
+  public TempleJDOM(Element newElement) {
+	if (newElement != null) {
+	  element = newElement;
 	}
   }
 

@@ -56,7 +56,7 @@ public class ImportController extends NSWindowController {
 
   public void openReportsSheet(Object sender) { /* IBAction */
 	NSApplication nsapp = NSApplication.sharedApplication();
-	nsapp.beginSheet(this.window(), this.window().parentWindow(), null, null, null);
+	nsapp.beginSheet(this.window(), ((MyDocument)this.document()).mainWindow, null, null, null);
 //	nsapp.runModalForWindow(this.window());
 //	nsapp.endSheet(this.window());
 //	this.window().orderOut(this);

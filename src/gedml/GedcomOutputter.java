@@ -56,7 +56,7 @@ public class GedcomOutputter extends DefaultHandler {
 		flushLine();
 	  }
 	  writer.write("0 TRLR" + lineSeparator);
-	  writer.close();
+	  //writer.close();
 	}
 	catch (java.io.IOException err) {
 	  throw new SAXException(err);

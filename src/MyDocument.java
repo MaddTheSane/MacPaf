@@ -10,24 +10,22 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.URL;
-import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.Observable;
 import java.util.Observer;
 
 import org.apache.log4j.Logger;
+
 import com.apple.cocoa.application.*;
 import com.apple.cocoa.foundation.*;
 import com.redbugz.macpaf.Family;
+import com.redbugz.macpaf.Gender;
 import com.redbugz.macpaf.Individual;
 import com.redbugz.macpaf.LocationList;
 import com.redbugz.macpaf.SurnameList;
 import com.redbugz.macpaf.jdom.MacPAFDocumentJDOM;
 import com.redbugz.macpaf.test.Tests;
-import com.redbugz.macpaf.util.Base64;
 import com.redbugz.macpaf.util.CocoaUtils;
-import com.redbugz.macpaf.util.Hex;
 import com.redbugz.macpaf.util.MultimediaUtils;
 
 /**
@@ -61,7 +59,7 @@ public class MyDocument extends NSDocument implements Observer {
   /**
    * This is the main individual to whom apply all actions
    */
-  private Individual primaryIndividual = new Individual.UnknownIndividual();
+//  private Individual primaryIndividual = new Individual.UnknownIndividual();
 
   // This was originally to check for the constructor getting called twice
 //  public boolean firstconstr = true;
@@ -162,17 +160,66 @@ public class MyDocument extends NSDocument implements Observer {
 
   public void openFamilyEditSheet(Object sender) { /* IBAction */
 	( (NSWindowController) familyEditWindow.delegate()).setDocument(this);
-	if ( ( (NSButton) sender).tag() == 1) {
-	( (FamilyEditController) familyEditWindow.delegate()).setFamily(primaryIndividual.getFamilyAsChild());
+	if (sender instanceof NSControl) {
+	if ( (  (NSControl) sender).tag() == 1) {
+		Family familyAsChild = getPrimaryIndividual().getFamilyAsChild();
+//		if (familyAsChild instanceof Family.UnknownFamily) {
+//			familyAsChild = createAndInsertNewFamily();
+//			// TODO: handle undo here
+//			familyAsChild.addChild(getKnownPrimaryIndividual());
+//		}
+		( (FamilyEditController) familyEditWindow.delegate()).setFamily(familyAsChild);
 	} else {
-	  ( (FamilyEditController) familyEditWindow.delegate()).setFamily(primaryIndividual.getFamilyAsSpouse());
-    }
+	  Family familyAsSpouse = getPrimaryIndividual().getFamilyAsSpouse();
+//	  if (familyAsSpouse instanceof Family.UnknownFamily) {
+//		  familyAsSpouse = createAndInsertNewFamily();
+//		  // TODO: handle undo here
+//		  if (Gender.MALE.equals(getPrimaryIndividual().getGender())) {
+//			  familyAsSpouse.setFather(getKnownPrimaryIndividual());
+//		  } else {
+//			  familyAsSpouse.setMother(getKnownPrimaryIndividual());
+//		  }
+//	  }
+		( (FamilyEditController) familyEditWindow.delegate()).setFamily(familyAsSpouse);
+	}
+	} else if (sender instanceof NSValidatedUserInterfaceItem) {
+		if ( (  (NSValidatedUserInterfaceItem) sender).tag() == 1) {
+			Family familyAsChild = getPrimaryIndividual().getFamilyAsChild();
+//			if (familyAsChild instanceof Family.UnknownFamily) {
+//				familyAsChild = createAndInsertNewFamily();
+//				// TODO: handle undo here
+//				familyAsChild.addChild(getKnownPrimaryIndividual());
+//			}
+			( (FamilyEditController) familyEditWindow.delegate()).setFamily(familyAsChild);
+		} else {
+		  Family familyAsSpouse = getPrimaryIndividual().getFamilyAsSpouse();
+//		  if (familyAsSpouse instanceof Family.UnknownFamily) {
+//			  familyAsSpouse = createAndInsertNewFamily();
+//			  // TODO: handle undo here
+//			  if (Gender.MALE.equals(getPrimaryIndividual().getGender())) {
+//				  familyAsSpouse.setFather(getKnownPrimaryIndividual());
+//			  } else {
+//				  familyAsSpouse.setMother(getKnownPrimaryIndividual());
+//			  }
+//		  }		
+			( (FamilyEditController) familyEditWindow.delegate()).setFamily(familyAsSpouse);
+		}
+	
+	}
 	NSApplication nsapp = NSApplication.sharedApplication();
 	nsapp.beginSheet(familyEditWindow, mainWindow, this, new NSSelector("sheetDidEndShouldClose2", new Class[] {}), null);
 	// sheet is up here, control passes to the sheet controller
   }
 
-  public void sheetDidEndShouldClose2() {
+  private Individual getKnownPrimaryIndividual() {
+	Individual indi = getPrimaryIndividual();
+	if (indi instanceof Individual.UnknownIndividual) {
+		indi = createAndInsertNewIndividual();
+	}
+	return indi ;
+}
+
+public void sheetDidEndShouldClose2() {
 	log.debug("sheetDidEndShouldClose2");
   }
 
@@ -216,29 +263,29 @@ public class MyDocument extends NSDocument implements Observer {
 		  case 0:
 			printableView = new PedigreeView(new NSRect(0, 0,
 				printInfo().paperSize().width() - printInfo().leftMargin() - printInfo().rightMargin(),
-				printInfo().paperSize().height() - printInfo().topMargin() - printInfo().bottomMargin()), primaryIndividual,
+				printInfo().paperSize().height() - printInfo().topMargin() - printInfo().bottomMargin()), getPrimaryIndividual(),
 											 4);
 			break;
 		  case 1:
 			printableView = new FamilyGroupSheetView(new NSRect(0, 0,
 				printInfo().paperSize().width() - printInfo().leftMargin() - printInfo().rightMargin(),
-				printInfo().paperSize().height() - printInfo().topMargin() - printInfo().bottomMargin()), primaryIndividual);
+				printInfo().paperSize().height() - printInfo().topMargin() - printInfo().bottomMargin()), getPrimaryIndividual());
 			break;
 		  case 3:
 			printableView = new PocketPedigreeView(new NSRect(0, 0,
 				printInfo().paperSize().width() - printInfo().leftMargin() - printInfo().rightMargin(),
-				printInfo().paperSize().height() - printInfo().topMargin() - printInfo().bottomMargin()), primaryIndividual,
+				printInfo().paperSize().height() - printInfo().topMargin() - printInfo().bottomMargin()), getPrimaryIndividual(),
 											 6);
 			break;
 		  default:
 			printableView = new PedigreeView(new NSRect(0, 0,
 				printInfo().paperSize().width() - printInfo().leftMargin() - printInfo().rightMargin(),
-				printInfo().paperSize().height() - printInfo().topMargin() - printInfo().bottomMargin()), primaryIndividual,
+				printInfo().paperSize().height() - printInfo().topMargin() - printInfo().bottomMargin()), getPrimaryIndividual(),
 											 4);
 		}
-//      printableView = new PedigreeView(new NSRect(0,0,printInfo().paperSize().width()-printInfo().leftMargin()-printInfo().rightMargin(),printInfo().paperSize().height()-printInfo().topMargin()-printInfo().bottomMargin()), primaryIndividual, 4);
-//      printableView = new FamilyGroupSheetView(new NSRect(0,0,printInfo().paperSize().width()-printInfo().leftMargin()-printInfo().rightMargin(),printInfo().paperSize().height()-printInfo().topMargin()-printInfo().bottomMargin()), primaryIndividual);
-//      printableView = new IndividualSummaryView(new NSRect(0,0,printInfo().paperSize().width()-printInfo().leftMargin()-printInfo().rightMargin(),printInfo().paperSize().height()-printInfo().topMargin()-printInfo().bottomMargin()), primaryIndividual);
+//      printableView = new PedigreeView(new NSRect(0,0,printInfo().paperSize().width()-printInfo().leftMargin()-printInfo().rightMargin(),printInfo().paperSize().height()-printInfo().topMargin()-printInfo().bottomMargin()), getPrimaryIndividual(), 4);
+//      printableView = new FamilyGroupSheetView(new NSRect(0,0,printInfo().paperSize().width()-printInfo().leftMargin()-printInfo().rightMargin(),printInfo().paperSize().height()-printInfo().topMargin()-printInfo().bottomMargin()), getPrimaryIndividual());
+//      printableView = new IndividualSummaryView(new NSRect(0,0,printInfo().paperSize().width()-printInfo().leftMargin()-printInfo().rightMargin(),printInfo().paperSize().height()-printInfo().topMargin()-printInfo().bottomMargin()), getPrimaryIndividual());
 
 	} catch (Exception e) {
 		e.printStackTrace();
@@ -256,29 +303,29 @@ public class MyDocument extends NSDocument implements Observer {
 //   }
 
   public Individual getPrimaryIndividual() {
-	return primaryIndividual;
+	return doc.getPrimaryIndividual();
   }
 
   public void setPrimaryIndividual(Individual newIndividual) {
 	try {
-		primaryIndividual = newIndividual;
-		assignIndividualToButton(primaryIndividual, individualButton);
+		doc.setPrimaryIndividual(newIndividual);
+		assignIndividualToButton(getPrimaryIndividual(), individualButton);
 		// if primary individual is unknown, change button back to enabled
 		individualButton.setEnabled(true);
-		assignIndividualToButton(primaryIndividual.getPrimarySpouse(), spouseButton);
-		assignIndividualToButton(primaryIndividual.getFather(), fatherButton);
-		assignIndividualToButton(primaryIndividual.getMother(), motherButton);
-		assignIndividualToButton(primaryIndividual.getFather().getFather(), paternalGrandfatherButton);
-		assignIndividualToButton(primaryIndividual.getFather().getMother(), paternalGrandmotherButton);
-		assignIndividualToButton(primaryIndividual.getMother().getFather(), maternalGrandfatherButton);
-		assignIndividualToButton(primaryIndividual.getMother().getMother(), maternalGrandmotherButton);
-		noteTextView.setString(primaryIndividual.getNoteText());
-//        pedigreeView.setIndividual(primaryIndividual);
-		individualDetailController.setIndividual(primaryIndividual);
-		log.debug("famsp id:"+primaryIndividual.getFamilyAsSpouse().getId());
-		log.debug("famch id:"+primaryIndividual.getFamilyAsChild().getId());
-		familyAsSpouseButton.setTitle("Family: "+primaryIndividual.getFamilyAsSpouse().getId());
-		familyAsChildButton.setTitle("Family: "+primaryIndividual.getFamilyAsChild().getId());
+		assignIndividualToButton(getPrimaryIndividual().getPrimarySpouse(), spouseButton);
+		assignIndividualToButton(getPrimaryIndividual().getFather(), fatherButton);
+		assignIndividualToButton(getPrimaryIndividual().getMother(), motherButton);
+		assignIndividualToButton(getPrimaryIndividual().getFather().getFather(), paternalGrandfatherButton);
+		assignIndividualToButton(getPrimaryIndividual().getFather().getMother(), paternalGrandmotherButton);
+		assignIndividualToButton(getPrimaryIndividual().getMother().getFather(), maternalGrandfatherButton);
+		assignIndividualToButton(getPrimaryIndividual().getMother().getMother(), maternalGrandmotherButton);
+		noteTextView.setString(getPrimaryIndividual().getNoteText());
+//        pedigreeView.setIndividual(getPrimaryIndividual());
+		individualDetailController.setIndividual(getPrimaryIndividual());
+		log.debug("famsp id:"+getPrimaryIndividual().getFamilyAsSpouse().getId());
+		log.debug("famch id:"+getPrimaryIndividual().getFamilyAsChild().getId());
+		familyAsSpouseButton.setTitle("Family: "+getPrimaryIndividual().getFamilyAsSpouse().getId());
+		familyAsChildButton.setTitle("Family: "+getPrimaryIndividual().getFamilyAsChild().getId());
 		spouseTable.reloadData();
 		childrenTable.reloadData();
 	} catch (Exception e) {
@@ -479,10 +526,12 @@ else {
 //						doc,
 //						new FileWriter("/Projects/MacPAFTest/savetest.xml"));
 		  doc.outputToXML(baos);
+//		  doc.outputToXML(System.out);
 //					XMLTest.outputWithKay(
 //						doc,
 //						new FileOutputStream("/Projects/MacPAFTest/savetest.ged"));
 		  doc.outputToGedcom(baosGed);
+//		  doc.outputToGedcom(System.out);
 		}
 		catch (IOException e) {
 		  log.error("Exception: ", e);
@@ -574,7 +623,7 @@ else {
 												  new
 												  NSDictionary(new Integer(NSHFSFileTypes.hfsTypeCodeFromFileType(
 		  "TEXT")),
-		  NSPathUtilities.FileHFSTypeCode)));
+		  CocoaUtils.FileHFSTypeCode)));
 	  String[] errors = new String[1];
 	  if (MACPAF.equals(s)) {
 		if (nsFileWrapper.isDirectory()) {
@@ -642,9 +691,9 @@ public static boolean confirmCriticalActionMessage(String message, String detail
 	  log.debug("setfilename set file attrs result=" +
 				NSPathUtilities.setFileAttributes(arg0 + "/" + DEFAULT_GEDCOM_FILENAME,
 												  new NSDictionary(new Integer(
-		  NSHFSFileTypes.hfsTypeCodeFromFileType("'TEXT'")), NSPathUtilities.FileHFSTypeCode)));
-	  log.debug("setfilename " + arg0 + "/" + DEFAULT_GEDCOM_FILENAME + "attr aft:" +
-				NSPathUtilities.fileAttributes(arg0 + "/" + DEFAULT_GEDCOM_FILENAME, false));
+		  NSHFSFileTypes.hfsTypeCodeFromFileType("'TEXT'")), CocoaUtils.FileHFSTypeCode)));
+//	  log.debug("setfilename " + arg0 + "/" + DEFAULT_GEDCOM_FILENAME + " attr aft:" +
+//				NSPathUtilities.fileAttributes(arg0 + "/" + DEFAULT_GEDCOM_FILENAME, false));
 	}
 	catch (Exception e) {
 	  // TODO Auto-generated catch block
@@ -737,14 +786,14 @@ public static boolean confirmCriticalActionMessage(String message, String detail
 	try {
 		log.debug("MyDocument.numberOfRowsInTableView():" + nsTableView.tag());
 		if (nsTableView.tag() == 1) {
-		  if (primaryIndividual.getFamilyAsSpouse() != null) {
-			int numChildren = primaryIndividual.getFamilyAsSpouse().getChildren().size();
+		  if (getPrimaryIndividual().getFamilyAsSpouse() != null) {
+			int numChildren = getPrimaryIndividual().getFamilyAsSpouse().getChildren().size();
 			log.debug("numberOfRowsInTableView children: " + numChildren);
 			return numChildren;
 		  }
 		}
 		else if (nsTableView.tag() == 2) {
-		  int numSpouses = primaryIndividual.getSpouseList().size();
+		  int numSpouses = getPrimaryIndividual().getSpouseList().size();
 		  log.debug("numberOfRowsInTableView spouses: " + numSpouses);
 		  return numSpouses;
 		}
@@ -763,12 +812,12 @@ public static boolean confirmCriticalActionMessage(String message, String detail
 		  nsTableColumn.setWidth(5.0f);
 		  return String.valueOf(i + 1);
 		}
-		Individual individual = (Individual) primaryIndividual.getFamilyAsSpouse().getChildren().get(i);
+		Individual individual = (Individual) getPrimaryIndividual().getFamilyAsSpouse().getChildren().get(i);
 		individualsButtonMap.setObjectForKey(individual, "child" + i);
 		return individual.getFullName();
 	  }
 	  else if (nsTableView.tag() == 2) {
-		Individual individual = (Individual) primaryIndividual.getSpouseList().get(i);
+		Individual individual = (Individual) getPrimaryIndividual().getSpouseList().get(i);
 		individualsButtonMap.setObjectForKey(individual, "spouse" + i);
 		return individual.getFullName();
 	  }
@@ -814,9 +863,9 @@ public static boolean confirmCriticalActionMessage(String message, String detail
 
 //   private NSView printableView() {
 //      return printableView;
-//      return new PedigreeView(new NSRect(0,0,printInfo().paperSize().width()-printInfo().leftMargin()-printInfo().rightMargin(),printInfo().paperSize().height()-printInfo().topMargin()-printInfo().bottomMargin()), primaryIndividual, 4);
-//      return new FamilyGroupSheetView(new NSRect(0,0,printInfo().paperSize().width()-printInfo().leftMargin()-printInfo().rightMargin(),printInfo().paperSize().height()-printInfo().topMargin()-printInfo().bottomMargin()), primaryIndividual);
-//      return new IndividualSummaryView(new NSRect(0,0,printInfo().paperSize().width()-printInfo().leftMargin()-printInfo().rightMargin(),printInfo().paperSize().height()-printInfo().topMargin()-printInfo().bottomMargin()), primaryIndividual);
+//      return new PedigreeView(new NSRect(0,0,printInfo().paperSize().width()-printInfo().leftMargin()-printInfo().rightMargin(),printInfo().paperSize().height()-printInfo().topMargin()-printInfo().bottomMargin()), getPrimaryIndividual(), 4);
+//      return new FamilyGroupSheetView(new NSRect(0,0,printInfo().paperSize().width()-printInfo().leftMargin()-printInfo().rightMargin(),printInfo().paperSize().height()-printInfo().topMargin()-printInfo().bottomMargin()), getPrimaryIndividual());
+//      return new IndividualSummaryView(new NSRect(0,0,printInfo().paperSize().width()-printInfo().leftMargin()-printInfo().rightMargin(),printInfo().paperSize().height()-printInfo().topMargin()-printInfo().bottomMargin()), getPrimaryIndividual());
 //   }
 
   /**
@@ -824,39 +873,14 @@ public static boolean confirmCriticalActionMessage(String message, String detail
    */
   public void save() {
 	log.debug("___ save()");
+	long watch = System.currentTimeMillis();
 	// call the standard Cocoa save action
-	try {
-//            Element root = doc.getRootElement();
-//            root.addContent(new HeaderJDOM().getElement());
-//            root.addContent(new SubmitterJDOM().getElement());
-//            FamilyJDOM fam = new FamilyJDOM(doc);
-//            fam.setId("F11");
-//            FamilyJDOM fam2 = new FamilyJDOM(doc);
-//            fam2.setId("F25");
-//            IndividualJDOM indiv = new IndividualJDOM(doc);
-//            indiv.setId("I13");
-//            indiv.setGender(Gender.FEMALE);
-//            indiv.setFullName("", "Jayden Kathleen", "Allred", "");
-//            indiv.setAFN("AFN3734-473");
-//            EventJDOM birthEvt = EventJDOM.createBirthEventInstance(fam);
-//            birthEvt.setDateString("6 Aug 2002");
-//            birthEvt.setPlace(new PlaceJDOM("Orem, Utah, Utah, USA"));
-//            indiv.setBirthEvent(birthEvt);
-//            indiv.setRin(2);
-//            indiv.setFamilyAsChild(fam);
-//            indiv.setFamilyAsSpouse(fam2);
-//            fam.addChild(indiv);
-//            fam2.setMother(indiv);
-//            root.addContent(indiv.getElement());
-//            root.addContent(fam.getElement());
-//            root.addContent(fam2.getElement());
-//		log.debug("root="+root);
-	}
-	catch (Exception e) {
-	  log.error("Exception: ", e);
-	}
 	saveDocument(this);
-	log.debug("MyDocument.save() end, filename=" + fileName());
+	log.debug("it took "+(System.currentTimeMillis()-watch)+" ms to save files");
+
+//	individualListWindowController.refreshData();
+//	familyListWindowController.refreshData();
+	log.debug("MyDocument.save() end ("+(System.currentTimeMillis()-watch)+" ms), filename=" + fileName());
   }
 
   public void importFile(Object sender) { /* IBAction */
@@ -886,7 +910,7 @@ try {
 	log.debug("MyDocument.importGEDCOM():" + importFile);
 	try {
 		doc.loadXMLFile(importFile);
-		if (primaryIndividual.equals(Individual.UNKNOWN)) {
+		if (getPrimaryIndividual().equals(Individual.UNKNOWN)) {
 		  // set first individual in imported file to primary individual
 		  setPrimaryIndividual(individualList.getSelectedIndividual());
   }
@@ -903,8 +927,9 @@ try {
 try {
 	//        save();
 		NSSavePanel panel = NSSavePanel.savePanel();
-		panel.setCanSelectHiddenExtension(true);
-		panel.setExtensionHidden(false);
+		// Jaguar-only code
+//		panel.setCanSelectHiddenExtension(true);
+//		panel.setExtensionHidden(false);
 	//panther only?        panel.setMessage("Choose the name and location for the exported GEDCOM file.\n\nThe file name should end with .ged");
 	//        panel.setNameFieldLabel("Name Field Label:");
 	//        panel.setPrompt("Prompt:");
@@ -976,7 +1001,7 @@ try {
 	log.debug("addNewIndividual: " + sender);
 	try {
 		Individual newIndividual = createAndInsertNewIndividual();
-		addIndividual(newIndividual);
+//		addIndividual(newIndividual);
 		setPrimaryIndividual(newIndividual);
 		save();
 		openIndividualEditSheet(this);
@@ -989,10 +1014,20 @@ try {
   public void addNewChild(Object sender) { /* IBAction */
 	log.debug("addNewChild: " + sender);
 	try {
+		Family familyAsSpouse = getPrimaryIndividual().getFamilyAsSpouse();
+		if (familyAsSpouse instanceof Family.UnknownFamily) {
+			familyAsSpouse = createAndInsertNewFamily();
+			if (Gender.MALE.equals(getPrimaryIndividual().getGender())) {
+				familyAsSpouse.setFather(getPrimaryIndividual());
+			} else {
+				familyAsSpouse.setMother(getPrimaryIndividual());
+			}
+			getPrimaryIndividual().setFamilyAsSpouse(familyAsSpouse);
+		}
+		
 		Individual newChild = createAndInsertNewIndividual();
-		addIndividual(newChild);
-		primaryIndividual.getFamilyAsSpouse().addChild(newChild);
-		newChild.setFamilyAsChild(primaryIndividual.getFamilyAsSpouse());
+		familyAsSpouse.addChild(newChild);
+		newChild.setFamilyAsChild(familyAsSpouse);
 		setPrimaryIndividual(newChild);
 		save();
 		openIndividualEditSheet(this);
@@ -1005,10 +1040,20 @@ try {
   public void addNewSpouse(Object sender) { /* IBAction */
 	log.debug("addNewSpouse: " + sender);
 	try {
+		boolean isMale = Gender.MALE.equals(getPrimaryIndividual().getGender());
+		Family familyAsSpouse = getPrimaryIndividual().getFamilyAsSpouse();
+		if (familyAsSpouse instanceof Family.UnknownFamily) {
+			familyAsSpouse = createAndInsertNewFamily();
+			if (isMale) {
+				familyAsSpouse.setFather(getPrimaryIndividual());
+			} else {
+				familyAsSpouse.setMother(getPrimaryIndividual());
+			}
+			getPrimaryIndividual().setFamilyAsSpouse(familyAsSpouse);
+		}
 		Individual newSpouse = createAndInsertNewIndividual();
-		addIndividual(newSpouse);
-		primaryIndividual.addSpouse(newSpouse);
-		newSpouse.addSpouse(primaryIndividual);
+		getPrimaryIndividual().addSpouse(newSpouse);
+		newSpouse.addSpouse(getPrimaryIndividual());
 		setPrimaryIndividual(newSpouse);
 		save();
 		openIndividualEditSheet(this);
@@ -1021,10 +1066,17 @@ try {
   public void addNewFather(Object sender) { /* IBAction */
 	log.debug("addNewFather: " + sender);
 	try {
+		Family familyAsChild = getPrimaryIndividual().getFamilyAsChild();
+		if (familyAsChild instanceof Family.UnknownFamily) {
+			familyAsChild = createAndInsertNewFamily();
+			familyAsChild.addChild(getPrimaryIndividual());
+			getPrimaryIndividual().setFamilyAsChild(familyAsChild);
+		}
 		Individual newFather = createAndInsertNewIndividual();
-		addIndividual(newFather);
-		primaryIndividual.setFather(newFather);
-		newFather.getFamilyAsSpouse().addChild(primaryIndividual);
+		newFather.setGender(Gender.MALE);
+		newFather.setSurname(getPrimaryIndividual().getSurname());
+		newFather.setFamilyAsSpouse(familyAsChild);
+		familyAsChild.setFather(newFather);
 		setPrimaryIndividual(newFather);
 		save();
 		openIndividualEditSheet(this);
@@ -1037,10 +1089,16 @@ try {
   public void addNewMother(Object sender) { /* IBAction */
 	log.debug("addNewMother: " + sender);
 	try {
+		Family familyAsChild = getPrimaryIndividual().getFamilyAsChild();
+		if (familyAsChild instanceof Family.UnknownFamily) {
+			familyAsChild = createAndInsertNewFamily();
+			familyAsChild.addChild(getPrimaryIndividual());
+			getPrimaryIndividual().setFamilyAsChild(familyAsChild);
+		}
 		Individual newMother = createAndInsertNewIndividual();
-		addIndividual(newMother);
-		primaryIndividual.setMother(newMother);
-		newMother.getFamilyAsSpouse().addChild(primaryIndividual);
+		newMother.setGender(Gender.FEMALE);
+		newMother.setFamilyAsSpouse(familyAsChild);
+		familyAsChild.setMother(newMother);
 		setPrimaryIndividual(newMother);
 		save();
 		openIndividualEditSheet(this);
@@ -1052,14 +1110,47 @@ try {
 
   public void addNewFamily(Object sender) { /* IBAction */
 	log.debug("addNewFamily: " + sender);
+	try {
+		// I think the family edit sheet takes care of creating a new family
+//		Family newFamily = createAndInsertNewFamily();
+//		save();
+		openFamilyEditSheet(this);
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
   }
 
   public void addNewFamilyAsSpouse(Object sender) { /* IBAction */
 	log.debug("addNewFamilyAsSpouse: " + sender);
+	try {
+		Family newFamily = createAndInsertNewFamily();
+		getPrimaryIndividual().setFamilyAsSpouse(newFamily);
+		if (Gender.MALE.equals(getPrimaryIndividual().getGender())) {
+			newFamily.setFather(getPrimaryIndividual());
+		} else {
+			newFamily.setMother(getPrimaryIndividual());
+		}
+		save();
+		openFamilyEditSheet(this);
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
   }
 
   public void addNewFamilyAsChild(Object sender) { /* IBAction */
 	log.debug("addNewFamilyAsChild: " + sender);
+	try {
+		Family newFamily = createAndInsertNewFamily();
+		getPrimaryIndividual().setFamilyAsChild(newFamily);
+		newFamily.addChild(getPrimaryIndividual());
+		save();
+		openFamilyEditSheet(this);
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
   }
 
   public void showFamilyList(Object sender) { /* IBAction */
@@ -1068,25 +1159,30 @@ try {
 		if (familyListWindowController == null) {
 			familyListWindowController = new FamilyListController(familyList);
 		}
+		addWindowController(familyListWindowController);
 		familyListWindowController.showWindow(this);
-		log.debug(familyListWindowController.familyCountText.stringValue());
-		log.debug(familyListWindowController.window());
-		log.debug(	familyListWindowController.owner());
-		familyListWindowController.window().makeKeyAndOrderFront(this);
+//		log.debug(familyListWindowController.familyCountText.stringValue());
+//		log.debug(familyListWindowController.window());
+//		log.debug(	familyListWindowController.owner());
+//		familyListWindowController.window().makeKeyAndOrderFront(this);
 	} catch (Exception e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
-
-
   }
 
   public void showIndividualList(Object sender) { /* IBAction */
 	log.debug("showIndividualList: " + sender);
-	if (individualListWindowController == null) {
-		individualListWindowController = new IndividualListController(individualList);
+	try {
+		if (individualListWindowController == null) {
+			individualListWindowController = new IndividualListController(individualList);
+		}
+		addWindowController(individualListWindowController);
+		individualListWindowController.showWindow(this);
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
 	}
-	individualListWindowController.showWindow(this);
   }
   
 	public void forgetIndividual(Object sender) { /* IBAction */
@@ -1122,13 +1218,27 @@ try {
 			log.debug("target:"+menuItem.target());
 			log.debug("representedObject:"+menuItem.representedObject());
 			log.debug("menu:"+menuItem.menu().title());
-			log.debug("menu DELEGATE:"+menuItem.menu().delegate());
+//			log.debug("menu DELEGATE:"+menuItem.menu().delegate());
 			return historyController.validateMenuItem(menuItem);
+		} else if (menuItemsShouldBeInactiveWithUnknown(menuItem)) {
+			parentFamilyButton.setEnabled(false);
+			return false;
 		} else {
-			return  super.validateMenuItem((NSMenuItem) menuItem);
+			parentFamilyButton.setEnabled(true);
+			return super.validateMenuItem((NSMenuItem) menuItem);
 		}
 	}
 
+
+private boolean menuItemsShouldBeInactiveWithUnknown(_NSObsoleteMenuItemProtocol menuItem) {
+	NSArray menuItemsToDeactivate = new NSArray(new String[] {
+			"Add Family As Spouse",
+			"Add Family As Child",
+			"Add Spouse",
+			"Add Father"
+	});
+		return menuItemsToDeactivate.containsObject(menuItem.title()) && getPrimaryIndividual() instanceof Individual.UnknownIndividual;
+	}
 
 /* (non-Javadoc)
  * @see java.util.Observer#update(java.util.Observable, java.lang.Object)

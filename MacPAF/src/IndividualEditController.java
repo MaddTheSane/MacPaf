@@ -7,13 +7,15 @@
 //
 
 import org.apache.log4j.Logger;
-import org.apache.xalan.processor.StopParseException;
 
-import com.apple.cocoa.application.*;
-import com.apple.cocoa.application.NSComboBox.*;
-import com.apple.cocoa.foundation.NSData;
-import com.apple.cocoa.foundation.NSSelector;
-import com.apple.cocoa.foundation.NSSystem;
+import com.apple.cocoa.application.NSApplication;
+import com.apple.cocoa.application.NSComboBox;
+import com.apple.cocoa.application.NSDocument;
+import com.apple.cocoa.application.NSForm;
+import com.apple.cocoa.application.NSImageView;
+import com.apple.cocoa.application.NSPopUpButton;
+import com.apple.cocoa.application.NSTextField;
+import com.apple.cocoa.application.NSWindowController;
 import com.redbugz.macpaf.Gender;
 import com.redbugz.macpaf.Individual;
 import com.redbugz.macpaf.jdom.PlaceJDOM;
@@ -74,8 +76,8 @@ public class IndividualEditController extends NSWindowController {
 		individual.setGivenNames(givenNames.stringValue());
 		individual.setNamePrefix(prefix.stringValue());
 		individual.setNameSuffix(suffix.stringValue());
-		log.debug(gender.titleOfSelectedItem());
-		log.debug(Gender.genderWithCode(gender.titleOfSelectedItem()));
+		log.debug("IndividualEditController.save() gendercode:"+gender.titleOfSelectedItem());
+		log.debug("IndividualEditController.save() gender:"+Gender.genderWithCode(gender.titleOfSelectedItem()));
 		individual.setGender(Gender.genderWithCode(gender.titleOfSelectedItem()));
 		individual.setAFN(afn.stringValue());
 		individual.getBirthEvent().setDateString(birthForm.cellAtIndex(0).stringValue());
@@ -96,7 +98,6 @@ public class IndividualEditController extends NSWindowController {
 		myDocument.setPrimaryIndividual(individual);
 		log.debug("IndividualEditController.save() individual aft:" + individual);
 		myDocument.save();
-
 	  }
 	}
 	catch (Exception e) {
@@ -122,12 +123,12 @@ public class IndividualEditController extends NSWindowController {
 	super.setDocument(nsDocument);
 	log.debug("setdocument:" + nsDocument);
 	log.debug("surname:" + surname);
-	Individual individual = ( (MyDocument) nsDocument).getPrimaryIndividual();
-	setIndividual(individual);
+	Individual primaryIndividual = ( (MyDocument) nsDocument).getPrimaryIndividual();
+	setIndividual(primaryIndividual);
   }
 
-  public void setIndividual(Individual individual) {
-	this.individual = individual;
+  public void setIndividual(Individual newIndividual) {
+	individual = newIndividual;
 	surname.setStringValue(individual.getSurname());
 	givenNames.setStringValue(individual.getGivenNames());
 	prefix.setStringValue(individual.getNamePrefix());

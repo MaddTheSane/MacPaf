@@ -108,16 +108,18 @@ public class HistoryController implements NSMenu.MenuValidation {
 			result = true;
 			break;
 		default:
-			if (!(rememberedIndividuals.get(menuItem.tag()-1) instanceof Individual.UnknownIndividual)) {
-				result = true;
+			result = true;
+			if (menuItem.tag() > 0 && (rememberedIndividuals.get(menuItem.tag()-1) instanceof Individual.UnknownIndividual)) {
+				result = false;
 			}
 			break;
 		}
+		log.debug("validateMenuItem done, tag:"+menuItem.tag()+" result:"+result);
 		return result;
 	}
 
 	public List getRecentIndividualList() {
-		return (List) recentIndividuals.clone();
+		return recentIndividuals;
 	}
 
 	public void setRecentIndividualListSize(int newSize) {

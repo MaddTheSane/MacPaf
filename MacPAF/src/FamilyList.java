@@ -14,9 +14,10 @@ public class FamilyList extends AbstractMap {
 
   public MyDocument document; /* IBOutlet */
   private Family selectedFamily = Family.UNKNOWN_FAMILY;
-//  private List families;
+
   private Map familyMap;
   long ts;
+  private SortableFilteredTableViewDataSource dataSource;// = new SortableFilteredTableViewDataSource();
 
   public FamilyList() {
 	System.out.println("FamilyList.FamilyList()");
@@ -30,7 +31,14 @@ public class FamilyList extends AbstractMap {
 }
   }
 
+public void setDataSource(SortableFilteredTableViewDataSource newDataSource) {
+	dataSource = newDataSource;
+}
+
   public Family getSelectedFamily() {
+	  if (selectedFamily == null) {
+		  selectedFamily = Family.UNKNOWN_FAMILY;
+	  }
 	return selectedFamily;
   }
 
@@ -85,8 +93,10 @@ public class FamilyList extends AbstractMap {
 	log.debug("FamilyList tableViewSelectionDidChange():" + aNotification);
 	try {
 		NSTableView nsTableView = (NSTableView) aNotification.object();
-		selectedFamily = (Family) familyMap.values().toArray()[nsTableView.selectedRow()];
-		nsTableView.reloadData();
+		if (dataSource.getCurrentSelectedIndex() >= 0) {
+			selectedFamily = (Family) familyMap.values().toArray()[dataSource.getCurrentSelectedIndex()];
+			nsTableView.reloadData();
+		}
 	} catch (Exception e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
@@ -140,10 +150,11 @@ public class FamilyList extends AbstractMap {
    * @todo Implement this java.lang.Object method
    */
   public String toString() {
-	return ts+":"+familyMap.size(); //":"+families.size()+
+	return "FamilyMap:"+ts+":"+familyMap.size(); //":"+families.size()+
   }
   public void setFamilyMap(Map familyMap) {
     this.familyMap = familyMap;
 //	families = new ArrayList( familyMap.values() );
   }
+  
 }

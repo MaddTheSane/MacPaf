@@ -77,16 +77,16 @@ public class FamilyJDOM implements Family {
 //	setId("");
 //  }
 
-  public FamilyJDOM(Element element, MacPAFDocumentJDOM parentDocument) {
+  public FamilyJDOM(Element newElement, MacPAFDocumentJDOM parentDocument) {
   	if (parentDocument == null) {
   		throw new IllegalArgumentException("Cannot create FamilyJDOM with null parentDocument");
   	}
-	if (element == null) {
+	if (newElement == null) {
 		throw new IllegalArgumentException("cannot create new FamilyJDOM with null element");
 //	  element = new Element(FAMILY);
 	}
 	document = parentDocument;
-	this.element = element;
+	element = newElement;
   }
 
   public FamilyJDOM(Family oldFamily, MacPAFDocumentJDOM parentDocument) {
@@ -126,7 +126,7 @@ public class FamilyJDOM implements Family {
 //			new XMLOutputter(Format.getPrettyFormat()).output(indiNode, System.out);
 //		  }
 //		  catch (IOException e1) {
-//			// TODO Auto-generated catch block
+//			// 
 //			e1.printStackTrace();
 			  father = new IndividualLink(fatherLink.getAttributeValue(REF), document);
 		  }
@@ -160,7 +160,7 @@ public class FamilyJDOM implements Family {
 //			new XMLOutputter(Format.getPrettyFormat()).output(indiNode, System.out);
 //		  }
 //		  catch (IOException e1) {
-//			// TODO Auto-generated catch block
+//			// 
 //			e1.printStackTrace();
 //		  }
 		  mother = new IndividualLink(motherLink.getAttributeValue(REF), document);
@@ -202,7 +202,7 @@ public class FamilyJDOM implements Family {
 //			  new XMLOutputter(Format.getPrettyFormat()).output(childNode, System.out);
 //			}
 //			catch (IOException e1) {
-//			  // TODO Auto-generated catch block
+//			  // 
 //			  e1.printStackTrace();
 //			}
 			child = new IndividualLink(childLink.getAttributeValue(REF), document);
@@ -244,14 +244,13 @@ public class FamilyJDOM implements Family {
   }
 
   public void setSealingToSpouse(Ordinance sealing) {
-	  Ordinance sealingToSpouse = getSealingToSpouse();
-	  if (sealingToSpouse instanceof Ordinance.UnknownOrdinance) {
-		  if (sealing instanceof OrdinanceJDOM) {
-			  sealingToSpouse = new OrdinanceJDOM(((OrdinanceJDOM)sealing).getElement());
-		  }
-		  element.addContent(((OrdinanceJDOM) sealingToSpouse).getElement());
+	  if (sealing instanceof Ordinance.UnknownOrdinance) {
+		  // do nothing
+		  return;
+	  } else {
+		  JDOMUtils.replaceFirstChildElement(element, new OrdinanceJDOM(sealing).getElement());
 	  }
-	  // TODO not sure what to do here yet
+
   }
 
   public String getId() {
@@ -264,7 +263,12 @@ public class FamilyJDOM implements Family {
   }
 
   public void setMarriageEvent(Event marriageEvent) {
-	element.addContent(new EventJDOM(marriageEvent).getElement());
+	  if (marriageEvent instanceof Event.UnknownEvent) {
+		  // do nothing
+		  return;
+	  } else {
+		  JDOMUtils.replaceFirstChildElement(element, new EventJDOM(marriageEvent).getElement());
+	  }
   }
 
   public Event getMarriageEvent() {

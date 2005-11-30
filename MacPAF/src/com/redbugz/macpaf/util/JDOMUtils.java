@@ -1,6 +1,10 @@
 package com.redbugz.macpaf.util;
 
+import org.jdom.Content;
 import org.jdom.Element;
+
+import com.redbugz.macpaf.Event;
+import com.redbugz.macpaf.jdom.EventJDOM;
 
 public class JDOMUtils {
 //	public static Element makeChildElement(String elementName) {
@@ -29,6 +33,16 @@ public class JDOMUtils {
 			parentElement.addContent(child);
 		}
 		return child;		
+	}
+	
+	/**
+	 * 
+	 * @param parent
+	 * @param newChild
+	 */
+	public static void replaceFirstChildElement(Element parent, Element newChild) {
+		parent.removeChild(newChild.getName());
+		parent.addContent(newChild);
 	}
 
 }

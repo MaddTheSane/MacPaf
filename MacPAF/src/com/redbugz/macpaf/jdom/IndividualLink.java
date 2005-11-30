@@ -382,12 +382,12 @@ public class IndividualLink implements Individual {
 		return getIndividual().getFather();
 	}
 
-	/* (non-Javadoc)
-	 * @see com.redbugz.macpaf.Individual#setFather(com.redbugz.macpaf.Individual)
-	 */
-	public void setFather(Individual father) {
-		getIndividual().setFather(father);
-	}
+//	/* (non-Javadoc)
+//	 * @see com.redbugz.macpaf.Individual#setFather(com.redbugz.macpaf.Individual)
+//	 */
+//	public void setFather(Individual father) {
+//		getIndividual().setFather(father);
+//	}
 
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Individual#getMother()
@@ -396,12 +396,12 @@ public class IndividualLink implements Individual {
 		return getIndividual().getMother();
 	}
 
-	/* (non-Javadoc)
-	 * @see com.redbugz.macpaf.Individual#setMother(com.redbugz.macpaf.Individual)
-	 */
-	public void setMother(Individual mother) {
-		getIndividual().setMother(mother);
-	}
+//	/* (non-Javadoc)
+//	 * @see com.redbugz.macpaf.Individual#setMother(com.redbugz.macpaf.Individual)
+//	 */
+//	public void setMother(Individual mother) {
+//		getIndividual().setMother(mother);
+//	}
 
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Individual#getFamilyAsChild()

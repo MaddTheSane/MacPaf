@@ -7,12 +7,12 @@
 	<classpathentry kind="lib" path="lib/jaxen-jdom.jar"/>
 	<classpathentry kind="lib" path="lib/jaxen-core.jar"/>
 	<classpathentry kind="lib" path="lib/gedcom.jar"/>
-	<classpathentry kind="lib" path="CocoaLib"/>
 	<classpathentry kind="lib" path="lib/xml-apis.jar"/>
 	<classpathentry kind="lib" path="lib/xalan.jar"/>
 	<classpathentry sourcepath="/Projects/Tools/logging-log4j-1.2.9/src/java" kind="lib" path="lib/log4j-1.2.9.jar"/>
 	<classpathentry sourcepath="/Projects/Tools/jdom-1.0/src/java" kind="lib" path="lib/jdom-1.0.jar"/>
 	<classpathentry kind="lib" path="lib/castor-0.9.4.3.jar"/>
 	<classpathentry kind="lib" path="lib/junit.jar"/>
+	<classpathentry kind="lib" path="/Users/logan/Projects/Tools/Cocoa-Java/10.1SDK/Cocoa-Java-10.1.jar"/>
 	<classpathentry kind="output" path="build/"/>
 </classpath>

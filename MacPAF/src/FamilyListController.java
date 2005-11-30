@@ -5,6 +5,7 @@ import org.apache.log4j.Logger;
 import com.apple.cocoa.foundation.*;
 import com.apple.cocoa.application.*;
 import com.redbugz.macpaf.Family;
+import com.redbugz.macpaf.Individual;
 
 public class FamilyListController extends NSWindowController {
 	private static Logger log = Logger.getLogger(FamilyListController.class);
@@ -15,26 +16,51 @@ public class FamilyListController extends NSWindowController {
     public NSTextField searchField; /* IBOutlet */
     public FamilyDetailController familyDetailController; /* IBOutlet */
 
+	private SortableFilteredTableViewDataSource sortableFilteredTableViewDataSource;
+
 	public FamilyListController(FamilyList dataSource) {
 		super("FamilyListWindow");
 		familyList = dataSource;
 	}
+	
+// only used for debugging, can delete if no longer needed
+//	public void setDocument(NSDocument arg0) {
+//		// TODO Auto-generated method stub
+//		log.info("FamilyListController.setDocument():"+arg0);
+//		Thread.dumpStack();
+//		super.setDocument(arg0);
+//	}
 
 	public void search(Object sender) { /* IBAction */
 		log.debug("search for "+searchField.stringValue());
-    }
+		sortableFilteredTableViewDataSource.setFilterString(searchField.stringValue());
+		refreshData();
+	}
 
-    public void selectFamily(Object sender) { /* IBAction */
+	public void selectFamily(Object sender) { /* IBAction */
 		log.debug("selectFamily: "+familyListTableView.selectedRow());
-		((MyDocument) document()).setPrimaryIndividual(familyList.getSelectedFamily().getFather());
-		((MyDocument) document()).mainWindow.makeKeyAndOrderFront(this);
-    }
+		if (familyListTableView.selectedRow() >= 0) {
+			Family selectedFamily = familyList.getSelectedFamily();
+			if (!(selectedFamily instanceof Family.UnknownFamily)) {
+				Individual newPrimaryIndiv = selectedFamily.getFather();
+				if (newPrimaryIndiv instanceof Individual.UnknownIndividual) {
+					newPrimaryIndiv = selectedFamily.getMother();
+				}
+				log.debug("selectFamily Document:"+document());
+				((MyDocument) document()).setPrimaryIndividual(newPrimaryIndiv);
+				((MyDocument) document()).mainWindow.makeKeyAndOrderFront(this);
+			}
+		}
+	}
 
 	public void windowDidLoad() {
 		super.windowDidLoad();
-		  familyListTableView.setDataSource(familyList);
-			familyListTableView.setDelegate(this);
-		familyCountText.setStringValue("Number of Families: "+familyList.size());
+		sortableFilteredTableViewDataSource = new SortableFilteredTableViewDataSource(familyListTableView, familyList);
+		familyListTableView.setDataSource(sortableFilteredTableViewDataSource);
+		familyListTableView.setDelegate(this);
+		familyList.setDataSource(sortableFilteredTableViewDataSource);
+		searchField.setDelegate(this);
+		refreshData();
 	}
 
 	public String windowTitleForDocumentDisplayName(String displayName) {
@@ -47,6 +73,38 @@ public class FamilyListController extends NSWindowController {
 			familyDetailController.setFamily(familyList.getSelectedFamily());
 		  }
 
+	  public void controlTextDidChange(NSNotification aNotification) {
+		System.out.println("FamilyListController.controlTextDidChange()");
+		System.out.println(aNotification);
+		System.out.println(aNotification.valueForKey("object"));
+		System.out.println(aNotification.object());
+		NSTextField field = (NSTextField) aNotification.object();
+		System.out.println("search value:"+field.stringValue());
+		sortableFilteredTableViewDataSource.setFilterString(searchField.stringValue());
+		refreshData();
+	  }
 
+	public void refreshData() {
+		familyListTableView.reloadData();
+		familyCountText.setStringValue("Number of Families: "+familyList.size());
+	}
 
+	  // SDMovingRowsProtocol
+//	- (unsigned int)dragReorderingMask:(int)forColumn;
+	public int dragReorderingMaskForColumn(int column) {
+		return 0; // drag always2
+	}
+	  //- (BOOL)tableView:(NSTableView *)tv didDepositRow:(int)rowToMove at:(int)newPosition;
+	  public boolean tableViewDidDepositRowToMoveAt(NSTableView nSTableView, int rowToMove, int newPosition) {
+		  log.debug("FamilyList.tableViewDidDepositRowToMoveAt()");
+		  return true;
+	  }
+
+//	This gives you a chance to decline to drop particular rows on other particular
+//	row. Return YES if you don't care
+//	- (BOOL) tableView:(SDTableView *)tableView draggingRow:(int)draggedRow overRow:(int) targetRow;
+	  public boolean tableViewDraggingRowOverRow(NSTableView tableView, int draggedRow, int targetRow) {
+		  log.debug("FamilyList.tableViewDraggingRowOverRow()");
+		  return true;
+	  }
 }

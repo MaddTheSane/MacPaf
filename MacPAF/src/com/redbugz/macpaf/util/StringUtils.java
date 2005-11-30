@@ -17,6 +17,10 @@ public class StringUtils {
 		}
 		return false;
 	}
+	
+	public static boolean notEmpty(String string) {
+		return ! isEmpty(string);
+	}
 
 	public static String trimLeadingWhitespace(String s) {
 		if (s == null) {

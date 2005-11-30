@@ -22,12 +22,23 @@ public class OrdinanceJDOM extends EventJDOM implements Ordinance {
   public static final String LDS_SEALING_PARENTS = "SLGC";
   public static final String STATUS = "STAT";
 
-  public OrdinanceJDOM(Element element) {
-	super(element);
-	log.debug("OrdinanceJDOM status=" + getStatus() + " temple=" + getTemple().getName());
+  public OrdinanceJDOM(Element newElement) {
+	super(newElement);
+//	log.debug("OrdinanceJDOM status=" + getStatus() + " temple=" + getTemple().getName());
   }
 
-  public static OrdinanceJDOM createBaptismInstance() {
+  public OrdinanceJDOM(Ordinance originalOrdinance) {
+	  super(originalOrdinance);
+	  if (originalOrdinance instanceof OrdinanceJDOM) {
+		  element = ( (OrdinanceJDOM) originalOrdinance).getElement();
+	  }
+	  else {
+		  setStatus(originalOrdinance.getStatus());
+		  setTemple(originalOrdinance.getTemple());
+	  }
+  }
+
+public static OrdinanceJDOM createBaptismInstance() {
 	return new OrdinanceJDOM(new Element(LDS_BAPTISM));
   }
 

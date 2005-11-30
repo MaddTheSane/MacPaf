@@ -11,6 +11,7 @@ import org.jdom.Element;
 import com.redbugz.macpaf.Event;
 import com.redbugz.macpaf.Family;
 import com.redbugz.macpaf.Place;
+import com.redbugz.macpaf.util.StringUtils;
 
 /**
  * Created by IntelliJ IDEA.
@@ -23,7 +24,7 @@ public class EventJDOM implements Event {
   private static final Logger log = Logger.getLogger(EventJDOM.class);
   private Date date = new GregorianCalendar(2000, 6, 23).getTime();
   private String dateString = "";
-  private Place place = new PlaceJDOM();
+  private Place place =  Place.UNKNOWN_PLACE;
   protected DateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy");
   Element element = new Element("EVEN");
 //   private String type = "";
@@ -141,10 +142,12 @@ public class EventJDOM implements Event {
 	}
 	catch (ParseException e) {
 	  date = null;
-	  log.error("Exception: ", e); //To change body of catch statement use Options | File Templates.
+	  log.error("Exception: ", e);
 	}
 	element.removeChildren(DATE);
-	element.addContent(new Element(DATE).setText(dateString));
+	if (StringUtils.notEmpty(dateString)) {
+		element.addContent(new Element(DATE).setText(dateString));
+	}
   }
 
   public Place getPlace() {
@@ -157,7 +160,9 @@ public class EventJDOM implements Event {
   public void setPlace(Place place) {
 	this.place = place;
 	element.removeChildren(PLACE);
-	element.addContent(new PlaceJDOM(place).getElement());
+	if (! (place instanceof Place.UnknownPlace)) {
+		element.addContent(new PlaceJDOM(place).getElement());
+	}
   }
 
   // todo: add address support to events
@@ -201,7 +206,9 @@ public class EventJDOM implements Event {
    */
   public void setAgeString(String ageString) {
 	element.removeChildren(AGE);
-	element.addContent(new Element(AGE).setText(ageString));
+	if (StringUtils.notEmpty(ageString)) {
+		element.addContent(new Element(AGE).setText(ageString));
+	}
   }
 
   /**
@@ -220,7 +227,9 @@ public class EventJDOM implements Event {
    */
   public void setCause(String cause) {
 	element.removeChildren(CAUSE);
-	element.addContent(new Element(CAUSE).setText(cause));
+	if (StringUtils.notEmpty(cause)) {
+		element.addContent(new Element(CAUSE).setText(cause));
+	}
   }
 
   /**

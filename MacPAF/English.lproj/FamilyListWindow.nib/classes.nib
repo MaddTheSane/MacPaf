@@ -7,7 +7,6 @@
                 childrenTable = NSTableView; 
                 eventTable = NSTableView; 
                 husbandDetailsText = NSTextField; 
-                husbandNotesText = NSTextView; 
                 husbandPhoto = NSImageView; 
                 noteText = NSTextView; 
                 wifeDetailsText = NSTextField; 
@@ -20,7 +19,7 @@
             CLASS = FamilyListController; 
             LANGUAGE = Java; 
             OUTLETS = {
-                familyCountText = FamilyDetailController; 
+                familyCountText = NSTextField; 
                 familyDetailController = id; 
                 familyList = FamilyList; 
                 familyListTableView = NSTableView; 

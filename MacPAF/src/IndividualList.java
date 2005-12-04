@@ -10,6 +10,7 @@ import org.apache.log4j.Logger;
 import com.apple.cocoa.application.NSTableColumn;
 import com.apple.cocoa.application.NSTableView;
 import com.apple.cocoa.foundation.NSNotification;
+import com.redbugz.macpaf.Family;
 import com.redbugz.macpaf.Individual;
 import java.util.List;
 
@@ -28,6 +29,9 @@ public class IndividualList extends AbstractMap {
   private Individual selectedIndividual; // = null;
 //  private List individuals = new ArrayList();
   private Map individualMap = new HashMap();
+  
+  private SortableFilteredTableViewDataSource dataSource;// = new SortableFilteredTableViewDataSource();
+
 
   public IndividualList() {
 	System.out.println("IndividualList.IndividualList()");
@@ -40,6 +44,10 @@ public class IndividualList extends AbstractMap {
 	}
 	return selectedIndividual;
   }
+
+  public void setDataSource(SortableFilteredTableViewDataSource newDataSource) {
+		dataSource = newDataSource;
+	}
 
 /**
  * @see NSTableView.Delegate
@@ -125,7 +133,8 @@ public class IndividualList extends AbstractMap {
 	try {
 		NSTableView nsTableView = (NSTableView) aNotification.object();
 		selectedIndividual =
-			(Individual) individualMap.values().toArray()[nsTableView.selectedRow()];
+			(Individual) individualMap.values().toArray()[dataSource.getCurrentSelectedIndex()];
+		nsTableView.reloadData();
 	} catch (Exception e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();

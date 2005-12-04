@@ -3,12 +3,13 @@
         {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
         {
             CLASS = IndividualDetailController; 
-            LANGUAGE = ObjC; 
+            LANGUAGE = Java; 
             OUTLETS = {
                 detailsText = NSTextField; 
                 eventTable = NSTableView; 
                 infoText = NSTextField; 
                 locked = NSButtonCell; 
+                marriageText = NSTextField; 
                 noteText = NSTextView; 
                 photo = NSImageView; 
                 privacy = NSButtonCell; 

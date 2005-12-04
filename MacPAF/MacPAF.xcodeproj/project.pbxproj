@@ -166,9 +166,6 @@
 		025FC08B092EC024006B2989 /* FilteredTableViewDataSource.java in Sources */ = {isa = PBXBuildFile; fileRef = 025FC089092EC023006B2989 /* FilteredTableViewDataSource.java */; };
 		025FC08C092EC024006B2989 /* SortableFilteredTableViewDataSource.java in Sources */ = {isa = PBXBuildFile; fileRef = 025FC08A092EC024006B2989 /* SortableFilteredTableViewDataSource.java */; };
 		025FC08E092EC045006B2989 /* WrappedTableViewDataSource.java in Sources */ = {isa = PBXBuildFile; fileRef = 025FC08D092EC045006B2989 /* WrappedTableViewDataSource.java */; };
-		025FC10C092EFD29006B2989 /* SDTableView.h in Headers */ = {isa = PBXBuildFile; fileRef = 025FC10A092EFD29006B2989 /* SDTableView.h */; };
-		025FC10D092EFD29006B2989 /* SDTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 025FC10B092EFD29006B2989 /* SDTableView.m */; };
-		025FC115092EFDD6006B2989 /* SDMovingRowsProtocol.h in Headers */ = {isa = PBXBuildFile; fileRef = 025FC114092EFDD6006B2989 /* SDMovingRowsProtocol.h */; };
 		0260D11308F9D6E100F9A745 /* junit.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 0260D11208F9D6E000F9A745 /* junit.jar */; };
 		0260D12208F9DAA800F9A745 /* saxpath.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 026ED7F705D9330B0001D1D2 /* saxpath.jar */; };
 		026BF51807AD765200CBA37C /* Family.png in Resources */ = {isa = PBXBuildFile; fileRef = 026BF51707AD765200CBA37C /* Family.png */; };
@@ -360,9 +357,6 @@
 		025FC089092EC023006B2989 /* FilteredTableViewDataSource.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = FilteredTableViewDataSource.java; path = src/FilteredTableViewDataSource.java; sourceTree = "<group>"; };
 		025FC08A092EC024006B2989 /* SortableFilteredTableViewDataSource.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = SortableFilteredTableViewDataSource.java; path = src/SortableFilteredTableViewDataSource.java; sourceTree = "<group>"; };
 		025FC08D092EC045006B2989 /* WrappedTableViewDataSource.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = WrappedTableViewDataSource.java; sourceTree = "<group>"; };
-		025FC10A092EFD29006B2989 /* SDTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDTableView.h; sourceTree = "<group>"; };
-		025FC10B092EFD29006B2989 /* SDTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDTableView.m; sourceTree = "<group>"; };
-		025FC114092EFDD6006B2989 /* SDMovingRowsProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDMovingRowsProtocol.h; sourceTree = "<group>"; };
 		0260D11208F9D6E000F9A745 /* junit.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; name = junit.jar; path = lib/junit.jar; sourceTree = "<group>"; };
 		026BF51707AD765200CBA37C /* Family.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Family.png; sourceTree = "<group>"; };
 		026BF51907AD992300CBA37C /* Individual.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Individual.png; sourceTree = "<group>"; };
@@ -774,11 +768,8 @@
 		32DBCF810370BDA300C91783 /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
-				025FC114092EFDD6006B2989 /* SDMovingRowsProtocol.h */,
 				32DBCF820370BDBC00C91783 /* MacPAF_Prefix.h */,
 				2A37F4B0FDCFA73011CA2CEA /* main.m */,
-				025FC10A092EFD29006B2989 /* SDTableView.h */,
-				025FC10B092EFD29006B2989 /* SDTableView.m */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -791,8 +782,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				32DBCF830370BDBC00C91783 /* MacPAF_Prefix.h in Headers */,
-				025FC10C092EFD29006B2989 /* SDTableView.h in Headers */,
-				025FC115092EFDD6006B2989 /* SDMovingRowsProtocol.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -961,7 +950,6 @@
 				025FC08B092EC024006B2989 /* FilteredTableViewDataSource.java in Sources */,
 				025FC08C092EC024006B2989 /* SortableFilteredTableViewDataSource.java in Sources */,
 				025FC08E092EC045006B2989 /* WrappedTableViewDataSource.java in Sources */,
-				025FC10D092EFD29006B2989 /* SDTableView.m in Sources */,
 				02C5BE500939F8EF0086B510 /* ValidationException.java in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -24,12 +24,15 @@ public class IndividualDetailController extends NSObject {
   public NSTextField detailsText; /* IBOutlet */
   public NSTableView eventTable; /* IBOutlet */
   public NSTextField infoText; /* IBOutlet */
+  public NSTextField marriageText; /* IBOutlet */
   public NSTextView noteText; /* IBOutlet */
   public NSImageView photo; /* IBOutlet */
   public NSButtonCell locked; /* IBOutlet */
   public NSButtonCell privacy; /* IBOutlet */
 
   public IndividualDetailController() {
+//	  Thread.dumpStack();
+//	  System.out.println(this);
   }
 
   /**
@@ -44,8 +47,18 @@ public class IndividualDetailController extends NSObject {
 	log.debug("IndividualDetailController.setIndividual(primaryIndividual) setting individual to " + primaryIndividual);
 	individual = primaryIndividual;
 
-	infoText.setStringValue(individual.getFullName() + newLine + individual.getBirthEvent().getDateString());
+	infoText.setStringValue(individual.getFullName() 
+			+ newLine + individual.getBirthEvent().getDateString()
+			+ newLine 
+			+ newLine + "Father: "+individual.getFather().getFullName()
+			+ newLine + "Mother: "+individual.getMother().getFullName());
 	detailsText.setStringValue("Gender: " + individual.getGender().getLongString());
+//	System.out.println("itext:"+infoText);
+//	System.out.println("mtext:"+marriageText);
+//	System.out.println("spouselist:"+individual.getSpouseList());
+	if (marriageText != null) {
+		marriageText.setStringValue("Marriages: "+individual.getSpouseList().size());
+	}
 	locked.setState(individual.isLocked() ? NSCell.OnState : NSCell.OffState);
 	privacy.setState(individual.isPrivate() ? NSCell.OnState : NSCell.OffState);
 	noteText.setString(individual.getNoteText());

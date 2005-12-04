@@ -23,14 +23,6 @@ public class FamilyListController extends NSWindowController {
 		familyList = dataSource;
 	}
 	
-// only used for debugging, can delete if no longer needed
-//	public void setDocument(NSDocument arg0) {
-//		// TODO Auto-generated method stub
-//		log.info("FamilyListController.setDocument():"+arg0);
-//		Thread.dumpStack();
-//		super.setDocument(arg0);
-//	}
-
 	public void search(Object sender) { /* IBAction */
 		log.debug("search for "+searchField.stringValue());
 		sortableFilteredTableViewDataSource.setFilterString(searchField.stringValue());
@@ -61,6 +53,10 @@ public class FamilyListController extends NSWindowController {
 		familyList.setDataSource(sortableFilteredTableViewDataSource);
 		searchField.setDelegate(this);
 		refreshData();
+		if (familyListTableView.numberOfRows() > 0) {
+			tableViewSelectionDidChange(new NSNotification(NSTableView.TableViewSelectionDidChangeNotification, familyListTableView));
+		}
+//		refreshSelection(familyList.getSelectedFamily());
 	}
 
 	public String windowTitleForDocumentDisplayName(String displayName) {
@@ -79,14 +75,26 @@ public class FamilyListController extends NSWindowController {
 		System.out.println(aNotification.valueForKey("object"));
 		System.out.println(aNotification.object());
 		NSTextField field = (NSTextField) aNotification.object();
+		// hold on to selection so we can find it in the filtered list
+		Family selectedFamily = familyList.getSelectedFamily();
 		System.out.println("search value:"+field.stringValue());
 		sortableFilteredTableViewDataSource.setFilterString(searchField.stringValue());
 		refreshData();
+		refreshSelection(selectedFamily);
 	  }
+
+	private void refreshSelection(Family selectedFamily) {
+		// TODO implement this to keep selection if still in filtered list
+		// for now, just change selection to update selected family view
+//		int currentSelectedIndex = sortableFilteredTableViewDataSource.getCurrentSelectedIndex();
+		if (familyListTableView.numberOfRows() > 0) {
+			tableViewSelectionDidChange(new NSNotification(NSTableView.TableViewSelectionDidChangeNotification, familyListTableView));
+		}
+	}
 
 	public void refreshData() {
 		familyListTableView.reloadData();
-		familyCountText.setStringValue("Number of Families: "+familyList.size());
+		familyCountText.setStringValue("Displaying "+familyListTableView.numberOfRows()+" out of "+familyList.size()+" Families");
 	}
 
 	  // SDMovingRowsProtocol

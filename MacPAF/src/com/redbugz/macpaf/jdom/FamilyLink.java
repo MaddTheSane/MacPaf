@@ -158,4 +158,8 @@ public class FamilyLink implements Family {
 		return getFamily().getEvents();
 	}
 
+	public String getNoteText() {
+		return getFamily().getNoteText();
+	}
+
 }

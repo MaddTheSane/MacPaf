@@ -11,6 +11,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Enumeration;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -68,6 +70,7 @@ public class MyDocument extends NSDocument implements Observer {
   public NSWindow mainWindow; /* IBOutlet */
   public NSWindow reportsWindow; /* IBOutlet */
   public NSWindow importWindow; /* IBOutlet */
+  public NSWindow individualEditWindow; /* IBOutlet */
   public NSWindow familyEditWindow; /* IBOutlet */
   public FamilyListController familyListWindowController; /* IBOutlet */
   public IndividualListController individualListWindowController; /* IBOutlet */
@@ -78,7 +81,6 @@ public class MyDocument extends NSDocument implements Observer {
   public HistoryController historyController; /* IBOutlet */
   public NSButton fatherButton; /* IBOutlet */
   public NSButton individualButton; /* IBOutlet */
-  public NSWindow individualEditWindow; /* IBOutlet */
   public NSButton individualFamilyButton; /* IBOutlet */
   public NSButton maternalGrandfatherButton; /* IBOutlet */
   public NSButton maternalGrandmotherButton; /* IBOutlet */
@@ -95,8 +97,6 @@ public class MyDocument extends NSDocument implements Observer {
   public NSTableView childrenTable; /* IBOutlet */
   public NSTableView spouseTable; /* IBOutlet */
   public PedigreeView pedigreeView; /* IBOutlet */
-//  public NSTableView individualListTableView; /* IBOutlet */
-//  public NSTableView familyListTableView; /* IBOutlet */
   private IndividualDetailController individualDetailController = new IndividualDetailController();
   private NSView printableView;
 
@@ -301,11 +301,11 @@ public void sheetDidEndShouldClose2() {
 //// save individual info
 //      closeIndividualEditSheet(sender);
 //   }
-
+  
   public Individual getPrimaryIndividual() {
 	return doc.getPrimaryIndividual();
   }
-
+  
   public void setPrimaryIndividual(Individual newIndividual) {
 	try {
 		doc.setPrimaryIndividual(newIndividual);
@@ -326,6 +326,7 @@ public void sheetDidEndShouldClose2() {
 		log.debug("famch id:"+getPrimaryIndividual().getFamilyAsChild().getId());
 		familyAsSpouseButton.setTitle("Family: "+getPrimaryIndividual().getFamilyAsSpouse().getId());
 		familyAsChildButton.setTitle("Family: "+getPrimaryIndividual().getFamilyAsChild().getId());
+		spouseTable.selectRow(0, false);
 		spouseTable.reloadData();
 		childrenTable.reloadData();
 	} catch (Exception e) {
@@ -404,6 +405,8 @@ public void sheetDidEndShouldClose2() {
 			superview.setNeedsDisplay(true);
 			if (tv.tag() == 2) {
 			  assignIndividualToButton(newIndividual, spouseButton);
+			  familyAsSpouseButton.setTitle("Family: "+getCurrentFamily().getId());
+			  childrenTable.reloadData();
 			}
 else {
 			  setPrimaryIndividual(newIndividual);
@@ -787,7 +790,7 @@ public static boolean confirmCriticalActionMessage(String message, String detail
 		log.debug("MyDocument.numberOfRowsInTableView():" + nsTableView.tag());
 		if (nsTableView.tag() == 1) {
 		  if (getPrimaryIndividual().getFamilyAsSpouse() != null) {
-			int numChildren = getPrimaryIndividual().getFamilyAsSpouse().getChildren().size();
+			int numChildren = getCurrentFamily().getChildren().size();
 			log.debug("numberOfRowsInTableView children: " + numChildren);
 			return numChildren;
 		  }
@@ -812,7 +815,7 @@ public static boolean confirmCriticalActionMessage(String message, String detail
 		  nsTableColumn.setWidth(5.0f);
 		  return String.valueOf(i + 1);
 		}
-		Individual individual = (Individual) getPrimaryIndividual().getFamilyAsSpouse().getChildren().get(i);
+		Individual individual = (Individual) getCurrentFamily().getChildren().get(i);
 		individualsButtonMap.setObjectForKey(individual, "child" + i);
 		return individual.getFullName();
 	  }
@@ -830,7 +833,24 @@ public static boolean confirmCriticalActionMessage(String message, String detail
 	}
   }
 
-  public void printShowingPrintPanel(boolean showPanels) {
+  private Family getCurrentFamily() {
+	  Family result = getPrimaryIndividual().getFamilyAsSpouse();
+	  List families = getPrimaryIndividual().getFamiliesAsSpouse();
+	  log.info("spouselist:"+getPrimaryIndividual().getSpouseList().size());
+	  log.info("selectedspouserow:"+spouseTable.selectedRow());
+	  if (getPrimaryIndividual().getSpouseList().size() > 0 && spouseTable.selectedRow() >= 0) {
+	  Individual selectedSpouse = (Individual) getPrimaryIndividual().getSpouseList().get(spouseTable.selectedRow());
+	  for (Iterator iter = families.iterator(); iter.hasNext();) {
+		Family family = (Family) iter.next();
+			if (family.getMother().getId().equals(selectedSpouse.getId()) || family.getFather().getId().equals(selectedSpouse.getId())) {
+				result = family;
+			}
+	  	}
+	  }
+	return result;
+}
+
+public void printShowingPrintPanel(boolean showPanels) {
 	log.debug("printshowingprintpanel:" + showPanels);
 	try {
 		// Obtain a custom view that will be printed
@@ -882,21 +902,28 @@ public static boolean confirmCriticalActionMessage(String message, String detail
 //	familyListWindowController.refreshData();
 	log.debug("MyDocument.save() end ("+(System.currentTimeMillis()-watch)+" ms), filename=" + fileName());
   }
+  
+  public void openImportSheet(Object sender) { /* IBAction */
+		log.debug("openImportSheet");
+		NSApplication nsapp = NSApplication.sharedApplication();
+		nsapp.beginSheet(importWindow, mainWindow, this, CocoaUtils.didEndSelector(), null);
+		// sheet is up here, control passes to the sheet controller
+  }
 
   public void importFile(Object sender) { /* IBAction */
-	log.debug("importFile: " + sender);
-try {
-	//        NSApplication nsapp = NSApplication.sharedApplication();
-	//        nsapp.beginSheet(importWindow, mainWindow, this, null, null);
-		NSOpenPanel panel = NSOpenPanel.openPanel();
-	//panther only?        panel.setMessage("Please select a GEDCOM file to import into this MacPAF file.");
-		panel.beginSheetForDirectory(null, null, new NSArray(new Object[] {"GED"}), mainWindow,
-									 this,
-									 new NSSelector("openPanelDidEnd", new Class[] {NSOpenPanel.class, int.class, Object.class}), null);
-} catch (Exception e) {
-	// TODO Auto-generated catch block
-	e.printStackTrace();
-}
+	  log.debug("importFile: " + sender);
+	  try {
+		  //        NSApplication nsapp = NSApplication.sharedApplication();
+		  //        nsapp.beginSheet(importWindow, mainWindow, this, null, null);
+		  NSOpenPanel panel = NSOpenPanel.openPanel();
+		  //panther only?        panel.setMessage("Please select a GEDCOM file to import into this MacPAF file.");
+		  panel.beginSheetForDirectory(null, null, new NSArray(new Object[] {"GED"}), mainWindow,
+				  this,
+				  new NSSelector("openPanelDidEnd", new Class[] {NSOpenPanel.class, int.class, Object.class}), null);
+	  } catch (Exception e) {
+		  // TODO Auto-generated catch block
+		  e.printStackTrace();
+	  }
   }
 
   public void openPanelDidEnd(NSOpenPanel sheet, int returnCode, Object contextInfo) {

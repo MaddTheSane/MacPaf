@@ -8,6 +8,8 @@ import com.redbugz.macpaf.Family;
 import com.redbugz.macpaf.Individual;
 
 public class FamilyListController extends NSWindowController {
+	private static final NSSelector selectFamilySelector = new NSSelector("selectFamily", new Class[] {Object.class});
+
 	private static Logger log = Logger.getLogger(FamilyListController.class);
 
     public NSTextField familyCountText; /* IBOutlet */
@@ -50,6 +52,7 @@ public class FamilyListController extends NSWindowController {
 		sortableFilteredTableViewDataSource = new SortableFilteredTableViewDataSource(familyListTableView, familyList);
 		familyListTableView.setDataSource(sortableFilteredTableViewDataSource);
 		familyListTableView.setDelegate(this);
+		familyListTableView.setDoubleAction(selectFamilySelector);
 		familyList.setDataSource(sortableFilteredTableViewDataSource);
 		searchField.setDelegate(this);
 		refreshData();
@@ -95,6 +98,12 @@ public class FamilyListController extends NSWindowController {
 	public void refreshData() {
 		familyListTableView.reloadData();
 		familyCountText.setStringValue("Displaying "+familyListTableView.numberOfRows()+" out of "+familyList.size()+" Families");
+	}
+	
+	public void tableViewDidClickTableColumn(NSTableView tableView, NSTableColumn tableColumn) {
+		log.debug("FamilyListController.tableViewDidClickTableColumn():"+tableView+":"+tableColumn);
+//		tableView.setindicatorImage();
+//		NSImage sortOrderImage = tableView.indicatorImageInTableColumn();
 	}
 
 	  // SDMovingRowsProtocol

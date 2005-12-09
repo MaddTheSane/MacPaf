@@ -116,7 +116,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 	/**
 	 * @param submitter
 	 */
-	private void addSubmitter(Submitter newSubmitter) {
+	public void addSubmitter(Submitter newSubmitter) {
 		System.out.println("MacPAFDocumentJDOM.addSubmitter():"+newSubmitter);
 		if (StringUtils.isEmpty(newSubmitter.getId())) {
 			newSubmitter.setId("T"+getNextAvailableSubmitterId());
@@ -137,7 +137,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 	/**
 	 * @param repository
 	 */
-	private void addRepository(Repository newRepository) {
+	public void addRepository(Repository newRepository) {
 		System.out.println("MacPAFDocumentJDOM.addRepository():"+newRepository);
 		if (StringUtils.isEmpty(newRepository.getId())) {
 			newRepository.setId("R"+getNextAvailableRepositoryId());
@@ -155,7 +155,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 	/**
 	 * @param source
 	 */
-	private void addSource(Source newSource) {
+	public void addSource(Source newSource) {
 		System.out.println("MacPAFDocumentJDOM.addSource():"+newSource);
 		if (StringUtils.isEmpty(newSource.getId())) {
 			newSource.setId("S"+getNextAvailableSourceId());

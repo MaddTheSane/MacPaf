@@ -1,5 +1,6 @@
 package com.redbugz.macpaf.jdom;
 
+import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -12,6 +13,7 @@ import org.jdom.output.XMLOutputter;
 import com.redbugz.macpaf.Event;
 import com.redbugz.macpaf.Family;
 import com.redbugz.macpaf.Individual;
+import com.redbugz.macpaf.Note;
 import com.redbugz.macpaf.Ordinance;
 import com.redbugz.macpaf.util.JDOMUtils;
 
@@ -349,6 +351,27 @@ public List getEvents() {
 	List list = new ArrayList();
 	list.add(getMarriageEvent());
 	return list;
+}
+
+public String getNoteText() {
+	String noteString = "";
+	Iterator iter = getNotes().iterator();
+	while (iter.hasNext()) {
+	  Note item = (Note) iter.next();
+	  noteString += item.getText() + System.getProperty("line.separator");
+	}
+	return noteString;
+}
+
+private List getNotes() {
+	List notes = new ArrayList();
+	List children = element.getChildren(NoteJDOM.NOTE);
+	Iterator iter = children.iterator();
+	while (iter.hasNext()) {
+	  Element item = (Element) iter.next();
+	  notes.add(new NoteJDOM(item, document));
+	}
+	return notes;
 }
 
 }

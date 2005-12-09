@@ -517,4 +517,8 @@ public String toString() {
 	return super.toString()+"{"+getFullName()+"}";
 }
 
+public List getFamiliesAsSpouse() {
+	return Collections.EMPTY_LIST;
+}
+
 }

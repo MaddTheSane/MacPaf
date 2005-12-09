@@ -19,6 +19,7 @@
                 exportFile = id; 
                 forgetIndividual = id; 
                 importFile = id; 
+                openImportSheet = id; 
                 openReportsSheet = id; 
                 recallIndividual = id; 
                 recallLastFoundIndividual = id; 

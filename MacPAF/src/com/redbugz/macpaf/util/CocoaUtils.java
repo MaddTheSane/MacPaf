@@ -8,18 +8,27 @@ package com.redbugz.macpaf.util;
 //  Copyright 2005 __MyCompanyName__. All rights reserved.
 //
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 
 import com.apple.cocoa.application.NSComboBox;
+import com.apple.cocoa.application.NSImage;
+import com.apple.cocoa.application.NSTableView;
 import com.apple.cocoa.application.NSWindow;
 import com.apple.cocoa.application.NSComboBox.DataSource;
 import com.apple.cocoa.foundation.NSSelector;
+import com.redbugz.macpaf.Family;
 import com.redbugz.macpaf.Temple;
 import com.redbugz.macpaf.jdom.TempleJDOM;
 
 
 public class CocoaUtils {
-	  private static final Logger log = Logger.getLogger(CocoaUtils.class);
+	  public static final NSSelector defaultTableHeaderSortImageSelector = new NSSelector("_defaultTableHeaderSortImage", new Class[] {});
+	  public static final NSSelector defaultTableHeaderReverseSortImageSelector = new NSSelector("_defaultTableHeaderReverseSortImage", new Class[] {});
+
+
+	private static final Logger log = Logger.getLogger(CocoaUtils.class);
 
 
 	// These constants are normally in NSPathUtilities, but not on OS X 10.1.5, so I put them here
@@ -88,7 +97,44 @@ public class CocoaUtils {
 	public static WrappedTableViewDataSource wrappedTableViewDataSource(Object object) {
 		return new WrappedTableViewDataSource(object);
 	}
-
 	
+	/*
+	Get Ascending and Descending Sort indicator images, 10.1 and 10.2 compatible
+	Original Source: <http://cocoa.karelia.com/AppKit_Categories/NSTableView/Get_Ascending_and_D.m>
+	(See copyright notice at <http://cocoa.karelia.com>)
+*/
 
+/*"	Return the sorting indicator image; works on 10.1 and 10.2.
+"*/
+	public static NSImage ascendingSortIndicator() {
+		NSImage result = NSImage.imageNamed("NSAscendingSortIndicator");
+		try {
+			if (null == result && defaultTableHeaderSortImageSelector.implementedByClass(NSTableView.class)) {
+				result = (NSImage) defaultTableHeaderSortImageSelector.invoke(NSTableView.class);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	public static NSImage descendingSortIndicator() {
+		NSImage result = NSImage.imageNamed("NSDescendingSortIndicator");
+		try {
+			if (null == result && defaultTableHeaderSortImageSelector.implementedByClass(NSTableView.class)) {
+				result = (NSImage) defaultTableHeaderSortImageSelector.invoke(NSTableView.class);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	public static Object firstObjectFromList(List list) {
+		Object result = null;
+		if (list != null && list.size() > 0) {
+			result = list.get(0);
+		}
+		return result;
+	}
 }

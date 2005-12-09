@@ -138,6 +138,8 @@ public interface Individual {
 
   public void setFamilyAsChild(Family fam);
 
+  public List getFamiliesAsSpouse();
+
   public Family getFamilyAsSpouse();
 
   public void setFamilyAsSpouse(Family fam);
@@ -493,6 +495,11 @@ public interface Individual {
 		return Collections.EMPTY_LIST;
 	}
 
+	public List getFamiliesAsSpouse() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
   }
 
   public class UnknownMaleIndividual extends UnknownIndividual {
@@ -530,4 +537,5 @@ public interface Individual {
 	  return UNKNOWN_FEMALE;
 	}
   }
+
 }

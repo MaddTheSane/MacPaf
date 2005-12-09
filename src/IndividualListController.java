@@ -8,6 +8,7 @@ import com.redbugz.macpaf.Individual;
 
 public class IndividualListController extends NSWindowController {
 	private static Logger log = Logger.getLogger(IndividualListController.class);
+	private static final NSSelector selectIndividualSelector = new NSSelector("selectIndividual", new Class[] {Object.class});
 
     public NSTextField individualCountText; /* IBOutlet */
     public IndividualList individualList; /* IBOutlet */
@@ -43,6 +44,7 @@ public class IndividualListController extends NSWindowController {
 		sortableFilteredTableViewDataSource = new SortableFilteredTableViewDataSource(individualListTableView, individualList);
 		individualListTableView.setDataSource(sortableFilteredTableViewDataSource);
 		individualListTableView.setDelegate(this);
+		individualListTableView.setDoubleAction(selectIndividualSelector);
 		individualList.setDataSource(sortableFilteredTableViewDataSource);
 		searchField.setDelegate(this);
 		refreshData();

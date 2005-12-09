@@ -27,6 +27,7 @@ import com.redbugz.macpaf.Individual;
 import com.redbugz.macpaf.Multimedia;
 import com.redbugz.macpaf.Note;
 import com.redbugz.macpaf.Ordinance;
+import com.redbugz.macpaf.util.CocoaUtils;
 import com.redbugz.macpaf.util.JDOMUtils;
 
 /**
@@ -621,59 +622,7 @@ private void saveName() {
 //	if (familyAsSpouse == null) {
 	  Family familyAsSpouse = Family.UNKNOWN_FAMILY;
 	  try {
-		Element famLink = element.getChild(FAMILY_SPOUSE_LINK);
-		System.out.println("famLink="+famLink);
-		if (famLink != null) {
-//		  XPath xpath = XPath.newInstance("//FAM[@ID='" + famLink.getAttributeValue(REF) + "']");
-//		  log.debug("spouse xpath:" + xpath.getXPath());
-//		  Element famNode = (Element) xpath.selectSingleNode(element);
-//		  log.debug("famNode: " + famNode);
-		  familyAsSpouse = new FamilyLink(famLink.getAttributeValue(REF), document);
-//		  if (famNode == null) {
-//			if (Gender.MALE == getGender()) {
-//			  familyAsSpouse.setFather(this);
-//} else if (Gender.FEMALE == getGender()) {
-//  familyAsSpouse.setMother(this);
-//} else {
-//  // attempting to add a person as a spouse with no gender specified, need further information
-//  /** @todo fix this alert sheet */
-//  NSAlertPanel.beginAlertSheet (
-//
-//		  "Do you really want to delete the selected rows?",
-//
-//							  // sheet message
-//
-//		  "Delete",           // default button
-//
-//		  null,               // no third button
-//
-//		  "Cancel",           // other button label
-//
-//		  null,             // window attached to
-//
-//		  this,               // modal delegate
-//
-//		  new NSSelector("sheetDidEnd::", new Class[] {getClass()}),
-//
-//							  // did-end selector
-//
-//		  null,               // no did-dismiss selector
-//
-//		  null,               // context info
-//
-//		  "There is no undo for this operation.");
-//
-//							  // additional text
-//
-//}
-//}
-//		  try {
-//			new XMLOutputter(Format.getPrettyFormat()).output(familyAsSpouse.getElement(), System.out);
-//		  }
-//		  catch (IOException e1) {
-//			e1.printStackTrace();
-//		  }
-		}
+		familyAsSpouse = (Family) CocoaUtils.firstObjectFromList(getFamiliesAsSpouse());
 	  }
 	  catch (Exception e) {
 		log.error("Exception: ", e); //To change body of catch statement use Options | File Templates.
@@ -681,6 +630,19 @@ private void saveName() {
 //	}
 	return familyAsSpouse;
   }
+
+public List getFamiliesAsSpouse() {
+	List families = new ArrayList();
+	List famLinks = element.getChildren(FAMILY_SPOUSE_LINK);
+	for (Iterator iter = famLinks.iterator(); iter.hasNext();) {
+		Element famLink = (Element) iter.next();		
+		System.out.println("famLink="+famLink);
+		if (famLink != null) {
+			families.add(new FamilyLink(famLink.getAttributeValue(REF), document));
+		}
+	}
+	return families;
+}
 
   public void setNotes(List newNotes) {
 //		if (note == null) {
@@ -701,37 +663,16 @@ private void saveName() {
 
   public List getSpouseList() {
 	List spouseList = new ArrayList();
-	if (getGender().equals(Gender.FEMALE)) {
-	  spouseList.add(getFamilyAsSpouse().getFather());
-	}
-	else {
-	  spouseList.add(getFamilyAsSpouse().getMother());
-	}
-	/*
-			 try {
-		Element famLink = element.getChild(FAMILY_SPOUSE_LINK);
-		if (famLink != null) {
-		XPath xpath = XPath.newInstance("//FAM[@ID='"+famLink.getAttributeValue(REF)+"']");
-		log.debug("spouse xpath:"+xpath.getXPath());
-		Element famNode = (Element) xpath.selectSingleNode(element);
-		log.debug("famNode: "+famNode);
-		fam = new FamilyJDOM(famNode, document);
+	List families = getFamiliesAsSpouse();
+	for (Iterator iter = families.iterator(); iter.hasNext();) {
+		Family family = (Family) iter.next();		
+		if (getGender().equals(Gender.FEMALE)) {
+			spouseList.add(family.getFather());
 		}
-			 } catch (JDOMException e) {
-		log.error("Exception: ", e);  //To change body of catch statement use Options | File Templates.
-			 }
-	 */
-//		for (Iterator iterator = familiesAsSpouse.iterator();
-//			iterator.hasNext();
-//			) {
-//			Family family = (Family) iterator.next();
-//			if (gender.equals(Gender.MALE)) {
-//				spouseList.add(family.getMother());
-//			} else if (gender.equals(Gender.FEMALE)) {
-//				spouseList.add(family.getFather());
-//			}
-//		}
-
+		else {
+			spouseList.add(family.getMother());
+		}
+	}
 	return spouseList;
   }
 

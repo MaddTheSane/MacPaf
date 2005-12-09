@@ -51,7 +51,7 @@ public class FamilyDetailController extends NSObject {
 
 	husbandDetailsText.setStringValue(family.getFather().getFullName() + newLine + family.getFather().getBirthEvent().getDateString());
 	wifeDetailsText.setStringValue(family.getMother().getFullName() + newLine + family.getMother().getBirthEvent().getDateString());
-	noteText.setString("TODO: Implement notes for family.");
+	noteText.setString(family.getNoteText());
 	eventTable.setDataSource(this);
 	eventTable.reloadData();
 	childrenTable.setDataSource(this);

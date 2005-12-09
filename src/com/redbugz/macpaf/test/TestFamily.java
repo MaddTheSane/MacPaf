@@ -145,4 +145,8 @@ public List getEvents() {
 	list.add(getMarriageEvent());
 	return list;
 }
+
+public String getNoteText() {
+	return "Notes not implemented yet.";
+}
 }

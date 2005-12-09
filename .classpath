@@ -14,5 +14,6 @@
 	<classpathentry kind="lib" path="lib/castor-0.9.4.3.jar"/>
 	<classpathentry kind="lib" path="lib/junit.jar"/>
 	<classpathentry kind="lib" path="/Users/logan/Projects/Tools/Cocoa-Java/10.1SDK/Cocoa-Java-10.1.jar"/>
+	<classpathentry kind="lib" path="lib/concurrent.jar"/>
 	<classpathentry kind="output" path="build/"/>
 </classpath>

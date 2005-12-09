@@ -15,7 +15,7 @@ public class FamilyList extends AbstractMap {
   public MyDocument document; /* IBOutlet */
   private Family selectedFamily = Family.UNKNOWN_FAMILY;
 
-  private Map familyMap;
+  private SortedMap familyMap;
   long ts;
   private SortableFilteredTableViewDataSource dataSource;// = new SortableFilteredTableViewDataSource();
 
@@ -27,7 +27,7 @@ public class FamilyList extends AbstractMap {
 	  ts = System.currentTimeMillis();
 //	}
 	if (familyMap == null) {
-	  familyMap = new HashMap();
+	  familyMap = new TreeMap();
 }
   }
 
@@ -153,7 +153,7 @@ public void setDataSource(SortableFilteredTableViewDataSource newDataSource) {
 	return "FamilyMap:"+ts+":"+familyMap.size(); //":"+families.size()+
   }
   public void setFamilyMap(Map familyMap) {
-    this.familyMap = familyMap;
+    this.familyMap = new TreeMap(familyMap);
 //	families = new ArrayList( familyMap.values() );
   }
   

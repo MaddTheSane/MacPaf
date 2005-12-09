@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 import org.apache.log4j.Logger;
 import com.apple.cocoa.application.NSTableColumn;
@@ -28,7 +30,7 @@ public class IndividualList extends AbstractMap {
   public MyDocument document; /* IBOutlet */
   private Individual selectedIndividual; // = null;
 //  private List individuals = new ArrayList();
-  private Map individualMap = new HashMap();
+  private SortedMap individualMap = new TreeMap();
   
   private SortableFilteredTableViewDataSource dataSource;// = new SortableFilteredTableViewDataSource();
 
@@ -173,7 +175,7 @@ public class IndividualList extends AbstractMap {
 }
   }
   public void setIndividualMap(Map individualMap) {
-    this.individualMap = individualMap;
+    this.individualMap = new TreeMap(individualMap);
 //	individuals = new ArrayList(individualMap.values());
   }
 

@@ -285,6 +285,8 @@
 		02C50B5406212E8700B54464 /* xerces.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 02C50B0F0621296600B54464 /* xerces.jar */; };
 		02C50B5506212E8700B54464 /* xml-apis.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 02C50B100621296600B54464 /* xml-apis.jar */; };
 		02C5BE500939F8EF0086B510 /* ValidationException.java in Sources */ = {isa = PBXBuildFile; fileRef = 02C5BE4F0939F8EF0086B510 /* ValidationException.java */; };
+		02C5BF790945F5D60086B510 /* concurrent.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 02C5BF780945F5D40086B510 /* concurrent.jar */; };
+		02C5BFBE0948218C0086B510 /* GedcomLoaderJDOM.java in Sources */ = {isa = PBXBuildFile; fileRef = 02C5BFBD0948218C0086B510 /* GedcomLoaderJDOM.java */; };
 		080E96D9FE201CDB7F000001 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */; };
 		080E96DAFE201CDB7F000001 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */; };
 		080E96DBFE201CDB7F000001 /* MyDocument.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B4FDCFA73011CA2CEA /* MyDocument.nib */; };
@@ -467,6 +469,8 @@
 		02C50B0F0621296600B54464 /* xerces.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; name = xerces.jar; path = lib/xerces.jar; sourceTree = "<group>"; };
 		02C50B100621296600B54464 /* xml-apis.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; name = "xml-apis.jar"; path = "lib/xml-apis.jar"; sourceTree = "<group>"; };
 		02C5BE4F0939F8EF0086B510 /* ValidationException.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = ValidationException.java; sourceTree = "<group>"; };
+		02C5BF780945F5D40086B510 /* concurrent.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; name = concurrent.jar; path = lib/concurrent.jar; sourceTree = "<group>"; };
+		02C5BFBD0948218C0086B510 /* GedcomLoaderJDOM.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = GedcomLoaderJDOM.java; sourceTree = "<group>"; };
 		089C1660FE840EACC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		1758732CFF379DAD11CA2CBB /* MacPAF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; path = MacPAF.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -497,6 +501,7 @@
 				02C50B120621296800B54464 /* xerces.jar in Frameworks */,
 				02C50B130621296800B54464 /* xml-apis.jar in Frameworks */,
 				0260D11308F9D6E100F9A745 /* junit.jar in Frameworks */,
+				02C5BF790945F5D60086B510 /* concurrent.jar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -635,6 +640,7 @@
 		02B3D183077B11CE0069077B /* jdom */ = {
 			isa = PBXGroup;
 			children = (
+				02C5BFBD0948218C0086B510 /* GedcomLoaderJDOM.java */,
 				02B3D184077B11CE0069077B /* AddressJDOM.java */,
 				02B3D185077B11CE0069077B /* EventJDOM.java */,
 				02B3D186077B11CE0069077B /* FamilyJDOM.java */,
@@ -716,6 +722,7 @@
 		2A37F4C3FDCFA73011CA2CEA /* MacPAF */ = {
 			isa = PBXGroup;
 			children = (
+				02C5BF780945F5D40086B510 /* concurrent.jar */,
 				0260D11208F9D6E000F9A745 /* junit.jar */,
 				02370211062059920087E765 /* log4j.properties */,
 				023701D7062056080087E765 /* log4j-1.2.9.jar */,
@@ -951,6 +958,7 @@
 				025FC08C092EC024006B2989 /* SortableFilteredTableViewDataSource.java in Sources */,
 				025FC08E092EC045006B2989 /* WrappedTableViewDataSource.java in Sources */,
 				02C5BE500939F8EF0086B510 /* ValidationException.java in Sources */,
+				02C5BFBE0948218C0086B510 /* GedcomLoaderJDOM.java in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

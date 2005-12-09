@@ -56,6 +56,18 @@
             SUPERCLASS = "java.lang.Object"; 
         }, 
         {
+            ACTIONS = {browse = id; cancel = id; importFile = id; }; 
+            CLASS = ImportController; 
+            LANGUAGE = Java; 
+            OUTLETS = {
+                filePathField = NSTextField; 
+                importRadio = NSMatrix; 
+                importWindow = NSWindow; 
+                progress = NSProgressIndicator; 
+            }; 
+            SUPERCLASS = "java.lang.Object"; 
+        }, 
+        {
             CLASS = IndividualDetailController; 
             LANGUAGE = Java; 
             OUTLETS = {
@@ -119,6 +131,7 @@
                 closeFamilyEditSheet = id; 
                 closeIndividualEditSheet = id; 
                 openFamilyEditSheet = id; 
+                openImportSheet = id; 
                 openIndividualEditSheet = id; 
                 saveFamily = id; 
                 saveIndividual = id; 
@@ -136,6 +149,7 @@
                 familyListWindowController = FamilyListController; 
                 fatherButton = NSButton; 
                 historyController = HistoryController; 
+                importWindow = NSWindow; 
                 individualButton = NSButton; 
                 individualDetailController = IndividualDetailController; 
                 individualEditWindow = NSWindow; 

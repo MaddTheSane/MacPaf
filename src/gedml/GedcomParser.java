@@ -183,11 +183,11 @@ public class GedcomParser implements XMLReader, Locator {
 
 	  while ( (line = reader.readLine()) != null) {
 
-	  	if (!line.trim().equals(StringUtils.trimLeadingWhitespace(line))) {
-	  	log.debug("trim all:|"+line.trim()+"|");
-	  	log.debug("leading :|"+StringUtils.trimLeadingWhitespace(line)+"|");
+//	  	if (!line.trim().equals(StringUtils.trimLeadingWhitespace(line))) {
+//	  	log.debug("trim all:|"+line.trim()+"|");
+//	  	log.debug("leading :|"+StringUtils.trimLeadingWhitespace(line)+"|");
 //		line = line.trim();
-	  	}
+//	  	}
 	  	line = StringUtils.trimLeadingWhitespace(line);
 
 		lineNr++;

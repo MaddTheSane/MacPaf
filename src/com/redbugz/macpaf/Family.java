@@ -60,7 +60,9 @@ public interface Family {
 //  public List getOrdinances();
 
   public Event getMarriageEvent();
-  
+
+  public String getNoteText();
+
   public static class UnknownFamily implements Family {
 
 	/* (non-Javadoc)
@@ -179,6 +181,11 @@ public interface Family {
 		// TODO Auto-generated method stub
 		return Collections.EMPTY_LIST;
 	}
+
+	public String getNoteText() {
+		return "";
+	}
   	
   }
+
 }

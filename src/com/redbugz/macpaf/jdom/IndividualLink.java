@@ -473,4 +473,8 @@ public class IndividualLink implements Individual {
 		return getIndividual().getAllMultimedia();
 	}
 
+	public List getFamiliesAsSpouse() {
+		return getIndividual().getFamiliesAsSpouse();
+	}
+
 }

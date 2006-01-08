@@ -37,9 +37,9 @@ public class MainToolbar extends NSToolbar implements NSToolbar.Delegate {
 	setAutosavesConfiguration(true);
 	toolbarItems.setObjectForKey(new NSToolbarItem(NSToolbarItem.CustomizeToolbarItemIdentifier), NSToolbarItem.CustomizeToolbarItemIdentifier);
 	toolbarItems.setObjectForKey(new NSToolbarItem(NSToolbarItem.FlexibleSpaceItemIdentifier), NSToolbarItem.FlexibleSpaceItemIdentifier);
-	toolbarItems.setObjectForKey(createToolbarItem(ADD_FAMILY_IDENTIFIER, "Add Family", createBadgedImage("Family","Badge Add"), new NSSelector("editNotes", new Class[] {Object.class})), ADD_FAMILY_IDENTIFIER);
-	toolbarItems.setObjectForKey(createToolbarItem(ADD_INDIVIDUAL_IDENTIFIER, "Add Individual", createBadgedImage("Individual","Badge Add"), new NSSelector("editNotes", new Class[] {Object.class})), ADD_INDIVIDUAL_IDENTIFIER);
-	toolbarItems.setObjectForKey(createToolbarItem(VIEW_PEDIGREE_IDENTIFIER, "View Pedigree", "Pedigree", new NSSelector("editNotes", new Class[] {Object.class})), VIEW_PEDIGREE_IDENTIFIER);
+	toolbarItems.setObjectForKey(createToolbarItem(ADD_FAMILY_IDENTIFIER, "Add Family", createBadgedImage("Family","Badge Add"), new NSSelector("addNewFamily", new Class[] {Object.class})), ADD_FAMILY_IDENTIFIER);
+	toolbarItems.setObjectForKey(createToolbarItem(ADD_INDIVIDUAL_IDENTIFIER, "Add Individual", createBadgedImage("Individual","Badge Add"), new NSSelector("addNewIndividual", new Class[] {Object.class})), ADD_INDIVIDUAL_IDENTIFIER);
+	toolbarItems.setObjectForKey(createToolbarItem(VIEW_PEDIGREE_IDENTIFIER, "View Pedigree", "Pedigree", new NSSelector("viewPedigree", new Class[] {Object.class})), VIEW_PEDIGREE_IDENTIFIER);
 	toolbarItems.setObjectForKey(createToolbarItem(FIND_FAMILY_IDENTIFIER, "Find Family", "Magnifying Glass", new NSSelector("findFamily", new Class[] {Object.class})), FIND_FAMILY_IDENTIFIER);
 	toolbarItems.setObjectForKey(createToolbarItem(FIND_INDIVIDUAL_IDENTIFIER, "Find Individual", "Magnifying Glass", new NSSelector("findIndividual", new Class[] {Object.class})), FIND_INDIVIDUAL_IDENTIFIER);
 	toolbarItems.setObjectForKey(createToolbarItem(INDIVIDUAL_LIST_IDENTIFIER, "Individual List", "Metal Window", new NSSelector("showIndividualList", new Class[] {Object.class})), INDIVIDUAL_LIST_IDENTIFIER);

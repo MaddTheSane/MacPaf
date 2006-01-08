@@ -41,7 +41,8 @@ import com.redbugz.macpaf.util.JDOMUtils;
  * Time: 3:29:46 PM
  */
 public class IndividualJDOM implements Individual, Cloneable {
-  private static final Logger log = Logger.getLogger(IndividualJDOM.class);
+  private static final ContentFilter CONTENT_FILTER_TEXT = new ContentFilter(ContentFilter.TEXT);
+private static final Logger log = Logger.getLogger(IndividualJDOM.class);
   private static final String REF = "REF";
   public static final String INDIVIDUAL = "INDI";
   public static final String RESTRICTION = "RESN";
@@ -165,7 +166,7 @@ private static final Collection commonNamePrefixes = Arrays.asList(new String[] 
 	  givenNames = "";
 	}
 	Element name = JDOMUtils.findOrMakeChildElement(NAME_GIVEN, JDOMUtils.findOrMakeChildElement(NAME, element));
-	name.removeContent(new ContentFilter(ContentFilter.TEXT));
+	name.removeContent(CONTENT_FILTER_TEXT);
 	name.addContent(0, new Text(givenNames.trim()));
 	saveName();
   }
@@ -185,7 +186,7 @@ private static final Collection commonNamePrefixes = Arrays.asList(new String[] 
 	  surname = "";
 	}
 	Element name = JDOMUtils.findOrMakeChildElement(NAME_SURNAME, JDOMUtils.findOrMakeChildElement(NAME, element));
-	name.removeContent(new ContentFilter(ContentFilter.TEXT));
+	name.removeContent(CONTENT_FILTER_TEXT);
 	name.addContent(0, new Text(surname));
 	saveName();
   }
@@ -200,7 +201,7 @@ private static final Collection commonNamePrefixes = Arrays.asList(new String[] 
 
   private void setName(String name) {
 	Element nameElement = JDOMUtils.findOrMakeChildElement(NAME, element);
-	nameElement.removeContent(new ContentFilter(ContentFilter.TEXT));
+	nameElement.removeContent(CONTENT_FILTER_TEXT);
 	nameElement.addContent(0, new Text(name));
   }
 
@@ -371,7 +372,7 @@ private void saveName() {
 	  prefix = "";
 	}
 	Element name = JDOMUtils.findOrMakeChildElement(NAME_PREFIX, JDOMUtils.findOrMakeChildElement(NAME, element));
-	name.removeContent(new ContentFilter(ContentFilter.TEXT));
+	name.removeContent(CONTENT_FILTER_TEXT);
 	name.addContent(0, new Text(prefix));
 	saveName();
   }
@@ -384,7 +385,7 @@ private void saveName() {
 	  suffix = "";
 	}
 	Element name = JDOMUtils.findOrMakeChildElement(NAME_SUFFIX, JDOMUtils.findOrMakeChildElement(NAME, element));
-	name.removeContent(new ContentFilter(ContentFilter.TEXT));
+	name.removeContent(CONTENT_FILTER_TEXT);
 	name.addContent(0, new Text(suffix));
 	saveName();
   }
@@ -623,6 +624,9 @@ private void saveName() {
 	  Family familyAsSpouse = Family.UNKNOWN_FAMILY;
 	  try {
 		familyAsSpouse = (Family) CocoaUtils.firstObjectFromList(getFamiliesAsSpouse());
+		if (familyAsSpouse == null) {
+			familyAsSpouse = Family.UNKNOWN_FAMILY;
+		}
 	  }
 	  catch (Exception e) {
 		log.error("Exception: ", e); //To change body of catch statement use Options | File Templates.

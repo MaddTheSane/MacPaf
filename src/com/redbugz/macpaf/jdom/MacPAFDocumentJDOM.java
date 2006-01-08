@@ -1,8 +1,10 @@
 package com.redbugz.macpaf.jdom;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -20,6 +22,7 @@ import org.jdom.output.XMLOutputter;
 import org.jdom.xpath.XPath;
 
 import com.redbugz.macpaf.Family;
+import com.redbugz.macpaf.Header;
 import com.redbugz.macpaf.Individual;
 import com.redbugz.macpaf.Multimedia;
 import com.redbugz.macpaf.Note;
@@ -111,6 +114,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 		log.debug("added individual with key: " + newIndividual.getId() + " name: " + newIndividual.getFullName());
 		log.debug("adding individual to doc: "+newIndividual);
 		doc.getRootElement().addContent((Content)((IndividualJDOM)newIndividual).getElement());
+		update(this, newIndividual);
 	}
 	
 	/**
@@ -509,8 +513,33 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 		IndividualJDOM jdomIndividual = getIndividual(individualToRemove.getId());
 		jdomIndividual.getElement().detach();
 		individuals.remove(individualToRemove.getId());
+		if (primaryIndividual.getId().equals(individualToRemove.getId())) {
+			chooseNewPrimaryIndividual();
+		}
+		// invalidate links to this person
+		// the only links that should exist are in family records
+		try {
+			List references = XPath.selectNodes(doc, "//*[@REF=\""+individualToRemove.getId()+"\"]");
+			log.debug("while removing individual("+individualToRemove.getId()+"), found these references:"+references);
+			for (Iterator iter = references.iterator(); iter.hasNext();) {
+				Element element = (Element) iter.next();
+				element.detach();
+			}
+		} catch (JDOMException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
+	private void chooseNewPrimaryIndividual() {
+		// TODO probably should revert to last person in the history if exists, or other heuristic
+		primaryIndividual = Individual.UNKNOWN;
+		Collection indiList = individuals.values();
+		if (indiList.size() > 0) {
+			primaryIndividual = (Individual) indiList.toArray()[0];			
+		}
+	}
+
 	public void removeFamily (Family familyToRemove) {
 		// TODO naive implementation, still need to handle links to this family
 		log.warn("removeFamily() instructed to remove family from document: "+familyToRemove.toString());
@@ -537,11 +566,11 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 		clearChanged();
 	}
 	
-	private void setUpdated() {
-		setChanged();
-		notifyObservers();
-		clearChanged();		
-	}
+//	private void setUpdated() {
+//		setChanged();
+//		notifyObservers();
+//		clearChanged();		
+//	}
 
 	/**
 	 * @param id
@@ -732,6 +761,11 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 		RepositoryJDOM newRepository = new RepositoryJDOM(newRepositoryElement, this);
 		addRepository(newRepository);
 		return newRepository;
+	}
+
+	public void outputToTempleReady(FileOutputStream stream) {
+		new HeaderJDOM(doc.getRootElement().getChild(Header.HEADER)).setDestination(Header.DEST_TEMPLE_READY);
+		XMLTest.outputWithKay(doc, stream);
 	}
 }
 

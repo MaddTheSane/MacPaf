@@ -1,6 +1,20 @@
 {
     IBClasses = (
         {
+            CLASS = FamilyDetailController; 
+            LANGUAGE = Java; 
+            OUTLETS = {
+                childrenTable = NSTableView; 
+                eventTable = NSTableView; 
+                husbandDetailsText = NSTextField; 
+                husbandPhoto = NSImageView; 
+                noteText = NSTextView; 
+                wifeDetailsText = NSTextField; 
+                wifePhoto = NSImageView; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
             ACTIONS = {
                 addChild = id; 
                 cancel = id; 
@@ -36,6 +50,7 @@
             LANGUAGE = Java; 
             OUTLETS = {
                 familyCountText = NSTextField; 
+                familyDetailController = FamilyDetailController; 
                 familyList = FamilyList; 
                 familyListTableView = NSTableView; 
                 searchField = NSTextField; 
@@ -119,6 +134,7 @@
             LANGUAGE = Java; 
             OUTLETS = {
                 individualCountText = NSTextField; 
+                individualDetailController = IndividualDetailController; 
                 individualList = IndividualList; 
                 individualListTableView = NSTableView; 
                 searchField = NSTextField; 
@@ -161,14 +177,16 @@
                 motherButton = NSButton; 
                 noteTextView = NSTextView; 
                 noteWindow = NSWindow; 
-                parentFamilyButton = NSButton; 
                 paternalGrandfatherButton = NSButton; 
                 paternalGrandmotherButton = NSButton; 
                 pedigreeView = PedigreeView; 
+                pedigreeViewController = PedigreeViewController; 
                 reportsRadio = NSMatrix; 
                 reportsWindow = NSWindow; 
                 spouseButton = NSButton; 
                 spouseTable = NSTableView; 
+                tabFamilyListController = FamilyListController; 
+                tabIndividualListController = IndividualListController; 
             }; 
             SUPERCLASS = NSDocument; 
         }, 
@@ -186,6 +204,19 @@
             SUPERCLASS = NSView; 
         }, 
         {CLASS = PedigreeView; LANGUAGE = ObjC; SUPERCLASS = NSView; }, 
+        {
+            ACTIONS = {selectIndividual = id; }; 
+            CLASS = PedigreeViewController; 
+            LANGUAGE = Java; 
+            OUTLETS = {
+                gggrandparentsMatrix = NSMatrix; 
+                grandparentsMatrix = NSMatrix; 
+                greatgrandparentsMatrix = NSMatrix; 
+                parentsMatrix = NSMatrix; 
+                primaryIndividualButton = NSButton; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }, 
         {
             ACTIONS = {cancel = id; save = id; }; 
             CLASS = ReportsController; 

@@ -52,6 +52,7 @@ public class MyDocument extends NSDocument implements Observer {
 
   public static final String GEDCOM = "GEDCOM File (.ged)";
   public static final String MACPAF = "MacPAF File";
+  public static final String TEMPLEREADY_UPDATE = "TempleReady Update File";
 
   MacPAFDocumentJDOM doc;// = null;//new MacPAFDocumentJDOM();
 
@@ -74,18 +75,20 @@ public class MyDocument extends NSDocument implements Observer {
   public NSWindow familyEditWindow; /* IBOutlet */
   public FamilyListController familyListWindowController; /* IBOutlet */
   public IndividualListController individualListWindowController; /* IBOutlet */
+  public FamilyListController tabFamilyListController; /* IBOutlet */
+  public IndividualListController tabIndividualListController; /* IBOutlet */
   public FamilyList familyList; /* IBOutlet */
   public IndividualList individualList; /* IBOutlet */
   public SurnameList surnameList; /* IBOutlet */
   public LocationList locationList; /* IBOutlet */
   public HistoryController historyController; /* IBOutlet */
+  public PedigreeViewController pedigreeViewController; /* IBOutlet */
   public NSButton fatherButton; /* IBOutlet */
   public NSButton individualButton; /* IBOutlet */
   public NSButton individualFamilyButton; /* IBOutlet */
   public NSButton maternalGrandfatherButton; /* IBOutlet */
   public NSButton maternalGrandmotherButton; /* IBOutlet */
   public NSButton motherButton; /* IBOutlet */
-  public NSButton parentFamilyButton; /* IBOutlet */
   public NSButton paternalGrandfatherButton; /* IBOutlet */
   public NSButton paternalGrandmotherButton; /* IBOutlet */
   public NSButton spouseButton; /* IBOutlet */
@@ -110,6 +113,7 @@ public class MyDocument extends NSDocument implements Observer {
    * This the internal name for the data xml file in the .macpaf file package
    */
   private static final String DEFAULT_XML_FILENAME = "data.xml";
+private static final String TEMPLEREADY_UPDATE_EXTENSION = "oup";
 
   /**
  * This method was originally started to avoid the bug that in Java-Cocoa applications,
@@ -122,7 +126,6 @@ public class MyDocument extends NSDocument implements Observer {
 	if (doc == null) {
 	  log.error("????????????????????????????????????????????????????? doc is null, making new doc");
 	  doc = new MacPAFDocumentJDOM();
-	  doc.addObserver(this);
 	}
 	}
 	catch (Exception e) {
@@ -170,7 +173,7 @@ public class MyDocument extends NSDocument implements Observer {
 //		}
 		( (FamilyEditController) familyEditWindow.delegate()).setFamily(familyAsChild);
 	} else {
-	  Family familyAsSpouse = getPrimaryIndividual().getFamilyAsSpouse();
+	  Family familyAsSpouse = getCurrentFamily();
 //	  if (familyAsSpouse instanceof Family.UnknownFamily) {
 //		  familyAsSpouse = createAndInsertNewFamily();
 //		  // TODO: handle undo here
@@ -192,7 +195,7 @@ public class MyDocument extends NSDocument implements Observer {
 //			}
 			( (FamilyEditController) familyEditWindow.delegate()).setFamily(familyAsChild);
 		} else {
-		  Family familyAsSpouse = getPrimaryIndividual().getFamilyAsSpouse();
+		  Family familyAsSpouse = getCurrentFamily();
 //		  if (familyAsSpouse instanceof Family.UnknownFamily) {
 //			  familyAsSpouse = createAndInsertNewFamily();
 //			  // TODO: handle undo here
@@ -210,13 +213,34 @@ public class MyDocument extends NSDocument implements Observer {
 	nsapp.beginSheet(familyEditWindow, mainWindow, this, new NSSelector("sheetDidEndShouldClose2", new Class[] {}), null);
 	// sheet is up here, control passes to the sheet controller
   }
+  
+  public void deletePrimaryIndividual(Object sender) { /* IBAction */
+	  log.debug("MyDocument.deletePrimaryIndividual()");
+	  String msg = "Are you sure you want to delete the individual named " + getPrimaryIndividual().getFullName() + "?";
+	  String details = "This will delete this person from your file and remove them from any family relationships.";
+	  boolean shouldDelete = confirmCriticalActionMessage(msg, details, "Delete", "Cancel");
+	  if (shouldDelete) {
+		  doc.removeIndividual(getPrimaryIndividual());
+	  }
+	  setPrimaryIndividual(doc.getPrimaryIndividual());
+  }  
+
+  public void deletePrimaryFamily(Object sender) { /* IBAction */
+	  log.debug("MyDocument.deletePrimaryFamily()");
+	  String msg = "Are you sure you want to delete the family with parents " + getCurrentFamily().getFather().getFullName() + " and "+ getCurrentFamily().getMother().getFullName()+"?";
+	  String details = "This will delete the relationship between the parents and children, but will leave the individual records.";
+	  boolean shouldDelete = confirmCriticalActionMessage(msg, details, "Delete", "Cancel");
+	  if (shouldDelete) {
+		  doc.removeFamily(getCurrentFamily());
+	  }
+  }  
 
   private Individual getKnownPrimaryIndividual() {
 	Individual indi = getPrimaryIndividual();
 	if (indi instanceof Individual.UnknownIndividual) {
 		indi = createAndInsertNewIndividual();
 	}
-	return indi ;
+	return indi;
 }
 
 public void sheetDidEndShouldClose2() {
@@ -237,6 +261,16 @@ public void sheetDidEndShouldClose2() {
   }  	
 
 
+  public void editPrimaryIndividual(Object sender) { /* IBAction */
+	  openIndividualEditSheet(sender);
+  }
+  
+  public void editCurrentFamily(Object sender) { /* IBAction */
+	  openFamilyEditSheet(sender);
+  }
+	  
+
+		  
   public void openReportsSheet(Object sender) { /* IBAction */
 	( (NSWindowController) reportsWindow.delegate()).setDocument(this);
 //      if (!myCustomSheet)
@@ -320,8 +354,8 @@ public void sheetDidEndShouldClose2() {
 		assignIndividualToButton(getPrimaryIndividual().getMother().getFather(), maternalGrandfatherButton);
 		assignIndividualToButton(getPrimaryIndividual().getMother().getMother(), maternalGrandmotherButton);
 		noteTextView.setString(getPrimaryIndividual().getNoteText());
-//        pedigreeView.setIndividual(getPrimaryIndividual());
-		individualDetailController.setIndividual(getPrimaryIndividual());
+		pedigreeViewController.setPrimaryIndividual(getPrimaryIndividual());
+//		individualDetailController.setIndividual(getPrimaryIndividual());
 		log.debug("famsp id:"+getPrimaryIndividual().getFamilyAsSpouse().getId());
 		log.debug("famch id:"+getPrimaryIndividual().getFamilyAsChild().getId());
 		familyAsSpouseButton.setTitle("Family: "+getPrimaryIndividual().getFamilyAsSpouse().getId());
@@ -475,6 +509,10 @@ else {
 	  // save newly opened document as preference
 	  log.debug("setting lastOpenedDocument to: " + fileName());
 	  NSUserDefaults.standardUserDefaults().setObjectForKey(fileName(), "com.redbugz.macpaf.lastOpenedDocument");
+	  tabFamilyListController.setup();
+	  tabIndividualListController.setup();
+	  // register as an observer of the MacPAFDocumentJDOM
+	  doc.addObserver(this);
 	}
 	catch (Exception e) {
 	  log.error("Exception: ", e); //To change body of catch statement use Options | File Templates.
@@ -506,6 +544,9 @@ else {
 		  return false;
 		}
 		return true; //super.readFromFile(filename, aType);
+	  } else if (TEMPLEREADY_UPDATE.equalsIgnoreCase(aType)) {
+		  importTempleReadyUpdate(new File(filename));
+		  return false;
 	  }
 	  else {
 		return super.readFromFile(filename, aType);
@@ -836,8 +877,6 @@ public static boolean confirmCriticalActionMessage(String message, String detail
   private Family getCurrentFamily() {
 	  Family result = getPrimaryIndividual().getFamilyAsSpouse();
 	  List families = getPrimaryIndividual().getFamiliesAsSpouse();
-	  log.info("spouselist:"+getPrimaryIndividual().getSpouseList().size());
-	  log.info("selectedspouserow:"+spouseTable.selectedRow());
 	  if (getPrimaryIndividual().getSpouseList().size() > 0 && spouseTable.selectedRow() >= 0) {
 	  Individual selectedSpouse = (Individual) getPrimaryIndividual().getSpouseList().get(spouseTable.selectedRow());
 	  for (Iterator iter = families.iterator(); iter.hasNext();) {
@@ -929,11 +968,18 @@ public void printShowingPrintPanel(boolean showPanels) {
   public void openPanelDidEnd(NSOpenPanel sheet, int returnCode, Object contextInfo) {
 	if (returnCode == NSPanel.OKButton) {
 	  log.debug("import filename:" + sheet.filename());
+	  if (TEMPLEREADY_UPDATE_EXTENSION.equalsIgnoreCase(NSPathUtilities.pathExtension(sheet.filename()))) {
+		  importTempleReadyUpdate(new File(sheet.filename()));
+	  }
 	  importGEDCOM(new File(sheet.filename()));
 	}
   }
 
-  private void importGEDCOM(File importFile) {
+  private void importTempleReadyUpdate(File file) {
+	  showUserErrorMessage("We're sorry, but we do not yet handle TempleReady Update Files", "This functionality will be added later. Look for a future update.");
+  }
+
+private void importGEDCOM(File importFile) {
 	log.debug("MyDocument.importGEDCOM():" + importFile);
 	try {
 		doc.loadXMLFile(importFile);
@@ -977,6 +1023,11 @@ try {
 	if (returnCode == NSPanel.OKButton) {
 	  log.debug("export filename:" + sheet.filename());
 	  try {
+			// bring up selection window to choose what to export
+		  
+		  if (contextInfo.toString().indexOf("oup") > 0) {
+				doc.outputToTempleReady(new FileOutputStream(sheet.filename()));
+		  }
 		doc.outputToGedcom(new FileOutputStream(sheet.filename()));
 	  }
 	  catch (Exception e) {
@@ -1247,24 +1298,37 @@ try {
 			log.debug("menu:"+menuItem.menu().title());
 //			log.debug("menu DELEGATE:"+menuItem.menu().delegate());
 			return historyController.validateMenuItem(menuItem);
-		} else if (menuItemsShouldBeInactiveWithUnknown(menuItem)) {
-			parentFamilyButton.setEnabled(false);
+		} else if (menuItemShouldBeInactiveWithUnknownIndividual(menuItem)) {
+			familyAsChildButton.setEnabled(false);
+			return false;
+		} else if (menuItemShouldBeInactiveWithUnknownFamily(menuItem)) {
+			familyAsChildButton.setEnabled(false);
+			
 			return false;
 		} else {
-			parentFamilyButton.setEnabled(true);
+			familyAsChildButton.setEnabled(true);
 			return super.validateMenuItem((NSMenuItem) menuItem);
 		}
 	}
 
 
-private boolean menuItemsShouldBeInactiveWithUnknown(_NSObsoleteMenuItemProtocol menuItem) {
+private boolean menuItemShouldBeInactiveWithUnknownIndividual(_NSObsoleteMenuItemProtocol menuItem) {
 	NSArray menuItemsToDeactivate = new NSArray(new String[] {
 			"Add Family As Spouse",
 			"Add Family As Child",
 			"Add Spouse",
-			"Add Father"
+			"Add Father",
+			"Delete Individual"
 	});
 		return menuItemsToDeactivate.containsObject(menuItem.title()) && getPrimaryIndividual() instanceof Individual.UnknownIndividual;
+	}
+
+private boolean menuItemShouldBeInactiveWithUnknownFamily(_NSObsoleteMenuItemProtocol menuItem) {
+	NSArray menuItemsToDeactivate = new NSArray(new String[] {
+			"Delete Family",
+			"Edit Family"
+	});
+		return menuItemsToDeactivate.containsObject(menuItem.title()) && getCurrentFamily() instanceof Family.UnknownFamily;
 	}
 
 /* (non-Javadoc)
@@ -1275,5 +1339,17 @@ public void update(Observable o, Object arg) {
 	// The MacPAFDocumentJDOM has changed
 	// @todo: do something here
 	updateChangeCount(NSDocument.ChangeDone);
+	if (familyListWindowController != null) {
+		familyListWindowController.refreshData();
+	}
+	if (individualListWindowController != null) {
+		individualListWindowController.refreshData();
+	}
+	refreshData();
+}
+
+private void refreshData() {
+	log.debug("MyDocument.refreshData()");
+	setPrimaryIndividual(getPrimaryIndividual());
 }
 }

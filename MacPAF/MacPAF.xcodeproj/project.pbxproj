@@ -93,6 +93,23 @@
 			<key>NSDocumentClass</key>
 			<string>MyDocument</string>
 		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>oup</string>
+				<string>OUP</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>TempleReady Update File</string>
+			<key>CFBundleTypeOSTypes</key>
+			<array>
+				<string>TEXT</string>
+			</array>
+			<key>CFBundleTypeRole</key>
+			<string>Viewer</string>
+			<key>NSDocumentClass</key>
+			<string>MyDocument</string>
+		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
 	<string>MacPAF</string>
@@ -151,6 +168,7 @@
 /* End PBXApplicationTarget section */
 
 /* Begin PBXBuildFile section */
+		021612DD096A499E005AC0B6 /* PedigreeViewController.java in Sources */ = {isa = PBXBuildFile; fileRef = 021612DC096A499E005AC0B6 /* PedigreeViewController.java */; };
 		0218FF4108F98E4900F67E81 /* AllTests.java in Sources */ = {isa = PBXBuildFile; fileRef = 0218FF3F08F98E4800F67E81 /* AllTests.java */; };
 		0218FF4208F98E4A00F67E81 /* HistoryControllerTest.java in Sources */ = {isa = PBXBuildFile; fileRef = 0218FF4008F98E4900F67E81 /* HistoryControllerTest.java */; };
 		022DDB4808E36C1E00AAA6B1 /* FamilyDetailController.java in Sources */ = {isa = PBXBuildFile; fileRef = 022DDB4708E36C1D00AAA6B1 /* FamilyDetailController.java */; };
@@ -287,6 +305,7 @@
 		02C5BE500939F8EF0086B510 /* ValidationException.java in Sources */ = {isa = PBXBuildFile; fileRef = 02C5BE4F0939F8EF0086B510 /* ValidationException.java */; };
 		02C5BF790945F5D60086B510 /* concurrent.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 02C5BF780945F5D40086B510 /* concurrent.jar */; };
 		02C5BFBE0948218C0086B510 /* GedcomLoaderJDOM.java in Sources */ = {isa = PBXBuildFile; fileRef = 02C5BFBD0948218C0086B510 /* GedcomLoaderJDOM.java */; };
+		02C5C0C5095466150086B510 /* RecordSelectionWindow.nib in Resources */ = {isa = PBXBuildFile; fileRef = 02C5C0C3095466130086B510 /* RecordSelectionWindow.nib */; };
 		080E96D9FE201CDB7F000001 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */; };
 		080E96DAFE201CDB7F000001 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */; };
 		080E96DBFE201CDB7F000001 /* MyDocument.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B4FDCFA73011CA2CEA /* MyDocument.nib */; };
@@ -346,6 +365,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		021612DC096A499E005AC0B6 /* PedigreeViewController.java */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.java; name = PedigreeViewController.java; path = src/PedigreeViewController.java; sourceTree = "<group>"; };
 		0218FF3F08F98E4800F67E81 /* AllTests.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = AllTests.java; path = src/AllTests.java; sourceTree = "<group>"; };
 		0218FF4008F98E4900F67E81 /* HistoryControllerTest.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = HistoryControllerTest.java; path = src/HistoryControllerTest.java; sourceTree = "<group>"; };
 		022DDB4708E36C1D00AAA6B1 /* FamilyDetailController.java */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.java; name = FamilyDetailController.java; path = src/FamilyDetailController.java; sourceTree = "<group>"; };
@@ -471,6 +491,7 @@
 		02C5BE4F0939F8EF0086B510 /* ValidationException.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = ValidationException.java; sourceTree = "<group>"; };
 		02C5BF780945F5D40086B510 /* concurrent.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; name = concurrent.jar; path = lib/concurrent.jar; sourceTree = "<group>"; };
 		02C5BFBD0948218C0086B510 /* GedcomLoaderJDOM.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = GedcomLoaderJDOM.java; sourceTree = "<group>"; };
+		02C5C0C4095466140086B510 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/RecordSelectionWindow.nib; sourceTree = "<group>"; };
 		089C1660FE840EACC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		1758732CFF379DAD11CA2CBB /* MacPAF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; path = MacPAF.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -513,6 +534,7 @@
 			children = (
 				0218FF3F08F98E4800F67E81 /* AllTests.java */,
 				0218FF4008F98E4900F67E81 /* HistoryControllerTest.java */,
+				021612DC096A499E005AC0B6 /* PedigreeViewController.java */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -528,6 +550,7 @@
 				089C165FFE840EACC02AAC07 /* InfoPlist.strings */,
 				02A77AEE08B0425A007897F4 /* IndividualListWindow.nib */,
 				02A77AF308B0445C007897F4 /* FamilyListWindow.nib */,
+				02C5C0C3095466130086B510 /* RecordSelectionWindow.nib */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -858,6 +881,7 @@
 				026BF51A07AD992300CBA37C /* Individual.png in Resources */,
 				02A77AF008B0425A007897F4 /* IndividualListWindow.nib in Resources */,
 				02A77AF508B0445C007897F4 /* FamilyListWindow.nib in Resources */,
+				02C5C0C5095466150086B510 /* RecordSelectionWindow.nib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -959,6 +983,7 @@
 				025FC08E092EC045006B2989 /* WrappedTableViewDataSource.java in Sources */,
 				02C5BE500939F8EF0086B510 /* ValidationException.java in Sources */,
 				02C5BFBE0948218C0086B510 /* GedcomLoaderJDOM.java in Sources */,
+				021612DD096A499E005AC0B6 /* PedigreeViewController.java in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -979,6 +1004,14 @@
 				02A77AF408B0445C007897F4 /* English */,
 			);
 			name = FamilyListWindow.nib;
+			sourceTree = "<group>";
+		};
+		02C5C0C3095466130086B510 /* RecordSelectionWindow.nib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				02C5C0C4095466140086B510 /* English */,
+			);
+			name = RecordSelectionWindow.nib;
 			sourceTree = "<group>";
 		};
 		089C165FFE840EACC02AAC07 /* InfoPlist.strings */ = {

@@ -17,6 +17,10 @@ public class IndividualListController extends NSWindowController {
     public IndividualDetailController individualDetailController; /* IBOutlet */
 
 	private SortableFilteredTableViewDataSource sortableFilteredTableViewDataSource;
+	
+	public IndividualListController() {
+		// for use by IB
+	}	
 
 	public IndividualListController(IndividualList dataSource) {
 		super("IndividualListWindow");
@@ -41,6 +45,11 @@ public class IndividualListController extends NSWindowController {
 
 	public void windowDidLoad() {
 		super.windowDidLoad();
+		setup();
+	}
+
+	public void setup() {
+		log.debug("IndividualListController.setup()");
 		sortableFilteredTableViewDataSource = new SortableFilteredTableViewDataSource(individualListTableView, individualList);
 		individualListTableView.setDataSource(sortableFilteredTableViewDataSource);
 		individualListTableView.setDelegate(this);

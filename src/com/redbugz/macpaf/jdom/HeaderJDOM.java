@@ -227,4 +227,9 @@ public class HeaderJDOM implements Header {
 	return null;
   }
 
+public void setDestination(String destinationString) {
+	Element destElement = element.getChild(DESTINATION);
+	destElement.setText(destinationString);
+}
+
 }

@@ -78,6 +78,8 @@ public interface Header {
   public String getSourceDataCopyright();
 
   public String getDestination();
+  
+  public void setDestination(String destinationString);
 
   public Date getCreationDate();
 

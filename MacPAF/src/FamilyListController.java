@@ -19,6 +19,10 @@ public class FamilyListController extends NSWindowController {
     public FamilyDetailController familyDetailController; /* IBOutlet */
 
 	private SortableFilteredTableViewDataSource sortableFilteredTableViewDataSource;
+	
+	public FamilyListController() {
+		// for use by IB
+	}
 
 	public FamilyListController(FamilyList dataSource) {
 		super("FamilyListWindow");
@@ -49,6 +53,11 @@ public class FamilyListController extends NSWindowController {
 
 	public void windowDidLoad() {
 		super.windowDidLoad();
+		setup();
+	}
+
+	public void setup() {
+		log.debug("FamilyListController.setup()");
 		sortableFilteredTableViewDataSource = new SortableFilteredTableViewDataSource(familyListTableView, familyList);
 		familyListTableView.setDataSource(sortableFilteredTableViewDataSource);
 		familyListTableView.setDelegate(this);

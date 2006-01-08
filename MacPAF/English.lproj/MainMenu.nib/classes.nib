@@ -16,6 +16,10 @@
                 addNewIndividual = id; 
                 addNewMother = id; 
                 addNewSpouse = id; 
+                deletePrimaryFamily = id; 
+                deletePrimaryIndividual = id; 
+                editCurrentFamily = id; 
+                editPrimaryIndividual = id; 
                 exportFile = id; 
                 forgetIndividual = id; 
                 importFile = id; 

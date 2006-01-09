@@ -14,6 +14,7 @@ import com.apple.cocoa.foundation.NSArray;
 import com.apple.cocoa.foundation.NSSelector;
 import com.redbugz.macpaf.Individual;
 import com.redbugz.macpaf.jdom.GedcomLoaderJDOM;
+import com.redbugz.macpaf.util.CocoaUtils;
 
 public class ImportController {
   private static final Logger log = Logger.getLogger(ImportController.class);
@@ -53,11 +54,16 @@ private final NSWindow mainWindow = NSApplication.sharedApplication().mainWindow
   
   public void importFile(Object sender) { /* IBAction */
 	log.debug("save sender=" + sender + " selectedTag=" + importRadio.selectedTag());
-	MyDocument doc = (MyDocument) NSDocumentController.sharedDocumentController().currentDocument();
-    if  (importRadio.selectedTag() == 0) { // import into existing file
-    		new GedcomLoaderJDOM(doc.doc, progress).loadXMLFile(new File(filePathField.stringValue()));
-    }
-	NSApplication.sharedApplication().endSheet(importWindow);
+	try {
+		MyDocument doc = (MyDocument) NSDocumentController.sharedDocumentController().currentDocument();
+		if  (importRadio.selectedTag() == 0) { // import into existing file
+				new GedcomLoaderJDOM(doc.doc, progress).loadXMLFile(new File(filePathField.stringValue()));
+		}
+		NSApplication.sharedApplication().endSheet(importWindow);
+	} catch (RuntimeException e) {
+		e.printStackTrace();
+		MyDocument.showUserErrorMessage("There was an unexpected error during import.", "An unexpected error occurred while attempting to import the file. The data may not have been imported. Please try again or report this to the MacPAF developers");
+	}
 	importWindow.orderOut(this);
   }
 

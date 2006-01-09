@@ -4,6 +4,7 @@
             CLASS = FamilyDetailController; 
             LANGUAGE = Java; 
             OUTLETS = {
+                childrenCountText = NSTextField; 
                 childrenTable = NSTableView; 
                 eventTable = NSTableView; 
                 husbandDetailsText = NSTextField; 

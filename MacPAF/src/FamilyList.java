@@ -52,21 +52,25 @@ public void setDataSource(SortableFilteredTableViewDataSource newDataSource) {
 //	  System.out.println("FamilyList.tableViewObjectValueForLocation(nsTableView, nsTableColumn, i) famList:"+this);
 	  Family family = (Family) familyMap.values().toArray()[i];
 	  if (nsTableColumn.headerCell().stringValue().equals("ID")) {
-		return family.getId();
+		  return family.getId();
 	  }
 	  else if (nsTableColumn.headerCell().stringValue().equals("Husband")) {
-		return family.getFather().getFullName();
+		  return family.getFather().getFullName();
 	  }
 	  else if (nsTableColumn.headerCell().stringValue().equals("Wife")) {
-		return family.getMother().getFullName();
+		  return family.getMother().getFullName();
 	  }
 	  else if (nsTableColumn.headerCell().stringValue().equals("Marriage Date")) {
-		return family.getSealingToSpouse().getDateString();
+		  return family.getMarriageEvent().getDateString();
 	  }
 	  else if (nsTableColumn.headerCell().stringValue().equals("Children")) {
-		return String.valueOf(family.getChildren().size());
+		  return String.valueOf(family.getChildren().size());
 	  }
-	  log.debug("FamilyList unidentified column:" + nsTableColumn);
+	  else if (nsTableColumn.headerCell().stringValue().equals("Place")) {
+		  return family.getMarriageEvent().getPlace();
+	  } else {
+		  log.debug("FamilyList unidentified column:" + nsTableColumn.headerCell().stringValue());
+	  }
 	}
 	catch (Exception e) {
 	  log.error("Exception: ", e); //To change body of catch statement use Options | File Templates.

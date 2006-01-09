@@ -22,6 +22,7 @@ import java.util.Vector;
 import org.apache.log4j.Logger;
 
 import com.apple.cocoa.application.NSBitmapImageRep;
+import com.apple.cocoa.application.NSDocument;
 import com.apple.cocoa.application.NSDocumentController;
 import com.apple.cocoa.application.NSImage;
 import com.apple.cocoa.application.NSPICTImageRep;
@@ -127,12 +128,15 @@ public class MultimediaUtils {
 			String name = NSPathUtilities.lastPathComponent(filename);
 			log.warn("MultimediaUtils.findFile() file does not exist: "+filename+". Beginning filesystem search for "+name+"...");
 			// first search the document package multimedia directory
-			File docDir = new File(NSDocumentController.sharedDocumentController().currentDocument().fileName());
-			file = recursiveFileSearch(docDir, name); 
-			// recursively search the parent directory for the current document
-			File parentDir = docDir.getParentFile();
-			if (parentDir == null) {
-				// no parent directory, search the 
+			NSDocument currentDocument = NSDocumentController.sharedDocumentController().currentDocument();
+			if (currentDocument != null) {
+				File docDir = new File(currentDocument.fileName());
+				file = recursiveFileSearch(docDir, name); 
+				// recursively search the parent directory for the current document
+				File parentDir = docDir.getParentFile();
+				if (parentDir == null) {
+					// no parent directory, search the 
+				}
 			}
 			// lastly search the users home directory
 			File homeDir = new File(System.getProperty("user.home"));

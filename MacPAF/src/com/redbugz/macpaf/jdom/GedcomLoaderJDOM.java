@@ -1,6 +1,7 @@
 package com.redbugz.macpaf.jdom;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import org.apache.log4j.Logger;
 import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.JDOMException;
+import org.jdom.output.XMLOutputter;
 import org.jdom.xpath.XPath;
 
 import com.apple.cocoa.application.NSProgressIndicator;
@@ -54,7 +56,7 @@ public class GedcomLoaderJDOM {
 		List sourceElements = root.getChildren("SOUR");
 		List submitterElements = root.getChildren("SUBM");
 		// detach the root from the children nodes so they can be imported into the new document
-		root.detach();
+//		root.detach();
 		
 		long totalElements = familyElements.size() + individualElements.size() + multimediaElements.size() + noteElements.size() + repositoryElements.size() + sourceElements.size() + submitterElements.size()	;
 		_progress.setIndeterminate(false);
@@ -115,6 +117,14 @@ public class GedcomLoaderJDOM {
 				/** @todo change all instances of the old key to new key in import document */
 				try {
 					String ref = "[@REF='" + oldKey + "']";
+					try {
+						System.err.println("dumping newDoc:"+newDoc);
+						System.err.println("dumping newDoc:"+newDoc.getRootElement());
+						new XMLOutputter().output(newDoc, System.out);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					List needsFixing = XPath.selectNodes(newDoc, "//HUSB"+ref+" | //WIFE"+ref+" | //CHIL"+ref+" | //ALIA"+ref);
 					log.debug("needsFixing: " + needsFixing);
 					Iterator iter = needsFixing.iterator();
@@ -218,7 +228,7 @@ public class GedcomLoaderJDOM {
 //		for (int i = 0; i < multimediaElements.size(); i++) {
 //			Element obje = (Element) multimediaElements.get(i);
 			if (obje != null) {
-				_doc.addMultimedia(new MultimediaJDOM(obje, null));
+				_doc.addMultimedia(new MultimediaJDOM(obje, _doc));
 				incrementAndUpdateProgress();
 //			    byte[] raw = Base64.decode(buf.toString());
 //			    log.debug("decoded=" + raw);
@@ -242,7 +252,7 @@ public class GedcomLoaderJDOM {
 			if (debug) {
 				log.debug("element:" + element.getContent());
 			}
-			Note note = new NoteJDOM(element, null);
+			Note note = new NoteJDOM(element, _doc);
 			_doc.addNote(note);
 		}
 		log.debug("notes: " + noteElements.size());
@@ -259,7 +269,7 @@ public class GedcomLoaderJDOM {
 			if (debug) {
 				log.debug("element:" + element.getContent());
 			}
-			Source source = new SourceJDOM(element, null);
+			Source source = new SourceJDOM(element, _doc);
 			_doc.addSource(source);
 			incrementAndUpdateProgress();
 		}
@@ -277,7 +287,7 @@ public class GedcomLoaderJDOM {
 			if (debug) {
 				log.debug("element:" + element.getContent());
 			}
-			Repository repository = new RepositoryJDOM(element, null);
+			Repository repository = new RepositoryJDOM(element, _doc);
 			_doc.addRepository(repository);
 			incrementAndUpdateProgress();
 		}

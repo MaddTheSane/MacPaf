@@ -394,7 +394,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 //		for (int i = 0; i < multimediaElements.size(); i++) {
 //			Element obje = (Element) multimediaElements.get(i);
 			if (obje != null) {
-				addMultimedia(new MultimediaJDOM(obje, null));
+				addMultimedia(new MultimediaJDOM(obje, this));
 //			    byte[] raw = Base64.decode(buf.toString());
 //			    log.debug("decoded=" + raw);
 //			    NSImageView nsiv = new NSImageView(new NSRect(0, 0, 100, 100));
@@ -417,7 +417,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 			if (debug) {
 				log.debug("element:" + element.getContent());
 			}
-			Note note = new NoteJDOM(element, null);
+			Note note = new NoteJDOM(element, this);
 			addNote(note);
 		}
 		log.debug("notes: " + noteElements.size());
@@ -434,7 +434,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 			if (debug) {
 				log.debug("element:" + element.getContent());
 			}
-			Source source = new SourceJDOM(element, null);
+			Source source = new SourceJDOM(element, this);
 			addSource(source);
 		}
 		log.debug("sources: " + sourceElements.size());
@@ -451,7 +451,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 			if (debug) {
 				log.debug("element:" + element.getContent());
 			}
-			Repository repository = new RepositoryJDOM(element, null);
+			Repository repository = new RepositoryJDOM(element, this);
 			addRepository(repository);
 		}
 		log.debug("repositories: " + repositoryElements.size());

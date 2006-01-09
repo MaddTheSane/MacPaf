@@ -257,6 +257,13 @@ public void sheetDidEndShouldClose2() {
   public void sheetDidEnd(NSWindow sheet, int returnCode, Object contextInfo) {
     log.debug("Called did-end selector");
     log.debug("sheetdidend contextInfo:"+contextInfo);
+    try {
+		refreshData();
+		save();
+	} catch (Exception e) {
+		// TODO: handle exception
+		e.printStackTrace();
+	}
     sheet.orderOut(this);
   }  	
 

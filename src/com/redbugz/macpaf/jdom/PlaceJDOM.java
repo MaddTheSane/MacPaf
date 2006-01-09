@@ -260,4 +260,10 @@ public class PlaceJDOM implements Place {
 	this.level4 = level4;
 	element.setText(getFormatString());
   }
+
+protected Object clone() throws CloneNotSupportedException {
+	// TODO Auto-generated method stub
+	Thread.dumpStack();
+	return super.clone();
+}
 }

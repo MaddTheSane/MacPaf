@@ -24,6 +24,7 @@ public class FamilyDetailController extends NSObject {
   private static final String newLine = System.getProperty("line.separator");
 
   public NSTableView childrenTable; /* IBOutlet */
+  public NSTextField childrenCountText; /* IBOutlet */
   public NSTableView eventTable; /* IBOutlet */
   public NSTextField husbandDetailsText; /* IBOutlet */
   public NSTextView husbandNotesText; /* IBOutlet */
@@ -49,15 +50,49 @@ public class FamilyDetailController extends NSObject {
 	log.debug("FamilyDetailController.setFamily(primaryFamily) setting family to " + primaryFamily);
 	family = primaryFamily;
 
-	husbandDetailsText.setStringValue(family.getFather().getFullName() + newLine + family.getFather().getBirthEvent().getDateString());
-	wifeDetailsText.setStringValue(family.getMother().getFullName() + newLine + family.getMother().getBirthEvent().getDateString());
-	noteText.setString(family.getNoteText());
-	eventTable.setDataSource(this);
-	eventTable.reloadData();
-	childrenTable.setDataSource(this);
-	childrenTable.reloadData();
-	husbandPhoto.setImage(new NSImage(family.getFather().getImagePath()));
-	wifePhoto.setImage(new NSImage(family.getMother().getImagePath()));
+	if (husbandDetailsText != null) {
+		husbandDetailsText.setStringValue(family.getFather().getFullName() + newLine + family.getFather().getBirthEvent().getDateString());
+	}
+	if (wifeDetailsText != null) {
+		wifeDetailsText.setStringValue(family.getMother().getFullName() + newLine + family.getMother().getBirthEvent().getDateString());
+	}
+	if (noteText != null) {
+		noteText.setString(family.getNoteText());
+	}
+	if (eventTable != null) {
+		eventTable.setDataSource(this);
+	}
+	if (eventTable != null) {
+		eventTable.reloadData();
+	}
+	if (childrenTable != null) {
+		childrenTable.setDataSource(this);
+	}
+	if (childrenTable != null) {
+		childrenTable.reloadData();
+	}
+	if (childrenCountText != null) {
+		String countText = "No Children";
+		switch (family.getChildren().size()) {
+			case 1:
+				countText = "1 child";
+				break;
+			
+			default:
+				countText = family.getChildren().size() + " children";
+				break;
+		}
+		if (family.getChildren().size() > 0) {
+			countText = family.getChildren().size() + " children";
+		}
+		childrenCountText.setStringValue(countText);
+	}
+	if (husbandPhoto != null) {
+		husbandPhoto.setImage(new NSImage(family.getFather().getImagePath()));
+	}
+	if (wifePhoto != null) {
+		wifePhoto.setImage(new NSImage(family.getMother().getImagePath()));
+	}
   }
 
   /**
@@ -83,32 +118,30 @@ public class FamilyDetailController extends NSObject {
    * @param int2 int
    * @return Object
    */
-  public Object tableViewObjectValueForLocation(NSTableView nSTableView,
-												NSTableColumn nSTableColumn,
-												int int2) {
+  public Object tableViewObjectValueForLocation(NSTableView nSTableView, NSTableColumn nSTableColumn, int int2) {
 //	  log.debug(nSTableView.tag()+nSTableColumn.identifier().toString()+int2);
 	  if (eventTable == nSTableView) {
-	Event event = new EventJDOM("23 Jun 2000", new PlaceJDOM("Test,Utah,Utah"));//(Event) family.getEv().get(int2);
-	if ("date".equalsIgnoreCase(nSTableColumn.identifier().toString())) {
-	  return event.getDateString();
-	}
-	else if ("place".equalsIgnoreCase(nSTableColumn.identifier().toString())) {
-	  return event.getPlace().getFormatString();
-	} else if ("event".equalsIgnoreCase(nSTableColumn.identifier().toString())) {
-		return event.getEventTypeString();
-	}
+		  Event event = new EventJDOM("23 Jun 2000", new PlaceJDOM("Test,Utah,Utah"));//(Event) family.getEv().get(int2);
+		  if ("date".equalsIgnoreCase(nSTableColumn.identifier().toString())) {
+			  return event.getDateString();
+		  }
+		  else if ("place".equalsIgnoreCase(nSTableColumn.identifier().toString())) {
+			  return event.getPlace().getFormatString();
+		  } else if ("event".equalsIgnoreCase(nSTableColumn.identifier().toString())) {
+			  return event.getEventTypeString();
+		  }
 	  } else if (childrenTable == nSTableView) {
-			Individual child = (Individual) family.getChildren().get(int2);
-			if ("name".equalsIgnoreCase(nSTableColumn.identifier().toString())) {
+		  Individual child = (Individual) family.getChildren().get(int2);
+		  if ("name".equalsIgnoreCase(nSTableColumn.identifier().toString())) {
 			  return child.getFullName();
-			}
-			else if ("birth".equalsIgnoreCase(nSTableColumn.identifier().toString())) {
+		  }
+		  else if ("birth".equalsIgnoreCase(nSTableColumn.identifier().toString())) {
 			  return child.getBirthEvent().getDateString() + " "+ child.getBirthEvent().getPlace().getFormatString();
-			} else if ("childNumber".equalsIgnoreCase(nSTableColumn.identifier().toString())) {
-				return new Integer(int2);
-			}		  
+		  } else if ("childNumber".equalsIgnoreCase(nSTableColumn.identifier().toString())) {
+			  return new Integer(int2);
+		  }		  
 	  }
-		return "Unknown";
+	  return "Unknown";
   }
 
   /**

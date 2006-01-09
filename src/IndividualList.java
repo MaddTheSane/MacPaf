@@ -37,7 +37,7 @@ public class IndividualList extends AbstractMap {
 
   public IndividualList() {
 	System.out.println("IndividualList.IndividualList()");
-	Thread.dumpStack();
+//	Thread.dumpStack();
   }
 
   public Individual getSelectedIndividual() {
@@ -62,31 +62,24 @@ public class IndividualList extends AbstractMap {
   /**
    * @see NSTableView.DataSource
    */
-  public Object tableViewObjectValueForLocation(
-	  NSTableView nsTableView,
-	  NSTableColumn nsTableColumn,
-	  int i) {
+  public Object tableViewObjectValueForLocation(NSTableView nsTableView, NSTableColumn nsTableColumn, int i) {
 	try {
 	  Individual individual = (Individual) individualMap.values().toArray()[i];
-	  if (nsTableColumn.headerCell().stringValue().equals("ID")) {
+	  String headerTitle = nsTableColumn.headerCell().stringValue();
+	if (headerTitle.equals("ID")) {
 		return individual.getId();
 	  }
-	  else if (
-		  nsTableColumn.headerCell().stringValue().equals("Name")) {
+	  else if (headerTitle.equals("Name")) {
 		return individual.getFullName();
 	  }
-	  else if (
-		  nsTableColumn.headerCell().stringValue().equals(
-		  "Birth date")) {
+	  else if (headerTitle.equals("Birth date")) {
 		return individual.getBirthEvent().getDateString();
 	  }
-	  else if (
-		  nsTableColumn.headerCell().stringValue().equals(
-		  "Birth place")) {
+	  else if (headerTitle.equals("Birth place")) {
 		return individual.getBirthEvent().getPlace().getFormatString();
+	  } else {
+		  log.warn("IndividualList unidentified column:" + headerTitle);
 	  }
-	  log.warn(
-		  "IndividualList unidentified column:" + nsTableColumn);
 	}
 	catch (Exception e) {
 	  log.error("Exception: ", e);

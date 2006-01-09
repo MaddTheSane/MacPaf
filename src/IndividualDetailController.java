@@ -41,30 +41,44 @@ public class IndividualDetailController extends NSObject {
    * @param primaryIndividual Individual
    */
   public void setIndividual(Individual primaryIndividual) {
-	if (primaryIndividual == null) {
-	  primaryIndividual = Individual.UNKNOWN;
-	}
-	log.debug("IndividualDetailController.setIndividual(primaryIndividual) setting individual to " + primaryIndividual);
-	individual = primaryIndividual;
-
-	infoText.setStringValue(individual.getFullName() 
-			+ newLine + individual.getBirthEvent().getDateString()
-			+ newLine 
-			+ newLine + "Father: "+individual.getFather().getFullName()
-			+ newLine + "Mother: "+individual.getMother().getFullName());
-	detailsText.setStringValue("Gender: " + individual.getGender().getLongString());
-//	System.out.println("itext:"+infoText);
-//	System.out.println("mtext:"+marriageText);
-//	System.out.println("spouselist:"+individual.getSpouseList());
-	if (marriageText != null) {
-		marriageText.setStringValue("Marriages: "+individual.getSpouseList().size());
-	}
-	locked.setState(individual.isLocked() ? NSCell.OnState : NSCell.OffState);
-	privacy.setState(individual.isPrivate() ? NSCell.OnState : NSCell.OffState);
-	noteText.setString(individual.getNoteText());
-	eventTable.setDataSource(this);
-	eventTable.reloadData();
-	photo.setImage(new NSImage(individual.getImagePath()));
+	  if (primaryIndividual == null) {
+		  primaryIndividual = Individual.UNKNOWN;
+	  }
+	  log.debug("IndividualDetailController.setIndividual(primaryIndividual) setting individual to " + primaryIndividual);
+	  individual = primaryIndividual;
+	  
+	  if (infoText != null) {
+		  infoText.setStringValue(individual.getFullName() 
+				  + newLine + individual.getBirthEvent().getDateString()
+				  + newLine 
+				  + newLine + "Father: "+individual.getFather().getFullName()
+				  + newLine + "Mother: "+individual.getMother().getFullName());
+	  }
+	  if (detailsText != null) {
+		  detailsText.setStringValue("Gender: " + individual.getGender().getLongString());
+//		  System.out.println("itext:"+infoText);
+//		  System.out.println("mtext:"+marriageText);
+//		  System.out.println("spouselist:"+individual.getSpouseList());
+	  }
+	  if (marriageText != null) {
+			  marriageText.setStringValue("Marriages: "+individual.getSpouseList().size());
+	  }
+	  if (locked != null) {
+		  locked.setState(individual.isLocked() ? NSCell.OnState : NSCell.OffState);
+	  }
+	  if (privacy != null) {
+		  privacy.setState(individual.isPrivate() ? NSCell.OnState : NSCell.OffState);
+	  }
+	  if (noteText != null) {
+		  noteText.setString(individual.getNoteText());
+	  }
+	  if (eventTable != null) {
+		  eventTable.setDataSource(this);
+		  eventTable.reloadData();
+	  }
+	  if (photo != null) {
+		  photo.setImage(new NSImage(individual.getImagePath()));
+	  }
   }
 
   /**

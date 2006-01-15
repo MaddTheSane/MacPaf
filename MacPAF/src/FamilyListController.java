@@ -82,17 +82,18 @@ public class FamilyListController extends NSWindowController {
 		  }
 
 	  public void controlTextDidChange(NSNotification aNotification) {
-		System.out.println("FamilyListController.controlTextDidChange()");
-		System.out.println(aNotification);
-		System.out.println(aNotification.valueForKey("object"));
-		System.out.println(aNotification.object());
-		NSTextField field = (NSTextField) aNotification.object();
-		// hold on to selection so we can find it in the filtered list
-		Family selectedFamily = familyList.getSelectedFamily();
-		System.out.println("search value:"+field.stringValue());
-		sortableFilteredTableViewDataSource.setFilterString(searchField.stringValue());
-		refreshData();
-		refreshSelection(selectedFamily);
+		log.debug("FamilyListController.controlTextDidChange()");
+		// TODO For now, let's not do live updating of filters - just too slow. I'll add this in later once optimized -- LTA
+//		System.out.println(aNotification);
+//		System.out.println(aNotification.valueForKey("object"));
+//		System.out.println(aNotification.object());
+//		NSTextField field = (NSTextField) aNotification.object();
+//		// hold on to selection so we can find it in the filtered list
+//		Family selectedFamily = familyList.getSelectedFamily();
+//		System.out.println("search value:"+field.stringValue());
+//		sortableFilteredTableViewDataSource.setFilterString(searchField.stringValue());
+//		refreshData();
+//		refreshSelection(selectedFamily);
 	  }
 
 	private void refreshSelection(Family selectedFamily) {
@@ -107,6 +108,7 @@ public class FamilyListController extends NSWindowController {
 	public void refreshData() {
 		familyListTableView.reloadData();
 		familyCountText.setStringValue("Displaying "+familyListTableView.numberOfRows()+" out of "+familyList.size()+" Families");
+		refreshSelection(familyList.getSelectedFamily());
 	}
 	
 	public void tableViewDidClickTableColumn(NSTableView tableView, NSTableColumn tableColumn) {

@@ -100,7 +100,8 @@ public class MyDocument extends NSDocument implements Observer {
   public NSTableView childrenTable; /* IBOutlet */
   public NSTableView spouseTable; /* IBOutlet */
   public PedigreeView pedigreeView; /* IBOutlet */
-  private IndividualDetailController individualDetailController = new IndividualDetailController();
+//  public IndividualDetailController individualDetailController = new IndividualDetailController(); /* IBOutlet */
+//  public FamilyDetailController familyDetailController = new FamilyDetailController(); /* IBOutlet */
   private NSView printableView;
 
 //  private IndividualList startupIndividualList;
@@ -459,8 +460,8 @@ else {
 		  setPrimaryIndividual(iList.getSelectedIndividual());
 		}
 		else if (sender instanceof FamilyList) {
-		  FamilyList iList = (FamilyList) sender;
-		  setPrimaryIndividual(iList.getSelectedFamily().getFather());
+		  FamilyList fList = (FamilyList) sender;
+		  setPrimaryIndividual(fList.getSelectedFamily().getFather());
 		}
 	} catch (Exception e) {
 		// TODO Auto-generated catch block
@@ -491,8 +492,8 @@ else {
 	  log.debug("individualList: " + individualList.size()); // + "(" + indiMap + ")");
 	  individualList.document = this;
 	  familyList.document = this;
-	  individualList.setIndividualMap(doc.getIndividualsMap());
-	  familyList.setFamilyMap(doc.getFamiliesMap());
+//	  individualList.setIndividualMap(doc.getIndividualsMap());
+//	  familyList.setFamilyMap(doc.getFamiliesMap());
 	  if (individualList.size() > 0) {
 		log.debug("indimap");
 		assignIndividualToButton( (Individual) individualList.getFirstIndividual(), individualButton);
@@ -517,7 +518,9 @@ else {
 	  log.debug("setting lastOpenedDocument to: " + fileName());
 	  NSUserDefaults.standardUserDefaults().setObjectForKey(fileName(), "com.redbugz.macpaf.lastOpenedDocument");
 	  tabFamilyListController.setup();
+	  tabFamilyListController.setDocument(this);
 	  tabIndividualListController.setup();
+	  tabIndividualListController.setDocument(this);
 	  // register as an observer of the MacPAFDocumentJDOM
 	  doc.addObserver(this);
 	}
@@ -1358,5 +1361,7 @@ public void update(Observable o, Object arg) {
 private void refreshData() {
 	log.debug("MyDocument.refreshData()");
 	setPrimaryIndividual(getPrimaryIndividual());
+	childrenTable.reloadData();
+	spouseTable.reloadData();
 }
 }

@@ -13,7 +13,7 @@
                 wifeDetailsText = NSTextField; 
                 wifePhoto = NSImageView; 
             }; 
-            SUPERCLASS = NSObject; 
+            SUPERCLASS = "java.lang.Object"; 
         }, 
         {
             ACTIONS = {
@@ -168,11 +168,10 @@
                 historyController = HistoryController; 
                 importWindow = NSWindow; 
                 individualButton = NSButton; 
-                individualDetailController = IndividualDetailController; 
                 individualEditWindow = NSWindow; 
                 individualFamilyButton = NSButton; 
                 individualList = IndividualList; 
-                individualListController = IndividualListController; 
+                individualListWindowController = IndividualListController; 
                 maternalGrandfatherButton = NSButton; 
                 maternalGrandmotherButton = NSButton; 
                 motherButton = NSButton; 

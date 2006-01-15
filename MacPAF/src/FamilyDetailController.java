@@ -19,7 +19,7 @@ import com.redbugz.macpaf.jdom.PlaceJDOM;
  * @version 1.0
  */
 
-public class FamilyDetailController extends NSObject {
+public class FamilyDetailController /*extends NSObject*/ {
   private static final Logger log = Logger.getLogger(FamilyDetailController.class);
   private static final String newLine = System.getProperty("line.separator");
 
@@ -51,10 +51,10 @@ public class FamilyDetailController extends NSObject {
 	family = primaryFamily;
 
 	if (husbandDetailsText != null) {
-		husbandDetailsText.setStringValue(family.getFather().getFullName() + newLine + family.getFather().getBirthEvent().getDateString());
+		husbandDetailsText.setStringValue(family.getFather().getFullName() + newLine + "b: "+family.getFather().getBirthEvent().getDateString() + " " + family.getFather().getBirthEvent().getPlace().getFormatString());
 	}
 	if (wifeDetailsText != null) {
-		wifeDetailsText.setStringValue(family.getMother().getFullName() + newLine + family.getMother().getBirthEvent().getDateString());
+		wifeDetailsText.setStringValue(family.getMother().getFullName() + newLine + "b: " + family.getMother().getBirthEvent().getDateString() + " " + family.getMother().getBirthEvent().getPlace().getFormatString());
 	}
 	if (noteText != null) {
 		noteText.setString(family.getNoteText());
@@ -66,14 +66,17 @@ public class FamilyDetailController extends NSObject {
 		eventTable.reloadData();
 	}
 	if (childrenTable != null) {
+//		childrenTable.setFont(NSFont.controlContentFontOfSize(6.0F));
 		childrenTable.setDataSource(this);
-	}
-	if (childrenTable != null) {
 		childrenTable.reloadData();
 	}
 	if (childrenCountText != null) {
 		String countText = "No Children";
 		switch (family.getChildren().size()) {
+			case 0:
+				countText = "No Children";
+				break;
+			
 			case 1:
 				countText = "1 child";
 				break;
@@ -82,9 +85,9 @@ public class FamilyDetailController extends NSObject {
 				countText = family.getChildren().size() + " children";
 				break;
 		}
-		if (family.getChildren().size() > 0) {
-			countText = family.getChildren().size() + " children";
-		}
+//		if (family.getChildren().size() > 0) {
+//			countText = family.getChildren().size() + " children";
+//		}
 		childrenCountText.setStringValue(countText);
 	}
 	if (husbandPhoto != null) {
@@ -137,8 +140,9 @@ public class FamilyDetailController extends NSObject {
 		  }
 		  else if ("birth".equalsIgnoreCase(nSTableColumn.identifier().toString())) {
 			  return child.getBirthEvent().getDateString() + " "+ child.getBirthEvent().getPlace().getFormatString();
-		  } else if ("childNumber".equalsIgnoreCase(nSTableColumn.identifier().toString())) {
-			  return new Integer(int2);
+		  }
+		  else if ("childNumber".equalsIgnoreCase(nSTableColumn.identifier().toString())) {
+			  return new Integer(int2+1);
 		  }		  
 	  }
 	  return "Unknown";

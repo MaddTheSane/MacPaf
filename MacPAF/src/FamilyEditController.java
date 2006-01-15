@@ -22,7 +22,6 @@ import com.apple.cocoa.application.NSWindow;
 import com.apple.cocoa.application.NSWindowController;
 import com.apple.cocoa.foundation.NSDictionary;
 import com.apple.cocoa.foundation.NSMutableArray;
-import com.apple.cocoa.foundation.NSSelector;
 import com.apple.cocoa.foundation.NSSystem;
 import com.redbugz.macpaf.Family;
 import com.redbugz.macpaf.Gender;

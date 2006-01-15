@@ -50,11 +50,13 @@ public class EventJDOM implements Event {
 
   public Date getDate() {
 	try {
-	  date = dateFormat.parse(getDateString());
+		if (!StringUtils.isEmpty(getDateString())) {
+			date = dateFormat.parse(getDateString());
+		}
 	}
 	catch (ParseException e) {
 	  // TODO Auto-generated catch block
-	  log.error("Exception: ", e);
+	  log.error("Date Parse error: "+e.getMessage());
 	}
 	return date;
   }
@@ -138,11 +140,15 @@ public class EventJDOM implements Event {
   public void setDateString(String dateString) {
 //      this.dateString = dateString;
 	try {
-	  date = dateFormat.parse(dateString);
+		if (!StringUtils.isEmpty(getDateString())) {
+			date = dateFormat.parse(getDateString());
+		} else {
+			date = null;
+		}
 	}
 	catch (ParseException e) {
 	  date = null;
-	  log.error("Exception: ", e);
+	  log.error("Date Parse error: "+e.getMessage());
 	}
 	element.removeChildren(DATE);
 	if (StringUtils.notEmpty(dateString)) {

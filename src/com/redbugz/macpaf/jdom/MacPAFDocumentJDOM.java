@@ -92,7 +92,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 			log.debug("adding fam to doc: " + newFamily);
 			doc.getRootElement().addContent((Content) ((FamilyJDOM) newFamily).getElement());
 		}
-		setChanged();
+		update(this, newFamily);
 	}
 	
 	public void addIndividual(Individual newIndividual) {
@@ -136,6 +136,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 			log.debug("adding submitter to doc: "+newSubmitter);
 			doc.getRootElement().addContent((Content)((SubmitterJDOM)newSubmitter).getElement());
 		}
+		update(this, newSubmitter);
 	}
 	
 	/**
@@ -154,6 +155,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 			log.debug("adding repository to doc: "+newRepository);
 			doc.getRootElement().addContent((Content)((RepositoryJDOM)newRepository).getElement());
 		}
+		update(this, newRepository);
 	}
 	
 	/**
@@ -172,6 +174,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 			log.debug("adding source to doc: "+newSource);
 			doc.getRootElement().addContent((Content)((SourceJDOM)newSource).getElement());
 		}
+		update(this, newSource);
 	}
 	
 	/**
@@ -192,6 +195,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 			log.debug("adding note to doc: "+newNote);
 			doc.getRootElement().addContent((Content)((NoteJDOM)newNote).getElement());
 		}
+		update(this, newNote);
 	}
 	
 	/**
@@ -212,6 +216,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 			log.debug("adding multimedia to doc: "+newMultimedia);
 			doc.getRootElement().addContent((Content)((MultimediaJDOM)newMultimedia).getElement());
 		}
+		update(this, newMultimedia);
 	}
 	
 	/**

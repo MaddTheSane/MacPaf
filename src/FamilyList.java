@@ -1,21 +1,21 @@
 /* FamilyList */
 
-import java.util.*;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
+
 import com.apple.cocoa.application.NSTableColumn;
 import com.apple.cocoa.application.NSTableView;
 import com.apple.cocoa.foundation.NSNotification;
 import com.redbugz.macpaf.Family;
-import java.util.List;
 
-public class FamilyList extends AbstractMap {
+public class FamilyList /*extends AbstractMap*/ {
   private static final Logger log = Logger.getLogger(FamilyList.class);
 
   public MyDocument document; /* IBOutlet */
   private Family selectedFamily = Family.UNKNOWN_FAMILY;
 
-  private SortedMap familyMap;
+//  private SortedMap familyMap;
   long ts;
   private SortableFilteredTableViewDataSource dataSource;// = new SortableFilteredTableViewDataSource();
 
@@ -26,9 +26,9 @@ public class FamilyList extends AbstractMap {
 	  selectedFamily = Family.UNKNOWN_FAMILY;
 	  ts = System.currentTimeMillis();
 //	}
-	if (familyMap == null) {
-	  familyMap = new TreeMap();
-}
+//	if (familyMap == null) {
+//	  familyMap = new TreeMap();
+//}
   }
 
 public void setDataSource(SortableFilteredTableViewDataSource newDataSource) {
@@ -44,13 +44,13 @@ public void setDataSource(SortableFilteredTableViewDataSource newDataSource) {
 
   public int numberOfRowsInTableView(NSTableView nsTableView) {
 //	System.out.println("FamilyList.numberOfRowsInTableView(nsTableView) famList:"+this);
-	return familyMap.size();
+	return document.doc.getFamiliesMap().size();
   }
 
   public Object tableViewObjectValueForLocation(NSTableView nsTableView, NSTableColumn nsTableColumn, int i) {
 	try {
 //	  System.out.println("FamilyList.tableViewObjectValueForLocation(nsTableView, nsTableColumn, i) famList:"+this);
-	  Family family = (Family) familyMap.values().toArray()[i];
+	  Family family = (Family) document.doc.getFamiliesMap().values().toArray()[i];
 	  if (nsTableColumn.headerCell().stringValue().equals("ID")) {
 		  return family.getId();
 	  }
@@ -66,8 +66,8 @@ public void setDataSource(SortableFilteredTableViewDataSource newDataSource) {
 	  else if (nsTableColumn.headerCell().stringValue().equals("Children")) {
 		  return String.valueOf(family.getChildren().size());
 	  }
-	  else if (nsTableColumn.headerCell().stringValue().equals("Place")) {
-		  return family.getMarriageEvent().getPlace();
+	  else if (nsTableColumn.headerCell().stringValue().equals("Marriage Place")) {
+		  return family.getMarriageEvent().getPlace().getFormatString();
 	  } else {
 		  log.debug("FamilyList unidentified column:" + nsTableColumn.headerCell().stringValue());
 	  }
@@ -78,27 +78,27 @@ public void setDataSource(SortableFilteredTableViewDataSource newDataSource) {
 	return null;
   }
 
-  public boolean add(Family family) {
-	// if family has not been assigned a key, create one
-	if (family.getId() == null || family.getId().length() == 0) {
-	  log.debug("New family without a valid key, assigning one ....");
-	  family.setId(findValidKey());
-	} else {
-	  // check to see if this family has a conflicting ID, if so, change it
-	  if (familyMap.containsKey(family.getId())) {
-		log.debug("familyMap contains key " + family.getId() + " already.");
-		family.setId(findValidKey());
-	  }
-	}
-	return (/*families.add(family) && */familyMap.put(family.getId(), family) != null);
-  }
+//  public boolean add(Family family) {
+//	// if family has not been assigned a key, create one
+//	if (family.getId() == null || family.getId().length() == 0) {
+//	  log.debug("New family without a valid key, assigning one ....");
+//	  family.setId(findValidKey());
+//	} else {
+//	  // check to see if this family has a conflicting ID, if so, change it
+//	  if (document.doc.getFamiliesMap().containsKey(family.getId())) {
+//		log.debug("familyMap contains key " + family.getId() + " already.");
+//		family.setId(findValidKey());
+//	  }
+//	}
+//	return (/*families.add(family) && */familyMap.put(family.getId(), family) != null);
+//  }
 
   public void tableViewSelectionDidChange(NSNotification aNotification) {
 	log.debug("FamilyList tableViewSelectionDidChange():" + aNotification);
 	try {
 		NSTableView nsTableView = (NSTableView) aNotification.object();
 		if (dataSource.getCurrentSelectedIndex() >= 0) {
-			selectedFamily = (Family) familyMap.values().toArray()[dataSource.getCurrentSelectedIndex()];
+			selectedFamily = (Family) document.doc.getFamiliesMap().values().toArray()[dataSource.getCurrentSelectedIndex()];
 			nsTableView.reloadData();
 		}
 	} catch (Exception e) {
@@ -114,14 +114,14 @@ public void setDataSource(SortableFilteredTableViewDataSource newDataSource) {
    * @return int
    */
   public int size() {
-	return familyMap.size();
+	return document.doc.getFamiliesMap().size();
   }
 
   private String findValidKey() {
 	log.debug("FamilyList.findValidKey()");
-	int index = familyMap.size();
+	int index = document.doc.getFamiliesMap().size();
 	   String newKey = "F" + index;
-	   while (familyMap.containsKey(newKey)) {
+	   while (document.doc.getFamiliesMap().containsKey(newKey)) {
 		 newKey = "F" + ++index;
 	   }
 	   log.debug("found next valid key: "+newKey);
@@ -134,7 +134,7 @@ public void setDataSource(SortableFilteredTableViewDataSource newDataSource) {
    * @return Set
    */
   public Set entrySet() {
-	return familyMap.entrySet();
+	return document.doc.getFamiliesMap().entrySet();
   }
 
   public static class DuplicateKeyException extends Exception {
@@ -154,11 +154,11 @@ public void setDataSource(SortableFilteredTableViewDataSource newDataSource) {
    * @todo Implement this java.lang.Object method
    */
   public String toString() {
-	return "FamilyMap:"+ts+":"+familyMap.size(); //":"+families.size()+
+	return "FamilyMap:"+ts+":"+document.doc.getFamiliesMap().size(); //":"+families.size()+
   }
-  public void setFamilyMap(Map familyMap) {
-    this.familyMap = new TreeMap(familyMap);
-//	families = new ArrayList( familyMap.values() );
-  }
+//  public void setFamilyMap(Map familyMap) {
+//    this.familyMap = new TreeMap(familyMap);
+////	families = new ArrayList( familyMap.values() );
+//  }
   
 }

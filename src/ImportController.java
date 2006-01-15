@@ -9,6 +9,8 @@
 import java.io.File;
 
 import org.apache.log4j.Logger;
+import org.apache.log4j.NDC;
+
 import com.apple.cocoa.application.*;
 import com.apple.cocoa.foundation.NSArray;
 import com.apple.cocoa.foundation.NSSelector;
@@ -24,7 +26,8 @@ public class ImportController {
   public NSTextField filePathField; /* IBOutlet */
   public NSProgressIndicator progress; /* IBOutlet */
 
-private final NSWindow mainWindow = NSApplication.sharedApplication().mainWindow();
+private NSOpenPanel openPanel;
+
   
   public void cancel(Object sender) { /* IBAction */
 //	NSApplication.sharedApplication().stopModal();
@@ -33,26 +36,32 @@ private final NSWindow mainWindow = NSApplication.sharedApplication().mainWindow
   }
 
   public void browse(Object sender) { /* IBAction */
+	  NDC.push(((MyDocument) NSDocumentController.sharedDocumentController().currentDocument()).displayName()+" import browse");
 	  try {
-		  NSOpenPanel panel = NSOpenPanel.openPanel();
-		  //panther only?        panel.setMessage("Please select a GEDCOM file to import into this MacPAF file.");
-		  panel.beginSheetForDirectory(null, null, new NSArray(new Object[] {"GED"}), mainWindow,
+		  openPanel = NSOpenPanel.openPanel();
+		//panther only?        panel.setMessage("Please select a GEDCOM file to import into this MacPAF file.");
+//		  NSWindow mainWindow = ((MyDocument) NSDocumentController.sharedDocumentController().currentDocument()).mainWindow;
+//		  log.debug("mainwindow:"+mainWindow.title());
+		openPanel.beginSheetForDirectory(null, null, new NSArray(new Object[] {"GED"}), null,
 				  this,
 				  new NSSelector("openPanelDidEnd", new Class[] {NSOpenPanel.class, int.class, Object.class}), null);
 	  } catch (Exception e) {
 		  // TODO Auto-generated catch block
 		  e.printStackTrace();
 	  }
-	  
+	  NDC.pop();
   }
   public void openPanelDidEnd(NSOpenPanel sheet, int returnCode, Object contextInfo) {
+	  NDC.push(((MyDocument) NSDocumentController.sharedDocumentController().currentDocument()).displayName()+" import");
 	  if (returnCode == NSPanel.OKButton) {
 		  log.debug("import filename:" + sheet.filename());
 		  filePathField.setStringValue(sheet.filename());
 	  }
+	  NDC.pop();
   }
   
   public void importFile(Object sender) { /* IBAction */
+	  NDC.push(((MyDocument) NSDocumentController.sharedDocumentController().currentDocument()).displayName()+" import");
 	log.debug("save sender=" + sender + " selectedTag=" + importRadio.selectedTag());
 	try {
 		MyDocument doc = (MyDocument) NSDocumentController.sharedDocumentController().currentDocument();
@@ -63,7 +72,10 @@ private final NSWindow mainWindow = NSApplication.sharedApplication().mainWindow
 	} catch (RuntimeException e) {
 		e.printStackTrace();
 		MyDocument.showUserErrorMessage("There was an unexpected error during import.", "An unexpected error occurred while attempting to import the file. The data may not have been imported. Please try again or report this to the MacPAF developers");
+	} finally {
+		NDC.pop();
 	}
+	
 	importWindow.orderOut(this);
   }
 

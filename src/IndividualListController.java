@@ -74,17 +74,18 @@ public class IndividualListController extends NSWindowController {
 		  }
 
 	  public void controlTextDidChange(NSNotification aNotification) {
-		System.out.println("IndividualListController.controlTextDidChange()");
-		System.out.println(aNotification);
-		System.out.println(aNotification.valueForKey("object"));
-		System.out.println(aNotification.object());
-		NSTextField field = (NSTextField) aNotification.object();
-		// hold on to selection so we can find it in the filtered list
-		Individual selectedIndividual = individualList.getSelectedIndividual();
-		System.out.println("search value:"+field.stringValue());
-		sortableFilteredTableViewDataSource.setFilterString(searchField.stringValue());
-		refreshData();
-		refreshSelection(selectedIndividual);
+		log.debug("IndividualListController.controlTextDidChange()");
+		// TODO For now, let's not do live updating of filters - just too slow. I'll add this in later once optimized -- LTA		
+//		System.out.println(aNotification);
+//		System.out.println(aNotification.valueForKey("object"));
+//		System.out.println(aNotification.object());
+//		NSTextField field = (NSTextField) aNotification.object();
+//		// hold on to selection so we can find it in the filtered list
+//		Individual selectedIndividual = individualList.getSelectedIndividual();
+//		System.out.println("search value:"+field.stringValue());
+//		sortableFilteredTableViewDataSource.setFilterString(searchField.stringValue());
+//		refreshData();
+//		refreshSelection(selectedIndividual);
 	  }
 
 	private void refreshSelection(Individual selectedIndividual) {
@@ -99,6 +100,7 @@ public class IndividualListController extends NSWindowController {
 	public void refreshData() {
 		individualListTableView.reloadData();
 		individualCountText.setStringValue("Displaying "+individualListTableView.numberOfRows()+" out of "+individualList.size()+" Individuals");
+		refreshSelection(individualList.getSelectedIndividual());
 	}
 
 	  // SDMovingRowsProtocol

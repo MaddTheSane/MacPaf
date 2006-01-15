@@ -19,9 +19,11 @@ public class PedigreeViewController extends NSObject {
 	public void selectIndividual(Object sender) { /* IBAction */
 		log.debug("PedigreeViewController.selectIndividual():"+sender);
 		log.debug("sender class:"+sender.getClass());
-		if (sender instanceof NSCell) {
-			NSCell cell = (NSCell) sender;
-			log.debug("cell rep obj:"+cell.representedObject());
+		if (sender instanceof NSControl) {
+			NSCell cell = (NSCell) ((NSControl)sender).selectedCell();
+			if (cell != null) {
+				log.debug("cell rep obj:"+cell.representedObject());
+			}
 		}
 	}
 	
@@ -58,23 +60,6 @@ public class PedigreeViewController extends NSObject {
 		assignIndividualToCellLocationForMatrix(primaryIndividual.getMother().getMother().getFather().getMother(), 13, gggrandparentsMatrix);
 		assignIndividualToCellLocationForMatrix(primaryIndividual.getMother().getMother().getMother().getFather(), 14, gggrandparentsMatrix);
 		assignIndividualToCellLocationForMatrix(primaryIndividual.getMother().getMother().getMother().getMother(), 15, gggrandparentsMatrix);
-//		primaryIndividualButton.setStringValue(primaryIndividual.getFullName());
-//		parentsMatrix.setStringValue("parents");
-//		parentsMatrix.cellAtLocation(1,0).setStringValue("parents2");
-//		grandparentsMatrix.cellAtLocation(0, 0).setStringValue("paternal gpa");
-//		grandparentsMatrix.cellAtLocation(1, 0).setStringValue("paternal gma");
-//		grandparentsMatrix.cellAtLocation(2, 0).setTitle("maternal gpa");
-//		grandparentsMatrix.cellAtLocation(3, 0).setTitle("maternal gma");
-//		grandparentsMatrix.cellAtLocation(0, 0).setEnabled(false);
-//		((NSButtonCell) grandparentsMatrix.cellAtLocation(1, 0)).setAttributedTitle(new NSAttributedString("attributed", new NSDictionary(NSAttributedString.UnderlineStyleAttributeName, new Integer(NSAttributedString.UnderlineStrikethroughMask))));
-//		for (int i = 0; i < 16; i++) {
-//			gggrandparentsMatrix.cellAtLocation(i, 0).setIntValue(i);
-//			gggrandparentsMatrix.cellAtLocation(i, 0).setFont(NSFont.userFixedPitchFontOfSize(6.0F));
-//			if (i % 2 == 0) {
-//				gggrandparentsMatrix.cellAtLocation(i, 0).setFont(NSFont.boldSystemFontOfSize(14.0F));					
-//				gggrandparentsMatrix.cellAtLocation(i, 0).setTitle(""+i);					
-//			}
-//		}
 	}
 	
 	private void assignIndividualToCellLocationForMatrix(Individual individual, int location, NSMatrix matrix) {
@@ -82,10 +67,10 @@ public class PedigreeViewController extends NSObject {
 		if (individual instanceof Individual.UnknownIndividual) {
 			cell.setTitle("");
 			cell.setEnabled(false);
-			((NSButtonCell) cell).setTransparent(true);
+//			((NSButtonCell) cell).setTransparent(true);
 		} else {
 			cell.setEnabled(true);
-			((NSButtonCell) cell).setTransparent(false);
+//			((NSButtonCell) cell).setTransparent(false);
 			cell.setTitle(individual.getFullName());
 		}
 		cell.setRepresentedObject(individual);

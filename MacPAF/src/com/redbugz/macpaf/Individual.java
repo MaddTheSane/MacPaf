@@ -114,7 +114,7 @@ public interface Individual {
   public Multimedia getPreferredImage();
   public List getAllMultimedia();
 
-  public Individual getPrimarySpouse();
+  public Individual getPreferredSpouse();
 
   public void setPrimarySpouse(Individual primarySpouse);
 
@@ -140,7 +140,7 @@ public interface Individual {
 
   public List getFamiliesAsSpouse();
 
-  public Family getFamilyAsSpouse();
+  public Family getPreferredFamilyAsSpouse();
 
   public void setFamilyAsSpouse(Family fam);
 
@@ -151,6 +151,8 @@ public interface Individual {
   public String getNoteText();
 
   public List getEvents();
+
+  public List getAttributes();
 
   static public class UnknownIndividual implements Individual {
 	private static final Logger log = Logger.getLogger(UnknownIndividual.class);
@@ -239,7 +241,7 @@ public interface Individual {
 	public void setImagePath(URL path) {
 	}
 
-	public Individual getPrimarySpouse() {
+	public Individual getPreferredSpouse() {
 	  return this;
 	}
 
@@ -255,7 +257,7 @@ public interface Individual {
 	  return Family.UNKNOWN_FAMILY;
 	}
 
-	public Family getFamilyAsSpouse() {
+	public Family getPreferredFamilyAsSpouse() {
 	  return Family.UNKNOWN_FAMILY;
 	}
 
@@ -496,8 +498,11 @@ public interface Individual {
 	}
 
 	public List getFamiliesAsSpouse() {
-		// TODO Auto-generated method stub
-		return null;
+		return Collections.EMPTY_LIST;
+	}
+
+	public List getAttributes() {
+		return Collections.EMPTY_LIST;
 	}
 
   }
@@ -507,7 +512,7 @@ public interface Individual {
 	  return Gender.MALE;
 	}
 
-	public Individual getPrimarySpouse() {
+	public Individual getPreferredSpouse() {
 	  return UNKNOWN_FEMALE;
 	}
 
@@ -525,7 +530,7 @@ public interface Individual {
 	  return Gender.FEMALE;
 	}
 
-	public Individual getPrimarySpouse() {
+	public Individual getPreferredSpouse() {
 	  return UNKNOWN_MALE;
 	}
 

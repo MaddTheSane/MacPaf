@@ -336,8 +336,8 @@ public class IndividualLink implements Individual {
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Individual#getPrimarySpouse()
 	 */
-	public Individual getPrimarySpouse() {
-		return getIndividual().getPrimarySpouse();
+	public Individual getPreferredSpouse() {
+		return getIndividual().getPreferredSpouse();
 	}
 
 	/* (non-Javadoc)
@@ -420,8 +420,8 @@ public class IndividualLink implements Individual {
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Individual#getFamilyAsSpouse()
 	 */
-	public Family getFamilyAsSpouse() {
-		return getIndividual().getFamilyAsSpouse();
+	public Family getPreferredFamilyAsSpouse() {
+		return getIndividual().getPreferredFamilyAsSpouse();
 	}
 
 	/* (non-Javadoc)
@@ -475,6 +475,10 @@ public class IndividualLink implements Individual {
 
 	public List getFamiliesAsSpouse() {
 		return getIndividual().getFamiliesAsSpouse();
+	}
+
+	public List getAttributes() {
+		return getIndividual().getAttributes();
 	}
 
 }

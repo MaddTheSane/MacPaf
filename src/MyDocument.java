@@ -17,6 +17,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import org.apache.log4j.Logger;
+import org.apache.log4j.NDC;
 
 import com.apple.cocoa.application.*;
 import com.apple.cocoa.foundation.*;
@@ -100,9 +101,12 @@ public class MyDocument extends NSDocument implements Observer {
   public NSTableView childrenTable; /* IBOutlet */
   public NSTableView spouseTable; /* IBOutlet */
   public PedigreeView pedigreeView; /* IBOutlet */
+  public NSTabView mainTabView; /* IBOutlet */
 //  public IndividualDetailController individualDetailController = new IndividualDetailController(); /* IBOutlet */
 //  public FamilyDetailController familyDetailController = new FamilyDetailController(); /* IBOutlet */
   private NSView printableView;
+  // used to suppress GUI updates while non-GUI updates are happening, for example during import
+private boolean suppressUpdates;
 
 //  private IndividualList startupIndividualList;
 //  private FamilyList startupFamilyList;
@@ -349,12 +353,15 @@ public void sheetDidEndShouldClose2() {
   }
   
   public void setPrimaryIndividual(Individual newIndividual) {
+	  setPrimaryIndividualAndSpouse(newIndividual, newIndividual.getPreferredSpouse());
+  }
+	  public void setPrimaryIndividualAndSpouse(Individual newIndividual, Individual newSpouse) {
 	try {
 		doc.setPrimaryIndividual(newIndividual);
 		assignIndividualToButton(getPrimaryIndividual(), individualButton);
 		// if primary individual is unknown, change button back to enabled
 		individualButton.setEnabled(true);
-		assignIndividualToButton(getPrimaryIndividual().getPrimarySpouse(), spouseButton);
+		assignIndividualToButton(getPrimaryIndividual().getPreferredSpouse(), spouseButton);
 		assignIndividualToButton(getPrimaryIndividual().getFather(), fatherButton);
 		assignIndividualToButton(getPrimaryIndividual().getMother(), motherButton);
 		assignIndividualToButton(getPrimaryIndividual().getFather().getFather(), paternalGrandfatherButton);
@@ -364,9 +371,9 @@ public void sheetDidEndShouldClose2() {
 		noteTextView.setString(getPrimaryIndividual().getNoteText());
 		pedigreeViewController.setPrimaryIndividual(getPrimaryIndividual());
 //		individualDetailController.setIndividual(getPrimaryIndividual());
-		log.debug("famsp id:"+getPrimaryIndividual().getFamilyAsSpouse().getId());
+		log.debug("famsp id:"+getPrimaryIndividual().getPreferredFamilyAsSpouse().getId());
 		log.debug("famch id:"+getPrimaryIndividual().getFamilyAsChild().getId());
-		familyAsSpouseButton.setTitle("Family: "+getPrimaryIndividual().getFamilyAsSpouse().getId());
+		familyAsSpouseButton.setTitle("Family: "+getPrimaryIndividual().getPreferredFamilyAsSpouse().getId());
 		familyAsChildButton.setTitle("Family: "+getPrimaryIndividual().getFamilyAsChild().getId());
 		spouseTable.selectRow(0, false);
 		spouseTable.reloadData();
@@ -446,9 +453,7 @@ public void sheetDidEndShouldClose2() {
 			view.removeFromSuperview();
 			superview.setNeedsDisplay(true);
 			if (tv.tag() == 2) {
-			  assignIndividualToButton(newIndividual, spouseButton);
-			  familyAsSpouseButton.setTitle("Family: "+getCurrentFamily().getId());
-			  childrenTable.reloadData();
+			  setCurrentSpouse(newIndividual);
 			}
 else {
 			  setPrimaryIndividual(newIndividual);
@@ -825,9 +830,11 @@ public static boolean confirmCriticalActionMessage(String message, String detail
 //	if (imageURL != null && imageURL.toString().length() > 0) {
 		  NSImage testImage = MultimediaUtils.makeImageFromMultimedia(indiv.getPreferredImage());
 		  log.debug("button image:"+testImage);
-		  testImage.setSize(new NSSize(50f, 50f));
-		  testImage.setScalesWhenResized(true);
-		  button.setImage(testImage);
+		  if (!testImage.size().isEmpty()) {
+			  testImage.setSize(new NSSize(50f, 50f));
+			  testImage.setScalesWhenResized(true);
+			  button.setImage(testImage);
+		  }
 //	}
 		individualsButtonMap.setObjectForKey(indiv, button.toString());
 	} catch (Exception e) {
@@ -840,7 +847,7 @@ public static boolean confirmCriticalActionMessage(String message, String detail
 	try {
 		log.debug("MyDocument.numberOfRowsInTableView():" + nsTableView.tag());
 		if (nsTableView.tag() == 1) {
-		  if (getPrimaryIndividual().getFamilyAsSpouse() != null) {
+		  if (getPrimaryIndividual().getPreferredFamilyAsSpouse() != null) {
 			int numChildren = getCurrentFamily().getChildren().size();
 			log.debug("numberOfRowsInTableView children: " + numChildren);
 			return numChildren;
@@ -883,9 +890,27 @@ public static boolean confirmCriticalActionMessage(String message, String detail
 	  return "An Error Has Occurred";
 	}
   }
-
+  
+  // used to display row in bold if the child also has children
+  public void tableViewWillDisplayCell(NSTableView aTableView, Object aCell, NSTableColumn aTableColumn, int rowIndex) {
+	  log.debug("MyDocument.tableViewWillDisplayCell():"+aTableView+":"+aCell+":"+aTableColumn+":"+rowIndex);
+	  if (aTableView.tag() == 1 ) {
+		  if (aCell instanceof NSCell) {
+			  NSCell cell = (NSCell) aCell;
+			  Individual child = (Individual) getCurrentFamily().getChildren().get(rowIndex);
+			  if (child.getPreferredFamilyAsSpouse().getChildren().size() > 0) {
+				  log.debug("bolding child name:"+child.getFullName());
+				  cell.setFont(NSFontManager.sharedFontManager().convertFontToHaveTrait(cell.font(), NSFontManager.BoldMask));
+			  } else {
+				  log.debug("unbolding child name:"+child.getFullName());
+				  cell.setFont(NSFontManager.sharedFontManager().convertFontToNotHaveTrait(cell.font(), NSFontManager.BoldMask));
+			  }
+		  }
+	  }
+  }
+  
   private Family getCurrentFamily() {
-	  Family result = getPrimaryIndividual().getFamilyAsSpouse();
+	  Family result = getPrimaryIndividual().getPreferredFamilyAsSpouse();
 	  List families = getPrimaryIndividual().getFamiliesAsSpouse();
 	  if (getPrimaryIndividual().getSpouseList().size() > 0 && spouseTable.selectedRow() >= 0) {
 	  Individual selectedSpouse = (Individual) getPrimaryIndividual().getSpouseList().get(spouseTable.selectedRow());
@@ -898,6 +923,17 @@ public static boolean confirmCriticalActionMessage(String message, String detail
 	  }
 	return result;
 }
+
+  private void setCurrentSpouse(Individual spouse) {
+		assignIndividualToButton(spouse, spouseButton);
+		  familyAsSpouseButton.setTitle("Family: "+getCurrentFamily().getId());
+		  childrenTable.reloadData();
+	}
+
+  public void setCurrentFamily(Family family) {
+	  setPrimaryIndividual(family.getFather());
+	  setCurrentSpouse(family.getMother());
+  }
 
 public void printShowingPrintPanel(boolean showPanels) {
 	log.debug("printshowingprintpanel:" + showPanels);
@@ -1102,7 +1138,7 @@ try {
   public void addNewChild(Object sender) { /* IBAction */
 	log.debug("addNewChild: " + sender);
 	try {
-		Family familyAsSpouse = getPrimaryIndividual().getFamilyAsSpouse();
+		Family familyAsSpouse = getPrimaryIndividual().getPreferredFamilyAsSpouse();
 		if (familyAsSpouse instanceof Family.UnknownFamily) {
 			familyAsSpouse = createAndInsertNewFamily();
 			if (Gender.MALE.equals(getPrimaryIndividual().getGender())) {
@@ -1129,7 +1165,7 @@ try {
 	log.debug("addNewSpouse: " + sender);
 	try {
 		boolean isMale = Gender.MALE.equals(getPrimaryIndividual().getGender());
-		Family familyAsSpouse = getPrimaryIndividual().getFamilyAsSpouse();
+		Family familyAsSpouse = getPrimaryIndividual().getPreferredFamilyAsSpouse();
 		if (familyAsSpouse instanceof Family.UnknownFamily) {
 			familyAsSpouse = createAndInsertNewFamily();
 			if (isMale) {
@@ -1239,6 +1275,22 @@ try {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
+  }
+  
+  public void displayFamilyView(Object sender) { /* IBAction */
+	  mainTabView.selectFirstTabViewItem(sender);
+  }
+
+  public void displayPedigreeView(Object sender) { /* IBAction */
+	  mainTabView.selectTabViewItemAtIndex(1);
+  }
+
+  public void displayIndividualListView(Object sender) { /* IBAction */
+	  mainTabView.selectTabViewItemAtIndex(2);
+  }
+
+  public void displayFamilyListView(Object sender) { /* IBAction */
+	  mainTabView.selectLastTabViewItem(sender);
   }
 
   public void showFamilyList(Object sender) { /* IBAction */
@@ -1359,9 +1411,24 @@ public void update(Observable o, Object arg) {
 }
 
 private void refreshData() {
-	log.debug("MyDocument.refreshData()");
-	setPrimaryIndividual(getPrimaryIndividual());
-	childrenTable.reloadData();
-	spouseTable.reloadData();
+	log.debug("MyDocument.refreshData() suppress:"+suppressUpdates);
+	if (!suppressUpdates) {
+		setPrimaryIndividual(getPrimaryIndividual());
+		childrenTable.reloadData();
+		spouseTable.reloadData();
+		tabFamilyListController.refreshData();
+		tabIndividualListController.refreshData();
+	}
+}
+
+public void startSuppressUpdates() {
+	log.debug("MyDocument.startSuppressUpdates()");
+	NDC.push("suppressUpdates");
+	suppressUpdates = true;
+}
+
+public void endSuppressUpdates() {
+	suppressUpdates = false;
+	NDC.pop();
 }
 }

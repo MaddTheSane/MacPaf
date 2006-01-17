@@ -18,6 +18,10 @@
                 addNewSpouse = id; 
                 deletePrimaryFamily = id; 
                 deletePrimaryIndividual = id; 
+                displayFamilyListView = id; 
+                displayFamilyView = id; 
+                displayIndividualListView = id; 
+                displayPedigreeView = id; 
                 editCurrentFamily = id; 
                 editPrimaryIndividual = id; 
                 exportFile = id; 

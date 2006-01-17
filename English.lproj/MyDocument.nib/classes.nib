@@ -1,6 +1,13 @@
 {
     IBClasses = (
         {
+            ACTIONS = {addEvent = id; editEvent = id; removeEvent = id; }; 
+            CLASS = EventTableController; 
+            LANGUAGE = Java; 
+            OUTLETS = {eventTable = NSTableView; }; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
             CLASS = FamilyDetailController; 
             LANGUAGE = Java; 
             OUTLETS = {
@@ -30,11 +37,13 @@
             OUTLETS = {
                 children = NSTableView; 
                 divorcedSwitch = NSButton; 
+                eventTableController = EventTableController; 
                 husbandButton = NSButton; 
                 marriageForm = NSForm; 
                 saveButton = NSButton; 
                 sealingDate = NSTextField; 
                 sealingTemple = NSComboBox; 
+                tabView = NSTabView; 
                 wifeButton = NSButton; 
             }; 
             SUPERCLASS = NSWindowController; 
@@ -103,6 +112,7 @@
             LANGUAGE = Java; 
             OUTLETS = {
                 afn = NSTextField; 
+                attributeTableController = EventTableController; 
                 baptismDate = NSTextField; 
                 baptismTemple = NSComboBox; 
                 birthForm = NSForm; 
@@ -111,6 +121,7 @@
                 deathForm = NSForm; 
                 endowmentDate = NSTextField; 
                 endowmentTemple = NSComboBox; 
+                eventTableController = EventTableController; 
                 gender = NSPopUpButton; 
                 givenNames = NSTextField; 
                 photo = NSImageView; 
@@ -120,6 +131,7 @@
                 sealingToParentTemple = NSComboBox; 
                 suffix = NSComboBox; 
                 surname = NSComboBox; 
+                tabView = NSTabView; 
             }; 
             SUPERCLASS = NSWindowController; 
         }, 
@@ -172,6 +184,7 @@
                 individualFamilyButton = NSButton; 
                 individualList = IndividualList; 
                 individualListWindowController = IndividualListController; 
+                mainTabView = NSTabView; 
                 maternalGrandfatherButton = NSButton; 
                 maternalGrandmotherButton = NSButton; 
                 motherButton = NSButton; 
@@ -210,9 +223,12 @@
             LANGUAGE = Java; 
             OUTLETS = {
                 gggrandparentsMatrix = NSMatrix; 
-                grandparentsMatrix = NSMatrix; 
                 greatgrandparentsMatrix = NSMatrix; 
+                maternalGrandfatherButton = NSButton; 
+                maternalGrandmotherButton = NSButton; 
                 parentsMatrix = NSMatrix; 
+                paternalGrandfatherButton = NSButton; 
+                paternalGrandmotherButton = NSButton; 
                 primaryIndividualButton = NSButton; 
             }; 
             SUPERCLASS = NSObject; 

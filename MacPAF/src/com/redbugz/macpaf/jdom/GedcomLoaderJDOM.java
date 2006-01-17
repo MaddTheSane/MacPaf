@@ -42,7 +42,7 @@ public class GedcomLoaderJDOM {
 		}
 		try {
 			_progress.setIndeterminate(true);
-			_progress.animate(this);
+			_progress.startAnimation(this);
 			long start = System.currentTimeMillis();
 			//      Document doc = XMLTest.parseGedcom(file);
 			Document newDoc = XMLTest.docParsedWithKay(file);
@@ -61,6 +61,7 @@ public class GedcomLoaderJDOM {
 			
 			long totalElements = familyElements.size() + individualElements.size() + multimediaElements.size() + noteElements.size() + repositoryElements.size() + sourceElements.size() + submitterElements.size()	;
 			_progress.setIndeterminate(false);
+			_progress.setDoubleValue(0.0D);
 			_progress.setMaxValue(totalElements);
 			_progress.displayIfNeeded();
 			

@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<library>
-  <!--JBuilder Library Definition File-->
-  <fullname>Castor</fullname>
-  <class>
-    <path>[lib/castor-0.9.4.3.jar]</path>
-  </class>
-  <lastmodsaved>1077479504039</lastmodsaved>
-</library>

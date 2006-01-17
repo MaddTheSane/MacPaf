@@ -5,13 +5,19 @@ import org.apache.log4j.Logger;
 import com.apple.cocoa.foundation.*;
 import com.apple.cocoa.application.*;
 import com.redbugz.macpaf.Individual;
+import com.redbugz.macpaf.util.CocoaUtils;
 
 public class PedigreeViewController extends NSObject {
 	private static final Logger log = Logger.getLogger(PedigreeViewController.class);
 	
 	
 	public NSMatrix gggrandparentsMatrix; /* IBOutlet */
-	public NSMatrix grandparentsMatrix; /* IBOutlet */
+	// since this NSMatrix overlaps with others, clicking doesn't work, so I have to replace it with individual buttons
+//	public NSMatrix grandparentsMatrix; /* IBOutlet */
+	public NSButton paternalGrandfatherButton; /* IBOutlet */
+	public NSButton paternalGrandmotherButton; /* IBOutlet */
+	public NSButton maternalGrandfatherButton; /* IBOutlet */
+	public NSButton maternalGrandmotherButton; /* IBOutlet */
 	public NSMatrix greatgrandparentsMatrix; /* IBOutlet */
 	public NSMatrix parentsMatrix; /* IBOutlet */
 	public NSButton primaryIndividualButton; /* IBOutlet */
@@ -22,20 +28,25 @@ public class PedigreeViewController extends NSObject {
 		if (sender instanceof NSControl) {
 			NSCell cell = (NSCell) ((NSControl)sender).selectedCell();
 			if (cell != null) {
-				log.debug("cell rep obj:"+cell.representedObject());
+				Object object = cell.representedObject();
+				log.debug("cell rep obj:"+object);
+				if (object instanceof Individual) {
+					Individual individual = (Individual) object;
+					((MyDocument) CocoaUtils.getCurrentDocument()).setPrimaryIndividual(individual);
+				}
 			}
 		}
 	}
 	
 	public void setPrimaryIndividual(Individual primaryIndividual) {
 		log.debug("PedigreeViewController.setPrimaryIndividual()");
-		primaryIndividualButton.setTitle(primaryIndividual.getFullName());
+		assignIndividualToButton(primaryIndividual, primaryIndividualButton);
 		assignIndividualToCellLocationForMatrix(primaryIndividual.getFather(), 0, parentsMatrix);
 		assignIndividualToCellLocationForMatrix(primaryIndividual.getMother(), 1, parentsMatrix);
-		assignIndividualToCellLocationForMatrix(primaryIndividual.getFather().getFather(), 0, grandparentsMatrix);
-		assignIndividualToCellLocationForMatrix(primaryIndividual.getFather().getMother(), 1, grandparentsMatrix);
-		assignIndividualToCellLocationForMatrix(primaryIndividual.getMother().getFather(), 2, grandparentsMatrix);
-		assignIndividualToCellLocationForMatrix(primaryIndividual.getMother().getMother(), 3, grandparentsMatrix);
+		assignIndividualToButton(primaryIndividual.getFather().getFather(), paternalGrandfatherButton);
+		assignIndividualToButton(primaryIndividual.getFather().getMother(), paternalGrandmotherButton);
+		assignIndividualToButton(primaryIndividual.getMother().getFather(), maternalGrandfatherButton);
+		assignIndividualToButton(primaryIndividual.getMother().getMother(), maternalGrandmotherButton);
 		assignIndividualToCellLocationForMatrix(primaryIndividual.getFather().getFather().getFather(), 0, greatgrandparentsMatrix);
 		assignIndividualToCellLocationForMatrix(primaryIndividual.getFather().getFather().getMother(), 1, greatgrandparentsMatrix);
 		assignIndividualToCellLocationForMatrix(primaryIndividual.getFather().getMother().getFather(), 2, greatgrandparentsMatrix);
@@ -64,6 +75,15 @@ public class PedigreeViewController extends NSObject {
 	
 	private void assignIndividualToCellLocationForMatrix(Individual individual, int location, NSMatrix matrix) {
 		NSCell cell = matrix.cellAtLocation(location, 0);
+		setCellProperties(individual, cell);
+	}
+
+	private void assignIndividualToButton(Individual individual, NSButton button) {
+		NSCell cell = button.cell();
+		setCellProperties(individual, cell);
+	}
+
+	private void setCellProperties(Individual individual, NSCell cell) {
 		if (individual instanceof Individual.UnknownIndividual) {
 			cell.setTitle("");
 			cell.setEnabled(false);
@@ -75,4 +95,5 @@ public class PedigreeViewController extends NSObject {
 		}
 		cell.setRepresentedObject(individual);
 	}
+	
 }

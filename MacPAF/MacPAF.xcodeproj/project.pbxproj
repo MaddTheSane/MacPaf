@@ -306,6 +306,7 @@
 		02C5BF790945F5D60086B510 /* concurrent.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 02C5BF780945F5D40086B510 /* concurrent.jar */; };
 		02C5BFBE0948218C0086B510 /* GedcomLoaderJDOM.java in Sources */ = {isa = PBXBuildFile; fileRef = 02C5BFBD0948218C0086B510 /* GedcomLoaderJDOM.java */; };
 		02C5C0C5095466150086B510 /* RecordSelectionWindow.nib in Resources */ = {isa = PBXBuildFile; fileRef = 02C5C0C3095466130086B510 /* RecordSelectionWindow.nib */; };
+		02FE0169097B9B79005531CB /* EventTableController.java in Sources */ = {isa = PBXBuildFile; fileRef = 02FE0168097B9B79005531CB /* EventTableController.java */; };
 		080E96D9FE201CDB7F000001 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */; };
 		080E96DAFE201CDB7F000001 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */; };
 		080E96DBFE201CDB7F000001 /* MyDocument.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B4FDCFA73011CA2CEA /* MyDocument.nib */; };
@@ -492,6 +493,7 @@
 		02C5BF780945F5D40086B510 /* concurrent.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; name = concurrent.jar; path = lib/concurrent.jar; sourceTree = "<group>"; };
 		02C5BFBD0948218C0086B510 /* GedcomLoaderJDOM.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = GedcomLoaderJDOM.java; sourceTree = "<group>"; };
 		02C5C0C4095466140086B510 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/RecordSelectionWindow.nib; sourceTree = "<group>"; };
+		02FE0168097B9B79005531CB /* EventTableController.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = EventTableController.java; path = src/EventTableController.java; sourceTree = "<group>"; };
 		089C1660FE840EACC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		1758732CFF379DAD11CA2CBB /* MacPAF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; path = MacPAF.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -768,6 +770,7 @@
 		32DBCF800370BD9700C91783 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				02FE0168097B9B79005531CB /* EventTableController.java */,
 				025FC089092EC023006B2989 /* FilteredTableViewDataSource.java */,
 				025FC08A092EC024006B2989 /* SortableFilteredTableViewDataSource.java */,
 				02B3D17A077B11CD0069077B /* com */,
@@ -984,6 +987,7 @@
 				02C5BE500939F8EF0086B510 /* ValidationException.java in Sources */,
 				02C5BFBE0948218C0086B510 /* GedcomLoaderJDOM.java in Sources */,
 				021612DD096A499E005AC0B6 /* PedigreeViewController.java in Sources */,
+				02FE0169097B9B79005531CB /* EventTableController.java in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

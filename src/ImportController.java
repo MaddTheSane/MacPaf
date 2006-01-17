@@ -66,7 +66,14 @@ private NSOpenPanel openPanel;
 	try {
 		MyDocument doc = (MyDocument) NSDocumentController.sharedDocumentController().currentDocument();
 		if  (importRadio.selectedTag() == 0) { // import into existing file
+			doc.startSuppressUpdates();
+			try {
 				new GedcomLoaderJDOM(doc.doc, progress).loadXMLFile(new File(filePathField.stringValue()));
+			} catch (RuntimeException e) {
+				throw e;
+			} finally {
+				doc.endSuppressUpdates();
+			}
 		}
 		NSApplication.sharedApplication().endSheet(importWindow);
 	} catch (RuntimeException e) {
@@ -75,8 +82,15 @@ private NSOpenPanel openPanel;
 	} finally {
 		NDC.pop();
 	}
-	
 	importWindow.orderOut(this);
+	resetWindow();
+  }
+  
+  private void resetWindow() {
+	  // prepare window for next use, reset default values
+	  filePathField.setStringValue("");
+	  progress.setIndeterminate(true);
+	  progress.stopAnimation(this);
   }
 
 //  public void setDocument(NSDocument nsDocument) {

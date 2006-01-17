@@ -59,16 +59,16 @@ public class IndividualList /*extends AbstractMap*/ {
 	try {
 	  Individual individual = (Individual) document.doc.getIndividualsMap().values().toArray()[i];
 	  String headerTitle = nsTableColumn.headerCell().stringValue();
-	if (headerTitle.equals("ID")) {
+	if (headerTitle.equalsIgnoreCase("ID")) {
 		return individual.getId();
 	  }
-	  else if (headerTitle.equals("Name")) {
+	  else if (headerTitle.equalsIgnoreCase("Name")) {
 		return individual.getFullName();
 	  }
-	  else if (headerTitle.equals("Birth date")) {
+	  else if (headerTitle.equalsIgnoreCase("Birth Date")) {
 		return individual.getBirthEvent().getDateString();
 	  }
-	  else if (headerTitle.equals("Birth place")) {
+	  else if (headerTitle.equalsIgnoreCase("Birth Place")) {
 		return individual.getBirthEvent().getPlace().getFormatString();
 	  } else {
 		  log.warn("IndividualList unidentified column:" + headerTitle);

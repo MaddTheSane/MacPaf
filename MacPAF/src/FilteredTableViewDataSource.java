@@ -193,7 +193,7 @@ public void setFilterString(String filterString) {
 		for (int j = 0; j < tableColumns.count(); j++) {
 			NSTableColumn tableColumn = (NSTableColumn) tableColumns.objectAtIndex(j);
 			Object object = dataSource().tableViewObjectValueForLocation(tableView, tableColumn, i);
-			String objectString = object.toString();
+			String objectString = String.valueOf(object);
 			if (!isCaseSensitive) {
 				filterString = filterString.toLowerCase();
 				objectString = objectString.toLowerCase();

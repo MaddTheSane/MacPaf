@@ -40,6 +40,7 @@ public class IndividualListController extends NSWindowController {
 			log.debug("selectIndividual Document:"+document());
 			((MyDocument) document()).setPrimaryIndividual(selectedIndividual);
 			((MyDocument) document()).mainWindow.makeKeyAndOrderFront(this);
+			((MyDocument) document()).displayFamilyView(this);
 		}
 	}
 

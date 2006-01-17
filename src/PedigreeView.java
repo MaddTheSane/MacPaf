@@ -227,7 +227,7 @@ public class PedigreeView extends NSView {
 	ordinances[0] = individual.getLDSBaptism();
 	ordinances[1] = individual.getLDSEndowment();
 	ordinances[2] = individual.getLDSSealingToParents();
-	ordinances[3] = individual.getFamilyAsSpouse().getSealingToSpouse();
+	ordinances[3] = individual.getPreferredFamilyAsSpouse().getSealingToSpouse();
 	ordinances[4] = null;
 	log.debug("B size=" + NSGraphics.sizeOfAttributedString(ordString));
 	log.debug("w size=" + NSGraphics.sizeOfAttributedString(ordString2));
@@ -265,7 +265,7 @@ public class PedigreeView extends NSView {
 	String detailStr = "Born: " + birthEvent.getDateString() + "\n";
 	detailStr += "Place: " + birthEvent.getPlace().getFormatString() + "\n";
 	if (individual.getGender().equals(Gender.MALE) /* || currColor++%2==0*/) {
-	  Event marriageEvent = individual.getFamilyAsSpouse().getMarriageEvent();
+	  Event marriageEvent = individual.getPreferredFamilyAsSpouse().getMarriageEvent();
 	  if (marriageEvent == null) {marriageEvent = new MyEvent();
 	  }
 	  detailStr += "Married: " + marriageEvent.getDateString() + "\n";

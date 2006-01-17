@@ -15,6 +15,7 @@ import com.apple.cocoa.application.NSButton;
 import com.apple.cocoa.application.NSComboBox;
 import com.apple.cocoa.application.NSDocument;
 import com.apple.cocoa.application.NSForm;
+import com.apple.cocoa.application.NSTabView;
 import com.apple.cocoa.application.NSTableColumn;
 import com.apple.cocoa.application.NSTableView;
 import com.apple.cocoa.application.NSTextField;
@@ -40,6 +41,8 @@ public class FamilyEditController extends NSWindowController {
   public NSComboBox sealingTemple; /* IBOutlet */
   public NSButton wifeButton; /* IBOutlet */
   public NSButton saveButton; /* IBOutlet */
+  public EventTableController eventTableController; /* IBOutlet */
+  public NSTabView tabView; /* IBOutlet */
 
   private Family family = Family.UNKNOWN_FAMILY;
   private MyDocument document = null;
@@ -59,8 +62,9 @@ private static final String EDIT_CHILD_KEY = "EditChild";
 	//setFamily( ( (MyDocument) document).getPrimaryIndividual().getFamilyAsSpouse());
   }
 
-  public void setFamily(Family family) {
-	System.out.println("FamilyEditController.setFamily(family):"+family);
+  public void setFamily(Family newFamily) {
+	System.out.println("FamilyEditController.setFamily(family):"+newFamily);
+	  family = newFamily;
 	if (family instanceof Family.UnknownFamily) {
 		saveButton.setTitle("Add Family");
 		family = document.createAndInsertNewFamily();
@@ -75,13 +79,15 @@ private static final String EDIT_CHILD_KEY = "EditChild";
 	} else {
 		saveButton.setTitle("Save Family");
 	}
-	this.family = family;
 	husbandButton.setTitle(family.getFather().getFullName());
 	wifeButton.setTitle(family.getMother().getFullName());
 	marriageForm.cellAtIndex(0).setStringValue(family.getMarriageEvent().getDateString());
+	marriageForm.selectTextAtIndex(0);
 	marriageForm.cellAtIndex(1).setStringValue(family.getMarriageEvent().getPlace().getFormatString());
 	sealingDate.setStringValue(family.getSealingToSpouse().getDateString());
 	sealingTemple.setStringValue(family.getSealingToSpouse().getTemple().getCode());
+	eventTableController.setEventSource(family);
+	tabView.selectFirstTabViewItem(this);
   }
 
   public void addChild(Object sender) { /* IBAction */

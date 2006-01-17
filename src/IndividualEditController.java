@@ -14,6 +14,7 @@ import com.apple.cocoa.application.NSDocument;
 import com.apple.cocoa.application.NSForm;
 import com.apple.cocoa.application.NSImageView;
 import com.apple.cocoa.application.NSPopUpButton;
+import com.apple.cocoa.application.NSTabView;
 import com.apple.cocoa.application.NSTextField;
 import com.apple.cocoa.application.NSWindowController;
 import com.redbugz.macpaf.Gender;
@@ -44,6 +45,10 @@ public class IndividualEditController extends NSWindowController {
   public NSComboBox suffix; /* IBOutlet */
   public NSTextField afn; /* IBOutlet */
   public NSTextField rin; /* IBOutlet */
+  public EventTableController eventTableController; /* IBOutlet */
+  public EventTableController attributeTableController; /* IBOutlet */
+  public NSTabView tabView; /* IBOutlet */
+
   private Individual individual;
 
   public void windowDidLoad() {
@@ -130,6 +135,7 @@ public class IndividualEditController extends NSWindowController {
   public void setIndividual(Individual newIndividual) {
 	individual = newIndividual;
 	surname.setStringValue(individual.getSurname());
+	surname.selectText(surname);
 	givenNames.setStringValue(individual.getGivenNames());
 	prefix.setStringValue(individual.getNamePrefix());
 	suffix.setStringValue(individual.getNameSuffix());
@@ -153,6 +159,10 @@ public class IndividualEditController extends NSWindowController {
 	sealingToParentTemple.setStringValue(individual.getLDSSealingToParents().getTemple().getCode());
 	afn.setStringValue(individual.getAFN());
 	rin.setStringValue(String.valueOf(individual.getRin()));
+	eventTableController.setEventSource(newIndividual);
+	attributeTableController.setEventSource(individual);
+	attributeTableController.setEventType("attribute");
+	tabView.selectFirstTabViewItem(this);
   }
 
 //  public void openIndividualEditSheet(Object sender) { /* IBAction */

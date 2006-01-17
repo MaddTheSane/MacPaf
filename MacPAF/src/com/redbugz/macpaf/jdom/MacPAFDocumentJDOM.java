@@ -513,7 +513,6 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 	}
 	
 	public void removeIndividual(Individual individualToRemove) {
-		// TODO naive implementation, still need to handle links to this individual
 		log.warn("removeIndividual() instructed to remove individual from document: "+individualToRemove.getFullName());
 		IndividualJDOM jdomIndividual = getIndividual(individualToRemove.getId());
 		jdomIndividual.getElement().detach();
@@ -534,6 +533,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		update(this, individualToRemove);
 	}
 	
 	private void chooseNewPrimaryIndividual() {
@@ -551,6 +551,20 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 		FamilyJDOM jdomFamily = getFamily(familyToRemove.getId());
 		jdomFamily.getElement().detach();
 		families.remove(familyToRemove.getId());
+		// invalidate links to this person
+		// the only links that should exist are in family records
+		try {
+			List references = XPath.selectNodes(doc, "//*[@REF=\""+familyToRemove.getId()+"\"]");
+			log.debug("while removing family("+familyToRemove.getId()+"), found these references:"+references);
+			for (Iterator iter = references.iterator(); iter.hasNext();) {
+				Element element = (Element) iter.next();
+				element.detach();
+			}
+		} catch (JDOMException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		update(this, familyToRemove);
 	}
 	
 	public Map getFamiliesMap() {

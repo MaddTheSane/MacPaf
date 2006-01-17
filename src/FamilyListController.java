@@ -41,12 +41,15 @@ public class FamilyListController extends NSWindowController {
 			Family selectedFamily = familyList.getSelectedFamily();
 			if (!(selectedFamily instanceof Family.UnknownFamily)) {
 				Individual newPrimaryIndiv = selectedFamily.getFather();
+				Individual spouse = selectedFamily.getMother();
 				if (newPrimaryIndiv instanceof Individual.UnknownIndividual) {
 					newPrimaryIndiv = selectedFamily.getMother();
+					spouse = selectedFamily.getFather();
 				}
 				log.debug("selectFamily Document:"+document());
-				((MyDocument) document()).setPrimaryIndividual(newPrimaryIndiv);
+				((MyDocument) document()).setPrimaryIndividualAndSpouse(newPrimaryIndiv, spouse);
 				((MyDocument) document()).mainWindow.makeKeyAndOrderFront(this);
+				((MyDocument) document()).displayFamilyView(this);
 			}
 		}
 	}

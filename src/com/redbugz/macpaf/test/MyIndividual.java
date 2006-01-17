@@ -258,7 +258,7 @@ public class MyIndividual implements Individual, Cloneable {
 	  complete = true;
 	  Individual child = (Individual) familyAsSpouse.getChildren().get(i);
 	  if (! (child.getLDSBaptism().isCompleted() && child.getLDSEndowment().isCompleted() &&
-			 child.getLDSSealingToParents().isCompleted() && child.getFamilyAsSpouse().getSealingToSpouse().isCompleted())) {
+			 child.getLDSSealingToParents().isCompleted() && child.getPreferredFamilyAsSpouse().getSealingToSpouse().isCompleted())) {
 		return false;
 	  }
 	}
@@ -302,7 +302,7 @@ public class MyIndividual implements Individual, Cloneable {
 	imageURL = path;
   }
 
-  public Individual getPrimarySpouse() {
+  public Individual getPreferredSpouse() {
 	if (gender.equals(Gender.MALE)) {
 	  return familyAsSpouse.getMother();
 	}
@@ -324,7 +324,7 @@ public class MyIndividual implements Individual, Cloneable {
 	return familyAsChild;
   }
 
-  public Family getFamilyAsSpouse() {
+  public Family getPreferredFamilyAsSpouse() {
 	return familyAsSpouse;
   }
 
@@ -518,6 +518,10 @@ public String toString() {
 }
 
 public List getFamiliesAsSpouse() {
+	return Collections.EMPTY_LIST;
+}
+
+public List getAttributes() {
 	return Collections.EMPTY_LIST;
 }
 

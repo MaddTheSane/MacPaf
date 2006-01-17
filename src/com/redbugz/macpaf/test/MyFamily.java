@@ -56,8 +56,8 @@ public class MyFamily implements Family, Cloneable {
 	log.debug("mom=" + this.mom);
 	log.debug("children=" + getChildren().size());
 	log.debug("wedding=" + this.weddingDate);
-	log.debug("dad fam=" + getFather().getFamilyAsSpouse() + " with spouse=" +
-			  getFather().getFamilyAsSpouse().getMother().getFullName());
+	log.debug("dad fam=" + getFather().getPreferredFamilyAsSpouse() + " with spouse=" +
+			  getFather().getPreferredFamilyAsSpouse().getMother().getFullName());
   }
 
   public MyFamily() {

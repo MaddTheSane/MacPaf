@@ -7,8 +7,10 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.jdom.Element;
+import org.jdom.JDOMException;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
+import org.jdom.xpath.XPath;
 
 import com.redbugz.macpaf.Event;
 import com.redbugz.macpaf.Family;
@@ -347,10 +349,48 @@ public class FamilyJDOM implements Family {
   }
 
 public List getEvents() {
-	// TODO: get all the events
-	List list = new ArrayList();
-	list.add(getMarriageEvent());
-	return list;
+//  log.debug("FamilyJDOM.getEvents()");
+//	if (events == null) {
+	  log.debug("FamilyJDOM.getEvents() creating event list");
+	  List events = new ArrayList();
+	  try {
+		XPath xpath = XPath.newInstance(eventNodeNames);
+		log.debug("xpath = " + xpath);
+		List eventNodes = xpath.selectNodes(element); //, eventNodeNames);
+		log.debug("XPath events: " + eventNodes.size());
+		Iterator iter = eventNodes.iterator();
+		while (iter.hasNext()) {
+		  EventJDOM item = new EventJDOM( (Element) iter.next());
+		  events.add(item);
+		}
+	  }
+	  catch (JDOMException ex) {
+		ex.printStackTrace();
+	  }
+	  log.debug("FamilyJDOM.getEvents() creating event list2");
+	  List events2 = new ArrayList();
+	  try {
+		
+		List eventNodes = element.getChildren();//xpath.selectNodes(element); //, eventNodeNames);
+		log.debug("child events: " + eventNodes.size());
+		Iterator iter = eventNodes.iterator();
+		while (iter.hasNext()) {
+			
+		  Element next = (Element) iter.next();
+		  if (eventNodeNames.indexOf(next.getName()) >= 0) {
+		EventJDOM item = new EventJDOM( next);
+		  events2.add(item);
+		  }
+		}
+	  }
+	  catch (Exception ex) {
+		ex.printStackTrace();
+	  }
+	  
+//	}
+log.debug("returning events: "+events.size());
+log.debug("not returning events2: "+events2.size());
+	return events;
 }
 
 public String getNoteText() {
@@ -373,5 +413,7 @@ private List getNotes() {
 	}
 	return notes;
 }
+
+public static final String eventNodeNames = "ANUL | CENS | DIV | DIVF | ENGA | MARR | MARB | MARC | MARL | MARS | EVEN";
 
 }

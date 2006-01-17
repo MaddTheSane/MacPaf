@@ -491,19 +491,19 @@ private void saveName() {
   }
 
   public boolean childrensOrdinancesAreCompleted() {
-	if (getFamilyAsSpouse().getChildren().size() == 0) {
+	if (getPreferredFamilyAsSpouse().getChildren().size() == 0) {
 	  // todo: determine if no children == true
 	  return false;
 	}
 	boolean complete = true;
-	for (int i = 0; i < getFamilyAsSpouse().getChildren().size(); i++) {
+	for (int i = 0; i < getPreferredFamilyAsSpouse().getChildren().size(); i++) {
 	  complete = true;
-	  Individual child = (Individual) getFamilyAsSpouse().getChildren().get(i);
+	  Individual child = (Individual) getPreferredFamilyAsSpouse().getChildren().get(i);
 	  if (! (child.getLDSBaptism().isCompleted()
 			 && child.getLDSEndowment().isCompleted()
 			 && child.getLDSSealingToParents().isCompleted()
 			 && child
-			 .getFamilyAsSpouse()
+			 .getPreferredFamilyAsSpouse()
 			 .getSealingToSpouse()
 			 .isCompleted())) {
 		return false;
@@ -573,14 +573,14 @@ private void saveName() {
 	  throw new UnsupportedOperationException("setImagePath not implemented in IndividualJDOM");
   }
 
-  public Individual getPrimarySpouse() {
+  public Individual getPreferredSpouse() {
 	if (getGender().equals(Gender.MALE)) {
-	  return getFamilyAsSpouse().getMother();
+	  return getPreferredFamilyAsSpouse().getMother();
 	}
 	else if (getGender().equals(Gender.FEMALE)) {
-	  return getFamilyAsSpouse().getFather();
+	  return getPreferredFamilyAsSpouse().getFather();
 	}
-	// todo determine primary spouse
+	// TODO determine preferred spouse
 	return new Individual.UnknownIndividual();
   }
 
@@ -619,7 +619,7 @@ private void saveName() {
 	return familyAsChild;
   }
 
-  public Family getFamilyAsSpouse() {
+  public Family getPreferredFamilyAsSpouse() {
 //	if (familyAsSpouse == null) {
 	  Family familyAsSpouse = Family.UNKNOWN_FAMILY;
 	  try {
@@ -908,7 +908,53 @@ log.debug("not returning events2: "+events2.size());
 	return events;
   }
 
+  public List getAttributes() {
+//    log.debug("IndividualJDOM.getAttributes()");
+//		if (events == null) {
+		  log.debug("IndividualJDOM.getAttributes() creating attribute list");
+		  List attributes = new ArrayList();
+		  try {
+			XPath xpath = XPath.newInstance(attributeNodeNames);
+			log.debug("xpath = " + xpath);
+			List attributeNodes = xpath.selectNodes(element); //, eventNodeNames);
+			log.debug("XPath events: " + attributeNodes.size());
+			Iterator iter = attributeNodes.iterator();
+			while (iter.hasNext()) {
+			  EventJDOM item = new EventJDOM( (Element) iter.next());
+			  attributes.add(item);
+			}
+		  }
+		  catch (JDOMException ex) {
+			ex.printStackTrace();
+		  }
+		  log.debug("IndividualJDOM.getAttributes() creating attribute list2");
+		  List attributes2 = new ArrayList();
+		  try {
+			
+			List attributeNodes = element.getChildren();
+			log.debug("child attributes: " + attributeNodes.size());
+			Iterator iter = attributeNodes.iterator();
+			while (iter.hasNext()) {
+				
+			  Element next = (Element) iter.next();
+			  if (attributeNodeNames.indexOf(next.getName()) >= 0) {
+			EventJDOM item = new EventJDOM( next);
+			  attributes2.add(item);
+			  }
+			}
+		  }
+		  catch (Exception ex) {
+			ex.printStackTrace();
+		  }
+		  
+//		}
+	log.debug("returning attributes: "+attributes.size());
+	log.debug("not returning attributes2: "+attributes2.size());
+		return attributes;
+	}
+
   public static final String eventNodeNames = "BIRT | CHR | DEAT | BURI | CREM | ADOP | BAPM | BARM | BASM | BLES | CHRA | CONF | FCOM | ORDN | NATU | EMIG | IMMI | CENS | PROB | WILL | GRAD | RETI | BAPL | CONL | ENDL | SLGC | EVEN";
+  public static final String attributeNodeNames = "CAST | DSCR | EDUC | IDNO | NATI | NCHI | NMR | OCCU | PROP | RELI | RESI | SSN | TITL";
 
 /* (non-Javadoc)
  * @see com.redbugz.macpaf.Individual#getPreferredImage()

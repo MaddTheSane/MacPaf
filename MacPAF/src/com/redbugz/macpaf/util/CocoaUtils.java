@@ -13,6 +13,8 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import com.apple.cocoa.application.NSComboBox;
+import com.apple.cocoa.application.NSDocument;
+import com.apple.cocoa.application.NSDocumentController;
 import com.apple.cocoa.application.NSImage;
 import com.apple.cocoa.application.NSTableView;
 import com.apple.cocoa.application.NSWindow;
@@ -136,5 +138,9 @@ public class CocoaUtils {
 			result = list.get(0);
 		}
 		return result;
+	}
+
+	public static NSDocument getCurrentDocument() {
+		return NSDocumentController.sharedDocumentController().currentDocument();
 	}
 }

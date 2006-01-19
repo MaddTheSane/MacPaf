@@ -8,7 +8,7 @@ import com.redbugz.macpaf.Family;
 import com.redbugz.macpaf.Individual;
 
 public class FamilyListController extends NSWindowController {
-	private static final NSSelector selectFamilySelector = new NSSelector("selectFamily", new Class[] {Object.class});
+	private static final NSSelector SELECT_FAMILY_SELECTOR = new NSSelector("selectFamily", new Class[] {Object.class});
 
 	private static Logger log = Logger.getLogger(FamilyListController.class);
 
@@ -64,7 +64,8 @@ public class FamilyListController extends NSWindowController {
 		sortableFilteredTableViewDataSource = new SortableFilteredTableViewDataSource(familyListTableView, familyList);
 		familyListTableView.setDataSource(sortableFilteredTableViewDataSource);
 		familyListTableView.setDelegate(this);
-		familyListTableView.setDoubleAction(selectFamilySelector);
+		familyListTableView.setDoubleAction(SELECT_FAMILY_SELECTOR);
+		familyListTableView.setTarget(this);
 		familyList.setDataSource(sortableFilteredTableViewDataSource);
 		searchField.setDelegate(this);
 		refreshData();

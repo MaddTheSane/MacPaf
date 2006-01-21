@@ -29,13 +29,23 @@ public class MainToolbar extends NSToolbar implements NSToolbar.Delegate {
   public static final String FAMILY_LIST_IDENTIFIER = "FamilyList";
 
   NSMutableDictionary toolbarItems = new NSMutableDictionary();
+private NSArray defaultItemIdentifiers = new NSArray(new String[] {
+		  ADD_INDIVIDUAL_IDENTIFIER,
+		  ADD_FAMILY_IDENTIFIER,
+		  EDIT_NOTES_IDENTIFIER,
+		  INDIVIDUAL_LIST_IDENTIFIER,
+		  FAMILY_LIST_IDENTIFIER,
+		  NSToolbarItem.FlexibleSpaceItemIdentifier,
+		  NSToolbarItem.PrintItemIdentifier,
+//		  NSToolbarItem.CustomizeToolbarItemIdentifier
+		});
 
   public MainToolbar() {
 	super("main");
 	setDelegate(this);
-	setAllowsUserCustomization(true);
+	setAllowsUserCustomization(false);
 	setAutosavesConfiguration(true);
-	toolbarItems.setObjectForKey(new NSToolbarItem(NSToolbarItem.CustomizeToolbarItemIdentifier), NSToolbarItem.CustomizeToolbarItemIdentifier);
+//	toolbarItems.setObjectForKey(new NSToolbarItem(NSToolbarItem.CustomizeToolbarItemIdentifier), NSToolbarItem.CustomizeToolbarItemIdentifier);
 	toolbarItems.setObjectForKey(new NSToolbarItem(NSToolbarItem.FlexibleSpaceItemIdentifier), NSToolbarItem.FlexibleSpaceItemIdentifier);
 	toolbarItems.setObjectForKey(createToolbarItem(ADD_FAMILY_IDENTIFIER, "Add Family", createBadgedImage("Family","Badge Add"), new NSSelector("addNewFamily", new Class[] {Object.class})), ADD_FAMILY_IDENTIFIER);
 	toolbarItems.setObjectForKey(createToolbarItem(ADD_INDIVIDUAL_IDENTIFIER, "Add Individual", createBadgedImage("Individual","Badge Add"), new NSSelector("addNewIndividual", new Class[] {Object.class})), ADD_INDIVIDUAL_IDENTIFIER);
@@ -104,16 +114,7 @@ private NSImage createBadgedImage(String imageName, String badgeName) {
    * @return NSArray
    */
   public NSArray toolbarDefaultItemIdentifiers(NSToolbar nSToolbar) {
-	return new NSArray(new String[] {
-	  ADD_INDIVIDUAL_IDENTIFIER,
-	  ADD_FAMILY_IDENTIFIER,
-	  EDIT_NOTES_IDENTIFIER,
-	  INDIVIDUAL_LIST_IDENTIFIER,
-	  FAMILY_LIST_IDENTIFIER,
-	  NSToolbarItem.FlexibleSpaceItemIdentifier,
-	  NSToolbarItem.PrintItemIdentifier,
-	  NSToolbarItem.CustomizeToolbarItemIdentifier
-	});
+	return defaultItemIdentifiers ;
   }
 
   /**

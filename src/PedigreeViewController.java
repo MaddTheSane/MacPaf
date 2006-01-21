@@ -1,14 +1,20 @@
 /* PedigreeViewController */
 
+import java.util.Iterator;
+
 import org.apache.log4j.Logger;
 
 import com.apple.cocoa.foundation.*;
 import com.apple.cocoa.application.*;
+import com.redbugz.macpaf.Family;
 import com.redbugz.macpaf.Individual;
 import com.redbugz.macpaf.util.CocoaUtils;
 
 public class PedigreeViewController extends NSObject {
 	private static final Logger log = Logger.getLogger(PedigreeViewController.class);
+
+
+	private static final NSSelector SELECT_RELATED_INDIVIDUAL_SELECTOR = new NSSelector("selectRelatedIndividual", new Class[] {Object.class});
 	
 	
 	public NSMatrix gggrandparentsMatrix; /* IBOutlet */
@@ -21,6 +27,7 @@ public class PedigreeViewController extends NSObject {
 	public NSMatrix greatgrandparentsMatrix; /* IBOutlet */
 	public NSMatrix parentsMatrix; /* IBOutlet */
 	public NSButton primaryIndividualButton; /* IBOutlet */
+	public NSPopUpButton relatedPopup; /* IBOutlet */
 	
 	public void selectIndividual(Object sender) { /* IBAction */
 		log.debug("PedigreeViewController.selectIndividual():"+sender);
@@ -37,6 +44,22 @@ public class PedigreeViewController extends NSObject {
 			}
 		}
 	}
+	
+	public void selectRelatedIndividual(Object sender) { /* IBAction */
+		log.debug("PedigreeViewController.selectRelatedIndividual():"+sender);
+		log.debug("sender class:"+sender.getClass());
+		if (sender instanceof NSMenuItem) {
+			NSMenuItem item = (NSMenuItem) sender;
+			if (item != null) {
+				Object object = item.representedObject();
+				log.debug("menu item rep obj:"+object);
+				if (object instanceof Individual) {
+					Individual individual = (Individual) object;
+					((MyDocument) CocoaUtils.getCurrentDocument()).setPrimaryIndividual(individual);
+				}
+			}
+		}
+	}	
 	
 	public void setPrimaryIndividual(Individual primaryIndividual) {
 		log.debug("PedigreeViewController.setPrimaryIndividual()");
@@ -71,8 +94,53 @@ public class PedigreeViewController extends NSObject {
 		assignIndividualToCellLocationForMatrix(primaryIndividual.getMother().getMother().getFather().getMother(), 13, gggrandparentsMatrix);
 		assignIndividualToCellLocationForMatrix(primaryIndividual.getMother().getMother().getMother().getFather(), 14, gggrandparentsMatrix);
 		assignIndividualToCellLocationForMatrix(primaryIndividual.getMother().getMother().getMother().getMother(), 15, gggrandparentsMatrix);
+		makeRelatedPopupForIndividual(primaryIndividual);
 	}
 	
+	private void makeRelatedPopupForIndividual(Individual individual) {
+		relatedPopup.removeAllItems();
+		NSMenu menu = relatedPopup.menu();
+		for (Iterator iter1 = individual.getFamiliesAsSpouse().iterator(); iter1.hasNext();) {
+			Family family = (Family) iter1.next();	
+				Individual spouse = family.getMother();
+				if (!(spouse instanceof Individual.UnknownIndividual)) {
+					if (menu.itemArray().count() > 0) {
+						menu.addItem(new NSMenuItem().separatorItem());
+					} else {
+						menu.addItem(new NSMenuItem(spouse.getFullName(), null, ""));
+						menu.setTitle(spouse.getFullName());
+					}
+					menu.addItem(menuItemForIndividual(spouse));			
+				}
+				int i = 0;
+			for (Iterator iter = family.getChildren().iterator(); iter.hasNext();) {
+				Individual child = (Individual) iter.next();
+				if (!(child instanceof Individual.UnknownIndividual)) {
+					menu.addItem(menuItemForIndividualWithPrefix(child, ++i + ". "));			
+				}
+			}
+		}
+		relatedPopup.setMenu(menu);
+		if (menu.itemArray().count() > 0) {
+			relatedPopup.setEnabled(true);
+		} else {
+			relatedPopup.setEnabled(false);
+		}
+	}
+
+	private NSMenuItem menuItemForIndividualWithPrefix(Individual individual, String prefix) {
+		NSMenuItem item = new NSMenuItem();
+		item.setTitle(prefix + individual.getFullName());
+		item.setRepresentedObject(individual);
+		item.setAction(SELECT_RELATED_INDIVIDUAL_SELECTOR);
+		item.setTarget(this);
+		return item;
+	}
+
+	private NSMenuItem menuItemForIndividual(Individual individual) {
+		return menuItemForIndividualWithPrefix(individual, "");
+	}
+
 	private void assignIndividualToCellLocationForMatrix(Individual individual, int location, NSMatrix matrix) {
 		NSCell cell = matrix.cellAtLocation(location, 0);
 		setCellProperties(individual, cell);

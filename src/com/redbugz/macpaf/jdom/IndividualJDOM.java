@@ -640,7 +640,7 @@ public List getFamiliesAsSpouse() {
 	List famLinks = element.getChildren(FAMILY_SPOUSE_LINK);
 	for (Iterator iter = famLinks.iterator(); iter.hasNext();) {
 		Element famLink = (Element) iter.next();		
-		System.out.println("famLink="+famLink);
+//		System.out.println("famLink="+famLink);
 		if (famLink != null) {
 			families.add(new FamilyLink(famLink.getAttributeValue(REF), document));
 		}

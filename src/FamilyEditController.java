@@ -57,13 +57,13 @@ private static final String EDIT_CHILD_KEY = "EditChild";
 
   public void setDocument(NSDocument document) {
 	super.setDocument(document);
-	System.out.println("FamilyEditController.setDocument(document):"+document.fileName());
+	log.debug("FamilyEditController.setDocument(document):"+document.fileName());
 	this.document = (MyDocument) document;
 	//setFamily( ( (MyDocument) document).getPrimaryIndividual().getFamilyAsSpouse());
   }
 
   public void setFamily(Family newFamily) {
-	System.out.println("FamilyEditController.setFamily(family):"+newFamily);
+	log.debug("FamilyEditController.setFamily(family):"+newFamily);
 	  family = newFamily;
 	if (family instanceof Family.UnknownFamily) {
 		saveButton.setTitle("Add Family");
@@ -86,6 +86,7 @@ private static final String EDIT_CHILD_KEY = "EditChild";
 	marriageForm.cellAtIndex(1).setStringValue(family.getMarriageEvent().getPlace().getFormatString());
 	sealingDate.setStringValue(family.getSealingToSpouse().getDateString());
 	sealingTemple.setStringValue(family.getSealingToSpouse().getTemple().getCode());
+	children.reloadData();
 	eventTableController.setEventSource(family);
 	tabView.selectFirstTabViewItem(this);
   }

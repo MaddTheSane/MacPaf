@@ -29,7 +29,7 @@ public class IndividualList /*extends AbstractMap*/ {
 
 
   public IndividualList() {
-	System.out.println("IndividualList.IndividualList()");
+	log.debug("IndividualList.IndividualList()");
 //	Thread.dumpStack();
   }
 
@@ -120,8 +120,7 @@ public class IndividualList /*extends AbstractMap*/ {
 		"IndividualList tableViewSelectionDidChange():" + aNotification);
 	try {
 		NSTableView nsTableView = (NSTableView) aNotification.object();
-		selectedIndividual =
-			(Individual) document.doc.getIndividualsMap().values().toArray()[dataSource.getCurrentSelectedIndex()];
+		selectedIndividual =	(Individual) document.doc.getIndividualsMap().values().toArray()[dataSource.getCurrentSelectedIndex()];
 		nsTableView.reloadData();
 	} catch (Exception e) {
 		// TODO Auto-generated catch block

@@ -23,7 +23,7 @@ public class ApplicationUtilities {
 
   public void applicationWillFinishLaunching(NSNotification aNotification) {
 	log.debug("applicationWillFinishLaunching:" + aNotification);
-	  System.out.println("java.version:"+System.getProperty("java.version"));
+	  log.debug("java.version:"+System.getProperty("java.version"));
 	if (progress != null) {
 	  progress.startAnimation(this);
 	}
@@ -35,8 +35,8 @@ public class ApplicationUtilities {
 	  // open last opened document
 	  String lastOpenedDocument = NSUserDefaults.standardUserDefaults().stringForKey(
 		  "com.redbugz.macpaf.lastOpenedDocument");
-	  System.out.println("lastOpenedDocument=" + lastOpenedDocument);
-	  if (lastOpenedDocument != null) {System.out.println(" exists:"+new File(lastOpenedDocument).exists());}
+	  log.debug("lastOpenedDocument=" + lastOpenedDocument);
+	  if (lastOpenedDocument != null) {log.debug(" exists:"+new File(lastOpenedDocument).exists());}
 	  if (lastOpenedDocument != null && new File(lastOpenedDocument).exists()) {
 		NSDocumentController.sharedDocumentController().openDocumentWithContentsOfFile(lastOpenedDocument, true);
 	  }

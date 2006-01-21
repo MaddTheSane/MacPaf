@@ -51,7 +51,7 @@ public class MultimediaUtils {
 		NSImage image = new NSImage();
 		try {
 			if (multimedia == null) {
-				Thread.dumpStack();
+//				Thread.dumpStack();
 				return image;
 			}
 			if (multimedia.getBytes().length > 0) {
@@ -151,7 +151,7 @@ public class MultimediaUtils {
 	 * @return
 	 */
 	private static File recursiveFileSearch(File startDir, String name) {
-		System.out.println("MultimediaUtils.recursiveFileSearch():"+startDir.getPath()+":"+name);
+		log.debug("MultimediaUtils.recursiveFileSearch():"+startDir.getPath()+":"+name);
 		File file = new File(name);
 		boolean found = false;
 		long startTime = System.currentTimeMillis();

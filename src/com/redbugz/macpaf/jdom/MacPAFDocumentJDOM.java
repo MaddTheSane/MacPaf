@@ -73,7 +73,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 	}
 	
 	public void addFamily(Family newFamily) {
-		System.out.println("MacPAFDocumentJDOM.addFamily(newFamily)");
+		log.debug("MacPAFDocumentJDOM.addFamily(newFamily)");
 		// todo: figure out how to handle RIN vs ID, blank vs dups
 //		if (newFamily.getRin())
 		if (StringUtils.isEmpty(newFamily.getId())) {
@@ -96,7 +96,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 	}
 	
 	public void addIndividual(Individual newIndividual) {
-		System.out.println("MacPAFDocumentJDOM.addIndividual():"+newIndividual);
+		log.debug("MacPAFDocumentJDOM.addIndividual():"+newIndividual);
 		if (newIndividual instanceof Individual.UnknownIndividual) {
 			throw new IllegalArgumentException("Expected IndividualJDOM, received: "+newIndividual.getClass().getName());
 		}
@@ -121,7 +121,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 	 * @param submitter
 	 */
 	public void addSubmitter(Submitter newSubmitter) {
-		System.out.println("MacPAFDocumentJDOM.addSubmitter():"+newSubmitter);
+		log.debug("MacPAFDocumentJDOM.addSubmitter():"+newSubmitter);
 		if (StringUtils.isEmpty(newSubmitter.getId())) {
 			newSubmitter.setId("T"+getNextAvailableSubmitterId());
 			log.info("Submitter added with blank Id. Assigning Id: "+newSubmitter.getId());
@@ -143,7 +143,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 	 * @param repository
 	 */
 	public void addRepository(Repository newRepository) {
-		System.out.println("MacPAFDocumentJDOM.addRepository():"+newRepository);
+		log.debug("MacPAFDocumentJDOM.addRepository():"+newRepository);
 		if (StringUtils.isEmpty(newRepository.getId())) {
 			newRepository.setId("R"+getNextAvailableRepositoryId());
 			log.info("Repository added with blank Id. Assigning Id: "+newRepository.getId());
@@ -162,7 +162,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 	 * @param source
 	 */
 	public void addSource(Source newSource) {
-		System.out.println("MacPAFDocumentJDOM.addSource():"+newSource);
+		log.debug("MacPAFDocumentJDOM.addSource():"+newSource);
 		if (StringUtils.isEmpty(newSource.getId())) {
 			newSource.setId("S"+getNextAvailableSourceId());
 			log.info("Source added with blank Id. Assigning Id: "+newSource.getId());
@@ -183,7 +183,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 	 * @param newNote Note
 	 */
 	public void addNote(Note newNote) {
-		System.out.println("MacPAFDocumentJDOM.addNote():"+newNote);
+		log.debug("MacPAFDocumentJDOM.addNote():"+newNote);
 		if (StringUtils.isEmpty(newNote.getId())) {
 			newNote.setId("N"+getNextAvailableNoteId());
 			log.info("Note added with blank Id. Assigning Id: "+newNote.getId());
@@ -204,7 +204,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 	 * @param newMultimedia Multimedia
 	 */
 	public void addMultimedia(Multimedia newMultimedia) {
-		System.out.println("MacPAFDocumentJDOM.addMultimedia():"+newMultimedia);
+		log.debug("MacPAFDocumentJDOM.addMultimedia():"+newMultimedia);
 		if (StringUtils.isEmpty(newMultimedia.getId())) {
 			newMultimedia.setId("M"+getNextAvailableMultimediaId());
 			log.info("Multimedia added with blank Id. Assigning Id: "+newMultimedia.getId());
@@ -292,7 +292,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 			addIndividual(indi);
 			String newKey = indi.getId();
 			// ID may change when individual is inserted if it is a duplicate
-			System.out.println("indi oldkey="+oldKey+" newkey="+newKey);
+			log.debug("indi oldkey="+oldKey+" newkey="+newKey);
 			if (!newKey.equals(oldKey)) {
 				/** @todo change all instances of the old key to new key in import document */
 				try {
@@ -341,7 +341,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 			addFamily(fam);
 			// ID may change when family is inserted if there is a duplicate
 			String newKey = fam.getId();
-			System.out.println("oldkey="+oldKey+" newkey="+newKey);
+			log.debug("oldkey="+oldKey+" newkey="+newKey);
 			if (!newKey.equals(oldKey)) {
 				/** @todo change all instances of the old key to new key in import document */
 				try {
@@ -536,7 +536,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 		update(this, individualToRemove);
 	}
 	
-	private void chooseNewPrimaryIndividual() {
+	public void chooseNewPrimaryIndividual() {
 		// TODO probably should revert to last person in the history if exists, or other heuristic
 		primaryIndividual = Individual.UNKNOWN;
 		Collection indiList = individuals.values();
@@ -579,7 +579,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
 	 */
 	public void update(Observable o, Object arg) {
-		System.out.println("MacPAFDocumentJDOM.update() observable="+o+", object="+arg);
+		log.debug("MacPAFDocumentJDOM.update() observable="+o+", object="+arg);
 		setChanged();
 		notifyObservers();
 		clearChanged();

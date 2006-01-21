@@ -69,6 +69,10 @@ private NSOpenPanel openPanel;
 			doc.startSuppressUpdates();
 			try {
 				new GedcomLoaderJDOM(doc.doc, progress).loadXMLFile(new File(filePathField.stringValue()));
+				if (doc.getPrimaryIndividual() instanceof Individual.UnknownIndividual) {
+					doc.doc.chooseNewPrimaryIndividual();
+					doc.setPrimaryIndividual(doc.doc.getPrimaryIndividual());
+				}
 			} catch (RuntimeException e) {
 				throw e;
 			} finally {

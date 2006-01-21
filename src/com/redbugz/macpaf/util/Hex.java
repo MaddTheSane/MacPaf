@@ -30,8 +30,12 @@
 
 package com.redbugz.macpaf.util;
 
+import org.apache.log4j.Logger;
+
 public class Hex
     {
+	  private static final Logger log = Logger.getLogger(Hex.class);
+
     // Converts a string of hex digits into a byte array of those digits
     static public byte[] toByteArr(String no)
         {
@@ -76,27 +80,27 @@ public class Hex
     static public String toHex(int[] b)   {return toHex(b, b.length);}
     static public void printHex(String label, byte[] b, int len)
         {
-        System.out.println(label);
+        log.debug(label);
         printHex(b, len);
         }
 
     static public void printHex(String label, short[] b, int len)
         {
-        System.out.println(label);
+        log.debug(label);
         printHex(b, len);
         }
 
     static public void printHex(String label, int[] b, int len)
         {
-        System.out.println(label);
+        log.debug(label);
         printHex(b, len);
         }
 
-    static public void printHex(byte[] b, int len)   {System.out.print(toHexF(b, len));}
+    static public void printHex(byte[] b, int len)   {log.debug(toHexF(b, len));}
 
-    static public void printHex(short[] b, int len)  {System.out.print(toHexF(b, len));}
+    static public void printHex(short[] b, int len)  {log.debug(toHexF(b, len));}
 
-    static public void printHex(int[] b, int len)    {System.out.print(toHexF(b, len));}
+    static public void printHex(int[] b, int len)    {log.debug(toHexF(b, len));}
 
     static public String toHexF(String label, int[] b, int len)
         {

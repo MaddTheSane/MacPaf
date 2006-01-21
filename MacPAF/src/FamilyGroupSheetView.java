@@ -22,7 +22,7 @@ public class FamilyGroupSheetView extends NSView {
   private static final Logger log = Logger.getLogger(FamilyGroupSheetView.class);
 
 //   private NSMutableAttributedString nameText;
-  private Individual individual;
+  private Family family;
   private static final NSFont times8 = NSFont.fontWithNameAndSize("Times-Roman", 8.0f);
   private static final NSFont times9 = NSFont.fontWithNameAndSize("Times-Roman", 9.0f);
   private static final NSFont times10 = NSFont.fontWithNameAndSize("Times-Roman", 10.0f);
@@ -50,18 +50,18 @@ public class FamilyGroupSheetView extends NSView {
   private static final NSDictionary DATA_FONT = times10Dict;
   private static final NSDictionary DATA_BOLD_FONT = times10BoldDict;
 
-  public FamilyGroupSheetView(NSRect frame, Individual individual) {
+  public FamilyGroupSheetView(NSRect frame, Family familyToPrint) {
 	super(frame);
-	log.debug("FamilyGroupSheetView(frame=" + frame + " indi=" + individual.getFullName());
+	log.debug("FamilyGroupSheetView(frame=" + frame + " fam=" + familyToPrint.getFather().getFullName()+"+"+familyToPrint.getMother().getFullName());
 	// Initialization code here.
-	this.individual = individual;
+	this.family = familyToPrint;
 	//log.debug("Fonts: "+NSFontManager.sharedFontManager().availableFonts());
 	//log.debug("Font families: "+NSFontManager.sharedFontManager().availableFontFamilies());
   }
 
   public boolean knowsPageRange(NSMutableRange nsMutableRange) {
 	log.debug("knowsPageRange(range=" + nsMutableRange + ")");
-	final int numChildren = individual.getPreferredFamilyAsSpouse().getChildren().size();
+	final int numChildren = family.getChildren().size();
 	if (numChildren > 5) {
 	  nsMutableRange.setLength(1 + numChildren / 5);
 	  log.debug("pagerange set to " + nsMutableRange + " for " + numChildren + " children.");
@@ -115,7 +115,7 @@ public class FamilyGroupSheetView extends NSView {
 
 	  if (pageNum == 1) {
 //             y += NSGraphics.sizeOfAttributedString(titleStr).height();
-		final Individual husband = individual.getPreferredFamilyAsSpouse().getFather();
+		final Individual husband = family.getFather();
 		final NSMutableAttributedString husbandStr = new NSMutableAttributedString("Husband: "
 			/*+husband.getFullName()*/, LABEL_FONT);
 		husbandStr.appendAttributedString(new NSAttributedString(husband.getFullName(), DATA_BOLD_FONT));
@@ -133,7 +133,7 @@ public class FamilyGroupSheetView extends NSView {
 		y += NSGraphics.sizeOfAttributedString(parentsStr).height();
 		NSGraphics.frameRectWithWidth(new NSRect(0, rect.maxY() - y, rect.width(), y), 2);
 
-		final Individual wife = individual.getPreferredFamilyAsSpouse().getMother();
+		final Individual wife = family.getMother();
 		final NSMutableAttributedString wifeStr = new NSMutableAttributedString("Wife: ", LABEL_FONT);
 		wifeStr.appendAttributedString(new NSAttributedString(wife.getFullName(), DATA_BOLD_FONT));
 		NSGraphics.drawAttributedString(wifeStr, rect.rectByOffsettingRect(4, -y));
@@ -164,7 +164,7 @@ public class FamilyGroupSheetView extends NSView {
 		y += NSGraphics.sizeOfAttributedString(headerStr).height();
 		NSGraphics.frameRect(new NSRect(0, rect.maxY() - y, rect.width(), y));
 		int num = 1;
-		for (Iterator iterator = individual.getPreferredFamilyAsSpouse().getChildren().iterator();
+		for (Iterator iterator = family.getChildren().iterator();
 								 iterator.hasNext() && num <= 5; ) {
 		  Individual child = (Individual) iterator.next();
 		  NSMutableAttributedString numberStr = new NSMutableAttributedString(num++ +".\n", LABEL_FONT);
@@ -202,7 +202,7 @@ public class FamilyGroupSheetView extends NSView {
 	  }
 	  else { // print all pages after one
 //             y += NSGraphics.sizeOfAttributedString(titleStr).height();
-		final Individual husband = individual.getPreferredFamilyAsSpouse().getFather();
+		final Individual husband = family.getFather();
 		final NSMutableAttributedString husbandStr = new NSMutableAttributedString("Husband: "
 			/*+husband.getFullName()*/, LABEL_FONT);
 		husbandStr.appendAttributedString(new NSAttributedString(husband.getFullName(), DATA_BOLD_FONT));
@@ -216,7 +216,7 @@ public class FamilyGroupSheetView extends NSView {
 		y += NSGraphics.sizeOfAttributedString(husbandStr).height();
 		NSGraphics.frameRectWithWidth(new NSRect(0, rect.maxY() - y, rect.width(), y), 0.1f);
 
-		final Individual wife = individual.getPreferredFamilyAsSpouse().getMother();
+		final Individual wife = family.getMother();
 		final NSMutableAttributedString wifeStr = new NSMutableAttributedString("Wife: ", LABEL_FONT);
 		wifeStr.appendAttributedString(new NSAttributedString(wife.getFullName(), DATA_BOLD_FONT));
 		NSGraphics.drawAttributedString(wifeStr, rect.rectByOffsettingRect(4, -y));
@@ -230,8 +230,8 @@ public class FamilyGroupSheetView extends NSView {
 
 		// chidren
 		int num = 6 + (pageNum - 2) * 7;
-		List childrenForPage = individual.getPreferredFamilyAsSpouse().getChildren().subList(num - 1,
-			Math.min(individual.getPreferredFamilyAsSpouse().getChildren().size(), num - 1 + 7));
+		List childrenForPage = family.getChildren().subList(num - 1,
+			Math.min(family.getChildren().size(), num - 1 + 7));
 		String childHeader = "Sex Children\nM/F";
 		String childHeader2 = "List each child (living or dead)\nin order of birth";
 		String childHeader3 = "LDS Ordinance Data\nfor Children";

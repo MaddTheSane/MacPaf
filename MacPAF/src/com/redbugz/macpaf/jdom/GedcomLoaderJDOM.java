@@ -114,14 +114,14 @@ public class GedcomLoaderJDOM {
 				incrementAndUpdateProgress();
 				String newKey = indi.getId();
 				// ID may change when individual is inserted if it is a duplicate
-				System.out.println("indi oldkey="+oldKey+" newkey="+newKey);
+				log.debug("indi oldkey="+oldKey+" newkey="+newKey);
 				if (!newKey.equals(oldKey)) {
 					/** @todo change all instances of the old key to new key in import document */
 					try {
 						String ref = "[@REF='" + oldKey + "']";
 						try {
-							System.err.println("dumping newDoc:"+newDoc);
-							System.err.println("dumping newDoc:"+newDoc.getRootElement());
+							log.debug("dumping newDoc:"+newDoc);
+							log.debug("dumping newDoc:"+newDoc.getRootElement());
 							new XMLOutputter().output(newDoc, System.out);
 						} catch (IOException e) {
 							// TODO Auto-generated catch block
@@ -172,7 +172,7 @@ public class GedcomLoaderJDOM {
 				incrementAndUpdateProgress();
 				// ID may change when family is inserted if there is a duplicate
 				String newKey = fam.getId();
-				System.out.println("oldkey="+oldKey+" newkey="+newKey);
+				log.debug("oldkey="+oldKey+" newkey="+newKey);
 				if (!newKey.equals(oldKey)) {
 					/** @todo change all instances of the old key to new key in import document */
 					try {

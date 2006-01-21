@@ -1,5 +1,7 @@
 package com.redbugz.macpaf.util;
 
+import org.apache.log4j.Logger;
+
 /**
  * Encodes and decodes to and from Base64 notation.
  * Based on code from Robert Harder. I have modified the code to use the different mappings for GEDCOM multimedia encoding/decoding:
@@ -17,7 +19,8 @@ package com.redbugz.macpaf.util;
  */
 public class Base64
 {
-    
+	  private static final Logger log = Logger.getLogger(Base64.class);
+
 /* ********  P U B L I C   F I E L D S  ******** */   
     
     
@@ -645,10 +648,10 @@ public class Base64
         
             return 3;
             }catch( Exception e){
-                System.out.println(""+source[srcOffset]+ ": " + ( DECODABET_GEDCOM[ source[ srcOffset     ] ]  ) );
-                System.out.println(""+source[srcOffset+1]+  ": " + ( DECODABET_GEDCOM[ source[ srcOffset + 1 ] ]  ) );
-                System.out.println(""+source[srcOffset+2]+  ": " + ( DECODABET_GEDCOM[ source[ srcOffset + 2 ] ]  ) );
-                System.out.println(""+source[srcOffset+3]+  ": " + ( DECODABET_GEDCOM[ source[ srcOffset + 3 ] ]  ) );
+                log.debug(""+source[srcOffset]+ ": " + ( DECODABET_GEDCOM[ source[ srcOffset     ] ]  ) );
+                log.debug(""+source[srcOffset+1]+  ": " + ( DECODABET_GEDCOM[ source[ srcOffset + 1 ] ]  ) );
+                log.debug(""+source[srcOffset+2]+  ": " + ( DECODABET_GEDCOM[ source[ srcOffset + 2 ] ]  ) );
+                log.debug(""+source[srcOffset+3]+  ": " + ( DECODABET_GEDCOM[ source[ srcOffset + 3 ] ]  ) );
                 return -1;
             }   //end catch
         }
@@ -707,7 +710,7 @@ public class Base64
             }   // end if: white space, equals sign or better
             else
             {
-                System.err.println( "Bad Base64 input character at " + i + ": " + source[i] + "(decimal)" +Integer.toHexString(source[i]));
+                log.error( "Bad Base64 input character at " + i + ": " + source[i] + "(decimal)" +Integer.toHexString(source[i]));
                 return null;
             }   // end else: 
         }   // each input character
@@ -932,7 +935,7 @@ public class Base64
             // Check for size of file
             if( file.length() > Integer.MAX_VALUE )
             {
-                System.err.println( "File is too big for this convenience method (" + file.length() + " bytes)." );
+                log.error( "File is too big for this convenience method (" + file.length() + " bytes)." );
                 return null;
             }   // end if: file too big for int index
             buffer = new byte[ (int)file.length() ];
@@ -953,7 +956,7 @@ public class Base64
         }   // end try
         catch( java.io.IOException e )
         {
-            System.err.println( "Error decoding from file " + filename );
+            log.error( "Error decoding from file " + filename );
         }   // end catch: IOException
         finally
         {
@@ -1001,7 +1004,7 @@ public class Base64
         }   // end try
         catch( java.io.IOException e )
         {
-            System.err.println( "Error encoding from file " + filename );
+            log.error( "Error encoding from file " + filename );
         }   // end catch: IOException
         finally
         {

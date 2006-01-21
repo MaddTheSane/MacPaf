@@ -513,7 +513,7 @@ if (detailFontDict == narrow8Dict) {
 		adj = 1;
 }
 	  NSRect detailRect = rect.rectByOffsettingRect(detailOffset+1, -NSGraphics.sizeOfAttributedString(detailStr).height() + adj);
-	  System.out.println("font attr:"+detailStr.fontAttributesInRange(new NSRange(0, detailStr.length())));
+	  log.debug("font attr:"+detailStr.fontAttributesInRange(new NSRange(0, detailStr.length())));
 	  NSFont font = (NSFont) detailStr.attributeAtIndex(NSAttributedString.FontAttributeName, 0, null);
 //	  NSGraphics.frameRectWithWidth(detailRect, 0.1f);
 	  NSGraphics.drawAttributedString(detailStr, detailRect.origin());
@@ -554,10 +554,10 @@ if (detailFontDict == narrow8Dict) {
 
   private NSAttributedString makeIndividualDetailStringForRect(Individual individual, NSRect rect) {
 	Event birthEvent = individual.getBirthEvent();
-	System.out.println("birthevent="+birthEvent);
+	log.debug("birthevent="+birthEvent);
 if (birthEvent == null) {birthEvent = new MyEvent();
 }
-	System.out.println("birthplace for indi ("+individual+"): "+birthEvent.getPlace().getFormatString());
+	log.debug("birthplace for indi ("+individual+"): "+birthEvent.getPlace().getFormatString());
 //	NSArray narrowFonts = new NSArray(new String[] {
 //  "ArialNarrow", "AuroraCondensedBT", "DomCasualD-Regu", "Futura-CondensedMedium", "QuickTypeCondensed", "Sedona", "LiGothicMed"
 //	"DomCasualD-Regu", "Futura-CondensedMedium", "Sedona"
@@ -568,14 +568,14 @@ detailStr += birthEvent.getPlace().getFormatString();// + "\n";
 	// check if string is too long for space
 	NSAttributedString resultStr = new NSAttributedString(detailStr, detailFontDict);
 	NSSize strSize = NSGraphics.sizeOfAttributedString(resultStr);
-	System.out.println("detailstr size:"+strSize);
+	log.debug("detailstr size:"+strSize);
 	int abbrevLevel = 0;
 	while ((strSize.width() > rect.width() && ++abbrevLevel <= Place.MAX_SEVERITY)) {
-	  System.err.println("string too long, condensing");//+detailStr.stringReference());
+	  log.error("string too long, condensing");//+detailStr.stringReference());
 	  detailStr = birthEvent.getDateString() +" "+ birthEvent.getPlace().getAbbreviatedFormatString(abbrevLevel);
 	  resultStr = new NSAttributedString(detailStr, detailFontDict);
 	  strSize = NSGraphics.sizeOfAttributedString(resultStr);
-	System.out.println("detailstr size:"+strSize+resultStr);
+	log.debug("detailstr size:"+strSize+resultStr);
 	}
 //	  if (individual.getGender().equals(Gender.MALE) /* || currColor++%2==0*/) {
 //		Event marriageEvent = individual.getFamilyAsSpouse().getMarriageEvent();

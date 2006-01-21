@@ -281,7 +281,9 @@ public void sheetDidEndShouldClose2() {
 	  openFamilyEditSheet(sender);
   }
 	  
-
+  public void printDocument(Object sender) { /* IBAction */
+	  openReportsSheet(sender);
+  }
 		  
   public void openReportsSheet(Object sender) { /* IBAction */
 	( (NSWindowController) reportsWindow.delegate()).setDocument(this);
@@ -315,7 +317,7 @@ public void sheetDidEndShouldClose2() {
 		  case 1:
 			printableView = new FamilyGroupSheetView(new NSRect(0, 0,
 				printInfo().paperSize().width() - printInfo().leftMargin() - printInfo().rightMargin(),
-				printInfo().paperSize().height() - printInfo().topMargin() - printInfo().bottomMargin()), getPrimaryIndividual());
+				printInfo().paperSize().height() - printInfo().topMargin() - printInfo().bottomMargin()), getCurrentFamily());
 			break;
 		  case 3:
 			printableView = new PocketPedigreeView(new NSRect(0, 0,
@@ -386,7 +388,7 @@ public void sheetDidEndShouldClose2() {
 
   public void setIndividual(Object sender) { /* IBAction */
 	try {
-		log.debug("setIndividual to " + sender);
+		log.error("setIndividual to " + sender);
 		if (sender instanceof NSButton) {
 		  try {
 			log.debug("individuals=" + individualsButtonMap.objectForKey(sender.toString()));
@@ -493,7 +495,7 @@ else {
 	  log.debug("indivButton attrTitle: " + text);
 //	  log.debug("indivButton attr at index 5:" + text.attributesAtIndex(5, null));
 	  log.debug("individualList: " + individualsButtonMap.count() + "(" + individualsButtonMap + ")");
-	  System.out.println(" individualList="+individualList);
+	  log.debug(" individualList="+individualList);
 	  log.debug("individualList: " + individualList.size()); // + "(" + indiMap + ")");
 	  individualList.document = this;
 	  familyList.document = this;
@@ -893,19 +895,26 @@ public static boolean confirmCriticalActionMessage(String message, String detail
   
   // used to display row in bold if the child also has children
   public void tableViewWillDisplayCell(NSTableView aTableView, Object aCell, NSTableColumn aTableColumn, int rowIndex) {
-	  log.debug("MyDocument.tableViewWillDisplayCell():"+aTableView+":"+aCell+":"+aTableColumn+":"+rowIndex);
-	  if (aTableView.tag() == 1 ) {
-		  if (aCell instanceof NSCell) {
-			  NSCell cell = (NSCell) aCell;
-			  Individual child = (Individual) getCurrentFamily().getChildren().get(rowIndex);
-			  if (child.getPreferredFamilyAsSpouse().getChildren().size() > 0) {
-				  log.debug("bolding child name:"+child.getFullName());
-				  cell.setFont(NSFontManager.sharedFontManager().convertFontToHaveTrait(cell.font(), NSFontManager.BoldMask));
-			  } else {
-				  log.debug("unbolding child name:"+child.getFullName());
-				  cell.setFont(NSFontManager.sharedFontManager().convertFontToNotHaveTrait(cell.font(), NSFontManager.BoldMask));
+	  log.debug("MyDocument.tableViewWillDisplayCell():"+aTableView.tag()+":"+aCell+":"+aTableColumn.headerCell().stringValue()+":"+rowIndex);
+//	  Thread.dumpStack();
+	  try {
+		  if (aTableView.tag() == 1 ) {
+			  if (aCell instanceof NSCell) {
+				  NSCell cell = (NSCell) aCell;
+				  log.debug("cell str val:"+cell.stringValue());
+				  Individual child = (Individual) getCurrentFamily().getChildren().get(rowIndex);
+				  if (child.getPreferredFamilyAsSpouse().getChildren().size() > 0) {
+					  log.debug("bolding child name:"+child.getFullName());
+					  cell.setFont(NSFontManager.sharedFontManager().convertFontToHaveTrait(cell.font(), NSFontManager.BoldMask));
+				  } else {
+					  log.debug("unbolding child name:"+child.getFullName());
+					  cell.setFont(NSFontManager.sharedFontManager().convertFontToNotHaveTrait(cell.font(), NSFontManager.BoldMask));
+				  }
 			  }
 		  }
+	  } catch (RuntimeException e) {
+		  // TODO Auto-generated catch block
+		  e.printStackTrace();
 	  }
   }
   
@@ -925,6 +934,7 @@ public static boolean confirmCriticalActionMessage(String message, String detail
 }
 
   private void setCurrentSpouse(Individual spouse) {
+	  log.debug("MyDocument.setCurrentSpouse():"+spouse.getFullName());
 		assignIndividualToButton(spouse, spouseButton);
 		  familyAsSpouseButton.setTitle("Family: "+getCurrentFamily().getId());
 		  childrenTable.reloadData();

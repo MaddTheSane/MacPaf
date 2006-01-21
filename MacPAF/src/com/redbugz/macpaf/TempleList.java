@@ -22,7 +22,6 @@ import com.apple.cocoa.foundation.NSBundle;
 
 public class TempleList implements NSComboBox.DataSource {
   private static final Logger log = Logger.getLogger(TempleList.class);
-  private String[] templeStrings = {"SLAKE", "MTIMP", "SGEORG", "NAUVO", "OTHER"};
   private Vector temples = new Vector();
   private static TempleList instance;
 

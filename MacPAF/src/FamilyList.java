@@ -20,7 +20,7 @@ public class FamilyList /*extends AbstractMap*/ {
   private SortableFilteredTableViewDataSource dataSource;// = new SortableFilteredTableViewDataSource();
 
   public FamilyList() {
-	System.out.println("FamilyList.FamilyList()");
+	log.debug("FamilyList.FamilyList()");
 //	if (families == null) {
 //	  families = new ArrayList();
 	  selectedFamily = Family.UNKNOWN_FAMILY;

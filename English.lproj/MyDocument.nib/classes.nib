@@ -218,7 +218,7 @@
         }, 
         {CLASS = PedigreeView; LANGUAGE = ObjC; SUPERCLASS = NSView; }, 
         {
-            ACTIONS = {selectIndividual = id; }; 
+            ACTIONS = {selectIndividual = id; selectRelatedIndividual = id; }; 
             CLASS = PedigreeViewController; 
             LANGUAGE = Java; 
             OUTLETS = {
@@ -230,6 +230,7 @@
                 paternalGrandfatherButton = NSButton; 
                 paternalGrandmotherButton = NSButton; 
                 primaryIndividualButton = NSButton; 
+                relatedPopup = NSPopUpButton; 
             }; 
             SUPERCLASS = NSObject; 
         }, 

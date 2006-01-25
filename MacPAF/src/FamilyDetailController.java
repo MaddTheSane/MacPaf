@@ -106,7 +106,7 @@ public class FamilyDetailController /*extends NSObject*/ {
    */
   public int numberOfRowsInTableView(NSTableView nSTableView) {
 	  if (eventTable == nSTableView) {
-		  return 3;
+		  return family.getEvents().size();
 	  } else if (1 == nSTableView.tag()) {
 		  return family.getChildren().size();
 	  }
@@ -124,7 +124,7 @@ public class FamilyDetailController /*extends NSObject*/ {
   public Object tableViewObjectValueForLocation(NSTableView nSTableView, NSTableColumn nSTableColumn, int int2) {
 //	  log.debug(nSTableView.tag()+nSTableColumn.identifier().toString()+int2);
 	  if (eventTable == nSTableView) {
-		  Event event = new EventJDOM("23 Jun 2000", new PlaceJDOM("Test,Utah,Utah"));//(Event) family.getEv().get(int2);
+		  Event event = (Event) family.getEvents().get(int2);
 		  if ("date".equalsIgnoreCase(nSTableColumn.identifier().toString())) {
 			  return event.getDateString();
 		  }

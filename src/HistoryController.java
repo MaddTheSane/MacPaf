@@ -92,30 +92,31 @@ public class HistoryController implements NSMenu.MenuValidation {
 	}
 
 	public boolean validateMenuItem(_NSObsoleteMenuItemProtocol menuItem) {
-		log.debug("HistoryController.validateMenuItem():"+menuItem);
-		boolean result = false;
-		switch (menuItem.tag()) {
-		case 101:
-			result = true;
-			if (getNextAvailableIndex() < 0) {
-				result = false;
-			} //else if (NSDocumentController.sharedDocumentController().currentDocument())
-				//menuItem.
-			break;
-		case 102:
-		case 110:
-		case 111:
-			result = true;
-			break;
-		default:
-			result = true;
-			if (menuItem.tag() > 0 && (rememberedIndividuals.get(menuItem.tag()-1) instanceof Individual.UnknownIndividual)) {
-				result = false;
-			}
-			break;
-		}
-		log.debug("validateMenuItem done, tag:"+menuItem.tag()+" result:"+result);
-		return result;
+		return false;
+//		log.debug("HistoryController.validateMenuItem():"+menuItem);
+//		boolean result = false;
+//		switch (menuItem.tag()) {
+//		case 101:
+//			result = true;
+//			if (getNextAvailableIndex() < 0) {
+//				result = false;
+//			} //else if (NSDocumentController.sharedDocumentController().currentDocument())
+//				//menuItem.
+//			break;
+//		case 102:
+//		case 110:
+//		case 111:
+//			result = true;
+//			break;
+//		default:
+//			result = true;
+//			if (menuItem.tag() > 0 && (rememberedIndividuals.get(menuItem.tag()-1) instanceof Individual.UnknownIndividual)) {
+//				result = false;
+//			}
+//			break;
+//		}
+//		log.debug("validateMenuItem done, tag:"+menuItem.tag()+" result:"+result);
+//		return result;
 	}
 
 	public List getRecentIndividualList() {

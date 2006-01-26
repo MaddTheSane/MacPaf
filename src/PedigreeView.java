@@ -264,7 +264,7 @@ public class PedigreeView extends NSView {
 	}
 	String detailStr = "Born: " + birthEvent.getDateString() + "\n";
 	detailStr += "Place: " + birthEvent.getPlace().getFormatString() + "\n";
-	if (individual.getGender().equals(Gender.MALE) /* || currColor++%2==0*/) {
+	if (individual.getGender().equals(Gender.MALE) || individual.equals(this.individual)) {
 	  Event marriageEvent = individual.getPreferredFamilyAsSpouse().getMarriageEvent();
 	  if (marriageEvent == null) {marriageEvent = new MyEvent();
 	  }

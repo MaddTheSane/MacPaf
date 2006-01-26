@@ -238,7 +238,7 @@
             ACTIONS = {cancel = id; save = id; }; 
             CLASS = ReportsController; 
             LANGUAGE = Java; 
-            OUTLETS = {reportsRadio = NSMatrix; }; 
+            OUTLETS = {personField = NSTextField; reportsRadio = NSMatrix; }; 
             SUPERCLASS = NSWindowController; 
         }, 
         {

@@ -10,6 +10,7 @@ import org.apache.log4j.Logger;
 import com.apple.cocoa.application.NSApplication;
 import com.apple.cocoa.application.NSDocument;
 import com.apple.cocoa.application.NSMatrix;
+import com.apple.cocoa.application.NSTextField;
 import com.apple.cocoa.application.NSWindowController;
 import com.redbugz.macpaf.Individual;
 
@@ -17,6 +18,7 @@ public class ReportsController extends NSWindowController {
   private static final Logger log = Logger.getLogger(ReportsController.class);
 
   public NSMatrix reportsRadio; /* IBOutlet */
+  public NSTextField personField; /* IBOutlet */
   MyDocument doc;
 
   public void windowDidLoad() {
@@ -48,10 +50,15 @@ public class ReportsController extends NSWindowController {
   public void setDocument(NSDocument nsDocument) {
 	super.setDocument(nsDocument);
 	log.debug("setdocument:" + nsDocument);
-//      log.debug("surname:"+surname);
-	Individual individual = ( (MyDocument) nsDocument).getPrimaryIndividual();
-//      setIndividual(individual);
 	doc = (MyDocument) nsDocument;
+	  try {
+		  log.debug("setting reports person field");
+		  Individual individual = doc.getPrimaryIndividual();
+		  personField.setStringValue(individual.getFullName());
+	  } catch (RuntimeException e) {
+		  // TODO Auto-generated catch block
+		  e.printStackTrace();
+	  }
   }
 
   public void openReportsSheet(Object sender) { /* IBAction */

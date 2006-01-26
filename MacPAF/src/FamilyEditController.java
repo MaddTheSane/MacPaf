@@ -99,25 +99,45 @@ private static final String EDIT_CHILD_KEY = "EditChild";
 	Individual newChild = document.createAndInsertNewIndividual();
 	undoStack.addObject(newChild);
 	newChild.setFamilyAsChild(family);
-	family.addChildAtPosition(newChild, selectedRow);
+	family.addChildAtPosition(newChild, selectedRow+1);
 	children.reloadData();
 	// todo: alternate code for panther here
-	children.selectRow(selectedRow, false);
+	children.selectRow(selectedRow+1, false);
 	editChild(children);
   }
 
   public void removeChild(Object sender) { /* IBAction */
-	if (children.selectedRow() >= 0) {
-	  family.removeChildAtPosition(children.selectedRow());
-	}
-	children.reloadData();
+	  if (children.selectedRow() >= 0) {
+		  family.removeChildAtPosition(children.selectedRow());
+	  }
+	  children.reloadData();
   }
-
+  
+  public void moveChildUp(Object sender) { /* IBAction */
+	  int selectedRow = children.selectedRow();
+	  if (selectedRow >= 0) {
+		  Individual child = (Individual) family.getChildren().get(selectedRow);
+		  family.removeChildAtPosition(selectedRow);
+		  family.addChildAtPosition(child, selectedRow-1);
+	  }
+	  children.reloadData();
+  }
+  
+  public void moveChildDown(Object sender) { /* IBAction */
+	  int selectedRow = children.selectedRow();
+	  if (selectedRow >= 0) {
+		  Individual child = (Individual) family.getChildren().get(selectedRow);
+		  family.removeChildAtPosition(selectedRow);
+		  family.addChildAtPosition(child, selectedRow+1);
+	  }
+	  children.reloadData();
+  }
+  
   public void cancel(Object sender) { /* IBAction */
 //	NSApplication.sharedApplication().stopModal();
   	boolean doCancel = true;
   	if (undoStack.count() > 0) {
-  		doCancel = MyDocument.confirmCriticalActionMessage("Discard the changes you made to this family?", "Details", "Yes", "No");
+  		doCancel = MyDocument.confirmCriticalActionMessage("Discard the changes you made to this family?", "", "Yes", "No");
   	}
   	if (doCancel) {
 		// undo the changes made

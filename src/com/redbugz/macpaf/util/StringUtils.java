@@ -4,6 +4,9 @@
  */
 package com.redbugz.macpaf.util;
 
+import java.util.Collection;
+import java.util.Iterator;
+
 /**
  * @author logan
  *
@@ -39,4 +42,40 @@ public class StringUtils {
 		;
 		return s.substring(0, index).trim() + s.substring(index);
 	  }
+	
+	public static String nonNullString(String string) {
+		String result = "";
+		if (string != null) {
+			result = string;
+		}
+		return result;
+	}
+	
+	public static String join( String token, String[] strings )
+    {
+        StringBuffer sb = new StringBuffer();
+        
+        for( int x = 0; x < ( strings.length - 1 ); x++ )
+        {
+            sb.append( strings[x] );
+            sb.append( token );
+        }
+        sb.append( strings[ strings.length - 1 ] );
+        
+        return( sb.toString() );
+    }
+
+	public static String join( String token, Collection strings )
+    {
+        StringBuffer sb = new StringBuffer();
+        
+        for (Iterator iter = strings.iterator(); iter.hasNext();) {
+            sb.append( iter.next() );
+            if (iter.hasNext()) {
+            		sb.append( token );
+            }
+        }
+        
+        return( sb.toString() );
+    }
 }

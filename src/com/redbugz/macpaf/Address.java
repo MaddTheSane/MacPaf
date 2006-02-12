@@ -16,6 +16,16 @@ import java.util.List;
  * Window - Preferences - Java - Code Generation - Code and Comments
  */
 public interface Address {
+  public static final String ADDRESS = "ADDR";
+  public static final String CONTINUATION = "CONT";
+  public static final String ADDRESS_LINE1 = "ADR1";
+  public static final String ADDRESS_LINE2 = "ADR2";
+  public static final String CITY = "CITY";
+  public static final String STATE = "STAE";
+  public static final String POSTAL_CODE = "POST";
+  public static final String COUNTRY = "CTRY";
+  public static final String PHONE = "PHON";
+
   public List getAddressLines(); // List of String
 
   public void setAddressLines(List addressLines);

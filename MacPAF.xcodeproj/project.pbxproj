@@ -143,7 +143,7 @@
 	<key>NSJavaPath</key>
 	<array>
 		<string>MacPAF.jar</string>
-		<string>lib/castor-0.9.4.3.jar</string>
+		<string>lib/castor-1.0M2-xml.jar</string>
 		<string>lib/gedcom.jar</string>
 		<string>lib/jaxen-core.jar</string>
 		<string>lib/jaxen-jdom.jar</string>
@@ -175,6 +175,8 @@
 		021612DD096A499E005AC0B6 /* PedigreeViewController.java in Sources */ = {isa = PBXBuildFile; fileRef = 021612DC096A499E005AC0B6 /* PedigreeViewController.java */; };
 		0218FF4108F98E4900F67E81 /* AllTests.java in Sources */ = {isa = PBXBuildFile; fileRef = 0218FF3F08F98E4800F67E81 /* AllTests.java */; };
 		0218FF4208F98E4A00F67E81 /* HistoryControllerTest.java in Sources */ = {isa = PBXBuildFile; fileRef = 0218FF4008F98E4900F67E81 /* HistoryControllerTest.java */; };
+		02260200099FD9D70021F22B /* castor-1.0M2-xml.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 022601FF099FD9D70021F22B /* castor-1.0M2-xml.jar */; };
+		0226020A099FD9FA0021F22B /* castor-1.0M2-xml.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 022601FF099FD9D70021F22B /* castor-1.0M2-xml.jar */; };
 		022DDB4808E36C1E00AAA6B1 /* FamilyDetailController.java in Sources */ = {isa = PBXBuildFile; fileRef = 022DDB4708E36C1D00AAA6B1 /* FamilyDetailController.java */; };
 		0236ED1B098D5FEE00E276AB /* commons-codec-1.3.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 0236ED18098D5FED00E276AB /* commons-codec-1.3.jar */; };
 		0236ED1C098D5FEF00E276AB /* commons-httpclient-3.0.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 0236ED19098D5FEE00E276AB /* commons-httpclient-3.0.jar */; };
@@ -230,14 +232,12 @@
 		026ED7E705D932E50001D1D2 /* temple-mapping.xml in Resources */ = {isa = PBXBuildFile; fileRef = 026ED7B505D932E50001D1D2 /* temple-mapping.xml */; };
 		026ED7E805D932E50001D1D2 /* TempleList.xml in Resources */ = {isa = PBXBuildFile; fileRef = 026ED7B605D932E50001D1D2 /* TempleList.xml */; };
 		026ED7E905D932E50001D1D2 /* XmlToGedcom.xsl in Resources */ = {isa = PBXBuildFile; fileRef = 026ED7B705D932E50001D1D2 /* XmlToGedcom.xsl */; };
-		026ED7F905D9330B0001D1D2 /* castor-0.9.4.3.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 026ED7F205D9330B0001D1D2 /* castor-0.9.4.3.jar */; };
 		026ED7FA05D9330B0001D1D2 /* gedcom.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 026ED7F305D9330B0001D1D2 /* gedcom.jar */; };
 		026ED7FB05D9330B0001D1D2 /* jaxen-core.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 026ED7F405D9330B0001D1D2 /* jaxen-core.jar */; };
 		026ED7FC05D9330B0001D1D2 /* jaxen-jdom.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 026ED7F505D9330B0001D1D2 /* jaxen-jdom.jar */; };
 		026ED7FD05D9330B0001D1D2 /* jdom-1.0.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 026ED7F605D9330B0001D1D2 /* jdom-1.0.jar */; };
 		026ED7FE05D9330B0001D1D2 /* saxpath.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 026ED7F705D9330B0001D1D2 /* saxpath.jar */; };
 		02753D03066A46890059C930 /* PocketPedigreeView.java in Sources */ = {isa = PBXBuildFile; fileRef = 02753D02066A46890059C930 /* PocketPedigreeView.java */; };
-		027C6AD905D9447B00C91D7B /* castor-0.9.4.3.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 026ED7F205D9330B0001D1D2 /* castor-0.9.4.3.jar */; };
 		027C6ADA05D9447B00C91D7B /* gedcom.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 026ED7F305D9330B0001D1D2 /* gedcom.jar */; };
 		027C6ADB05D9447B00C91D7B /* jaxen-core.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 026ED7F405D9330B0001D1D2 /* jaxen-core.jar */; };
 		027C6ADC05D9447B00C91D7B /* jaxen-jdom.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 026ED7F505D9330B0001D1D2 /* jaxen-jdom.jar */; };
@@ -362,7 +362,7 @@
 			dstPath = lib;
 			dstSubfolderSpec = 15;
 			files = (
-				027C6AD905D9447B00C91D7B /* castor-0.9.4.3.jar in CopyFiles */,
+				0226020A099FD9FA0021F22B /* castor-1.0M2-xml.jar in CopyFiles */,
 				027C6ADA05D9447B00C91D7B /* gedcom.jar in CopyFiles */,
 				027C6ADB05D9447B00C91D7B /* jaxen-core.jar in CopyFiles */,
 				027C6ADC05D9447B00C91D7B /* jaxen-jdom.jar in CopyFiles */,
@@ -386,6 +386,7 @@
 		021612DC096A499E005AC0B6 /* PedigreeViewController.java */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.java; name = PedigreeViewController.java; path = src/PedigreeViewController.java; sourceTree = "<group>"; };
 		0218FF3F08F98E4800F67E81 /* AllTests.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = AllTests.java; path = src/AllTests.java; sourceTree = "<group>"; };
 		0218FF4008F98E4900F67E81 /* HistoryControllerTest.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = HistoryControllerTest.java; path = src/HistoryControllerTest.java; sourceTree = "<group>"; };
+		022601FF099FD9D70021F22B /* castor-1.0M2-xml.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; name = "castor-1.0M2-xml.jar"; path = "lib/castor-1.0M2-xml.jar"; sourceTree = "<group>"; };
 		022DDB4708E36C1D00AAA6B1 /* FamilyDetailController.java */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.java; name = FamilyDetailController.java; path = src/FamilyDetailController.java; sourceTree = "<group>"; };
 		0236ED18098D5FED00E276AB /* commons-codec-1.3.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; name = "commons-codec-1.3.jar"; path = "lib/commons-codec-1.3.jar"; sourceTree = "<group>"; };
 		0236ED19098D5FEE00E276AB /* commons-httpclient-3.0.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; name = "commons-httpclient-3.0.jar"; path = "lib/commons-httpclient-3.0.jar"; sourceTree = "<group>"; };
@@ -434,7 +435,6 @@
 		026ED7B505D932E50001D1D2 /* temple-mapping.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "temple-mapping.xml"; sourceTree = "<group>"; };
 		026ED7B605D932E50001D1D2 /* TempleList.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TempleList.xml; sourceTree = "<group>"; };
 		026ED7B705D932E50001D1D2 /* XmlToGedcom.xsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = XmlToGedcom.xsl; sourceTree = "<group>"; };
-		026ED7F205D9330B0001D1D2 /* castor-0.9.4.3.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; name = "castor-0.9.4.3.jar"; path = "lib/castor-0.9.4.3.jar"; sourceTree = "<group>"; };
 		026ED7F305D9330B0001D1D2 /* gedcom.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; name = gedcom.jar; path = lib/gedcom.jar; sourceTree = "<group>"; };
 		026ED7F405D9330B0001D1D2 /* jaxen-core.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; name = "jaxen-core.jar"; path = "lib/jaxen-core.jar"; sourceTree = "<group>"; };
 		026ED7F505D9330B0001D1D2 /* jaxen-jdom.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; name = "jaxen-jdom.jar"; path = "lib/jaxen-jdom.jar"; sourceTree = "<group>"; };
@@ -535,7 +535,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1058C7A9FEA54F5311CA2CBB /* Cocoa.framework in Frameworks */,
-				026ED7F905D9330B0001D1D2 /* castor-0.9.4.3.jar in Frameworks */,
+				02260200099FD9D70021F22B /* castor-1.0M2-xml.jar in Frameworks */,
 				026ED7FA05D9330B0001D1D2 /* gedcom.jar in Frameworks */,
 				026ED7FB05D9330B0001D1D2 /* jaxen-core.jar in Frameworks */,
 				026ED7FC05D9330B0001D1D2 /* jaxen-jdom.jar in Frameworks */,
@@ -774,6 +774,7 @@
 		2A37F4C3FDCFA73011CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				022601FF099FD9D70021F22B /* castor-1.0M2-xml.jar */,
 				026AAA39099F225C00F742A5 /* joda-time-1.2.jar */,
 				0236ED18098D5FED00E276AB /* commons-codec-1.3.jar */,
 				0236ED19098D5FEE00E276AB /* commons-httpclient-3.0.jar */,
@@ -782,7 +783,6 @@
 				0260D11208F9D6E000F9A745 /* junit.jar */,
 				02370211062059920087E765 /* log4j.properties */,
 				023701D7062056080087E765 /* log4j-1.2.9.jar */,
-				026ED7F205D9330B0001D1D2 /* castor-0.9.4.3.jar */,
 				026ED7F305D9330B0001D1D2 /* gedcom.jar */,
 				026ED7F405D9330B0001D1D2 /* jaxen-core.jar */,
 				026ED7F505D9330B0001D1D2 /* jaxen-jdom.jar */,

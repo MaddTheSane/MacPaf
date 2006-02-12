@@ -8,6 +8,7 @@
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Enumeration;
@@ -15,7 +16,17 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
+import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.HttpStatus;
+import org.apache.commons.httpclient.methods.MultipartPostMethod;
+import org.apache.commons.httpclient.methods.PostMethod;
+import org.apache.commons.httpclient.methods.multipart.FilePart;
+import org.apache.commons.httpclient.methods.multipart.MultipartRequestEntity;
+import org.apache.commons.httpclient.methods.multipart.Part;
+import org.apache.commons.httpclient.methods.multipart.StringPart;
 import org.apache.log4j.Logger;
 import org.apache.log4j.NDC;
 
@@ -102,6 +113,9 @@ public class MyDocument extends NSDocument implements Observer {
   public NSTableView spouseTable; /* IBOutlet */
   public PedigreeView pedigreeView; /* IBOutlet */
   public NSTabView mainTabView; /* IBOutlet */
+  public NSWindow bugReportWindow; /* IBOutlet */
+  public NSButton bugReportFileCheckbox; /* IBOutlet */
+  public NSTextView bugReportText; /* IBOutlet */
 //  public IndividualDetailController individualDetailController = new IndividualDetailController(); /* IBOutlet */
 //  public FamilyDetailController familyDetailController = new FamilyDetailController(); /* IBOutlet */
   private NSView printableView;
@@ -1334,8 +1348,95 @@ try {
 		e.printStackTrace();
 	}
   }
+
+  public void showBugReportWindow(Object sender) { /* IBAction */
+	log.debug("showBugReportWindow: " + sender);
+	if (bugReportWindow != null) {
+		bugReportText.setString("");
+		bugReportWindow.makeKeyAndOrderFront(sender);
+	}
+  }
   
-	public void forgetIndividual(Object sender) { /* IBAction */
+  public void transmitBugReport(Object sender) { /* IBAction */
+		log.debug("transmitBugReport: " + sender);
+	    // These are the files to include in the ZIP file
+	    String[] filenames = new String[]{"filename1", "filename2"};
+	    
+	    // Create a buffer for reading the files
+	    byte[] buf = new byte[1024];
+	    
+	    try {
+	        // Create the ZIP file
+	        String outFilename = "outfile.zip";
+	        ZipOutputStream out = new ZipOutputStream(new FileOutputStream(outFilename));
+	    
+	        // Compress the files
+	        for (int i=0; i<filenames.length; i++) {
+	            FileInputStream in = new FileInputStream(filenames[i]);
+	    
+	            // Add ZIP entry to output stream.
+	            out.putNextEntry(new ZipEntry(filenames[i]));
+	    
+	            // Transfer bytes from the file to the ZIP file
+	            int len;
+	            while ((len = in.read(buf)) > 0) {
+	                out.write(buf, 0, len);
+	            }
+	    
+	            // Complete the entry
+	            out.closeEntry();
+	            in.close();
+	        }
+	    
+	        // Complete the ZIP file
+	        out.close();
+	    } catch (IOException e) {
+	    }
+		if (bugReportFileCheckbox.state() == NSCell.OnState) {
+			
+		}
+//        MultipartPostMethod filePost =
+//            new MultipartPostMethod(targetURL);
+//		String targetURL = "http://macpaf.sourceforge.net/phpemail/mail.php";
+		String targetURL = "http://localhost/~logan/phpemail/mail.php";
+		PostMethod filePost = new PostMethod(targetURL);
+//		filePost.setFollowRedirects(true);
+        try {
+            File targetFile = new File("/Users/logan/Library/Logs/macpaf.log");
+    		Part[] parts = { new StringPart("from", "logan@mac.com"),
+    				new StringPart("to", "redbugz@gmail.com"),
+    				new StringPart("subject", "MacPAF Bug Report Test"),
+    				new StringPart("message", bugReportText.string()),
+    				new FilePart(targetFile.getName(), targetFile) };
+    		filePost.setRequestEntity(new MultipartRequestEntity(parts, filePost
+    				.getParams()));
+//    		HttpClient client = new HttpClient();
+//    		int status = client.executeMethod(filePost);
+    		
+            log.debug("Uploading " + targetFile.getName() + " to " + targetURL);
+//            filePost.addParameter(targetFile.getName(), targetFile);
+            HttpClient client = new HttpClient();
+            client.setConnectionTimeout(5000);
+            int status = client.executeMethod(filePost);
+            if (status == HttpStatus.SC_OK) {
+                log.debug(
+                    "Upload complete, response=" + filePost.getResponseBodyAsString()
+                );
+            } else {
+                log.debug(
+                    "Upload failed, response=" + HttpStatus.getStatusText(status)
+                );
+            }
+        } catch (Exception ex) {
+            log.debug("Error: " + ex.getMessage());
+            ex.printStackTrace();
+        } finally {
+            filePost.releaseConnection();
+        }
+
+  }
+
+  public void forgetIndividual(Object sender) { /* IBAction */
     	log.debug("MyDocument.forgetIndividual():"+sender);
     	historyController.forgetIndividual(getPrimaryIndividual());
     }

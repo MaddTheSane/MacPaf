@@ -33,6 +33,7 @@
                 recallLastFoundIndividual = id; 
                 recallLastSavedIndividual = id; 
                 rememberIndividual = id; 
+                showBugReportWindow = id; 
                 showFamilyList = id; 
                 showIndividualList = id; 
             }; 

@@ -166,10 +166,14 @@
                 saveIndividual = id; 
                 setIndividual = id; 
                 setPrintableView = id; 
+                transmitBugReport = id; 
             }; 
             CLASS = MyDocument; 
             LANGUAGE = Java; 
             OUTLETS = {
+                bugReportFileCheckbox = NSSwit; 
+                bugReportText = NSTextView; 
+                bugReportWindow = NSWindow; 
                 childrenTable = NSTableView; 
                 familyAsChildButton = NSButton; 
                 familyAsSpouseButton = NSButton; 

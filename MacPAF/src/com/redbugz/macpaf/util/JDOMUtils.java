@@ -1,5 +1,6 @@
 package com.redbugz.macpaf.util;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -9,6 +10,8 @@ import org.jdom.Content;
 import org.jdom.Element;
 import org.jdom.JDOMException;
 import org.jdom.xpath.XPath;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 
 import com.redbugz.macpaf.Event;
 import com.redbugz.macpaf.jdom.EventJDOM;
@@ -20,8 +23,7 @@ public class JDOMUtils {
 //		return makeChildElement(elementName, element);
 //	}
 
-	private static SimpleDateFormat simpleDateFormat;
-	private static final SimpleDateFormat SIMPLE_DATE_FORMAT = simpleDateFormat;
+	private static final DateTimeFormatter SIMPLE_DATE_FORMAT = DateTimeFormat.forPattern("dd MMM yyyy");
 
 	public static Element makeChildElement(String elementName,	Element parentElement) {
 		if (parentElement == null) {
@@ -60,8 +62,8 @@ public class JDOMUtils {
 	public static Date dateFromElementText(String childText) {
 		Date result = null;
 		try {
-			result = SIMPLE_DATE_FORMAT.parse(childText);
-		} catch (ParseException e) {
+			result = SIMPLE_DATE_FORMAT.parseDateTime(childText).toDate();
+		} catch (Exception e) {
 			log.warn("Could not parse date from JDOM element:"+childText);
 		}
 		return result;

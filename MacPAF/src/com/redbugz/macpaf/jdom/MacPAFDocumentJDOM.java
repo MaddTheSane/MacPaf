@@ -22,6 +22,7 @@ import org.jdom.output.XMLOutputter;
 import org.jdom.xpath.XPath;
 
 import com.redbugz.macpaf.*;
+import com.redbugz.macpaf.util.JDOMUtils;
 import com.redbugz.macpaf.util.StringUtils;
 import com.redbugz.macpaf.util.XMLTest;
 import com.redbugz.macpaf.validation.UnknownGedcomLinkException;
@@ -61,8 +62,8 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 	public MacPAFDocumentJDOM() {
 		Element root = new Element("GED");
 		doc = new Document(root);
-		root.addContent(new HeaderJDOM().getElement());
-		root.addContent(new SubmitterJDOM(this).getElement());
+		Submitter submitter = createAndInsertNewSubmitter();
+		root.addContent(0, new HeaderJDOM(submitter).getElement());
 	}
 	
 	public void addFamily(Family newFamily) {
@@ -273,16 +274,16 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 				log.debug("Header sourcename:"+header.getSourceName());
 				log.debug("Header sourceversion:"+header.getSourceVersion());
 				log.debug("Header sourcedatadate:"+header.getSourceDataDate());
-				log.debug("Header submission:"+header.getSubmission());
-				log.debug("Header submitter:"+header.getSubmitter());
 				log.debug("Header creationdate:"+header.getCreationDate());
 				log.debug("Header note:"+header.getNote());
 				log.debug("Header element:"+header.getElement());
+
+				log.debug("Header submission:"+header.getSubmission());
+				log.debug("Header submitter:"+header.getSubmitter());
 			} catch (RuntimeException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-//		log.debug("submission record: " + new SubmitterJDOM(root.getChild("SUBN"), this));
 			log.debug("file has:\n\t" + individualElements.size() + " individuals\n\t" + familyElements.size() + " families\n\t" + noteElements.size() +
 					" notes\n\t" + multimediaElements.size() + " multimedia objects\n\t" + sourceElements.size() + " sources\n\t" +
 					repositoryElements.size() + " repositories\n\t" + submitterElements.size() + " submitters\n");
@@ -809,12 +810,22 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 	}
 
 	public void outputToTempleReady(FileOutputStream stream) {
-		new HeaderJDOM(doc.getRootElement().getChild(Header.HEADER), this).setDestination(Header.DEST_TEMPLE_READY);
+		getHeader().setDestination(Header.DEST_TEMPLE_READY);
 		XMLTest.outputWithKay(doc, stream);
 	}
 
 	public Submission getSubmission() {
-		return new SubmissionJDOM(doc.getRootElement().getChild(Submission.SUBMISSION), this);
+		// TODO decide if this should be a Submission.EmptySubmission or similar
+		SubmissionJDOM result = null;
+		Element submission = doc.getRootElement().getChild(Submission.SUBMISSION);
+		if (submission != null) {
+			result = new SubmissionJDOM(submission, this);
+		}
+		return result;
+	}
+
+	public Header getHeader() {
+		return new HeaderJDOM(doc.getRootElement().getChild(Header.HEADER), this);
 	}
 }
 

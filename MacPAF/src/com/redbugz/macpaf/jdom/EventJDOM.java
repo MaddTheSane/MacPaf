@@ -1,13 +1,18 @@
 package com.redbugz.macpaf.jdom;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+//import java.text.DateFormat;
+//import java.text.ParseException;
+//import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
 import org.apache.log4j.Logger;
+import org.apache.log4j.helpers.DateTimeDateFormat;
 import org.jdom.Element;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+
 import com.redbugz.macpaf.Event;
 import com.redbugz.macpaf.Family;
 import com.redbugz.macpaf.Place;
@@ -23,9 +28,10 @@ import com.redbugz.macpaf.util.StringUtils;
 public class EventJDOM implements Event {
   private static final Logger log = Logger.getLogger(EventJDOM.class);
   private Date date = new GregorianCalendar(2000, 6, 23).getTime();
-  private String dateString = "";
+//  private String dateString = "";
   private Place place =  Place.UNKNOWN_PLACE;
-  protected DateFormat dateFormat = new SimpleDateFormat("dd MMM yyyy");
+  DateTimeFormatter dateFormat = DateTimeFormat.forPattern("dd MMM yyyy");
+//  protected DateTimeFormatter dateFormat = DateTimeFormat.forPattern("dd MMM yyyy");
   Element element = new Element("EVEN");
 //   private String type = "";
 //   protected String cause = "";
@@ -51,10 +57,11 @@ public class EventJDOM implements Event {
   public Date getDate() {
 	try {
 		if (!StringUtils.isEmpty(getDateString())) {
-			date = dateFormat.parse(getDateString());
+			date = DateTimeDateFormat.getInstance().parse(getDateString());
+//			date = dateFormat.parse(getDateString());
 		}
 	}
-	catch (ParseException e) {
+	catch (Exception e) {
 	  // TODO Auto-generated catch block
 	  log.error("Date Parse error: "+e.getMessage());
 	}
@@ -126,7 +133,7 @@ public class EventJDOM implements Event {
   }
 
   public void setDate(Date date) {
-	setDateString(dateFormat.format(date));
+	setDateString(dateFormat.print(new DateTime(date)));
   }
 
   public String getDateString() {
@@ -141,12 +148,12 @@ public class EventJDOM implements Event {
 //      this.dateString = dateString;
 	try {
 		if (!StringUtils.isEmpty(getDateString())) {
-			date = dateFormat.parse(getDateString());
+			date = dateFormat.parseDateTime(getDateString()).toDate();
 		} else {
 			date = null;
 		}
 	}
-	catch (ParseException e) {
+	catch (Exception e) {
 	  date = null;
 	  log.error("Date Parse error: "+e.getMessage());
 	}

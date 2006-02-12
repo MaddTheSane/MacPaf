@@ -32,7 +32,7 @@ public class SubmitterJDOM implements Submitter {
   		throw new IllegalArgumentException("Cannot create SubmitterJDOM with null parentDocument");
   	}
   	document = parentDocument;
-	element.setAttribute("ID", "S1");
+	element.setAttribute("ID", "T1");
 	List elements = new ArrayList();
 	elements.add(new Element(NAME).setText(""));
 	element.setContent(elements);

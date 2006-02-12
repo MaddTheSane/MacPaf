@@ -157,6 +157,7 @@
 		<string>lib/commons-codec-1.3.jar</string>
 		<string>lib/commons-logging.jar</string>
 		<string>lib/commons-httpclient-3.0.jar</string>
+		<string>lib/joda-time-1.2.jar</string>
 	</array>
 	<key>NSJavaRoot</key>
 	<string>Contents/Resources/Java</string>
@@ -195,6 +196,9 @@
 		025FC08E092EC045006B2989 /* WrappedTableViewDataSource.java in Sources */ = {isa = PBXBuildFile; fileRef = 025FC08D092EC045006B2989 /* WrappedTableViewDataSource.java */; };
 		0260D11308F9D6E100F9A745 /* junit.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 0260D11208F9D6E000F9A745 /* junit.jar */; };
 		0260D12208F9DAA800F9A745 /* saxpath.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 026ED7F705D9330B0001D1D2 /* saxpath.jar */; };
+		026AAA38099F222200F742A5 /* HeaderJDOMTest.java in Sources */ = {isa = PBXBuildFile; fileRef = 026AAA37099F222200F742A5 /* HeaderJDOMTest.java */; };
+		026AAA3A099F225C00F742A5 /* joda-time-1.2.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 026AAA39099F225C00F742A5 /* joda-time-1.2.jar */; };
+		026AAA3C099F22B000F742A5 /* joda-time-1.2.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 026AAA39099F225C00F742A5 /* joda-time-1.2.jar */; };
 		026BF51807AD765200CBA37C /* Family.png in Resources */ = {isa = PBXBuildFile; fileRef = 026BF51707AD765200CBA37C /* Family.png */; };
 		026BF51A07AD992300CBA37C /* Individual.png in Resources */ = {isa = PBXBuildFile; fileRef = 026BF51907AD992300CBA37C /* Individual.png */; };
 		026ED74C05D932BD0001D1D2 /* ApplicationUtilities.java in Sources */ = {isa = PBXBuildFile; fileRef = 026ED71205D932BC0001D1D2 /* ApplicationUtilities.java */; };
@@ -372,6 +376,7 @@
 				0236ED1E098D609D00E276AB /* commons-codec-1.3.jar in CopyFiles */,
 				0236ED1F098D609D00E276AB /* commons-httpclient-3.0.jar in CopyFiles */,
 				0236ED20098D609D00E276AB /* commons-logging.jar in CopyFiles */,
+				026AAA3C099F22B000F742A5 /* joda-time-1.2.jar in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,6 +401,8 @@
 		025FC08A092EC024006B2989 /* SortableFilteredTableViewDataSource.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = SortableFilteredTableViewDataSource.java; path = src/SortableFilteredTableViewDataSource.java; sourceTree = "<group>"; };
 		025FC08D092EC045006B2989 /* WrappedTableViewDataSource.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = WrappedTableViewDataSource.java; sourceTree = "<group>"; };
 		0260D11208F9D6E000F9A745 /* junit.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; name = junit.jar; path = lib/junit.jar; sourceTree = "<group>"; };
+		026AAA37099F222200F742A5 /* HeaderJDOMTest.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = HeaderJDOMTest.java; path = src/com/redbugz/macpaf/test/HeaderJDOMTest.java; sourceTree = "<group>"; };
+		026AAA39099F225C00F742A5 /* joda-time-1.2.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; name = "joda-time-1.2.jar"; path = "lib/joda-time-1.2.jar"; sourceTree = "<group>"; };
 		026BF51707AD765200CBA37C /* Family.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Family.png; sourceTree = "<group>"; };
 		026BF51907AD992300CBA37C /* Individual.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Individual.png; sourceTree = "<group>"; };
 		026ED71205D932BC0001D1D2 /* ApplicationUtilities.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = ApplicationUtilities.java; path = src/ApplicationUtilities.java; sourceTree = "<group>"; };
@@ -511,7 +518,7 @@
 		02FE0168097B9B79005531CB /* EventTableController.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = EventTableController.java; path = src/EventTableController.java; sourceTree = "<group>"; };
 		089C1660FE840EACC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
-		1758732CFF379DAD11CA2CBB /* MacPAF.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = MacPAF.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1758732CFF379DAD11CA2CBB /* MacPAF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; path = MacPAF.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A37F4ACFDCFA73011CA2CEA /* MyDocument.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = MyDocument.java; path = src/MyDocument.java; sourceTree = "<group>"; };
 		2A37F4B0FDCFA73011CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2A37F4B5FDCFA73011CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MyDocument.nib; sourceTree = "<group>"; };
@@ -543,6 +550,7 @@
 				0236ED1B098D5FEE00E276AB /* commons-codec-1.3.jar in Frameworks */,
 				0236ED1C098D5FEF00E276AB /* commons-httpclient-3.0.jar in Frameworks */,
 				0236ED1D098D5FEF00E276AB /* commons-logging.jar in Frameworks */,
+				026AAA3A099F225C00F742A5 /* joda-time-1.2.jar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -552,6 +560,7 @@
 		0218FF4908F98E5E00F67E81 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				026AAA37099F222200F742A5 /* HeaderJDOMTest.java */,
 				0218FF3F08F98E4800F67E81 /* AllTests.java */,
 				0218FF4008F98E4900F67E81 /* HistoryControllerTest.java */,
 				021612DC096A499E005AC0B6 /* PedigreeViewController.java */,
@@ -756,15 +765,16 @@
 				0218FF4908F98E5E00F67E81 /* Tests */,
 				32DBCF810370BDA300C91783 /* Other Sources */,
 				02218D9AFECEFA92C02AAC07 /* Resources */,
-				2A37F4C3FDCFA73011CA2CEA /* MacPAF */,
+				2A37F4C3FDCFA73011CA2CEA /* Frameworks */,
 				19C28FB0FE9D524F11CA2CBB /* Products */,
 			);
 			name = MacPAF;
 			sourceTree = "<group>";
 		};
-		2A37F4C3FDCFA73011CA2CEA /* MacPAF */ = {
+		2A37F4C3FDCFA73011CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				026AAA39099F225C00F742A5 /* joda-time-1.2.jar */,
 				0236ED18098D5FED00E276AB /* commons-codec-1.3.jar */,
 				0236ED19098D5FEE00E276AB /* commons-httpclient-3.0.jar */,
 				0236ED1A098D5FEE00E276AB /* commons-logging.jar */,
@@ -785,7 +795,7 @@
 				2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */,
 				2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */,
 			);
-			name = MacPAF;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		32DBCF800370BD9700C91783 /* Classes */ = {
@@ -1009,6 +1019,7 @@
 				02C5BFBE0948218C0086B510 /* GedcomLoaderJDOM.java in Sources */,
 				021612DD096A499E005AC0B6 /* PedigreeViewController.java in Sources */,
 				02FE0169097B9B79005531CB /* EventTableController.java in Sources */,
+				026AAA38099F222200F742A5 /* HeaderJDOMTest.java in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

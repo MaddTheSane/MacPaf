@@ -40,7 +40,7 @@ private static final Logger log = Logger.getLogger(HeaderJDOM.class);
 private MacPAFDocumentJDOM document = null;
   Element element = new Element(HEADER);
 
-  public HeaderJDOM() {
+  public HeaderJDOM(Submitter submitter) {
 	Element source = new Element(SOURCE).setText(MACPAF_APPROVED_SYSTEM_ID);
 	source.addContent(new Element(VERSION).setText(MACPAF_VERSION_NUMBER));
 	source.addContent(new Element(NAME).setText(MACPAF_NAME_OF_PRODUCT));
@@ -54,7 +54,7 @@ private MacPAFDocumentJDOM document = null;
 
 	element.addContent(source);
 	element.addContent(new Element(DATE).setText(SIMPLE_DATE_FORMAT.format(new Date())));
-	element.addContent(new Element(SUBMITTER).setAttribute(REF, "S1"));
+	element.addContent(new Element(SUBMITTER).setAttribute(REF, submitter.getId()));
 	element.addContent( (Content)new Element(GEDCOM).addContent(new Element(VERSION).setText(GEDCOM_VERSION_55)).
 					   addContent(new Element(FORM).setText(FORM_LINEAGE_LINKED)));
 	element.addContent(new Element(CHARACTER).setText(ANSEL));
@@ -137,14 +137,14 @@ private MacPAFDocumentJDOM document = null;
    * @see Header#getCreationDate()
    */
   public Date getCreationDate() {
-	return JDOMUtils.dateFromElementText(element.getChild(SOURCE).getChild(DATA).getChildText(DATE));
+	return JDOMUtils.dateFromElementText(JDOMUtils.getNonNullChildText(element.getChild(DATE)));
   }
 
   /* (non-Javadoc)
    * @see Header#getSubmitter()
    */
   public Submitter getSubmitter() {
-	return document.getSubmitter(element.getChild(Submitter.SUBMITTER).getAttributeValue(REF));
+	return document.getSubmitter(JDOMUtils.getNonNullXpathText(element, "string("+StringUtils.join("/", new String[] {SUBMITTER,"@"+REF})+")"));
   }
 
   /* (non-Javadoc)
@@ -172,14 +172,14 @@ private MacPAFDocumentJDOM document = null;
    * @see Header#getGedcomVersion()
    */
   public String getGedcomVersion() {
-	return element.getChild(GEDCOM).getChildText(VERSION);
+	  return JDOMUtils.getNonNullXpathText(element, "string("+StringUtils.join("/", new String[] {GEDCOM,VERSION})+")");
   }
 
   /* (non-Javadoc)
    * @see Header#getGedcomForm()
    */
   public String getGedcomForm() {
-	return element.getChild(GEDCOM).getChildText(FORM);
+	  return JDOMUtils.getNonNullXpathText(element, "string("+StringUtils.join("/", new String[] {GEDCOM,FORM})+")");
   }
 
   /* (non-Javadoc)
@@ -193,7 +193,7 @@ private MacPAFDocumentJDOM document = null;
    * @see Header#getCharacterVersionNumber()
    */
   public String getCharacterVersionNumber() {
-	return element.getChild(CHARACTER).getChildText(VERSION);
+	  return JDOMUtils.getNonNullXpathText(element, "string("+StringUtils.join("/", new String[] {CHARACTER,VERSION})+")");
   }
 
   /* (non-Javadoc)
@@ -207,14 +207,19 @@ private MacPAFDocumentJDOM document = null;
    * @see Header#getPlaceFormat()
    */
   public String getPlaceFormat() {
-	return element.getChild(PLACE).getChildText(FORM);
+	  return JDOMUtils.getNonNullXpathText(element, "string("+StringUtils.join("/", new String[] {PLACE,FORM})+")");
   }
 
   /* (non-Javadoc)
    * @see Header#getNote()
    */
   public Note getNote() {
-	return new NoteJDOM(element.getChild(Note.NOTE), document);
+	  Note result = Note.UNKNOWN_NOTE;
+	  Element noteElement = element.getChild(Note.NOTE);
+	  if (noteElement != null) {
+		  new NoteJDOM(noteElement, document);
+	  }
+	return result;
   }
 
 public void setDestination(String destinationString) {

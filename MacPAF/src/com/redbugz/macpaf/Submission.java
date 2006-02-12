@@ -14,6 +14,8 @@ package com.redbugz.macpaf;
  * Window - Preferences - Java - Code Generation - Code and Comments
  */
 public interface Submission {
+  public static final String SUBMISSION = "SUBN";
+  
   public Submitter getSubmitter();
 
   public String getFamilyFile();

@@ -11,14 +11,22 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.media.jai.operator.AddDescriptor;
+
 import org.apache.log4j.Logger;
 import org.jdom.Content;
 import org.jdom.Element;
+import org.jdom.JDOMException;
 import org.jdom.Text;
+import org.jdom.xpath.XPath;
+
+import com.redbugz.macpaf.Address;
 import com.redbugz.macpaf.Header;
 import com.redbugz.macpaf.Note;
 import com.redbugz.macpaf.Submission;
 import com.redbugz.macpaf.Submitter;
+import com.redbugz.macpaf.util.JDOMUtils;
+import com.redbugz.macpaf.util.StringUtils;
 
 /**
  * @author logan
@@ -27,23 +35,25 @@ import com.redbugz.macpaf.Submitter;
  * Window - Preferences - Java - Code Generation - Code and Comments
  */
 public class HeaderJDOM implements Header {
-  private static final Logger log = Logger.getLogger(HeaderJDOM.class);
+  private static final SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("dd MMM yyyy");
+private static final Logger log = Logger.getLogger(HeaderJDOM.class);
+private MacPAFDocumentJDOM document = null;
   Element element = new Element(HEADER);
 
   public HeaderJDOM() {
-	Element source = new Element(SOURCE).setText(APPROVED_SYSTEM_ID);
-	source.addContent(new Element(VERSION).setText(VERSION_NUMBER));
-	source.addContent(new Element(NAME).setText(NAME_OF_PRODUCT));
-	AddressJDOM addr = new AddressJDOM(BUSINESS_ADDR1, BUSINESS_ADDR2, BUSINESS_CITY, BUSINESS_STATE, BUSINESS_ZIP,
-									   BUSINESS_COUNTRY, BUSINESS_PHONE);
+	Element source = new Element(SOURCE).setText(MACPAF_APPROVED_SYSTEM_ID);
+	source.addContent(new Element(VERSION).setText(MACPAF_VERSION_NUMBER));
+	source.addContent(new Element(NAME).setText(MACPAF_NAME_OF_PRODUCT));
+	AddressJDOM addr = new AddressJDOM(MACPAF_BUSINESS_ADDR1, MACPAF_BUSINESS_ADDR2, MACPAF_BUSINESS_CITY, MACPAF_BUSINESS_STATE, MACPAF_BUSINESS_ZIP,
+									   MACPAF_BUSINESS_COUNTRY, MACPAF_BUSINESS_PHONE);
 	List list = new ArrayList();
-	list.add(new Text(NAME_OF_BUSINESS));
+	list.add(new Text(MACPAF_NAME_OF_BUSINESS));
 	list.addAll(addr.getElements());
 	log.debug("headerjdom list:" + list);
 	source.addContent( (Content)new Element(CORPORATION).setContent(list));
 
 	element.addContent(source);
-	element.addContent(new Element(DATE).setText(new SimpleDateFormat("dd MMM yyyy").format(new Date())));
+	element.addContent(new Element(DATE).setText(SIMPLE_DATE_FORMAT.format(new Date())));
 	element.addContent(new Element(SUBMITTER).setAttribute(REF, "S1"));
 	element.addContent( (Content)new Element(GEDCOM).addContent(new Element(VERSION).setText(GEDCOM_VERSION_55)).
 					   addContent(new Element(FORM).setText(FORM_LINEAGE_LINKED)));
@@ -51,8 +61,9 @@ public class HeaderJDOM implements Header {
 	element.addContent(new Element(LANGUAGE).setText(LANG_ENGLISH));
   }
 
-  public HeaderJDOM(Element element) {
+  public HeaderJDOM(Element element, MacPAFDocumentJDOM doc) {
 	this.element = element;
+	document = doc;
   }
 
   public Element getElement() {
@@ -63,168 +74,147 @@ public class HeaderJDOM implements Header {
    * @see Header#getSourceId()
    */
   public String getSourceId() {
-	// TODO Auto-generated method stub
-	return null;
+	return JDOMUtils.getNonNullChildText(element.getChild(SOURCE));
   }
 
   /* (non-Javadoc)
    * @see Header#getSourceVersion()
    */
   public String getSourceVersion() {
-	// TODO Auto-generated method stub
-	return null;
+		return JDOMUtils.getNonNullXpathText(element, "string("+StringUtils.join("/", new String[] {SOURCE,VERSION})+")");
   }
 
   /* (non-Javadoc)
    * @see Header#getSourceName()
    */
   public String getSourceName() {
-	// TODO Auto-generated method stub
-	return null;
+		return JDOMUtils.getNonNullXpathText(element, "string("+StringUtils.join("/", new String[] {SOURCE,NAME})+")");
   }
 
   /* (non-Javadoc)
    * @see Header#getSourceCorporation()
    */
   public String getSourceCorporation() {
-	// TODO Auto-generated method stub
-	return null;
+		return JDOMUtils.getNonNullXpathText(element, "string("+StringUtils.join("/", new String[] {SOURCE,CORPORATION})+")");
   }
 
   /* (non-Javadoc)
    * @see Header#getSourceCorporationAddress()
    */
-  public String getSourceCorporationAddress() {
-	// TODO Auto-generated method stub
-	return null;
+  public Address getSourceCorporationAddress() {
+	return new AddressJDOM(JDOMUtils.getXpathElement(element, StringUtils.join("/", new String[] {SOURCE,CORPORATION,Address.ADDRESS})));
   }
 
   /* (non-Javadoc)
    * @see Header#getSourceData()
    */
   public String getSourceData() {
-	// TODO Auto-generated method stub
-	return null;
+	return JDOMUtils.getNonNullXpathText(element, "string("+StringUtils.join("/", new String[] {SOURCE,DATA})+")");
   }
 
   /* (non-Javadoc)
    * @see Header#getSourceDataDate()
    */
   public Date getSourceDataDate() {
-	// TODO Auto-generated method stub
-	return null;
+	return JDOMUtils.dateFromElementText(JDOMUtils.getNonNullXpathText(element, "string("+StringUtils.join("/", new String[] {SOURCE,DATA,DATE})+")"));
   }
 
   /* (non-Javadoc)
    * @see Header#getSourceDataCopyright()
    */
   public String getSourceDataCopyright() {
-	// TODO Auto-generated method stub
-	return null;
+		return JDOMUtils.getNonNullXpathText(element, "string("+StringUtils.join("/", new String[] {SOURCE,DATA,COPYRIGHT})+")");
   }
 
   /* (non-Javadoc)
    * @see Header#getDestination()
    */
   public String getDestination() {
-	// TODO Auto-generated method stub
-	return null;
+	return JDOMUtils.getNonNullChildText(element.getChild(DESTINATION));
   }
 
   /* (non-Javadoc)
    * @see Header#getCreationDate()
    */
   public Date getCreationDate() {
-	// TODO Auto-generated method stub
-	return null;
+	return JDOMUtils.dateFromElementText(element.getChild(SOURCE).getChild(DATA).getChildText(DATE));
   }
 
   /* (non-Javadoc)
    * @see Header#getSubmitter()
    */
   public Submitter getSubmitter() {
-	// TODO Auto-generated method stub
-	return null;
+	return document.getSubmitter(element.getChild(Submitter.SUBMITTER).getAttributeValue(REF));
   }
 
   /* (non-Javadoc)
    * @see Header#getSubmission()
    */
   public Submission getSubmission() {
-	// TODO Auto-generated method stub
-	return null;
+	return document.getSubmission();
   }
 
   /* (non-Javadoc)
    * @see Header#getFileName()
    */
   public String getFileName() {
-	// TODO Auto-generated method stub
-	return null;
+	return JDOMUtils.getNonNullChildText(element.getChild(DESTINATION));
   }
 
   /* (non-Javadoc)
    * @see Header#getCopyright()
    */
   public String getCopyright() {
-	// TODO Auto-generated method stub
-	return null;
+	return JDOMUtils.getNonNullChildText(element.getChild(COPYRIGHT));
   }
 
   /* (non-Javadoc)
    * @see Header#getGedcomVersion()
    */
   public String getGedcomVersion() {
-	// TODO Auto-generated method stub
-	return null;
+	return element.getChild(GEDCOM).getChildText(VERSION);
   }
 
   /* (non-Javadoc)
    * @see Header#getGedcomForm()
    */
   public String getGedcomForm() {
-	// TODO Auto-generated method stub
-	return null;
+	return element.getChild(GEDCOM).getChildText(FORM);
   }
 
   /* (non-Javadoc)
    * @see Header#getCharacterSet()
    */
   public String getCharacterSet() {
-	// TODO Auto-generated method stub
-	return null;
+	return JDOMUtils.getNonNullChildText(element.getChild(CHARACTER));
   }
 
   /* (non-Javadoc)
    * @see Header#getCharacterVersionNumber()
    */
   public String getCharacterVersionNumber() {
-	// TODO Auto-generated method stub
-	return null;
+	return element.getChild(CHARACTER).getChildText(VERSION);
   }
 
   /* (non-Javadoc)
    * @see Header#getLanguage()
    */
   public String getLanguage() {
-	// TODO Auto-generated method stub
-	return null;
+		return JDOMUtils.getNonNullChildText(element.getChild(LANGUAGE));
   }
 
   /* (non-Javadoc)
    * @see Header#getPlaceFormat()
    */
   public String getPlaceFormat() {
-	// TODO Auto-generated method stub
-	return null;
+	return element.getChild(PLACE).getChildText(FORM);
   }
 
   /* (non-Javadoc)
    * @see Header#getNote()
    */
   public Note getNote() {
-	// TODO Auto-generated method stub
-	return null;
+	return new NoteJDOM(element.getChild(Note.NOTE), document);
   }
 
 public void setDestination(String destinationString) {

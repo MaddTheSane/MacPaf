@@ -65,7 +65,30 @@ public class GedcomLoaderJDOM {
 			_progress.setMaxValue(totalElements);
 			_progress.displayIfNeeded();
 			
-			log.debug("header: " + new HeaderJDOM(root.getChild("HEAD")));
+			HeaderJDOM header = new HeaderJDOM(root.getChild("HEAD"), _doc);
+			log.debug("header: " + header);
+			log.debug("Header charset:"+header.getCharacterSet());
+			log.debug("Header charversion:"+header.getCharacterVersionNumber());
+			log.debug("Header copyright:"+header.getCopyright());
+			log.debug("Header destination:"+header.getDestination());
+			log.debug("Header filename:"+header.getFileName());
+			log.debug("Header gedcomform:"+header.getGedcomForm());
+			log.debug("Header gedcomversion:"+header.getGedcomVersion());
+			log.debug("Header language:"+header.getLanguage());
+			log.debug("Header placeformat:"+header.getPlaceFormat());
+			log.debug("Header sourcecorp:"+header.getSourceCorporation());
+			log.debug("Header sourcecorpaddr:"+header.getSourceCorporationAddress());
+			log.debug("Header sourcedata:"+header.getSourceData());
+			log.debug("Header sourcedatacopyright:"+header.getSourceDataCopyright());
+			log.debug("Header sourceid:"+header.getSourceId());
+			log.debug("Header sourcename:"+header.getSourceName());
+			log.debug("Header sourceversion:"+header.getSourceVersion());
+			log.debug("Header sourcedatadate:"+header.getSourceDataDate());
+			log.debug("Header submission:"+header.getSubmission());
+			log.debug("Header submitter:"+header.getSubmitter());
+			log.debug("Header creationdate:"+header.getCreationDate());
+			log.debug("Header note:"+header.getNote());
+			log.debug("Header element:"+header.getElement());
 //		log.debug("submission record: " + new SubmitterJDOM(root.getChild("SUBN"), this));
 			log.debug("file has:\n\t" + individualElements.size() + " individuals\n\t" + familyElements.size() + " families\n\t" + noteElements.size() +
 					" notes\n\t" + multimediaElements.size() + " multimedia objects\n\t" + sourceElements.size() + " sources\n\t" +

@@ -154,6 +154,9 @@
 		<string>lib/log4j-1.2.9.jar</string>
 		<string>lib/xalan.jar</string>
 		<string>lib/xml-apis.jar</string>
+		<string>lib/commons-codec-1.3.jar</string>
+		<string>lib/commons-logging.jar</string>
+		<string>lib/commons-httpclient-3.0.jar</string>
 	</array>
 	<key>NSJavaRoot</key>
 	<string>Contents/Resources/Java</string>
@@ -172,6 +175,12 @@
 		0218FF4108F98E4900F67E81 /* AllTests.java in Sources */ = {isa = PBXBuildFile; fileRef = 0218FF3F08F98E4800F67E81 /* AllTests.java */; };
 		0218FF4208F98E4A00F67E81 /* HistoryControllerTest.java in Sources */ = {isa = PBXBuildFile; fileRef = 0218FF4008F98E4900F67E81 /* HistoryControllerTest.java */; };
 		022DDB4808E36C1E00AAA6B1 /* FamilyDetailController.java in Sources */ = {isa = PBXBuildFile; fileRef = 022DDB4708E36C1D00AAA6B1 /* FamilyDetailController.java */; };
+		0236ED1B098D5FEE00E276AB /* commons-codec-1.3.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 0236ED18098D5FED00E276AB /* commons-codec-1.3.jar */; };
+		0236ED1C098D5FEF00E276AB /* commons-httpclient-3.0.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 0236ED19098D5FEE00E276AB /* commons-httpclient-3.0.jar */; };
+		0236ED1D098D5FEF00E276AB /* commons-logging.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 0236ED1A098D5FEE00E276AB /* commons-logging.jar */; };
+		0236ED1E098D609D00E276AB /* commons-codec-1.3.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0236ED18098D5FED00E276AB /* commons-codec-1.3.jar */; };
+		0236ED1F098D609D00E276AB /* commons-httpclient-3.0.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0236ED19098D5FEE00E276AB /* commons-httpclient-3.0.jar */; };
+		0236ED20098D609D00E276AB /* commons-logging.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0236ED1A098D5FEE00E276AB /* commons-logging.jar */; };
 		023701D8062056080087E765 /* log4j-1.2.9.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 023701D7062056080087E765 /* log4j-1.2.9.jar */; };
 		023701ED062056EF0087E765 /* log4j-1.2.9.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 023701D7062056080087E765 /* log4j-1.2.9.jar */; };
 		0237023006205C5B0087E765 /* log4j.properties in Sources */ = {isa = PBXBuildFile; fileRef = 02370211062059920087E765 /* log4j.properties */; };
@@ -360,6 +369,9 @@
 				02C50B5506212E8700B54464 /* xml-apis.jar in CopyFiles */,
 				023701ED062056EF0087E765 /* log4j-1.2.9.jar in CopyFiles */,
 				0237024606205EE30087E765 /* log4j.properties in CopyFiles */,
+				0236ED1E098D609D00E276AB /* commons-codec-1.3.jar in CopyFiles */,
+				0236ED1F098D609D00E276AB /* commons-httpclient-3.0.jar in CopyFiles */,
+				0236ED20098D609D00E276AB /* commons-logging.jar in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,6 +382,9 @@
 		0218FF3F08F98E4800F67E81 /* AllTests.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = AllTests.java; path = src/AllTests.java; sourceTree = "<group>"; };
 		0218FF4008F98E4900F67E81 /* HistoryControllerTest.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = HistoryControllerTest.java; path = src/HistoryControllerTest.java; sourceTree = "<group>"; };
 		022DDB4708E36C1D00AAA6B1 /* FamilyDetailController.java */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.java; name = FamilyDetailController.java; path = src/FamilyDetailController.java; sourceTree = "<group>"; };
+		0236ED18098D5FED00E276AB /* commons-codec-1.3.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; name = "commons-codec-1.3.jar"; path = "lib/commons-codec-1.3.jar"; sourceTree = "<group>"; };
+		0236ED19098D5FEE00E276AB /* commons-httpclient-3.0.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; name = "commons-httpclient-3.0.jar"; path = "lib/commons-httpclient-3.0.jar"; sourceTree = "<group>"; };
+		0236ED1A098D5FEE00E276AB /* commons-logging.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; name = "commons-logging.jar"; path = "lib/commons-logging.jar"; sourceTree = "<group>"; };
 		023701D7062056080087E765 /* log4j-1.2.9.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; name = "log4j-1.2.9.jar"; path = "lib/log4j-1.2.9.jar"; sourceTree = "<group>"; };
 		02370211062059920087E765 /* log4j.properties */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = log4j.properties; path = lib/log4j.properties; sourceTree = "<group>"; };
 		0237A2CE07B66682003D9778 /* CocoaUtils.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = CocoaUtils.java; sourceTree = "<group>"; };
@@ -496,7 +511,7 @@
 		02FE0168097B9B79005531CB /* EventTableController.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = EventTableController.java; path = src/EventTableController.java; sourceTree = "<group>"; };
 		089C1660FE840EACC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
-		1758732CFF379DAD11CA2CBB /* MacPAF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; path = MacPAF.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1758732CFF379DAD11CA2CBB /* MacPAF.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = MacPAF.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A37F4ACFDCFA73011CA2CEA /* MyDocument.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = MyDocument.java; path = src/MyDocument.java; sourceTree = "<group>"; };
 		2A37F4B0FDCFA73011CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2A37F4B5FDCFA73011CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MyDocument.nib; sourceTree = "<group>"; };
@@ -525,6 +540,9 @@
 				02C50B130621296800B54464 /* xml-apis.jar in Frameworks */,
 				0260D11308F9D6E100F9A745 /* junit.jar in Frameworks */,
 				02C5BF790945F5D60086B510 /* concurrent.jar in Frameworks */,
+				0236ED1B098D5FEE00E276AB /* commons-codec-1.3.jar in Frameworks */,
+				0236ED1C098D5FEF00E276AB /* commons-httpclient-3.0.jar in Frameworks */,
+				0236ED1D098D5FEF00E276AB /* commons-logging.jar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -747,6 +765,9 @@
 		2A37F4C3FDCFA73011CA2CEA /* MacPAF */ = {
 			isa = PBXGroup;
 			children = (
+				0236ED18098D5FED00E276AB /* commons-codec-1.3.jar */,
+				0236ED19098D5FEE00E276AB /* commons-httpclient-3.0.jar */,
+				0236ED1A098D5FEE00E276AB /* commons-logging.jar */,
 				02C5BF780945F5D40086B510 /* concurrent.jar */,
 				0260D11208F9D6E000F9A745 /* junit.jar */,
 				02370211062059920087E765 /* log4j.properties */,

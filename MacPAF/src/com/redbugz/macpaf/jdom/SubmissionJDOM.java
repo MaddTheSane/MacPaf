@@ -17,7 +17,7 @@ import com.redbugz.macpaf.Submitter;
  * Window - Preferences - Java - Code Generation - Code and Comments
  */
 public class SubmissionJDOM implements Submission {
-  Element element = new Element("SUBN");
+  Element element = new Element(SUBMISSION);
 private MacPAFDocumentJDOM document;
 
   public SubmissionJDOM(Element element, MacPAFDocumentJDOM parentDocument) {

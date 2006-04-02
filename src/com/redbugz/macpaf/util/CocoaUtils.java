@@ -8,6 +8,7 @@ package com.redbugz.macpaf.util;
 //  Copyright 2005 __MyCompanyName__. All rights reserved.
 //
 
+import java.util.Comparator;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -19,6 +20,8 @@ import com.apple.cocoa.application.NSImage;
 import com.apple.cocoa.application.NSTableView;
 import com.apple.cocoa.application.NSWindow;
 import com.apple.cocoa.application.NSComboBox.DataSource;
+import com.apple.cocoa.foundation.NSKeyValue;
+import com.apple.cocoa.foundation.NSKeyValueCoding;
 import com.apple.cocoa.foundation.NSSelector;
 import com.redbugz.macpaf.Family;
 import com.redbugz.macpaf.Temple;
@@ -142,5 +145,26 @@ public class CocoaUtils {
 
 	public static NSDocument getCurrentDocument() {
 		return NSDocumentController.sharedDocumentController().currentDocument();
+	}
+	
+	public static final class KeyValueComparator implements Comparator {
+		private String _key;
+
+		public KeyValueComparator(String key) {
+			_key = key;
+		}
+
+		public int compare(Object o1, Object o2) {
+			Object value1 = NSKeyValue.valueForKeyPath(o1, _key);
+			Object value2 = NSKeyValue.valueForKeyPath(o2, _key);
+			if (value1 instanceof Comparable) {
+				Comparable comparableValue1 = (Comparable) value1;
+				return comparableValue1.compareTo(value2);
+			} else if (value2 instanceof Comparable) {
+				Comparable comparableValue2 = (Comparable) value2;
+				return comparableValue2.compareTo(value1);
+			}
+			return String.valueOf(value1).compareTo(String.valueOf(value2));
+		}
 	}
 }

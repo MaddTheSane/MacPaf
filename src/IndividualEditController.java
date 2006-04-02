@@ -54,6 +54,8 @@ public class IndividualEditController extends NSWindowController {
   public void windowDidLoad() {
 	super.windowDidLoad();
 	log.debug("windowdidload doc=" + document() + " surname=" + surname);
+	eventTableController.setup();
+	attributeTableController.setup();
   }
 
   public void cancel(Object sender) { /* IBAction */

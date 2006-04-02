@@ -165,6 +165,8 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>SUFeedURL</key>
+	<string>http://www.macpaf.org/appcasts/macpaf/macpaf-updates.rss</string>
 </dict>
 </plist>
 ";
@@ -172,6 +174,14 @@
 /* End PBXApplicationTarget section */
 
 /* Begin PBXBuildFile section */
+		020D7BA409A892E500664545 /* NSString+extras.h in Headers */ = {isa = PBXBuildFile; fileRef = 020D7B9D09A892E400664545 /* NSString+extras.h */; };
+		020D7BA509A892E500664545 /* NSString+extras.m in Sources */ = {isa = PBXBuildFile; fileRef = 020D7B9E09A892E500664545 /* NSString+extras.m */; };
+		020D7BA609A892E500664545 /* RSS.h in Headers */ = {isa = PBXBuildFile; fileRef = 020D7B9F09A892E500664545 /* RSS.h */; };
+		020D7BA709A892E500664545 /* RSS.m in Sources */ = {isa = PBXBuildFile; fileRef = 020D7BA009A892E500664545 /* RSS.m */; };
+		020D7BA809A892E500664545 /* Sparkle.strings in Resources */ = {isa = PBXBuildFile; fileRef = 020D7BA109A892E500664545 /* Sparkle.strings */; };
+		020D7BA909A892E500664545 /* SUUpdater.h in Headers */ = {isa = PBXBuildFile; fileRef = 020D7BA209A892E500664545 /* SUUpdater.h */; };
+		020D7BAA09A892E500664545 /* SUUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 020D7BA309A892E500664545 /* SUUpdater.m */; };
+		020D7BC109A8955800664545 /* DateUtils.java in Sources */ = {isa = PBXBuildFile; fileRef = 020D7BC009A8955800664545 /* DateUtils.java */; };
 		021612DD096A499E005AC0B6 /* PedigreeViewController.java in Sources */ = {isa = PBXBuildFile; fileRef = 021612DC096A499E005AC0B6 /* PedigreeViewController.java */; };
 		0218FF4108F98E4900F67E81 /* AllTests.java in Sources */ = {isa = PBXBuildFile; fileRef = 0218FF3F08F98E4800F67E81 /* AllTests.java */; };
 		0218FF4208F98E4A00F67E81 /* HistoryControllerTest.java in Sources */ = {isa = PBXBuildFile; fileRef = 0218FF4008F98E4900F67E81 /* HistoryControllerTest.java */; };
@@ -383,6 +393,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		020D7B9D09A892E400664545 /* NSString+extras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+extras.h"; sourceTree = "<group>"; };
+		020D7B9E09A892E500664545 /* NSString+extras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+extras.m"; sourceTree = "<group>"; };
+		020D7B9F09A892E500664545 /* RSS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSS.h; sourceTree = "<group>"; };
+		020D7BA009A892E500664545 /* RSS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSS.m; sourceTree = "<group>"; };
+		020D7BA109A892E500664545 /* Sparkle.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Sparkle.strings; sourceTree = "<group>"; };
+		020D7BA209A892E500664545 /* SUUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUUpdater.h; sourceTree = "<group>"; };
+		020D7BA309A892E500664545 /* SUUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUUpdater.m; sourceTree = "<group>"; };
+		020D7BC009A8955800664545 /* DateUtils.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = DateUtils.java; sourceTree = "<group>"; };
 		021612DC096A499E005AC0B6 /* PedigreeViewController.java */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.java; name = PedigreeViewController.java; path = src/PedigreeViewController.java; sourceTree = "<group>"; };
 		0218FF3F08F98E4800F67E81 /* AllTests.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = AllTests.java; path = src/AllTests.java; sourceTree = "<group>"; };
 		0218FF4008F98E4900F67E81 /* HistoryControllerTest.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = HistoryControllerTest.java; path = src/HistoryControllerTest.java; sourceTree = "<group>"; };
@@ -557,6 +575,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		020D7B9C09A892E400664545 /* Sparkle */ = {
+			isa = PBXGroup;
+			children = (
+				020D7B9D09A892E400664545 /* NSString+extras.h */,
+				020D7B9E09A892E500664545 /* NSString+extras.m */,
+				020D7B9F09A892E500664545 /* RSS.h */,
+				020D7BA009A892E500664545 /* RSS.m */,
+				020D7BA109A892E500664545 /* Sparkle.strings */,
+				020D7BA209A892E500664545 /* SUUpdater.h */,
+				020D7BA309A892E500664545 /* SUUpdater.m */,
+			);
+			path = Sparkle;
+			sourceTree = "<group>";
+		};
 		0218FF4908F98E5E00F67E81 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -738,6 +770,7 @@
 		02B3D1B0077B11CF0069077B /* util */ = {
 			isa = PBXGroup;
 			children = (
+				020D7BC009A8955800664545 /* DateUtils.java */,
 				025FC08D092EC045006B2989 /* WrappedTableViewDataSource.java */,
 				02A778E908AFB24C007897F4 /* JDOMUtils.java */,
 				0237A2CE07B66682003D9778 /* CocoaUtils.java */,
@@ -834,6 +867,7 @@
 			children = (
 				32DBCF820370BDBC00C91783 /* MacPAF_Prefix.h */,
 				2A37F4B0FDCFA73011CA2CEA /* main.m */,
+				020D7B9C09A892E400664545 /* Sparkle */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -846,6 +880,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				32DBCF830370BDBC00C91783 /* MacPAF_Prefix.h in Headers */,
+				020D7BA409A892E500664545 /* NSString+extras.h in Headers */,
+				020D7BA609A892E500664545 /* RSS.h in Headers */,
+				020D7BA909A892E500664545 /* SUUpdater.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -916,6 +953,7 @@
 				02A77AF008B0425A007897F4 /* IndividualListWindow.nib in Resources */,
 				02A77AF508B0445C007897F4 /* FamilyListWindow.nib in Resources */,
 				02C5C0C5095466150086B510 /* RecordSelectionWindow.nib in Resources */,
+				020D7BA809A892E500664545 /* Sparkle.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1020,6 +1058,10 @@
 				021612DD096A499E005AC0B6 /* PedigreeViewController.java in Sources */,
 				02FE0169097B9B79005531CB /* EventTableController.java in Sources */,
 				026AAA38099F222200F742A5 /* HeaderJDOMTest.java in Sources */,
+				020D7BA509A892E500664545 /* NSString+extras.m in Sources */,
+				020D7BA709A892E500664545 /* RSS.m in Sources */,
+				020D7BAA09A892E500664545 /* SUUpdater.m in Sources */,
+				020D7BC109A8955800664545 /* DateUtils.java in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

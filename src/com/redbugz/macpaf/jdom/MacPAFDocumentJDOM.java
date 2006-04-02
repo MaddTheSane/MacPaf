@@ -58,6 +58,8 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 	 * This is the main individual to whom apply all actions
 	 */
 	private Individual primaryIndividual = new Individual.UnknownIndividual();
+
+	private boolean suppressUpdates;
 	
 	public MacPAFDocumentJDOM() {
 		Element root = new Element("GED");
@@ -573,7 +575,6 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 	}
 
 	public void removeFamily (Family familyToRemove) {
-		// TODO naive implementation, still need to handle links to this family
 		log.warn("removeFamily() instructed to remove family from document: "+familyToRemove.toString());
 		FamilyJDOM jdomFamily = getFamily(familyToRemove.getId());
 		jdomFamily.getElement().detach();
@@ -607,9 +608,11 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 	 */
 	public void update(Observable o, Object arg) {
 		log.debug("MacPAFDocumentJDOM.update() observable="+o+", object="+arg);
-		setChanged();
-		notifyObservers();
-		clearChanged();
+		if (!suppressUpdates) {
+			setChanged();
+			notifyObservers();
+			clearChanged();
+		}
 	}
 	
 //	private void setUpdated() {
@@ -826,6 +829,14 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 
 	public Header getHeader() {
 		return new HeaderJDOM(doc.getRootElement().getChild(Header.HEADER), this);
+	}
+
+	public void startSuppressUpdates() {
+		suppressUpdates = true;
+	}
+
+	public void endSuppressUpdates() {
+		suppressUpdates = false;
 	}
 }
 

@@ -227,7 +227,7 @@
             LANGUAGE = Java; 
             OUTLETS = {
                 gggrandparentsMatrix = NSMatrix; 
-                greatgrandparentsMatrix = NSMatrix; 
+                greatgrandparentsMatrix = NSBox; 
                 maternalGrandfatherButton = NSButton; 
                 maternalGrandmotherButton = NSButton; 
                 parentsMatrix = NSMatrix; 

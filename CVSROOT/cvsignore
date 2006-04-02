@@ -1,9 +1,0 @@
-.DS_Store
-.FBCIndex
-.FBCIndexCopy
-.FBCIndexTemp
-.FBCLockFolder
-.localized
-*.pbxuser
-build
-*~.*

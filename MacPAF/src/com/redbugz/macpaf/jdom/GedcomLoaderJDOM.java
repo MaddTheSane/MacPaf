@@ -2,8 +2,11 @@ package com.redbugz.macpaf.jdom;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.log4j.Logger;
 import org.jdom.Document;
@@ -14,11 +17,14 @@ import org.jdom.xpath.XPath;
 
 import com.apple.cocoa.application.NSProgressIndicator;
 import com.redbugz.macpaf.Family;
+import com.redbugz.macpaf.Header;
 import com.redbugz.macpaf.Individual;
 import com.redbugz.macpaf.Note;
 import com.redbugz.macpaf.Repository;
 import com.redbugz.macpaf.Source;
 import com.redbugz.macpaf.Submitter;
+import com.redbugz.macpaf.util.JDOMUtils;
+import com.redbugz.macpaf.util.StringUtils;
 import com.redbugz.macpaf.util.XMLTest;
 
 public class GedcomLoaderJDOM {
@@ -66,34 +72,45 @@ public class GedcomLoaderJDOM {
 			_progress.displayIfNeeded();
 			
 			HeaderJDOM header = new HeaderJDOM(root.getChild("HEAD"), _doc);
-			log.debug("header: " + header);
-			log.debug("Header charset:"+header.getCharacterSet());
-			log.debug("Header charversion:"+header.getCharacterVersionNumber());
-			log.debug("Header copyright:"+header.getCopyright());
-			log.debug("Header destination:"+header.getDestination());
-			log.debug("Header filename:"+header.getFileName());
-			log.debug("Header gedcomform:"+header.getGedcomForm());
-			log.debug("Header gedcomversion:"+header.getGedcomVersion());
-			log.debug("Header language:"+header.getLanguage());
-			log.debug("Header placeformat:"+header.getPlaceFormat());
-			log.debug("Header sourcecorp:"+header.getSourceCorporation());
-			log.debug("Header sourcecorpaddr:"+header.getSourceCorporationAddress());
-			log.debug("Header sourcedata:"+header.getSourceData());
-			log.debug("Header sourcedatacopyright:"+header.getSourceDataCopyright());
-			log.debug("Header sourceid:"+header.getSourceId());
-			log.debug("Header sourcename:"+header.getSourceName());
-			log.debug("Header sourceversion:"+header.getSourceVersion());
-			log.debug("Header sourcedatadate:"+header.getSourceDataDate());
-			log.debug("Header submission:"+header.getSubmission());
-			log.debug("Header submitter:"+header.getSubmitter());
-			log.debug("Header creationdate:"+header.getCreationDate());
-			log.debug("Header note:"+header.getNote());
-			log.debug("Header element:"+header.getElement());
+			try {
+				log.debug("header: " + header);
+				log.debug("Header charset:"+header.getCharacterSet());
+				log.debug("Header charversion:"+header.getCharacterVersionNumber());
+				log.debug("Header copyright:"+header.getCopyright());
+				log.debug("Header destination:"+header.getDestination());
+				log.debug("Header filename:"+header.getFileName());
+				log.debug("Header gedcomform:"+header.getGedcomForm());
+				log.debug("Header gedcomversion:"+header.getGedcomVersion());
+				log.debug("Header language:"+header.getLanguage());
+				log.debug("Header placeformat:"+header.getPlaceFormat());
+				log.debug("Header sourcecorp:"+header.getSourceCorporation());
+				log.debug("Header sourcecorpaddr:"+header.getSourceCorporationAddress());
+				log.debug("Header sourcedata:"+header.getSourceData());
+				log.debug("Header sourcedatacopyright:"+header.getSourceDataCopyright());
+				log.debug("Header sourceid:"+header.getSourceId());
+				log.debug("Header sourcename:"+header.getSourceName());
+				log.debug("Header sourceversion:"+header.getSourceVersion());
+				log.debug("Header sourcedatadate:"+header.getSourceDataDate());
+				log.debug("Header creationdate:"+header.getCreationDate());
+				log.debug("Header note:"+header.getNote());
+				log.debug("Header element:"+header.getElement());
+				log.debug("Header submission:"+header.getSubmission());
+				log.debug("Header submitter:"+header.getSubmitter());
+			} catch (RuntimeException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 //		log.debug("submission record: " + new SubmitterJDOM(root.getChild("SUBN"), this));
 			log.debug("file has:\n\t" + individualElements.size() + " individuals\n\t" + familyElements.size() + " families\n\t" + noteElements.size() +
 					" notes\n\t" + multimediaElements.size() + " multimedia objects\n\t" + sourceElements.size() + " sources\n\t" +
 					repositoryElements.size() + " repositories\n\t" + submitterElements.size() + " submitters\n");
 			
+			boolean oldGedcom = false;
+			if ( ! header.getGedcomVersion().startsWith(Header.GEDCOM_VERSION_55)) {
+				// update old GEDCOM structures to match new GEDCOM structures
+//				updateOldIndividualGEDCOMData(element);
+				oldGedcom = true;
+			}
 //		   Executor executor = new ThreadedExecutor();
 //		     try {
 //		       FutureResult familyList = new FutureResult();
@@ -163,6 +180,26 @@ public class GedcomLoaderJDOM {
 						log.error("problem with xpath during duplicate key fixing", ex1);
 					}
 				}
+				if (oldGedcom) {
+					// check for old GEDCOM format for sealings
+					log.debug("Checking old GEDCOM format for old-style sealings");
+					Element indiElement = ((IndividualJDOM) indi).getElement();
+					log.debug("indi elem:"+indiElement);
+					if (indiElement != null) {
+						Element famElement = indiElement.getChild(IndividualJDOM.FAMILY_CHILD_LINK);
+						log.debug("fam elem:"+famElement);
+						if (famElement != null) {
+							Element oldSealing = famElement.getChild("SLGC");
+							log.debug("slgc elem:"+indiElement);
+							if (oldSealing != null) {
+								// has old sealing format at INDI.FAMC.SLGC, move to correct location at INDI.SLGC
+								log.warn("Updating old INDI.FAMC.SLGC to INDI.SLGC:"+oldSealing);
+								oldSealing.detach();
+								indiElement.addContent(oldSealing);
+							}
+						}
+					}
+				}
 				if (indi.getRin() > 0 && indi.getRin() < firstIndi.getRin()) {
 					log.debug("Setting 1st Individual to: " + indi);
 					firstIndi = indi;
@@ -213,6 +250,32 @@ public class GedcomLoaderJDOM {
 						log.error("problem with xpath during duplicate key fixing", ex1);
 					}
 				}
+				if (oldGedcom) {
+					// check for old GEDCOM format for sealings in FAM.CHIL.SLGC
+					List oldSealings = Collections.EMPTY_LIST;
+					try {
+						oldSealings = XPath.selectNodes(((FamilyJDOM) fam).getElement(), "//CHIL/SLGC");
+						log.debug("old sealings from xpath:"+oldSealings);
+					} catch (JDOMException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					for (Iterator iter = oldSealings.iterator(); iter.hasNext();) {
+						Element oldSealing = (Element) iter.next();						
+						String childId = oldSealing.getParentElement().getAttributeValue(IndividualJDOM.REF);
+						log.warn("Found old FAM.CHIL.SLGC for child "+childId+":"+oldSealing);
+						// has old sealing format at FAM.CHIL.SLGC, move to correct location at INDI.SLGC
+						if (StringUtils.notEmpty(childId)) {
+							IndividualJDOM indi = _doc.getIndividual(childId);
+							if (indi != null) {
+								log.warn("Moving old FAM.CHIL.SLGC to correct location at INDI.SLGC for child "+childId+":"+oldSealing);
+								oldSealing.detach();
+								indi.getElement().addContent(oldSealing);
+							}
+						}
+					}
+				}
+
 				if (debug) {
 					log.error("\n *** " + " mem:" + rt.freeMemory() / 1024 + " Kb\n");
 				}
@@ -341,6 +404,11 @@ public class GedcomLoaderJDOM {
 		}
 	}
 	
+	private void updateOldIndividualGEDCOMData(Element element) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	private void incrementAndUpdateProgress() {
 		_progress.incrementBy(1);
 		log.info("progress: "+_progress.doubleValue() + " out of "+_progress.maxValue());

@@ -10,25 +10,19 @@ import java.util.Enumeration;
 
 import org.apache.log4j.Logger;
 
-import com.apple.cocoa.application.NSApplication;
-import com.apple.cocoa.application.NSButton;
-import com.apple.cocoa.application.NSComboBox;
-import com.apple.cocoa.application.NSDocument;
-import com.apple.cocoa.application.NSForm;
-import com.apple.cocoa.application.NSTabView;
-import com.apple.cocoa.application.NSTableColumn;
-import com.apple.cocoa.application.NSTableView;
-import com.apple.cocoa.application.NSTextField;
-import com.apple.cocoa.application.NSWindow;
-import com.apple.cocoa.application.NSWindowController;
+import com.apple.cocoa.application.*;
+import com.apple.cocoa.foundation.NSArray;
+import com.apple.cocoa.foundation.NSData;
 import com.apple.cocoa.foundation.NSDictionary;
 import com.apple.cocoa.foundation.NSMutableArray;
+import com.apple.cocoa.foundation.NSSelector;
 import com.apple.cocoa.foundation.NSSystem;
 import com.redbugz.macpaf.Family;
 import com.redbugz.macpaf.Gender;
 import com.redbugz.macpaf.Individual;
 import com.redbugz.macpaf.jdom.PlaceJDOM;
 import com.redbugz.macpaf.util.CocoaUtils;
+import com.redbugz.macpaf.util.StringUtils;
 import com.redbugz.macpaf.validation.ValidationException;
 
 public class FamilyEditController extends NSWindowController {
@@ -49,6 +43,8 @@ public class FamilyEditController extends NSWindowController {
   
   private NSMutableArray undoStack = new NSMutableArray();
 
+private NSSelector editChildSelector = new NSSelector("editChild", new Class[] {Object.class});
+
 private static final String EDIT_HUSBAND_KEY = "EditHusband";
 
 private static final String EDIT_WIFE_KEY = "EditWife";
@@ -59,6 +55,9 @@ private static final String EDIT_CHILD_KEY = "EditChild";
 	super.setDocument(document);
 	log.debug("FamilyEditController.setDocument(document):"+document.fileName());
 	this.document = (MyDocument) document;
+	children.registerForDraggedTypes(DRAG_TYPES_ARRAY);
+	children.setTarget(this);
+	children.setDoubleAction(editChildSelector );
 	//setFamily( ( (MyDocument) document).getPrimaryIndividual().getFamilyAsSpouse());
   }
 
@@ -87,9 +86,35 @@ private static final String EDIT_CHILD_KEY = "EditChild";
 	sealingDate.setStringValue(family.getSealingToSpouse().getDateString());
 	sealingTemple.setStringValue(family.getSealingToSpouse().getTemple().getCode());
 	children.reloadData();
+	undoStack.removeAllObjects();
 	eventTableController.setEventSource(family);
 	tabView.selectFirstTabViewItem(this);
   }
+
+  public void setFamilyAsChild(Family newFamily) {
+		log.debug("FamilyEditController.setFamilyAsChild(family):"+newFamily);
+		  family = newFamily;
+		if (family instanceof Family.UnknownFamily) {
+			saveButton.setTitle("Add Family");
+			family = document.createAndInsertNewFamily();
+			undoStack.addObject(family);
+			family.addChild(document.getPrimaryIndividual());
+			document.getPrimaryIndividual().setFamilyAsChild(family);
+		} else {
+			saveButton.setTitle("Save Family");
+		}
+		husbandButton.setTitle(family.getFather().getFullName());
+		wifeButton.setTitle(family.getMother().getFullName());
+		marriageForm.cellAtIndex(0).setStringValue(family.getMarriageEvent().getDateString());
+		marriageForm.selectTextAtIndex(0);
+		marriageForm.cellAtIndex(1).setStringValue(family.getMarriageEvent().getPlace().getFormatString());
+		sealingDate.setStringValue(family.getSealingToSpouse().getDateString());
+		sealingTemple.setStringValue(family.getSealingToSpouse().getTemple().getCode());
+		children.reloadData();
+		undoStack.removeAllObjects();
+		eventTableController.setEventSource(family);
+		tabView.selectFirstTabViewItem(this);
+	  }
 
   public void addChild(Object sender) { /* IBAction */
 	int selectedRow = Math.max(0, children.numberOfRows() - 1);
@@ -99,9 +124,13 @@ private static final String EDIT_CHILD_KEY = "EditChild";
 	Individual newChild = document.createAndInsertNewIndividual();
 	undoStack.addObject(newChild);
 	newChild.setFamilyAsChild(family);
+	  if (children.numberOfRows() == 0) {
+		  selectedRow = -1;
+	  }
+	newChild.setSurname(family.getFather().getSurname());
 	family.addChildAtPosition(newChild, selectedRow+1);
 	children.reloadData();
-	// todo: alternate code for panther here
+	// todo: alternate code for panther here since selectRow is deprecated
 	children.selectRow(selectedRow+1, false);
 	editChild(children);
   }
@@ -168,8 +197,7 @@ private static final String EDIT_CHILD_KEY = "EditChild";
 //       document.openIndividualEditSheet(husbandButton);
 	NSWindow individualEditWindow = document.individualEditWindow;
 	( (NSWindowController) individualEditWindow.delegate()).setDocument(document);
-	Individual childToEdit = (Individual) family.getChildren().get(
-		tv.selectedRow());
+	Individual childToEdit = (Individual) family.getChildren().get(	tv.selectedRow());
 	( (IndividualEditController) individualEditWindow.delegate()).setIndividual( childToEdit);
 	NSApplication.sharedApplication().beginSheet(individualEditWindow, window(), this, CocoaUtils.didEndSelector(), new NSDictionary(childToEdit, EDIT_CHILD_KEY));
 	// sheet up here, control will pass to didEndSelector after closed
@@ -306,5 +334,115 @@ private static final String EDIT_CHILD_KEY = "EditChild";
 	}
 	return null;
   }
+  
+  //  tableview drag reordering api	  
+	private static final String MACPAF_TABLE_REORDER_DRAG_TYPE = "MacPAFTableReorderDragType";
+	private static final NSArray DRAG_TYPES_ARRAY = new NSArray(new Object[] {MACPAF_TABLE_REORDER_DRAG_TYPE});
+ 
+  public boolean tableViewWriteRowsToPasteboard(NSTableView aTable, NSArray rows, NSPasteboard pboard ) {
+	  System.err.println("DNDJavaController.tableViewWriteRowsToPasteboard():"+rows+":"+pboard.types());
+	   	// declare our own pasteboard types
+	      NSArray typesArray = new NSArray(DRAG_TYPES_ARRAY);
+	      pboard.declareTypes(typesArray, this);
+	  	
+	      // add rows array for local move
+	      pboard.setPropertyListForType(rows, MACPAF_TABLE_REORDER_DRAG_TYPE);
+	  	
+	      return true;
+	  }
+
+
+	   public int tableViewValidateDrop(NSTableView tv, NSDraggingInfo info, int row, int operation) {
+	  		  System.err.println("DNDJavaController.tableViewValidateDrop():"+info+":"+row+":"+operation);
+	      
+	      int dragOp = NSDraggingInfo.DragOperationNone;
+	      int sourceRow = Integer.parseInt(((NSArray) info.draggingPasteboard().propertyListForType(MACPAF_TABLE_REORDER_DRAG_TYPE)).lastObject().toString());
+	      // if drag source is self, it's a move
+	      if (tv.equals(info.draggingSource()) && row != sourceRow && row != sourceRow+1)
+	  	{
+	  		dragOp =  NSDraggingInfo.DragOperationMove;
+	      }
+	      // we want to put the object at, not over,
+	      // the current row (contrast NSTableViewDropOn) 
+	      tv.setDropRowAndDropOperation(row, NSTableView.NSTableViewDropAbove);
+	  	
+	      return dragOp;
+	  }
+
+
+
+	  public boolean tableViewAcceptDrop(NSTableView tableView, NSDraggingInfo info, int row, int operation) {
+	  		  System.err.println("DNDJavaController.tableViewAcceptDrop():"+info+":"+row+":"+operation);
+	  		  System.out.println("dragging pboard:"+info.draggingPasteboard().types());
+	      if (row < 0)
+	  	{
+	  		row = 0;
+	  	}
+	      
+	      // if drag source is self, it's a move
+	      if (tableView.equals(info.draggingSource()))
+	      {
+//	  		NSArray *rows = [[info draggingPasteboard] propertyListForType:MovedRowsType];
+	    	  NSArray rows = (NSArray) info.draggingPasteboard().propertyListForType(info.draggingPasteboard().availableTypeFromArray(DRAG_TYPES_ARRAY));
+	    	  log.debug(rows);
+	    	  int fromRow;
+			try {
+				fromRow = Integer.parseInt(rows.lastObject().toString());
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
+				return false;
+			}
+	    	  log.debug("dragging operation will move index "+rows.lastObject()+" to index "+row);
+	    	  Individual child = (Individual) family.getChildren().get(fromRow);
+	    	  family.removeChildAtPosition(fromRow);
+	    	  family.addChildAtPosition(child, row);
+//	  		// set selected rows to those that were just moved
+	    	  tableView.reloadData();
+	    	  tableView.selectRow(row, false);
+	  		return true;
+	      }
+	  	
+	      return false;
+	  }
+
+	  
+	  
+	  
+  
+  public boolean tableViewWriteRowsToPasteboard2(NSTableView aTable, NSArray anArray, NSPasteboard aPastboard ) {
+	  System.err.println("EventTableController.tableViewWriteRowsToPasteboard():"+anArray+":"+aPastboard.types());
+//	  When I click and drag a row in the table, the strings from that row move around with the mouse arrow.
+	  NSArray newArray = new NSArray();
+	  newArray = newArray.arrayByAddingObject("DragData");
+	  
+	  String dataString = new String("DragData");
+//	  String[][] defaultMatrix;
+//	  defaultMatrix = getMatrix(); //returns a String[][] that holds the strings that are displayed in the table
+//	  for (int i=0; i<numberOfRows; i++) {
+//		  for (int j=0; j<numberOfColumns; j++) {
+//			  String f = defaultMatrix[i][j];
+//			  dataString = dataString + f; //put all of the strings together
+//		  }
+//	  }
+	
+	  
+	  aPastboard.declareTypes(newArray,null);
+	  aPastboard.setStringForType(dataString, "DragData");
+	  aPastboard.setDataForType(new NSData(new byte[] {'a'}),"DragData");
+	  return true;
+  }
+
+
+public void windowDidLoad() {
+	// TODO Auto-generated method stub
+	System.out.println("FamilyEditController.windowDidLoad()");
+	super.windowDidLoad();
+	try {
+		eventTableController.setup();
+	} catch (RuntimeException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
+}
 
 }

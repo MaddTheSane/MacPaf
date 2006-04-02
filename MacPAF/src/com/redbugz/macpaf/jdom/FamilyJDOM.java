@@ -239,7 +239,12 @@ public class FamilyJDOM implements Family {
 
   public void addChildAtPosition(Individual newChild, int position) {
 	List children = getChildren();
-	children.add(position, new IndividualLink(newChild.getId(), document));
+	IndividualLink newChildLink = new IndividualLink(newChild.getId(), document);
+	if (position > children.size()) {
+		children.add(newChildLink);
+	} else {
+	children.add(position, newChildLink);
+	}
 	setChildren(children);
   }
 
@@ -307,9 +312,11 @@ public class FamilyJDOM implements Family {
    * @see com.redbugz.macpaf.Family#removeChildAtPosition(int)
    */
   public void removeChildAtPosition(int position) {
-	IndividualJDOM child = (IndividualJDOM) getChildren().get(position);
-	child.getElement().detach();
-	// force list of children to reload next time
+	  List children = getChildren();
+	  Individual removedChild = (Individual) children.remove(position);
+	  removedChild.setFamilyAsChild(null);
+	  setChildren(children);
+	  // force list of children to reload next time
 //	children = null;
   }
 

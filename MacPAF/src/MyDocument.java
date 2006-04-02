@@ -9,13 +9,10 @@
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Enumeration;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.*;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -40,7 +37,9 @@ import com.redbugz.macpaf.SurnameList;
 import com.redbugz.macpaf.jdom.MacPAFDocumentJDOM;
 import com.redbugz.macpaf.test.Tests;
 import com.redbugz.macpaf.util.CocoaUtils;
+import com.redbugz.macpaf.util.DateUtils;
 import com.redbugz.macpaf.util.MultimediaUtils;
+import com.redbugz.macpaf.util.StringUtils;
 
 /**
 * @todo This document is getting too large. I need to subclass NSDocumentController and move
@@ -185,45 +184,17 @@ private static final String TEMPLEREADY_UPDATE_EXTENSION = "oup";
 	if (sender instanceof NSControl) {
 	if ( (  (NSControl) sender).tag() == 1) {
 		Family familyAsChild = getPrimaryIndividual().getFamilyAsChild();
-//		if (familyAsChild instanceof Family.UnknownFamily) {
-//			familyAsChild = createAndInsertNewFamily();
-//			// TODO: handle undo here
-//			familyAsChild.addChild(getKnownPrimaryIndividual());
-//		}
-		( (FamilyEditController) familyEditWindow.delegate()).setFamily(familyAsChild);
+		( (FamilyEditController) familyEditWindow.delegate()).setFamilyAsChild(familyAsChild);
 	} else {
 	  Family familyAsSpouse = getCurrentFamily();
-//	  if (familyAsSpouse instanceof Family.UnknownFamily) {
-//		  familyAsSpouse = createAndInsertNewFamily();
-//		  // TODO: handle undo here
-//		  if (Gender.MALE.equals(getPrimaryIndividual().getGender())) {
-//			  familyAsSpouse.setFather(getKnownPrimaryIndividual());
-//		  } else {
-//			  familyAsSpouse.setMother(getKnownPrimaryIndividual());
-//		  }
-//	  }
 		( (FamilyEditController) familyEditWindow.delegate()).setFamily(familyAsSpouse);
 	}
 	} else if (sender instanceof NSValidatedUserInterfaceItem) {
 		if ( (  (NSValidatedUserInterfaceItem) sender).tag() == 1) {
 			Family familyAsChild = getPrimaryIndividual().getFamilyAsChild();
-//			if (familyAsChild instanceof Family.UnknownFamily) {
-//				familyAsChild = createAndInsertNewFamily();
-//				// TODO: handle undo here
-//				familyAsChild.addChild(getKnownPrimaryIndividual());
-//			}
-			( (FamilyEditController) familyEditWindow.delegate()).setFamily(familyAsChild);
+			( (FamilyEditController) familyEditWindow.delegate()).setFamilyAsChild(familyAsChild);
 		} else {
 		  Family familyAsSpouse = getCurrentFamily();
-//		  if (familyAsSpouse instanceof Family.UnknownFamily) {
-//			  familyAsSpouse = createAndInsertNewFamily();
-//			  // TODO: handle undo here
-//			  if (Gender.MALE.equals(getPrimaryIndividual().getGender())) {
-//				  familyAsSpouse.setFather(getKnownPrimaryIndividual());
-//			  } else {
-//				  familyAsSpouse.setMother(getKnownPrimaryIndividual());
-//			  }
-//		  }		
 			( (FamilyEditController) familyEditWindow.delegate()).setFamily(familyAsSpouse);
 		}
 	
@@ -371,26 +342,29 @@ public void sheetDidEndShouldClose2() {
   public void setPrimaryIndividual(Individual newIndividual) {
 	  setPrimaryIndividualAndSpouse(newIndividual, newIndividual.getPreferredSpouse());
   }
-	  public void setPrimaryIndividualAndSpouse(Individual newIndividual, Individual newSpouse) {
+  
+	  public void setPrimaryIndividualAndSpouse(Individual individual, Individual spouse) {
 	try {
-		doc.setPrimaryIndividual(newIndividual);
-		assignIndividualToButton(getPrimaryIndividual(), individualButton);
+		Family familyAsSpouse = MyDocument.getFamilyForSpouse(individual, spouse);
+		
+		doc.setPrimaryIndividual(individual);
+		assignIndividualToButton(individual, individualButton);
 		// if primary individual is unknown, change button back to enabled
 		individualButton.setEnabled(true);
-		assignIndividualToButton(getPrimaryIndividual().getPreferredSpouse(), spouseButton);
-		assignIndividualToButton(getPrimaryIndividual().getFather(), fatherButton);
-		assignIndividualToButton(getPrimaryIndividual().getMother(), motherButton);
-		assignIndividualToButton(getPrimaryIndividual().getFather().getFather(), paternalGrandfatherButton);
-		assignIndividualToButton(getPrimaryIndividual().getFather().getMother(), paternalGrandmotherButton);
-		assignIndividualToButton(getPrimaryIndividual().getMother().getFather(), maternalGrandfatherButton);
-		assignIndividualToButton(getPrimaryIndividual().getMother().getMother(), maternalGrandmotherButton);
-		noteTextView.setString(getPrimaryIndividual().getNoteText());
-		pedigreeViewController.setPrimaryIndividual(getPrimaryIndividual());
-//		individualDetailController.setIndividual(getPrimaryIndividual());
-		log.debug("famsp id:"+getPrimaryIndividual().getPreferredFamilyAsSpouse().getId());
-		log.debug("famch id:"+getPrimaryIndividual().getFamilyAsChild().getId());
-		familyAsSpouseButton.setTitle("Family: "+getPrimaryIndividual().getPreferredFamilyAsSpouse().getId());
-		familyAsChildButton.setTitle("Family: "+getPrimaryIndividual().getFamilyAsChild().getId());
+		assignIndividualToButton(spouse, spouseButton);
+		assignIndividualToButton(individual.getFather(), fatherButton);
+		assignIndividualToButton(individual.getMother(), motherButton);
+		assignIndividualToButton(individual.getFather().getFather(), paternalGrandfatherButton);
+		assignIndividualToButton(individual.getFather().getMother(), paternalGrandmotherButton);
+		assignIndividualToButton(individual.getMother().getFather(), maternalGrandfatherButton);
+		assignIndividualToButton(individual.getMother().getMother(), maternalGrandmotherButton);
+		noteTextView.setString(individual.getNoteText());
+		pedigreeViewController.setPrimaryIndividual(individual);
+//		individualDetailController.setIndividual(individual);
+		log.debug("famsp id:"+familyAsSpouse.getId());
+		log.debug("famch id:"+individual.getFamilyAsChild().getId());
+		familyAsSpouseButton.setTitle("Family: "+familyAsSpouse.getId());
+		familyAsChildButton.setTitle("Family: "+individual.getFamilyAsChild().getId());
 		spouseTable.selectRow(0, false);
 		spouseTable.reloadData();
 		childrenTable.reloadData();
@@ -400,7 +374,18 @@ public void sheetDidEndShouldClose2() {
 	}
   }
 
-  public void setIndividual(Object sender) { /* IBAction */
+  public static Family getFamilyForSpouse(Individual individual, Individual spouse) {
+	  Family matchingFamily = Family.UNKNOWN_FAMILY;
+	  for (Iterator iter = individual.getFamiliesAsSpouse().iterator(); iter.hasNext();) {
+		Family family = (Family) iter.next();		
+		  if (spouse.equals(family.getFather()) || spouse.equals(family.getMother())) {
+			  matchingFamily = family;
+		  }
+	  }
+	  return matchingFamily;
+	}
+
+public void setIndividual(Object sender) { /* IBAction */
 	try {
 		log.error("setIndividual to " + sender);
 		if (sender instanceof NSButton) {
@@ -818,6 +803,7 @@ public static boolean confirmCriticalActionMessage(String message, String detail
 
   private void assignIndividualToButton(Individual indiv, NSButton button) {
 	try {
+		button.setObjectValue(indiv);
 		NSAttributedString newLine = new NSAttributedString("\n");
 		NSMutableAttributedString nameText = new NSMutableAttributedString(indiv.getFullName());
 		button.setEnabled(true);
@@ -827,7 +813,7 @@ public static boolean confirmCriticalActionMessage(String message, String detail
 		}
 		NSMutableAttributedString birthdateText = new NSMutableAttributedString("");
 		NSMutableAttributedString birthplaceText = new NSMutableAttributedString("");
-		NSMutableAttributedString ordinancesText = new NSMutableAttributedString("bepsc");
+		NSMutableAttributedString ordinancesText = makeOrdinanceString(indiv);
 		if (indiv.getBirthEvent() != null) {
 		  birthdateText = new NSMutableAttributedString(indiv.getBirthEvent().getDateString());
 		  if (indiv.getBirthEvent().getPlace() != null) {
@@ -858,6 +844,26 @@ public static boolean confirmCriticalActionMessage(String message, String detail
 		e.printStackTrace();
 	}
   }
+
+private NSMutableAttributedString makeOrdinanceString(Individual individual) {
+	NSMutableAttributedString ordinanceString = new NSMutableAttributedString("BEPSC");
+	if (individual.getLDSBaptism().isCompleted()) {
+		ordinanceString.applyFontTraitsInRange(NSAttributedString.UnderlineStrikethroughMask, new NSRange(0,1));
+	}
+	if (individual.getLDSEndowment().isCompleted()) {
+		ordinanceString.applyFontTraitsInRange(NSAttributedString.UnderlineStrikethroughMask, new NSRange(1,1));
+	}
+	if (individual.getLDSSealingToParents().isCompleted()) {
+		ordinanceString.applyFontTraitsInRange(NSAttributedString.UnderlineStrikethroughMask, new NSRange(2,1));
+	}
+	if (individual.getPreferredFamilyAsSpouse().getSealingToSpouse().isCompleted()) {
+		ordinanceString.applyFontTraitsInRange(NSAttributedString.UnderlineStrikethroughMask, new NSRange(3,1));
+	}
+	if (individual.childrensOrdinancesAreCompleted()) {
+		ordinanceString.applyFontTraitsInRange(NSAttributedString.UnderlineStrikethroughMask, new NSRange(4,1));
+	}
+	return ordinanceString;
+}
 
   public int numberOfRowsInTableView(NSTableView nsTableView) {
 	try {
@@ -1360,54 +1366,25 @@ try {
   public void transmitBugReport(Object sender) { /* IBAction */
 		log.debug("transmitBugReport: " + sender);
 	    // These are the files to include in the ZIP file
-	    String[] filenames = new String[]{"filename1", "filename2"};
+	    List filenames = new ArrayList(Arrays.asList(new String[]{"/Users/logan/Library/Logs/macpaf.log", "/Users/logan/Library/Logs/macpaf.log.2", "notvalidfile"}));
 	    
-	    // Create a buffer for reading the files
-	    byte[] buf = new byte[1024];
-	    
-	    try {
-	        // Create the ZIP file
-	        String outFilename = "outfile.zip";
-	        ZipOutputStream out = new ZipOutputStream(new FileOutputStream(outFilename));
-	    
-	        // Compress the files
-	        for (int i=0; i<filenames.length; i++) {
-	            FileInputStream in = new FileInputStream(filenames[i]);
-	    
-	            // Add ZIP entry to output stream.
-	            out.putNextEntry(new ZipEntry(filenames[i]));
-	    
-	            // Transfer bytes from the file to the ZIP file
-	            int len;
-	            while ((len = in.read(buf)) > 0) {
-	                out.write(buf, 0, len);
-	            }
-	    
-	            // Complete the entry
-	            out.closeEntry();
-	            in.close();
-	        }
-	    
-	        // Complete the ZIP file
-	        out.close();
-	    } catch (IOException e) {
-	    }
 		if (bugReportFileCheckbox.state() == NSCell.OnState) {
-			
+			filenames.add(NSPathUtilities.stringByAppendingPathComponent(fileName(),DEFAULT_XML_FILENAME));
 		}
 //        MultipartPostMethod filePost =
 //            new MultipartPostMethod(targetURL);
 //		String targetURL = "http://macpaf.sourceforge.net/phpemail/mail.php";
-		String targetURL = "http://localhost/~logan/phpemail/mail.php";
+		String targetURL = "http://www.macpaf.org/submitbug.php";
+//		String targetURL = "http://localhost/~logan/phpemail/mail.php";
 		PostMethod filePost = new PostMethod(targetURL);
 //		filePost.setFollowRedirects(true);
         try {
-            File targetFile = new File("/Users/logan/Library/Logs/macpaf.log");
+            File targetFile = createZipFile(null, filenames);//new File("/Users/logan/Library/Logs/macpaf.log");
     		Part[] parts = { new StringPart("from", "logan@mac.com"),
     				new StringPart("to", "redbugz@gmail.com"),
     				new StringPart("subject", "MacPAF Bug Report Test"),
     				new StringPart("message", bugReportText.string()),
-    				new FilePart(targetFile.getName(), targetFile) };
+    				new FilePart("fileatt", targetFile) };
     		filePost.setRequestEntity(new MultipartRequestEntity(parts, filePost
     				.getParams()));
 //    		HttpClient client = new HttpClient();
@@ -1435,6 +1412,51 @@ try {
         }
 
   }
+
+private File createZipFile(String outFilename, Collection filenames) throws IOException {
+	// Create a buffer for reading the files
+	byte[] buf = new byte[1024];
+	if (StringUtils.isEmpty(outFilename)) {
+		outFilename = NSPathUtilities.stringByAppendingPathComponent(NSPathUtilities.temporaryDirectory(),"macpaf"+DateUtils.makeFileTimestampString()+".zip");
+	}
+	
+//	try {
+	    // Create the ZIP file
+	    ZipOutputStream out = new ZipOutputStream(new FileOutputStream(outFilename));
+	
+	    // Compress the files
+	    for (Iterator iter = filenames.iterator(); iter.hasNext();) {
+			String filename = (String) iter.next();
+			File file = new File(filename);
+			
+//		}
+//	    for (int i=0; i<filenames.length; i++) {
+			if (file.exists()) {
+	        FileInputStream in = new FileInputStream(file);
+	
+	        // Add ZIP entry to output stream.
+	        out.putNextEntry(new ZipEntry(NSPathUtilities.lastPathComponent(filename)));
+	
+	        // Transfer bytes from the file to the ZIP file
+	        int len;
+	        while ((len = in.read(buf)) > 0) {
+	            out.write(buf, 0, len);
+	        }
+	
+	        // Complete the entry
+	        out.closeEntry();
+	        in.close();
+			} else {
+				log.warn("createZipFile could not find file: "+filename);
+			}
+	    }
+	
+	    // Complete the ZIP file
+	    out.close();
+//	} catch (IOException e) {
+//	}
+	return new File(outFilename);
+}
 
   public void forgetIndividual(Object sender) { /* IBAction */
     	log.debug("MyDocument.forgetIndividual():"+sender);
@@ -1472,14 +1494,14 @@ try {
 //			log.debug("menu DELEGATE:"+menuItem.menu().delegate());
 			return historyController.validateMenuItem(menuItem);
 		} else if (menuItemShouldBeInactiveWithUnknownIndividual(menuItem)) {
-			familyAsChildButton.setEnabled(false);
+//			familyAsChildButton.setEnabled(false);
 			return false;
 		} else if (menuItemShouldBeInactiveWithUnknownFamily(menuItem)) {
-			familyAsChildButton.setEnabled(false);
+//			familyAsChildButton.setEnabled(false);
 			
 			return false;
 		} else {
-			familyAsChildButton.setEnabled(true);
+//			familyAsChildButton.setEnabled(true);
 			return super.validateMenuItem((NSMenuItem) menuItem);
 		}
 	}
@@ -1536,9 +1558,11 @@ public void startSuppressUpdates() {
 	log.debug("MyDocument.startSuppressUpdates()");
 	NDC.push("suppressUpdates");
 	suppressUpdates = true;
+	doc.startSuppressUpdates();
 }
 
 public void endSuppressUpdates() {
+	doc.endSuppressUpdates();
 	suppressUpdates = false;
 	NDC.pop();
 }

@@ -43,7 +43,7 @@ import com.redbugz.macpaf.util.JDOMUtils;
 public class IndividualJDOM implements Individual, Cloneable {
   private static final ContentFilter CONTENT_FILTER_TEXT = new ContentFilter(ContentFilter.TEXT);
 private static final Logger log = Logger.getLogger(IndividualJDOM.class);
-  private static final String REF = "REF";
+  public static final String REF = "REF";
   public static final String INDIVIDUAL = "INDI";
   public static final String RESTRICTION = "RESN";
   public static final String GENDER = "SEX";
@@ -60,9 +60,9 @@ private static final Logger log = Logger.getLogger(IndividualJDOM.class);
   public static final String NAME_SURNAME = "SURN";
   public static final String NAME_SUFFIX = "NSFX";
 
-  private static final String ID = "ID";
-  private static final String FAMILY_CHILD_LINK = "FAMC";
-  private static final String FAMILY_SPOUSE_LINK = "FAMS";
+  public static final String ID = "ID";
+  public static final String FAMILY_CHILD_LINK = "FAMC";
+  public static final String FAMILY_SPOUSE_LINK = "FAMS";
   public static final String LOCKED = "locked";
   public static final String PRIVACY = "privacy";
 
@@ -407,7 +407,9 @@ private void saveName() {
   public void setFamilyAsChild(Family family) {
 //		this.familyAsChild = family;
 	element.removeChildren(FAMILY_CHILD_LINK);
-	element.addContent(new Element(FAMILY_CHILD_LINK).setAttribute(REF, family.getId()));
+	if (family != null) {
+		element.addContent(new Element(FAMILY_CHILD_LINK).setAttribute(REF, family.getId()));
+	}
   }
 
   public void addFamilyAsSpouse(Family family) {

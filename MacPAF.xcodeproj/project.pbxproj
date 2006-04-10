@@ -16,7 +16,9 @@
 				2A37F4CEFDCFA73011CA2CEA /* Sources */,
 				043355CEFE303625C02AAC07 /* JavaArchive */,
 				2A37F4D1FDCFA73011CA2CEA /* Frameworks */,
+				02DE749E09E9634A003B896A /* CopyFiles */,
 				027C6AD405D9445900C91D7B /* CopyFiles */,
+				02EEC6AA09E0FB65005E1F54 /* CopyFiles */,
 			);
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = "";
@@ -44,11 +46,12 @@
 				WRAPPER_EXTENSION = app;
 			};
 			dependencies = (
+				02DE765A09E96794003B896A /* PBXTargetDependency */,
 			);
 			name = MacPAF;
 			productInstallPath = "$(HOME)/Applications";
 			productName = MacPAF;
-			productReference = 1758732CFF379DAD11CA2CBB /* MacPAF.app */;
+			productReference = 02E289DE09E9FB29000846AC /* MacPAF.app */;
 			productSettingsXML = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
 <!DOCTYPE plist PUBLIC \"-//Apple Computer//DTD PLIST 1.0//EN\" \"http://www.apple.com/DTDs/PropertyList-1.0.dtd\">
 <plist version=\"1.0\">
@@ -142,7 +145,6 @@
 	<string>YES</string>
 	<key>NSJavaPath</key>
 	<array>
-		<string>MacPAF.jar</string>
 		<string>lib/castor-1.0M2-xml.jar</string>
 		<string>lib/gedcom.jar</string>
 		<string>lib/jaxen-core.jar</string>
@@ -158,6 +160,7 @@
 		<string>lib/commons-logging.jar</string>
 		<string>lib/commons-httpclient-3.0.jar</string>
 		<string>lib/joda-time-1.2.jar</string>
+		<string>MacPAF.jar</string>
 	</array>
 	<key>NSJavaRoot</key>
 	<string>Contents/Resources/Java</string>
@@ -174,60 +177,16 @@
 /* End PBXApplicationTarget section */
 
 /* Begin PBXBuildFile section */
-		020D7BA409A892E500664545 /* NSString+extras.h in Headers */ = {isa = PBXBuildFile; fileRef = 020D7B9D09A892E400664545 /* NSString+extras.h */; };
-		020D7BA509A892E500664545 /* NSString+extras.m in Sources */ = {isa = PBXBuildFile; fileRef = 020D7B9E09A892E500664545 /* NSString+extras.m */; };
-		020D7BA609A892E500664545 /* RSS.h in Headers */ = {isa = PBXBuildFile; fileRef = 020D7B9F09A892E500664545 /* RSS.h */; };
-		020D7BA709A892E500664545 /* RSS.m in Sources */ = {isa = PBXBuildFile; fileRef = 020D7BA009A892E500664545 /* RSS.m */; };
-		020D7BA809A892E500664545 /* Sparkle.strings in Resources */ = {isa = PBXBuildFile; fileRef = 020D7BA109A892E500664545 /* Sparkle.strings */; };
-		020D7BA909A892E500664545 /* SUUpdater.h in Headers */ = {isa = PBXBuildFile; fileRef = 020D7BA209A892E500664545 /* SUUpdater.h */; };
-		020D7BAA09A892E500664545 /* SUUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 020D7BA309A892E500664545 /* SUUpdater.m */; };
-		020D7BC109A8955800664545 /* DateUtils.java in Sources */ = {isa = PBXBuildFile; fileRef = 020D7BC009A8955800664545 /* DateUtils.java */; };
-		021612DD096A499E005AC0B6 /* PedigreeViewController.java in Sources */ = {isa = PBXBuildFile; fileRef = 021612DC096A499E005AC0B6 /* PedigreeViewController.java */; };
-		0218FF4108F98E4900F67E81 /* AllTests.java in Sources */ = {isa = PBXBuildFile; fileRef = 0218FF3F08F98E4800F67E81 /* AllTests.java */; };
-		0218FF4208F98E4A00F67E81 /* HistoryControllerTest.java in Sources */ = {isa = PBXBuildFile; fileRef = 0218FF4008F98E4900F67E81 /* HistoryControllerTest.java */; };
-		02260200099FD9D70021F22B /* castor-1.0M2-xml.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 022601FF099FD9D70021F22B /* castor-1.0M2-xml.jar */; };
 		0226020A099FD9FA0021F22B /* castor-1.0M2-xml.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 022601FF099FD9D70021F22B /* castor-1.0M2-xml.jar */; };
-		022DDB4808E36C1E00AAA6B1 /* FamilyDetailController.java in Sources */ = {isa = PBXBuildFile; fileRef = 022DDB4708E36C1D00AAA6B1 /* FamilyDetailController.java */; };
-		0236ED1B098D5FEE00E276AB /* commons-codec-1.3.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 0236ED18098D5FED00E276AB /* commons-codec-1.3.jar */; };
-		0236ED1C098D5FEF00E276AB /* commons-httpclient-3.0.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 0236ED19098D5FEE00E276AB /* commons-httpclient-3.0.jar */; };
-		0236ED1D098D5FEF00E276AB /* commons-logging.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 0236ED1A098D5FEE00E276AB /* commons-logging.jar */; };
 		0236ED1E098D609D00E276AB /* commons-codec-1.3.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0236ED18098D5FED00E276AB /* commons-codec-1.3.jar */; };
 		0236ED1F098D609D00E276AB /* commons-httpclient-3.0.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0236ED19098D5FEE00E276AB /* commons-httpclient-3.0.jar */; };
 		0236ED20098D609D00E276AB /* commons-logging.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0236ED1A098D5FEE00E276AB /* commons-logging.jar */; };
-		023701D8062056080087E765 /* log4j-1.2.9.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 023701D7062056080087E765 /* log4j-1.2.9.jar */; };
 		023701ED062056EF0087E765 /* log4j-1.2.9.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 023701D7062056080087E765 /* log4j-1.2.9.jar */; };
-		0237023006205C5B0087E765 /* log4j.properties in Sources */ = {isa = PBXBuildFile; fileRef = 02370211062059920087E765 /* log4j.properties */; };
 		0237024606205EE30087E765 /* log4j.properties in CopyFiles */ = {isa = PBXBuildFile; fileRef = 02370211062059920087E765 /* log4j.properties */; };
-		0237A2CF07B66682003D9778 /* CocoaUtils.java in Sources */ = {isa = PBXBuildFile; fileRef = 0237A2CE07B66682003D9778 /* CocoaUtils.java */; };
-		023F05BD07AD1592005A4D0A /* MyFamily.java in Sources */ = {isa = PBXBuildFile; fileRef = 023F05BC07AD1592005A4D0A /* MyFamily.java */; };
-		023F05C107AD16B5005A4D0A /* MultimediaLink.java in Sources */ = {isa = PBXBuildFile; fileRef = 023F05C007AD16B5005A4D0A /* MultimediaLink.java */; };
-		024E77D00782F44800B7A2CC /* MultimediaUtils.java in Sources */ = {isa = PBXBuildFile; fileRef = 024E77CF0782F44800B7A2CC /* MultimediaUtils.java */; };
-		0250C09D07AC858500AC3629 /* UnknownGedcomLinkException.java in Sources */ = {isa = PBXBuildFile; fileRef = 0250C09C07AC858500AC3629 /* UnknownGedcomLinkException.java */; };
-		025FC08B092EC024006B2989 /* FilteredTableViewDataSource.java in Sources */ = {isa = PBXBuildFile; fileRef = 025FC089092EC023006B2989 /* FilteredTableViewDataSource.java */; };
-		025FC08C092EC024006B2989 /* SortableFilteredTableViewDataSource.java in Sources */ = {isa = PBXBuildFile; fileRef = 025FC08A092EC024006B2989 /* SortableFilteredTableViewDataSource.java */; };
-		025FC08E092EC045006B2989 /* WrappedTableViewDataSource.java in Sources */ = {isa = PBXBuildFile; fileRef = 025FC08D092EC045006B2989 /* WrappedTableViewDataSource.java */; };
-		0260D11308F9D6E100F9A745 /* junit.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 0260D11208F9D6E000F9A745 /* junit.jar */; };
 		0260D12208F9DAA800F9A745 /* saxpath.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 026ED7F705D9330B0001D1D2 /* saxpath.jar */; };
-		026AAA38099F222200F742A5 /* HeaderJDOMTest.java in Sources */ = {isa = PBXBuildFile; fileRef = 026AAA37099F222200F742A5 /* HeaderJDOMTest.java */; };
-		026AAA3A099F225C00F742A5 /* joda-time-1.2.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 026AAA39099F225C00F742A5 /* joda-time-1.2.jar */; };
 		026AAA3C099F22B000F742A5 /* joda-time-1.2.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 026AAA39099F225C00F742A5 /* joda-time-1.2.jar */; };
 		026BF51807AD765200CBA37C /* Family.png in Resources */ = {isa = PBXBuildFile; fileRef = 026BF51707AD765200CBA37C /* Family.png */; };
 		026BF51A07AD992300CBA37C /* Individual.png in Resources */ = {isa = PBXBuildFile; fileRef = 026BF51907AD992300CBA37C /* Individual.png */; };
-		026ED74C05D932BD0001D1D2 /* ApplicationUtilities.java in Sources */ = {isa = PBXBuildFile; fileRef = 026ED71205D932BC0001D1D2 /* ApplicationUtilities.java */; };
-		026ED77205D932BD0001D1D2 /* FamilyEditController.java in Sources */ = {isa = PBXBuildFile; fileRef = 026ED73C05D932BD0001D1D2 /* FamilyEditController.java */; };
-		026ED77305D932BD0001D1D2 /* FamilyGroupSheetView.java in Sources */ = {isa = PBXBuildFile; fileRef = 026ED73D05D932BD0001D1D2 /* FamilyGroupSheetView.java */; };
-		026ED77405D932BD0001D1D2 /* FamilyList.java in Sources */ = {isa = PBXBuildFile; fileRef = 026ED73E05D932BD0001D1D2 /* FamilyList.java */; };
-		026ED77505D932BD0001D1D2 /* AnselInputStreamReader.java in Sources */ = {isa = PBXBuildFile; fileRef = 026ED74005D932BD0001D1D2 /* AnselInputStreamReader.java */; };
-		026ED77605D932BD0001D1D2 /* AnselOutputStreamWriter.java in Sources */ = {isa = PBXBuildFile; fileRef = 026ED74105D932BD0001D1D2 /* AnselOutputStreamWriter.java */; };
-		026ED77705D932BD0001D1D2 /* GedcomOutputter.java in Sources */ = {isa = PBXBuildFile; fileRef = 026ED74205D932BD0001D1D2 /* GedcomOutputter.java */; };
-		026ED77805D932BD0001D1D2 /* GedcomParser.java in Sources */ = {isa = PBXBuildFile; fileRef = 026ED74305D932BD0001D1D2 /* GedcomParser.java */; };
-		026ED77905D932BD0001D1D2 /* ImportController.java in Sources */ = {isa = PBXBuildFile; fileRef = 026ED74405D932BD0001D1D2 /* ImportController.java */; };
-		026ED77A05D932BD0001D1D2 /* IndividualEditController.java in Sources */ = {isa = PBXBuildFile; fileRef = 026ED74505D932BD0001D1D2 /* IndividualEditController.java */; };
-		026ED77B05D932BD0001D1D2 /* IndividualList.java in Sources */ = {isa = PBXBuildFile; fileRef = 026ED74605D932BD0001D1D2 /* IndividualList.java */; };
-		026ED77C05D932BD0001D1D2 /* IndividualSummaryView.java in Sources */ = {isa = PBXBuildFile; fileRef = 026ED74705D932BD0001D1D2 /* IndividualSummaryView.java */; };
-		026ED77D05D932BD0001D1D2 /* PedigreeView.java in Sources */ = {isa = PBXBuildFile; fileRef = 026ED74805D932BD0001D1D2 /* PedigreeView.java */; };
-		026ED77E05D932BD0001D1D2 /* ReportsController.java in Sources */ = {isa = PBXBuildFile; fileRef = 026ED74905D932BD0001D1D2 /* ReportsController.java */; };
-		026ED77F05D932BD0001D1D2 /* TestData.java in Sources */ = {isa = PBXBuildFile; fileRef = 026ED74A05D932BD0001D1D2 /* TestData.java */; };
 		026ED7D805D932E50001D1D2 /* notepad.gif in Resources */ = {isa = PBXBuildFile; fileRef = 026ED7A305D932E50001D1D2 /* notepad.gif */; };
 		026ED7DA05D932E50001D1D2 /* tree.gif in Resources */ = {isa = PBXBuildFile; fileRef = 026ED7A505D932E50001D1D2 /* tree.gif */; };
 		026ED7DB05D932E50001D1D2 /* Tree.icns in Resources */ = {isa = PBXBuildFile; fileRef = 026ED7A605D932E50001D1D2 /* Tree.icns */; };
@@ -242,100 +201,199 @@
 		026ED7E705D932E50001D1D2 /* temple-mapping.xml in Resources */ = {isa = PBXBuildFile; fileRef = 026ED7B505D932E50001D1D2 /* temple-mapping.xml */; };
 		026ED7E805D932E50001D1D2 /* TempleList.xml in Resources */ = {isa = PBXBuildFile; fileRef = 026ED7B605D932E50001D1D2 /* TempleList.xml */; };
 		026ED7E905D932E50001D1D2 /* XmlToGedcom.xsl in Resources */ = {isa = PBXBuildFile; fileRef = 026ED7B705D932E50001D1D2 /* XmlToGedcom.xsl */; };
-		026ED7FA05D9330B0001D1D2 /* gedcom.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 026ED7F305D9330B0001D1D2 /* gedcom.jar */; };
-		026ED7FB05D9330B0001D1D2 /* jaxen-core.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 026ED7F405D9330B0001D1D2 /* jaxen-core.jar */; };
-		026ED7FC05D9330B0001D1D2 /* jaxen-jdom.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 026ED7F505D9330B0001D1D2 /* jaxen-jdom.jar */; };
-		026ED7FD05D9330B0001D1D2 /* jdom-1.0.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 026ED7F605D9330B0001D1D2 /* jdom-1.0.jar */; };
-		026ED7FE05D9330B0001D1D2 /* saxpath.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 026ED7F705D9330B0001D1D2 /* saxpath.jar */; };
-		02753D03066A46890059C930 /* PocketPedigreeView.java in Sources */ = {isa = PBXBuildFile; fileRef = 02753D02066A46890059C930 /* PocketPedigreeView.java */; };
 		027C6ADA05D9447B00C91D7B /* gedcom.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 026ED7F305D9330B0001D1D2 /* gedcom.jar */; };
 		027C6ADB05D9447B00C91D7B /* jaxen-core.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 026ED7F405D9330B0001D1D2 /* jaxen-core.jar */; };
 		027C6ADC05D9447B00C91D7B /* jaxen-jdom.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 026ED7F505D9330B0001D1D2 /* jaxen-jdom.jar */; };
 		027C6ADD05D9447B00C91D7B /* jdom-1.0.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 026ED7F605D9330B0001D1D2 /* jdom-1.0.jar */; };
-		027D36AB0707D05600F146F8 /* MainToolbar.java in Sources */ = {isa = PBXBuildFile; fileRef = 027D36AA0707D05600F146F8 /* MainToolbar.java */; };
 		027D36AE0707D2BE00F146F8 /* Disc Add.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 027D36AC0707D2BE00F146F8 /* Disc Add.tiff */; };
 		027D36AF0707D2BE00F146F8 /* Drawer.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 027D36AD0707D2BE00F146F8 /* Drawer.tiff */; };
 		027D36B40707D41E00F146F8 /* Badge Add.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 027D36B00707D41E00F146F8 /* Badge Add.tiff */; };
 		027D36B50707D41E00F146F8 /* Magnifing Glass.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 027D36B10707D41E00F146F8 /* Magnifing Glass.tiff */; };
 		027D36B60707D41E00F146F8 /* Metal Window.psd in Resources */ = {isa = PBXBuildFile; fileRef = 027D36B20707D41E00F146F8 /* Metal Window.psd */; };
 		027D36B70707D42100F146F8 /* Page.psd in Resources */ = {isa = PBXBuildFile; fileRef = 027D36B30707D41E00F146F8 /* Page.psd */; };
-		02907686060568E800F1763A /* IndividualDetailController.java in Sources */ = {isa = PBXBuildFile; fileRef = 02907685060568E800F1763A /* IndividualDetailController.java */; };
-		02A778EA08AFB24C007897F4 /* JDOMUtils.java in Sources */ = {isa = PBXBuildFile; fileRef = 02A778E908AFB24C007897F4 /* JDOMUtils.java */; };
-		02A7790108B011E6007897F4 /* FamilyListController.java in Sources */ = {isa = PBXBuildFile; fileRef = 02A778FF08B011E6007897F4 /* FamilyListController.java */; };
-		02A7790208B011E6007897F4 /* IndividualListController.java in Sources */ = {isa = PBXBuildFile; fileRef = 02A7790008B011E6007897F4 /* IndividualListController.java */; };
 		02A77AF008B0425A007897F4 /* IndividualListWindow.nib in Resources */ = {isa = PBXBuildFile; fileRef = 02A77AEE08B0425A007897F4 /* IndividualListWindow.nib */; };
 		02A77AF508B0445C007897F4 /* FamilyListWindow.nib in Resources */ = {isa = PBXBuildFile; fileRef = 02A77AF308B0445C007897F4 /* FamilyListWindow.nib */; };
-		02B3D1B5077B11CF0069077B /* Address.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D17D077B11CD0069077B /* Address.java */; };
-		02B3D1B6077B11CF0069077B /* Event.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D17E077B11CD0069077B /* Event.java */; };
-		02B3D1B7077B11CF0069077B /* Family.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D17F077B11CD0069077B /* Family.java */; };
-		02B3D1B8077B11CF0069077B /* Gender.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D180077B11CD0069077B /* Gender.java */; };
-		02B3D1B9077B11CF0069077B /* Header.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D181077B11CD0069077B /* Header.java */; };
-		02B3D1BA077B11CF0069077B /* Individual.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D182077B11CD0069077B /* Individual.java */; };
-		02B3D1BB077B11CF0069077B /* AddressJDOM.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D184077B11CE0069077B /* AddressJDOM.java */; };
-		02B3D1BC077B11CF0069077B /* EventJDOM.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D185077B11CE0069077B /* EventJDOM.java */; };
-		02B3D1BD077B11CF0069077B /* FamilyJDOM.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D186077B11CE0069077B /* FamilyJDOM.java */; };
-		02B3D1BE077B11CF0069077B /* FamilyLink.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D187077B11CE0069077B /* FamilyLink.java */; };
-		02B3D1BF077B11CF0069077B /* HeaderJDOM.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D188077B11CE0069077B /* HeaderJDOM.java */; };
-		02B3D1C0077B11CF0069077B /* IndividualJDOM.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D189077B11CE0069077B /* IndividualJDOM.java */; };
-		02B3D1C1077B11CF0069077B /* IndividualLink.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D18A077B11CE0069077B /* IndividualLink.java */; };
-		02B3D1C2077B11CF0069077B /* MacPAFDocumentJDOM.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D18B077B11CE0069077B /* MacPAFDocumentJDOM.java */; };
-		02B3D1C3077B11CF0069077B /* MultimediaJDOM.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D18C077B11CE0069077B /* MultimediaJDOM.java */; };
-		02B3D1C4077B11CF0069077B /* MultimediaLink.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D18D077B11CE0069077B /* MultimediaLink.java */; };
-		02B3D1C5077B11CF0069077B /* NoteJDOM.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D18E077B11CE0069077B /* NoteJDOM.java */; };
-		02B3D1C6077B11CF0069077B /* NoteLink.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D18F077B11CE0069077B /* NoteLink.java */; };
-		02B3D1C7077B11CF0069077B /* OrdinanceJDOM.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D190077B11CE0069077B /* OrdinanceJDOM.java */; };
-		02B3D1C8077B11CF0069077B /* PlaceJDOM.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D191077B11CE0069077B /* PlaceJDOM.java */; };
-		02B3D1C9077B11CF0069077B /* RepositoryJDOM.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D192077B11CE0069077B /* RepositoryJDOM.java */; };
-		02B3D1CA077B11CF0069077B /* RepositoryLink.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D193077B11CE0069077B /* RepositoryLink.java */; };
-		02B3D1CB077B11CF0069077B /* SourceJDOM.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D194077B11CE0069077B /* SourceJDOM.java */; };
-		02B3D1CC077B11CF0069077B /* SourceLink.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D195077B11CE0069077B /* SourceLink.java */; };
-		02B3D1CD077B11CF0069077B /* SubmissionJDOM.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D196077B11CE0069077B /* SubmissionJDOM.java */; };
-		02B3D1CE077B11CF0069077B /* SubmitterJDOM.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D197077B11CE0069077B /* SubmitterJDOM.java */; };
-		02B3D1CF077B11CF0069077B /* SubmitterLink.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D198077B11CE0069077B /* SubmitterLink.java */; };
-		02B3D1D0077B11CF0069077B /* TempleJDOM.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D199077B11CE0069077B /* TempleJDOM.java */; };
-		02B3D1D1077B11CF0069077B /* LocationList.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D19A077B11CE0069077B /* LocationList.java */; };
-		02B3D1D2077B11CF0069077B /* Multimedia.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D19B077B11CE0069077B /* Multimedia.java */; };
-		02B3D1D3077B11CF0069077B /* Note.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D19C077B11CE0069077B /* Note.java */; };
-		02B3D1D4077B11CF0069077B /* Ordinance.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D19D077B11CE0069077B /* Ordinance.java */; };
-		02B3D1D5077B11CF0069077B /* Place.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D19E077B11CE0069077B /* Place.java */; };
-		02B3D1D6077B11CF0069077B /* Repository.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D19F077B11CE0069077B /* Repository.java */; };
-		02B3D1D7077B11CF0069077B /* Source.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D1A0077B11CE0069077B /* Source.java */; };
-		02B3D1D8077B11CF0069077B /* Submission.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D1A1077B11CE0069077B /* Submission.java */; };
-		02B3D1D9077B11CF0069077B /* Submitter.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D1A2077B11CE0069077B /* Submitter.java */; };
-		02B3D1DA077B11CF0069077B /* SurnameList.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D1A3077B11CF0069077B /* SurnameList.java */; };
-		02B3D1DB077B11CF0069077B /* Temple.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D1A4077B11CF0069077B /* Temple.java */; };
-		02B3D1DC077B11CF0069077B /* TempleList.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D1A5077B11CF0069077B /* TempleList.java */; };
-		02B3D1DD077B11CF0069077B /* TempleXML.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D1A6077B11CF0069077B /* TempleXML.java */; };
-		02B3D1DE077B11CF0069077B /* MyEvent.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D1A8077B11CF0069077B /* MyEvent.java */; };
-		02B3D1DF077B11CF0069077B /* MyIndividual.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D1A9077B11CF0069077B /* MyIndividual.java */; };
-		02B3D1E0077B11CF0069077B /* MyMultimedia.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D1AA077B11CF0069077B /* MyMultimedia.java */; };
-		02B3D1E1077B11CF0069077B /* MyNote.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D1AB077B11CF0069077B /* MyNote.java */; };
-		02B3D1E2077B11CF0069077B /* MyOrdinance.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D1AC077B11CF0069077B /* MyOrdinance.java */; };
-		02B3D1E3077B11CF0069077B /* MyPlace.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D1AD077B11CF0069077B /* MyPlace.java */; };
-		02B3D1E4077B11CF0069077B /* TestFamily.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D1AE077B11CF0069077B /* TestFamily.java */; };
-		02B3D1E5077B11CF0069077B /* Tests.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D1AF077B11CF0069077B /* Tests.java */; };
-		02B3D1E6077B11CF0069077B /* Base64.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D1B1077B11CF0069077B /* Base64.java */; };
-		02B3D1E7077B11CF0069077B /* Hex.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D1B2077B11CF0069077B /* Hex.java */; };
-		02B3D1E8077B11CF0069077B /* StringUtils.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D1B3077B11CF0069077B /* StringUtils.java */; };
-		02B3D1E9077B11CF0069077B /* XMLTest.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D1B4077B11CF0069077B /* XMLTest.java */; };
-		02B8AC5108F045D700AE39EC /* HistoryController.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B8AC5008F045D700AE39EC /* HistoryController.java */; };
-		02C50B110621296700B54464 /* xalan.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 02C50B0E0621296600B54464 /* xalan.jar */; };
-		02C50B120621296800B54464 /* xerces.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 02C50B0F0621296600B54464 /* xerces.jar */; };
-		02C50B130621296800B54464 /* xml-apis.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 02C50B100621296600B54464 /* xml-apis.jar */; };
 		02C50B5306212E8700B54464 /* xalan.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 02C50B0E0621296600B54464 /* xalan.jar */; };
 		02C50B5406212E8700B54464 /* xerces.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 02C50B0F0621296600B54464 /* xerces.jar */; };
 		02C50B5506212E8700B54464 /* xml-apis.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 02C50B100621296600B54464 /* xml-apis.jar */; };
-		02C5BE500939F8EF0086B510 /* ValidationException.java in Sources */ = {isa = PBXBuildFile; fileRef = 02C5BE4F0939F8EF0086B510 /* ValidationException.java */; };
-		02C5BF790945F5D60086B510 /* concurrent.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 02C5BF780945F5D40086B510 /* concurrent.jar */; };
-		02C5BFBE0948218C0086B510 /* GedcomLoaderJDOM.java in Sources */ = {isa = PBXBuildFile; fileRef = 02C5BFBD0948218C0086B510 /* GedcomLoaderJDOM.java */; };
 		02C5C0C5095466150086B510 /* RecordSelectionWindow.nib in Resources */ = {isa = PBXBuildFile; fileRef = 02C5C0C3095466130086B510 /* RecordSelectionWindow.nib */; };
-		02FE0169097B9B79005531CB /* EventTableController.java in Sources */ = {isa = PBXBuildFile; fileRef = 02FE0168097B9B79005531CB /* EventTableController.java */; };
+		02DE74BC09E965E1003B896A /* AllTests.java in Sources */ = {isa = PBXBuildFile; fileRef = 0218FF3F08F98E4800F67E81 /* AllTests.java */; };
+		02DE74BD09E965E3003B896A /* ImportController.java in Sources */ = {isa = PBXBuildFile; fileRef = 026ED74405D932BD0001D1D2 /* ImportController.java */; };
+		02DE74BE09E965E3003B896A /* Source.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D1A0077B11CE0069077B /* Source.java */; };
+		02DE74BF09E965E4003B896A /* NoteJDOM.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D18E077B11CE0069077B /* NoteJDOM.java */; };
+		02DE74C009E965E4003B896A /* FamilyList.java in Sources */ = {isa = PBXBuildFile; fileRef = 026ED73E05D932BD0001D1D2 /* FamilyList.java */; };
+		02DE74C109E965E6003B896A /* Gender.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D180077B11CD0069077B /* Gender.java */; };
+		02DE74C209E965E7003B896A /* IndividualSummaryView.java in Sources */ = {isa = PBXBuildFile; fileRef = 026ED74705D932BD0001D1D2 /* IndividualSummaryView.java */; };
+		02DE74C309E965E7003B896A /* SourceJDOM.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D194077B11CE0069077B /* SourceJDOM.java */; };
+		02DE74C409E965E8003B896A /* MyMultimedia.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D1AA077B11CF0069077B /* MyMultimedia.java */; };
+		02DE74C509E965E9003B896A /* SubmitterLink.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D198077B11CE0069077B /* SubmitterLink.java */; };
+		02DE74C609E965EB003B896A /* SourceLink.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D195077B11CE0069077B /* SourceLink.java */; };
+		02DE74C709E965EC003B896A /* GedcomOutputter.java in Sources */ = {isa = PBXBuildFile; fileRef = 026ED74205D932BD0001D1D2 /* GedcomOutputter.java */; };
+		02DE74C809E965ED003B896A /* ReportsController.java in Sources */ = {isa = PBXBuildFile; fileRef = 026ED74905D932BD0001D1D2 /* ReportsController.java */; };
+		02DE74C909E965ED003B896A /* Repository.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D19F077B11CE0069077B /* Repository.java */; };
+		02DE75FD09E96643003B896A /* AnselOutputStreamWriter.java in Sources */ = {isa = PBXBuildFile; fileRef = 026ED74105D932BD0001D1D2 /* AnselOutputStreamWriter.java */; };
+		02DE75FE09E96643003B896A /* DateUtils.java in Sources */ = {isa = PBXBuildFile; fileRef = 020D7BC009A8955800664545 /* DateUtils.java */; };
+		02DE75FF09E96643003B896A /* RepositoryJDOM.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D192077B11CE0069077B /* RepositoryJDOM.java */; };
+		02DE760009E96643003B896A /* TestData.java in Sources */ = {isa = PBXBuildFile; fileRef = 026ED74A05D932BD0001D1D2 /* TestData.java */; };
+		02DE760109E96643003B896A /* Submission.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D1A1077B11CE0069077B /* Submission.java */; };
+		02DE760209E96643003B896A /* Tests.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D1AF077B11CF0069077B /* Tests.java */; };
+		02DE760309E96643003B896A /* Submitter.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D1A2077B11CE0069077B /* Submitter.java */; };
+		02DE760409E96643003B896A /* MultimediaUtils.java in Sources */ = {isa = PBXBuildFile; fileRef = 024E77CF0782F44800B7A2CC /* MultimediaUtils.java */; };
+		02DE760509E96643003B896A /* RepositoryLink.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D193077B11CE0069077B /* RepositoryLink.java */; };
+		02DE760609E96643003B896A /* EventJDOM.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D185077B11CE0069077B /* EventJDOM.java */; };
+		02DE760709E96643003B896A /* FamilyDetailController.java in Sources */ = {isa = PBXBuildFile; fileRef = 022DDB4708E36C1D00AAA6B1 /* FamilyDetailController.java */; };
+		02DE760809E96643003B896A /* TempleList.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D1A5077B11CF0069077B /* TempleList.java */; };
+		02DE760909E96643003B896A /* MyEvent.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D1A8077B11CF0069077B /* MyEvent.java */; };
+		02DE760A09E96643003B896A /* IndividualEditController.java in Sources */ = {isa = PBXBuildFile; fileRef = 026ED74505D932BD0001D1D2 /* IndividualEditController.java */; };
+		02DE760B09E96643003B896A /* IndividualListController.java in Sources */ = {isa = PBXBuildFile; fileRef = 02A7790008B011E6007897F4 /* IndividualListController.java */; };
+		02DE760C09E96643003B896A /* Event.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D17E077B11CD0069077B /* Event.java */; };
+		02DE760D09E96643003B896A /* FilteredTableViewDataSource.java in Sources */ = {isa = PBXBuildFile; fileRef = 025FC089092EC023006B2989 /* FilteredTableViewDataSource.java */; };
+		02DE760E09E96643003B896A /* PedigreeView.java in Sources */ = {isa = PBXBuildFile; fileRef = 026ED74805D932BD0001D1D2 /* PedigreeView.java */; };
+		02DE760F09E96643003B896A /* TempleXML.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D1A6077B11CF0069077B /* TempleXML.java */; };
+		02DE761009E96643003B896A /* HeaderJDOM.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D188077B11CE0069077B /* HeaderJDOM.java */; };
+		02DE761109E96643003B896A /* Address.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D17D077B11CD0069077B /* Address.java */; };
+		02DE761209E96643003B896A /* Note.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D19C077B11CE0069077B /* Note.java */; };
+		02DE761309E96643003B896A /* MainToolbar.java in Sources */ = {isa = PBXBuildFile; fileRef = 027D36AA0707D05600F146F8 /* MainToolbar.java */; };
+		02DE761409E96643003B896A /* Header.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D181077B11CD0069077B /* Header.java */; };
+		02DE761509E96643003B896A /* ApplicationUtilities.java in Sources */ = {isa = PBXBuildFile; fileRef = 026ED71205D932BC0001D1D2 /* ApplicationUtilities.java */; };
+		02DE761609E96643003B896A /* FamilyGroupSheetView.java in Sources */ = {isa = PBXBuildFile; fileRef = 026ED73D05D932BD0001D1D2 /* FamilyGroupSheetView.java */; };
+		02DE761709E96643003B896A /* Hex.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D1B2077B11CF0069077B /* Hex.java */; };
+		02DE761809E96643003B896A /* PedigreeViewController.java in Sources */ = {isa = PBXBuildFile; fileRef = 021612DC096A499E005AC0B6 /* PedigreeViewController.java */; };
+		02DE761909E96643003B896A /* Family.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D17F077B11CD0069077B /* Family.java */; };
+		02DE761A09E96643003B896A /* CocoaUtils.java in Sources */ = {isa = PBXBuildFile; fileRef = 0237A2CE07B66682003D9778 /* CocoaUtils.java */; };
+		02DE761B09E96643003B896A /* UnknownGedcomLinkException.java in Sources */ = {isa = PBXBuildFile; fileRef = 0250C09C07AC858500AC3629 /* UnknownGedcomLinkException.java */; };
+		02DE761C09E96643003B896A /* PocketPedigreeView.java in Sources */ = {isa = PBXBuildFile; fileRef = 02753D02066A46890059C930 /* PocketPedigreeView.java */; };
+		02DE761D09E96643003B896A /* OrdinanceJDOM.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D190077B11CE0069077B /* OrdinanceJDOM.java */; };
+		02DE761E09E96643003B896A /* IndividualJDOM.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D189077B11CE0069077B /* IndividualJDOM.java */; };
+		02DE761F09E96643003B896A /* Individual.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D182077B11CD0069077B /* Individual.java */; };
+		02DE762009E96643003B896A /* NoteLink.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D18F077B11CE0069077B /* NoteLink.java */; };
+		02DE762109E96643003B896A /* FamilyLink.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D187077B11CE0069077B /* FamilyLink.java */; };
+		02DE762209E96643003B896A /* HistoryControllerTest.java in Sources */ = {isa = PBXBuildFile; fileRef = 0218FF4008F98E4900F67E81 /* HistoryControllerTest.java */; };
+		02DE762309E96643003B896A /* IndividualDetailController.java in Sources */ = {isa = PBXBuildFile; fileRef = 02907685060568E800F1763A /* IndividualDetailController.java */; };
+		02DE762409E96643003B896A /* IndividualLink.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D18A077B11CE0069077B /* IndividualLink.java */; };
+		02DE762509E96643003B896A /* AnselInputStreamReader.java in Sources */ = {isa = PBXBuildFile; fileRef = 026ED74005D932BD0001D1D2 /* AnselInputStreamReader.java */; };
+		02DE762609E96643003B896A /* SubmissionJDOM.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D196077B11CE0069077B /* SubmissionJDOM.java */; };
+		02DE762709E96643003B896A /* AddressJDOM.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D184077B11CE0069077B /* AddressJDOM.java */; };
+		02DE762809E96643003B896A /* MultimediaLink.java in Sources */ = {isa = PBXBuildFile; fileRef = 023F05C007AD16B5005A4D0A /* MultimediaLink.java */; };
+		02DE762909E96643003B896A /* Base64.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D1B1077B11CF0069077B /* Base64.java */; };
+		02DE762A09E96643003B896A /* GedcomParser.java in Sources */ = {isa = PBXBuildFile; fileRef = 026ED74305D932BD0001D1D2 /* GedcomParser.java */; };
+		02DE762B09E96643003B896A /* MacPAFDocumentJDOM.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D18B077B11CE0069077B /* MacPAFDocumentJDOM.java */; };
+		02DE762C09E96643003B896A /* SubmitterJDOM.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D197077B11CE0069077B /* SubmitterJDOM.java */; };
+		02DE762D09E96643003B896A /* MyOrdinance.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D1AC077B11CF0069077B /* MyOrdinance.java */; };
+		02DE762E09E96643003B896A /* MyIndividual.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D1A9077B11CF0069077B /* MyIndividual.java */; };
+		02DE762F09E96643003B896A /* ValidationException.java in Sources */ = {isa = PBXBuildFile; fileRef = 02C5BE4F0939F8EF0086B510 /* ValidationException.java */; };
+		02DE763009E96643003B896A /* HeaderJDOMTest.java in Sources */ = {isa = PBXBuildFile; fileRef = 026AAA37099F222200F742A5 /* HeaderJDOMTest.java */; };
+		02DE763109E96643003B896A /* GedcomLoaderJDOM.java in Sources */ = {isa = PBXBuildFile; fileRef = 02C5BFBD0948218C0086B510 /* GedcomLoaderJDOM.java */; };
+		02DE763209E96643003B896A /* MyPlace.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D1AD077B11CF0069077B /* MyPlace.java */; };
+		02DE763309E96643003B896A /* JDOMUtils.java in Sources */ = {isa = PBXBuildFile; fileRef = 02A778E908AFB24C007897F4 /* JDOMUtils.java */; };
+		02DE763409E96643003B896A /* Ordinance.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D19D077B11CE0069077B /* Ordinance.java */; };
+		02DE763509E96643003B896A /* Multimedia.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D19B077B11CE0069077B /* Multimedia.java */; };
+		02DE763609E96643003B896A /* MultimediaJDOM.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D18C077B11CE0069077B /* MultimediaJDOM.java */; };
+		02DE763709E96643003B896A /* TestFamily.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D1AE077B11CF0069077B /* TestFamily.java */; };
+		02DE763809E96643003B896A /* HistoryController.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B8AC5008F045D700AE39EC /* HistoryController.java */; };
+		02DE763909E96643003B896A /* FamilyJDOM.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D186077B11CE0069077B /* FamilyJDOM.java */; };
+		02DE763A09E96643003B896A /* EventTableController.java in Sources */ = {isa = PBXBuildFile; fileRef = 02FE0168097B9B79005531CB /* EventTableController.java */; };
+		02DE763B09E96643003B896A /* MultimediaLink.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D18D077B11CE0069077B /* MultimediaLink.java */; };
+		02DE763C09E96643003B896A /* Place.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D19E077B11CE0069077B /* Place.java */; };
+		02DE763D09E96643003B896A /* Temple.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D1A4077B11CF0069077B /* Temple.java */; };
+		02DE763E09E96643003B896A /* SurnameList.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D1A3077B11CF0069077B /* SurnameList.java */; };
+		02DE763F09E96643003B896A /* MyNote.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D1AB077B11CF0069077B /* MyNote.java */; };
+		02DE764009E96643003B896A /* LocationList.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D19A077B11CE0069077B /* LocationList.java */; };
+		02DE764109E96643003B896A /* TempleJDOM.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D199077B11CE0069077B /* TempleJDOM.java */; };
+		02DE764209E96643003B896A /* XMLTest.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D1B4077B11CF0069077B /* XMLTest.java */; };
+		02DE764309E96643003B896A /* PlaceJDOM.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D191077B11CE0069077B /* PlaceJDOM.java */; };
+		02DE764409E96643003B896A /* FamilyListController.java in Sources */ = {isa = PBXBuildFile; fileRef = 02A778FF08B011E6007897F4 /* FamilyListController.java */; };
+		02DE764509E96643003B896A /* FamilyEditController.java in Sources */ = {isa = PBXBuildFile; fileRef = 026ED73C05D932BD0001D1D2 /* FamilyEditController.java */; };
+		02DE764609E96643003B896A /* IndividualList.java in Sources */ = {isa = PBXBuildFile; fileRef = 026ED74605D932BD0001D1D2 /* IndividualList.java */; };
+		02DE764709E96643003B896A /* MyFamily.java in Sources */ = {isa = PBXBuildFile; fileRef = 023F05BC07AD1592005A4D0A /* MyFamily.java */; };
+		02DE764809E96643003B896A /* MyDocument.java in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4ACFDCFA73011CA2CEA /* MyDocument.java */; };
+		02DE764909E96643003B896A /* WrappedTableViewDataSource.java in Sources */ = {isa = PBXBuildFile; fileRef = 025FC08D092EC045006B2989 /* WrappedTableViewDataSource.java */; };
+		02DE764A09E96643003B896A /* StringUtils.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D1B3077B11CF0069077B /* StringUtils.java */; };
+		02DE764B09E96643003B896A /* SortableFilteredTableViewDataSource.java in Sources */ = {isa = PBXBuildFile; fileRef = 025FC08A092EC024006B2989 /* SortableFilteredTableViewDataSource.java */; };
+		02DE766C09E9684A003B896A /* log4j.properties in JavaArchive */ = {isa = PBXBuildFile; fileRef = 02370211062059920087E765 /* log4j.properties */; settings = {JAVA_ARCHIVE_SUBDIR = lib; }; };
+		02DE766D09E9684B003B896A /* commons-codec-1.3.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 0236ED18098D5FED00E276AB /* commons-codec-1.3.jar */; };
+		02DE766E09E9684C003B896A /* jaxen-core.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 026ED7F405D9330B0001D1D2 /* jaxen-core.jar */; };
+		02DE766F09E9684C003B896A /* xalan.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 02C50B0E0621296600B54464 /* xalan.jar */; };
+		02DE767009E9684D003B896A /* joda-time-1.2.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 026AAA39099F225C00F742A5 /* joda-time-1.2.jar */; };
+		02DE767109E96850003B896A /* xml-apis.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 02C50B100621296600B54464 /* xml-apis.jar */; };
+		02DE767209E96852003B896A /* concurrent.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 02C5BF780945F5D40086B510 /* concurrent.jar */; };
+		02DE767309E96855003B896A /* log4j-1.2.9.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 023701D7062056080087E765 /* log4j-1.2.9.jar */; };
+		02DE767409E96856003B896A /* commons-logging.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 0236ED1A098D5FEE00E276AB /* commons-logging.jar */; };
+		02DE767509E96857003B896A /* saxpath.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 026ED7F705D9330B0001D1D2 /* saxpath.jar */; };
+		02DE767609E9685B003B896A /* jdom-1.0.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 026ED7F605D9330B0001D1D2 /* jdom-1.0.jar */; };
+		02DE767709E9685C003B896A /* gedcom.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 026ED7F305D9330B0001D1D2 /* gedcom.jar */; };
+		02DE767809E9685C003B896A /* xerces.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 02C50B0F0621296600B54464 /* xerces.jar */; };
+		02DE767909E96860003B896A /* castor-1.0M2-xml.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 022601FF099FD9D70021F22B /* castor-1.0M2-xml.jar */; };
+		02DE767A09E96862003B896A /* junit.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 0260D11208F9D6E000F9A745 /* junit.jar */; };
+		02DE767B09E96863003B896A /* jaxen-jdom.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 026ED7F505D9330B0001D1D2 /* jaxen-jdom.jar */; };
+		02DE767C09E96866003B896A /* commons-httpclient-3.0.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 0236ED19098D5FEE00E276AB /* commons-httpclient-3.0.jar */; };
+		02DE769309E96A04003B896A /* MacPAF_Prefix.h in Headers */ = {isa = PBXBuildFile; fileRef = 32DBCF820370BDBC00C91783 /* MacPAF_Prefix.h */; };
+		02DE769509E96A04003B896A /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */; };
+		02DE769609E96A04003B896A /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */; };
+		02DE769709E96A04003B896A /* MyDocument.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B4FDCFA73011CA2CEA /* MyDocument.nib */; };
+		02DE769809E96A04003B896A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165FFE840EACC02AAC07 /* InfoPlist.strings */; };
+		02DE769909E96A04003B896A /* notepad.gif in Resources */ = {isa = PBXBuildFile; fileRef = 026ED7A305D932E50001D1D2 /* notepad.gif */; };
+		02DE769A09E96A04003B896A /* tree.gif in Resources */ = {isa = PBXBuildFile; fileRef = 026ED7A505D932E50001D1D2 /* tree.gif */; };
+		02DE769B09E96A04003B896A /* Tree.icns in Resources */ = {isa = PBXBuildFile; fileRef = 026ED7A605D932E50001D1D2 /* Tree.icns */; };
+		02DE769C09E96A04003B896A /* GedcomToHtml.xsl in Resources */ = {isa = PBXBuildFile; fileRef = 026ED7A805D932E50001D1D2 /* GedcomToHtml.xsl */; };
+		02DE769D09E96A04003B896A /* GedcomToXml.xsl in Resources */ = {isa = PBXBuildFile; fileRef = 026ED7A905D932E50001D1D2 /* GedcomToXml.xsl */; };
+		02DE769E09E96A04003B896A /* Temple Codes (official).xml in Resources */ = {isa = PBXBuildFile; fileRef = 026ED7AF05D932E50001D1D2 /* Temple Codes (official).xml */; };
+		02DE769F09E96A04003B896A /* Temple Codes.csv in Resources */ = {isa = PBXBuildFile; fileRef = 026ED7B005D932E50001D1D2 /* Temple Codes.csv */; };
+		02DE76A009E96A04003B896A /* Temple Codes.xls in Resources */ = {isa = PBXBuildFile; fileRef = 026ED7B105D932E50001D1D2 /* Temple Codes.xls */; };
+		02DE76A109E96A04003B896A /* Temple List in Resources */ = {isa = PBXBuildFile; fileRef = 026ED7B205D932E50001D1D2 /* Temple List */; };
+		02DE76A209E96A04003B896A /* Temple List.csv in Resources */ = {isa = PBXBuildFile; fileRef = 026ED7B305D932E50001D1D2 /* Temple List.csv */; };
+		02DE76A309E96A04003B896A /* Temple List.plist in Resources */ = {isa = PBXBuildFile; fileRef = 026ED7B405D932E50001D1D2 /* Temple List.plist */; };
+		02DE76A409E96A04003B896A /* temple-mapping.xml in Resources */ = {isa = PBXBuildFile; fileRef = 026ED7B505D932E50001D1D2 /* temple-mapping.xml */; };
+		02DE76A509E96A04003B896A /* TempleList.xml in Resources */ = {isa = PBXBuildFile; fileRef = 026ED7B605D932E50001D1D2 /* TempleList.xml */; };
+		02DE76A609E96A04003B896A /* XmlToGedcom.xsl in Resources */ = {isa = PBXBuildFile; fileRef = 026ED7B705D932E50001D1D2 /* XmlToGedcom.xsl */; };
+		02DE76A709E96A04003B896A /* Disc Add.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 027D36AC0707D2BE00F146F8 /* Disc Add.tiff */; };
+		02DE76A809E96A04003B896A /* Drawer.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 027D36AD0707D2BE00F146F8 /* Drawer.tiff */; };
+		02DE76A909E96A04003B896A /* Badge Add.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 027D36B00707D41E00F146F8 /* Badge Add.tiff */; };
+		02DE76AA09E96A04003B896A /* Magnifing Glass.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 027D36B10707D41E00F146F8 /* Magnifing Glass.tiff */; };
+		02DE76AB09E96A04003B896A /* Metal Window.psd in Resources */ = {isa = PBXBuildFile; fileRef = 027D36B20707D41E00F146F8 /* Metal Window.psd */; };
+		02DE76AC09E96A04003B896A /* Page.psd in Resources */ = {isa = PBXBuildFile; fileRef = 027D36B30707D41E00F146F8 /* Page.psd */; };
+		02DE76AD09E96A04003B896A /* Family.png in Resources */ = {isa = PBXBuildFile; fileRef = 026BF51707AD765200CBA37C /* Family.png */; };
+		02DE76AE09E96A04003B896A /* Individual.png in Resources */ = {isa = PBXBuildFile; fileRef = 026BF51907AD992300CBA37C /* Individual.png */; };
+		02DE76AF09E96A04003B896A /* IndividualListWindow.nib in Resources */ = {isa = PBXBuildFile; fileRef = 02A77AEE08B0425A007897F4 /* IndividualListWindow.nib */; };
+		02DE76B009E96A04003B896A /* FamilyListWindow.nib in Resources */ = {isa = PBXBuildFile; fileRef = 02A77AF308B0445C007897F4 /* FamilyListWindow.nib */; };
+		02DE76B109E96A04003B896A /* RecordSelectionWindow.nib in Resources */ = {isa = PBXBuildFile; fileRef = 02C5C0C3095466130086B510 /* RecordSelectionWindow.nib */; };
+		02DE76B309E96A04003B896A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
+		02DE76B609E96A04003B896A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
+		02DE76BB09E96A04003B896A /* castor-1.0M2-xml.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 022601FF099FD9D70021F22B /* castor-1.0M2-xml.jar */; };
+		02DE76BC09E96A04003B896A /* gedcom.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 026ED7F305D9330B0001D1D2 /* gedcom.jar */; };
+		02DE76BD09E96A04003B896A /* jaxen-core.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 026ED7F405D9330B0001D1D2 /* jaxen-core.jar */; };
+		02DE76BE09E96A04003B896A /* jaxen-jdom.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 026ED7F505D9330B0001D1D2 /* jaxen-jdom.jar */; };
+		02DE76BF09E96A04003B896A /* jdom-1.0.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 026ED7F605D9330B0001D1D2 /* jdom-1.0.jar */; };
+		02DE76C009E96A04003B896A /* saxpath.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 026ED7F705D9330B0001D1D2 /* saxpath.jar */; };
+		02DE76C109E96A04003B896A /* xalan.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 02C50B0E0621296600B54464 /* xalan.jar */; };
+		02DE76C209E96A04003B896A /* xerces.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 02C50B0F0621296600B54464 /* xerces.jar */; };
+		02DE76C309E96A04003B896A /* xml-apis.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 02C50B100621296600B54464 /* xml-apis.jar */; };
+		02DE76C409E96A04003B896A /* log4j-1.2.9.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 023701D7062056080087E765 /* log4j-1.2.9.jar */; };
+		02DE76C509E96A04003B896A /* log4j.properties in CopyFiles */ = {isa = PBXBuildFile; fileRef = 02370211062059920087E765 /* log4j.properties */; };
+		02DE76C609E96A04003B896A /* commons-codec-1.3.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0236ED18098D5FED00E276AB /* commons-codec-1.3.jar */; };
+		02DE76C709E96A04003B896A /* commons-httpclient-3.0.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0236ED19098D5FEE00E276AB /* commons-httpclient-3.0.jar */; };
+		02DE76C809E96A04003B896A /* commons-logging.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0236ED1A098D5FEE00E276AB /* commons-logging.jar */; };
+		02DE76C909E96A04003B896A /* joda-time-1.2.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 026AAA39099F225C00F742A5 /* joda-time-1.2.jar */; };
+		02E2897E09E9FA9D000846AC /* MacPAF.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 02E2897A09E9FA71000846AC /* MacPAF.jar */; };
+		02E28A9409EA2D1F000846AC /* NSString+extras.h in Headers */ = {isa = PBXBuildFile; fileRef = 02E28A8D09EA2D1F000846AC /* NSString+extras.h */; };
+		02E28A9509EA2D1F000846AC /* NSString+extras.m in Sources */ = {isa = PBXBuildFile; fileRef = 02E28A8E09EA2D1F000846AC /* NSString+extras.m */; };
+		02E28A9609EA2D1F000846AC /* RSS.h in Headers */ = {isa = PBXBuildFile; fileRef = 02E28A8F09EA2D1F000846AC /* RSS.h */; };
+		02E28A9709EA2D1F000846AC /* RSS.m in Sources */ = {isa = PBXBuildFile; fileRef = 02E28A9009EA2D1F000846AC /* RSS.m */; };
+		02E28A9809EA2D1F000846AC /* Sparkle.strings in Resources */ = {isa = PBXBuildFile; fileRef = 02E28A9109EA2D1F000846AC /* Sparkle.strings */; };
+		02E28A9909EA2D1F000846AC /* SUUpdater.h in Headers */ = {isa = PBXBuildFile; fileRef = 02E28A9209EA2D1F000846AC /* SUUpdater.h */; };
+		02E28A9A09EA2D1F000846AC /* SUUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 02E28A9309EA2D1F000846AC /* SUUpdater.m */; };
+		02E28A9B09EA2D1F000846AC /* NSString+extras.h in Headers */ = {isa = PBXBuildFile; fileRef = 02E28A8D09EA2D1F000846AC /* NSString+extras.h */; };
+		02E28A9C09EA2D1F000846AC /* NSString+extras.m in Sources */ = {isa = PBXBuildFile; fileRef = 02E28A8E09EA2D1F000846AC /* NSString+extras.m */; };
+		02E28A9D09EA2D1F000846AC /* RSS.h in Headers */ = {isa = PBXBuildFile; fileRef = 02E28A8F09EA2D1F000846AC /* RSS.h */; };
+		02E28A9E09EA2D1F000846AC /* RSS.m in Sources */ = {isa = PBXBuildFile; fileRef = 02E28A9009EA2D1F000846AC /* RSS.m */; };
+		02E28A9F09EA2D1F000846AC /* Sparkle.strings in Resources */ = {isa = PBXBuildFile; fileRef = 02E28A9109EA2D1F000846AC /* Sparkle.strings */; };
+		02E28AA009EA2D1F000846AC /* SUUpdater.h in Headers */ = {isa = PBXBuildFile; fileRef = 02E28A9209EA2D1F000846AC /* SUUpdater.h */; };
+		02E28AA109EA2D1F000846AC /* SUUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 02E28A9309EA2D1F000846AC /* SUUpdater.m */; };
 		080E96D9FE201CDB7F000001 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */; };
 		080E96DAFE201CDB7F000001 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */; };
 		080E96DBFE201CDB7F000001 /* MyDocument.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B4FDCFA73011CA2CEA /* MyDocument.nib */; };
 		089C1661FE840EACC02AAC07 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165FFE840EACC02AAC07 /* InfoPlist.strings */; };
 		1058C7A9FEA54F5311CA2CBB /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
-		116DBC1EFEF5915911CA2CEA /* MyDocument.java in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4ACFDCFA73011CA2CEA /* MyDocument.java */; settings = {ATTRIBUTES = (); }; };
 		2A37F4D0FDCFA73011CA2CEA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		32DBCF830370BDBC00C91783 /* MacPAF_Prefix.h in Headers */ = {isa = PBXBuildFile; fileRef = 32DBCF820370BDBC00C91783 /* MacPAF_Prefix.h */; };
 /* End PBXBuildFile section */
@@ -365,6 +423,23 @@
 		};
 /* End PBXBuildStyle section */
 
+/* Begin PBXContainerItemProxy section */
+		02DE765909E96794003B896A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 02DE74B409E9657E003B896A;
+			remoteInfo = "MacPAF Java Archive";
+		};
+		02DE769109E96A04003B896A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 02DE74B409E9657E003B896A;
+			remoteInfo = "MacPAF Java Archive";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		027C6AD405D9445900C91D7B /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -390,16 +465,70 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		02DE749E09E9634A003B896A /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 15;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		02DE76B809E96A04003B896A /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 15;
+			files = (
+				02E2897E09E9FA9D000846AC /* MacPAF.jar in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		02DE76BA09E96A04003B896A /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = lib;
+			dstSubfolderSpec = 15;
+			files = (
+				02DE76BB09E96A04003B896A /* castor-1.0M2-xml.jar in CopyFiles */,
+				02DE76BC09E96A04003B896A /* gedcom.jar in CopyFiles */,
+				02DE76BD09E96A04003B896A /* jaxen-core.jar in CopyFiles */,
+				02DE76BE09E96A04003B896A /* jaxen-jdom.jar in CopyFiles */,
+				02DE76BF09E96A04003B896A /* jdom-1.0.jar in CopyFiles */,
+				02DE76C009E96A04003B896A /* saxpath.jar in CopyFiles */,
+				02DE76C109E96A04003B896A /* xalan.jar in CopyFiles */,
+				02DE76C209E96A04003B896A /* xerces.jar in CopyFiles */,
+				02DE76C309E96A04003B896A /* xml-apis.jar in CopyFiles */,
+				02DE76C409E96A04003B896A /* log4j-1.2.9.jar in CopyFiles */,
+				02DE76C509E96A04003B896A /* log4j.properties in CopyFiles */,
+				02DE76C609E96A04003B896A /* commons-codec-1.3.jar in CopyFiles */,
+				02DE76C709E96A04003B896A /* commons-httpclient-3.0.jar in CopyFiles */,
+				02DE76C809E96A04003B896A /* commons-logging.jar in CopyFiles */,
+				02DE76C909E96A04003B896A /* joda-time-1.2.jar in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		02DE76CA09E96A04003B896A /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		02EEC6AA09E0FB65005E1F54 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 12;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		020D7B9D09A892E400664545 /* NSString+extras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+extras.h"; sourceTree = "<group>"; };
-		020D7B9E09A892E500664545 /* NSString+extras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+extras.m"; sourceTree = "<group>"; };
-		020D7B9F09A892E500664545 /* RSS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSS.h; sourceTree = "<group>"; };
-		020D7BA009A892E500664545 /* RSS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSS.m; sourceTree = "<group>"; };
-		020D7BA109A892E500664545 /* Sparkle.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Sparkle.strings; sourceTree = "<group>"; };
-		020D7BA209A892E500664545 /* SUUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUUpdater.h; sourceTree = "<group>"; };
-		020D7BA309A892E500664545 /* SUUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUUpdater.m; sourceTree = "<group>"; };
 		020D7BC009A8955800664545 /* DateUtils.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = DateUtils.java; sourceTree = "<group>"; };
 		021612DC096A499E005AC0B6 /* PedigreeViewController.java */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.java; name = PedigreeViewController.java; path = src/PedigreeViewController.java; sourceTree = "<group>"; };
 		0218FF3F08F98E4800F67E81 /* AllTests.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = AllTests.java; path = src/AllTests.java; sourceTree = "<group>"; };
@@ -533,10 +662,20 @@
 		02C5BF780945F5D40086B510 /* concurrent.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; name = concurrent.jar; path = lib/concurrent.jar; sourceTree = "<group>"; };
 		02C5BFBD0948218C0086B510 /* GedcomLoaderJDOM.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = GedcomLoaderJDOM.java; sourceTree = "<group>"; };
 		02C5C0C4095466140086B510 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/RecordSelectionWindow.nib; sourceTree = "<group>"; };
+		02DE76D009E96A05003B896A /* Info-MacPAF__Upgraded_.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Info-MacPAF__Upgraded_.plist"; sourceTree = "<group>"; };
+		02E2897A09E9FA71000846AC /* MacPAF.jar */ = {isa = PBXFileReference; explicitFileType = archive.jar; includeInIndex = 0; path = MacPAF.jar; sourceTree = BUILT_PRODUCTS_DIR; };
+		02E2897B09E9FA94000846AC /* MacPAF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacPAF.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		02E289DE09E9FB29000846AC /* MacPAF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacPAF.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		02E28A8D09EA2D1F000846AC /* NSString+extras.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+extras.h"; sourceTree = "<group>"; };
+		02E28A8E09EA2D1F000846AC /* NSString+extras.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+extras.m"; sourceTree = "<group>"; };
+		02E28A8F09EA2D1F000846AC /* RSS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RSS.h; sourceTree = "<group>"; };
+		02E28A9009EA2D1F000846AC /* RSS.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RSS.m; sourceTree = "<group>"; };
+		02E28A9109EA2D1F000846AC /* Sparkle.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Sparkle.strings; sourceTree = "<group>"; };
+		02E28A9209EA2D1F000846AC /* SUUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUUpdater.h; sourceTree = "<group>"; };
+		02E28A9309EA2D1F000846AC /* SUUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUUpdater.m; sourceTree = "<group>"; };
 		02FE0168097B9B79005531CB /* EventTableController.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = EventTableController.java; path = src/EventTableController.java; sourceTree = "<group>"; };
 		089C1660FE840EACC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
-		1758732CFF379DAD11CA2CBB /* MacPAF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; path = MacPAF.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A37F4ACFDCFA73011CA2CEA /* MyDocument.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = MyDocument.java; path = src/MyDocument.java; sourceTree = "<group>"; };
 		2A37F4B0FDCFA73011CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2A37F4B5FDCFA73011CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/MyDocument.nib; sourceTree = "<group>"; };
@@ -548,47 +687,48 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		02DE74B309E9657E003B896A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				02DE766D09E9684B003B896A /* commons-codec-1.3.jar in Frameworks */,
+				02DE766E09E9684C003B896A /* jaxen-core.jar in Frameworks */,
+				02DE766F09E9684C003B896A /* xalan.jar in Frameworks */,
+				02DE767009E9684D003B896A /* joda-time-1.2.jar in Frameworks */,
+				02DE767109E96850003B896A /* xml-apis.jar in Frameworks */,
+				02DE767209E96852003B896A /* concurrent.jar in Frameworks */,
+				02DE767309E96855003B896A /* log4j-1.2.9.jar in Frameworks */,
+				02DE767409E96856003B896A /* commons-logging.jar in Frameworks */,
+				02DE767509E96857003B896A /* saxpath.jar in Frameworks */,
+				02DE767609E9685B003B896A /* jdom-1.0.jar in Frameworks */,
+				02DE767709E9685C003B896A /* gedcom.jar in Frameworks */,
+				02DE767809E9685C003B896A /* xerces.jar in Frameworks */,
+				02DE767909E96860003B896A /* castor-1.0M2-xml.jar in Frameworks */,
+				02DE767A09E96862003B896A /* junit.jar in Frameworks */,
+				02DE767B09E96863003B896A /* jaxen-jdom.jar in Frameworks */,
+				02DE767C09E96866003B896A /* commons-httpclient-3.0.jar in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		02DE76B509E96A04003B896A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				02DE76B609E96A04003B896A /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2A37F4D1FDCFA73011CA2CEA /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				1058C7A9FEA54F5311CA2CBB /* Cocoa.framework in Frameworks */,
-				02260200099FD9D70021F22B /* castor-1.0M2-xml.jar in Frameworks */,
-				026ED7FA05D9330B0001D1D2 /* gedcom.jar in Frameworks */,
-				026ED7FB05D9330B0001D1D2 /* jaxen-core.jar in Frameworks */,
-				026ED7FC05D9330B0001D1D2 /* jaxen-jdom.jar in Frameworks */,
-				026ED7FD05D9330B0001D1D2 /* jdom-1.0.jar in Frameworks */,
-				026ED7FE05D9330B0001D1D2 /* saxpath.jar in Frameworks */,
-				023701D8062056080087E765 /* log4j-1.2.9.jar in Frameworks */,
-				02C50B110621296700B54464 /* xalan.jar in Frameworks */,
-				02C50B120621296800B54464 /* xerces.jar in Frameworks */,
-				02C50B130621296800B54464 /* xml-apis.jar in Frameworks */,
-				0260D11308F9D6E100F9A745 /* junit.jar in Frameworks */,
-				02C5BF790945F5D60086B510 /* concurrent.jar in Frameworks */,
-				0236ED1B098D5FEE00E276AB /* commons-codec-1.3.jar in Frameworks */,
-				0236ED1C098D5FEF00E276AB /* commons-httpclient-3.0.jar in Frameworks */,
-				0236ED1D098D5FEF00E276AB /* commons-logging.jar in Frameworks */,
-				026AAA3A099F225C00F742A5 /* joda-time-1.2.jar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		020D7B9C09A892E400664545 /* Sparkle */ = {
-			isa = PBXGroup;
-			children = (
-				020D7B9D09A892E400664545 /* NSString+extras.h */,
-				020D7B9E09A892E500664545 /* NSString+extras.m */,
-				020D7B9F09A892E500664545 /* RSS.h */,
-				020D7BA009A892E500664545 /* RSS.m */,
-				020D7BA109A892E500664545 /* Sparkle.strings */,
-				020D7BA209A892E500664545 /* SUUpdater.h */,
-				020D7BA309A892E500664545 /* SUUpdater.m */,
-			);
-			path = Sparkle;
-			sourceTree = "<group>";
-		};
 		0218FF4908F98E5E00F67E81 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -783,10 +923,26 @@
 			path = util;
 			sourceTree = "<group>";
 		};
+		02E28A8C09EA2D1F000846AC /* Sparkle */ = {
+			isa = PBXGroup;
+			children = (
+				02E28A8D09EA2D1F000846AC /* NSString+extras.h */,
+				02E28A8E09EA2D1F000846AC /* NSString+extras.m */,
+				02E28A8F09EA2D1F000846AC /* RSS.h */,
+				02E28A9009EA2D1F000846AC /* RSS.m */,
+				02E28A9109EA2D1F000846AC /* Sparkle.strings */,
+				02E28A9209EA2D1F000846AC /* SUUpdater.h */,
+				02E28A9309EA2D1F000846AC /* SUUpdater.m */,
+			);
+			path = Sparkle;
+			sourceTree = "<group>";
+		};
 		19C28FB0FE9D524F11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1758732CFF379DAD11CA2CBB /* MacPAF.app */,
+				02E2897A09E9FA71000846AC /* MacPAF.jar */,
+				02E2897B09E9FA94000846AC /* MacPAF.app */,
+				02E289DE09E9FB29000846AC /* MacPAF.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -800,6 +956,7 @@
 				02218D9AFECEFA92C02AAC07 /* Resources */,
 				2A37F4C3FDCFA73011CA2CEA /* Frameworks */,
 				19C28FB0FE9D524F11CA2CBB /* Products */,
+				02DE76D009E96A05003B896A /* Info-MacPAF__Upgraded_.plist */,
 			);
 			name = MacPAF;
 			sourceTree = "<group>";
@@ -865,9 +1022,9 @@
 		32DBCF810370BDA300C91783 /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				02E28A8C09EA2D1F000846AC /* Sparkle */,
 				32DBCF820370BDBC00C91783 /* MacPAF_Prefix.h */,
 				2A37F4B0FDCFA73011CA2CEA /* main.m */,
-				020D7B9C09A892E400664545 /* Sparkle */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -875,20 +1032,46 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		02DE769209E96A04003B896A /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				02DE769309E96A04003B896A /* MacPAF_Prefix.h in Headers */,
+				02E28A9B09EA2D1F000846AC /* NSString+extras.h in Headers */,
+				02E28A9D09EA2D1F000846AC /* RSS.h in Headers */,
+				02E28AA009EA2D1F000846AC /* SUUpdater.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2A37F4C7FDCFA73011CA2CEA /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				32DBCF830370BDBC00C91783 /* MacPAF_Prefix.h in Headers */,
-				020D7BA409A892E500664545 /* NSString+extras.h in Headers */,
-				020D7BA609A892E500664545 /* RSS.h in Headers */,
-				020D7BA909A892E500664545 /* SUUpdater.h in Headers */,
+				02E28A9409EA2D1F000846AC /* NSString+extras.h in Headers */,
+				02E28A9609EA2D1F000846AC /* RSS.h in Headers */,
+				02E28A9909EA2D1F000846AC /* SUUpdater.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXJavaArchiveBuildPhase section */
+		02DE74B209E9657E003B896A /* JavaArchive */ = {
+			isa = PBXJavaArchiveBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				02DE766C09E9684A003B896A /* log4j.properties in JavaArchive */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		02DE76B409E96A04003B896A /* JavaArchive */ = {
+			isa = PBXJavaArchiveBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		043355CEFE303625C02AAC07 /* JavaArchive */ = {
 			isa = PBXJavaArchiveBuildPhase;
 			buildActionMask = 2147483647;
@@ -897,6 +1080,100 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXJavaArchiveBuildPhase section */
+
+/* Begin PBXLibraryTarget section */
+		02DE74B409E9657E003B896A /* MacPAF Java Archive */ = {
+			isa = PBXLibraryTarget;
+			buildConfigurationList = 02DE74B809E965DD003B896A /* Build configuration list for PBXLibraryTarget "MacPAF Java Archive" */;
+			buildPhases = (
+				02DE74B109E9657E003B896A /* Sources */,
+				02DE74B209E9657E003B896A /* JavaArchive */,
+				02DE74B309E9657E003B896A /* Frameworks */,
+			);
+			buildSettings = {
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				JAVA_ARCHIVE_CLASSES = YES;
+				JAVA_ARCHIVE_TYPE = JAR;
+				JAVA_COMPILER = /usr/bin/javac;
+				JAVA_COMPILER_FLAGS = "";
+				JAVA_SOURCE_SUBDIR = .;
+				LIBRARY_STYLE = STATIC;
+				OPTIMIZATION_CFLAGS = "";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOL_FLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = "MacPAF Java Archive";
+				PURE_JAVA = YES;
+				REZ_EXECUTABLE = YES;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+			};
+			dependencies = (
+			);
+			name = "MacPAF Java Archive";
+			productInstallPath = /usr/local/lib;
+			productName = "MacPAF Java Archive";
+			productReference = 02E2897A09E9FA71000846AC /* MacPAF.jar */;
+		};
+/* End PBXLibraryTarget section */
+
+/* Begin PBXNativeTarget section */
+		02DE768F09E96A04003B896A /* MacPAF (Upgraded) */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 02DE76CC09E96A04003B896A /* Build configuration list for PBXNativeTarget "MacPAF (Upgraded)" */;
+			buildPhases = (
+				02DE769209E96A04003B896A /* Headers */,
+				02DE769409E96A04003B896A /* Resources */,
+				02DE76B209E96A04003B896A /* Sources */,
+				02DE76B409E96A04003B896A /* JavaArchive */,
+				02DE76B509E96A04003B896A /* Frameworks */,
+				02DE76B809E96A04003B896A /* CopyFiles */,
+				02DE76BA09E96A04003B896A /* CopyFiles */,
+				02DE76CA09E96A04003B896A /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "";
+				HEADER_SEARCH_PATHS = "";
+				INSTALL_PATH = "$(HOME)/Applications";
+				JAVAC_SOURCE_FILE_ENCODING = "UTF-8";
+				JAVA_COMPILER_DEPRECATED_WARNINGS = YES;
+				JAVA_COMPILER_SOURCE_VERSION = 1.3;
+				JAVA_COMPILER_TARGET_VM_VERSION = 1.3;
+				JAVA_SOURCE_SUBDIR = .;
+				LIBRARY_SEARCH_PATHS = "";
+				OPTIMIZATION_CFLAGS = "-O0";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRECOMPILE_PREFIX_HEADER = YES;
+				PREFIX_HEADER = MacPAF_Prefix.h;
+				PRODUCT_NAME = MacPAF;
+				PROFILING_CODE = YES;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = app;
+			};
+			dependencies = (
+				02DE769009E96A04003B896A /* PBXTargetDependency */,
+			);
+			name = "MacPAF (Upgraded)";
+			productInstallPath = "$(HOME)/Applications";
+			productName = MacPAF;
+			productReference = 02E2897B09E9FA94000846AC /* MacPAF.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		2A37F4A9FDCFA73011CA2CEA /* Project object */ = {
@@ -915,11 +1192,50 @@
 			projectDirPath = "";
 			targets = (
 				2A37F4C6FDCFA73011CA2CEA /* MacPAF */,
+				02DE768F09E96A04003B896A /* MacPAF (Upgraded) */,
+				02DE74B409E9657E003B896A /* MacPAF Java Archive */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		02DE769409E96A04003B896A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				02DE769509E96A04003B896A /* Credits.rtf in Resources */,
+				02DE769609E96A04003B896A /* MainMenu.nib in Resources */,
+				02DE769709E96A04003B896A /* MyDocument.nib in Resources */,
+				02DE769809E96A04003B896A /* InfoPlist.strings in Resources */,
+				02DE769909E96A04003B896A /* notepad.gif in Resources */,
+				02DE769A09E96A04003B896A /* tree.gif in Resources */,
+				02DE769B09E96A04003B896A /* Tree.icns in Resources */,
+				02DE769C09E96A04003B896A /* GedcomToHtml.xsl in Resources */,
+				02DE769D09E96A04003B896A /* GedcomToXml.xsl in Resources */,
+				02DE769E09E96A04003B896A /* Temple Codes (official).xml in Resources */,
+				02DE769F09E96A04003B896A /* Temple Codes.csv in Resources */,
+				02DE76A009E96A04003B896A /* Temple Codes.xls in Resources */,
+				02DE76A109E96A04003B896A /* Temple List in Resources */,
+				02DE76A209E96A04003B896A /* Temple List.csv in Resources */,
+				02DE76A309E96A04003B896A /* Temple List.plist in Resources */,
+				02DE76A409E96A04003B896A /* temple-mapping.xml in Resources */,
+				02DE76A509E96A04003B896A /* TempleList.xml in Resources */,
+				02DE76A609E96A04003B896A /* XmlToGedcom.xsl in Resources */,
+				02DE76A709E96A04003B896A /* Disc Add.tiff in Resources */,
+				02DE76A809E96A04003B896A /* Drawer.tiff in Resources */,
+				02DE76A909E96A04003B896A /* Badge Add.tiff in Resources */,
+				02DE76AA09E96A04003B896A /* Magnifing Glass.tiff in Resources */,
+				02DE76AB09E96A04003B896A /* Metal Window.psd in Resources */,
+				02DE76AC09E96A04003B896A /* Page.psd in Resources */,
+				02DE76AD09E96A04003B896A /* Family.png in Resources */,
+				02DE76AE09E96A04003B896A /* Individual.png in Resources */,
+				02DE76AF09E96A04003B896A /* IndividualListWindow.nib in Resources */,
+				02DE76B009E96A04003B896A /* FamilyListWindow.nib in Resources */,
+				02DE76B109E96A04003B896A /* RecordSelectionWindow.nib in Resources */,
+				02E28A9F09EA2D1F000846AC /* Sparkle.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2A37F4C9FDCFA73011CA2CEA /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -953,119 +1269,149 @@
 				02A77AF008B0425A007897F4 /* IndividualListWindow.nib in Resources */,
 				02A77AF508B0445C007897F4 /* FamilyListWindow.nib in Resources */,
 				02C5C0C5095466150086B510 /* RecordSelectionWindow.nib in Resources */,
-				020D7BA809A892E500664545 /* Sparkle.strings in Resources */,
+				02E28A9809EA2D1F000846AC /* Sparkle.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		02DE74B109E9657E003B896A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				02DE75FD09E96643003B896A /* AnselOutputStreamWriter.java in Sources */,
+				02DE75FE09E96643003B896A /* DateUtils.java in Sources */,
+				02DE75FF09E96643003B896A /* RepositoryJDOM.java in Sources */,
+				02DE760009E96643003B896A /* TestData.java in Sources */,
+				02DE760109E96643003B896A /* Submission.java in Sources */,
+				02DE760209E96643003B896A /* Tests.java in Sources */,
+				02DE760309E96643003B896A /* Submitter.java in Sources */,
+				02DE760409E96643003B896A /* MultimediaUtils.java in Sources */,
+				02DE760509E96643003B896A /* RepositoryLink.java in Sources */,
+				02DE760609E96643003B896A /* EventJDOM.java in Sources */,
+				02DE760709E96643003B896A /* FamilyDetailController.java in Sources */,
+				02DE760809E96643003B896A /* TempleList.java in Sources */,
+				02DE760909E96643003B896A /* MyEvent.java in Sources */,
+				02DE760A09E96643003B896A /* IndividualEditController.java in Sources */,
+				02DE760B09E96643003B896A /* IndividualListController.java in Sources */,
+				02DE760C09E96643003B896A /* Event.java in Sources */,
+				02DE760D09E96643003B896A /* FilteredTableViewDataSource.java in Sources */,
+				02DE760E09E96643003B896A /* PedigreeView.java in Sources */,
+				02DE760F09E96643003B896A /* TempleXML.java in Sources */,
+				02DE761009E96643003B896A /* HeaderJDOM.java in Sources */,
+				02DE761109E96643003B896A /* Address.java in Sources */,
+				02DE761209E96643003B896A /* Note.java in Sources */,
+				02DE761309E96643003B896A /* MainToolbar.java in Sources */,
+				02DE761409E96643003B896A /* Header.java in Sources */,
+				02DE761509E96643003B896A /* ApplicationUtilities.java in Sources */,
+				02DE761609E96643003B896A /* FamilyGroupSheetView.java in Sources */,
+				02DE761709E96643003B896A /* Hex.java in Sources */,
+				02DE761809E96643003B896A /* PedigreeViewController.java in Sources */,
+				02DE761909E96643003B896A /* Family.java in Sources */,
+				02DE761A09E96643003B896A /* CocoaUtils.java in Sources */,
+				02DE761B09E96643003B896A /* UnknownGedcomLinkException.java in Sources */,
+				02DE761C09E96643003B896A /* PocketPedigreeView.java in Sources */,
+				02DE761D09E96643003B896A /* OrdinanceJDOM.java in Sources */,
+				02DE761E09E96643003B896A /* IndividualJDOM.java in Sources */,
+				02DE761F09E96643003B896A /* Individual.java in Sources */,
+				02DE762009E96643003B896A /* NoteLink.java in Sources */,
+				02DE762109E96643003B896A /* FamilyLink.java in Sources */,
+				02DE762209E96643003B896A /* HistoryControllerTest.java in Sources */,
+				02DE762309E96643003B896A /* IndividualDetailController.java in Sources */,
+				02DE762409E96643003B896A /* IndividualLink.java in Sources */,
+				02DE762509E96643003B896A /* AnselInputStreamReader.java in Sources */,
+				02DE762609E96643003B896A /* SubmissionJDOM.java in Sources */,
+				02DE762709E96643003B896A /* AddressJDOM.java in Sources */,
+				02DE762809E96643003B896A /* MultimediaLink.java in Sources */,
+				02DE762909E96643003B896A /* Base64.java in Sources */,
+				02DE762A09E96643003B896A /* GedcomParser.java in Sources */,
+				02DE762B09E96643003B896A /* MacPAFDocumentJDOM.java in Sources */,
+				02DE762C09E96643003B896A /* SubmitterJDOM.java in Sources */,
+				02DE762D09E96643003B896A /* MyOrdinance.java in Sources */,
+				02DE762E09E96643003B896A /* MyIndividual.java in Sources */,
+				02DE762F09E96643003B896A /* ValidationException.java in Sources */,
+				02DE763009E96643003B896A /* HeaderJDOMTest.java in Sources */,
+				02DE763109E96643003B896A /* GedcomLoaderJDOM.java in Sources */,
+				02DE763209E96643003B896A /* MyPlace.java in Sources */,
+				02DE763309E96643003B896A /* JDOMUtils.java in Sources */,
+				02DE763409E96643003B896A /* Ordinance.java in Sources */,
+				02DE763509E96643003B896A /* Multimedia.java in Sources */,
+				02DE763609E96643003B896A /* MultimediaJDOM.java in Sources */,
+				02DE763709E96643003B896A /* TestFamily.java in Sources */,
+				02DE763809E96643003B896A /* HistoryController.java in Sources */,
+				02DE763909E96643003B896A /* FamilyJDOM.java in Sources */,
+				02DE763A09E96643003B896A /* EventTableController.java in Sources */,
+				02DE763B09E96643003B896A /* MultimediaLink.java in Sources */,
+				02DE763C09E96643003B896A /* Place.java in Sources */,
+				02DE763D09E96643003B896A /* Temple.java in Sources */,
+				02DE763E09E96643003B896A /* SurnameList.java in Sources */,
+				02DE763F09E96643003B896A /* MyNote.java in Sources */,
+				02DE764009E96643003B896A /* LocationList.java in Sources */,
+				02DE764109E96643003B896A /* TempleJDOM.java in Sources */,
+				02DE764209E96643003B896A /* XMLTest.java in Sources */,
+				02DE764309E96643003B896A /* PlaceJDOM.java in Sources */,
+				02DE764409E96643003B896A /* FamilyListController.java in Sources */,
+				02DE764509E96643003B896A /* FamilyEditController.java in Sources */,
+				02DE764609E96643003B896A /* IndividualList.java in Sources */,
+				02DE764709E96643003B896A /* MyFamily.java in Sources */,
+				02DE764809E96643003B896A /* MyDocument.java in Sources */,
+				02DE764909E96643003B896A /* WrappedTableViewDataSource.java in Sources */,
+				02DE764A09E96643003B896A /* StringUtils.java in Sources */,
+				02DE764B09E96643003B896A /* SortableFilteredTableViewDataSource.java in Sources */,
+				02DE74BC09E965E1003B896A /* AllTests.java in Sources */,
+				02DE74BD09E965E3003B896A /* ImportController.java in Sources */,
+				02DE74BE09E965E3003B896A /* Source.java in Sources */,
+				02DE74BF09E965E4003B896A /* NoteJDOM.java in Sources */,
+				02DE74C009E965E4003B896A /* FamilyList.java in Sources */,
+				02DE74C109E965E6003B896A /* Gender.java in Sources */,
+				02DE74C209E965E7003B896A /* IndividualSummaryView.java in Sources */,
+				02DE74C309E965E7003B896A /* SourceJDOM.java in Sources */,
+				02DE74C409E965E8003B896A /* MyMultimedia.java in Sources */,
+				02DE74C509E965E9003B896A /* SubmitterLink.java in Sources */,
+				02DE74C609E965EB003B896A /* SourceLink.java in Sources */,
+				02DE74C709E965EC003B896A /* GedcomOutputter.java in Sources */,
+				02DE74C809E965ED003B896A /* ReportsController.java in Sources */,
+				02DE74C909E965ED003B896A /* Repository.java in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		02DE76B209E96A04003B896A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				02DE76B309E96A04003B896A /* main.m in Sources */,
+				02E28A9C09EA2D1F000846AC /* NSString+extras.m in Sources */,
+				02E28A9E09EA2D1F000846AC /* RSS.m in Sources */,
+				02E28AA109EA2D1F000846AC /* SUUpdater.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		2A37F4CEFDCFA73011CA2CEA /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				2A37F4D0FDCFA73011CA2CEA /* main.m in Sources */,
-				0237023006205C5B0087E765 /* log4j.properties in Sources */,
-				116DBC1EFEF5915911CA2CEA /* MyDocument.java in Sources */,
-				026ED74C05D932BD0001D1D2 /* ApplicationUtilities.java in Sources */,
-				026ED77205D932BD0001D1D2 /* FamilyEditController.java in Sources */,
-				026ED77305D932BD0001D1D2 /* FamilyGroupSheetView.java in Sources */,
-				026ED77405D932BD0001D1D2 /* FamilyList.java in Sources */,
-				026ED77505D932BD0001D1D2 /* AnselInputStreamReader.java in Sources */,
-				026ED77605D932BD0001D1D2 /* AnselOutputStreamWriter.java in Sources */,
-				026ED77705D932BD0001D1D2 /* GedcomOutputter.java in Sources */,
-				026ED77805D932BD0001D1D2 /* GedcomParser.java in Sources */,
-				026ED77905D932BD0001D1D2 /* ImportController.java in Sources */,
-				026ED77A05D932BD0001D1D2 /* IndividualEditController.java in Sources */,
-				026ED77B05D932BD0001D1D2 /* IndividualList.java in Sources */,
-				026ED77C05D932BD0001D1D2 /* IndividualSummaryView.java in Sources */,
-				026ED77D05D932BD0001D1D2 /* PedigreeView.java in Sources */,
-				026ED77E05D932BD0001D1D2 /* ReportsController.java in Sources */,
-				026ED77F05D932BD0001D1D2 /* TestData.java in Sources */,
-				02907686060568E800F1763A /* IndividualDetailController.java in Sources */,
-				02753D03066A46890059C930 /* PocketPedigreeView.java in Sources */,
-				027D36AB0707D05600F146F8 /* MainToolbar.java in Sources */,
-				02B3D1B5077B11CF0069077B /* Address.java in Sources */,
-				02B3D1B6077B11CF0069077B /* Event.java in Sources */,
-				02B3D1B7077B11CF0069077B /* Family.java in Sources */,
-				02B3D1B8077B11CF0069077B /* Gender.java in Sources */,
-				02B3D1B9077B11CF0069077B /* Header.java in Sources */,
-				02B3D1BA077B11CF0069077B /* Individual.java in Sources */,
-				02B3D1BB077B11CF0069077B /* AddressJDOM.java in Sources */,
-				02B3D1BC077B11CF0069077B /* EventJDOM.java in Sources */,
-				02B3D1BD077B11CF0069077B /* FamilyJDOM.java in Sources */,
-				02B3D1BE077B11CF0069077B /* FamilyLink.java in Sources */,
-				02B3D1BF077B11CF0069077B /* HeaderJDOM.java in Sources */,
-				02B3D1C0077B11CF0069077B /* IndividualJDOM.java in Sources */,
-				02B3D1C1077B11CF0069077B /* IndividualLink.java in Sources */,
-				02B3D1C2077B11CF0069077B /* MacPAFDocumentJDOM.java in Sources */,
-				02B3D1C3077B11CF0069077B /* MultimediaJDOM.java in Sources */,
-				02B3D1C4077B11CF0069077B /* MultimediaLink.java in Sources */,
-				02B3D1C5077B11CF0069077B /* NoteJDOM.java in Sources */,
-				02B3D1C6077B11CF0069077B /* NoteLink.java in Sources */,
-				02B3D1C7077B11CF0069077B /* OrdinanceJDOM.java in Sources */,
-				02B3D1C8077B11CF0069077B /* PlaceJDOM.java in Sources */,
-				02B3D1C9077B11CF0069077B /* RepositoryJDOM.java in Sources */,
-				02B3D1CA077B11CF0069077B /* RepositoryLink.java in Sources */,
-				02B3D1CB077B11CF0069077B /* SourceJDOM.java in Sources */,
-				02B3D1CC077B11CF0069077B /* SourceLink.java in Sources */,
-				02B3D1CD077B11CF0069077B /* SubmissionJDOM.java in Sources */,
-				02B3D1CE077B11CF0069077B /* SubmitterJDOM.java in Sources */,
-				02B3D1CF077B11CF0069077B /* SubmitterLink.java in Sources */,
-				02B3D1D0077B11CF0069077B /* TempleJDOM.java in Sources */,
-				02B3D1D1077B11CF0069077B /* LocationList.java in Sources */,
-				02B3D1D2077B11CF0069077B /* Multimedia.java in Sources */,
-				02B3D1D3077B11CF0069077B /* Note.java in Sources */,
-				02B3D1D4077B11CF0069077B /* Ordinance.java in Sources */,
-				02B3D1D5077B11CF0069077B /* Place.java in Sources */,
-				02B3D1D6077B11CF0069077B /* Repository.java in Sources */,
-				02B3D1D7077B11CF0069077B /* Source.java in Sources */,
-				02B3D1D8077B11CF0069077B /* Submission.java in Sources */,
-				02B3D1D9077B11CF0069077B /* Submitter.java in Sources */,
-				02B3D1DA077B11CF0069077B /* SurnameList.java in Sources */,
-				02B3D1DB077B11CF0069077B /* Temple.java in Sources */,
-				02B3D1DC077B11CF0069077B /* TempleList.java in Sources */,
-				02B3D1DD077B11CF0069077B /* TempleXML.java in Sources */,
-				02B3D1DE077B11CF0069077B /* MyEvent.java in Sources */,
-				02B3D1DF077B11CF0069077B /* MyIndividual.java in Sources */,
-				02B3D1E0077B11CF0069077B /* MyMultimedia.java in Sources */,
-				02B3D1E1077B11CF0069077B /* MyNote.java in Sources */,
-				02B3D1E2077B11CF0069077B /* MyOrdinance.java in Sources */,
-				02B3D1E3077B11CF0069077B /* MyPlace.java in Sources */,
-				02B3D1E4077B11CF0069077B /* TestFamily.java in Sources */,
-				02B3D1E5077B11CF0069077B /* Tests.java in Sources */,
-				02B3D1E6077B11CF0069077B /* Base64.java in Sources */,
-				02B3D1E7077B11CF0069077B /* Hex.java in Sources */,
-				02B3D1E8077B11CF0069077B /* StringUtils.java in Sources */,
-				02B3D1E9077B11CF0069077B /* XMLTest.java in Sources */,
-				024E77D00782F44800B7A2CC /* MultimediaUtils.java in Sources */,
-				0250C09D07AC858500AC3629 /* UnknownGedcomLinkException.java in Sources */,
-				023F05BD07AD1592005A4D0A /* MyFamily.java in Sources */,
-				023F05C107AD16B5005A4D0A /* MultimediaLink.java in Sources */,
-				0237A2CF07B66682003D9778 /* CocoaUtils.java in Sources */,
-				02A778EA08AFB24C007897F4 /* JDOMUtils.java in Sources */,
-				02A7790108B011E6007897F4 /* FamilyListController.java in Sources */,
-				02A7790208B011E6007897F4 /* IndividualListController.java in Sources */,
-				022DDB4808E36C1E00AAA6B1 /* FamilyDetailController.java in Sources */,
-				02B8AC5108F045D700AE39EC /* HistoryController.java in Sources */,
-				0218FF4108F98E4900F67E81 /* AllTests.java in Sources */,
-				0218FF4208F98E4A00F67E81 /* HistoryControllerTest.java in Sources */,
-				025FC08B092EC024006B2989 /* FilteredTableViewDataSource.java in Sources */,
-				025FC08C092EC024006B2989 /* SortableFilteredTableViewDataSource.java in Sources */,
-				025FC08E092EC045006B2989 /* WrappedTableViewDataSource.java in Sources */,
-				02C5BE500939F8EF0086B510 /* ValidationException.java in Sources */,
-				02C5BFBE0948218C0086B510 /* GedcomLoaderJDOM.java in Sources */,
-				021612DD096A499E005AC0B6 /* PedigreeViewController.java in Sources */,
-				02FE0169097B9B79005531CB /* EventTableController.java in Sources */,
-				026AAA38099F222200F742A5 /* HeaderJDOMTest.java in Sources */,
-				020D7BA509A892E500664545 /* NSString+extras.m in Sources */,
-				020D7BA709A892E500664545 /* RSS.m in Sources */,
-				020D7BAA09A892E500664545 /* SUUpdater.m in Sources */,
-				020D7BC109A8955800664545 /* DateUtils.java in Sources */,
+				02E28A9509EA2D1F000846AC /* NSString+extras.m in Sources */,
+				02E28A9709EA2D1F000846AC /* RSS.m in Sources */,
+				02E28A9A09EA2D1F000846AC /* SUUpdater.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		02DE765A09E96794003B896A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 02DE74B409E9657E003B896A /* MacPAF Java Archive */;
+			targetProxy = 02DE765909E96794003B896A /* PBXContainerItemProxy */;
+		};
+		02DE769009E96A04003B896A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 02DE74B409E9657E003B896A /* MacPAF Java Archive */;
+			targetProxy = 02DE769109E96A04003B896A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		02A77AEE08B0425A007897F4 /* IndividualListWindow.nib */ = {
@@ -1131,7 +1477,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(FRAMEWORK_SEARCH_PATHS)",
+					"$(SRCROOT)",
+				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
@@ -1167,7 +1516,10 @@
 			buildSettings = {
 				COPY_PHASE_STRIP = YES;
 				DEBUGGING_SYMBOLS = NO;
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(FRAMEWORK_SEARCH_PATHS)",
+					"$(SRCROOT)",
+				);
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				HEADER_SEARCH_PATHS = "";
 				INSTALL_PATH = "$(HOME)/Applications";
@@ -1197,7 +1549,10 @@
 		02BC1D20086ECAAD00BD394E /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(FRAMEWORK_SEARCH_PATHS)",
+					"$(SRCROOT)",
+				);
 				HEADER_SEARCH_PATHS = "";
 				INSTALL_PATH = "$(HOME)/Applications";
 				JAVAC_SOURCE_FILE_ENCODING = "UTF-8";
@@ -1226,24 +1581,258 @@
 		02BC1D22086ECAAD00BD394E /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				MACOSX_DEPLOYMENT_TARGET = 10.1;
-				SDKROOT = /Developer/SDKs/MacOSX10.1.5.sdk;
+				GCC_VERSION_i386 = 4.0;
+				GCC_VERSION_ppc = 4.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.2;
+				MACOSX_DEPLOYMENT_TARGET_i386 = 10.4;
+				SDKROOT = /Developer/SDKs/MacOSX10.2.8.sdk;
+				SDKROOT_i386 = /Developer/SDKs/MacOSX10.4u.sdk;
 			};
 			name = Development;
 		};
 		02BC1D23086ECAAD00BD394E /* Deployment */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				MACOSX_DEPLOYMENT_TARGET = 10.1;
-				SDKROOT = /Developer/SDKs/MacOSX10.1.5.sdk;
+				GCC_VERSION_i386 = 4.0;
+				GCC_VERSION_ppc = 4.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.2;
+				MACOSX_DEPLOYMENT_TARGET_i386 = 10.4;
+				SDKROOT = /Developer/SDKs/MacOSX10.2.8.sdk;
+				SDKROOT_i386 = /Developer/SDKs/MacOSX10.4u.sdk;
 			};
 			name = Deployment;
 		};
 		02BC1D24086ECAAD00BD394E /* Default */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				MACOSX_DEPLOYMENT_TARGET = 10.1;
-				SDKROOT = /Developer/SDKs/MacOSX10.1.5.sdk;
+				GCC_VERSION_i386 = 4.0;
+				GCC_VERSION_ppc = 4.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.2;
+				MACOSX_DEPLOYMENT_TARGET_i386 = 10.4;
+				SDKROOT = /Developer/SDKs/MacOSX10.2.8.sdk;
+				SDKROOT_i386 = /Developer/SDKs/MacOSX10.4u.sdk;
+			};
+			name = Default;
+		};
+		02DE74B909E965DD003B896A /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				JAVAC_SOURCE_FILE_ENCODING = "UTF-8";
+				JAVA_ARCHIVE_CLASSES = YES;
+				JAVA_ARCHIVE_TYPE = JAR;
+				JAVA_COMPILER = /usr/bin/javac;
+				JAVA_COMPILER_DEPRECATED_WARNINGS = YES;
+				JAVA_COMPILER_SOURCE_VERSION = 1.3;
+				JAVA_COMPILER_TARGET_VM_VERSION = 1.3;
+				JAVA_SOURCE_SUBDIR = .;
+				LIBRARY_STYLE = STATIC;
+				OPTIMIZATION_CFLAGS = "-O0";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOL_FLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = MacPAF;
+				PURE_JAVA = YES;
+				REZ_EXECUTABLE = YES;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+			};
+			name = Development;
+		};
+		02DE74BA09E965DD003B896A /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				JAVAC_SOURCE_FILE_ENCODING = "UTF-8";
+				JAVA_ARCHIVE_CLASSES = YES;
+				JAVA_ARCHIVE_TYPE = JAR;
+				JAVA_COMPILER = /usr/bin/javac;
+				JAVA_COMPILER_DEBUGGING_SYMBOLS = NO;
+				JAVA_COMPILER_SOURCE_VERSION = 1.3;
+				JAVA_COMPILER_TARGET_VM_VERSION = 1.3;
+				JAVA_SOURCE_SUBDIR = .;
+				LIBRARY_STYLE = STATIC;
+				OPTIMIZATION_CFLAGS = "-O0";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOL_FLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = MacPAF;
+				PURE_JAVA = YES;
+				REZ_EXECUTABLE = YES;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+		02DE74BB09E965DD003B896A /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				JAVAC_SOURCE_FILE_ENCODING = "UTF-8";
+				JAVA_ARCHIVE_CLASSES = YES;
+				JAVA_ARCHIVE_TYPE = JAR;
+				JAVA_COMPILER = /usr/bin/javac;
+				JAVA_COMPILER_SOURCE_VERSION = 1.3;
+				JAVA_COMPILER_TARGET_VM_VERSION = 1.3;
+				JAVA_SOURCE_SUBDIR = .;
+				LIBRARY_STYLE = STATIC;
+				OPTIMIZATION_CFLAGS = "-O0";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOL_FLAGS = "";
+				OTHER_REZFLAGS = "";
+				PRODUCT_NAME = MacPAF;
+				PURE_JAVA = YES;
+				REZ_EXECUTABLE = YES;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+			};
+			name = Default;
+		};
+		02DE76CD09E96A04003B896A /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					ppc,
+					i386,
+				);
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(FRAMEWORK_SEARCH_PATHS)",
+					"$(SRCROOT)",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = MacPAF_Prefix.h;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "Info-MacPAF__Upgraded_.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				JAVAC_SOURCE_FILE_ENCODING = "UTF-8";
+				JAVA_COMPILER_DEPRECATED_WARNINGS = YES;
+				JAVA_COMPILER_SOURCE_VERSION = 1.3;
+				JAVA_COMPILER_TARGET_VM_VERSION = 1.3;
+				JAVA_SOURCE_SUBDIR = .;
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = MacPAF;
+				PROFILING_CODE = YES;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = NO;
+			};
+			name = Development;
+		};
+		02DE76CE09E96A04003B896A /* Deployment */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					ppc,
+					i386,
+				);
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(FRAMEWORK_SEARCH_PATHS)",
+					"$(SRCROOT)",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = MacPAF_Prefix.h;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "Info-MacPAF__Upgraded_.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				JAVAC_SOURCE_FILE_ENCODING = "UTF-8";
+				JAVA_COMPILER_DEBUGGING_SYMBOLS = NO;
+				JAVA_COMPILER_DEPRECATED_WARNINGS = YES;
+				JAVA_COMPILER_SOURCE_VERSION = 1.3;
+				JAVA_COMPILER_TARGET_VM_VERSION = 1.3;
+				JAVA_SOURCE_SUBDIR = .;
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = MacPAF;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = NO;
+			};
+			name = Deployment;
+		};
+		02DE76CF09E96A04003B896A /* Default */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = (
+					ppc,
+					i386,
+				);
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(FRAMEWORK_SEARCH_PATHS)",
+					"$(SRCROOT)",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = MacPAF_Prefix.h;
+				HEADER_SEARCH_PATHS = "";
+				INFOPLIST_FILE = "Info-MacPAF__Upgraded_.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				JAVAC_SOURCE_FILE_ENCODING = "UTF-8";
+				JAVA_COMPILER_DEPRECATED_WARNINGS = YES;
+				JAVA_COMPILER_SOURCE_VERSION = 1.3;
+				JAVA_COMPILER_TARGET_VM_VERSION = 1.3;
+				JAVA_SOURCE_SUBDIR = .;
+				LIBRARY_SEARCH_PATHS = "";
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = MacPAF;
+				PROFILING_CODE = YES;
+				SECTORDER_FLAGS = "";
+				WARNING_CFLAGS = (
+					"-Wmost",
+					"-Wno-four-char-constants",
+					"-Wno-unknown-pragmas",
+				);
+				WRAPPER_EXTENSION = app;
+				ZERO_LINK = NO;
 			};
 			name = Default;
 		};
@@ -1266,6 +1855,26 @@
 				02BC1D22086ECAAD00BD394E /* Development */,
 				02BC1D23086ECAAD00BD394E /* Deployment */,
 				02BC1D24086ECAAD00BD394E /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		02DE74B809E965DD003B896A /* Build configuration list for PBXLibraryTarget "MacPAF Java Archive" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				02DE74B909E965DD003B896A /* Development */,
+				02DE74BA09E965DD003B896A /* Deployment */,
+				02DE74BB09E965DD003B896A /* Default */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Default;
+		};
+		02DE76CC09E96A04003B896A /* Build configuration list for PBXNativeTarget "MacPAF (Upgraded)" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				02DE76CD09E96A04003B896A /* Development */,
+				02DE76CE09E96A04003B896A /* Deployment */,
+				02DE76CF09E96A04003B896A /* Default */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Default;

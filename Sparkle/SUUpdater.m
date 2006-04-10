@@ -259,7 +259,7 @@ NSString *SULastCheckTimeKey = @"SULastCheckTime";
 
 - (void)setStatusText:(NSString *)statusText
 {
-	[statusField setAttributedStringValue:[[[NSAttributedString alloc] initWithString:statusText attributes:[NSDictionary dictionaryWithObject:[NSFont boldSystemFontOfSize:[NSFont systemFontSizeForControlSize:NSRegularControlSize]] forKey:NSFontAttributeName]] autorelease]];
+	[statusField setAttributedStringValue:[[[NSAttributedString alloc] initWithString:statusText attributes:[NSDictionary dictionaryWithObject:[NSFont boldSystemFontOfSize:0/*[NSFont systemFontSizeForControlSize:NSRegularControlSize]*/] forKey:NSFontAttributeName]] autorelease]];
 }
 
 - (void)setActionButtonTitle:(NSString *)title
@@ -318,7 +318,7 @@ NSString *SULastCheckTimeKey = @"SULastCheckTime";
 	
 	// Place the action button.
 	actionButton = [[[NSButton alloc] initWithFrame:NSMakeRect(windowSize.width - 15 - 82, 12, 82, 32)] autorelease];
-	[actionButton setFont:[NSFont systemFontOfSize:[NSFont systemFontSizeForControlSize:NSRegularControlSize]]];
+	[actionButton setFont:[NSFont systemFontOfSize:0.0/*[NSFont systemFontSizeForControlSize:NSRegularControlSize]*/]];
 	[actionButton setBezelStyle:NSRoundedBezelStyle];
 	[self setActionButtonTitle:NSLocalizedString(@"Cancel", nil)];
 	[actionButton setTarget:self];
@@ -482,7 +482,7 @@ NSString *SULastCheckTimeKey = @"SULastCheckTime";
 	NSAttributedString *attributedString = [[[NSMutableAttributedString alloc] initWithHTML:[NSData dataWithBytes:[[[feed newestItem] objectForKey:@"description"] cString] length:[(NSString *)[[feed newestItem] objectForKey:@"description"] length]] options:nil documentAttributes:nil] autorelease];
 	[[textView textStorage] setAttributedString:attributedString];
 	[textView setEditable:NO];
-	[textView setFont:[NSFont systemFontOfSize:[NSFont systemFontSizeForControlSize:NSSmallControlSize]]];
+	[textView setFont:[NSFont systemFontOfSize:0/*[NSFont systemFontSizeForControlSize:NSSmallControlSize]*/]];
 	[scrollView setDocumentView:textView];
 }
 
@@ -521,7 +521,7 @@ NSString *SULastCheckTimeKey = @"SULastCheckTime";
 		[releaseNotesLabel setBordered:NO];
 		[releaseNotesLabel setDrawsBackground:NO];
 		[releaseNotesLabel setEditable:NO];
-		[releaseNotesLabel setAttributedStringValue:[[[NSAttributedString alloc] initWithString:[SULocalizedString(@"Release Notes", nil) stringByAppendingString:@":"] attributes:[NSDictionary dictionaryWithObject:[NSFont boldSystemFontOfSize:[NSFont systemFontSizeForControlSize:NSSmallControlSize]] forKey:NSFontAttributeName]] autorelease]];
+		[releaseNotesLabel setAttributedStringValue:[[[NSAttributedString alloc] initWithString:[SULocalizedString(@"Release Notes", nil) stringByAppendingString:@":"] attributes:[NSDictionary dictionaryWithObject:[NSFont boldSystemFontOfSize:0/*[NSFont systemFontSizeForControlSize:NSSmallControlSize]*/] forKey:NSFontAttributeName]] autorelease]];
 		[[[self alertPanel] contentView] addSubview:releaseNotesLabel];
 		
 		// Alright, does the host app include WebKit? If so, we'll use a fancy WebView; otherwise, a plain old NSTextView.

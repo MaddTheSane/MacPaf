@@ -1378,10 +1378,11 @@ try {
 //		String targetURL = "http://localhost/~logan/phpemail/mail.php";
 		PostMethod filePost = new PostMethod(targetURL);
 //		filePost.setFollowRedirects(true);
+        String bugEmailAddress = "redbugz@gmail.com";
         try {
             File targetFile = createZipFile(null, filenames);//new File("/Users/logan/Library/Logs/macpaf.log");
     		Part[] parts = { new StringPart("from", "logan@mac.com"),
-    				new StringPart("to", "redbugz@gmail.com"),
+    				new StringPart("to", bugEmailAddress),
     				new StringPart("subject", "MacPAF Bug Report Test"),
     				new StringPart("message", bugReportText.string()),
     				new FilePart("fileatt", targetFile) };
@@ -1405,12 +1406,13 @@ try {
                 );
             }
         } catch (Exception ex) {
-            log.debug("Error: " + ex.getMessage());
+            log.debug("Error trasmitting bug report: " + ex.getMessage());
             ex.printStackTrace();
+			showUserErrorMessage("Could not submit feedback.", "If you are not connected to the internet, please try again after connecting.");
         } finally {
             filePost.releaseConnection();
         }
-
+        bugReportWindow.close();
   }
 
 private File createZipFile(String outFilename, Collection filenames) throws IOException {

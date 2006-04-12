@@ -108,7 +108,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 		}
 		individuals.put(newIndividual.getId(), newIndividual);
 		log.debug("added individual with key: " + newIndividual.getId() + " name: " + newIndividual.getFullName());
-		log.debug("adding individual to doc: "+newIndividual);
+//		log.debug("adding individual to doc: "+newIndividual);
 		doc.getRootElement().addContent((Content)((IndividualJDOM)newIndividual).getElement());
 		update(this, newIndividual);
 	}

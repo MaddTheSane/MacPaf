@@ -420,7 +420,7 @@ private void saveName() {
   }
 
   public Gender getGender() {
-	log.debug("IndividualJDOM.getGender() returns:" + element.getChildTextTrim(GENDER));
+//	log.debug("IndividualJDOM.getGender() returns:" + element.getChildTextTrim(GENDER));
 	return Gender.genderWithCode(element.getChildTextTrim(GENDER));
   }
 

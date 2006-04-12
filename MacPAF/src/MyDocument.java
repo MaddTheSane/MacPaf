@@ -53,7 +53,7 @@ public class MyDocument extends NSDocument implements Observer {
   {
 //  	Tests.testBase64();
 //  	Tests.testImageFiles();
-  	Tests.testTrimLeadingWhitespace();
+//  	Tests.testTrimLeadingWhitespace();
 	log.debug(System.getProperty("user.dir"));
 	log.debug(System.getProperty("user.home"));
 //	System.exit(99);
@@ -831,7 +831,7 @@ public static boolean confirmCriticalActionMessage(String message, String detail
 //	URL imageURL = indiv.getImagePath();
 //	if (imageURL != null && imageURL.toString().length() > 0) {
 		  NSImage testImage = MultimediaUtils.makeImageFromMultimedia(indiv.getPreferredImage());
-		  log.debug("button image:"+testImage);
+//		  log.debug("button image:"+testImage);
 		  if (!testImage.size().isEmpty()) {
 			  testImage.setSize(new NSSize(50f, 50f));
 			  testImage.setScalesWhenResized(true);
@@ -915,19 +915,19 @@ private NSMutableAttributedString makeOrdinanceString(Individual individual) {
   
   // used to display row in bold if the child also has children
   public void tableViewWillDisplayCell(NSTableView aTableView, Object aCell, NSTableColumn aTableColumn, int rowIndex) {
-	  log.debug("MyDocument.tableViewWillDisplayCell():"+aTableView.tag()+":"+aCell+":"+aTableColumn.headerCell().stringValue()+":"+rowIndex);
+//	  log.debug("MyDocument.tableViewWillDisplayCell():"+aTableView.tag()+":"+aCell+":"+aTableColumn.headerCell().stringValue()+":"+rowIndex);
 //	  Thread.dumpStack();
 	  try {
 		  if (aTableView.tag() == 1 ) {
 			  if (aCell instanceof NSCell) {
 				  NSCell cell = (NSCell) aCell;
-				  log.debug("cell str val:"+cell.stringValue());
+//				  log.debug("cell str val:"+cell.stringValue());
 				  Individual child = (Individual) getCurrentFamily().getChildren().get(rowIndex);
 				  if (child.getPreferredFamilyAsSpouse().getChildren().size() > 0) {
-					  log.debug("bolding child name:"+child.getFullName());
+//					  log.debug("bolding child name:"+child.getFullName());
 					  cell.setFont(NSFontManager.sharedFontManager().convertFontToHaveTrait(cell.font(), NSFontManager.BoldMask));
 				  } else {
-					  log.debug("unbolding child name:"+child.getFullName());
+//					  log.debug("unbolding child name:"+child.getFullName());
 					  cell.setFont(NSFontManager.sharedFontManager().convertFontToNotHaveTrait(cell.font(), NSFontManager.BoldMask));
 				  }
 			  }
@@ -1365,53 +1365,66 @@ try {
   
   public void transmitBugReport(Object sender) { /* IBAction */
 		log.debug("transmitBugReport: " + sender);
-	    // These are the files to include in the ZIP file
-	    List filenames = new ArrayList(Arrays.asList(new String[]{"/Users/logan/Library/Logs/macpaf.log", "/Users/logan/Library/Logs/macpaf.log.2", "notvalidfile"}));
-	    
-		if (bugReportFileCheckbox.state() == NSCell.OnState) {
-			filenames.add(NSPathUtilities.stringByAppendingPathComponent(fileName(),DEFAULT_XML_FILENAME));
+	    // These are the files to include in the ZIP file		
+		NSMutableArray filePaths = new NSMutableArray();
+		NSArray searchPaths = NSPathUtilities.searchPathForDirectoriesInDomains(NSPathUtilities.LibraryDirectory, NSPathUtilities.UserDomainMask, true);
+		if (searchPaths.count() > 0) {
+			String logFileDirectoryPath = NSPathUtilities.stringByAppendingPathComponent((String) searchPaths.objectAtIndex(0), "Logs");
+			log.debug("logFileDirectoryPath:"+logFileDirectoryPath);
+			String logFileBasePath = NSPathUtilities.stringByAppendingPathComponent(logFileDirectoryPath, "macpaf.log");
+			log.debug("logFileBasePath:"+logFileBasePath);
+			NSArray logFileExtensions = new NSArray(new String[] {"", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"});
+			log.debug("logFileExtensions:"+logFileExtensions);
+			Enumeration extensions = logFileExtensions.objectEnumerator();
+			while (extensions.hasMoreElements()) {
+				String extension = (String) extensions.nextElement();
+				String logFilePath = NSPathUtilities.stringByStandardizingPath(NSPathUtilities.stringByAppendingPathExtension(logFileBasePath, extension));
+				log.debug("logFilePath:"+logFilePath);
+				if (new File(logFilePath).exists()) {
+					log.debug(logFilePath+" exists!");
+					filePaths.addObject(logFilePath);
+				}
+			}
 		}
-//        MultipartPostMethod filePost =
-//            new MultipartPostMethod(targetURL);
-//		String targetURL = "http://macpaf.sourceforge.net/phpemail/mail.php";
+		if (bugReportFileCheckbox.state() == NSCell.OnState) {
+			filePaths.addObject(NSPathUtilities.stringByAppendingPathComponent(fileName(),DEFAULT_XML_FILENAME));
+		}
+		log.debug("filePaths:"+filePaths);
 		String targetURL = "http://www.macpaf.org/submitbug.php";
-//		String targetURL = "http://localhost/~logan/phpemail/mail.php";
 		PostMethod filePost = new PostMethod(targetURL);
-//		filePost.setFollowRedirects(true);
-        String bugEmailAddress = "redbugz@gmail.com";
-        try {
-            File targetFile = createZipFile(null, filenames);//new File("/Users/logan/Library/Logs/macpaf.log");
-    		Part[] parts = { new StringPart("from", "logan@mac.com"),
-    				new StringPart("to", bugEmailAddress),
-    				new StringPart("subject", "MacPAF Bug Report Test"),
-    				new StringPart("message", bugReportText.string()),
-    				new FilePart("fileatt", targetFile) };
-    		filePost.setRequestEntity(new MultipartRequestEntity(parts, filePost
-    				.getParams()));
-//    		HttpClient client = new HttpClient();
-//    		int status = client.executeMethod(filePost);
-    		
-            log.debug("Uploading " + targetFile.getName() + " to " + targetURL);
-//            filePost.addParameter(targetFile.getName(), targetFile);
-            HttpClient client = new HttpClient();
-            client.setConnectionTimeout(5000);
-            int status = client.executeMethod(filePost);
-            if (status == HttpStatus.SC_OK) {
-                log.debug(
-                    "Upload complete, response=" + filePost.getResponseBodyAsString()
-                );
-            } else {
-                log.debug(
-                    "Upload failed, response=" + HttpStatus.getStatusText(status)
-                );
-            }
-        } catch (Exception ex) {
-            log.debug("Error trasmitting bug report: " + ex.getMessage());
-            ex.printStackTrace();
+		try {
+			List parts = new ArrayList();
+			parts.add(new StringPart("message", bugReportText.string()));
+			if (filePaths.count() > 0) {
+				File targetFile = createZipFile(null, CocoaUtils.arrayAsList(filePaths));//new File("/Users/logan/Library/Logs/macpaf.log");
+				FilePart filePart = new FilePart("fileatt", targetFile);
+				log.debug("Uploading " + targetFile.getName() + " to " + targetURL);
+				parts.add(filePart);
+			}
+			filePost.setRequestEntity(new MultipartRequestEntity((Part[]) parts.toArray(), filePost.getParams()));
+//			HttpClient client = new HttpClient();
+//			int status = client.executeMethod(filePost);
+			
+//			filePost.addParameter(targetFile.getName(), targetFile);
+			HttpClient client = new HttpClient();
+			client.setConnectionTimeout(5000);
+			int status = client.executeMethod(filePost);
+			if (status == HttpStatus.SC_OK) {
+				log.debug(
+						"Upload complete, response=" + filePost.getResponseBodyAsString()
+				);
+			} else {
+				log.debug(
+						"Upload failed, response=" + HttpStatus.getStatusText(status)
+				);
+			}
+		} catch (Exception ex) {
+			log.debug("Error trasmitting bug report: " + ex.getMessage());
+			ex.printStackTrace();
 			showUserErrorMessage("Could not submit feedback.", "If you are not connected to the internet, please try again after connecting.");
-        } finally {
-            filePost.releaseConnection();
-        }
+		} finally {
+			filePost.releaseConnection();
+		}
         bugReportWindow.close();
   }
 

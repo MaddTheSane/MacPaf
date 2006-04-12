@@ -202,17 +202,17 @@ public class PedigreeViewController extends NSObject {
 			NSView view = (NSView) viewsEnumerator.nextElement();
 			if (view instanceof NSButton) {
 				NSButton button = (NSButton) view;
-				log.debug("button tag:"+button.tag());
+//				log.debug("button tag:"+button.tag());
 				if (button.tag() > 0) {
 					buttonArray.add(button);
 				}
 			}
 		}
 //		this.buttons = buttonArray;
-		log.debug("buttonArray b4:"+buttonArray);
+//		log.debug("buttonArray b4:"+buttonArray);
 		Collections.sort(buttonArray, TAG_COMPARATOR);
 		buttons = new NSArray(buttonArray.toArray());
-		log.debug("buttons aft:"+buttons.valueForKey("tag"));
+//		log.debug("buttons aft:"+buttons.valueForKey("tag"));
 	}
 	
 //	private void assignIndividualToCellLocationForMatrix(Individual individual, int location, NSMatrix matrix) {

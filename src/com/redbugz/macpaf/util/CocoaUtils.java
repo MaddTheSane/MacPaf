@@ -8,7 +8,10 @@ package com.redbugz.macpaf.util;
 //  Copyright 2005 __MyCompanyName__. All rights reserved.
 //
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Comparator;
+import java.util.Enumeration;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -20,8 +23,10 @@ import com.apple.cocoa.application.NSImage;
 import com.apple.cocoa.application.NSTableView;
 import com.apple.cocoa.application.NSWindow;
 import com.apple.cocoa.application.NSComboBox.DataSource;
+import com.apple.cocoa.foundation.NSArray;
 import com.apple.cocoa.foundation.NSKeyValue;
 import com.apple.cocoa.foundation.NSKeyValueCoding;
+import com.apple.cocoa.foundation.NSMutableArray;
 import com.apple.cocoa.foundation.NSSelector;
 import com.redbugz.macpaf.Family;
 import com.redbugz.macpaf.Temple;
@@ -166,5 +171,14 @@ public class CocoaUtils {
 			}
 			return String.valueOf(value1).compareTo(String.valueOf(value2));
 		}
+	}
+
+	public static List arrayAsList(NSArray array) {
+		List result = new ArrayList();
+		Enumeration enumeration = array.objectEnumerator();
+		while (enumeration.hasMoreElements()) {
+			result.add(enumeration.nextElement());
+		}
+		return result;
 	}
 }

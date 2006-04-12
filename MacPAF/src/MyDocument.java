@@ -1373,12 +1373,18 @@ try {
 			log.debug("logFileDirectoryPath:"+logFileDirectoryPath);
 			String logFileBasePath = NSPathUtilities.stringByAppendingPathComponent(logFileDirectoryPath, "macpaf.log");
 			log.debug("logFileBasePath:"+logFileBasePath);
-			NSArray logFileExtensions = new NSArray(new String[] {"", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"});
+			NSArray logFileExtensions = new NSArray(new String[] {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"});
 			log.debug("logFileExtensions:"+logFileExtensions);
+			String logFilePath = NSPathUtilities.stringByStandardizingPath(logFileBasePath);
+			log.debug("logFilePath:"+logFilePath);
+			if (new File(logFilePath).exists()) {
+				log.debug(logFilePath+" exists!");
+				filePaths.addObject(logFilePath);
+			}
 			Enumeration extensions = logFileExtensions.objectEnumerator();
 			while (extensions.hasMoreElements()) {
 				String extension = (String) extensions.nextElement();
-				String logFilePath = NSPathUtilities.stringByStandardizingPath(NSPathUtilities.stringByAppendingPathExtension(logFileBasePath, extension));
+				logFilePath = NSPathUtilities.stringByStandardizingPath(NSPathUtilities.stringByAppendingPathExtension(logFileBasePath, extension));
 				log.debug("logFilePath:"+logFilePath);
 				if (new File(logFilePath).exists()) {
 					log.debug(logFilePath+" exists!");
@@ -1401,7 +1407,10 @@ try {
 				log.debug("Uploading " + targetFile.getName() + " to " + targetURL);
 				parts.add(filePart);
 			}
-			filePost.setRequestEntity(new MultipartRequestEntity((Part[]) parts.toArray(), filePost.getParams()));
+			Object[] srcArray = parts.toArray();
+			Part[] targetArray =	new Part[srcArray.length];
+			System.arraycopy(srcArray, 0, targetArray, 0, srcArray.length);
+			filePost.setRequestEntity(new MultipartRequestEntity(targetArray, filePost.getParams()));
 //			HttpClient client = new HttpClient();
 //			int status = client.executeMethod(filePost);
 			

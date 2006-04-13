@@ -1,0 +1,164 @@
+<?xml version="1.0"?>
+<!-- ====================================================================== 
+	Apr 14, 2005 7:47:44 PM                                                        
+
+	MacPAF with Eclipse    
+	build MacPAF with the wondiferous Eclipse
+                   
+	thanks to mike                                                                
+	====================================================================== -->
+<project name="MacPAF with Eclipse" default="build">
+	<description>	
+		build MacPAF with the wondiferous Eclipse
+	</description>
+
+    <!-- ================================= 
+          target: build - 
+          	the default target of the build file. This target will 
+			be called automatically unless another target is 
+			specified. The build target will perform an incremental 
+			build - only those files that have changed will be 
+			updated.           
+         ================================= -->
+	<target name="build" depends="jar, populateBundle" description="--> build MacPAF with the wondiferous Eclipse">
+		
+	</target>
+
+	<!-- ================================= 
+		target: clean - 
+			removes the build folder competely.
+			The next build will cause everything to be rebuilt
+			from scratch
+		================================= -->
+	<target name="clean" depends="init" description="--> Clean up the project leaving it spic and span">
+		<delete dir="${build.dir}" />
+	</target>
+
+	<!-- ================================= 
+		target: buildAndDebug - 
+			Derived from the build target this target simply
+			adds debug information and automatically launches
+			the newly built application
+		================================= -->
+	<target name="buildAndDebug" depends="build, addDebugInfo, run" description="--> Build a debugable version">
+		
+	</target>
+	
+   <!-- - - - - - - - - - - - - - - - - - 
+          target: jar  - 
+          	build the Jar file and store it in Application Bundle
+          	in the Java folder.
+         - - - - - - - - - - - - - - - - - -->
+	<target name="jar" depends="compile">
+	  <jar destfile="${app.java.dir}/${name}.jar" basedir="${classes.dir}"></jar>
+	</target>
+	
+	
+	<!-- - - - - - - - - - - - - - - - - - 
+		target: compile - 
+			Compile all of the java files.  
+			The compiled classes are stored in seperate folder so that
+			they are only re-compiled when the source is altered.
+		- - - - - - - - - - - - - - - - - -->
+	<target name="compile" depends="prepare">
+		<javac srcdir="${src.dir}" destdir="${classes.dir}" classpath="${classpath}" debug="on" />		
+	</target>
+	
+	
+	<!-- - - - - - - - - - - - - - - - - - 
+		target: prepare - 
+			create all of the required folders,
+			as well as the application package itself
+		- - - - - - - - - - - - - - - - - -->
+	<target name="prepare" depends="init, createAppPackage">
+		<mkdir dir="${build.dir}"/>
+		<mkdir dir="${classes.dir}" />
+		<mkdir dir="${app.java.dir}" />
+	</target>
+	
+	<!-- - - - - - - - - - - - - - - - - - 
+		target: init - 
+			initialise all of the properties used throughout the 
+			build file
+		- - - - - - - - - - - - - - - - - -->
+	<target name="init">
+		<property file="MacPAF.build.properties"/>
+		<path id="classpath">
+			<pathelement path="/System/Library/Java/"/>
+			<fileset dir="lib" id="lib">
+			    <include name="*.jar"/>
+			    <include name="*.properties"/>
+			</fileset>
+		</path>
+		
+		<property name="classpath" refid="classpath"/>
+		
+	</target>
+	
+	<!-- - - - - - - - - - - - - - - - - - 
+		target: createAppPackage  - 
+			Create the Application bundle if isn't already there
+		- - - - - - - - - - - - - - - - - -->
+	<target name="createAppPackage" unless="packageAlreadyExists" depends="checkIfPackageExists" >
+		<exec executable="xcodebuild" />
+		
+		<delete file="${app.info.plist}" />
+		<delete dir="${build.dir}/${name}.build"/>
+	</target>
+	
+	
+	<!-- - - - - - - - - - - - - - - - - - 
+		target: checkIfPackageAlreadyExists  - 
+			After calling this target, other targets can check the 
+			property packageAlreadyExists to see if the Application 
+			Bundle already exists on disk
+		- - - - - - - - - - - - - - - - - -->
+	<target name="checkIfPackageExists">
+		<available file="${app.path}" property="packageAlreadyExists" />
+	</target>
+	
+	
+	<!-- - - - - - - - - - - - - - - - - - 
+		target: populateBundle - 
+			populate the Application bundle with the Info.plist file
+			as well as the contents of the Resource Folder                     
+		- - - - - - - - - - - - - - - - - -->
+	<target name="populateBundle">
+		<copy file="Info.plist" tofile="${app.info.plist}" />
+		<!--
+		<copy todir="${app.resources.dir}">
+			<fileset dir="resources"/>
+			<fileset dir="images"/>
+			<fileset dir="." id="localizedResources">
+			    <includesfile name="*.lproj"/>
+			</fileset>
+		</copy>
+		<copy todir="${app.java.dir}/lib">
+			<fileset dir="lib"/>
+		</copy>
+			-->
+	</target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+		target: addDebugInfo - 
+			run an xsl script to add debug information to the Info.plist                      
+		- - - - - - - - - - - - - - - - - -->
+	<target name="addDebugInfo" depends="init">
+		<xslt style="addDebugInfo.xsl" in="Info.plist" out="${app.info.plist}" force="true"/>
+	</target>
+	
+	
+	<!-- - - - - - - - - - - - - - - - - - 
+		target: run - 
+			handy little target to automatically launch the newly built application
+		- - - - - - - - - - - - - - - - - -->
+	<target name="run">
+		<exec executable="open">
+			<arg value="-a"/>
+			<arg value="${app.path}"/>
+		</exec>
+	</target>
+
+
+</project>
+

@@ -106,6 +106,7 @@
 		<string>lib/commons-logging.jar</string>
 		<string>lib/commons-httpclient-3.0.jar</string>
 		<string>lib/joda-time-1.2.jar</string>
+		<string>lib/unicodeIO.jar</string>
 		<string>MacPAF.jar</string>
 	</array>
 	<key>NSJavaRoot</key>

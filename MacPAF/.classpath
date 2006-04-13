@@ -20,5 +20,6 @@
 	<classpathentry kind="lib" path="lib"/>
 	<classpathentry kind="lib" path="lib/joda-time-1.2.jar"/>
 	<classpathentry kind="lib" path="lib/castor-1.0M2-xml.jar"/>
+	<classpathentry kind="lib" path="lib/unicodeIO.jar"/>
 	<classpathentry kind="output" path="bin/"/>
 </classpath>

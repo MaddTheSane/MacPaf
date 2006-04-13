@@ -56,10 +56,12 @@ public class XMLTest {
 	  doc = builder.build(gedcomFile);
 	}
 	catch (JDOMException e) {
-	  log.error("Exception: ", e); //To change body of catch statement use Options | File Templates.
+	  log.error("Exception: ", e);
+	  throw new IllegalArgumentException("Cannot parse GEDCOM file "+gedcomFile+". Cause:"+e.getLocalizedMessage());
 	}
 	catch (IOException e) {
 	  log.error("Exception: ", e); //To change body of catch statement use Options | File Templates.
+	  throw new IllegalArgumentException("Cannot parse GEDCOM file "+gedcomFile+". Cause:"+e.getLocalizedMessage());
 	}
 	if (debugging) {
 	  log.debug("^*^*^* Doc parsed with gedml:");

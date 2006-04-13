@@ -401,6 +401,7 @@ public class GedcomLoaderJDOM {
 		} catch (RuntimeException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			throw e;
 		}
 	}
 	

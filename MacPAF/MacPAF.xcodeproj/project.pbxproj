@@ -389,6 +389,10 @@
 		02E28A9F09EA2D1F000846AC /* Sparkle.strings in Resources */ = {isa = PBXBuildFile; fileRef = 02E28A9109EA2D1F000846AC /* Sparkle.strings */; };
 		02E28AA009EA2D1F000846AC /* SUUpdater.h in Headers */ = {isa = PBXBuildFile; fileRef = 02E28A9209EA2D1F000846AC /* SUUpdater.h */; };
 		02E28AA109EA2D1F000846AC /* SUUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 02E28A9309EA2D1F000846AC /* SUUpdater.m */; };
+		02E5284809EDE9770093ECEF /* unicodeIO.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 02E5284709EDE9770093ECEF /* unicodeIO.jar */; };
+		02E5284909EDE9770093ECEF /* unicodeIO.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 02E5284709EDE9770093ECEF /* unicodeIO.jar */; };
+		02E5284A09EDE9860093ECEF /* unicodeIO.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 02E5284709EDE9770093ECEF /* unicodeIO.jar */; };
+		02E5295409EE0F620093ECEF /* unicodeIO.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 02E5284709EDE9770093ECEF /* unicodeIO.jar */; };
 		080E96D9FE201CDB7F000001 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */; };
 		080E96DAFE201CDB7F000001 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */; };
 		080E96DBFE201CDB7F000001 /* MyDocument.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B4FDCFA73011CA2CEA /* MyDocument.nib */; };
@@ -447,6 +451,7 @@
 			dstPath = lib;
 			dstSubfolderSpec = 15;
 			files = (
+				02E5295409EE0F620093ECEF /* unicodeIO.jar in CopyFiles */,
 				0226020A099FD9FA0021F22B /* castor-1.0M2-xml.jar in CopyFiles */,
 				027C6ADA05D9447B00C91D7B /* gedcom.jar in CopyFiles */,
 				027C6ADB05D9447B00C91D7B /* jaxen-core.jar in CopyFiles */,
@@ -490,6 +495,7 @@
 			dstPath = lib;
 			dstSubfolderSpec = 15;
 			files = (
+				02E5284A09EDE9860093ECEF /* unicodeIO.jar in CopyFiles */,
 				02DE76BB09E96A04003B896A /* castor-1.0M2-xml.jar in CopyFiles */,
 				02DE76BC09E96A04003B896A /* gedcom.jar in CopyFiles */,
 				02DE76BD09E96A04003B896A /* jaxen-core.jar in CopyFiles */,
@@ -662,7 +668,7 @@
 		02C5BF780945F5D40086B510 /* concurrent.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; name = concurrent.jar; path = lib/concurrent.jar; sourceTree = "<group>"; };
 		02C5BFBD0948218C0086B510 /* GedcomLoaderJDOM.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = GedcomLoaderJDOM.java; sourceTree = "<group>"; };
 		02C5C0C4095466140086B510 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/RecordSelectionWindow.nib; sourceTree = "<group>"; };
-		02DE76D009E96A05003B896A /* Info-MacPAF__Upgraded_.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Info-MacPAF__Upgraded_.plist"; sourceTree = "<group>"; };
+		02DE76D009E96A05003B896A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Info.plist; sourceTree = "<group>"; };
 		02E2897A09E9FA71000846AC /* MacPAF.jar */ = {isa = PBXFileReference; explicitFileType = archive.jar; includeInIndex = 0; path = MacPAF.jar; sourceTree = BUILT_PRODUCTS_DIR; };
 		02E2897B09E9FA94000846AC /* MacPAF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacPAF.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02E289DE09E9FB29000846AC /* MacPAF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacPAF.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -673,6 +679,7 @@
 		02E28A9109EA2D1F000846AC /* Sparkle.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Sparkle.strings; sourceTree = "<group>"; };
 		02E28A9209EA2D1F000846AC /* SUUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUUpdater.h; sourceTree = "<group>"; };
 		02E28A9309EA2D1F000846AC /* SUUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SUUpdater.m; sourceTree = "<group>"; };
+		02E5284709EDE9770093ECEF /* unicodeIO.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; name = unicodeIO.jar; path = lib/unicodeIO.jar; sourceTree = "<group>"; };
 		02FE0168097B9B79005531CB /* EventTableController.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = EventTableController.java; path = src/EventTableController.java; sourceTree = "<group>"; };
 		089C1660FE840EACC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
@@ -707,6 +714,7 @@
 				02DE767A09E96862003B896A /* junit.jar in Frameworks */,
 				02DE767B09E96863003B896A /* jaxen-jdom.jar in Frameworks */,
 				02DE767C09E96866003B896A /* commons-httpclient-3.0.jar in Frameworks */,
+				02E5284809EDE9770093ECEF /* unicodeIO.jar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -723,6 +731,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1058C7A9FEA54F5311CA2CBB /* Cocoa.framework in Frameworks */,
+				02E5284909EDE9770093ECEF /* unicodeIO.jar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -956,7 +965,7 @@
 				02218D9AFECEFA92C02AAC07 /* Resources */,
 				2A37F4C3FDCFA73011CA2CEA /* Frameworks */,
 				19C28FB0FE9D524F11CA2CBB /* Products */,
-				02DE76D009E96A05003B896A /* Info-MacPAF__Upgraded_.plist */,
+				02DE76D009E96A05003B896A /* Info.plist */,
 			);
 			name = MacPAF;
 			sourceTree = "<group>";
@@ -964,6 +973,7 @@
 		2A37F4C3FDCFA73011CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				02E5284709EDE9770093ECEF /* unicodeIO.jar */,
 				022601FF099FD9D70021F22B /* castor-1.0M2-xml.jar */,
 				026AAA39099F225C00F742A5 /* joda-time-1.2.jar */,
 				0236ED18098D5FED00E276AB /* commons-codec-1.3.jar */,
@@ -1733,7 +1743,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MacPAF_Prefix.h;
 				HEADER_SEARCH_PATHS = "";
-				INFOPLIST_FILE = "Info-MacPAF__Upgraded_.plist";
+				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				JAVAC_SOURCE_FILE_ENCODING = "UTF-8";
 				JAVA_COMPILER_DEPRECATED_WARNINGS = YES;
@@ -1774,7 +1784,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MacPAF_Prefix.h;
 				HEADER_SEARCH_PATHS = "";
-				INFOPLIST_FILE = "Info-MacPAF__Upgraded_.plist";
+				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				JAVAC_SOURCE_FILE_ENCODING = "UTF-8";
 				JAVA_COMPILER_DEBUGGING_SYMBOLS = NO;
@@ -1813,7 +1823,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MacPAF_Prefix.h;
 				HEADER_SEARCH_PATHS = "";
-				INFOPLIST_FILE = "Info-MacPAF__Upgraded_.plist";
+				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				JAVAC_SOURCE_FILE_ENCODING = "UTF-8";
 				JAVA_COMPILER_DEPRECATED_WARNINGS = YES;

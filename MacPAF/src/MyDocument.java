@@ -700,7 +700,12 @@ else {
 		  if (NSPathUtilities.pathExtension(wrapper.filename()).equalsIgnoreCase("ged")) {
 			String fullPath = fileName() + "/" + wrapper.filename();
 			log.debug("..................Loading gedcom: " + fullPath);
-			doc.loadXMLFile(new File(fullPath));
+			try {
+				doc.loadXMLFile(new File(fullPath));
+			} catch (RuntimeException e) {
+				e.printStackTrace();
+				return false;
+			}
 			// save individualList in a temporary so I can restore it when the
 			// Cocoa startup sequence calls the constructor twice and clobbers it
 //			startupIndividualList = individualList;
@@ -1068,6 +1073,7 @@ private void importGEDCOM(File importFile) {
 	} catch (Exception e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
+		showUserErrorMessage("There was an error importing the file.", "The file was not in a format that MacPAF could read. The file may be incorrect or corrupted. Please verify that the file is in the correct format, and then report this error to the developer if it persists.");
 	}
   }
 

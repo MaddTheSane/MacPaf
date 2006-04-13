@@ -505,6 +505,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 		} catch (RuntimeException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			throw e;
 		}
 	}
 	

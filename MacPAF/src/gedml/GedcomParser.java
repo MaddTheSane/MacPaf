@@ -2,16 +2,18 @@ package gedml;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.Locale;
 import java.util.Stack;
 
 import org.apache.log4j.Logger;
 import org.xml.sax.*;
-import org.xml.sax.ContentHandler;
 import org.xml.sax.helpers.AttributesImpl;
 import org.xml.sax.helpers.DefaultHandler;
 
+import com.outerrim.io.UnicodeInputStream;
+import com.outerrim.io.UnicodeReader;
 import com.redbugz.macpaf.util.StringUtils;
 
 /**
@@ -114,9 +116,15 @@ public class GedcomParser implements XMLReader, Locator {
 
   public void parse(String systemId) throws SAXException, IOException {
 	this.systemId = systemId;
-	parse(new BufferedReader(
-		new AnselInputStreamReader(
-		(new URL(systemId)).openStream())));
+	// Workaround Java bug#4508058 where does not properly recognize the BOM at beginning of Unicode files by adding UnicodeInputStream	
+	UnicodeInputStream unicodeInputStream = new UnicodeInputStream((new URL(systemId)).openStream(), null);
+	String encoding = unicodeInputStream.getEncoding();
+	if (encoding == null) {
+		// assume ANSEL
+		parse(new BufferedReader(	new AnselInputStreamReader(unicodeInputStream)));
+	} else {
+		parse(new BufferedReader(	new InputStreamReader(unicodeInputStream, encoding)));
+	}
   }
 
   /**
@@ -206,7 +214,7 @@ public class GedcomParser implements XMLReader, Locator {
 			thislevel = Integer.parseInt(level);
 		  }
 		  catch (NumberFormatException err) {
-			throw new SAXException("Level number is not an integer");
+			throw new SAXException("Level number is not an integer. Line:"+line);
 		  }
 
 		  // check the level number
@@ -254,7 +262,7 @@ public class GedcomParser implements XMLReader, Locator {
 		  // perform validation on the CHAR field (character code)
 		  if (tag.equals("CHAR") &&
 			  ! (valu.trim().equals("ANSEL") || valu.trim().equals("ASCII") || valu.trim().equals("UNICODE"))) {
-			log.error("WARNING: Character set is " + valu + ": should be ANSEL, ASCII, or UNICODE");
+			log.warn("WARNING: Character set is " + valu + ": should be ANSEL, ASCII, or UNICODE");
 		  }
 
 		  // insert any necessary closing tags

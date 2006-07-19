@@ -1,11 +1,10 @@
 /* FamilyListController */
 
-import org.apache.log4j.Logger;
+import org.apache.log4j.*;
 
-import com.apple.cocoa.foundation.*;
 import com.apple.cocoa.application.*;
-import com.redbugz.macpaf.Family;
-import com.redbugz.macpaf.Individual;
+import com.apple.cocoa.foundation.*;
+import com.redbugz.macpaf.*;
 
 public class FamilyListController extends NSWindowController {
 	private static final NSSelector SELECT_FAMILY_SELECTOR = new NSSelector("selectFamily", new Class[] {Object.class});

@@ -6,30 +6,14 @@
  */
 package com.redbugz.macpaf.util;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
-import java.util.Stack;
-import java.util.Vector;
+import java.io.*;
+import java.util.*;
 
-import org.apache.log4j.Logger;
+import org.apache.log4j.*;
 
-import com.apple.cocoa.application.NSBitmapImageRep;
-import com.apple.cocoa.application.NSDocument;
-import com.apple.cocoa.application.NSDocumentController;
-import com.apple.cocoa.application.NSImage;
-import com.apple.cocoa.application.NSPICTImageRep;
-import com.apple.cocoa.foundation.NSData;
-import com.apple.cocoa.foundation.NSPathUtilities;
-import com.redbugz.macpaf.Multimedia;
-import com.redbugz.macpaf.jdom.MacPAFDocumentJDOM;
+import com.apple.cocoa.application.*;
+import com.apple.cocoa.foundation.*;
+import com.redbugz.macpaf.*;
 
 /**
  * @author logan

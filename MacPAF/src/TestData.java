@@ -1,10 +1,7 @@
-import java.util.GregorianCalendar;
+import java.util.*;
 
-import com.redbugz.macpaf.Family;
-import com.redbugz.macpaf.Gender;
-import com.redbugz.macpaf.Individual;
-import com.redbugz.macpaf.test.MyIndividual;
-import com.redbugz.macpaf.test.TestFamily;
+import com.redbugz.macpaf.*;
+import com.redbugz.macpaf.test.*;
 
 /**
  * Created by IntelliJ IDEA.

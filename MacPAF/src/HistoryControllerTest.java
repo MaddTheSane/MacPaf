@@ -1,9 +1,7 @@
-import com.redbugz.macpaf.Gender;
-import com.redbugz.macpaf.Individual;
-import com.redbugz.macpaf.jdom.IndividualJDOM;
-import com.redbugz.macpaf.test.MyIndividual;
+import junit.framework.*;
 
-import junit.framework.TestCase;
+import com.redbugz.macpaf.*;
+import com.redbugz.macpaf.test.*;
 
 public class HistoryControllerTest extends TestCase {
 

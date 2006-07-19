@@ -4,12 +4,9 @@
  */
 package com.redbugz.macpaf.jdom;
 
-import java.util.List;
+import java.util.*;
 
-import com.redbugz.macpaf.Event;
-import com.redbugz.macpaf.Family;
-import com.redbugz.macpaf.Individual;
-import com.redbugz.macpaf.Ordinance;
+import com.redbugz.macpaf.*;
 
 /**
  * @author logan
@@ -160,6 +157,10 @@ public class FamilyLink implements Family {
 
 	public String getNoteText() {
 		return getFamily().getNoteText();
+	}
+
+	public String getUID() {
+		return getFamily().getUID();
 	}
 
 }

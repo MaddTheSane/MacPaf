@@ -11,8 +11,6 @@ package com.redbugz.macpaf;
 import java.util.Collections;
 import java.util.List;
 
-import com.redbugz.macpaf.jdom.FamilyJDOM;
-
 public interface Family {
   public static final Family UNKNOWN_FAMILY = new UnknownFamily();
 
@@ -23,6 +21,7 @@ public interface Family {
   public static final String RIN = "RIN";
   public static final String ID = "ID";
   public static final String MARRIAGE = "MARR";
+  public static final String UID = "_UID";
 
 
   public Individual getFather();
@@ -62,6 +61,8 @@ public interface Family {
   public Event getMarriageEvent();
 
   public String getNoteText();
+  
+  public String getUID();
 
   public static class UnknownFamily implements Family {
 
@@ -178,11 +179,14 @@ public interface Family {
 	}
 
 	public List getEvents() {
-		// TODO Auto-generated method stub
 		return Collections.EMPTY_LIST;
 	}
 
 	public String getNoteText() {
+		return "";
+	}
+
+	public String getUID() {
 		return "";
 	}
   	

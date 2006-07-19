@@ -10,7 +10,6 @@
  */
 import com.apple.cocoa.application.*;
 import com.apple.cocoa.foundation.*;
-import com.apple.cocoa.application.NSToolbarItem;
 
 public class MainToolbar extends NSToolbar implements NSToolbar.Delegate {
   public static final String ADD_FAMILY_IDENTIFIER = "AddFamily";

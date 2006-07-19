@@ -6,23 +6,12 @@
  */
 package com.redbugz.macpaf.jdom.test;
 
-import java.io.IOException;
+import java.io.*;
 
-import org.jdom.Element;
+import junit.framework.*;
 
-import junit.framework.TestCase;
-
-import com.redbugz.macpaf.Family;
-import com.redbugz.macpaf.Gender;
-import com.redbugz.macpaf.Individual;
-import com.redbugz.macpaf.Multimedia;
-import com.redbugz.macpaf.Note;
-import com.redbugz.macpaf.Repository;
-import com.redbugz.macpaf.Source;
-import com.redbugz.macpaf.Submitter;
-import com.redbugz.macpaf.jdom.FamilyJDOM;
-import com.redbugz.macpaf.jdom.IndividualJDOM;
-import com.redbugz.macpaf.jdom.MacPAFDocumentJDOM;
+import com.redbugz.macpaf.*;
+import com.redbugz.macpaf.jdom.*;
 
 /**
  * @author logan

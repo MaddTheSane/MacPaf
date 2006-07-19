@@ -1,34 +1,18 @@
 package com.redbugz.macpaf.jdom;
 
-import java.io.File;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
+import java.io.*;
+import java.net.*;
+import java.util.*;
 
-import org.apache.log4j.Logger;
-import org.jdom.Element;
-import org.jdom.JDOMException;
-import org.jdom.Text;
-import org.jdom.filter.ContentFilter;
-import org.jdom.filter.Filter;
-import org.jdom.output.Format;
-import org.jdom.output.XMLOutputter;
-import org.jdom.xpath.XPath;
+import org.apache.log4j.*;
+import org.jdom.*;
+import org.jdom.filter.*;
+import org.jdom.output.*;
+import org.jdom.xpath.*;
 
-import com.apple.cocoa.foundation.NSBundle;
-import com.redbugz.macpaf.Event;
-import com.redbugz.macpaf.Family;
-import com.redbugz.macpaf.Gender;
-import com.redbugz.macpaf.Individual;
-import com.redbugz.macpaf.Multimedia;
-import com.redbugz.macpaf.Note;
-import com.redbugz.macpaf.Ordinance;
-import com.redbugz.macpaf.util.CocoaUtils;
-import com.redbugz.macpaf.util.JDOMUtils;
+import com.apple.cocoa.foundation.*;
+import com.redbugz.macpaf.*;
+import com.redbugz.macpaf.util.*;
 
 /**
  * This class is a wrapper around a JDOM Element that represents an Individual.
@@ -51,6 +35,7 @@ private static final Logger log = Logger.getLogger(IndividualJDOM.class);
   public static final String RIN = "RIN";
   public static final String AFN = "AFN";
   public static final String RFN = "RFN";
+  public static final String UID = "_UID";
 
   public static final String NAME = "NAME";
   public static final String NAME_PREFIX = "NPFX";
@@ -988,6 +973,10 @@ public List getAllMultimedia() {
 		}
 	}
 	return list;
+}
+
+public String getUID() {
+	return StringUtils.nonNullString(element.getChildText(UID));
 }
 
 //  public static final String eventNodeNames = "/BIRT | /CHR | /DEAT | /BURI | /CREM | /ADOP | /BAPM | /BARM | /BASM | /BLES | /CHRA | /CONF | /FCOM | /ORDN | /NATU | /EMIG | /IMMI | /CENS | /PROB | /WILL | /GRAD | /RETI | /EVEN";

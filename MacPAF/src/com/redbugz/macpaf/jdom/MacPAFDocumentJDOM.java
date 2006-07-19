@@ -1,31 +1,16 @@
 package com.redbugz.macpaf.jdom;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Observable;
-import java.util.Observer;
+import java.io.*;
+import java.util.*;
 
-import org.apache.log4j.Logger;
-import org.jdom.Content;
-import org.jdom.Document;
-import org.jdom.Element;
-import org.jdom.JDOMException;
-import org.jdom.output.Format;
-import org.jdom.output.XMLOutputter;
-import org.jdom.xpath.XPath;
+import org.apache.log4j.*;
+import org.jdom.*;
+import org.jdom.output.*;
+import org.jdom.xpath.*;
 
 import com.redbugz.macpaf.*;
-import com.redbugz.macpaf.util.JDOMUtils;
-import com.redbugz.macpaf.util.StringUtils;
-import com.redbugz.macpaf.util.XMLTest;
-import com.redbugz.macpaf.validation.UnknownGedcomLinkException;
+import com.redbugz.macpaf.util.*;
+import com.redbugz.macpaf.validation.*;
 
 public class MacPAFDocumentJDOM extends Observable implements Observer {
 	private static final Logger log = Logger.getLogger(MacPAFDocumentJDOM.class);
@@ -512,10 +497,10 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 	/**
 	 * setPrimaryIndividual
 	 *
-	 * @param firstIndi Individual
+	 * @param newPrimaryIndividual Individual
 	 */
-	public void setPrimaryIndividual(Individual firstIndi) {
-		primaryIndividual = firstIndi;
+	public void setPrimaryIndividual(Individual newPrimaryIndividual) {
+		primaryIndividual = newPrimaryIndividual;
 	}
 	
 	/**

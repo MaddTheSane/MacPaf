@@ -1,20 +1,11 @@
 package com.redbugz.macpaf.util;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.*;
 
-import org.apache.log4j.Logger;
-import org.jdom.Content;
-import org.jdom.Element;
-import org.jdom.JDOMException;
-import org.jdom.xpath.XPath;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
-
-import com.redbugz.macpaf.Event;
-import com.redbugz.macpaf.jdom.EventJDOM;
+import org.apache.log4j.*;
+import org.jdom.*;
+import org.jdom.xpath.*;
+import org.joda.time.format.*;
 
 public class JDOMUtils {
 	  private static final Logger log = Logger.getLogger(JDOMUtils.class);

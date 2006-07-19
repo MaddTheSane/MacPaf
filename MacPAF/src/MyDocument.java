@@ -6,40 +6,20 @@
 //  Copyright (c) 2002-2004 RedBugz Software. All rights reserved.
 //
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipOutputStream;
+import java.util.zip.*;
 
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.HttpStatus;
-import org.apache.commons.httpclient.methods.MultipartPostMethod;
-import org.apache.commons.httpclient.methods.PostMethod;
-import org.apache.commons.httpclient.methods.multipart.FilePart;
-import org.apache.commons.httpclient.methods.multipart.MultipartRequestEntity;
-import org.apache.commons.httpclient.methods.multipart.Part;
-import org.apache.commons.httpclient.methods.multipart.StringPart;
-import org.apache.log4j.Logger;
-import org.apache.log4j.NDC;
+import org.apache.commons.httpclient.*;
+import org.apache.commons.httpclient.methods.*;
+import org.apache.commons.httpclient.methods.multipart.*;
+import org.apache.log4j.*;
 
 import com.apple.cocoa.application.*;
 import com.apple.cocoa.foundation.*;
-import com.redbugz.macpaf.Family;
-import com.redbugz.macpaf.Gender;
-import com.redbugz.macpaf.Individual;
-import com.redbugz.macpaf.LocationList;
-import com.redbugz.macpaf.SurnameList;
-import com.redbugz.macpaf.jdom.MacPAFDocumentJDOM;
-import com.redbugz.macpaf.test.Tests;
-import com.redbugz.macpaf.util.CocoaUtils;
-import com.redbugz.macpaf.util.DateUtils;
-import com.redbugz.macpaf.util.MultimediaUtils;
-import com.redbugz.macpaf.util.StringUtils;
+import com.redbugz.macpaf.*;
+import com.redbugz.macpaf.jdom.*;
+import com.redbugz.macpaf.util.*;
 
 /**
 * @todo This document is getting too large. I need to subclass NSDocumentController and move
@@ -132,6 +112,7 @@ private boolean suppressUpdates;
    */
   private static final String DEFAULT_XML_FILENAME = "data.xml";
 private static final String TEMPLEREADY_UPDATE_EXTENSION = "oup";
+public static final RuntimeException USER_CANCELLED_OPERATION_EXCEPTION = new RuntimeException("User Cancelled Operation");
 
   /**
  * This method was originally started to avoid the bug that in Java-Cocoa applications,
@@ -180,28 +161,36 @@ private static final String TEMPLEREADY_UPDATE_EXTENSION = "oup";
   }
 
   public void openFamilyEditSheet(Object sender) { /* IBAction */
-	( (NSWindowController) familyEditWindow.delegate()).setDocument(this);
-	if (sender instanceof NSControl) {
-	if ( (  (NSControl) sender).tag() == 1) {
-		Family familyAsChild = getPrimaryIndividual().getFamilyAsChild();
-		( (FamilyEditController) familyEditWindow.delegate()).setFamilyAsChild(familyAsChild);
-	} else {
-	  Family familyAsSpouse = getCurrentFamily();
-		( (FamilyEditController) familyEditWindow.delegate()).setFamily(familyAsSpouse);
-	}
-	} else if (sender instanceof NSValidatedUserInterfaceItem) {
-		if ( (  (NSValidatedUserInterfaceItem) sender).tag() == 1) {
-			Family familyAsChild = getPrimaryIndividual().getFamilyAsChild();
-			( (FamilyEditController) familyEditWindow.delegate()).setFamilyAsChild(familyAsChild);
-		} else {
-		  Family familyAsSpouse = getCurrentFamily();
-			( (FamilyEditController) familyEditWindow.delegate()).setFamily(familyAsSpouse);
+	  
+	try {
+		( (NSWindowController) familyEditWindow.delegate()).setDocument(this);
+		if (sender instanceof NSControl) {
+			if ( (  (NSControl) sender).tag() == 1) {
+				Family familyAsChild = getPrimaryIndividual().getFamilyAsChild();
+				( (FamilyEditController) familyEditWindow.delegate()).setFamilyAsChild(familyAsChild);
+			} else {
+			  Family familyAsSpouse = getCurrentFamily();
+				( (FamilyEditController) familyEditWindow.delegate()).setFamily(familyAsSpouse);
+			}
+		} else if (sender instanceof NSValidatedUserInterfaceItem) {
+			if ( (  (NSValidatedUserInterfaceItem) sender).tag() == 1) {
+				Family familyAsChild = getPrimaryIndividual().getFamilyAsChild();
+				( (FamilyEditController) familyEditWindow.delegate()).setFamilyAsChild(familyAsChild);
+			} else {
+			  Family familyAsSpouse = getCurrentFamily();
+				( (FamilyEditController) familyEditWindow.delegate()).setFamily(familyAsSpouse);
+			}
+		
 		}
-	
+		NSApplication nsapp = NSApplication.sharedApplication();
+		nsapp.beginSheet(familyEditWindow, mainWindow, this, new NSSelector("sheetDidEndShouldClose2", new Class[] {}), null);
+		// sheet is up here, control passes to the sheet controller
+	} catch (RuntimeException e) {
+		if (e != USER_CANCELLED_OPERATION_EXCEPTION) {
+			e.printStackTrace();
+			MyDocument.showUserErrorMessage("An unexpected error occurred.", "Message: "+e.getMessage());
+		}
 	}
-	NSApplication nsapp = NSApplication.sharedApplication();
-	nsapp.beginSheet(familyEditWindow, mainWindow, this, new NSSelector("sheetDidEndShouldClose2", new Class[] {}), null);
-	// sheet is up here, control passes to the sheet controller
   }
   
   public void deletePrimaryIndividual(Object sender) { /* IBAction */
@@ -225,13 +214,13 @@ private static final String TEMPLEREADY_UPDATE_EXTENSION = "oup";
 	  }
   }  
 
-  private Individual getKnownPrimaryIndividual() {
-	Individual indi = getPrimaryIndividual();
-	if (indi instanceof Individual.UnknownIndividual) {
-		indi = createAndInsertNewIndividual();
-	}
-	return indi;
-}
+//  private Individual getKnownPrimaryIndividual() {
+//	Individual indi = getPrimaryIndividual();
+//	if (indi instanceof Individual.UnknownIndividual) {
+//		indi = createAndInsertNewIndividual();
+//	}
+//	return indi;
+//}
 
 public void sheetDidEndShouldClose2() {
 	log.debug("sheetDidEndShouldClose2");
@@ -684,7 +673,6 @@ else {
 												  NSDictionary(new Integer(NSHFSFileTypes.hfsTypeCodeFromFileType(
 		  "TEXT")),
 		  CocoaUtils.FileHFSTypeCode)));
-	  String[] errors = new String[1];
 	  if (MACPAF.equals(s)) {
 		if (nsFileWrapper.isDirectory()) {
 		  log.debug("wrappers:" + nsFileWrapper.fileWrappers());
@@ -742,7 +730,6 @@ public static boolean confirmCriticalActionMessage(String message, String detail
 	int result = NSAlertPanel.runCriticalAlert(message, details, confirmActionText, cancelActionText, null);
 	return result == NSAlertPanel.DefaultReturn;
 }
-
 
 /* (non-Javadoc)
    * @see com.apple.cocoa.application.NSDocument#setFileName(java.lang.String)
@@ -1174,15 +1161,16 @@ try {
   public void addNewChild(Object sender) { /* IBAction */
 	log.debug("addNewChild: " + sender);
 	try {
-		Family familyAsSpouse = getPrimaryIndividual().getPreferredFamilyAsSpouse();
+		Individual primaryIndividual = getPrimaryIndividual();
+		Family familyAsSpouse = primaryIndividual.getPreferredFamilyAsSpouse();
 		if (familyAsSpouse instanceof Family.UnknownFamily) {
 			familyAsSpouse = createAndInsertNewFamily();
-			if (Gender.MALE.equals(getPrimaryIndividual().getGender())) {
-				familyAsSpouse.setFather(getPrimaryIndividual());
+			if (Gender.MALE.equals(primaryIndividual.getGender())) {
+				familyAsSpouse.setFather(primaryIndividual);
 			} else {
-				familyAsSpouse.setMother(getPrimaryIndividual());
+				familyAsSpouse.setMother(primaryIndividual);
 			}
-			getPrimaryIndividual().setFamilyAsSpouse(familyAsSpouse);
+			primaryIndividual.setFamilyAsSpouse(familyAsSpouse);
 		}
 		
 		Individual newChild = createAndInsertNewIndividual();
@@ -1200,20 +1188,21 @@ try {
   public void addNewSpouse(Object sender) { /* IBAction */
 	log.debug("addNewSpouse: " + sender);
 	try {
-		boolean isMale = Gender.MALE.equals(getPrimaryIndividual().getGender());
-		Family familyAsSpouse = getPrimaryIndividual().getPreferredFamilyAsSpouse();
+		Individual primaryIndividual = getPrimaryIndividual();
+		boolean isMale = Gender.MALE.equals(primaryIndividual.getGender());
+		Family familyAsSpouse = primaryIndividual.getPreferredFamilyAsSpouse();
 		if (familyAsSpouse instanceof Family.UnknownFamily) {
 			familyAsSpouse = createAndInsertNewFamily();
 			if (isMale) {
-				familyAsSpouse.setFather(getPrimaryIndividual());
+				familyAsSpouse.setFather(primaryIndividual);
 			} else {
-				familyAsSpouse.setMother(getPrimaryIndividual());
+				familyAsSpouse.setMother(primaryIndividual);
 			}
-			getPrimaryIndividual().setFamilyAsSpouse(familyAsSpouse);
+			primaryIndividual.setFamilyAsSpouse(familyAsSpouse);
 		}
 		Individual newSpouse = createAndInsertNewIndividual();
-		getPrimaryIndividual().addSpouse(newSpouse);
-		newSpouse.addSpouse(getPrimaryIndividual());
+		primaryIndividual.addSpouse(newSpouse);
+		newSpouse.addSpouse(primaryIndividual);
 		setPrimaryIndividual(newSpouse);
 		save();
 		openIndividualEditSheet(this);
@@ -1226,15 +1215,16 @@ try {
   public void addNewFather(Object sender) { /* IBAction */
 	log.debug("addNewFather: " + sender);
 	try {
-		Family familyAsChild = getPrimaryIndividual().getFamilyAsChild();
+		Individual primaryIndividual = getPrimaryIndividual();
+		Family familyAsChild = primaryIndividual.getFamilyAsChild();
 		if (familyAsChild instanceof Family.UnknownFamily) {
 			familyAsChild = createAndInsertNewFamily();
-			familyAsChild.addChild(getPrimaryIndividual());
-			getPrimaryIndividual().setFamilyAsChild(familyAsChild);
+			familyAsChild.addChild(primaryIndividual);
+			primaryIndividual.setFamilyAsChild(familyAsChild);
 		}
 		Individual newFather = createAndInsertNewIndividual();
 		newFather.setGender(Gender.MALE);
-		newFather.setSurname(getPrimaryIndividual().getSurname());
+		newFather.setSurname(primaryIndividual.getSurname());
 		newFather.setFamilyAsSpouse(familyAsChild);
 		familyAsChild.setFather(newFather);
 		setPrimaryIndividual(newFather);
@@ -1249,11 +1239,12 @@ try {
   public void addNewMother(Object sender) { /* IBAction */
 	log.debug("addNewMother: " + sender);
 	try {
-		Family familyAsChild = getPrimaryIndividual().getFamilyAsChild();
+		Individual primaryIndividual = getPrimaryIndividual();
+		Family familyAsChild = primaryIndividual.getFamilyAsChild();
 		if (familyAsChild instanceof Family.UnknownFamily) {
 			familyAsChild = createAndInsertNewFamily();
-			familyAsChild.addChild(getPrimaryIndividual());
-			getPrimaryIndividual().setFamilyAsChild(familyAsChild);
+			familyAsChild.addChild(primaryIndividual);
+			primaryIndividual.setFamilyAsChild(familyAsChild);
 		}
 		Individual newMother = createAndInsertNewIndividual();
 		newMother.setGender(Gender.FEMALE);
@@ -1285,11 +1276,12 @@ try {
 	log.debug("addNewFamilyAsSpouse: " + sender);
 	try {
 		Family newFamily = createAndInsertNewFamily();
-		getPrimaryIndividual().setFamilyAsSpouse(newFamily);
-		if (Gender.MALE.equals(getPrimaryIndividual().getGender())) {
-			newFamily.setFather(getPrimaryIndividual());
+		Individual primaryIndividual = getPrimaryIndividual();
+		primaryIndividual.setFamilyAsSpouse(newFamily);
+		if (Gender.MALE.equals(primaryIndividual.getGender())) {
+			newFamily.setFather(primaryIndividual);
 		} else {
-			newFamily.setMother(getPrimaryIndividual());
+			newFamily.setMother(primaryIndividual);
 		}
 		save();
 		openFamilyEditSheet(this);
@@ -1303,8 +1295,9 @@ try {
 	log.debug("addNewFamilyAsChild: " + sender);
 	try {
 		Family newFamily = createAndInsertNewFamily();
-		getPrimaryIndividual().setFamilyAsChild(newFamily);
-		newFamily.addChild(getPrimaryIndividual());
+		Individual primaryIndividual = getPrimaryIndividual();
+		primaryIndividual.setFamilyAsChild(newFamily);
+		newFamily.addChild(primaryIndividual);
 		save();
 		openFamilyEditSheet(this);
 	} catch (Exception e) {
@@ -1371,6 +1364,7 @@ try {
   
   public void transmitBugReport(Object sender) { /* IBAction */
 		log.debug("transmitBugReport: " + sender);
+		log.info(System.getProperties().toString());
 	    // These are the files to include in the ZIP file		
 		NSMutableArray filePaths = new NSMutableArray();
 		NSArray searchPaths = NSPathUtilities.searchPathForDirectoriesInDomains(NSPathUtilities.LibraryDirectory, NSPathUtilities.UserDomainMask, true);

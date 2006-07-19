@@ -1,11 +1,11 @@
 package com.redbugz.macpaf.test;
 
-import java.util.StringTokenizer;
+import java.util.*;
 
-import org.apache.log4j.Logger;
-import org.jdom.Element;
+import org.apache.log4j.*;
+import org.jdom.*;
 
-import com.redbugz.macpaf.Place;
+import com.redbugz.macpaf.*;
 
 /**
  * Created by IntelliJ IDEA.

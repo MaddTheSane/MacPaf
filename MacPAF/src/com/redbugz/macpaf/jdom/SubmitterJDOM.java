@@ -6,16 +6,12 @@
  */
 package com.redbugz.macpaf.jdom;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
+import java.text.*;
+import java.util.*;
 
-import org.jdom.Content;
-import org.jdom.Element;
-import com.redbugz.macpaf.Address;
-import com.redbugz.macpaf.Submitter;
+import org.jdom.*;
+
+import com.redbugz.macpaf.*;
 
 /**
  * @author logan

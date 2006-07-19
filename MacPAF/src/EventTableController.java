@@ -1,19 +1,12 @@
 /* EventTableController */
 
-import java.net.URL;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
-import org.apache.log4j.Logger;
+import org.apache.log4j.*;
 
-import com.apple.cocoa.foundation.*;
 import com.apple.cocoa.application.*;
-import com.redbugz.macpaf.Event;
-import com.redbugz.macpaf.Family;
-import com.redbugz.macpaf.Individual;
-import com.redbugz.macpaf.jdom.EventJDOM;
-import com.redbugz.macpaf.jdom.PlaceJDOM;
-import com.redbugz.macpaf.util.CocoaUtils;
+import com.apple.cocoa.foundation.*;
+import com.redbugz.macpaf.*;
 
 public class EventTableController extends NSObject {
 	private static final Logger log = Logger.getLogger(EventTableController.class);

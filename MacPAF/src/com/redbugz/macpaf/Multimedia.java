@@ -1,8 +1,6 @@
 package com.redbugz.macpaf;
 
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /*
  * Created on Oct 5, 2003

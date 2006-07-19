@@ -1,13 +1,12 @@
 package com.redbugz.macpaf.test;
 
-import org.apache.log4j.Logger;
-import org.jdom.Element;
+import junit.framework.*;
 
-import com.redbugz.macpaf.Header;
-import com.redbugz.macpaf.jdom.HeaderJDOM;
-import com.redbugz.macpaf.jdom.MacPAFDocumentJDOM;
+import org.apache.log4j.*;
+import org.jdom.*;
 
-import junit.framework.TestCase;
+import com.redbugz.macpaf.*;
+import com.redbugz.macpaf.jdom.*;
 
 public class HeaderJDOMTest extends TestCase {
 

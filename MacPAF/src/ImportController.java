@@ -6,17 +6,14 @@
 //  Copyright (c) 2002-2004 RedBugz Software. All rights reserved.
 //
 
-import java.io.File;
+import java.io.*;
 
-import org.apache.log4j.Logger;
-import org.apache.log4j.NDC;
+import org.apache.log4j.*;
 
 import com.apple.cocoa.application.*;
-import com.apple.cocoa.foundation.NSArray;
-import com.apple.cocoa.foundation.NSSelector;
-import com.redbugz.macpaf.Individual;
-import com.redbugz.macpaf.jdom.GedcomLoaderJDOM;
-import com.redbugz.macpaf.util.CocoaUtils;
+import com.apple.cocoa.foundation.*;
+import com.redbugz.macpaf.*;
+import com.redbugz.macpaf.jdom.*;
 
 public class ImportController {
   private static final Logger log = Logger.getLogger(ImportController.class);
@@ -35,6 +32,26 @@ private NSOpenPanel openPanel;
 	importWindow.orderOut(this);
   }
 
+//return array of document extensions of specified document type name
+  private NSArray allReadableTypesArray() 
+  {
+  	int i;
+  	NSArray typeList = (NSArray) NSBundle.mainBundle().infoDictionary().objectForKey("CFBundleDocumentTypes");
+  	NSMutableArray returnTypes = new NSMutableArray();
+  	for (i=0; i<typeList.count(); i++) {
+  			returnTypes.addObjectsFromArray((NSArray) ((NSDictionary) typeList.objectAtIndex(i)).objectForKey("CFBundleTypeExtensions"));
+  			NSArray osTypes = (NSArray) ((NSDictionary) typeList.objectAtIndex(i)).objectForKey("CFBundleTypeOSTypes");
+  			log.debug(osTypes);
+  			if (osTypes != null) {
+  			for (int j = 0; j < osTypes.count(); j++) {
+				returnTypes.addObject("'"+osTypes.objectAtIndex(j)+"'");
+			}
+  			}
+  	}
+	  log.debug("allReadableTypeExtensions: "+returnTypes);
+  	return returnTypes;
+  }
+
   public void browse(Object sender) { /* IBAction */
 	  NDC.push(((MyDocument) NSDocumentController.sharedDocumentController().currentDocument()).displayName()+" import browse");
 	  try {
@@ -42,7 +59,8 @@ private NSOpenPanel openPanel;
 		//panther only?        panel.setMessage("Please select a GEDCOM file to import into this MacPAF file.");
 //		  NSWindow mainWindow = ((MyDocument) NSDocumentController.sharedDocumentController().currentDocument()).mainWindow;
 //		  log.debug("mainwindow:"+mainWindow.title());
-		openPanel.beginSheetForDirectory(null, null, new NSArray(new Object[] {"GED"}), null,
+		  NSApplication.sharedApplication().endSheet(importWindow);
+		openPanel.beginSheetForDirectory(null, null, allReadableTypesArray(), null,
 				  this,
 				  new NSSelector("openPanelDidEnd", new Class[] {NSOpenPanel.class, int.class, Object.class}), null);
 	  } catch (Exception e) {
@@ -79,12 +97,12 @@ private NSOpenPanel openPanel;
 				doc.endSuppressUpdates();
 			}
 		}
-		NSApplication.sharedApplication().endSheet(importWindow);
 	} catch (RuntimeException e) {
 		e.printStackTrace();
 		MyDocument.showUserErrorMessage("There was an unexpected error during import.", "An unexpected error occurred while attempting to import the file. The data may not have been imported. Please try again or report this to the MacPAF developers");
 	} finally {
 		NDC.pop();
+		NSApplication.sharedApplication().endSheet(importWindow);
 	}
 	importWindow.orderOut(this);
 	resetWindow();
@@ -93,8 +111,11 @@ private NSOpenPanel openPanel;
   private void resetWindow() {
 	  // prepare window for next use, reset default values
 	  filePathField.setStringValue("");
-	  progress.setIndeterminate(true);
+	  progress.setDoubleValue(0D);
+	  progress.setMaxValue(100d);
 	  progress.stopAnimation(this);
+	  progress.setIndeterminate(true);
+	  progress.displayIfNeeded();
   }
 
 //  public void setDocument(NSDocument nsDocument) {

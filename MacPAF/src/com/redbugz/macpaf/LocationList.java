@@ -12,13 +12,13 @@ import java.io.FileReader;
 import java.util.Iterator;
 import java.util.Vector;
 
-import org.apache.log4j.Logger;
-import org.exolab.castor.mapping.Mapping;
-import org.exolab.castor.xml.Unmarshaller;
-import org.xml.sax.InputSource;
+import org.apache.log4j.*;
+import org.exolab.castor.mapping.*;
+import org.exolab.castor.xml.*;
+import org.xml.sax.*;
 
-import com.apple.cocoa.application.NSComboBox;
-import com.apple.cocoa.foundation.NSBundle;
+import com.apple.cocoa.application.*;
+import com.apple.cocoa.foundation.*;
 
 public class LocationList implements NSComboBox.DataSource {
   private static final Logger log = Logger.getLogger(LocationList.class);

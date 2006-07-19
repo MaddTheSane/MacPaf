@@ -1,24 +1,14 @@
 package com.redbugz.macpaf.test;
 
-import java.io.File;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
-import java.util.List;
+import java.io.*;
+import java.net.*;
+import java.util.*;
 
-import org.apache.log4j.Logger;
-import org.jdom.Element;
-import com.apple.cocoa.foundation.NSBundle;
-import com.redbugz.macpaf.Event;
-import com.redbugz.macpaf.Family;
-import com.redbugz.macpaf.Gender;
-import com.redbugz.macpaf.Individual;
-import com.redbugz.macpaf.Multimedia;
-import com.redbugz.macpaf.Note;
-import com.redbugz.macpaf.Ordinance;
-import com.redbugz.macpaf.Individual.UnknownIndividual;
+import org.apache.log4j.*;
+import org.jdom.*;
+
+import com.apple.cocoa.foundation.*;
+import com.redbugz.macpaf.*;
 
 /**
  * Created by IntelliJ IDEA.
@@ -523,6 +513,10 @@ public List getFamiliesAsSpouse() {
 
 public List getAttributes() {
 	return Collections.EMPTY_LIST;
+}
+
+public String getUID() {
+	return "";
 }
 
 }

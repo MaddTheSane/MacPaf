@@ -6,27 +6,14 @@
  */
 package com.redbugz.macpaf.jdom;
 
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.text.*;
+import java.util.*;
 
-import javax.media.jai.operator.AddDescriptor;
+import org.apache.log4j.*;
+import org.jdom.*;
 
-import org.apache.log4j.Logger;
-import org.jdom.Content;
-import org.jdom.Element;
-import org.jdom.JDOMException;
-import org.jdom.Text;
-import org.jdom.xpath.XPath;
-
-import com.redbugz.macpaf.Address;
-import com.redbugz.macpaf.Header;
-import com.redbugz.macpaf.Note;
-import com.redbugz.macpaf.Submission;
-import com.redbugz.macpaf.Submitter;
-import com.redbugz.macpaf.util.JDOMUtils;
-import com.redbugz.macpaf.util.StringUtils;
+import com.redbugz.macpaf.*;
+import com.redbugz.macpaf.util.*;
 
 /**
  * @author logan

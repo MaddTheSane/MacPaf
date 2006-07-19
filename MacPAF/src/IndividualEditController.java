@@ -6,23 +6,12 @@
 //  Copyright (c) 2002-2004 RedBugz Software. All rights reserved.
 //
 
-import org.apache.log4j.Logger;
+import org.apache.log4j.*;
 
-import com.apple.cocoa.application.NSApplication;
-import com.apple.cocoa.application.NSComboBox;
-import com.apple.cocoa.application.NSDocument;
-import com.apple.cocoa.application.NSForm;
-import com.apple.cocoa.application.NSImageView;
-import com.apple.cocoa.application.NSPopUpButton;
-import com.apple.cocoa.application.NSTabView;
-import com.apple.cocoa.application.NSTextField;
-import com.apple.cocoa.application.NSWindowController;
-import com.redbugz.macpaf.Gender;
-import com.redbugz.macpaf.Individual;
-import com.redbugz.macpaf.jdom.PlaceJDOM;
-import com.redbugz.macpaf.util.CocoaUtils;
-import com.redbugz.macpaf.util.MultimediaUtils;
-import com.redbugz.macpaf.util.StringUtils;
+import com.apple.cocoa.application.*;
+import com.redbugz.macpaf.*;
+import com.redbugz.macpaf.jdom.*;
+import com.redbugz.macpaf.util.*;
 
 public class IndividualEditController extends NSWindowController {
   private static final Logger log = Logger.getLogger(IndividualEditController.class);

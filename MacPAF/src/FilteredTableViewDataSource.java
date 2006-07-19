@@ -1,17 +1,10 @@
 /* SortableTableViewController */
 
-import org.apache.log4j.Logger;
+import org.apache.log4j.*;
 
-import com.apple.cocoa.application.NSDraggingInfo;
-import com.apple.cocoa.application.NSPasteboard;
-import com.apple.cocoa.application.NSTableColumn;
-import com.apple.cocoa.application.NSTableView;
-import com.apple.cocoa.foundation.NSArray;
-import com.apple.cocoa.foundation.NSMutableArray;
-import com.apple.cocoa.foundation.NSObject;
-import com.redbugz.macpaf.util.CocoaUtils;
-import com.redbugz.macpaf.util.StringUtils;
-import com.redbugz.macpaf.util.WrappedTableViewDataSource;
+import com.apple.cocoa.application.*;
+import com.apple.cocoa.foundation.*;
+import com.redbugz.macpaf.util.*;
 
 /**
  * <p>Title: </p>

@@ -16,13 +16,10 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import org.apache.log4j.Logger;
-import com.apple.cocoa.foundation.NSBundle;
-import com.redbugz.macpaf.test.MyEvent;
-import com.redbugz.macpaf.test.MyMultimedia;
-import com.redbugz.macpaf.test.MyNote;
-import com.redbugz.macpaf.test.MyOrdinance;
-import com.redbugz.macpaf.test.TestFamily;
+import org.apache.log4j.*;
+
+import com.apple.cocoa.foundation.*;
+import com.redbugz.macpaf.test.*;
 
 public interface Individual {
   public static Individual UNKNOWN = new UnknownIndividual();
@@ -153,6 +150,8 @@ public interface Individual {
   public List getEvents();
 
   public List getAttributes();
+  
+  public String getUID();
 
   static public class UnknownIndividual implements Individual {
 	private static final Logger log = Logger.getLogger(UnknownIndividual.class);
@@ -503,6 +502,10 @@ public interface Individual {
 
 	public List getAttributes() {
 		return Collections.EMPTY_LIST;
+	}
+
+	public String getUID() {
+		return "";
 	}
 
   }

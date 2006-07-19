@@ -6,14 +6,12 @@
 //  Copyright (c) 2002-2004 RedBugz Software. All rights reserved.
 //
 
-import org.apache.log4j.Logger;
+import org.apache.log4j.*;
+
 import com.apple.cocoa.application.*;
 import com.apple.cocoa.foundation.*;
-import com.redbugz.macpaf.Event;
-import com.redbugz.macpaf.Gender;
-import com.redbugz.macpaf.Individual;
-import com.redbugz.macpaf.Ordinance;
-import com.redbugz.macpaf.test.MyEvent;
+import com.redbugz.macpaf.*;
+import com.redbugz.macpaf.test.*;
 
 public class PedigreeView extends NSView {
   private static final Logger log = Logger.getLogger(PedigreeView.class);

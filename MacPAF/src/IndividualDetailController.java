@@ -1,10 +1,9 @@
 /* IndividualDetailController */
-import org.apache.log4j.Logger;
+import org.apache.log4j.*;
+
 import com.apple.cocoa.application.*;
-import com.apple.cocoa.foundation.NSNotification;
-import com.apple.cocoa.foundation.NSObject;
-import com.redbugz.macpaf.Event;
-import com.redbugz.macpaf.Individual;
+import com.apple.cocoa.foundation.*;
+import com.redbugz.macpaf.*;
 
 /**
  * <p>Title: </p>

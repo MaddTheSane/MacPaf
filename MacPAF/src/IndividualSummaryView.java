@@ -6,13 +6,11 @@
 //  Copyright (c) 2002-2004 RedBugz Software. All rights reserved.
 //
 
-import org.apache.log4j.Logger;
-import com.apple.cocoa.application.NSGraphics;
-import com.apple.cocoa.application.NSView;
-import com.apple.cocoa.foundation.NSAttributedString;
-import com.apple.cocoa.foundation.NSPoint;
-import com.apple.cocoa.foundation.NSRect;
-import com.redbugz.macpaf.Individual;
+import org.apache.log4j.*;
+
+import com.apple.cocoa.application.*;
+import com.apple.cocoa.foundation.*;
+import com.redbugz.macpaf.*;
 
 public class IndividualSummaryView extends NSView {
   private static final Logger log = Logger.getLogger(IndividualSummaryView.class);

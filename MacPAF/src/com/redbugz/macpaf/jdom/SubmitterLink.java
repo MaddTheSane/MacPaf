@@ -4,11 +4,9 @@
  */
 package com.redbugz.macpaf.jdom;
 
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
-import com.redbugz.macpaf.Address;
-import com.redbugz.macpaf.Submitter;
+import com.redbugz.macpaf.*;
 
 /**
  * @author logan

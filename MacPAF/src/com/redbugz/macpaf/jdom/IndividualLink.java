@@ -4,15 +4,10 @@
  */
 package com.redbugz.macpaf.jdom;
 
-import java.net.URL;
-import java.util.List;
+import java.net.*;
+import java.util.*;
 
-import com.redbugz.macpaf.Event;
-import com.redbugz.macpaf.Family;
-import com.redbugz.macpaf.Gender;
-import com.redbugz.macpaf.Individual;
-import com.redbugz.macpaf.Multimedia;
-import com.redbugz.macpaf.Ordinance;
+import com.redbugz.macpaf.*;
 
 /**
  * @author logan
@@ -479,6 +474,10 @@ public class IndividualLink implements Individual {
 
 	public List getAttributes() {
 		return getIndividual().getAttributes();
+	}
+
+	public String getUID() {
+		return getIndividual().getUID();
 	}
 
 }

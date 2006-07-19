@@ -7,47 +7,19 @@ package com.redbugz.macpaf.util;
 //  Copyright (c) 2001 RedBugz Software. All rights reserved.
 //
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.OutputStream;
+import gedml.*;
 
-import javax.swing.tree.TreeNode;
+import java.io.*;
 
-import org.apache.log4j.Logger;
-import org.jdom.Document;
-//import org.com.redbugz.macpaf.jdom.Parent;
-import org.jdom.Element;
-import org.jdom.JDOMException;
-import org.jdom.input.SAXBuilder;
-import org.jdom.output.Format;
-import org.jdom.output.SAXOutputter;
-import org.jdom.output.XMLOutputter;
-import gedml.GedcomOutputter;
-import lee.gedcom.GEDNode;
-import lee.gedcom.GEDParser;
-import lee.gedcom.GEDReader;
+import org.apache.log4j.*;
+import org.jdom.*;
+import org.jdom.input.*;
+import org.jdom.output.*;
 
 public class XMLTest {
   private static final Logger log = Logger.getLogger(XMLTest.class);
 
   private static boolean debugging = false;
-
-  public static TreeNode parseUsingLee(File gedcomFile) {
-	GEDReader rdr = null;
-	GEDParser parser = new GEDParser();
-	try {
-	  rdr = new GEDReader(new FileReader(gedcomFile));
-	  parser.parse(rdr);
-	  rdr.close();
-	}
-	catch (Exception e) {
-	  log.error("Exception: ", e); //To change body of catch statement use Options | File Templates.
-	}
-	GEDNode root = parser.getRoot();
-	return root;
-  }
 
   public static Document docParsedWithKay(File gedcomFile) {
 	SAXBuilder builder = new SAXBuilder("gedml.GedcomParser");

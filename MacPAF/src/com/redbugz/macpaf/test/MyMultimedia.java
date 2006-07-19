@@ -6,11 +6,9 @@
  */
 package com.redbugz.macpaf.test;
 
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
-import com.redbugz.macpaf.Multimedia;
+import com.redbugz.macpaf.*;
 
 /**
  * @author logan

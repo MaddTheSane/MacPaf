@@ -1,15 +1,11 @@
 /* HistoryController */
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
-import org.apache.log4j.Logger;
+import org.apache.log4j.*;
 
-import com.apple.cocoa.foundation.*;
 import com.apple.cocoa.application.*;
-import com.redbugz.macpaf.Individual;
+import com.redbugz.macpaf.*;
 
 public class HistoryController implements NSMenu.MenuValidation {
 	private static Logger log = Logger.getLogger(HistoryController.class);

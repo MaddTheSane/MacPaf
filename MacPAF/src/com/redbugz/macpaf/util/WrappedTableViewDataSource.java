@@ -1,14 +1,10 @@
 package com.redbugz.macpaf.util;
 
-import org.apache.log4j.Logger;
-import org.apache.xml.utils.WrappedRuntimeException;
+import org.apache.log4j.*;
+import org.apache.xml.utils.*;
 
-import com.apple.cocoa.application.NSDraggingInfo;
-import com.apple.cocoa.application.NSPasteboard;
-import com.apple.cocoa.application.NSTableColumn;
-import com.apple.cocoa.application.NSTableView;
-import com.apple.cocoa.foundation.NSArray;
-import com.apple.cocoa.foundation.NSSelector;
+import com.apple.cocoa.application.*;
+import com.apple.cocoa.foundation.*;
 
 public class WrappedTableViewDataSource /*implements com.apple.cocoa.application.NSTableView.DataSource*/ {
 	private static Logger log = Logger.getLogger(WrappedTableViewDataSource.class);

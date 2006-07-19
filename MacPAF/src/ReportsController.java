@@ -6,13 +6,10 @@
 //  Copyright (c) 2002-2004 RedBugz Software. All rights reserved.
 //
 
-import org.apache.log4j.Logger;
-import com.apple.cocoa.application.NSApplication;
-import com.apple.cocoa.application.NSDocument;
-import com.apple.cocoa.application.NSMatrix;
-import com.apple.cocoa.application.NSTextField;
-import com.apple.cocoa.application.NSWindowController;
-import com.redbugz.macpaf.Individual;
+import org.apache.log4j.*;
+
+import com.apple.cocoa.application.*;
+import com.redbugz.macpaf.*;
 
 public class ReportsController extends NSWindowController {
   private static final Logger log = Logger.getLogger(ReportsController.class);

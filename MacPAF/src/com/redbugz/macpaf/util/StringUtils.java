@@ -4,8 +4,9 @@
  */
 package com.redbugz.macpaf.util;
 
-import java.util.Collection;
-import java.util.Iterator;
+import java.util.*;
+
+import org.safehaus.uuid.UUIDGenerator;
 
 /**
  * @author logan
@@ -78,4 +79,14 @@ public class StringUtils {
         
         return( sb.toString() );
     }
+
+	public static String generateUUID() {
+		return generateUUIDWithCheckDigits();
+	}
+	public static String generateUUIDWithCheckDigits() {
+		return UUIDGenerator.getInstance().generateRandomBasedUUID().toString().replaceAll("-", "") + "0000";
+	}
+	public static String generateUUIDWithoutCheckDigits() {
+		return UUIDGenerator.getInstance().generateRandomBasedUUID().toString().replaceAll("-", "");
+	}
 }

@@ -1,23 +1,14 @@
 package com.redbugz.macpaf.jdom;
 
-import java.util.AbstractList;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
-import org.apache.log4j.Logger;
-import org.jdom.Element;
-import org.jdom.JDOMException;
-import org.jdom.output.Format;
-import org.jdom.output.XMLOutputter;
-import org.jdom.xpath.XPath;
+import org.apache.log4j.*;
+import org.jdom.*;
+import org.jdom.output.*;
+import org.jdom.xpath.*;
 
-import com.redbugz.macpaf.Event;
-import com.redbugz.macpaf.Family;
-import com.redbugz.macpaf.Individual;
-import com.redbugz.macpaf.Note;
-import com.redbugz.macpaf.Ordinance;
-import com.redbugz.macpaf.util.JDOMUtils;
+import com.redbugz.macpaf.*;
+import com.redbugz.macpaf.util.*;
 
 /**
  * Created by IntelliJ IDEA. User: logan Date: Mar 16, 2003 Time: 3:39:21 PM To
@@ -91,6 +82,7 @@ public class FamilyJDOM implements Family {
 	}
 	document = parentDocument;
 	element = newElement;
+	confirmUID();
   }
 
   public FamilyJDOM(Family oldFamily, MacPAFDocumentJDOM parentDocument) {
@@ -110,9 +102,22 @@ public class FamilyJDOM implements Family {
 	  //            setNumberOfChildren(oldFamily.get);
 	  setSealingToSpouse(oldFamily.getSealingToSpouse());
 	}
+	confirmUID();
   }
 
-  public Element getElement() {
+  private void confirmUID() {
+	// Confirms the existence and validaty of the UUID or GUID for this Family
+	if (StringUtils.isEmpty(getUID())) {
+		generateUID();
+	}	
+  }
+
+private void generateUID() {
+	// Generates a UUID or GUID per new specifications of Family Tree
+	element.addContent(UID).setText(StringUtils.generateUUID());
+}
+
+public Element getElement() {
 	return element;
   }
 
@@ -419,6 +424,10 @@ private List getNotes() {
 	  notes.add(new NoteJDOM(item, document));
 	}
 	return notes;
+}
+
+public String getUID() {
+	return StringUtils.nonNullString(element.getChildText(UID));
 }
 
 public static final String eventNodeNames = "ANUL | CENS | DIV | DIVF | ENGA | MARR | MARB | MARC | MARL | MARS | EVEN";

@@ -1,18 +1,10 @@
 package com.redbugz.macpaf.test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
-import org.apache.log4j.Logger;
+import org.apache.log4j.*;
 
-import com.redbugz.macpaf.Event;
-import com.redbugz.macpaf.Family;
-import com.redbugz.macpaf.Individual;
-import com.redbugz.macpaf.Ordinance;
-import com.redbugz.macpaf.Individual.UnknownFemaleIndividual;
-import com.redbugz.macpaf.Individual.UnknownMaleIndividual;
+import com.redbugz.macpaf.*;
 
 /**
  * Created by IntelliJ IDEA.
@@ -148,5 +140,9 @@ public List getEvents() {
 
 public String getNoteText() {
 	return "Notes not implemented yet.";
+}
+
+public String getUID() {
+	return "";
 }
 }

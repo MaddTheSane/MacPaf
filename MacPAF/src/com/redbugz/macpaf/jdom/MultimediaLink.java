@@ -1,9 +1,8 @@
 package com.redbugz.macpaf.jdom;
 
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
-import com.redbugz.macpaf.Multimedia;
+import com.redbugz.macpaf.*;
 
 /*
  * Created on Oct 5, 2003

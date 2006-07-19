@@ -6,24 +6,16 @@
 //  Copyright (c) 2002-2004 RedBugz Software. All rights reserved.
 //
 
-import java.util.Enumeration;
+import java.util.*;
 
-import org.apache.log4j.Logger;
+import org.apache.log4j.*;
 
 import com.apple.cocoa.application.*;
-import com.apple.cocoa.foundation.NSArray;
-import com.apple.cocoa.foundation.NSData;
-import com.apple.cocoa.foundation.NSDictionary;
-import com.apple.cocoa.foundation.NSMutableArray;
-import com.apple.cocoa.foundation.NSSelector;
-import com.apple.cocoa.foundation.NSSystem;
-import com.redbugz.macpaf.Family;
-import com.redbugz.macpaf.Gender;
-import com.redbugz.macpaf.Individual;
-import com.redbugz.macpaf.jdom.PlaceJDOM;
-import com.redbugz.macpaf.util.CocoaUtils;
-import com.redbugz.macpaf.util.StringUtils;
-import com.redbugz.macpaf.validation.ValidationException;
+import com.apple.cocoa.foundation.*;
+import com.redbugz.macpaf.*;
+import com.redbugz.macpaf.jdom.*;
+import com.redbugz.macpaf.util.*;
+import com.redbugz.macpaf.validation.*;
 
 public class FamilyEditController extends NSWindowController {
   private static final Logger log = Logger.getLogger(FamilyEditController.class);
@@ -68,12 +60,25 @@ private static final String EDIT_CHILD_KEY = "EditChild";
 		saveButton.setTitle("Add Family");
 		family = document.createAndInsertNewFamily();
 		undoStack.addObject(family);
+		if (!(document.getPrimaryIndividual() instanceof Individual.UnknownIndividual) && Gender.UNKNOWN.equals(document.getPrimaryIndividual().getGender())) {
+			// unknown gender, prompt user
+			int response = NSAlertPanel.runAlert(document.getPrimaryIndividual().getFullName() + " does not have a gender specified. Should this person be added to this family as the Husband or Wife?", "This person must be added to a family as either Husband or Wife. By clicking Husband, the gender of this person will be set to Male and they will be added as the Husband on this family. By clicking Wife, their gender will be set to Female and they will be added as a Wife. If you are not sure what gender this person should be, you may click Cancel to return to the main screen without making any changes.", "Husband", "Cancel", "Wife");
+			switch (response) {
+			case NSAlertPanel.DefaultReturn:
+				document.getPrimaryIndividual().setGender(Gender.MALE);
+				break;
+			case NSAlertPanel.OtherReturn:
+				document.getPrimaryIndividual().setGender(Gender.FEMALE);
+				break;
+			default:
+				undoChanges();
+				throw MyDocument.USER_CANCELLED_OPERATION_EXCEPTION;
+			}			
+		}
 		if (Gender.MALE.equals(document.getPrimaryIndividual().getGender())) {
 			family.setFather(document.getPrimaryIndividual());
 		} else if (Gender.FEMALE.equals(document.getPrimaryIndividual().getGender())) {
 			family.setMother(document.getPrimaryIndividual());
-		} else {
-			// unknown gender, prompt user
 		}
 	} else {
 		saveButton.setTitle("Save Family");
@@ -98,8 +103,9 @@ private static final String EDIT_CHILD_KEY = "EditChild";
 			saveButton.setTitle("Add Family");
 			family = document.createAndInsertNewFamily();
 			undoStack.addObject(family);
-			family.addChild(document.getPrimaryIndividual());
-			document.getPrimaryIndividual().setFamilyAsChild(family);
+			Individual primaryIndividual = document.getPrimaryIndividual();
+			family.addChild(primaryIndividual);
+			primaryIndividual.setFamilyAsChild(family);
 		} else {
 			saveButton.setTitle("Save Family");
 		}
@@ -170,25 +176,29 @@ private static final String EDIT_CHILD_KEY = "EditChild";
   	}
   	if (doCancel) {
 		// undo the changes made
-  		Enumeration enumeration = undoStack.objectEnumerator();
-  		while (enumeration.hasMoreElements()) {
-  			Object objectToUndo = enumeration.nextElement();
-  			if (objectToUndo instanceof Individual) {
-				Individual indiv = (Individual) objectToUndo;
-  				log.info("Undoing creation of individual:"+indiv.getFullName());
-  				document.doc.removeIndividual(indiv);  				
-  			}
-  			if (objectToUndo instanceof Family) {
-				Family familyToUndo = (Family) objectToUndo;
-				log.info("Undoing creation of family: "+family.toString());
-				document.doc.removeFamily(familyToUndo);
-			}
-		}
-  		undoStack.removeAllObjects();
-  		NSApplication.sharedApplication().endSheet(window());
-  		window().orderOut(this);  		
+  		undoChanges();  		
   	}
   }
+
+private void undoChanges() {
+	Enumeration enumeration = undoStack.objectEnumerator();
+	while (enumeration.hasMoreElements()) {
+		Object objectToUndo = enumeration.nextElement();
+		if (objectToUndo instanceof Individual) {
+			Individual indiv = (Individual) objectToUndo;
+			log.info("Undoing creation of individual:"+indiv.getFullName());
+			document.doc.removeIndividual(indiv);  				
+		}
+		if (objectToUndo instanceof Family) {
+			Family familyToUndo = (Family) objectToUndo;
+			log.info("Undoing creation of family: "+family.toString());
+			document.doc.removeFamily(familyToUndo);
+		}
+	}
+	undoStack.removeAllObjects();
+	NSApplication.sharedApplication().endSheet(window());
+	window().orderOut(this);
+}
 
   public void editChild(Object sender) { /* IBAction */
 	NSTableView tv = (NSTableView) sender;

@@ -6,16 +6,12 @@
 //  Copyright (c) 2004 __MyCompanyName__. All rights reserved.
 //
 
-import com.apple.cocoa.foundation.*;
+import org.apache.log4j.*;
+
 import com.apple.cocoa.application.*;
-import com.redbugz.macpaf.Individual;
-import org.apache.log4j.Logger;
-import com.redbugz.macpaf.Ordinance;
-import com.redbugz.macpaf.Event;
-import com.redbugz.macpaf.Gender;
-import com.apple.cocoa.application.NSFont;
-import com.redbugz.macpaf.Place;
-import com.redbugz.macpaf.test.MyEvent;
+import com.apple.cocoa.foundation.*;
+import com.redbugz.macpaf.*;
+import com.redbugz.macpaf.test.*;
 
 
 public class PocketPedigreeView extends NSView {

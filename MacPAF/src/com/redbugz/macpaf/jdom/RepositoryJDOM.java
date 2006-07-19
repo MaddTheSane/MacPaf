@@ -4,12 +4,11 @@
  */
 package com.redbugz.macpaf.jdom;
 
-import org.apache.log4j.Logger;
-import org.jdom.Element;
-import org.jdom.output.Format;
-import org.jdom.output.XMLOutputter;
+import org.apache.log4j.*;
+import org.jdom.*;
+import org.jdom.output.*;
 
-import com.redbugz.macpaf.Repository;
+import com.redbugz.macpaf.*;
 
 /**
  * @author logan

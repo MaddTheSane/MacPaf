@@ -6,14 +6,12 @@
 //  Copyright (c) 2002-2004 RedBugz Software. All rights reserved.
 //
 
-import org.apache.log4j.Logger;
-import com.apple.cocoa.application.NSApplication;
-import com.apple.cocoa.application.NSDocumentController;
-import com.apple.cocoa.application.NSPanel;
-import com.apple.cocoa.application.NSProgressIndicator;
-import com.apple.cocoa.foundation.NSNotification;
-import com.apple.cocoa.foundation.NSUserDefaults;
-import java.io.File;
+import java.io.*;
+
+import org.apache.log4j.*;
+
+import com.apple.cocoa.application.*;
+import com.apple.cocoa.foundation.*;
 
 public class ApplicationUtilities {
   public NSPanel splashScreen; /* IBOutlet */
@@ -23,7 +21,12 @@ public class ApplicationUtilities {
 
   public void applicationWillFinishLaunching(NSNotification aNotification) {
 	log.debug("applicationWillFinishLaunching:" + aNotification);
-	  log.debug("java.version:"+System.getProperty("java.version"));
+	  String javaVersion = System.getProperty("java.version");
+	log.debug("java.version:"+javaVersion);
+	  if (javaVersion.startsWith("1.3")) {
+		  MyDocument.showUserErrorMessage("System Not Supported", "MacPAF requires that you update your system. It requires Mac OS X 10.2.8 with Java Update 1.4.1, which can be obtained here:\nhttp://www.apple.com/support/downloads/java141update1formacosx.html");
+		  NSApplication.sharedApplication().terminate(this);
+	  }
 	if (progress != null) {
 	  progress.startAnimation(this);
 	}

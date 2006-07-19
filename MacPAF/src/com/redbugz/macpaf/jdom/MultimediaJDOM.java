@@ -6,19 +6,14 @@
  */
 package com.redbugz.macpaf.jdom;
 
-import java.io.File;
-import java.io.IOException;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
+import java.io.*;
+import java.util.*;
 
-import org.apache.log4j.Logger;
-import org.jdom.Element;
-import com.redbugz.macpaf.Multimedia;
-import com.redbugz.macpaf.util.Base64;
-import com.redbugz.macpaf.util.MultimediaUtils;
+import org.apache.log4j.*;
+import org.jdom.*;
+
+import com.redbugz.macpaf.*;
+import com.redbugz.macpaf.util.*;
 
 /**
  * @author logan

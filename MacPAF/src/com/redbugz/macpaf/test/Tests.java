@@ -6,19 +6,13 @@
  */
 package com.redbugz.macpaf.test;
 
-import java.io.File;
+import java.io.*;
 
-import org.apache.log4j.Logger;
+import org.apache.log4j.*;
 
-import com.apple.cocoa.application.NSBitmapImageRep;
-import com.apple.cocoa.application.NSImage;
-import com.apple.cocoa.application.NSImageRep;
-import com.apple.cocoa.foundation.NSData;
-import com.redbugz.macpaf.util.Base64;
-import com.redbugz.macpaf.util.Hex;
-import com.redbugz.macpaf.util.MultimediaUtils;
-import com.redbugz.macpaf.util.StringUtils;
-import com.redbugz.macpaf.util.XMLTest;
+import com.apple.cocoa.application.*;
+import com.apple.cocoa.foundation.*;
+import com.redbugz.macpaf.util.*;
 
 /**
  * @author logan

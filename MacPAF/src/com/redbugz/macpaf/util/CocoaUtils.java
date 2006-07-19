@@ -8,29 +8,15 @@ package com.redbugz.macpaf.util;
 //  Copyright 2005 __MyCompanyName__. All rights reserved.
 //
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.Enumeration;
-import java.util.List;
+import java.util.*;
 
-import org.apache.log4j.Logger;
+import org.apache.log4j.*;
 
-import com.apple.cocoa.application.NSComboBox;
-import com.apple.cocoa.application.NSDocument;
-import com.apple.cocoa.application.NSDocumentController;
-import com.apple.cocoa.application.NSImage;
-import com.apple.cocoa.application.NSTableView;
-import com.apple.cocoa.application.NSWindow;
-import com.apple.cocoa.application.NSComboBox.DataSource;
-import com.apple.cocoa.foundation.NSArray;
-import com.apple.cocoa.foundation.NSKeyValue;
-import com.apple.cocoa.foundation.NSKeyValueCoding;
-import com.apple.cocoa.foundation.NSMutableArray;
-import com.apple.cocoa.foundation.NSSelector;
-import com.redbugz.macpaf.Family;
-import com.redbugz.macpaf.Temple;
-import com.redbugz.macpaf.jdom.TempleJDOM;
+import com.apple.cocoa.application.*;
+import com.apple.cocoa.application.NSComboBox.*;
+import com.apple.cocoa.foundation.*;
+import com.redbugz.macpaf.*;
+import com.redbugz.macpaf.jdom.*;
 
 
 public class CocoaUtils {

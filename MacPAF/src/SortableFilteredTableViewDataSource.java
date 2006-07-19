@@ -1,7 +1,7 @@
-import org.apache.log4j.Logger;
+import org.apache.log4j.*;
 
-import com.apple.cocoa.application.NSTableView;
-import com.apple.cocoa.foundation.NSArray;
+import com.apple.cocoa.application.*;
+import com.apple.cocoa.foundation.*;
 
 public class SortableFilteredTableViewDataSource extends
 		FilteredTableViewDataSource {

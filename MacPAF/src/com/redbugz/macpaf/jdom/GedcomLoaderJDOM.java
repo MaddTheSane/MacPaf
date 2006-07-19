@@ -1,31 +1,15 @@
 package com.redbugz.macpaf.jdom;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.io.*;
+import java.util.*;
 
-import org.apache.log4j.Logger;
-import org.jdom.Document;
-import org.jdom.Element;
-import org.jdom.JDOMException;
-import org.jdom.output.XMLOutputter;
-import org.jdom.xpath.XPath;
+import org.apache.log4j.*;
+import org.jdom.*;
+import org.jdom.xpath.*;
 
-import com.apple.cocoa.application.NSProgressIndicator;
-import com.redbugz.macpaf.Family;
-import com.redbugz.macpaf.Header;
-import com.redbugz.macpaf.Individual;
-import com.redbugz.macpaf.Note;
-import com.redbugz.macpaf.Repository;
-import com.redbugz.macpaf.Source;
-import com.redbugz.macpaf.Submitter;
-import com.redbugz.macpaf.util.JDOMUtils;
-import com.redbugz.macpaf.util.StringUtils;
-import com.redbugz.macpaf.util.XMLTest;
+import com.apple.cocoa.application.*;
+import com.redbugz.macpaf.*;
+import com.redbugz.macpaf.util.*;
 
 public class GedcomLoaderJDOM {
 	private static final Logger log = Logger.getLogger(GedcomLoaderJDOM.class);
@@ -71,7 +55,8 @@ public class GedcomLoaderJDOM {
 			_progress.setMaxValue(totalElements);
 			_progress.displayIfNeeded();
 			
-			HeaderJDOM header = new HeaderJDOM(root.getChild("HEAD"), _doc);
+			MacPAFDocumentJDOM importedDoc = new MacPAFDocumentJDOM();
+			HeaderJDOM header = new HeaderJDOM(root.getChild("HEAD"), importedDoc);
 			try {
 				log.debug("header: " + header);
 				log.debug("Header charset:"+header.getCharacterSet());
@@ -159,14 +144,14 @@ public class GedcomLoaderJDOM {
 					/** @todo change all instances of the old key to new key in import document */
 					try {
 						String ref = "[@REF='" + oldKey + "']";
-						try {
-							log.debug("dumping newDoc:"+newDoc);
-							log.debug("dumping newDoc:"+newDoc.getRootElement());
-							new XMLOutputter().output(newDoc, System.out);
-						} catch (IOException e) {
+//						try {
+//							log.debug("dumping newDoc:"+newDoc);
+//							log.debug("dumping newDoc:"+newDoc.getRootElement());
+//							new XMLOutputter().output(newDoc, System.out);
+//						} catch (IOException e) {
 							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}
+//							e.printStackTrace();
+//						}
 						List needsFixing = XPath.selectNodes(newDoc, "//HUSB"+ref+" | //WIFE"+ref+" | //CHIL"+ref+" | //ALIA"+ref);
 						log.debug("needsFixing: " + needsFixing);
 						Iterator iter = needsFixing.iterator();
@@ -405,10 +390,10 @@ public class GedcomLoaderJDOM {
 		}
 	}
 	
-	private void updateOldIndividualGEDCOMData(Element element) {
-		// TODO Auto-generated method stub
-		
-	}
+//	private void updateOldIndividualGEDCOMData(Element element) {
+//		// TODO Auto-generated method stub
+//		
+//	}
 
 	private void incrementAndUpdateProgress() {
 		_progress.incrementBy(1);

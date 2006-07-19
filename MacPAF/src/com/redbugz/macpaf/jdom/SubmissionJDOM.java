@@ -6,9 +6,9 @@
  */
 package com.redbugz.macpaf.jdom;
 
-import org.jdom.Element;
-import com.redbugz.macpaf.Submission;
-import com.redbugz.macpaf.Submitter;
+import org.jdom.*;
+
+import com.redbugz.macpaf.*;
 
 /**
  * @author logan

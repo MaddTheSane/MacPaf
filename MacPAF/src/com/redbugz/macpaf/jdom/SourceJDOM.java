@@ -6,18 +6,15 @@
  */
 package com.redbugz.macpaf.jdom;
 
-import java.io.IOException;
-import java.util.Iterator;
-import java.util.List;
+import java.io.*;
+import java.util.*;
 
-import org.apache.log4j.Logger;
-import org.jdom.Element;
-import org.jdom.JDOMException;
-import org.jdom.output.Format;
-import org.jdom.output.XMLOutputter;
-import org.jdom.xpath.XPath;
+import org.apache.log4j.*;
+import org.jdom.*;
+import org.jdom.output.*;
+import org.jdom.xpath.*;
 
-import com.redbugz.macpaf.Source;
+import com.redbugz.macpaf.*;
 
 /**
  * @author logan

@@ -8,12 +8,21 @@ import java.util.Locale;
 import java.util.Stack;
 
 import org.apache.log4j.Logger;
-import org.xml.sax.*;
+import org.jdom.Verifier;
+import org.xml.sax.ContentHandler;
+import org.xml.sax.DTDHandler;
+import org.xml.sax.EntityResolver;
+import org.xml.sax.ErrorHandler;
+import org.xml.sax.InputSource;
+import org.xml.sax.Locator;
+import org.xml.sax.SAXException;
+import org.xml.sax.SAXNotRecognizedException;
+import org.xml.sax.SAXParseException;
+import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.AttributesImpl;
 import org.xml.sax.helpers.DefaultHandler;
 
 import com.outerrim.io.UnicodeInputStream;
-import com.outerrim.io.UnicodeReader;
 import com.redbugz.macpaf.util.StringUtils;
 
 /**
@@ -286,7 +295,28 @@ public class GedcomParser implements XMLReader, Locator {
 		  }
 
 		  if (valu.length() > 0) {
-			contentHandler.characters(valu.toCharArray(), 0, valu.length());
+
+			  if (Verifier.checkCharacterData(valu) == null) {
+				  contentHandler.characters(valu.toCharArray(), 0, valu.length());
+			  } else {
+				  // clean up illegal characters and issue a warning
+				  // TODO figure out proper way to issue warnings during parsing
+				  // change vertical tab into newline
+				  valu = valu.replace('\u000B', '\n');
+				  StringBuffer cleanedData = new StringBuffer();
+				  char[] charArray = valu.toCharArray();
+				  for (int j = 0; j < charArray.length; j++) {
+					  char c = charArray[j];
+					  if (Verifier.isXMLCharacter(c)) {
+						  cleanedData.append(c);
+					  } else {
+						  log.info("Removing illegal character "+Integer.toHexString(c)+" from GEDCOM document");
+					  }
+				  }
+				  valu = cleanedData.toString();
+				  contentHandler.characters(valu.toCharArray(), 0, valu.length());
+			  }
+			  
 		  }
 		}
 

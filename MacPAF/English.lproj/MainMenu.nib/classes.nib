@@ -1,5 +1,6 @@
 {
     IBClasses = (
+        {CLASS = ApplicationStartupHelper; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
         {
             CLASS = ApplicationUtilities; 
             LANGUAGE = Java; 

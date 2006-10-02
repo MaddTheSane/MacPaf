@@ -6,7 +6,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import <Sparkle/SUUpdater.h>
+#import "SUUpdater.h"
 
 @class SUStatusChecker;
 

@@ -5,6 +5,8 @@
 //  Created by Andy Matuschak on 1/4/06.
 //  Copyright 2006 Andy Matuschak. All rights reserved.
 //
+// $Id: SUUpdater.h 56 2006-07-29 21:49:55Z atomicbird $
+// $HeadURL: http://ironcoder.org/svn/SparklePlus/trunk/SUUpdater.h $
 
 #import <Cocoa/Cocoa.h>
 
@@ -33,6 +35,16 @@
 	
 	BOOL verbose;
 	BOOL updateInProgress;
+	
+	id delegate;
+	
+	IBOutlet NSWindow *profileMoreInfoWindow;
+	IBOutlet NSView *profileMoreInfoView;
+	IBOutlet NSButton *profileMoreInfoButton;
+	IBOutlet NSTextField *checkForUpdatesText;
+	BOOL moreInfoVisible;
+	
+	NSString *currentSystemVersion;
 }
 
 // This IBAction is meant for a main menu item. Hook up any menu item to this action,
@@ -52,4 +64,19 @@
 // just want to call this every time the user changes the setting in the preferences.
 - (void)scheduleCheckWithInterval:(NSTimeInterval)interval;
 
+// Get information that will be included with update-check requests.  This method can be used
+// whether or not profile information is enabled.  Use this method to show the user what kind
+// of information will be included.  This method will invoke -updaterCustomizeProfileInfo: on
+// the delegate, if it's implemented.
+- (NSMutableArray *)systemProfileInformationArray;
+
+- (IBAction)closeProfileInfoSheet:(id)sender;
+
+@end
+@interface NSObject (SUUpdaterDelegate)
+// Specify whether the updater should include system-profile information with update checks.
+- (BOOL)updaterShouldSendProfileInfo;
+// This method gives the delegate the opportunity to customize the information that will
+// be included with update checks.  Add or remove items from the dictionary as desired.
+- (NSMutableArray *)updaterCustomizeProfileInfo:(NSMutableArray *)profileInfo;
 @end

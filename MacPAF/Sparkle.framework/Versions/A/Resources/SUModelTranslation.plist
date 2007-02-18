@@ -17,7 +17,9 @@
 	<key>iMac6,1</key>
 	<string>iMac (Core 2 Duo, 24 inch, SuperDrive)</string>
 	<key>MacBook1,1</key>
-	<string>MacBook</string>
+	<string>MacBook (Core Duo)</string>
+	<key>MacBook1,2</key>
+	<string>MacBook (Core 2 Duo)</string>
 	<key>MacBookPro1,1</key>
 	<string>MacBook Pro Core Duo (15-inch)</string>
 	<key>MacBookPro1,2</key>

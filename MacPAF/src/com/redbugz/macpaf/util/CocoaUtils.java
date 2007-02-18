@@ -1,13 +1,14 @@
 package com.redbugz.macpaf.util;
 
-//
-//  CocoaUtils.java
-//  MacPAF
-//
-//  Created by Logan Allred on 2/6/05.
-//  Copyright 2005 __MyCompanyName__. All rights reserved.
-//
 
+//CocoaUtils.java
+//MacPAF
+
+//Created by Logan Allred on 2/6/05.
+//Copyright 2005 __MyCompanyName__. All rights reserved.
+
+
+import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
 import org.apache.log4j.*;
@@ -20,105 +21,85 @@ import com.redbugz.macpaf.jdom.*;
 
 
 public class CocoaUtils {
-	  public static final NSSelector defaultTableHeaderSortImageSelector = new NSSelector("_defaultTableHeaderSortImage", new Class[] {});
-	  public static final NSSelector defaultTableHeaderReverseSortImageSelector = new NSSelector("_defaultTableHeaderReverseSortImage", new Class[] {});
-
-
 	private static final Logger log = Logger.getLogger(CocoaUtils.class);
 
+	public static final NSSelector DEFAULT_TABLEHEADER_SORT_IMAGE_SELECTOR = new NSSelector("_defaultTableHeaderSortImage", new Class[] {});
+	public static final NSSelector DEFAULT_TABLEHEADER_REVERSE_SORT_IMAGE_SELECTOR = new NSSelector("_defaultTableHeaderReverseSortImage", new Class[] {});
 
-	// These constants are normally in NSPathUtilities, but not on OS X 10.1.5, so I put them here
-	public static final java.lang.String FileType = "NSFileType";
-	public static final java.lang.String FileTypeDirectory = "NSFileTypeDirectory";
-	public static final java.lang.String FileTypeRegular = "NSFileTypeRegular";
-	public static final java.lang.String FileTypeSymbolicLink = "NSFileTypeSymbolicLink";
-	public static final java.lang.String FileTypeSocket = "NSFileTypeSocket";
-	public static final java.lang.String FileTypeCharacterSpecial = "NSFileTypeCharacterSpecial";
-	public static final java.lang.String FileTypeBlockSpecial = "NSFileTypeBlockSpecial";
-	public static final java.lang.String FileTypeUnknown = "NSFileTypeUnknown";
-	public static final java.lang.String FileSize = "NSFileSize";
-	public static final java.lang.String FileModificationDate = "NSFileModificationDate";
-	public static final java.lang.String FileReferenceCount = "NSFileReferenceCount";
-	public static final java.lang.String FileDeviceIdentifier = "NSFileDeviceIdentifier";
-	public static final java.lang.String FileOwnerAccountName = "NSFileOwnerAccountName";
-	public static final java.lang.String FileGroupOwnerAccountName = "NSFileGroupOwnerAccountName";
-	public static final java.lang.String FilePosixPermissions = "NSFilePosixPermissions";
-	public static final java.lang.String FileSystemNumber = "NSFileSystemNumber";
-	public static final java.lang.String FileSystemFileNumber = "NSFileSystemFileNumber";
-	public static final java.lang.String FileExtensionHidden = "NSFileExtensionHidden";
-	public static final java.lang.String FileHFSCreatorCode = "NSFileHFSCreatorCode";
-	public static final java.lang.String FileHFSTypeCode = "NSFileHFSTypeCode";
-	public static final java.lang.String FileImmutable = "NSFileImmutable";
-	public static final java.lang.String FileAppendOnly = "NSFileAppendOnly";
-	public static final java.lang.String FileCreationDate = "NSFileCreationDate";
-	public static final java.lang.String FileOwnerAccountID = "NSFileOwnerAccountID";
-	public static final java.lang.String FileGroupOwnerAccountID = "NSFileGroupOwnerAccountID";
-	public static final java.lang.String FileSystemSize = "NSFileSystemSize";
-	public static final java.lang.String FileSystemFreeSize = "NSFileSystemFreeSize";
-	public static final java.lang.String FileSystemNodes = "NSFileSystemNodes";
-	public static final java.lang.String FileSystemFreeNodes = "NSFileSystemFreeNodes";
-	  
+	public static final NSSelector SHEET_DID_END_SELECTOR = new NSSelector("sheetDidEnd", new Class[] {NSWindow.class, int.class, Object.class} );
+	public static final NSSelector OPEN_PANEL_DID_END_SELECTOR = new NSSelector("openPanelDidEnd", new Class[] {NSOpenPanel.class, int.class, Object.class} );
+	public static final NSSelector CANCEL_SHEETS_SELECTOR = new NSSelector("cancelSheets", new Class[] {NSObject.class} );
+
+	public static final String 		BEGIN_IMPORT_PROCESS_NOTIFICATION = "com.redbugz.macpaf.BeginImportProcessNotification";
+	public static final NSSelector 	BEGIN_IMPORT_PROCESS_SELECTOR = new NSSelector("beginImportProcessNotification", new Class[] {NSNotification.class});
+
+	public static final String 		IMPORT_DATA_NOTIFICATION = "com.redbugz.macpaf.ImportDataNotification";
+	public static final NSSelector 	IMPORT_DATA_SELECTOR = new NSSelector("importDataNotification", new Class[] {NSNotification.class});
+
+	public static final String 		LOAD_DOCUMENT_NOTIFICATION = "com.redbugz.macpaf.LoadDocumentDataNotification";
+	public static final NSSelector 	LOAD_DOCUMENT_SELECTOR = new NSSelector("loadDocumentDataNotification", new Class[] {NSNotification.class});
+
+//	public static final String 		UPDATE_PROGRESS_NOTIFICATION = "com.redbugz.macpaf.UpdateProgressNotification";
+//	public static final NSSelector 	UPDATE_PROGRESS_SELECTOR = new NSSelector("updateProgressNotification", new Class[] {NSNotification.class});
+
+	public static final String 		TASK_DONE_NOTIFICATION = "com.redbugz.macpaf.TaskDoneNotification";
+	public static final NSSelector 	TASK_DONE_SELECTOR = new NSSelector("processTaskDoneNotification", new Class[] {NSNotification.class});
 	
-	  /**
-	   * @param comboBox
-	   * @return
-	   */
-	  public static Temple templeForComboBox(NSComboBox comboBox) {
+	public static final NSSelector 	STOP_TASK_SELECTOR = new NSSelector("stop", new Class[] {Object.class});
+	
+	/**
+	 * @param comboBox
+	 * @return
+	 */
+	public static Temple templeForComboBox(NSComboBox comboBox) {
 		Temple temple = TempleJDOM.UNKNOWN_TEMPLE;
 		NSComboBox.DataSource dataSource = (DataSource) comboBox.dataSource();
 		log.debug("CocoaUtils.templeForComboBox() stringValue:" + comboBox.stringValue());
 		int index = dataSource.comboBoxIndexOfItem(comboBox, comboBox.stringValue());
 		log.debug("CocoaUtils.templeForComboBox() index:" + index);
 		if (index >= 0 && index < dataSource.numberOfItemsInComboBox(comboBox)) {
-		  Temple selection = (Temple) dataSource.comboBoxObjectValueForItemAtIndex(comboBox, index);
-		  log.debug("CocoaUtils.templeForComboBox() selection:" + selection);
-		  temple = new TempleJDOM(selection);
+			Temple selection = (Temple) dataSource.comboBoxObjectValueForItemAtIndex(comboBox, index);
+			log.debug("CocoaUtils.templeForComboBox() selection:" + selection);
+			temple = new TempleJDOM(selection);
 		}
 		else {
-		  log.debug("CocoaUtils.templeForComboBox() setCode stringValue:" + comboBox.stringValue());
-		  temple.setCode(comboBox.stringValue());
+			log.debug("CocoaUtils.templeForComboBox() setCode stringValue:" + comboBox.stringValue());
+			temple.setCode(comboBox.stringValue());
 		}
-	//		temple = new TempleJDOM(TempleList.templeWithCode(((Temple)sealingToParentTemple.objectValueOfSelectedItem()).getCode()));
+		//		temple = new TempleJDOM(TempleList.templeWithCode(((Temple)sealingToParentTemple.objectValueOfSelectedItem()).getCode()));
 		log.debug("CocoaUtils.templeForComboBox() returning temple:" + temple);
 		return temple;
-	  }
-
-	/**
-	 * @return
-	 */
-	public static NSSelector didEndSelector() {
-		return new NSSelector("sheetDidEnd", new Class[] {NSWindow.class, int.class, Object.class} );
 	}
 
 	public static WrappedTableViewDataSource wrappedTableViewDataSource(Object object) {
 		return new WrappedTableViewDataSource(object);
 	}
-	
+
 	/*
 	Get Ascending and Descending Sort indicator images, 10.1 and 10.2 compatible
 	Original Source: <http://cocoa.karelia.com/AppKit_Categories/NSTableView/Get_Ascending_and_D.m>
 	(See copyright notice at <http://cocoa.karelia.com>)
-*/
+	 */
 
-/*"	Return the sorting indicator image; works on 10.1 and 10.2.
+	/*"	Return the sorting indicator image; works on 10.1 and 10.2.
 "*/
 	public static NSImage ascendingSortIndicator() {
 		NSImage result = NSImage.imageNamed("NSAscendingSortIndicator");
 		try {
-			if (null == result && defaultTableHeaderSortImageSelector.implementedByClass(NSTableView.class)) {
-				result = (NSImage) defaultTableHeaderSortImageSelector.invoke(NSTableView.class);
+			if (null == result && DEFAULT_TABLEHEADER_SORT_IMAGE_SELECTOR.implementedByClass(NSTableView.class)) {
+				result = (NSImage) DEFAULT_TABLEHEADER_SORT_IMAGE_SELECTOR.invoke(NSTableView.class);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return result;
 	}
-	
+
 	public static NSImage descendingSortIndicator() {
 		NSImage result = NSImage.imageNamed("NSDescendingSortIndicator");
 		try {
-			if (null == result && defaultTableHeaderSortImageSelector.implementedByClass(NSTableView.class)) {
-				result = (NSImage) defaultTableHeaderSortImageSelector.invoke(NSTableView.class);
+			if (null == result && DEFAULT_TABLEHEADER_SORT_IMAGE_SELECTOR.implementedByClass(NSTableView.class)) {
+				result = (NSImage) DEFAULT_TABLEHEADER_SORT_IMAGE_SELECTOR.invoke(NSTableView.class);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -137,7 +118,7 @@ public class CocoaUtils {
 	public static NSDocument getCurrentDocument() {
 		return NSDocumentController.sharedDocumentController().currentDocument();
 	}
-	
+
 	public static final class KeyValueComparator implements Comparator {
 		private String _key;
 
@@ -166,5 +147,31 @@ public class CocoaUtils {
 			result.add(enumeration.nextElement());
 		}
 		return result;
+	}
+
+	public static void makeObjectsPerformSelector(NSArray array, NSSelector selector, Object[] arguments) {
+		Enumeration enumeration = array.objectEnumerator();
+		while (enumeration .hasMoreElements()) {
+			NSObject element = (NSObject) enumeration.nextElement();
+			try {
+				selector.invoke(element, arguments);
+			} catch (IllegalArgumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (InvocationTargetException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (NoSuchMethodException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public static void makeObjectsPerformSelector(NSArray array, NSSelector selector, Object argument) {
+		CocoaUtils.makeObjectsPerformSelector(array, selector, new Object[] {argument});
 	}
 }

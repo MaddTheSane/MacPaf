@@ -5,9 +5,11 @@ import java.util.*;
 
 import org.apache.log4j.*;
 import org.jdom.*;
+import org.jdom.input.SAXBuilder;
 import org.jdom.output.*;
 import org.jdom.xpath.*;
 
+import com.apple.cocoa.foundation.NSData;
 import com.redbugz.macpaf.*;
 import com.redbugz.macpaf.util.*;
 import com.redbugz.macpaf.validation.*;
@@ -36,9 +38,6 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 	private int nextRepositoryId = 0;
 	private int nextSubmitterId = 0;
 
-	File gedcomFile = null;
-	File xmlFile = null;
-	
 	/**
 	 * This is the main individual to whom apply all actions
 	 */
@@ -49,8 +48,13 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 	public MacPAFDocumentJDOM() {
 		Element root = new Element("GED");
 		doc = new Document(root);
-		Submitter submitter = createAndInsertNewSubmitter();
-		root.addContent(0, new HeaderJDOM(submitter).getElement());
+//		Element newSubmitterElement = new Element(SubmitterJDOM.SUBMITTER);
+//		newSubmitterElement.addContent(new Element(Submitter.NAME).setText(""));
+		SubmitterJDOM newSubmitter = new SubmitterJDOM(this);//newSubmitterElement, this);
+//		root.addContent(newSubmitter.getElement());
+//		submitters.put(newSubmitter.getId(), newSubmitter);
+		addDefaultSubmitter(newSubmitter);
+		root.addContent(0, new HeaderJDOM(newSubmitter).getElement());
 	}
 	
 	public void addFamily(Family newFamily) {
@@ -103,6 +107,15 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 	 */
 	public void addSubmitter(Submitter newSubmitter) {
 		log.debug("MacPAFDocumentJDOM.addSubmitter():"+newSubmitter);
+		// for now, don't add default submitters, they should already exist
+		if (newSubmitter instanceof SubmitterJDOM) {
+			SubmitterJDOM submitterJDOM = (SubmitterJDOM) newSubmitter;
+			if (submitters.size() == 1 && submitterJDOM.isDefault()) {
+				log.debug("Not adding submitter because is default submitter");
+				
+				return;
+			}
+ 		}
 		if (StringUtils.isEmpty(newSubmitter.getId())) {
 			newSubmitter.setId("T"+getNextAvailableSubmitterId());
 			log.info("Submitter added with blank Id. Assigning Id: "+newSubmitter.getId());
@@ -110,16 +123,78 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 		}
 		if (submitters.containsKey(newSubmitter.getId())) {
 			log.warn("new submitter has same Id as existing submitter ("+newSubmitter.getId()+"). Re-assigning new Id...");
+			newSubmitter.setId("T"+getNextAvailableSubmitterId());
 		}
 		submitters.put(newSubmitter.getId(), newSubmitter);
 		log.debug("added submitter with key: " + newSubmitter.getId() + " name: " + newSubmitter.getName());
 		if (newSubmitter instanceof SubmitterJDOM) {
 			log.debug("adding submitter to doc: "+newSubmitter);
+			// replace default submitter if it is the only one
+			if (submitters.size() == 1) {
+				Submitter submitter = (Submitter) submitters.values().toArray()[0];
+				// check to make sure it is the default submitter with default 
+				if (submitter instanceof SubmitterJDOM) {
+					SubmitterJDOM submitterJDOM = (SubmitterJDOM) submitter;
+					if (submitterJDOM.isDefault()) {
+						log.debug("Removing default submitter");
+						removeSubmitter(submitterJDOM);
+						log.debug("root children:"+doc.getRootElement().getChildren());
+						log.debug("subm to remove:"+submitterJDOM.getElement()+":parent:"+submitterJDOM.getElement().getParent()+":"+submitterJDOM.getElement().getParentElement());
+						boolean removed = doc.getRootElement().removeContent(submitterJDOM.getElement());
+						if (!removed) {
+							log.error("Failed to remove default submitter");
+						}
+					}
+				}
+			}
 			doc.getRootElement().addContent((Content)((SubmitterJDOM)newSubmitter).getElement());
 		}
 		update(this, newSubmitter);
 	}
-	
+
+	/**
+	 * @param submitter
+	 */
+	private void addDefaultSubmitter(Submitter newSubmitter) {
+		log.debug("MacPAFDocumentJDOM.addDefaultSubmitter():"+newSubmitter);
+		if (StringUtils.isEmpty(newSubmitter.getId())) {
+			newSubmitter.setId("T"+getNextAvailableSubmitterId());
+			log.info("Submitter added with blank Id. Assigning Id: "+newSubmitter.getId());
+		}
+		if (submitters.containsKey(newSubmitter.getId())) {
+			log.warn("new submitter has same Id as existing submitter ("+newSubmitter.getId()+"). Re-assigning new Id...");
+			newSubmitter.setId("T"+getNextAvailableSubmitterId());
+		}
+		submitters.put(newSubmitter.getId(), newSubmitter);
+		log.debug("added default submitter with key: " + newSubmitter.getId() + " name: " + newSubmitter.getName());
+		if (newSubmitter instanceof SubmitterJDOM) {
+			log.debug("adding default submitter to doc: "+newSubmitter);
+					SubmitterJDOM submitterJDOM = (SubmitterJDOM) newSubmitter;
+			doc.getRootElement().addContent((Content)submitterJDOM.getElement());
+		}
+		update(this, newSubmitter);
+	}
+
+	public void removeSubmitter(Submitter submitterToRemove) {
+		log.warn("removeSubmitter() instructed to remove submitter from document: "+submitterToRemove.getName());
+		SubmitterJDOM jdomSubmitter = getSubmitter(submitterToRemove.getId());
+		jdomSubmitter.getElement().detach();
+		submitters.remove(submitterToRemove.getId());
+		// invalidate links to this submitter
+		try {
+			List references = XPath.selectNodes(doc, "//*[@REF=\""+submitterToRemove.getId()+"\"]");
+			log.debug("while removing submitter("+submitterToRemove.getId()+"), found these references:"+references);
+			for (Iterator iter = references.iterator(); iter.hasNext();) {
+				Element element = (Element) iter.next();
+				element.detach();
+			}
+		} catch (JDOMException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		update(this, submitterToRemove);
+	}
+
 	/**
 	 * @param repository
 	 */
@@ -219,15 +294,41 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 		XMLTest.outputWithKay(doc, outputStream);
 	}
 	
+//	public void loadXMLFile(File file) {
+//		if (file == null) {
+//			throw new IllegalArgumentException("Cannot parse XML file because file is null.");
+//		}
+//		try {
+//			loadXMLData(new NSData(file));
+//		} catch (RuntimeException e) {
+//			e.printStackTrace();
+//			throw e;
+//		}
+//	}
+	
 	// uses parser from Kay (gedml)
-	public void loadXMLFile(File file) {
-		if (file == null) {
-			throw new IllegalArgumentException("Cannot parse XML file because file is null.");
-		}
+	public void loadXMLData_USEGEDCOMLOADERINSTEAD(NSData data) {
 		try {
 			long start = System.currentTimeMillis();
+			SAXBuilder builder = new SAXBuilder("gedml.GedcomParser");
+			Document doc = null;
+			try {
+			  doc = builder.build(new ByteArrayInputStream(data.bytes(0, data.length())));
+			}
+			catch (JDOMException e2) {
+			  log.error("Exception: ", e2);
+			  throw new IllegalArgumentException("Cannot parse GEDCOM data "+data+". Cause:"+e2.getLocalizedMessage());
+			}
+			catch (IOException e1) {
+			  log.error("Exception: ", e1); //To change body of catch statement use Options | File Templates.
+			  throw new IllegalArgumentException("Cannot parse GEDCOM data "+data+". Cause:"+e1.getLocalizedMessage());
+			}
+//			if (XMLTest.debugging) {
+//			  log.debug("^*^*^* Doc parsed with gedml:");
+//			  XMLTest.outputDocToConsole(doc);
+//			}
 			//      Document doc = XMLTest.parseGedcom(file);
-			Document newDoc = XMLTest.docParsedWithKay(file);
+			Document newDoc = doc;
 			Element root = newDoc.getRootElement();
 			long end = System.currentTimeMillis();
 			log.debug("Time to parse: " + (end - start) / 1000D + " seconds.");
@@ -763,7 +864,8 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 	 */
 	public Submitter createAndInsertNewSubmitter() {
 		Element newSubmitterElement = new Element(SubmitterJDOM.SUBMITTER);
-		SubmitterJDOM newSubmitter = new SubmitterJDOM(newSubmitterElement, this);
+		newSubmitterElement.addContent(new Element(Submitter.NAME).setText(""));
+		SubmitterJDOM newSubmitter = new SubmitterJDOM(this);
 		addSubmitter(newSubmitter);
 		return newSubmitter;
 	}

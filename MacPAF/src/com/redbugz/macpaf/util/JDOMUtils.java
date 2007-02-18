@@ -88,5 +88,24 @@ public class JDOMUtils {
 		}
 		return result;
 	}
+	
+	public static String cleanText(String text) {
+		  // clean up illegal characters and issue a warning
+
+		// change vertical tab into newline
+		text = text.replace('\u000B', '\n');
+		  StringBuffer cleanedData = new StringBuffer();
+		  char[] charArray = text.toCharArray();
+		  for (int j = 0; j < charArray.length; j++) {
+			  char c = charArray[j];
+			  if (Verifier.isXMLCharacter(c)) {
+				  cleanedData.append(c);
+			  } else {
+				  log.info("Removing illegal character "+Integer.toHexString(c)+" from JDOM Text");
+			  }
+		  }
+		  return cleanedData.toString();
+
+	}
 
 }

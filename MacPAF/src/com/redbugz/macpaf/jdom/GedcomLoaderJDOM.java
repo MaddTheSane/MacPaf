@@ -5,9 +5,15 @@ import java.util.*;
 
 import org.apache.log4j.*;
 import org.jdom.*;
+import org.jdom.input.SAXBuilder;
 import org.jdom.xpath.*;
 
-import com.apple.cocoa.application.*;
+import com.apple.cocoa.foundation.NSData;
+import com.apple.cocoa.foundation.NSDictionary;
+import com.apple.cocoa.foundation.NSMutableArray;
+import com.apple.cocoa.foundation.NSMutableDictionary;
+import com.apple.cocoa.foundation.NSNotificationCenter;
+import com.apple.cocoa.foundation.NSObject;
 import com.redbugz.macpaf.*;
 import com.redbugz.macpaf.util.*;
 
@@ -18,27 +24,126 @@ public class GedcomLoaderJDOM {
 	 * This is the main jdom document that holds all of the data
 	 */
 	private MacPAFDocumentJDOM _doc;
-	NSProgressIndicator _progress;
-		
-	public GedcomLoaderJDOM(MacPAFDocumentJDOM document, NSProgressIndicator progress) {
-		_doc = document;
-		_progress = progress;
+	NSObject progressDelegate;
+	private double currentProgressValue = 0;
+	private double maxProgressValue = 0;
+	private String status = "Loading data...";
+
+	private Document newDoc;
+
+	private static SAXBuilder builder;
+
+	private NSMutableDictionary statusDict = new NSMutableDictionary();
+	
+	static {
+		builder = new SAXBuilder("gedml.GedcomParser");
+		// need to load the parser in the main thread to avoid classloader issues
+		// in separate threads later
+		try {
+			builder.build("");
+		} catch (JDOMException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
-	// uses parser from Kay (gedml)
-	public void loadXMLFile(File file) {
-		if (file == null) {
-			throw new IllegalArgumentException("Cannot parse XML file because file is null.");
-		}
+	public GedcomLoaderJDOM() {}
+		
+	public GedcomLoaderJDOM(MacPAFDocumentJDOM document, NSObject progressDelegate) {
+		_doc = document;
+		this.progressDelegate = progressDelegate;
+	}
+	
+	public String test() {return ""+_doc+progressDelegate;}
+	
+	public static GedcomLoaderJDOM loadDataForDocumentWithUpdateDelegate(NSDictionary dictionary) {
+		System.out.println("GedcomLoaderJDOM.loadDataForDocumentWithUpdateDelegate()"+dictionary);
+		return loadDataForDocumentWithUpdateDelegate((NSData)dictionary.valueForKey("data"), (MacPAFDocumentJDOM)dictionary.valueForKey("document"), (NSObject)dictionary.valueForKey("delegate"), (NSObject)dictionary.valueForKey("controller"));
+	}
+
+	public static GedcomLoaderJDOM loadDataForDocumentWithUpdateDelegate(NSData data, MacPAFDocumentJDOM document, NSObject delegate, NSObject controller) {
+		System.out.println("GedcomLoaderJDOM.loadDataForDocumentWithUpdateDelegate():"+delegate);
+		GedcomLoaderJDOM gedcomLoaderJDOM = new GedcomLoaderJDOM(document, delegate);
+//		NSNotificationCenter.defaultCenter().addObserver(delegate, CocoaUtils.UPDATE_PROGRESS_SELECTOR, CocoaUtils.UPDATE_PROGRESS_NOTIFICATION, gedcomLoaderJDOM);
 		try {
-			_progress.setIndeterminate(true);
-			_progress.startAnimation(this);
+			NSNotificationCenter.defaultCenter().addObserver(controller, CocoaUtils.TASK_DONE_SELECTOR, CocoaUtils.TASK_DONE_NOTIFICATION, delegate);
+			gedcomLoaderJDOM.loadXMLData(data);
+//		gedcomLoaderJDOM.importXMLData();
+			NSNotificationCenter.defaultCenter().postNotification(CocoaUtils.TASK_DONE_NOTIFICATION, delegate);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			NSNotificationCenter.defaultCenter().removeObserver(controller, CocoaUtils.TASK_DONE_NOTIFICATION, delegate);			
+		}
+		return gedcomLoaderJDOM;
+	}
+	
+	public void loadXMLFile(File file) {
+	if (file == null) {
+		throw new IllegalArgumentException("Cannot load XML file because file is null.");
+	}
+	try {
+		loadXMLData(new NSData(file));
+	} catch (RuntimeException e) {
+		e.printStackTrace();
+		throw e;
+	}
+}
+
+	// uses parser from Kay (gedml)
+	public void loadXMLData(NSData data) {
+		try {
+			log.debug(Thread.currentThread()+":loadXMLData:"+data);
 			long start = System.currentTimeMillis();
 			//      Document doc = XMLTest.parseGedcom(file);
-			Document newDoc = XMLTest.docParsedWithKay(file);
-			Element root = newDoc.getRootElement();
+//			Document newDoc = XMLTest.docParsedWithKay(file);
+//			try {
+//				System.out.println("parserclass:"+Class.forName("gedml.GedcomParser"));
+//				System.out.println("newinstance:"+XMLReaderFactory.createXMLReader("gedml.GedcomParser"));
+//				
+//				System.out.println("classloader:"+Thread.currentThread().getContextClassLoader());
+////				System.getProperties().list(System.out);
+//				
+//			} catch (ClassNotFoundException e3) {
+//				// TODO Auto-generated catch block
+//				e3.printStackTrace();
+//			} catch (SAXException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+			try {
+				newDoc = builder.build(new ByteArrayInputStream(data.bytes(0, data.length())));
+			}
+			catch (JDOMException e2) {
+			  log.error("Exception: ", e2);
+			  throw new IllegalArgumentException("Cannot parse GEDCOM data "+data+". Cause:"+e2.getLocalizedMessage());
+			}
+			catch (IOException e1) {
+			  log.error("Exception: ", e1); //To change body of catch statement use Options | File Templates.
+			  throw new IllegalArgumentException("Cannot parse GEDCOM data "+data+". Cause:"+e1.getLocalizedMessage());
+			}
 			long end = System.currentTimeMillis();
 			log.debug("Time to parse: " + (end - start) / 1000D + " seconds.");
+			importXMLData();
+		} catch (RuntimeException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			throw e;
+		}
+	}
+
+		public void importXMLData() {
+			
+			try {
+				if(newDoc == null) {
+					log.error("GedcomLoaderJDOM.importXMLData() failed because newDoc is null");
+					return;
+				}
+				Element root = newDoc.getRootElement();
 			List familyElements = root.getChildren("FAM");
 			List individualElements = root.getChildren("INDI");
 			List multimediaElements = root.getChildren("OBJE");
@@ -47,16 +152,23 @@ public class GedcomLoaderJDOM {
 			List sourceElements = root.getChildren("SOUR");
 			List submitterElements = root.getChildren("SUBM");
 			// detach the root from the children nodes so they can be imported into the new document
-//		root.detach();
+			root.detach();
+			int fake=new Random().nextInt(20);
+			maxProgressValue = fake+familyElements.size() + individualElements.size() + multimediaElements.size() + noteElements.size() + repositoryElements.size() + sourceElements.size() + submitterElements.size();
+			status = "Loading data...";
+			notifyDelegateOfStatus();
+			for (int i = 0; i < fake; i++) {
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				incrementAndUpdateProgress();
+			}
 			
-			long totalElements = familyElements.size() + individualElements.size() + multimediaElements.size() + noteElements.size() + repositoryElements.size() + sourceElements.size() + submitterElements.size()	;
-			_progress.setIndeterminate(false);
-			_progress.setDoubleValue(0.0D);
-			_progress.setMaxValue(totalElements);
-			_progress.displayIfNeeded();
-			
-			MacPAFDocumentJDOM importedDoc = new MacPAFDocumentJDOM();
-			HeaderJDOM header = new HeaderJDOM(root.getChild("HEAD"), importedDoc);
+//			MacPAFDocumentJDOM importedDoc = new MacPAFDocumentJDOM();
+			HeaderJDOM header = new HeaderJDOM(root.getChild("HEAD"), _doc);//importedDoc);
 			try {
 				log.debug("header: " + header);
 				log.debug("Header charset:"+header.getCharacterSet());
@@ -113,7 +225,7 @@ public class GedcomLoaderJDOM {
 			
 			boolean debug = false;
 			Runtime rt = Runtime.getRuntime();
-			
+			status = "Loading "+individualElements.size()+" individuals ...";
 			log.debug("------------------------------");
 			log.debug("-------------------Individuals");
 			log.debug("------------------------------");
@@ -201,6 +313,7 @@ public class GedcomLoaderJDOM {
 			}
 			log.info("individuals: "+_doc.individuals.size());
 			
+			status = "Loading "+familyElements.size()+" families ...";
 			log.debug("------------------------------");
 			log.debug("----------------------Families");
 			log.debug("------------------------------");
@@ -284,12 +397,13 @@ public class GedcomLoaderJDOM {
 			//            individualList.add(indi);
 			//            surnameList.add(indi.getSurname());
 			//        }
-			log.debug("MPDJ.loadXMLFile setindividual:" + firstIndi);
+			log.debug("GLJ.loadXMLFile setindividual:" + firstIndi);
 			//            assignIndividualToButton(firstIndi, individualButton);
 			//            setIndividual(individualButton);
 			_doc.setPrimaryIndividual(firstIndi);
 			//        final List objects = doc.getRootElement().getChildren("OBJE");
 			
+			status = "Loading "+multimediaElements.size()+" multimedia records ...";
 			log.debug("------------------------------");
 			log.debug("--------------------Multimedia");
 			log.debug("------------------------------");
@@ -313,6 +427,7 @@ public class GedcomLoaderJDOM {
 			}
 			log.debug("multimedia: " + multimediaElements.size());
 			
+			status = "Loading "+noteElements.size()+" notes ...";
 			log.debug("------------------------------");
 			log.debug("-------------------------Notes");
 			log.debug("------------------------------");
@@ -330,6 +445,7 @@ public class GedcomLoaderJDOM {
 			}
 			log.debug("notes: " + noteElements.size());
 			
+			status = "Loading "+sourceElements.size()+" sources ...";
 			log.debug("------------------------------");
 			log.debug("-----------------------Sources");
 			log.debug("------------------------------");
@@ -348,6 +464,7 @@ public class GedcomLoaderJDOM {
 			}
 			log.debug("sources: " + sourceElements.size());
 			
+			status = "Loading "+repositoryElements.size()+" repositories ...";
 			log.debug("------------------------------");
 			log.debug("------------------Repositories");
 			log.debug("------------------------------");
@@ -366,6 +483,7 @@ public class GedcomLoaderJDOM {
 			}
 			log.debug("repositories: " + repositoryElements.size());
 			
+			status = "Loading "+submitterElements.size()+" submitters ...";
 			log.debug("------------------------------");
 			log.debug("--------------------Submitters");
 			log.debug("------------------------------");
@@ -383,6 +501,8 @@ public class GedcomLoaderJDOM {
 				incrementAndUpdateProgress();
 			}	
 			log.debug("submitters: " + submitterElements.size());
+			status = "Finishing loading data ...";
+			notifyDelegateOfStatus();
 		} catch (RuntimeException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -390,14 +510,28 @@ public class GedcomLoaderJDOM {
 		}
 	}
 	
-//	private void updateOldIndividualGEDCOMData(Element element) {
-//		// TODO Auto-generated method stub
-//		
-//	}
+	private void notifyDelegateOfStatus() {
+		log.info("progress: "+currentProgressValue + " out of "+maxProgressValue);
+		statusDict.setObjectForKey(new Double(currentProgressValue), "currentValue");
+		statusDict.setObjectForKey(new Double(maxProgressValue), "maxValue");
+		statusDict.setObjectForKey(status+":"+currentProgressValue+" of "+maxProgressValue, "status");
+		//		NSNotificationCenter.defaultCenter().postNotification(CocoaUtils.UPDATE_PROGRESS_NOTIFICATION, this, statusDict);
+		if (maxProgressValue > 0) {
+			progressDelegate.takeValueForKey(new Integer(0), "indeterminate");
+		}
+		progressDelegate.takeValueForKey(statusDict.valueForKey("currentValue"), "doubleValue");
+		progressDelegate.takeValueForKey(statusDict.valueForKey("maxValue"), "maxValue");
+		progressDelegate.takeValueForKey(statusDict.valueForKey("status"), "status");
+//		log.debug(progressDelegate.valueForKey("stopped"));
+//		log.debug(progressDelegate.valueForKey("stopped").getClass());
+		boolean isStopped = ((Integer) progressDelegate.valueForKey("stopped")).intValue() != 0;
+		if (isStopped) {
+			throw new RuntimeException("Task Cancelled");
+		}
+	}
 
 	private void incrementAndUpdateProgress() {
-		_progress.incrementBy(1);
-		log.info("progress: "+_progress.doubleValue() + " out of "+_progress.maxValue());
-		_progress.displayIfNeeded();
+		++currentProgressValue;
+		notifyDelegateOfStatus();
 	}
 }

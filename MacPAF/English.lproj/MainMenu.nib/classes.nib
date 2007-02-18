@@ -2,10 +2,11 @@
     IBClasses = (
         {CLASS = ApplicationStartupHelper; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
         {
+            ACTIONS = {terminate = id; }; 
             CLASS = ApplicationUtilities; 
             LANGUAGE = Java; 
-            OUTLETS = {progress = NSProgressIndicator; splashScreen = NSPanel; }; 
-            SUPERCLASS = "java.lang.Object"; 
+            OUTLETS = {progress = NSProgressIndicator; splashScreen = NSWindow; }; 
+            SUPERCLASS = NSObject; 
         }, 
         {
             ACTIONS = {
@@ -27,7 +28,6 @@
                 editPrimaryIndividual = id; 
                 exportFile = id; 
                 forgetIndividual = id; 
-                importFile = id; 
                 openImportSheet = id; 
                 openReportsSheet = id; 
                 recallIndividual = id; 
@@ -47,6 +47,17 @@
             CLASS = SUUpdater; 
             LANGUAGE = ObjC; 
             SUPERCLASS = NSObject; 
+        }, 
+        {
+            ACTIONS = {doSomething = id; }; 
+            CLASS = TestObjc; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSObject; 
+        }, 
+        {
+            CLASS = TransparentSplashScreenWindow; 
+            LANGUAGE = ObjC; 
+            SUPERCLASS = NSWindow; 
         }
     ); 
     IBVersion = 1; 

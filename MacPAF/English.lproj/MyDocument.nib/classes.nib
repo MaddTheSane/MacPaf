@@ -89,8 +89,20 @@
                 importRadio = NSMatrix; 
                 importWindow = NSWindow; 
                 progress = NSProgressIndicator; 
+                taskView = id; 
             }; 
             SUPERCLASS = "java.lang.Object"; 
+        }, 
+        {
+            ACTIONS = {cancel = id; import = id; }; 
+            CLASS = ImportSheetController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                document = MyDocument; 
+                importSheet = NSWindow; 
+                loader = "com.redbugz.macpaf.jdom.GedcomLoaderJDOM"; 
+            }; 
+            SUPERCLASS = NSWindowController; 
         }, 
         {
             CLASS = IndividualDetailController; 
@@ -182,7 +194,7 @@
                 familyListWindowController = FamilyListController; 
                 fatherButton = NSButton; 
                 historyController = HistoryController; 
-                importWindow = NSWindow; 
+                importController = ImportSheetController; 
                 individualButton = NSButton; 
                 individualEditWindow = NSWindow; 
                 individualFamilyButton = NSButton; 
@@ -194,6 +206,7 @@
                 motherButton = NSButton; 
                 noteTextView = NSTextView; 
                 noteWindow = NSWindow; 
+                objCDelegate = MyDocumentObjCDelegate; 
                 paternalGrandfatherButton = NSButton; 
                 paternalGrandmotherButton = NSButton; 
                 pedigreeView = PedigreeView; 
@@ -204,6 +217,7 @@
                 spouseTable = NSTableView; 
                 tabFamilyListController = FamilyListController; 
                 tabIndividualListController = IndividualListController; 
+                taskProgressSheetWindow = NSWindow; 
             }; 
             SUPERCLASS = NSDocument; 
         }, 
@@ -279,6 +293,12 @@
         {
             CLASS = "com.redbugz.macpaf.TempleList"; 
             LANGUAGE = Java; 
+            SUPERCLASS = "java.lang.Object"; 
+        }, 
+        {
+            CLASS = "com.redbugz.macpaf.jdom.GedcomLoaderJDOM"; 
+            LANGUAGE = Java; 
+            OUTLETS = {}; 
             SUPERCLASS = "java.lang.Object"; 
         }
     ); 

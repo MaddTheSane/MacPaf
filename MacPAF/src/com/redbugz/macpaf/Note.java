@@ -20,6 +20,7 @@ public interface Note {
   public void setId(String string);
 
   public String getText();
+  public void setText(String newText);
   
   static class UnknownNote implements Note {
 
@@ -41,6 +42,11 @@ public interface Note {
 	 * @see com.redbugz.macpaf.Note#setId(java.lang.String)
 	 */
 	public void setId(String string) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setText(String newText) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -16,6 +16,11 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>SystemLibraryJava</name>
+			<type>2</type>
+			<location>/System/Library/Java</location>
+		</link>
+		<link>
 			<name>Cocoa</name>
 			<type>2</type>
 			<location>/System/Library/Java</location>

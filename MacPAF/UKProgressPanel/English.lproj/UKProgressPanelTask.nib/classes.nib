@@ -1,0 +1,21 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {animate = id; stop = id; }; 
+            CLASS = UKProgressPanelTask; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {
+                progressBar = NSProgressIndicator; 
+                progressStatusField = NSTextField; 
+                progressStopButton = NSButton; 
+                progressTaskSheet = NSWindow; 
+                progressTaskView = NSView; 
+                progressTitleField = NSTextField; 
+                stopDelegate = id; 
+            }; 
+            SUPERCLASS = NSObject; 
+        }
+    ); 
+    IBVersion = 1; 
+}

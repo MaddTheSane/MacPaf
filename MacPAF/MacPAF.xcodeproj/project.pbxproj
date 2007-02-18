@@ -12,9 +12,26 @@
 		0263E4C50A20F0B00087A335 /* castor-1.0-xml.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0263E45C0A20DCCF0087A335 /* castor-1.0-xml.jar */; };
 		0263E4E30A20F4450087A335 /* ApplicationStartupHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 0263E4E10A20F4450087A335 /* ApplicationStartupHelper.h */; };
 		0263E4E40A20F4450087A335 /* ApplicationStartupHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0263E4E20A20F4450087A335 /* ApplicationStartupHelper.m */; };
+		029F11080B6CCEA2005A5ADC /* UKProgressPanel.nib in Resources */ = {isa = PBXBuildFile; fileRef = 029F11060B6CCEA2005A5ADC /* UKProgressPanel.nib */; };
 		02AB42310A2B0663000EE9F5 /* jug-asl-2.0.0.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 02AB42300A2B0662000EE9F5 /* jug-asl-2.0.0.jar */; };
 		02AB424C0A2B067A000EE9F5 /* jug-asl-2.0.0.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 02AB42300A2B0662000EE9F5 /* jug-asl-2.0.0.jar */; };
 		02AB424D0A2B0692000EE9F5 /* jug-asl-2.0.0.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 02AB42300A2B0662000EE9F5 /* jug-asl-2.0.0.jar */; };
+		02B51F040B23D727003C1D2E /* PAF21Data.h in Headers */ = {isa = PBXBuildFile; fileRef = 02B51F020B23D727003C1D2E /* PAF21Data.h */; };
+		02B51F050B23D727003C1D2E /* PAF21Data.m in Sources */ = {isa = PBXBuildFile; fileRef = 02B51F030B23D727003C1D2E /* PAF21Data.m */; };
+		02C876970B3EF267005E8B53 /* UKProgressPanel.strings in Resources */ = {isa = PBXBuildFile; fileRef = 02C8768D0B3EF267005E8B53 /* UKProgressPanel.strings */; };
+		02C876980B3EF267005E8B53 /* UKProgressPanelTask.nib in Resources */ = {isa = PBXBuildFile; fileRef = 02C8768F0B3EF267005E8B53 /* UKProgressPanelTask.nib */; };
+		02C876990B3EF267005E8B53 /* UKProgressPanel.h in Headers */ = {isa = PBXBuildFile; fileRef = 02C876910B3EF267005E8B53 /* UKProgressPanel.h */; };
+		02C8769A0B3EF267005E8B53 /* UKProgressPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 02C876920B3EF267005E8B53 /* UKProgressPanel.m */; };
+		02C8769B0B3EF267005E8B53 /* UKProgressPanelTask.h in Headers */ = {isa = PBXBuildFile; fileRef = 02C876930B3EF267005E8B53 /* UKProgressPanelTask.h */; };
+		02C8769C0B3EF267005E8B53 /* UKProgressPanelTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 02C876940B3EF267005E8B53 /* UKProgressPanelTask.m */; };
+		02D0013B0B481E3200C3CDF4 /* ImportSheet.nib in Resources */ = {isa = PBXBuildFile; fileRef = 02D0013A0B481E3200C3CDF4 /* ImportSheet.nib */; };
+		02D0013C0B481E3200C3CDF4 /* ImportSheet.nib in Resources */ = {isa = PBXBuildFile; fileRef = 02D0013A0B481E3200C3CDF4 /* ImportSheet.nib */; };
+		02D001430B482EDB00C3CDF4 /* ImportSheetController.h in Headers */ = {isa = PBXBuildFile; fileRef = 02D001410B482EDB00C3CDF4 /* ImportSheetController.h */; };
+		02D001440B482EDB00C3CDF4 /* ImportSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02D001420B482EDB00C3CDF4 /* ImportSheetController.m */; };
+		02D001450B482EDB00C3CDF4 /* ImportSheetController.h in Headers */ = {isa = PBXBuildFile; fileRef = 02D001410B482EDB00C3CDF4 /* ImportSheetController.h */; };
+		02D001460B482EDB00C3CDF4 /* ImportSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02D001420B482EDB00C3CDF4 /* ImportSheetController.m */; };
+		02D0062C0B4A445600C3CDF4 /* TransparentSplashScreenWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 02D0062A0B4A445600C3CDF4 /* TransparentSplashScreenWindow.h */; };
+		02D0062D0B4A445600C3CDF4 /* TransparentSplashScreenWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 02D0062B0B4A445600C3CDF4 /* TransparentSplashScreenWindow.m */; };
 		02D015770A1ADCAB0005E632 /* MacPAF_Prefix.h in Headers */ = {isa = PBXBuildFile; fileRef = 32DBCF820370BDBC00C91783 /* MacPAF_Prefix.h */; };
 		02D015780A1ADCAB0005E632 /* UKCrashReporter.h in Headers */ = {isa = PBXBuildFile; fileRef = 02DDDD240A12BA9C003BC70E /* UKCrashReporter.h */; };
 		02D0157A0A1ADCAB0005E632 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */; };
@@ -52,7 +69,6 @@
 		02D0159B0A1ADCAB0005E632 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		02D0159C0A1ADCAB0005E632 /* UKCrashReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 02DDDD250A12BA9C003BC70E /* UKCrashReporter.m */; };
 		02D0159F0A1ADCAB0005E632 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
-		02D015A00A1ADCAB0005E632 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02DDDDB30A147208003BC70E /* Sparkle.framework */; };
 		02D015A20A1ADCAB0005E632 /* MacPAF.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 02E2897A09E9FA71000846AC /* MacPAF.jar */; };
 		02D015A40A1ADCAB0005E632 /* unicodeIO.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 02E5284709EDE9770093ECEF /* unicodeIO.jar */; };
 		02D015A70A1ADCAB0005E632 /* jaxen-core.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 026ED7F405D9330B0001D1D2 /* jaxen-core.jar */; };
@@ -411,6 +427,7 @@
 		027D36B20707D41E00F146F8 /* Metal Window.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Metal Window.psd"; sourceTree = "<group>"; };
 		027D36B30707D41E00F146F8 /* Page.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = Page.psd; sourceTree = "<group>"; };
 		02907685060568E800F1763A /* IndividualDetailController.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = IndividualDetailController.java; path = src/IndividualDetailController.java; sourceTree = "<group>"; };
+		029F11070B6CCEA2005A5ADC /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = UKProgressPanel/English.lproj/UKProgressPanel.nib; sourceTree = "<group>"; };
 		02A778E908AFB24C007897F4 /* JDOMUtils.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = JDOMUtils.java; sourceTree = "<group>"; };
 		02A778FF08B011E6007897F4 /* FamilyListController.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = FamilyListController.java; path = src/FamilyListController.java; sourceTree = "<group>"; };
 		02A7790008B011E6007897F4 /* IndividualListController.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = IndividualListController.java; path = src/IndividualListController.java; sourceTree = "<group>"; };
@@ -470,6 +487,8 @@
 		02B3D1B2077B11CF0069077B /* Hex.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = Hex.java; sourceTree = "<group>"; };
 		02B3D1B3077B11CF0069077B /* StringUtils.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = StringUtils.java; sourceTree = "<group>"; };
 		02B3D1B4077B11CF0069077B /* XMLTest.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = XMLTest.java; sourceTree = "<group>"; };
+		02B51F020B23D727003C1D2E /* PAF21Data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAF21Data.h; sourceTree = "<group>"; };
+		02B51F030B23D727003C1D2E /* PAF21Data.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAF21Data.m; sourceTree = "<group>"; wrapsLines = 1; };
 		02B8AC5008F045D700AE39EC /* HistoryController.java */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.java; name = HistoryController.java; path = src/HistoryController.java; sourceTree = "<group>"; };
 		02C50B0E0621296600B54464 /* xalan.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; name = xalan.jar; path = lib/xalan.jar; sourceTree = "<group>"; };
 		02C50B0F0621296600B54464 /* xerces.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; name = xerces.jar; path = lib/xerces.jar; sourceTree = "<group>"; };
@@ -477,6 +496,17 @@
 		02C5BE4F0939F8EF0086B510 /* ValidationException.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = ValidationException.java; sourceTree = "<group>"; };
 		02C5BFBD0948218C0086B510 /* GedcomLoaderJDOM.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = GedcomLoaderJDOM.java; sourceTree = "<group>"; };
 		02C5C0C4095466140086B510 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/RecordSelectionWindow.nib; sourceTree = "<group>"; };
+		02C8768E0B3EF267005E8B53 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/UKProgressPanel.strings; sourceTree = "<group>"; };
+		02C876900B3EF267005E8B53 /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = English.lproj/UKProgressPanelTask.nib; sourceTree = "<group>"; };
+		02C876910B3EF267005E8B53 /* UKProgressPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UKProgressPanel.h; sourceTree = "<group>"; };
+		02C876920B3EF267005E8B53 /* UKProgressPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UKProgressPanel.m; sourceTree = "<group>"; };
+		02C876930B3EF267005E8B53 /* UKProgressPanelTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UKProgressPanelTask.h; sourceTree = "<group>"; };
+		02C876940B3EF267005E8B53 /* UKProgressPanelTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UKProgressPanelTask.m; sourceTree = "<group>"; };
+		02D0013A0B481E3200C3CDF4 /* ImportSheet.nib */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; path = ImportSheet.nib; sourceTree = "<group>"; };
+		02D001410B482EDB00C3CDF4 /* ImportSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportSheetController.h; sourceTree = "<group>"; };
+		02D001420B482EDB00C3CDF4 /* ImportSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportSheetController.m; sourceTree = "<group>"; };
+		02D0062A0B4A445600C3CDF4 /* TransparentSplashScreenWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransparentSplashScreenWindow.h; sourceTree = "<group>"; };
+		02D0062B0B4A445600C3CDF4 /* TransparentSplashScreenWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransparentSplashScreenWindow.m; sourceTree = "<group>"; };
 		02D015BA0A1ADCAB0005E632 /* MacPAF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacPAF.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02DDDD220A12BA9B003BC70E /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/UKCrashReporter.strings; sourceTree = "<group>"; };
 		02DDDD230A12BA9C003BC70E /* UKCrashReporter Readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "UKCrashReporter Readme.txt"; sourceTree = "<group>"; };
@@ -507,7 +537,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				02D0159F0A1ADCAB0005E632 /* Cocoa.framework in Frameworks */,
-				02D015A00A1ADCAB0005E632 /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -560,6 +589,7 @@
 		02218D9AFECEFA92C02AAC07 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				02C8769D0B3EF28B005E8B53 /* UKProgressPanel */,
 				02DDDDF70A165EF5003BC70E /* MacPAF Help */,
 				026ED79C05D932E50001D1D2 /* images */,
 				026ED7A705D932E50001D1D2 /* resources */,
@@ -570,6 +600,7 @@
 				02A77AEE08B0425A007897F4 /* IndividualListWindow.nib */,
 				02A77AF308B0445C007897F4 /* FamilyListWindow.nib */,
 				02C5C0C3095466130086B510 /* RecordSelectionWindow.nib */,
+				02D0013A0B481E3200C3CDF4 /* ImportSheet.nib */,
 				0263E4A60A20EF430087A335 /* License.txt */,
 			);
 			name = Resources;
@@ -750,6 +781,27 @@
 			path = util;
 			sourceTree = "<group>";
 		};
+		02C876880B3EF266005E8B53 /* UKProgressPanel */ = {
+			isa = PBXGroup;
+			children = (
+				02C876910B3EF267005E8B53 /* UKProgressPanel.h */,
+				02C876920B3EF267005E8B53 /* UKProgressPanel.m */,
+				02C876930B3EF267005E8B53 /* UKProgressPanelTask.h */,
+				02C876940B3EF267005E8B53 /* UKProgressPanelTask.m */,
+			);
+			path = UKProgressPanel;
+			sourceTree = "<group>";
+		};
+		02C8769D0B3EF28B005E8B53 /* UKProgressPanel */ = {
+			isa = PBXGroup;
+			children = (
+				029F11060B6CCEA2005A5ADC /* UKProgressPanel.nib */,
+				02C8768D0B3EF267005E8B53 /* UKProgressPanel.strings */,
+				02C8768F0B3EF267005E8B53 /* UKProgressPanelTask.nib */,
+			);
+			name = UKProgressPanel;
+			sourceTree = "<group>";
+		};
 		02DDDD200A12BA9B003BC70E /* UKCrashReporter */ = {
 			isa = PBXGroup;
 			children = (
@@ -842,6 +894,12 @@
 				02B8AC5008F045D700AE39EC /* HistoryController.java */,
 				0263E4E10A20F4450087A335 /* ApplicationStartupHelper.h */,
 				0263E4E20A20F4450087A335 /* ApplicationStartupHelper.m */,
+				02B51F020B23D727003C1D2E /* PAF21Data.h */,
+				02B51F030B23D727003C1D2E /* PAF21Data.m */,
+				02D001410B482EDB00C3CDF4 /* ImportSheetController.h */,
+				02D001420B482EDB00C3CDF4 /* ImportSheetController.m */,
+				02D0062A0B4A445600C3CDF4 /* TransparentSplashScreenWindow.h */,
+				02D0062B0B4A445600C3CDF4 /* TransparentSplashScreenWindow.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -849,6 +907,7 @@
 		32DBCF810370BDA300C91783 /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				02C876880B3EF266005E8B53 /* UKProgressPanel */,
 				02DDDD200A12BA9B003BC70E /* UKCrashReporter */,
 				32DBCF820370BDBC00C91783 /* MacPAF_Prefix.h */,
 				2A37F4B0FDCFA73011CA2CEA /* main.m */,
@@ -865,6 +924,7 @@
 			files = (
 				02D015770A1ADCAB0005E632 /* MacPAF_Prefix.h in Headers */,
 				02D015780A1ADCAB0005E632 /* UKCrashReporter.h in Headers */,
+				02D001430B482EDB00C3CDF4 /* ImportSheetController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -875,6 +935,11 @@
 				02DE769309E96A04003B896A /* MacPAF_Prefix.h in Headers */,
 				02DDDD280A12BA9C003BC70E /* UKCrashReporter.h in Headers */,
 				0263E4E30A20F4450087A335 /* ApplicationStartupHelper.h in Headers */,
+				02B51F040B23D727003C1D2E /* PAF21Data.h in Headers */,
+				02C876990B3EF267005E8B53 /* UKProgressPanel.h in Headers */,
+				02C8769B0B3EF267005E8B53 /* UKProgressPanelTask.h in Headers */,
+				02D001450B482EDB00C3CDF4 /* ImportSheetController.h in Headers */,
+				02D0062C0B4A445600C3CDF4 /* TransparentSplashScreenWindow.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -893,13 +958,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				02DE766C09E9684A003B896A /* log4j.properties in JavaArchive */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		02DE76B409E96A04003B896A /* JavaArchive */ = {
-			isa = PBXJavaArchiveBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -955,7 +1013,6 @@
 				02DE769209E96A04003B896A /* Headers */,
 				02DE769409E96A04003B896A /* Resources */,
 				02DE76B209E96A04003B896A /* Sources */,
-				02DE76B409E96A04003B896A /* JavaArchive */,
 				02DE76B509E96A04003B896A /* Frameworks */,
 				02DE76B809E96A04003B896A /* CopyFiles */,
 				02DE76BA09E96A04003B896A /* CopyFiles */,
@@ -981,6 +1038,7 @@
 			hasScannedForEncodings = 1;
 			mainGroup = 2A37F4AAFDCFA73011CA2CEA /* MacPAF */;
 			projectDirPath = "";
+			projectRoot = "";
 			targets = (
 				02DE768F09E96A04003B896A /* MacPAF */,
 				02DE74B409E9657E003B896A /* MacPAF Java Archive */,
@@ -1026,6 +1084,7 @@
 				02D015970A1ADCAB0005E632 /* UKCrashReporter.strings in Resources */,
 				02D015980A1ADCAB0005E632 /* UKCrashReporter Readme.txt in Resources */,
 				02D015990A1ADCAB0005E632 /* MacPAF Help in Resources */,
+				02D0013C0B481E3200C3CDF4 /* ImportSheet.nib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1065,6 +1124,10 @@
 				02DDDD260A12BA9C003BC70E /* UKCrashReporter.strings in Resources */,
 				02DDDD270A12BA9C003BC70E /* UKCrashReporter Readme.txt in Resources */,
 				02DDDE100A165EF6003BC70E /* MacPAF Help in Resources */,
+				02C876970B3EF267005E8B53 /* UKProgressPanel.strings in Resources */,
+				02C876980B3EF267005E8B53 /* UKProgressPanelTask.nib in Resources */,
+				02D0013B0B481E3200C3CDF4 /* ImportSheet.nib in Resources */,
+				029F11080B6CCEA2005A5ADC /* UKProgressPanel.nib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1077,6 +1140,7 @@
 			files = (
 				02D0159B0A1ADCAB0005E632 /* main.m in Sources */,
 				02D0159C0A1ADCAB0005E632 /* UKCrashReporter.m in Sources */,
+				02D001440B482EDB00C3CDF4 /* ImportSheetController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1094,12 +1158,12 @@
 				02DE760409E96643003B896A /* MultimediaUtils.java in Sources */,
 				02DE760509E96643003B896A /* RepositoryLink.java in Sources */,
 				02DE760609E96643003B896A /* EventJDOM.java in Sources */,
-				02DE760709E96643003B896A /* FamilyDetailController.java in Sources */,
 				02DE760809E96643003B896A /* TempleList.java in Sources */,
 				02DE760909E96643003B896A /* MyEvent.java in Sources */,
 				02DE760A09E96643003B896A /* IndividualEditController.java in Sources */,
 				02DE760B09E96643003B896A /* IndividualListController.java in Sources */,
 				02DE760C09E96643003B896A /* Event.java in Sources */,
+				02DE760709E96643003B896A /* FamilyDetailController.java in Sources */,
 				02DE760D09E96643003B896A /* FilteredTableViewDataSource.java in Sources */,
 				02DE760E09E96643003B896A /* PedigreeView.java in Sources */,
 				02DE760F09E96643003B896A /* TempleXML.java in Sources */,
@@ -1187,6 +1251,11 @@
 				02DE76B309E96A04003B896A /* main.m in Sources */,
 				02DDDD290A12BA9C003BC70E /* UKCrashReporter.m in Sources */,
 				0263E4E40A20F4450087A335 /* ApplicationStartupHelper.m in Sources */,
+				02B51F050B23D727003C1D2E /* PAF21Data.m in Sources */,
+				02C8769A0B3EF267005E8B53 /* UKProgressPanel.m in Sources */,
+				02C8769C0B3EF267005E8B53 /* UKProgressPanelTask.m in Sources */,
+				02D001460B482EDB00C3CDF4 /* ImportSheetController.m in Sources */,
+				02D0062D0B4A445600C3CDF4 /* TransparentSplashScreenWindow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1206,6 +1275,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		029F11060B6CCEA2005A5ADC /* UKProgressPanel.nib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				029F11070B6CCEA2005A5ADC /* English */,
+			);
+			name = UKProgressPanel.nib;
+			sourceTree = "<group>";
+		};
 		02A77AEE08B0425A007897F4 /* IndividualListWindow.nib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1228,6 +1305,24 @@
 				02C5C0C4095466140086B510 /* English */,
 			);
 			name = RecordSelectionWindow.nib;
+			sourceTree = "<group>";
+		};
+		02C8768D0B3EF267005E8B53 /* UKProgressPanel.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				02C8768E0B3EF267005E8B53 /* English */,
+			);
+			name = UKProgressPanel.strings;
+			path = UKProgressPanel;
+			sourceTree = "<group>";
+		};
+		02C8768F0B3EF267005E8B53 /* UKProgressPanelTask.nib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				02C876900B3EF267005E8B53 /* English */,
+			);
+			name = UKProgressPanelTask.nib;
+			path = UKProgressPanel;
 			sourceTree = "<group>";
 		};
 		02DDDD210A12BA9B003BC70E /* UKCrashReporter.strings */ = {
@@ -1286,9 +1381,9 @@
 			buildSettings = {
 				GCC_VERSION_i386 = 4.0;
 				GCC_VERSION_ppc = 3.3;
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
+				MACOSX_DEPLOYMENT_TARGET = 10.3;
 				MACOSX_DEPLOYMENT_TARGET_i386 = 10.4;
-				SDKROOT = /Developer/SDKs/MacOSX10.2.8.sdk;
+				SDKROOT = /Developer/SDKs/MacOSX10.3.9.sdk;
 				SDKROOT_i386 = /Developer/SDKs/MacOSX10.4u.sdk;
 			};
 			name = Development;
@@ -1298,9 +1393,9 @@
 			buildSettings = {
 				GCC_VERSION_i386 = 4.0;
 				GCC_VERSION_ppc = 3.3;
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
+				MACOSX_DEPLOYMENT_TARGET = 10.3;
 				MACOSX_DEPLOYMENT_TARGET_i386 = 10.4;
-				SDKROOT = /Developer/SDKs/MacOSX10.2.8.sdk;
+				SDKROOT = /Developer/SDKs/MacOSX10.3.9.sdk;
 				SDKROOT_i386 = /Developer/SDKs/MacOSX10.4u.sdk;
 			};
 			name = Deployment;
@@ -1310,9 +1405,9 @@
 			buildSettings = {
 				GCC_VERSION_i386 = 4.0;
 				GCC_VERSION_ppc = 3.3;
-				MACOSX_DEPLOYMENT_TARGET = 10.2;
+				MACOSX_DEPLOYMENT_TARGET = 10.3;
 				MACOSX_DEPLOYMENT_TARGET_i386 = 10.4;
-				SDKROOT = /Developer/SDKs/MacOSX10.2.8.sdk;
+				SDKROOT = /Developer/SDKs/MacOSX10.3.9.sdk;
 				SDKROOT_i386 = /Developer/SDKs/MacOSX10.4u.sdk;
 			};
 			name = Default;
@@ -1553,7 +1648,9 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(FRAMEWORK_SEARCH_PATHS)",
 					"$(SRCROOT)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
 				);
+				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../Tools/redshed/trunk/cocoa/NSNotificationCenter+DebuggingPoser/build/Debug\"";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
@@ -1563,11 +1660,6 @@
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
-				JAVAC_SOURCE_FILE_ENCODING = "UTF-8";
-				JAVA_COMPILER_DEPRECATED_WARNINGS = YES;
-				JAVA_COMPILER_SOURCE_VERSION = 1.4;
-				JAVA_COMPILER_TARGET_VM_VERSION = 1.4;
-				JAVA_SOURCE_SUBDIR = .;
 				LIBRARY_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET_i386 = 10.4;
 				OTHER_CFLAGS = "";
@@ -1581,7 +1673,7 @@
 					"-Wno-unknown-pragmas",
 				);
 				WRAPPER_EXTENSION = app;
-				ZERO_LINK = NO;
+				ZERO_LINK = YES;
 			};
 			name = Development;
 		};
@@ -1596,7 +1688,9 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(FRAMEWORK_SEARCH_PATHS)",
 					"$(SRCROOT)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
 				);
+				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../Tools/redshed/trunk/cocoa/NSNotificationCenter+DebuggingPoser/build/Debug\"";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
@@ -1605,12 +1699,6 @@
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
-				JAVAC_SOURCE_FILE_ENCODING = "UTF-8";
-				JAVA_COMPILER_DEBUGGING_SYMBOLS = NO;
-				JAVA_COMPILER_DEPRECATED_WARNINGS = YES;
-				JAVA_COMPILER_SOURCE_VERSION = 1.4;
-				JAVA_COMPILER_TARGET_VM_VERSION = 1.4;
-				JAVA_SOURCE_SUBDIR = .;
 				LIBRARY_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET_i386 = 10.4;
 				OTHER_CFLAGS = "";
@@ -1637,7 +1725,9 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(FRAMEWORK_SEARCH_PATHS)",
 					"$(SRCROOT)",
+					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_1)",
 				);
+				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../Tools/redshed/trunk/cocoa/NSNotificationCenter+DebuggingPoser/build/Debug\"";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1645,11 +1735,6 @@
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
-				JAVAC_SOURCE_FILE_ENCODING = "UTF-8";
-				JAVA_COMPILER_DEPRECATED_WARNINGS = YES;
-				JAVA_COMPILER_SOURCE_VERSION = 1.4;
-				JAVA_COMPILER_TARGET_VM_VERSION = 1.4;
-				JAVA_SOURCE_SUBDIR = .;
 				LIBRARY_SEARCH_PATHS = "";
 				MACOSX_DEPLOYMENT_TARGET_i386 = 10.4;
 				OTHER_CFLAGS = "";

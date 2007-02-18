@@ -22,6 +22,7 @@ public class ImportController {
   public NSMatrix importRadio; /* IBOutlet */
   public NSTextField filePathField; /* IBOutlet */
   public NSProgressIndicator progress; /* IBOutlet */
+  public NSObject taskView; /* IBOutlet */
 
 private NSOpenPanel openPanel;
 
@@ -86,6 +87,14 @@ private NSOpenPanel openPanel;
 		if  (importRadio.selectedTag() == 0) { // import into existing file
 			doc.startSuppressUpdates();
 			try {
+				if (progress == null) {
+					if (taskView != null) {
+						progress = (NSProgressIndicator) taskView.valueForKey("progressView");
+					} else {
+						progress = new NSProgressIndicator(NSRect.ZeroRect);
+					}
+					
+				}
 				new GedcomLoaderJDOM(doc.doc, progress).loadXMLFile(new File(filePathField.stringValue()));
 				if (doc.getPrimaryIndividual() instanceof Individual.UnknownIndividual) {
 					doc.doc.chooseNewPrimaryIndividual();
@@ -96,6 +105,9 @@ private NSOpenPanel openPanel;
 			} finally {
 				doc.endSuppressUpdates();
 			}
+		} else {
+			// import into new file
+			NSDocumentController.sharedDocumentController().openDocumentWithContentsOfFile(filePathField.stringValue(), true);
 		}
 	} catch (RuntimeException e) {
 		e.printStackTrace();
@@ -129,7 +141,7 @@ private NSOpenPanel openPanel;
 
 //  public void openImportSheet(Object sender) { /* IBAction */
 //	NSApplication nsapp = NSApplication.sharedApplication();
-//	nsapp.beginSheet(importWindow, ((MyDocument)this.document()).mainWindow, null, null, null);
+//	nsapp.beginSheet(importSheet, ((MyDocument)this.document()).mainWindow, null, null, null);
 ////	nsapp.runModalForWindow(this.window());
 ////	nsapp.endSheet(this.window());
 ////	this.window().orderOut(this);

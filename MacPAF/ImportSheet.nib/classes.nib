@@ -1,0 +1,31 @@
+{
+    IBClasses = (
+        {CLASS = FirstResponder; LANGUAGE = ObjC; SUPERCLASS = NSObject; }, 
+        {
+            ACTIONS = {browse = id; cancel = id; importFile = id; }; 
+            CLASS = ImportController; 
+            LANGUAGE = Java; 
+            OUTLETS = {
+                filePathField = NSTextField; 
+                importRadio = NSMatrix; 
+                importWindow = NSWindow; 
+                progress = NSProgressIndicator; 
+                taskView = id; 
+            }; 
+            SUPERCLASS = "java.lang.Object"; 
+        }, 
+        {
+            ACTIONS = {cancel = id; import = id; }; 
+            CLASS = ImportSheetController; 
+            LANGUAGE = ObjC; 
+            OUTLETS = {filePreview = NSTextView; importSheet = NSWindow; taskProgressView = NSView; }; 
+            SUPERCLASS = NSWindowController; 
+        }, 
+        {
+            CLASS = "com.redbugz.macpaf.jdom.GedcomLoaderJDOM"; 
+            LANGUAGE = Java; 
+            SUPERCLASS = "java.lang.Object"; 
+        }
+    ); 
+    IBVersion = 1; 
+}

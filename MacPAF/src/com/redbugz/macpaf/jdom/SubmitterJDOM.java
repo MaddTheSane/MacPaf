@@ -12,6 +12,7 @@ import java.util.*;
 import org.jdom.*;
 
 import com.redbugz.macpaf.*;
+import com.redbugz.macpaf.util.StringUtils;
 
 /**
  * @author logan
@@ -34,9 +35,37 @@ public class SubmitterJDOM implements Submitter {
 	element.setContent(elements);
 	element.addContent(new Element(LANGUAGE).setText("English"));
 	element.addContent(new Element(RIN).setText("1"));
-	element.addContent( (Content)new Element("CHAN").addContent(new Element("DATE").setText(new SimpleDateFormat(
-		"dd MMM yyyy").format(new Date()))));
+//	element.addContent( (Content)new Element("CHAN").addContent(new Element("DATE").setText(new SimpleDateFormat(
+//		"dd MMM yyyy").format(new Date()))));
   }
+  
+  public boolean isDefault() {
+		boolean result = false;
+		// default structure is same as the constructor
+		if (getElement().getContentSize() == 3) {
+			result = true;
+			Element nameElement = getElement().getChild(Submitter.NAME);
+			if (nameElement != null) {
+				if ( ! StringUtils.isEmpty(nameElement.getTextTrim())) {
+					result = false;
+				}
+			}
+			Element langElement = getElement().getChild(Submitter.LANGUAGE);
+			if (langElement != null) {
+				if ( ! "English".equals(langElement.getTextTrim())) {
+					result = false;
+				}
+			}
+			Element rinElement = getElement().getChild(Submitter.RIN);
+			if (rinElement != null) {
+				if ( ! "1".equals(rinElement.getTextTrim())) {
+					result = false;
+				}
+			}
+		}
+		return result;
+  }
+
 
   public SubmitterJDOM(Element element, MacPAFDocumentJDOM parentDocument) {
   	if (parentDocument == null) {

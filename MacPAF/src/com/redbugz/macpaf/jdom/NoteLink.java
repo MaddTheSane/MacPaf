@@ -59,8 +59,11 @@ public class NoteLink implements Note {
 	 * @see com.redbugz.macpaf.Note#getText()
 	 */
 	public String getText() {
-		// TODO Auto-generated method stub
 		return getNote().getText();
+	}
+
+	public void setText(String newText) {
+		getNote().setText(newText);
 	}
 
 }

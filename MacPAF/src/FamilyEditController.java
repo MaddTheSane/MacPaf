@@ -209,7 +209,7 @@ private void undoChanges() {
 	( (NSWindowController) individualEditWindow.delegate()).setDocument(document);
 	Individual childToEdit = (Individual) family.getChildren().get(	tv.selectedRow());
 	( (IndividualEditController) individualEditWindow.delegate()).setIndividual( childToEdit);
-	NSApplication.sharedApplication().beginSheet(individualEditWindow, window(), this, CocoaUtils.didEndSelector(), new NSDictionary(childToEdit, EDIT_CHILD_KEY));
+	NSApplication.sharedApplication().beginSheet(individualEditWindow, window(), this, CocoaUtils.SHEET_DID_END_SELECTOR, new NSDictionary(childToEdit, EDIT_CHILD_KEY));
 	// sheet up here, control will pass to didEndSelector after closed
   }
 
@@ -228,7 +228,7 @@ private void undoChanges() {
 		family.setFather(father);
 	}
 	( (IndividualEditController) individualEditWindow.delegate()).setIndividual(father);
-	NSApplication.sharedApplication().beginSheet(individualEditWindow, window(), this, CocoaUtils.didEndSelector(), new NSDictionary(father, EDIT_HUSBAND_KEY));
+	NSApplication.sharedApplication().beginSheet(individualEditWindow, window(), this, CocoaUtils.SHEET_DID_END_SELECTOR, new NSDictionary(father, EDIT_HUSBAND_KEY));
 	// sheet up here, control will pass to didEndSelector after closed
   }
   
@@ -247,7 +247,7 @@ private void undoChanges() {
 		family.setMother(mother);
 	}
 	( (IndividualEditController) individualEditWindow.delegate()).setIndividual(family.getMother());
-	NSApplication.sharedApplication().beginSheet(individualEditWindow, window(), this, CocoaUtils.didEndSelector(), new NSDictionary(family.getMother(), EDIT_WIFE_KEY));
+	NSApplication.sharedApplication().beginSheet(individualEditWindow, window(), this, CocoaUtils.SHEET_DID_END_SELECTOR, new NSDictionary(family.getMother(), EDIT_WIFE_KEY));
 	// sheet up here, control will pass to didEndSelector after closed
   }
   

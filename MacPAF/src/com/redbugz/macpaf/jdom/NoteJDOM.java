@@ -7,6 +7,8 @@ import org.jdom.*;
 import org.jdom.output.*;
 
 import com.redbugz.macpaf.*;
+import com.redbugz.macpaf.util.JDOMUtils;
+import com.redbugz.macpaf.util.StringUtils;
 
 /**
  * Created by IntelliJ IDEA.
@@ -124,7 +126,11 @@ public class NoteJDOM implements Note {
   }
 
   public void setText(String text) {
-	element.setText(text);
+	try {
+		element.setText(JDOMUtils.cleanText(text));
+	} catch (RuntimeException e) {
+		e.printStackTrace();
+	}
   }
 
 }

@@ -7,14 +7,18 @@
 //
 
 import java.io.*;
+import java.util.Enumeration;
+import java.util.Iterator;
 
 import org.apache.log4j.*;
 
 import com.apple.cocoa.application.*;
 import com.apple.cocoa.foundation.*;
+import com.redbugz.macpaf.util.CocoaUtils;
 
-public class ApplicationUtilities {
-  public NSPanel splashScreen; /* IBOutlet */
+public class ApplicationUtilities extends NSObject {
+  private static final String DEFAULTS_KEY_OPENED_DOCUMENTS = "com.redbugz.macpaf.OpenedDocuments";
+  public NSWindow splashScreen; /* IBOutlet */
   public NSProgressIndicator progress; /* IBOutlet */
   public static boolean didFinish = false;
   private static final Logger log = Logger.getLogger(ApplicationUtilities.class);
@@ -30,21 +34,29 @@ public class ApplicationUtilities {
 	if (progress != null) {
 	  progress.startAnimation(this);
 	}
+	  log.debug("splash:"+splashScreen);
+	  if (splashScreen != null) {
+		  splashScreen.center();
+	  }
   }
 
   public void applicationDidFinishLaunching(NSNotification aNotification) {
-	log.debug("applicationDidFinishLaunching:" + aNotification + " isreleased=" + splashScreen.isReleasedWhenClosed());
+	log.debug("applicationDidFinishLaunching:" + aNotification + " splashisreleasedwhenclosed=" + splashScreen.isReleasedWhenClosed());
 	try {
 	  // open last opened document
-	  String lastOpenedDocument = NSUserDefaults.standardUserDefaults().stringForKey(
-		  "com.redbugz.macpaf.lastOpenedDocument");
-	  log.debug("lastOpenedDocument=" + lastOpenedDocument);
-	  if (lastOpenedDocument != null) {log.debug(" exists:"+new File(lastOpenedDocument).exists());}
-	  if (lastOpenedDocument != null && new File(lastOpenedDocument).exists()) {
-		NSDocumentController.sharedDocumentController().openDocumentWithContentsOfFile(lastOpenedDocument, true);
-	  }
-	  else {
-		NSDocumentController.sharedDocumentController().openUntitledDocumentOfType(MyDocument.MACPAF, true);
+	  NSArray lastOpenedDocuments = NSUserDefaults.standardUserDefaults().arrayForKey(DEFAULTS_KEY_OPENED_DOCUMENTS);
+	  log.debug("OpenedDocuments=" + lastOpenedDocuments);
+	  if (lastOpenedDocuments == null || lastOpenedDocuments.count() == 0) {
+			NSDocumentController.sharedDocumentController().openUntitledDocumentOfType(MyDocument.MACPAF_DOCUMENT_TYPE, true);		  
+	  } else {
+		  // open documents that were open last time the user quit if there are any
+		  for (Enumeration documentsToOpen = lastOpenedDocuments.objectEnumerator(); documentsToOpen.hasMoreElements();) {
+			String documentPath = (String) documentsToOpen.nextElement();
+			log.debug(documentPath+" exists:"+new File(documentPath).exists());
+			if (documentPath != null && new File(documentPath).exists()) {
+				NSDocumentController.sharedDocumentController().openDocumentWithContentsOfFile(documentPath, true);
+			}
+		  }
 	  }
 	}
 	catch (Exception ex) {
@@ -58,17 +70,27 @@ public class ApplicationUtilities {
   }
 
   public boolean applicationShouldOpenUntitledFile(NSApplication sender) {
-	log.debug(
-		"ApplicationUtilities.applicationShouldOpenUntitledFile():" + sender);
-	log.debug("didfinish=" + didFinish);
+//	log.debug("ApplicationUtilities.applicationShouldOpenUntitledFile():" + sender);
+//	log.debug("didfinish=" + didFinish);
 //		if (!didFinish) {
 //			((NSApplication.Delegate)sender.delegate()).applicationOpenFile(sender, "/Projects/MacPAFTest/startup.macpaf");
 //		}
 	return false; // didFinish;
   }
+  
+  public void applicationWillTerminate(NSNotification aNotification) {
+	  log.debug("ApplicationUtilities.applicationWillTerminate():"+aNotification);
+	  // save opened documents as preference
+	  log.debug("setting lastOpenedDocuments to: " + NSDocumentController.sharedDocumentController().documents().valueForKey("fileName"));
+	  NSUserDefaults.standardUserDefaults().setObjectForKey(NSDocumentController.sharedDocumentController().documents().valueForKey("fileName"), DEFAULTS_KEY_OPENED_DOCUMENTS);
 
-//   public boolean applicationOpenFile(NSApplication theApplication, String filename) {
-//   	log.debug("ApplicationUtilities.applicationOpenFile():"+filename);
-//   	return true;
-//   }
   }
+  
+	public void terminate(Object sender) { /* IBAction */
+		log.debug("MyDocument.terminate():"+sender+NSDocumentController.sharedDocumentController().documents());
+		// close document loading sheets before closing
+//		CocoaUtils.makeObjectsPerformSelector(NSDocumentController.sharedDocumentController().documents(), CocoaUtils.CANCEL_SHEETS_SELECTOR, this);
+		NSApplication.sharedApplication().terminate(sender);
+	}
+
+}

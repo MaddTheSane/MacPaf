@@ -89,4 +89,22 @@ public class StringUtils {
 	public static String generateUUIDWithoutCheckDigits() {
 		return UUIDGenerator.getInstance().generateRandomBasedUUID().toString().replaceAll("-", "");
 	}
+
+	public static String trimTrailingWhitespace(String s) {
+		if (s == null) {
+			return null;
+		}
+		if (s.length() <= 1) {
+			return s.trim();
+		}
+		// if first character is not whitespace, return s.trim()
+		if (!Character.isWhitespace(s.charAt(0))) {
+			return s.trim();
+		}
+		int index = s.length()-1;
+		while (Character.isWhitespace(s.charAt(index))) {index--;
+		}
+		;
+		return s.substring(0, index) + s.substring(index).trim();
+	}
 }

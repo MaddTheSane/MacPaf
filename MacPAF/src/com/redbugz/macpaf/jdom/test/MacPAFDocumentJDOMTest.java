@@ -77,14 +77,14 @@ public class MacPAFDocumentJDOMTest extends TestCase {
 		assertEquals("S1", s1.getId());
 		assertEquals("T1", t1.getId());
 		
-		assertSame(f1, doc.getFamily("F1"));
-		assertSame(i1, doc.getIndividual("I1"));		
+		assertSame(f1, doc.getFamilyJDOM("F1"));
+		assertSame(i1, doc.getIndividualJDOM("I1"));		
 //		assertSame(i1, doc.getPrimaryIndividual());
-		assertSame(n1, doc.getNote("N1"));
-		assertSame(m1, doc.getMultimedia("M1"));
-		assertSame(r1, doc.getRepository("R1"));
-		assertSame(s1, doc.getSource("S1"));
-		assertSame(t1, doc.getSubmitter("T1"));
+		assertSame(n1, doc.getNoteJDOM("N1"));
+		assertSame(m1, doc.getMultimediaJDOM("M1"));
+		assertSame(r1, doc.getRepositoryJDOM("R1"));
+		assertSame(s1, doc.getSourceJDOM("S1"));
+		assertSame(t1, doc.getSubmitterJDOM("T1"));
 		
 		// now remove
 		doc.removeFamily(f1);

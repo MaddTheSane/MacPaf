@@ -9,10 +9,12 @@
 import java.util.*;
 
 import org.apache.log4j.*;
+import org.jdom.Element;
 
 import com.apple.cocoa.application.*;
 import com.apple.cocoa.foundation.*;
 import com.redbugz.macpaf.*;
+import com.redbugz.macpaf.Event.UnknownEvent;
 import com.redbugz.macpaf.jdom.*;
 import com.redbugz.macpaf.util.*;
 import com.redbugz.macpaf.validation.*;
@@ -85,11 +87,11 @@ private static final String EDIT_CHILD_KEY = "EditChild";
 	}
 	husbandButton.setTitle(family.getFather().getFullName());
 	wifeButton.setTitle(family.getMother().getFullName());
-	marriageForm.cellAtIndex(0).setStringValue(family.getMarriageEvent().getDateString());
+	marriageForm.cellAtIndex(0).setStringValue(family.getPreferredMarriageEvent().getDateString());
 	marriageForm.selectTextAtIndex(0);
-	marriageForm.cellAtIndex(1).setStringValue(family.getMarriageEvent().getPlace().getFormatString());
-	sealingDate.setStringValue(family.getSealingToSpouse().getDateString());
-	sealingTemple.setStringValue(family.getSealingToSpouse().getTemple().getCode());
+	marriageForm.cellAtIndex(1).setStringValue(family.getPreferredMarriageEvent().getPlace().getFormatString());
+	sealingDate.setStringValue(family.getPreferredSealingToSpouse().getDateString());
+	sealingTemple.setStringValue(family.getPreferredSealingToSpouse().getTemple().getCode());
 	children.reloadData();
 	undoStack.removeAllObjects();
 	eventTableController.setEventSource(family);
@@ -111,12 +113,17 @@ private static final String EDIT_CHILD_KEY = "EditChild";
 		}
 		husbandButton.setTitle(family.getFather().getFullName());
 		wifeButton.setTitle(family.getMother().getFullName());
-		marriageForm.cellAtIndex(0).setStringValue(family.getMarriageEvent().getDateString());
+		Event preferredMarriageEvent = family.getPreferredMarriageEvent();
+//		if (preferredMarriageEvent != null) {
+		marriageForm.cellAtIndex(0).setStringValue(preferredMarriageEvent.getDateString());
 		marriageForm.selectTextAtIndex(0);
-		marriageForm.cellAtIndex(1).setStringValue(family.getMarriageEvent().getPlace().getFormatString());
-		sealingDate.setStringValue(family.getSealingToSpouse().getDateString());
-		sealingTemple.setStringValue(family.getSealingToSpouse().getTemple().getCode());
-		children.reloadData();
+		marriageForm.cellAtIndex(1).setStringValue(preferredMarriageEvent.getPlace().getFormatString());
+//		}
+		Ordinance sealingToSpouse = family.getPreferredSealingToSpouse();
+		if (preferredMarriageEvent != null) {
+		sealingDate.setStringValue(sealingToSpouse.getDateString());
+		sealingTemple.setStringValue(sealingToSpouse.getTemple().getCode());
+		}		children.reloadData();
 		undoStack.removeAllObjects();
 		eventTableController.setEventSource(family);
 		tabView.selectFirstTabViewItem(this);
@@ -291,13 +298,25 @@ private void undoChanges() {
 		  	family = document.createAndInsertNewFamily();
 			log.debug("New family, added to document: "+family);
 		  }
-		  family.getMarriageEvent().setDateString(marriageForm.cellAtIndex(0).stringValue());
-		  family.getMarriageEvent().setPlace(new PlaceJDOM(marriageForm.cellAtIndex(1).stringValue()));
-		  family.getSealingToSpouse().setDateString(sealingDate.stringValue());
-		  family.getSealingToSpouse().setTemple(CocoaUtils.templeForComboBox(sealingTemple));
+		  
+		  Event preferredMarriageEvent = family.getPreferredMarriageEvent();
+		  if (preferredMarriageEvent instanceof UnknownEvent) {
+			  preferredMarriageEvent = EventJDOM.createMarriageEventInstance();
+			  ((FamilyJDOM)family).getElement().addContent(((EventJDOM)preferredMarriageEvent).getElement());
+		  }
+		  preferredMarriageEvent.setDateString(marriageForm.cellAtIndex(0).stringValue());
+		  preferredMarriageEvent.setPlace(new PlaceJDOM(marriageForm.cellAtIndex(1).stringValue()));
+		  
+		  Ordinance sealingToSpouse = family.getPreferredSealingToSpouse();
+		  if (sealingToSpouse instanceof UnknownEvent) {
+			  sealingToSpouse = OrdinanceJDOM.createSealingToSpouseInstance();
+			  ((FamilyJDOM)family).getElement().addContent(((OrdinanceJDOM)sealingToSpouse).getElement());			  
+		  }
+		  sealingToSpouse.setDateString(sealingDate.stringValue());
+		  sealingToSpouse.setTemple(CocoaUtils.templeForComboBox(sealingTemple));
 		  
 		  undoStack.removeAllObjects();
-//	  NSApplication.sharedApplication().stopModal();
+
 		  NSApplication.sharedApplication().endSheet(window());
 		  window().orderOut(this);
 		}
@@ -363,7 +382,7 @@ private void undoChanges() {
 
 
 	   public int tableViewValidateDrop(NSTableView tv, NSDraggingInfo info, int row, int operation) {
-	  		  System.err.println("DNDJavaController.tableViewValidateDrop():"+info+":"+row+":"+operation);
+	  		  System.err.println("DNDJavaController.tableViewValidateDrop():"+info+" row:"+row+" op:"+operation);
 	      
 	      int dragOp = NSDraggingInfo.DragOperationNone;
 	      int sourceRow = Integer.parseInt(((NSArray) info.draggingPasteboard().propertyListForType(MACPAF_TABLE_REORDER_DRAG_TYPE)).lastObject().toString());
@@ -382,7 +401,7 @@ private void undoChanges() {
 
 
 	  public boolean tableViewAcceptDrop(NSTableView tableView, NSDraggingInfo info, int row, int operation) {
-	  		  System.err.println("DNDJavaController.tableViewAcceptDrop():"+info+":"+row+":"+operation);
+	  		  System.err.println("DNDJavaController.tableViewAcceptDrop():"+info+": row"+row+" op:"+operation);
 	  		  System.out.println("dragging pboard:"+info.draggingPasteboard().types());
 	      if (row < 0)
 	  	{
@@ -404,8 +423,8 @@ private void undoChanges() {
 			}
 	    	  log.debug("dragging operation will move index "+rows.lastObject()+" to index "+row);
 	    	  Individual child = (Individual) family.getChildren().get(fromRow);
-	    	  family.removeChildAtPosition(fromRow);
-	    	  family.addChildAtPosition(child, row);
+	    	  family.reorderChildToPosition(child, row);
+//	    	  family.addChildAtPosition(child, row);
 //	  		// set selected rows to those that were just moved
 	    	  tableView.reloadData();
 	    	  tableView.selectRow(row, false);

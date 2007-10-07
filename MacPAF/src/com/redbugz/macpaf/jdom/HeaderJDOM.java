@@ -131,7 +131,7 @@ private MacPAFDocumentJDOM document = null;
    * @see Header#getSubmitter()
    */
   public Submitter getSubmitter() {
-	return document.getSubmitter(JDOMUtils.getNonNullXpathText(element, "string("+StringUtils.join("/", new String[] {SUBMITTER,"@"+REF})+")"));
+	return document.getSubmitterJDOM(JDOMUtils.getNonNullXpathText(element, "string("+StringUtils.join("/", new String[] {SUBMITTER,"@"+REF})+")"));
   }
 
   /* (non-Javadoc)

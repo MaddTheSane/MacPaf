@@ -33,16 +33,21 @@ public class EventJDOM implements Event {
 //   protected String cause = "";
 //   protected int age = -1;
 //   protected String ageString = "";
+  
+  // Individual Event Types
+  public static final String ADOPTION = "ADOP";
   public static final String BIRTH = "BIRT";
   public static final String CHRISTENING = "CHR";
   public static final String DEATH = "DEAT";
   public static final String BURIAL = "BURI";
   public static final String CREMATION = "CREM";
-  public static final String ADOPTION = "ADOP";
+  
+  // Family Event Types
   public static final String MARRIAGE = "MARR";
+  public static final String DIVORCE = "DIV";
+
   public static final String DATE = "DATE";
   public static final String EVENT = "EVEN";
-
   public static final String TYPE = "TYPE";
   public static final String PLACE = "PLAC";
   public static final String ADDR = "ADDR";
@@ -122,6 +127,10 @@ public class EventJDOM implements Event {
 
   public static EventJDOM createMarriageEventInstance() {
 	return new EventJDOM(new Element(MARRIAGE));
+  }
+
+  public static EventJDOM createDivorceEventInstance() {
+	return new EventJDOM(new Element(DIVORCE).setText("Y"));
   }
 
   public Element getElement() {
@@ -263,5 +272,5 @@ public class EventJDOM implements Event {
 	element.removeChildren(TYPE);
 	element.addContent(new Element(TYPE).setText(type));
   }
-
+  
 }

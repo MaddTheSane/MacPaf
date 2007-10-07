@@ -59,17 +59,20 @@ public class NoteJDOM implements Note {
 	log.debug("MyNote() text:" + getText());
   }
 
-//  public NoteJDOM(Note oldNote) {
-//	if (oldNote instanceof NoteJDOM) {
-//	  this.element = ( (NoteJDOM) oldNote).getElement();
-//	}
-//  }
+  public NoteJDOM(Note oldNote) {
+	if (oldNote instanceof NoteJDOM) {
+	  this.element = ( (NoteJDOM) oldNote).getElement();
+	} else {
+		setId(oldNote.getId());
+		setText(oldNote.getText());
+	}
+  }
 
 //  public NoteJDOM() {
 //	setText("This is an empty note.");
 //  }
 
-  public Element getElement() {
+public Element getElement() {
 	return element;
   }
 
@@ -132,5 +135,10 @@ public class NoteJDOM implements Note {
 		e.printStackTrace();
 	}
   }
+
+public String toString() {
+	// TODO Auto-generated method stub
+	return getId()+":"+getText();
+}
 
 }

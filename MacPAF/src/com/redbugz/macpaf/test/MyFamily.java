@@ -93,11 +93,11 @@ public class MyFamily implements Family, Cloneable {
 	children.add(position, newChild);
   }
 
-  public Ordinance getSealingToSpouse() {
+  public Ordinance getPreferredSealingToSpouse() {
 	return new MyOrdinance();
   }
 
-  public void setSealingToSpouse(Ordinance sealing) {
+  public void setPreferredSealingToSpouse(Ordinance sealing) {
   }
 
   public String getId() {
@@ -120,7 +120,7 @@ public class MyFamily implements Family, Cloneable {
 	marriageEvent = marrEvent;
   }
 
-  public Event getMarriageEvent() {
+  public Event getPreferredMarriageEvent() {
 	return marriageEvent;
   }
 
@@ -134,7 +134,7 @@ public class MyFamily implements Family, Cloneable {
 
 public List getEvents() {
 	List list = new ArrayList();
-	list.add(getMarriageEvent());
+	list.add(getPreferredMarriageEvent());
 	return list;
 }
 
@@ -144,5 +144,15 @@ public String getNoteText() {
 
 public String getUID() {
 	return "";
+}
+
+public void reorderChildToPosition(Individual child, int newPosition) {
+	// TODO Auto-generated method stub
+	
+}
+
+public List getMarriageEvents() {
+	return Collections.EMPTY_LIST;
+
 }
 }

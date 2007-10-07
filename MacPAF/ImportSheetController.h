@@ -3,21 +3,26 @@
 //  MacPAF
 //
 //  Created by Logan Allred on 12/31/06.
-//  Copyright 2006 __MyCompanyName__. All rights reserved.
+//  Copyright 2006 RedBugz Software. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>
 
 @class UKProgressPanelTask;	
+@class MacPAFDocumentJDOM;
 
 @interface ImportSheetController : NSWindowController {
 	IBOutlet NSWindow *importSheet;
+	IBOutlet NSWindow *progressSheet;
 	IBOutlet id loader; // GedcomLoaderJDOM
 	IBOutlet NSTextView *filePreview;
-//	IBOutlet NSView *taskProgressView;
+	IBOutlet NSTextField *fileNameText;
+//	IBOutlet NSView *progressView;
+	IBOutlet NSButton *importButton;
 	
 //	UKProgressPanelTask *task;
 	NSString *fileNameToImport;
+	MacPAFDocumentJDOM *importDocument;
 //	NSData *data;
 }
 

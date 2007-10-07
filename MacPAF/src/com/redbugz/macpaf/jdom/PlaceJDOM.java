@@ -241,21 +241,33 @@ public class PlaceJDOM implements Place {
   }
 
   public void setLevel1(String level1) {
+	if (level1 == null) {
+		level1 = "";
+	}
 	this.level1 = level1;
 	element.setText(getFormatString());
   }
 
   public void setLevel2(String level2) {
+		if (level2 == null) {
+			level2 = "";
+		}
 	this.level2 = level2;
 	element.setText(getFormatString());
   }
 
   public void setLevel3(String level3) {
+		if (level3 == null) {
+			level3 = "";
+		}
 	this.level3 = level3;
 	element.setText(getFormatString());
   }
 
   public void setLevel4(String level4) {
+		if (level4 == null) {
+			level4 = "";
+		}
 	this.level4 = level4;
 	element.setText(getFormatString());
   }

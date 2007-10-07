@@ -48,6 +48,7 @@ private static final Logger log = Logger.getLogger(IndividualJDOM.class);
   public static final String ID = "ID";
   public static final String FAMILY_CHILD_LINK = "FAMC";
   public static final String FAMILY_SPOUSE_LINK = "FAMS";
+  private static final String NOTE_LINK = "NOTE";
   public static final String LOCKED = "locked";
   public static final String PRIVACY = "privacy";
 
@@ -165,6 +166,10 @@ private static final Collection commonNamePrefixes = Arrays.asList(new String[] 
 	  element.addContent(new Element(GENDER).setText(gender.getAbbreviation()));
 	}
   }
+  
+  public void setGenderAsString(String genderCode) {
+	  setGender(Gender.genderWithCode(genderCode));
+  }
 
   public void setSurname(String surname) {
 	if (surname == null) {
@@ -244,8 +249,8 @@ private static final Collection commonNamePrefixes = Arrays.asList(new String[] 
 	}
 	int firstSlashIndex = name.indexOf("/");
 	int lastSlashIndex = name.lastIndexOf("/"); //, firstSlashIndex + 1);
-	log.error("name:" + name);
-	log.error("surname:" + firstSlashIndex + "-" + lastSlashIndex);
+	log.debug("name:" + name);
+	log.debug("surname:" + firstSlashIndex + "-" + lastSlashIndex);
 	if (firstSlashIndex >= 0) {
 	  setBestGuessPrefixAndGivenNames(name.substring(0, firstSlashIndex));
 	  if (lastSlashIndex >= 0 && lastSlashIndex > firstSlashIndex) {
@@ -390,16 +395,53 @@ private void saveName() {
   }
 
   public void setFamilyAsChild(Family family) {
-//		this.familyAsChild = family;
+	  log.debug("IndividualJDOM.setFamilyAsChild():"+family);
+		if (family == null) {
+			throw new IllegalArgumentException("Cannot set null family as child of "+this);
+		}
+		if (StringUtils.isEmpty(family.getId())) {
+			log.warn("Setting family with blank id to individual as child. Individual: "+this+" Family:"+family);
+			throw new IllegalArgumentException("Setting family with blank id to individual as child. Individual: "+this+" Family:"+family);
+		}
 	element.removeChildren(FAMILY_CHILD_LINK);
 	if (family != null) {
 		element.addContent(new Element(FAMILY_CHILD_LINK).setAttribute(REF, family.getId()));
 	}
   }
 
+  public void addFamilyAsChild(Family family) {
+//		this.familyAsChild = family;
+	if (family == null) {
+		throw new IllegalArgumentException("Cannot add null family as child of "+this);
+	}
+	if (StringUtils.isEmpty(family.getId())) {
+		log.warn("Adding family with blank id to individual as child. Individual: "+this+" Family:"+family);
+		throw new IllegalArgumentException("Adding family with blank id to individual as child. Individual: "+this+" Family:"+family);
+	}
+	element.addContent(new Element(FAMILY_CHILD_LINK).setAttribute(REF, family.getId()));
+  }
+  
+  public void removeFamilyAsChild(Family familyToRemove) {
+	  for (Iterator iter = element.getChildren(IndividualJDOM.FAMILY_CHILD_LINK).iterator(); iter.hasNext();) {
+			Element familyAsChild = (Element) iter.next();
+			if (familyAsChild.getAttributeValue(IndividualJDOM.REF).equals(familyToRemove.getId())) {
+				log.warn("removing family as child with id="+familyToRemove.getId()+" from individual:"+getId());
+				iter.remove();
+			}
+		}
+	}
+
+
   public void addFamilyAsSpouse(Family family) {
 //		this.familyAsSpouse = family;
 //		familiesAsSpouse.add(family);
+		if (family == null) {
+			throw new IllegalArgumentException("Cannot add null family as spouse of "+this);
+		}
+		if (StringUtils.isEmpty(family.getId())) {
+			log.warn("Adding family with blank id to individual as spouse. Individual: "+this+" Family:"+family);
+			throw new IllegalArgumentException("Adding family with blank id to individual as spouse. Individual: "+this+" Family:"+family);
+		}
 	element.addContent(new Element(FAMILY_SPOUSE_LINK).setAttribute(REF, family.getId()));
 	//      addSpouse(family.getMother());
   }
@@ -491,7 +533,7 @@ private void saveName() {
 			 && child.getLDSSealingToParents().isCompleted()
 			 && child
 			 .getPreferredFamilyAsSpouse()
-			 .getSealingToSpouse()
+			 .getPreferredSealingToSpouse()
 			 .isCompleted())) {
 		return false;
 	  }
@@ -634,6 +676,14 @@ public List getFamiliesAsSpouse() {
 	}
 	return families;
 }
+
+  public void addNote(Note newNote) {
+	  element.addContent(new NoteJDOM(newNote).getElement());
+  }
+
+  public void addNoteLink(NoteLink newNote) {
+	  element.addContent(new Element(NOTE_LINK).setAttribute(REF, newNote.getId()));
+  }
 
   public void setNotes(List newNotes) {
 //		if (note == null) {

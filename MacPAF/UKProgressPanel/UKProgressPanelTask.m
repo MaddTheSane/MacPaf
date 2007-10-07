@@ -69,51 +69,6 @@ extern NSLock*						gUKProgressPanelThreadLock;		// Mutex lock used to allow cal
 	return el;
 }
 
-/* -----------------------------------------------------------------------------
-	newProgressSheetTask:
-		Convenience constructor for creating a task for use as a sheet. After setting
-		up the values for the task, call showSheetForWindow: to initiate the sheet.
-
-		Caller is responsible for releasing the result of this.
--------------------------------------------------------------------------- */
-+(id)	newProgressSheetTask
-{
-	UKProgressPanelTask*	el;
-	
-	el = [[self alloc] init];
-	
-	return el;
-}
-
-/* -----------------------------------------------------------------------------
-	showSheetForWindow:
-		Displays the given task as a sheet for the given window
--------------------------------------------------------------------------- */
-- (void)showSheetForWindow:(NSWindow *)window
-{
-	[progressTaskSheet setContentView:progressTaskView];
-	
-	[NSApp beginSheet: progressTaskSheet
-	   modalForWindow: window
-		modalDelegate: self
-	   didEndSelector: @selector(didEndSheet:returnCode:contextInfo:)
-		  contextInfo: nil];
-	[progressTaskSheet makeKeyAndOrderFront:nil];
-	
-    // Sheet is up here.
-    // Return processing to the event loop
-}
-
-/* -----------------------------------------------------------------------------
-	didEndSheet:returnCode:contextInfo:
-		
--------------------------------------------------------------------------- */
-- (void)didEndSheet:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
-{
-    [sheet orderOut:self];
-}
-
-
 
 /* -----------------------------------------------------------------------------
 	Constructor:
@@ -136,15 +91,12 @@ extern NSLock*						gUKProgressPanelThreadLock;		// Mutex lock used to allow cal
 
 /* -----------------------------------------------------------------------------
 	Destructor:
-		Makes sure we no longer belong to our progress window or sheet.
+		Makes sure we no longer belong to our progress window.
    -------------------------------------------------------------------------- */
 
 -(void)	dealloc
 {
 	[[UKProgressPanel sharedProgressPanel] removeProgressPanelTask: self];
-	if ([progressTaskSheet isSheet]) {
-		[NSApp endSheet:progressTaskSheet];
-	}
 	[super dealloc];
 }
 

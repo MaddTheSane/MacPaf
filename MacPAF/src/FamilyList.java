@@ -60,13 +60,13 @@ public void setDataSource(SortableFilteredTableViewDataSource newDataSource) {
 		  return family.getMother().getFullName();
 	  }
 	  else if (nsTableColumn.headerCell().stringValue().equals("Marriage Date")) {
-		  return family.getMarriageEvent().getDateString();
+		  return family.getPreferredMarriageEvent().getDateString();
 	  }
 	  else if (nsTableColumn.headerCell().stringValue().equals("Children")) {
 		  return String.valueOf(family.getChildren().size());
 	  }
 	  else if (nsTableColumn.headerCell().stringValue().equals("Marriage Place")) {
-		  return family.getMarriageEvent().getPlace().getFormatString();
+		  return family.getPreferredMarriageEvent().getPlace().getFormatString();
 	  } else {
 		  log.debug("FamilyList unidentified column:" + nsTableColumn.headerCell().stringValue());
 	  }

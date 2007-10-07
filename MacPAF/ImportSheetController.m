@@ -7,8 +7,14 @@
 //
 
 #import "ImportSheetController.h"
-#import <unistd.h>
 #import "UKProgressPanelTask.h"
+#import "ThreadWorker.h"
+#import "PAF21Data.h"
+
+NSString * const GEDCOM_DOCUMENT_TYPE = @"GEDCOM File (.ged)";
+NSString * const PAF21_DOCUMENT_TYPE = @"PAF 2.1/2.3.1 File";
+NSString * const MACPAF_DOCUMENT_TYPE = @"MacPAF File";
+NSString * const TEMPLEREADY_UPDATE_DOCUMENT_TYPE = @"TempleReady Update File";
 
 @implementation ImportSheetController
 
@@ -22,20 +28,20 @@
 		[NSBundle loadNibNamed: @"ImportSheet" owner: self];		
 	}
 	
-	int result;
-    NSArray *fileTypes = nil;//[NSArray arrayWithObject:@"td"];
+//	int result;
+    NSArray *fileTypes = nil;//[NSArray arrayWithObject:@"GED"];
     NSOpenPanel *oPanel = [NSOpenPanel openPanel];
 	
     [oPanel setAllowsMultipleSelection:NO];
 	[oPanel setMessage:@"Please choose a file to import"];
 //    result = 
-		[oPanel beginSheetForDirectory:nil file:nil types:nil modalForWindow:[[self document] windowForSheet] modalDelegate:self didEndSelector:@selector(openPanelDidEnd:returnCode:contextInfo:) contextInfo:nil];
-	
+		[oPanel beginSheetForDirectory:nil file:nil types:fileTypes modalForWindow:[[self document] windowForSheet] modalDelegate:self didEndSelector:@selector(openPanelDidEnd:returnCode:contextInfo:) contextInfo:nil];	
 }
 
 - (void)openPanelDidEnd:(NSOpenPanel *)panel returnCode:(int)returnCode  contextInfo:(void  *)contextInfo
 {
 	NSLog(@"ImportSheetController.openPanelDidEnd: %@ : returncode=%d contextinfo=%@", panel, returnCode, contextInfo);
+	[panel orderOut:self];
 	if (returnCode == NSOKButton) {
 		NSLog(@"filename:%@", [panel filename]);
 		fileNameToImport = [[panel filename] retain];
@@ -43,34 +49,18 @@
         int i, count = [filesToOpen count];
         for (i=0; i<count; i++) {
             NSString *aFile = [filesToOpen objectAtIndex:i];
-			NSLog(@"file:%@", aFile);
+			NSLog(@"file:%@", aFile);			
         }
-    }
-	[panel orderOut:self];
-	NSLog(@"doc:%@", NSClassFromString(@"com.redbugz.macpaf.jdom.MacPAFDocumentJDOM"));
-	id doc = [[NSClassFromString(@"com.redbugz.macpaf.jdom.MacPAFDocumentJDOM") alloc] init];
-	[filePreview setString:[NSString stringWithContentsOfFile:[panel filename]]];
-	NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys: [NSData dataWithContentsOfFile:[panel filename]], @"data", doc, @"doc", nil];
-	[NSThread detachNewThreadSelector:@selector(loadDataInThread:)
-							 toTarget:self
-						   withObject:dict];
+		[fileNameText setStringValue:fileNameToImport];
+		
+		importDocument = [NSClassFromString(@"com.redbugz.macpaf.jdom.MacPAFDocumentJDOM") new];
+		UKProgressPanelTask *task = [[UKProgressPanelTask alloc] init];
 
-	return;
-	[NSApp beginSheet: importSheet
-	   modalForWindow: [[self document] windowForSheet]
-		modalDelegate: self
-	   didEndSelector: @selector(didEndSheet:returnCode:contextInfo:)
-		  contextInfo: dict];
-	//[importSheet makeKeyAndOrderFront:nil];
-//	sleep(10);
-//	[NSApp endSheet:importSheet];
-}
-
-- (void)didEndSheet:(NSWindow *)sheet returnCode:(int)returnCode  contextInfo:(void  *)contextInfo
-{
-	NSLog(@"ImportSheetController.didEndSheet: %@ : returncode=%d contextinfo=%@", sheet, returnCode, contextInfo);
-	
-	[sheet orderOut:self];
+		NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys: [NSData dataWithContentsOfFile:fileNameToImport], @"data", importDocument, @"doc", task, @"task", nil];
+		[NSThread detachNewThreadSelector:@selector(loadDataPreviewInThread:)
+			toTarget:self
+			withObject:dict];
+	}
 }
 
 	// import data that has already been loaded into a new or existing document
@@ -89,6 +79,9 @@
 - (void)loadDocumentDataNotification:(NSNotification *)notification
 {
 	NSLog(@"loadDocumentDataNotification: %@ : userInfo=%@", notification, [notification userInfo]);
+	if (!importSheet) {
+		[NSBundle loadNibNamed: @"ImportSheet" owner: self];		
+	}
 
 	NSData *data = [[[notification userInfo] valueForKey:@"data"] retain];
 	if (!data) {
@@ -97,82 +90,167 @@
 	}
 	
 	NSLog(@"self window: %@ : windowforsheet=%@", importSheet, [[self document] windowForSheet]);
-//	NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:self, @"delegate", data, @"data", [[notification userInfo] valueForKey:@"doc"], @"document", nil];
-	//loader = [NSClassFromString(@"com.redbugz.macpaf.jdom.GedcomLoaderJDOM") retain];
-//	loader = [[NSClassFromString(@"com.redbugz.macpaf.jdom.GedcomLoaderJDOM") loadDataForDocumentWithUpdateDelegate:dict] retain];
 
-//	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(processUpdateNotification:) name:@"com.redbugz.macpaf.UpdateProgressNotification" object:loader];
-//	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(processTaskDoneNotification:) name:NSThreadWillExitNotification object:nil];
-	[NSThread detachNewThreadSelector:@selector(loadDataInThread:)
+	ThreadWorker *_tw = [[ThreadWorker workOn:self
+                   withSelector:@selector(loadDataInThread:)
+                     withObject:[notification userInfo]
+                 didEndSelector:@selector(longTaskFinished:)] retain];
+	
+/*	[NSThread detachNewThreadSelector:@selector(loadDataInThread:)
 							 toTarget:self
 						   withObject:[notification userInfo]];
-	NSLog(@"done");
+*/}
+
+-(void)longTaskFinished:(id)userInfo
+{
+	NSLog(@"%s userInfo: %@", _cmd, userInfo);
+	[NSApp endSheet:progressSheet];
 }
 
-- (void) loadDataInThread:(id)dict {
-	NSAutoreleasePool* myAutoreleasePool = [[NSAutoreleasePool alloc] init];
-	//document = [[dict valueForKey:@"document"] retain];
-	//data = [dict valueForKey:@"data"];
-	int							x, xmax = 10 + (rand() % 20 +1);
-	UKProgressPanelTask* 
-	task = [UKProgressPanelTask newProgressSheetTask];
-	NSLog(@"task rc:%d",[task retainCount] );
+/* -----------------------------------------------------------------------------
+	showSheetForWindow:
+		Displays the given task as a sheet for the given window
+-------------------------------------------------------------------------- */
+- (void)showSheetForWindow:(NSWindow *)aWindow task:(UKProgressPanelTask *)task
+{
+	[progressSheet setContentView:[task progressTaskView]];
 	
-	[task setMaxValue: xmax];	// Set the maximum value of the scroll bar.
-	[task setTitle: @"Inventing my own programming language"];
-	[task setStatus: @"Not much to do here."];
+	[NSApp beginSheet: progressSheet
+	   modalForWindow: aWindow
+		modalDelegate: self
+	   didEndSelector: @selector(didEndSheet:returnCode:contextInfo:)
+		  contextInfo: nil];
+	[progressSheet makeKeyAndOrderFront:nil];
 	
-	[task showSheetForWindow:[[self document] windowForSheet]];
-	
-	for( x = 0; x <= xmax && ![task stopped]; x++ )
-	{
-		[task setDoubleValue: x];	// Change the value of the progress bar to indicate our progress.
-		sleep(1);
-	}
-	
-	/*
-	 
-	 if (!loader) {
-		 loader = [[NSClassFromString(@"com.redbugz.macpaf.jdom.GedcomLoaderJDOM") alloc] init];
-	 }
-	 //	NSLog(@"static loader:%@",[NSClassFromString(@"com.redbugz.macpaf.jdom.GedcomLoaderJDOM") testStatic:notification] );
-	 //	NSLog(@" loader:%@",[loader test:notification] );
-	 //NSLog(@"loaded loader:%@",[loader test] );
-	 //	[NSThread detachNewThreadSelector:@selector(doIt:)//loadDataForDocumentWithUpdateDelegate)
-	 //							 toTarget:self
-	 //						   withObject:notification];
-	 */
+    // Sheet is up here.
+    // Return processing to the event loop
+}
 
-	//UKProgressPanelTask *task = [[UKProgressPanelTask newProgressSheetTask] retain];
+- (void) loadDataInThread:(id)dict
+{
+	NSAutoreleasePool* myAutoreleasePool = [[NSAutoreleasePool alloc] init];
+	
+	UKProgressPanelTask* task = [dict valueForKey:@"task"];
+	if (!task) {
+		task = [[UKProgressPanelTask alloc] init];
+	}
+	NSLog(@"ldit task start rc:%d",[task retainCount] );
+
 	[task setIndeterminate:YES];
 	[task setTitle:@"Load Document Data"];
 	[task setStatus:@"Preparing to load data..."];
 	[task setStopAction:@selector(cancel:)];
 	[task setStopDelegate:self];
-	//	[taskProgressView addSubview:[task progressTaskView]];
-	//	[taskProgressView setNeedsDisplay:YES];
-//	[task showSheetForWindow:[document windowForSheet]];
+
+	[self showSheetForWindow:[[self document] windowForSheet] task:task];
 	
-//	if (!loader) {
-//		loader = [[NSClassFromString(@"com.redbugz.macpaf.jdom.GedcomLoaderJDOM") alloc] init];
-//	}
-	//	NSLog(@"static loader:%@",[NSClassFromString(@"com.redbugz.macpaf.jdom.GedcomLoaderJDOM") testStatic:notification] );
-	//	NSLog(@" loader:%@",[loader test:notification] );
-	//NSLog(@"loaded loader:%@",[loader test] );
-	//	[NSThread detachNewThreadSelector:@selector(doIt:)//loadDataForDocumentWithUpdateDelegate)
-	//							 toTarget:self
-	//						   withObject:notification];
 	NSDictionary *loaderDict = [NSDictionary dictionaryWithObjectsAndKeys:task, @"delegate", [dict valueForKey:@"data"], @"data", [dict valueForKey:@"doc"], @"document", self, @"controller", nil];
-	//loader = [NSClassFromString(@"com.redbugz.macpaf.jdom.GedcomLoaderJDOM") retain];
-	//	loader = [[NSClassFromString(@"com.redbugz.macpaf.jdom.GedcomLoaderJDOM") loadDataForDocumentWithUpdateDelegate:dict] retain];
-	id newLoader = [[loader class] loadDataForDocumentWithUpdateDelegate:loaderDict];
-//	[task stop:[task progressTaskView]];
-	//[newLoader release];
-//	[loaderDict release];
-	NSLog(@"task rc:%d",[task retainCount] );
+
+	//id newLoader = 
+	[[loader class] loadDataForDocumentWithUpdateDelegate:loaderDict];
+
+	NSLog(@"ldit task b4 rel rc:%d",[task retainCount] );
 	[task release];
-	NSLog(@"task rc:%d",[task retainCount] );
+	NSLog(@"ldit task after rel rc:%d",[task retainCount] );
+	
 	[myAutoreleasePool release];	
+}
+
+- (void) loadDataPreviewInThread:(id)dict
+{
+	NSAutoreleasePool* myAutoreleasePool = [[NSAutoreleasePool alloc] init];
+	@try {
+	UKProgressPanelTask* task = [dict valueForKey:@"task"];
+	if (!task) {
+		task = [[UKProgressPanelTask alloc] init];
+	}
+	NSLog(@"ldpit task start rc:%d",[task retainCount] );
+
+	[task setIndeterminate:YES];
+	[task setTitle:@"Loading Document Preview"];
+	[task setStatus:@"Preparing to load data for preview..."];
+	[task setStopAction:@selector(cancel:)];
+	[task setStopDelegate:self];
+	
+	[self showSheetForWindow:[[self document] windowForSheet] task:task];
+	
+	NSData *data = [dict valueForKey:@"data"];
+	NSString *fileTypeByExtension = [[NSDocumentController sharedDocumentController] typeFromFileExtension:[fileNameToImport pathExtension]];
+	NSLog(@"type of file by ext: %@", fileTypeByExtension);
+	NSString *fileTypeByContent = [self typeForContent:data];
+	NSLog(@"type of file by content: %@", fileTypeByContent);
+	NSString *fileType = fileTypeByExtension;
+	if (!fileType) {
+		fileType = fileTypeByContent;
+	}
+	if (![fileType isEqualToString:fileTypeByContent]) {
+		NSLog(@"%s mismatched file types %@ (extension) and %@ (content)", _cmd, fileTypeByExtension, fileTypeByContent);
+	}
+	
+	if ([fileType isEqualToString:GEDCOM_DOCUMENT_TYPE]) {
+		NSLog(@"%s loading preview for document type %@", _cmd, GEDCOM_DOCUMENT_TYPE);
+		NSDictionary *loaderDict = [NSDictionary dictionaryWithObjectsAndKeys:task, @"delegate", data, @"data", [dict valueForKey:@"doc"], @"document", self, @"controller", nil];
+
+		//id newLoader = 
+		[[loader class] loadDataForDocumentWithUpdateDelegate:loaderDict];
+	} else if ([fileType isEqualToString:PAF21_DOCUMENT_TYPE]) {
+		NSLog(@"%s loading preview for document type %@", _cmd, PAF21_DOCUMENT_TYPE);
+		[PAF21Data importFromData:data intoDocument:importDocument];
+	} else if ([fileType isEqualToString:MACPAF_DOCUMENT_TYPE]) {
+		NSLog(@"%s loading preview for document type %@", _cmd, MACPAF_DOCUMENT_TYPE);
+		
+	} else if ([fileType isEqualToString:TEMPLEREADY_UPDATE_DOCUMENT_TYPE]) {
+		NSLog(@"%s loading preview for document type %@", _cmd, TEMPLEREADY_UPDATE_DOCUMENT_TYPE);
+		
+	} else {
+		// unknown type
+		NSLog(@"%s !!! unknown document type for data %@", _cmd, data);
+		[task dealloc];
+		return;
+	}
+	
+	id doc = [dict valueForKey:@"doc"];
+	NSLog(@"%s importDoc:%@ doc:%@ selfdoc:%@ currdoc:%@", _cmd, importDocument, doc, [self document], [[NSDocumentController sharedDocumentController] currentDocument]);
+
+	NSLog(@"ldpit task b4 rel rc:%d",[task retainCount] );
+	[task release];
+	NSLog(@"ldpit task aft rel rc:%d",[task retainCount] );
+	[NSApp endSheet:progressSheet];
+
+	NSString *string = [NSString stringWithFormat:@"This file contains:\n\t%@ Individuals\t\t%@ Sources\t\t%@ Repositories\n\t%@ Families%\t\t%@ Notes\t\t%@ Multimedia\t\t%@ Submitters\n\n%@", 
+		[importDocument valueForKeyPath:@"individualsMap.size"], 
+		[importDocument valueForKeyPath:@"sourcesMap.size"], 
+		[importDocument valueForKeyPath:@"repositoriesMap.size"], 
+		[importDocument valueForKeyPath:@"familiesMap.size"], 
+		[importDocument valueForKeyPath:@"notesMap.size"],
+		[importDocument valueForKeyPath:@"multimediaMap.size"],
+		[importDocument valueForKeyPath:@"submittersMap.size"],
+		@""];
+	[filePreview setString:string];//[NSString stringWithContentsOfFile:fileNameToImport]]];
+	
+	
+	[NSApp beginSheet: importSheet
+	   modalForWindow: [[self document] windowForSheet]
+		modalDelegate: self
+	   didEndSelector: @selector(didEndSheet:returnCode:contextInfo:)
+		  contextInfo: nil];
+}
+@catch ( NSException *e ) {
+    NSLog(@"%s exception %@", _cmd, e);
+    [NSApp endSheet:[[[self document] windowForSheet] attachedSheet]];
+}
+
+@finally {
+}
+
+	[myAutoreleasePool release];	
+}
+
+- (void)didEndSheet:(NSWindow *)sheet returnCode:(int)returnCode  contextInfo:(void  *)contextInfo
+{
+	NSLog(@"ImportSheetController.didEndSheet: %@ : returncode=%d contextinfo=", sheet, returnCode, contextInfo);
+	
+	[sheet orderOut:self];
 }
 
 - (void) processTaskDoneNotification:(NSNotification *)notification
@@ -182,68 +260,62 @@
 	[task stop:[task progressTaskView]];
 }
 
-//- (void) updateProgressNotification:(NSNotification *)notification
-//{
-//	NSLog(@"updateProgressNotification: %@", notification);
-//	[self performSelectorOnMainThread:@selector(update:)
-//						   withObject:notification
-//						waitUntilDone:false];
-//	/*
-//	[task setMaxValue:[[[notification userInfo] valueForKey:@"maxValue"] doubleValue]];
-//	[task setDoubleValue:[[[notification userInfo] valueForKey:@"currentValue"] doubleValue]];
-//	[task setStatus:[[notification userInfo] valueForKey:@"status"]];
-//	[task animate:self];
-//	 */
-//}
-
-//- (void) update:(NSNotification *)notification
-//{
-//	NSLog(@"update: %@ task:%@", notification, task);
-//	[task setIndeterminate:NO];
-//	[task setMaxValue:[[[notification userInfo] valueForKey:@"maxValue"] doubleValue]];
-//	[task setDoubleValue:[[[notification userInfo] valueForKey:@"currentValue"] doubleValue]];
-//	[task setStatus:[[notification userInfo] valueForKey:@"status"]];
-//	[task animate:self];
-//}
-
-//- (void)importFileIntoDocumentNotification:(NSNotification *)notification
-//{
-//	NSLog(@"importFileIntoDocumentNotification: %@", notification);
-//	NSDocument *aDocument = [notification object];
-//	ImportSheetController *importSheetController = [[self alloc] _initWithDocument:aDocument];
-//	
-//	[NSApp beginSheet:[importSheetController window]
-//	   modalForWindow:[aDocument windowForSheet] modalDelegate:importSheetController
-//	   didEndSelector:@selector(_sheetDidEnd:returnCode:contextInfo:) contextInfo:nil];
-//	[[importSheetController window] makeKeyAndOrderFront:nil]; // redundant but cleaner
-//}
-
 // actions
 
 - (IBAction)import:(id)sender;
 {
-	NSLog(@"import");
-	NSLog(@"%d", [self respondsToSelector:@selector(openPanelDidEnd:returnCode:contextInfo:)]);
-    
-	[NSApp endSheet:importSheet returnCode:0]; // stop the app's modality
+	NSLog(@"%s", _cmd);    
 	
+/*	NSRect contentFrameInWindowCoordinates = [[self window] contentRectForFrameRect:[[self window] frame]];
+	float heightAdjustment = 100;//newHeight - NSHeight(contentFrameInWindowCoordinates);
+		contentFrameInWindowCoordinates.origin.y -= heightAdjustment;
+		contentFrameInWindowCoordinates.size.height += heightAdjustment;
+		[[self window] setFrame:[[self window] frameRectForContentRect:contentFrameInWindowCoordinates] display:[[self window] isVisible] animate:[[self window] isVisible]];
+*/
+
+		[NSApp endSheet:importSheet returnCode:0]; // stop the app's modality
+
+		
 	//
 	// actually import the data, based on the user's settings on the sheet
 	//
-	NSData *data = [[filePreview string] dataUsingEncoding:NSUTF8StringEncoding];
-	[[NSNotificationCenter defaultCenter] postNotificationName:@"com.redbugz.macpaf.ImportDataNotification" object:[self document] userInfo:[NSDictionary dictionaryWithObjectsAndKeys:data, @"data", nil]];
+		@try {
+			UKProgressPanelTask *task = [[UKProgressPanelTask alloc] init];
+			[task setIndeterminate:YES];
+			[task setTitle:@"Importing Document Data"];
+			[task setStatus:@"Preparing to import data..."];
+			[task setStopAction:@selector(cancel:)];
+			[task setStopDelegate:self];
+
+			[self showSheetForWindow:[[self document] windowForSheet] task:task];
+
+			[[self document] startSuppressUpdates];
+			[[[self document] valueForKey:@"mafDocument"] importFromDocument:importDocument];
+			[[self document] endSuppressUpdates];
+			[[self document] save];
+
+			[NSApp endSheet:[[self document] windowForSheet] returnCode:0]; // stop the app's modality
+			[NSApp endSheet:importSheet returnCode:0]; // stop the app's modality
+			[NSApp endSheet:progressSheet returnCode:0]; // stop the app's modality
+//			[NSApp endSheet:[[self document] windowForSheet] returnCode:0]; // stop the app's modality
+//			NSData *data = [NSData dataWithContentsOfFile:fileNameToImport];//[[filePreview string] dataUsingEncoding:NSUTF8StringEncoding];
+//			[[NSNotificationCenter defaultCenter] postNotificationName:@"com.redbugz.macpaf.ImportDataNotification" object:[self document] userInfo:[NSDictionary dictionaryWithObjectsAndKeys:data, @"data", nil]];
+		}
+		@catch (NSException * e) {
+			NSLog(@"exception loading data: %@", e);
+		}
+		@finally {
+			NSLog(@"%s finally", _cmd);
+		}
 //	[[self document] loadDataRepresentation:data ofType:[[NSDocumentController sharedDocumentController] typeFromFileExtension:[fileNameToImport pathExtension]]];
 }
 
 - (IBAction)cancel:(id)sender;
 {
-	NSLog(@"cancel:%@", sender);
+	NSLog(@"cancel:%@ win:%@", sender, [sender window]);
 	[NSApp endSheet:[sender window] returnCode:0]; // stop the app's modality
 }
 
-//- (void)openPanelDidEnd:(NSOpenPanel *)panel returnCode:(int)returnCode {
-//	NSLog(@"openpaneldidend");
-//}
 @end
 
 @implementation ImportSheetController (Private)
@@ -273,6 +345,27 @@
 	NSLog(@"_sheetDidEnd");
 	[sheetWindow orderOut:nil]; // hide sheet
 //	[self autorelease];
+}
+
+// other private methods
+
+- (NSString *)typeForContent:(NSData *)data
+{
+	NSLog(@"typeForContent: %@", data);
+	if ([[data subdataWithRange:NSMakeRange(0, 6)] isEqualToData:[@"0 HEAD" dataUsingEncoding:NSASCIIStringEncoding]]) {
+		NSLog(@"typeForContent: This is a GEDCOM file");
+		return GEDCOM_DOCUMENT_TYPE;
+	}
+	if ([[data subdataWithRange:NSMakeRange(0, 4)] isEqualToData:[@"<xml" dataUsingEncoding:NSASCIIStringEncoding]]) {
+		NSLog(@"typeForContent: This is a GEDCOM XML file");
+		return GEDCOM_DOCUMENT_TYPE;
+	}
+	char header[4] = {0x32,0x2E,0x31,0x30};
+	if ([[data subdataWithRange:NSMakeRange(0, 4)] isEqualToData:[NSData dataWithBytes:header length:4]]) {
+		NSLog(@"typeForContent: This is a PAF file");
+		return PAF21_DOCUMENT_TYPE;
+	}
+	return nil;
 }
 
 @end

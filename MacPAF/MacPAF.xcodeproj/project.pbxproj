@@ -7,12 +7,22 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0205627E0BB7355700CB9F64 /* ThreadWorker.h in Headers */ = {isa = PBXBuildFile; fileRef = 0205627C0BB7355700CB9F64 /* ThreadWorker.h */; };
+		0205627F0BB7355700CB9F64 /* ThreadWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 0205627D0BB7355700CB9F64 /* ThreadWorker.m */; };
+		021664900BAE494E006ECC47 /* commons-collections-3.2.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0262491A0BA44B9D00013B7B /* commons-collections-3.2.jar */; };
+		022394A80BA2246900D268F1 /* MIT-License.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 022394A50BA2246900D268F1 /* MIT-License.rtf */; };
+		022394A90BA2246900D268F1 /* NSData+RSHexDump.h in Headers */ = {isa = PBXBuildFile; fileRef = 022394A60BA2246900D268F1 /* NSData+RSHexDump.h */; };
+		022394AA0BA2246900D268F1 /* NSData+RSHexDump.m in Sources */ = {isa = PBXBuildFile; fileRef = 022394A70BA2246900D268F1 /* NSData+RSHexDump.m */; };
+		02433BEC0C9D5ED900FE5892 /* MafDocument.java in Sources */ = {isa = PBXBuildFile; fileRef = 02433BEB0C9D5ED700FE5892 /* MafDocument.java */; };
+		02433BFB0C9D680300FE5892 /* GdbiDocument.java in Sources */ = {isa = PBXBuildFile; fileRef = 02433BFA0C9D680300FE5892 /* GdbiDocument.java */; };
+		02433C460C9D855F00FE5892 /* api.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 02433C440C9D855E00FE5892 /* api.jar */; };
+		02433C470C9D855F00FE5892 /* util.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 02433C450C9D855E00FE5892 /* util.jar */; };
+		0262491B0BA44B9E00013B7B /* commons-collections-3.2.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 0262491A0BA44B9D00013B7B /* commons-collections-3.2.jar */; };
 		0263E45D0A20DCD00087A335 /* castor-1.0-xml.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 0263E45C0A20DCCF0087A335 /* castor-1.0-xml.jar */; };
 		0263E4C40A20F09C0087A335 /* castor-1.0-xml.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0263E45C0A20DCCF0087A335 /* castor-1.0-xml.jar */; };
 		0263E4C50A20F0B00087A335 /* castor-1.0-xml.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0263E45C0A20DCCF0087A335 /* castor-1.0-xml.jar */; };
 		0263E4E30A20F4450087A335 /* ApplicationStartupHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 0263E4E10A20F4450087A335 /* ApplicationStartupHelper.h */; };
 		0263E4E40A20F4450087A335 /* ApplicationStartupHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0263E4E20A20F4450087A335 /* ApplicationStartupHelper.m */; };
-		029F11080B6CCEA2005A5ADC /* UKProgressPanel.nib in Resources */ = {isa = PBXBuildFile; fileRef = 029F11060B6CCEA2005A5ADC /* UKProgressPanel.nib */; };
 		02AB42310A2B0663000EE9F5 /* jug-asl-2.0.0.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 02AB42300A2B0662000EE9F5 /* jug-asl-2.0.0.jar */; };
 		02AB424C0A2B067A000EE9F5 /* jug-asl-2.0.0.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 02AB42300A2B0662000EE9F5 /* jug-asl-2.0.0.jar */; };
 		02AB424D0A2B0692000EE9F5 /* jug-asl-2.0.0.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 02AB42300A2B0662000EE9F5 /* jug-asl-2.0.0.jar */; };
@@ -26,14 +36,14 @@
 		02C8769C0B3EF267005E8B53 /* UKProgressPanelTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 02C876940B3EF267005E8B53 /* UKProgressPanelTask.m */; };
 		02D0013B0B481E3200C3CDF4 /* ImportSheet.nib in Resources */ = {isa = PBXBuildFile; fileRef = 02D0013A0B481E3200C3CDF4 /* ImportSheet.nib */; };
 		02D0013C0B481E3200C3CDF4 /* ImportSheet.nib in Resources */ = {isa = PBXBuildFile; fileRef = 02D0013A0B481E3200C3CDF4 /* ImportSheet.nib */; };
-		02D001430B482EDB00C3CDF4 /* ImportSheetController.h in Headers */ = {isa = PBXBuildFile; fileRef = 02D001410B482EDB00C3CDF4 /* ImportSheetController.h */; };
+		02D001430B482EDB00C3CDF4 /* ImportSheetController.h in Headers */ = {isa = PBXBuildFile; fileRef = 02D001410B482EDB00C3CDF4 /* ImportSheetController.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		02D001440B482EDB00C3CDF4 /* ImportSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02D001420B482EDB00C3CDF4 /* ImportSheetController.m */; };
 		02D001450B482EDB00C3CDF4 /* ImportSheetController.h in Headers */ = {isa = PBXBuildFile; fileRef = 02D001410B482EDB00C3CDF4 /* ImportSheetController.h */; };
 		02D001460B482EDB00C3CDF4 /* ImportSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02D001420B482EDB00C3CDF4 /* ImportSheetController.m */; };
 		02D0062C0B4A445600C3CDF4 /* TransparentSplashScreenWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 02D0062A0B4A445600C3CDF4 /* TransparentSplashScreenWindow.h */; };
 		02D0062D0B4A445600C3CDF4 /* TransparentSplashScreenWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 02D0062B0B4A445600C3CDF4 /* TransparentSplashScreenWindow.m */; };
-		02D015770A1ADCAB0005E632 /* MacPAF_Prefix.h in Headers */ = {isa = PBXBuildFile; fileRef = 32DBCF820370BDBC00C91783 /* MacPAF_Prefix.h */; };
-		02D015780A1ADCAB0005E632 /* UKCrashReporter.h in Headers */ = {isa = PBXBuildFile; fileRef = 02DDDD240A12BA9C003BC70E /* UKCrashReporter.h */; };
+		02D015770A1ADCAB0005E632 /* MacPAF_Prefix.h in Headers */ = {isa = PBXBuildFile; fileRef = 32DBCF820370BDBC00C91783 /* MacPAF_Prefix.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		02D015780A1ADCAB0005E632 /* UKCrashReporter.h in Headers */ = {isa = PBXBuildFile; fileRef = 02DDDD240A12BA9C003BC70E /* UKCrashReporter.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		02D0157A0A1ADCAB0005E632 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */; };
 		02D0157B0A1ADCAB0005E632 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */; };
 		02D0157C0A1ADCAB0005E632 /* MyDocument.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B4FDCFA73011CA2CEA /* MyDocument.nib */; };
@@ -121,7 +131,6 @@
 		02DE760A09E96643003B896A /* IndividualEditController.java in Sources */ = {isa = PBXBuildFile; fileRef = 026ED74505D932BD0001D1D2 /* IndividualEditController.java */; };
 		02DE760B09E96643003B896A /* IndividualListController.java in Sources */ = {isa = PBXBuildFile; fileRef = 02A7790008B011E6007897F4 /* IndividualListController.java */; };
 		02DE760C09E96643003B896A /* Event.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D17E077B11CD0069077B /* Event.java */; };
-		02DE760D09E96643003B896A /* FilteredTableViewDataSource.java in Sources */ = {isa = PBXBuildFile; fileRef = 025FC089092EC023006B2989 /* FilteredTableViewDataSource.java */; };
 		02DE760E09E96643003B896A /* PedigreeView.java in Sources */ = {isa = PBXBuildFile; fileRef = 026ED74805D932BD0001D1D2 /* PedigreeView.java */; };
 		02DE760F09E96643003B896A /* TempleXML.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D1A6077B11CF0069077B /* TempleXML.java */; };
 		02DE761009E96643003B896A /* HeaderJDOM.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D188077B11CE0069077B /* HeaderJDOM.java */; };
@@ -166,7 +175,6 @@
 		02DE763709E96643003B896A /* TestFamily.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D1AE077B11CF0069077B /* TestFamily.java */; };
 		02DE763809E96643003B896A /* HistoryController.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B8AC5008F045D700AE39EC /* HistoryController.java */; };
 		02DE763909E96643003B896A /* FamilyJDOM.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D186077B11CE0069077B /* FamilyJDOM.java */; };
-		02DE763A09E96643003B896A /* EventTableController.java in Sources */ = {isa = PBXBuildFile; fileRef = 02FE0168097B9B79005531CB /* EventTableController.java */; };
 		02DE763B09E96643003B896A /* MultimediaLink.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D18D077B11CE0069077B /* MultimediaLink.java */; };
 		02DE763C09E96643003B896A /* Place.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D19E077B11CE0069077B /* Place.java */; };
 		02DE763D09E96643003B896A /* Temple.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D1A4077B11CF0069077B /* Temple.java */; };
@@ -183,7 +191,6 @@
 		02DE764809E96643003B896A /* MyDocument.java in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4ACFDCFA73011CA2CEA /* MyDocument.java */; };
 		02DE764909E96643003B896A /* WrappedTableViewDataSource.java in Sources */ = {isa = PBXBuildFile; fileRef = 025FC08D092EC045006B2989 /* WrappedTableViewDataSource.java */; };
 		02DE764A09E96643003B896A /* StringUtils.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D1B3077B11CF0069077B /* StringUtils.java */; };
-		02DE764B09E96643003B896A /* SortableFilteredTableViewDataSource.java in Sources */ = {isa = PBXBuildFile; fileRef = 025FC08A092EC024006B2989 /* SortableFilteredTableViewDataSource.java */; };
 		02DE766C09E9684A003B896A /* log4j.properties in JavaArchive */ = {isa = PBXBuildFile; fileRef = 02370211062059920087E765 /* log4j.properties */; settings = {JAVA_ARCHIVE_SUBDIR = lib; }; };
 		02DE766D09E9684B003B896A /* commons-codec-1.3.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 0236ED18098D5FED00E276AB /* commons-codec-1.3.jar */; };
 		02DE766E09E9684C003B896A /* jaxen-core.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 026ED7F405D9330B0001D1D2 /* jaxen-core.jar */; };
@@ -246,6 +253,11 @@
 		02E2897E09E9FA9D000846AC /* MacPAF.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 02E2897A09E9FA71000846AC /* MacPAF.jar */; };
 		02E5284809EDE9770093ECEF /* unicodeIO.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 02E5284709EDE9770093ECEF /* unicodeIO.jar */; };
 		02E5284A09EDE9860093ECEF /* unicodeIO.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 02E5284709EDE9770093ECEF /* unicodeIO.jar */; };
+		02E8DAB60CB911220035F786 /* EventTableController.java in Sources */ = {isa = PBXBuildFile; fileRef = 02E8DAB30CB911220035F786 /* EventTableController.java */; };
+		02E8DAB70CB911230035F786 /* FilteredTableViewDataSource.java in Sources */ = {isa = PBXBuildFile; fileRef = 02E8DAB40CB911220035F786 /* FilteredTableViewDataSource.java */; };
+		02E8DAB80CB911230035F786 /* SortableFilteredTableViewDataSource.java in Sources */ = {isa = PBXBuildFile; fileRef = 02E8DAB50CB911220035F786 /* SortableFilteredTableViewDataSource.java */; };
+		02E8DB190CB918450035F786 /* api.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 02433C440C9D855E00FE5892 /* api.jar */; };
+		02E8DB1A0CB918450035F786 /* util.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 02433C450C9D855E00FE5892 /* util.jar */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -326,6 +338,9 @@
 			dstPath = lib;
 			dstSubfolderSpec = 15;
 			files = (
+				02E8DB190CB918450035F786 /* api.jar in CopyFiles */,
+				02E8DB1A0CB918450035F786 /* util.jar in CopyFiles */,
+				021664900BAE494E006ECC47 /* commons-collections-3.2.jar in CopyFiles */,
 				02AB424C0A2B067A000EE9F5 /* jug-asl-2.0.0.jar in CopyFiles */,
 				0263E4C40A20F09C0087A335 /* castor-1.0-xml.jar in CopyFiles */,
 				02DE76C909E96A04003B896A /* joda-time-1.2.1.jar in CopyFiles */,
@@ -358,10 +373,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		020561160BB6AC5100CB9F64 /* ImportSheetController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImportSheetController.m; sourceTree = "<group>"; };
+		0205627C0BB7355700CB9F64 /* ThreadWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadWorker.h; sourceTree = "<group>"; };
+		0205627D0BB7355700CB9F64 /* ThreadWorker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreadWorker.m; sourceTree = "<group>"; };
 		020D7BC009A8955800664545 /* DateUtils.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = DateUtils.java; sourceTree = "<group>"; };
 		021612DC096A499E005AC0B6 /* PedigreeViewController.java */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.java; name = PedigreeViewController.java; path = src/PedigreeViewController.java; sourceTree = "<group>"; };
 		0218FF3F08F98E4800F67E81 /* AllTests.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = AllTests.java; path = src/AllTests.java; sourceTree = "<group>"; };
 		0218FF4008F98E4900F67E81 /* HistoryControllerTest.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = HistoryControllerTest.java; path = src/HistoryControllerTest.java; sourceTree = "<group>"; };
+		022394A50BA2246900D268F1 /* MIT-License.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "MIT-License.rtf"; sourceTree = "<group>"; };
+		022394A60BA2246900D268F1 /* NSData+RSHexDump.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+RSHexDump.h"; sourceTree = "<group>"; };
+		022394A70BA2246900D268F1 /* NSData+RSHexDump.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+RSHexDump.m"; sourceTree = "<group>"; };
 		022DDB4708E36C1D00AAA6B1 /* FamilyDetailController.java */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.java; name = FamilyDetailController.java; path = src/FamilyDetailController.java; sourceTree = "<group>"; };
 		0236ED18098D5FED00E276AB /* commons-codec-1.3.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; name = "commons-codec-1.3.jar"; path = "lib/commons-codec-1.3.jar"; sourceTree = "<group>"; };
 		0236ED19098D5FEE00E276AB /* commons-httpclient-3.0.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; name = "commons-httpclient-3.0.jar"; path = "lib/commons-httpclient-3.0.jar"; sourceTree = "<group>"; };
@@ -371,12 +392,23 @@
 		0237A2CE07B66682003D9778 /* CocoaUtils.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = CocoaUtils.java; sourceTree = "<group>"; };
 		023F05BC07AD1592005A4D0A /* MyFamily.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = MyFamily.java; sourceTree = "<group>"; };
 		023F05C007AD16B5005A4D0A /* MultimediaLink.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = MultimediaLink.java; sourceTree = "<group>"; };
+		02433BEB0C9D5ED700FE5892 /* MafDocument.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = MafDocument.java; sourceTree = "<group>"; };
+		02433BFA0C9D680300FE5892 /* GdbiDocument.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = GdbiDocument.java; sourceTree = "<group>"; };
+		02433C2E0C9D850A00FE5892 /* CgiAccess.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = CgiAccess.java; sourceTree = "<group>"; };
+		02433C2F0C9D850A00FE5892 /* CgiFeatures.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = CgiFeatures.java; sourceTree = "<group>"; };
+		02433C300C9D850A00FE5892 /* FsdbPgvDatabase.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = FsdbPgvDatabase.java; sourceTree = "<group>"; };
+		02433C310C9D850A00FE5892 /* FsdbPgvOpener.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = FsdbPgvOpener.java; sourceTree = "<group>"; };
+		02433C330C9D850A00FE5892 /* PgvcgiDatabase.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = PgvcgiDatabase.java; sourceTree = "<group>"; };
+		02433C340C9D850A00FE5892 /* PgvcgiLoginFields.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = PgvcgiLoginFields.java; sourceTree = "<group>"; };
+		02433C350C9D850A00FE5892 /* PgvcgiPreLogin.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = PgvcgiPreLogin.java; sourceTree = "<group>"; };
+		02433C360C9D850A00FE5892 /* PgvcgiUrlInfo.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = PgvcgiUrlInfo.java; sourceTree = "<group>"; };
+		02433C440C9D855E00FE5892 /* api.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; name = api.jar; path = ../workspaceMAF/gdbi/src/build/jars/api.jar; sourceTree = SOURCE_ROOT; };
+		02433C450C9D855E00FE5892 /* util.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; name = util.jar; path = ../workspaceMAF/gdbi/src/build/jars/util.jar; sourceTree = SOURCE_ROOT; };
 		024E77CF0782F44800B7A2CC /* MultimediaUtils.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = MultimediaUtils.java; sourceTree = "<group>"; };
 		0250C09C07AC858500AC3629 /* UnknownGedcomLinkException.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = UnknownGedcomLinkException.java; sourceTree = "<group>"; };
-		025FC089092EC023006B2989 /* FilteredTableViewDataSource.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = FilteredTableViewDataSource.java; path = src/FilteredTableViewDataSource.java; sourceTree = "<group>"; };
-		025FC08A092EC024006B2989 /* SortableFilteredTableViewDataSource.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = SortableFilteredTableViewDataSource.java; path = src/SortableFilteredTableViewDataSource.java; sourceTree = "<group>"; };
 		025FC08D092EC045006B2989 /* WrappedTableViewDataSource.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = WrappedTableViewDataSource.java; sourceTree = "<group>"; };
 		0260D11208F9D6E000F9A745 /* junit.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; name = junit.jar; path = lib/junit.jar; sourceTree = "<group>"; };
+		0262491A0BA44B9D00013B7B /* commons-collections-3.2.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; name = "commons-collections-3.2.jar"; path = "lib/commons-collections-3.2.jar"; sourceTree = "<group>"; };
 		0263E45C0A20DCCF0087A335 /* castor-1.0-xml.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; name = "castor-1.0-xml.jar"; path = "lib/castor-1.0-xml.jar"; sourceTree = "<group>"; };
 		0263E4A60A20EF430087A335 /* License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
 		0263E4E10A20F4450087A335 /* ApplicationStartupHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationStartupHelper.h; sourceTree = "<group>"; };
@@ -427,7 +459,6 @@
 		027D36B20707D41E00F146F8 /* Metal Window.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Metal Window.psd"; sourceTree = "<group>"; };
 		027D36B30707D41E00F146F8 /* Page.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = Page.psd; sourceTree = "<group>"; };
 		02907685060568E800F1763A /* IndividualDetailController.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = IndividualDetailController.java; path = src/IndividualDetailController.java; sourceTree = "<group>"; };
-		029F11070B6CCEA2005A5ADC /* English */ = {isa = PBXFileReference; lastKnownFileType = wrapper.nib; name = English; path = UKProgressPanel/English.lproj/UKProgressPanel.nib; sourceTree = "<group>"; };
 		02A778E908AFB24C007897F4 /* JDOMUtils.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = JDOMUtils.java; sourceTree = "<group>"; };
 		02A778FF08B011E6007897F4 /* FamilyListController.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = FamilyListController.java; path = src/FamilyListController.java; sourceTree = "<group>"; };
 		02A7790008B011E6007897F4 /* IndividualListController.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = IndividualListController.java; path = src/IndividualListController.java; sourceTree = "<group>"; };
@@ -518,7 +549,9 @@
 		02E2897A09E9FA71000846AC /* MacPAF.jar */ = {isa = PBXFileReference; explicitFileType = archive.jar; includeInIndex = 0; path = MacPAF.jar; sourceTree = BUILT_PRODUCTS_DIR; };
 		02E2897B09E9FA94000846AC /* MacPAF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacPAF.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02E5284709EDE9770093ECEF /* unicodeIO.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; name = unicodeIO.jar; path = lib/unicodeIO.jar; sourceTree = "<group>"; };
-		02FE0168097B9B79005531CB /* EventTableController.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = EventTableController.java; path = src/EventTableController.java; sourceTree = "<group>"; };
+		02E8DAB30CB911220035F786 /* EventTableController.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = EventTableController.java; path = src/EventTableController.java; sourceTree = "<group>"; };
+		02E8DAB40CB911220035F786 /* FilteredTableViewDataSource.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = FilteredTableViewDataSource.java; path = src/FilteredTableViewDataSource.java; sourceTree = "<group>"; };
+		02E8DAB50CB911220035F786 /* SortableFilteredTableViewDataSource.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = SortableFilteredTableViewDataSource.java; path = src/SortableFilteredTableViewDataSource.java; sourceTree = "<group>"; };
 		089C1660FE840EACC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		2A37F4ACFDCFA73011CA2CEA /* MyDocument.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = MyDocument.java; path = src/MyDocument.java; sourceTree = "<group>"; };
@@ -560,6 +593,9 @@
 				02E5284809EDE9770093ECEF /* unicodeIO.jar in Frameworks */,
 				0263E45D0A20DCD00087A335 /* castor-1.0-xml.jar in Frameworks */,
 				02AB42310A2B0663000EE9F5 /* jug-asl-2.0.0.jar in Frameworks */,
+				0262491B0BA44B9E00013B7B /* commons-collections-3.2.jar in Frameworks */,
+				02433C460C9D855F00FE5892 /* api.jar in Frameworks */,
+				02433C470C9D855F00FE5892 /* util.jar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -604,6 +640,64 @@
 				0263E4A60A20EF430087A335 /* License.txt */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		022394A40BA2246800D268F1 /* NSData+RSHexDump */ = {
+			isa = PBXGroup;
+			children = (
+				022394A50BA2246900D268F1 /* MIT-License.rtf */,
+				022394A60BA2246900D268F1 /* NSData+RSHexDump.h */,
+				022394A70BA2246900D268F1 /* NSData+RSHexDump.m */,
+			);
+			path = "NSData+RSHexDump";
+			sourceTree = "<group>";
+		};
+		02433BF90C9D67E000FE5892 /* gdbi */ = {
+			isa = PBXGroup;
+			children = (
+				02433BFA0C9D680300FE5892 /* GdbiDocument.java */,
+			);
+			path = gdbi;
+			sourceTree = "<group>";
+		};
+		02433C2A0C9D850A00FE5892 /* org */ = {
+			isa = PBXGroup;
+			children = (
+				02433C2B0C9D850A00FE5892 /* gdbi */,
+			);
+			name = org;
+			path = src/org;
+			sourceTree = "<group>";
+		};
+		02433C2B0C9D850A00FE5892 /* gdbi */ = {
+			isa = PBXGroup;
+			children = (
+				02433C2C0C9D850A00FE5892 /* db */,
+			);
+			path = gdbi;
+			sourceTree = "<group>";
+		};
+		02433C2C0C9D850A00FE5892 /* db */ = {
+			isa = PBXGroup;
+			children = (
+				02433C2D0C9D850A00FE5892 /* pgvcgi */,
+			);
+			path = db;
+			sourceTree = "<group>";
+		};
+		02433C2D0C9D850A00FE5892 /* pgvcgi */ = {
+			isa = PBXGroup;
+			children = (
+				02433C2E0C9D850A00FE5892 /* CgiAccess.java */,
+				02433C2F0C9D850A00FE5892 /* CgiFeatures.java */,
+				02433C300C9D850A00FE5892 /* FsdbPgvDatabase.java */,
+				02433C310C9D850A00FE5892 /* FsdbPgvOpener.java */,
+				02433C330C9D850A00FE5892 /* PgvcgiDatabase.java */,
+				02433C340C9D850A00FE5892 /* PgvcgiLoginFields.java */,
+				02433C350C9D850A00FE5892 /* PgvcgiPreLogin.java */,
+				02433C360C9D850A00FE5892 /* PgvcgiUrlInfo.java */,
+			);
+			path = pgvcgi;
 			sourceTree = "<group>";
 		};
 		0250C09B07AC858500AC3629 /* validation */ = {
@@ -691,6 +785,7 @@
 		02B3D17C077B11CD0069077B /* macpaf */ = {
 			isa = PBXGroup;
 			children = (
+				02433BEB0C9D5ED700FE5892 /* MafDocument.java */,
 				023F05C007AD16B5005A4D0A /* MultimediaLink.java */,
 				02B3D17D077B11CD0069077B /* Address.java */,
 				02B3D17E077B11CD0069077B /* Event.java */,
@@ -699,6 +794,7 @@
 				02B3D181077B11CD0069077B /* Header.java */,
 				02B3D182077B11CD0069077B /* Individual.java */,
 				02B3D183077B11CE0069077B /* jdom */,
+				02433BF90C9D67E000FE5892 /* gdbi */,
 				02B3D19A077B11CE0069077B /* LocationList.java */,
 				02B3D19B077B11CE0069077B /* Multimedia.java */,
 				02B3D19C077B11CE0069077B /* Note.java */,
@@ -795,7 +891,6 @@
 		02C8769D0B3EF28B005E8B53 /* UKProgressPanel */ = {
 			isa = PBXGroup;
 			children = (
-				029F11060B6CCEA2005A5ADC /* UKProgressPanel.nib */,
 				02C8768D0B3EF267005E8B53 /* UKProgressPanel.strings */,
 				02C8768F0B3EF267005E8B53 /* UKProgressPanelTask.nib */,
 			);
@@ -833,6 +928,7 @@
 				2A37F4C3FDCFA73011CA2CEA /* Frameworks */,
 				19C28FB0FE9D524F11CA2CBB /* Products */,
 				02DE76D009E96A05003B896A /* Info.plist */,
+				020561160BB6AC5100CB9F64 /* ImportSheetController.m */,
 			);
 			name = MacPAF;
 			sourceTree = "<group>";
@@ -840,6 +936,9 @@
 		2A37F4C3FDCFA73011CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				02433C440C9D855E00FE5892 /* api.jar */,
+				02433C450C9D855E00FE5892 /* util.jar */,
+				0262491A0BA44B9D00013B7B /* commons-collections-3.2.jar */,
 				02AB42300A2B0662000EE9F5 /* jug-asl-2.0.0.jar */,
 				02E5284709EDE9770093ECEF /* unicodeIO.jar */,
 				0263E45C0A20DCCF0087A335 /* castor-1.0-xml.jar */,
@@ -868,9 +967,10 @@
 		32DBCF800370BD9700C91783 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				02FE0168097B9B79005531CB /* EventTableController.java */,
-				025FC089092EC023006B2989 /* FilteredTableViewDataSource.java */,
-				025FC08A092EC024006B2989 /* SortableFilteredTableViewDataSource.java */,
+				02E8DAB30CB911220035F786 /* EventTableController.java */,
+				02E8DAB40CB911220035F786 /* FilteredTableViewDataSource.java */,
+				02E8DAB50CB911220035F786 /* SortableFilteredTableViewDataSource.java */,
+				02433C2A0C9D850A00FE5892 /* org */,
 				02B3D17A077B11CD0069077B /* com */,
 				027D36AA0707D05600F146F8 /* MainToolbar.java */,
 				026ED71205D932BC0001D1D2 /* ApplicationUtilities.java */,
@@ -907,8 +1007,11 @@
 		32DBCF810370BDA300C91783 /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				022394A40BA2246800D268F1 /* NSData+RSHexDump */,
 				02C876880B3EF266005E8B53 /* UKProgressPanel */,
 				02DDDD200A12BA9B003BC70E /* UKCrashReporter */,
+				0205627C0BB7355700CB9F64 /* ThreadWorker.h */,
+				0205627D0BB7355700CB9F64 /* ThreadWorker.m */,
 				32DBCF820370BDBC00C91783 /* MacPAF_Prefix.h */,
 				2A37F4B0FDCFA73011CA2CEA /* main.m */,
 			);
@@ -940,6 +1043,8 @@
 				02C8769B0B3EF267005E8B53 /* UKProgressPanelTask.h in Headers */,
 				02D001450B482EDB00C3CDF4 /* ImportSheetController.h in Headers */,
 				02D0062C0B4A445600C3CDF4 /* TransparentSplashScreenWindow.h in Headers */,
+				022394A90BA2246900D268F1 /* NSData+RSHexDump.h in Headers */,
+				0205627E0BB7355700CB9F64 /* ThreadWorker.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1127,7 +1232,7 @@
 				02C876970B3EF267005E8B53 /* UKProgressPanel.strings in Resources */,
 				02C876980B3EF267005E8B53 /* UKProgressPanelTask.nib in Resources */,
 				02D0013B0B481E3200C3CDF4 /* ImportSheet.nib in Resources */,
-				029F11080B6CCEA2005A5ADC /* UKProgressPanel.nib in Resources */,
+				022394A80BA2246900D268F1 /* MIT-License.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1164,7 +1269,6 @@
 				02DE760B09E96643003B896A /* IndividualListController.java in Sources */,
 				02DE760C09E96643003B896A /* Event.java in Sources */,
 				02DE760709E96643003B896A /* FamilyDetailController.java in Sources */,
-				02DE760D09E96643003B896A /* FilteredTableViewDataSource.java in Sources */,
 				02DE760E09E96643003B896A /* PedigreeView.java in Sources */,
 				02DE760F09E96643003B896A /* TempleXML.java in Sources */,
 				02DE761009E96643003B896A /* HeaderJDOM.java in Sources */,
@@ -1209,7 +1313,6 @@
 				02DE763709E96643003B896A /* TestFamily.java in Sources */,
 				02DE763809E96643003B896A /* HistoryController.java in Sources */,
 				02DE763909E96643003B896A /* FamilyJDOM.java in Sources */,
-				02DE763A09E96643003B896A /* EventTableController.java in Sources */,
 				02DE763B09E96643003B896A /* MultimediaLink.java in Sources */,
 				02DE763C09E96643003B896A /* Place.java in Sources */,
 				02DE763D09E96643003B896A /* Temple.java in Sources */,
@@ -1226,7 +1329,6 @@
 				02DE764809E96643003B896A /* MyDocument.java in Sources */,
 				02DE764909E96643003B896A /* WrappedTableViewDataSource.java in Sources */,
 				02DE764A09E96643003B896A /* StringUtils.java in Sources */,
-				02DE764B09E96643003B896A /* SortableFilteredTableViewDataSource.java in Sources */,
 				02DE74BC09E965E1003B896A /* AllTests.java in Sources */,
 				02DE74BD09E965E3003B896A /* ImportController.java in Sources */,
 				02DE74BE09E965E3003B896A /* Source.java in Sources */,
@@ -1241,6 +1343,11 @@
 				02DE74C709E965EC003B896A /* GedcomOutputter.java in Sources */,
 				02DE74C809E965ED003B896A /* ReportsController.java in Sources */,
 				02DE74C909E965ED003B896A /* Repository.java in Sources */,
+				02433BEC0C9D5ED900FE5892 /* MafDocument.java in Sources */,
+				02433BFB0C9D680300FE5892 /* GdbiDocument.java in Sources */,
+				02E8DAB60CB911220035F786 /* EventTableController.java in Sources */,
+				02E8DAB70CB911230035F786 /* FilteredTableViewDataSource.java in Sources */,
+				02E8DAB80CB911230035F786 /* SortableFilteredTableViewDataSource.java in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1256,6 +1363,8 @@
 				02C8769C0B3EF267005E8B53 /* UKProgressPanelTask.m in Sources */,
 				02D001460B482EDB00C3CDF4 /* ImportSheetController.m in Sources */,
 				02D0062D0B4A445600C3CDF4 /* TransparentSplashScreenWindow.m in Sources */,
+				022394AA0BA2246900D268F1 /* NSData+RSHexDump.m in Sources */,
+				0205627F0BB7355700CB9F64 /* ThreadWorker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1275,14 +1384,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		029F11060B6CCEA2005A5ADC /* UKProgressPanel.nib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				029F11070B6CCEA2005A5ADC /* English */,
-			);
-			name = UKProgressPanel.nib;
-			sourceTree = "<group>";
-		};
 		02A77AEE08B0425A007897F4 /* IndividualListWindow.nib */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1431,7 +1532,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MacPAF_Prefix.h;
 				HEADER_SEARCH_PATHS = "";
-				INFOPLIST_FILE = /Users/logan/Projects/MacPAF/Info.plist;
+				INFOPLIST_FILE = /Users/logan/Projects/MAF/Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				JAVAC_SOURCE_FILE_ENCODING = "UTF-8";
 				JAVA_COMPILER_DEPRECATED_WARNINGS = YES;
@@ -1473,7 +1574,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MacPAF_Prefix.h;
 				HEADER_SEARCH_PATHS = "";
-				INFOPLIST_FILE = "/Users/logan/Projects/MacPAF/Info copy.plist";
+				INFOPLIST_FILE = "/Users/logan/Projects/MAF/Info copy.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				JAVAC_SOURCE_FILE_ENCODING = "UTF-8";
 				JAVA_COMPILER_DEBUGGING_SYMBOLS = NO;
@@ -1513,7 +1614,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MacPAF_Prefix.h;
 				HEADER_SEARCH_PATHS = "";
-				INFOPLIST_FILE = "/Users/logan/Projects/MacPAF/Info copy.plist";
+				INFOPLIST_FILE = "/Users/logan/Projects/MAF/Info copy.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				JAVAC_SOURCE_FILE_ENCODING = "UTF-8";
 				JAVA_COMPILER_DEPRECATED_WARNINGS = YES;
@@ -1546,6 +1647,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				INSTALL_PATH = "";
 				JAVAC_SOURCE_FILE_ENCODING = "UTF-8";
 				JAVA_ARCHIVE_CLASSES = YES;
 				JAVA_ARCHIVE_TYPE = JAR;
@@ -1653,6 +1755,7 @@
 				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../Tools/redshed/trunk/cocoa/NSNotificationCenter+DebuggingPoser/build/Debug\"";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1660,7 +1763,15 @@
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
-				LIBRARY_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_2)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_3)",
+				);
+				LIBRARY_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/gedcom-parse/lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_2 = "\"$(SRCROOT)/iconv/lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_3 = "\"$(SRCROOT)/iconv-gedcom/lib\"";
 				MACOSX_DEPLOYMENT_TARGET_i386 = 10.4;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
@@ -1693,13 +1804,18 @@
 				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../Tools/redshed/trunk/cocoa/NSNotificationCenter+DebuggingPoser/build/Debug\"";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MacPAF_Prefix.h;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
-				LIBRARY_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_1)",
+				);
+				LIBRARY_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/gedcom-parse/lib\"";
 				MACOSX_DEPLOYMENT_TARGET_i386 = 10.4;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
@@ -1729,13 +1845,22 @@
 				);
 				FRAMEWORK_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/../Tools/redshed/trunk/cocoa/NSNotificationCenter+DebuggingPoser/build/Debug\"";
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MacPAF_Prefix.h;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
-				LIBRARY_SEARCH_PATHS = "";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_1)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_2)",
+					"$(LIBRARY_SEARCH_PATHS_QUOTED_3)",
+				);
+				LIBRARY_SEARCH_PATHS_QUOTED_1 = "\"$(SRCROOT)/gedcom-parse/lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_2 = "\"$(SRCROOT)/iconv/lib\"";
+				LIBRARY_SEARCH_PATHS_QUOTED_3 = "\"$(SRCROOT)/iconv-gedcom/lib\"";
 				MACOSX_DEPLOYMENT_TARGET_i386 = 10.4;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";

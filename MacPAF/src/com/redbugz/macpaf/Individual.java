@@ -19,6 +19,7 @@ import java.util.List;
 import org.apache.log4j.*;
 
 import com.apple.cocoa.foundation.*;
+import com.redbugz.macpaf.jdom.FamilyJDOM;
 import com.redbugz.macpaf.test.*;
 
 public interface Individual {
@@ -134,6 +135,10 @@ public interface Individual {
   public Family getFamilyAsChild();
 
   public void setFamilyAsChild(Family fam);
+  
+  public void addFamilyAsChild(Family family);
+
+  public void removeFamilyAsChild(Family familyToRemove);
 
   public List getFamiliesAsSpouse();
 
@@ -506,6 +511,14 @@ public interface Individual {
 
 	public String getUID() {
 		return "";
+	}
+
+	public void addFamilyAsChild(Family family) {
+		throw new UnsupportedOperationException("Cannot modify an UnknownIndividual");
+	}
+
+	public void removeFamilyAsChild(Family familyToRemove) {
+		throw new UnsupportedOperationException("Cannot modify an UnknownIndividual");
 	}
 
   }

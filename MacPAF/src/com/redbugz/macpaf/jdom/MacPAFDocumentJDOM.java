@@ -3,6 +3,7 @@ package com.redbugz.macpaf.jdom;
 import java.io.*;
 import java.util.*;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.log4j.*;
 import org.jdom.*;
 import org.jdom.input.SAXBuilder;
@@ -10,15 +11,16 @@ import org.jdom.output.*;
 import org.jdom.xpath.*;
 
 import com.apple.cocoa.foundation.NSData;
+import com.apple.cocoa.foundation.NSObject;
 import com.redbugz.macpaf.*;
 import com.redbugz.macpaf.util.*;
 import com.redbugz.macpaf.validation.*;
 
-public class MacPAFDocumentJDOM extends Observable implements Observer {
+public class MacPAFDocumentJDOM extends Observable implements Observer, MafDocument {
 	private static final Logger log = Logger.getLogger(MacPAFDocumentJDOM.class);
 
 	/**
-	 * This is the main jdom document that holds all of the data
+	 * This is the main JDOM document that holds all of the data
 	 */
 	private Document doc; // = makeInitialGedcomDoc();
 	
@@ -57,6 +59,9 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 		root.addContent(0, new HeaderJDOM(newSubmitter).getElement());
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.jdom.MafDocument#addFamily(com.redbugz.macpaf.Family)
+	 */
 	public void addFamily(Family newFamily) {
 		log.debug("MacPAFDocumentJDOM.addFamily(newFamily)");
 		// todo: figure out how to handle RIN vs ID, blank vs dups
@@ -72,17 +77,20 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 			log.warn("Attempt to insert family with duplicate key. Reassigning key from "+oldKey+" to "+newFamily.getId());
 		}
 		families.put(newFamily.getId(), newFamily);
-		log.debug("added fam with key: " + newFamily.getId() + " fam marr date: " + newFamily.getMarriageEvent().getDateString());
+		log.debug("added fam with key: " + newFamily.getId() + " fam marr date: " + newFamily.getPreferredMarriageEvent().getDateString());
 		if (newFamily instanceof FamilyJDOM) {
 			log.debug("adding fam to doc: " + newFamily);
-			doc.getRootElement().addContent((Content) ((FamilyJDOM) newFamily).getElement());
+			doc.getRootElement().addContent((Content) ((FamilyJDOM) newFamily).getElement().detach());
 		}
 		update(this, newFamily);
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.jdom.MafDocument#addIndividual(com.redbugz.macpaf.Individual)
+	 */
 	public void addIndividual(Individual newIndividual) {
 		log.debug("MacPAFDocumentJDOM.addIndividual():"+newIndividual);
-		if (newIndividual instanceof Individual.UnknownIndividual) {
+		if (!(newIndividual instanceof IndividualJDOM)) {
 			throw new IllegalArgumentException("Expected IndividualJDOM, received: "+newIndividual.getClass().getName());
 		}
 		if (StringUtils.isEmpty(newIndividual.getId())) {
@@ -98,12 +106,12 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 		individuals.put(newIndividual.getId(), newIndividual);
 		log.debug("added individual with key: " + newIndividual.getId() + " name: " + newIndividual.getFullName());
 //		log.debug("adding individual to doc: "+newIndividual);
-		doc.getRootElement().addContent((Content)((IndividualJDOM)newIndividual).getElement());
+		doc.getRootElement().addContent((Content)((IndividualJDOM)newIndividual).getElement().detach());
 		update(this, newIndividual);
 	}
 	
-	/**
-	 * @param submitter
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.jdom.MafDocument#addSubmitter(com.redbugz.macpaf.Submitter)
 	 */
 	public void addSubmitter(Submitter newSubmitter) {
 		log.debug("MacPAFDocumentJDOM.addSubmitter():"+newSubmitter);
@@ -147,7 +155,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 					}
 				}
 			}
-			doc.getRootElement().addContent((Content)((SubmitterJDOM)newSubmitter).getElement());
+			doc.getRootElement().addContent((Content)((SubmitterJDOM)newSubmitter).getElement().detach());
 		}
 		update(this, newSubmitter);
 	}
@@ -175,9 +183,12 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 		update(this, newSubmitter);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.jdom.MafDocument#removeSubmitter(com.redbugz.macpaf.Submitter)
+	 */
 	public void removeSubmitter(Submitter submitterToRemove) {
 		log.warn("removeSubmitter() instructed to remove submitter from document: "+submitterToRemove.getName());
-		SubmitterJDOM jdomSubmitter = getSubmitter(submitterToRemove.getId());
+		SubmitterJDOM jdomSubmitter = getSubmitterJDOM(submitterToRemove.getId());
 		jdomSubmitter.getElement().detach();
 		submitters.remove(submitterToRemove.getId());
 		// invalidate links to this submitter
@@ -195,8 +206,8 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 		update(this, submitterToRemove);
 	}
 
-	/**
-	 * @param repository
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.jdom.MafDocument#addRepository(com.redbugz.macpaf.Repository)
 	 */
 	public void addRepository(Repository newRepository) {
 		log.debug("MacPAFDocumentJDOM.addRepository():"+newRepository);
@@ -209,13 +220,13 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 		log.debug("added repository with key: " + newRepository.getId() + " name: " + newRepository.getName());
 		if (newRepository instanceof RepositoryJDOM) {
 			log.debug("adding repository to doc: "+newRepository);
-			doc.getRootElement().addContent((Content)((RepositoryJDOM)newRepository).getElement());
+			doc.getRootElement().addContent((Content)((RepositoryJDOM)newRepository).getElement().detach());
 		}
 		update(this, newRepository);
 	}
 	
-	/**
-	 * @param source
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.jdom.MafDocument#addSource(com.redbugz.macpaf.Source)
 	 */
 	public void addSource(Source newSource) {
 		log.debug("MacPAFDocumentJDOM.addSource():"+newSource);
@@ -228,15 +239,13 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 		log.debug("added source with key: " + newSource.getId() + " title: " + newSource.getTitle());
 		if (newSource instanceof SourceJDOM) {
 			log.debug("adding source to doc: "+newSource);
-			doc.getRootElement().addContent((Content)((SourceJDOM)newSource).getElement());
+			doc.getRootElement().addContent((Content)((SourceJDOM)newSource).getElement().detach());
 		}
 		update(this, newSource);
 	}
 	
-	/**
-	 * addNote
-	 *
-	 * @param newNote Note
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.jdom.MafDocument#addNote(com.redbugz.macpaf.Note)
 	 */
 	public void addNote(Note newNote) {
 		log.debug("MacPAFDocumentJDOM.addNote():"+newNote);
@@ -249,15 +258,13 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 		log.debug("added note with key: " + newNote.getId() + " text: " + newNote.getText());
 		if (newNote instanceof NoteJDOM) {
 			log.debug("adding note to doc: "+newNote);
-			doc.getRootElement().addContent((Content)((NoteJDOM)newNote).getElement());
+			doc.getRootElement().addContent((Content)((NoteJDOM)newNote).getElement().detach());
 		}
 		update(this, newNote);
 	}
 	
-	/**
-	 * addMultimedia
-	 *
-	 * @param newMultimedia Multimedia
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.jdom.MafDocument#addMultimedia(com.redbugz.macpaf.Multimedia)
 	 */
 	public void addMultimedia(Multimedia newMultimedia) {
 		log.debug("MacPAFDocumentJDOM.addMultimedia():"+newMultimedia);
@@ -270,25 +277,21 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 		log.debug("added multimedia with key: " + newMultimedia.getId() + " title: " + newMultimedia.getTitle());
 		if (newMultimedia instanceof MultimediaJDOM) {
 			log.debug("adding multimedia to doc: "+newMultimedia);
-			doc.getRootElement().addContent((Content)((MultimediaJDOM)newMultimedia).getElement());
+			doc.getRootElement().addContent((Content)((MultimediaJDOM)newMultimedia).getElement().detach());
 		}
 		update(this, newMultimedia);
 	}
 	
-	/**
-	 * outputToXML
-	 *
-	 * @param outputStream OutputStream
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.jdom.MafDocument#outputToXML(java.io.OutputStream)
 	 */
 	public void outputToXML(OutputStream outputStream) throws IOException {
 		XMLOutputter out = new XMLOutputter(Format.getPrettyFormat());
 		out.output(doc, outputStream);
 	}
 	
-	/**
-	 * outputToXML
-	 *
-	 * @param outputStream OutputStream
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.jdom.MafDocument#outputToGedcom(java.io.OutputStream)
 	 */
 	public void outputToGedcom(OutputStream outputStream) {
 		XMLTest.outputWithKay(doc, outputStream);
@@ -426,11 +429,11 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 					firstIndi = indi;
 				}
 				if (debug) {
-					log.error("\n *** " + " mem:" + rt.freeMemory() / 1024 + " Kb\n");
+					log.info("\n *** " + " mem:" + rt.freeMemory() / 1024 + " Kb\n");
 				}
 				if (rt.freeMemory() < 50000) {
 					if (debug) {
-						log.error("gc");
+						log.info("gc");
 					}
 					rt.gc();
 				}
@@ -471,11 +474,11 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 					}
 				}
 				if (debug) {
-					log.error("\n *** " + " mem:" + rt.freeMemory() / 1024 + " Kb\n");
+					log.info("\n *** " + " mem:" + rt.freeMemory() / 1024 + " Kb\n");
 				}
 				if (rt.freeMemory() < 50000) {
 					if (debug) {
-						log.error("gc");
+						log.info("gc");
 					}
 					rt.gc();
 				}
@@ -595,19 +598,15 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 		}
 	}
 	
-	/**
-	 * setPrimaryIndividual
-	 *
-	 * @param newPrimaryIndividual Individual
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.jdom.MafDocument#setPrimaryIndividual(com.redbugz.macpaf.Individual)
 	 */
 	public void setPrimaryIndividual(Individual newPrimaryIndividual) {
 		primaryIndividual = newPrimaryIndividual;
 	}
 	
-	/**
-	 * createNewIndividual
-	 *
-	 * @return Individual
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.jdom.MafDocument#createAndInsertNewIndividual()
 	 */
 	public Individual createAndInsertNewIndividual() {
 		Element newIndividualElement = new Element(IndividualJDOM.INDIVIDUAL);
@@ -616,10 +615,8 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 		return newIndividual;
 	}
 	
-	/**
-	 * createNewFamily
-	 *
-	 * @return Family
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.jdom.MafDocument#createAndInsertNewFamily()
 	 */
 	public Family createAndInsertNewFamily() {
 		Element newFamilyElement = new Element(FamilyJDOM.FAMILY);
@@ -628,9 +625,12 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 		return newFamily;
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.jdom.MafDocument#removeIndividual(com.redbugz.macpaf.Individual)
+	 */
 	public void removeIndividual(Individual individualToRemove) {
 		log.warn("removeIndividual() instructed to remove individual from document: "+individualToRemove.getFullName());
-		IndividualJDOM jdomIndividual = getIndividual(individualToRemove.getId());
+		IndividualJDOM jdomIndividual = getIndividualJDOM(individualToRemove.getId());
 		jdomIndividual.getElement().detach();
 		individuals.remove(individualToRemove.getId());
 		if (primaryIndividual.getId().equals(individualToRemove.getId())) {
@@ -652,6 +652,9 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 		update(this, individualToRemove);
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.jdom.MafDocument#chooseNewPrimaryIndividual()
+	 */
 	public void chooseNewPrimaryIndividual() {
 		// TODO probably should revert to last person in the history if exists, or other heuristic
 		primaryIndividual = Individual.UNKNOWN;
@@ -661,9 +664,12 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.jdom.MafDocument#removeFamily(com.redbugz.macpaf.Family)
+	 */
 	public void removeFamily (Family familyToRemove) {
 		log.warn("removeFamily() instructed to remove family from document: "+familyToRemove.toString());
-		FamilyJDOM jdomFamily = getFamily(familyToRemove.getId());
+		FamilyJDOM jdomFamily = getFamilyJDOM(familyToRemove.getId());
 		jdomFamily.getElement().detach();
 		families.remove(familyToRemove.getId());
 		// invalidate links to this person
@@ -682,16 +688,56 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 		update(this, familyToRemove);
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.jdom.MafDocument#getFamiliesMap()
+	 */
 	public Map getFamiliesMap() {
 		return families;
 	}
 	
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.jdom.MafDocument#getIndividualsMap()
+	 */
 	public Map getIndividualsMap() {
 		return individuals;
 	}
 
 	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.jdom.MafDocument#getNotesMap()
+	 */
+	public Map getNotesMap() {
+		return notes;
+	}
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.jdom.MafDocument#getSourcesMap()
+	 */
+	public Map getSourcesMap() {
+		return sources;
+	}
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.jdom.MafDocument#getRepositoriesMap()
+	 */
+	public Map getRepositoriesMap() {
+		return repositories;
+	}
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.jdom.MafDocument#getMultimediaMap()
+	 */
+	public Map getMultimediaMap() {
+		return multimedia;
+	}
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.jdom.MafDocument#getSubmittersMap()
+	 */
+	public Map getSubmittersMap() {
+		return submitters;
+	}
+
+	/* (non-Javadoc)
 	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
+	 */
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.jdom.MafDocument#update(java.util.Observable, java.lang.Object)
 	 */
 	public void update(Observable o, Object arg) {
 		log.debug("MacPAFDocumentJDOM.update() observable="+o+", object="+arg);
@@ -708,11 +754,10 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 //		clearChanged();		
 //	}
 
-	/**
-	 * @param id
-	 * @return
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.jdom.MafDocument#getFamily(java.lang.String)
 	 */
-	public FamilyJDOM getFamily(String id) {
+	public FamilyJDOM getFamilyJDOM(String id) {
 		FamilyJDOM family = (FamilyJDOM) families.get(id);
 		if (family == null) {
 			throw new UnknownGedcomLinkException("Cannot find family with Id="+id+". There are "+families.size()+" families in this file.");
@@ -722,11 +767,10 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 		return family;
 	}
 
-	/**
-	 * @param id
-	 * @return
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.jdom.MafDocument#getIndividual(java.lang.String)
 	 */
-	public IndividualJDOM getIndividual(String id) {
+	public IndividualJDOM getIndividualJDOM(String id) {
 		IndividualJDOM individual = (IndividualJDOM) individuals.get(id);
 		if (individual == null) {
 			throw new UnknownGedcomLinkException("Cannot find individual with Id="+id+". There are "+individuals.size()+" individuals in this file.");
@@ -735,11 +779,10 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 		return individual;
 	}
 
-	/**
-	 * @param id
-	 * @return
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.jdom.MafDocument#getMultimedia(java.lang.String)
 	 */
-	public MultimediaJDOM getMultimedia(String id) {
+	public MultimediaJDOM getMultimediaJDOM(String id) {
 		MultimediaJDOM media = (MultimediaJDOM) multimedia.get(id);
 		if (media == null) {
 			throw new UnknownGedcomLinkException("Cannot find multimedia with Id="+id+". There are "+multimedia.size()+" multimedia in this file.");
@@ -748,11 +791,10 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 		return media;
 	}
 
-	/**
-	 * @param id
-	 * @return
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.jdom.MafDocument#getNote(java.lang.String)
 	 */
-	public NoteJDOM getNote(String id) {
+	public NoteJDOM getNoteJDOM(String id) {
 		NoteJDOM note = (NoteJDOM) notes.get(id);
 		if (note == null) {
 //			note = Note.UNKNOWN_MULTIMEDIA;
@@ -761,11 +803,10 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 		return note;
 	}
 
-	/**
-	 * @param id
-	 * @return
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.jdom.MafDocument#getSource(java.lang.String)
 	 */
-	public SourceJDOM getSource(String id) {
+	public SourceJDOM getSourceJDOM(String id) {
 		SourceJDOM source = (SourceJDOM) sources.get(id);
 		if (source == null) {
 			throw new UnknownGedcomLinkException("Cannot find source with Id="+id+". There are "+sources.size()+" sources in this file.");
@@ -774,11 +815,10 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 		return source;
 	}
 
-	/**
-	 * @param id
-	 * @return
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.jdom.MafDocument#getRepository(java.lang.String)
 	 */
-	public RepositoryJDOM getRepository(String id) {
+	public RepositoryJDOM getRepositoryJDOM(String id) {
 		RepositoryJDOM repository = (RepositoryJDOM) repositories.get(id);
 		if (repository == null) {
 			throw new UnknownGedcomLinkException("Cannot find repository with Id="+id+". There are "+repositories.size()+" repositories in this file.");
@@ -787,11 +827,10 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 		return repository;
 	}
 
-	/**
-	 * @param id
-	 * @return
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.jdom.MafDocument#getSubmitter(java.lang.String)
 	 */
-	public SubmitterJDOM getSubmitter(String id) {
+	public SubmitterJDOM getSubmitterJDOM(String id) {
 		SubmitterJDOM submitter = (SubmitterJDOM) submitters.get(id);
 		if (submitter == null) {
 //			submitter = Submitter.UNKNOWN_MULTIMEDIA;
@@ -799,68 +838,70 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 		}
 		return submitter;
 	}
-	/**
-	 * @return Returns the nextFamilyId.
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.jdom.MafDocument#getNextAvailableFamilyId()
 	 */
 	public int getNextAvailableFamilyId() {
 		return ++nextFamilyId;
 	}
-	/**
-	 * @return Returns the nextIndividualId.
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.jdom.MafDocument#getNextAvailableIndividualId()
 	 */
 	public int getNextAvailableIndividualId() {
 		return ++nextIndividualId;
 	}
-	/**
-	 * @return Returns the nextMultimediaId.
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.jdom.MafDocument#getNextAvailableMultimediaId()
 	 */
 	public int getNextAvailableMultimediaId() {
 		return ++nextMultimediaId;
 	}
-	/**
-	 * @return Returns the nextNoteId.
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.jdom.MafDocument#getNextAvailableNoteId()
 	 */
 	public int getNextAvailableNoteId() {
 		return ++nextNoteId;
 	}
-	/**
-	 * @return Returns the nextRepositoryId.
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.jdom.MafDocument#getNextAvailableRepositoryId()
 	 */
 	public int getNextAvailableRepositoryId() {
 		return ++nextRepositoryId;
 	}
-	/**
-	 * @return Returns the nextSourcesId.
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.jdom.MafDocument#getNextAvailableSourceId()
 	 */
 	public int getNextAvailableSourceId() {
 		return ++nextSourceId;
 	}
-	/**
-	 * @return Returns the nextSubmitterId.
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.jdom.MafDocument#getNextAvailableSubmitterId()
 	 */
 	public int getNextAvailableSubmitterId() {
 		return ++nextSubmitterId;
 	}
 
-	/**
-	 * @return
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.jdom.MafDocument#getPrimaryIndividual()
 	 */
 	public Individual getPrimaryIndividual() {
 		return primaryIndividual;
 	}
 
-	/**
-	 * @return
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.jdom.MafDocument#createAndInsertNewNote()
 	 */
 	public Note createAndInsertNewNote() {
+		System.out.println("MacPAFDocumentJDOM.createAndInsertNewNote()");
 		Element newNoteElement = new Element(NoteJDOM.NOTE);
 		NoteJDOM newNote = new NoteJDOM(newNoteElement, this);
 		addNote(newNote);
+		System.out.println("MacPAFDocumentJDOM.createAndInsertNewNote() returning "+newNote);
 		return newNote;
 	}
 
-	/**
-	 * @return
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.jdom.MafDocument#createAndInsertNewSubmitter()
 	 */
 	public Submitter createAndInsertNewSubmitter() {
 		Element newSubmitterElement = new Element(SubmitterJDOM.SUBMITTER);
@@ -870,8 +911,8 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 		return newSubmitter;
 	}
 
-	/**
-	 * @return
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.jdom.MafDocument#createAndInsertNewMultimedia()
 	 */
 	public Multimedia createAndInsertNewMultimedia() {
 		Element newMultimediaElement = new Element(MultimediaJDOM.MULTIMEDIA);
@@ -880,8 +921,8 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 		return newMultimedia;
 	}
 
-	/**
-	 * @return
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.jdom.MafDocument#createAndInsertNewSource()
 	 */
 	public Source createAndInsertNewSource() {
 		Element newSourceElement = new Element(SourceJDOM.SOURCE);
@@ -890,8 +931,8 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 		return newSource;
 	}
 
-	/**
-	 * @return
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.jdom.MafDocument#createAndInsertNewRepository()
 	 */
 	public Repository createAndInsertNewRepository() {
 		Element newRepositoryElement = new Element(RepositoryJDOM.REPOSITORY);
@@ -900,11 +941,17 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 		return newRepository;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.jdom.MafDocument#outputToTempleReady(java.io.FileOutputStream)
+	 */
 	public void outputToTempleReady(FileOutputStream stream) {
 		getHeader().setDestination(Header.DEST_TEMPLE_READY);
 		XMLTest.outputWithKay(doc, stream);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.jdom.MafDocument#getSubmission()
+	 */
 	public Submission getSubmission() {
 		// TODO decide if this should be a Submission.EmptySubmission or similar
 		SubmissionJDOM result = null;
@@ -915,16 +962,103 @@ public class MacPAFDocumentJDOM extends Observable implements Observer {
 		return result;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.jdom.MafDocument#getHeader()
+	 */
 	public Header getHeader() {
 		return new HeaderJDOM(doc.getRootElement().getChild(Header.HEADER), this);
 	}
 
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.jdom.MafDocument#startSuppressUpdates()
+	 */
 	public void startSuppressUpdates() {
 		suppressUpdates = true;
 	}
 
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.jdom.MafDocument#endSuppressUpdates()
+	 */
 	public void endSuppressUpdates() {
 		suppressUpdates = false;
+	}
+	
+	/* (non-Javadoc)
+	 * @see com.redbugz.macpaf.jdom.MafDocument#importFromDocument(com.redbugz.macpaf.jdom.MacPAFDocumentJDOM)
+	 */
+	public void importFromDocument(MafDocument importDocument) {
+		System.out.println("MacPAFDocumentJDOM.importFromDocument() this:"+this+" importDoc:"+importDocument);
+		startSuppressUpdates();
+		// first resolve duplicate ids
+		log.debug("indivs keyset:"+individuals.keySet());
+		log.debug("import keyset:"+importDocument.getIndividualsMap().keySet());
+		Collection collisions = CollectionUtils.intersection(individuals.keySet(), importDocument.getIndividualsMap().keySet());
+		log.debug("collisions:"+collisions);
+		if (!collisions.isEmpty()) {
+			// resolve collisions
+		}
+		for (Iterator iterator = importDocument.getIndividualsMap().keySet().iterator(); iterator.hasNext();) {
+			Individual indi = (Individual)importDocument.getIndividualsMap().get(iterator.next());
+			addIndividual(indi);
+		}
+		for (Iterator iterator = importDocument.getFamiliesMap().keySet().iterator(); iterator.hasNext();) {
+			Family fam = (Family)importDocument.getFamiliesMap().get(iterator.next());
+			addFamily(fam);
+		}
+		for (Iterator iterator = importDocument.getNotesMap().keySet().iterator(); iterator.hasNext();) {
+			Note note = (Note)importDocument.getNotesMap().get(iterator.next());
+			addNote(note);
+		}
+		for (Iterator iterator = importDocument.getSubmittersMap().keySet().iterator(); iterator.hasNext();) {
+			Submitter submitter = (Submitter)importDocument.getSubmittersMap().get(iterator.next());
+			addSubmitter(submitter);
+		}
+		for (Iterator iterator = importDocument.getSourcesMap().keySet().iterator(); iterator.hasNext();) {
+			Source source = (Source)importDocument.getSourcesMap().get(iterator.next());
+			addSource(source);
+		}
+		for (Iterator iterator = importDocument.getRepositoriesMap().keySet().iterator(); iterator.hasNext();) {
+			Repository repository = (Repository)importDocument.getRepositoriesMap().get(iterator.next());
+			addRepository(repository);
+		}
+		for (Iterator iterator = importDocument.getMultimediaMap().keySet().iterator(); iterator.hasNext();) {
+			Multimedia multimedia = (Multimedia)importDocument.getMultimediaMap().get(iterator.next());
+			addMultimedia(multimedia);
+		}
+		endSuppressUpdates();
+		chooseNewPrimaryIndividual();
+	}
+
+	public void importGedcom(File importFile, NSObject progress) {
+		new GedcomLoaderJDOM(this, progress).loadXMLFile(importFile);		
+	}
+
+	public Family getFamily(String id) {
+		return getFamilyJDOM(id);
+	}
+
+	public Individual getIndividual(String id) {
+		return getIndividualJDOM(id);
+	}
+
+	public Multimedia getMultimedia(String id) {
+		return getMultimediaJDOM(id);
+	}
+
+	public Note getNote(String id) {
+		return getNoteJDOM(id);
+	}
+
+	public Repository getRepository(String id) {
+		return getRepositoryJDOM(id);
+	}
+
+	public Source getSource(String id) {
+		return getSourceJDOM(id);
+	}
+
+	public Submitter getSubmitter(String id) {
+		return getSubmitterJDOM(id);
 	}
 }
 

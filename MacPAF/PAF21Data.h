@@ -3,7 +3,7 @@
 //  PAFImporter
 //
 //  Created by Logan Allred on 12/2/06.
-//  Copyright 2006 __MyCompanyName__. All rights reserved.
+//  Copyright 2006 RedBugz Software. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>
@@ -18,11 +18,13 @@ NSMutableArray *nameList;
 NSMutableArray *individualList;
 NSMutableArray *marriageList;
 NSMutableArray *noteList;
+NSMutableArray *individualLinksList;
 }
 - (id)initWithData:(NSData *)data;
 
 - (void)importData;
+- (void)importDataIntoDocument:(NSDocument *)document;
 
-+ (id)importFromData:(NSData *)data;
++ (void)importFromData:(NSData *)data intoDocument:(NSDocument *)document;
 
 @end

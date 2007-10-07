@@ -248,7 +248,7 @@ public class MyIndividual implements Individual, Cloneable {
 	  complete = true;
 	  Individual child = (Individual) familyAsSpouse.getChildren().get(i);
 	  if (! (child.getLDSBaptism().isCompleted() && child.getLDSEndowment().isCompleted() &&
-			 child.getLDSSealingToParents().isCompleted() && child.getPreferredFamilyAsSpouse().getSealingToSpouse().isCompleted())) {
+			 child.getLDSSealingToParents().isCompleted() && child.getPreferredFamilyAsSpouse().getPreferredSealingToSpouse().isCompleted())) {
 		return false;
 	  }
 	}
@@ -517,6 +517,16 @@ public List getAttributes() {
 
 public String getUID() {
 	return "";
+}
+
+public void addFamilyAsChild(Family family) {
+	// TODO Auto-generated method stub
+	
+}
+
+public void removeFamilyAsChild(Family familyToRemove) {
+	// TODO Auto-generated method stub
+	
 }
 
 }

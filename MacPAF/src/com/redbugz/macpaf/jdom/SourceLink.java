@@ -33,7 +33,7 @@ public class SourceLink implements Source {
 	 */
 	private Source getSource() {
 		if (actualSource == null) {
-			actualSource = document.getSource(id);
+			actualSource = document.getSourceJDOM(id);
 		}
 		return actualSource;
 	}

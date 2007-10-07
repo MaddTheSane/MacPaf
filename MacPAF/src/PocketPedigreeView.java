@@ -3,7 +3,7 @@
 //  MacPAF
 //
 //  Created by Logan Allred on Sun May 30 2004.
-//  Copyright (c) 2004 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2004 RedBugz Software. All rights reserved.
 //
 
 import org.apache.log4j.*;
@@ -47,7 +47,7 @@ public class PocketPedigreeView extends NSView {
 
 	public PocketPedigreeView(NSRect frameRect) {
 	  super(frameRect);
-	  log.error("PedigreeView(NSRect): " + frameRect);
+	  log.debug("PedigreeView(NSRect): " + frameRect);
 	}
 
 	public PocketPedigreeView(NSRect frame, Individual individual, int numGenerations) {
@@ -567,7 +567,7 @@ detailStr += birthEvent.getPlace().getFormatString();// + "\n";
 	log.debug("detailstr size:"+strSize);
 	int abbrevLevel = 0;
 	while ((strSize.width() > rect.width() && ++abbrevLevel <= Place.MAX_SEVERITY)) {
-	  log.error("string too long, condensing");//+detailStr.stringReference());
+	  log.warn("string too long, condensing");//+detailStr.stringReference());
 	  detailStr = birthEvent.getDateString() +" "+ birthEvent.getPlace().getAbbreviatedFormatString(abbrevLevel);
 	  resultStr = new NSAttributedString(detailStr, detailFontDict);
 	  strSize = NSGraphics.sizeOfAttributedString(resultStr);

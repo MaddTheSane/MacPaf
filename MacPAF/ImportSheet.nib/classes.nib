@@ -18,7 +18,13 @@
             ACTIONS = {cancel = id; import = id; }; 
             CLASS = ImportSheetController; 
             LANGUAGE = ObjC; 
-            OUTLETS = {filePreview = NSTextView; importSheet = NSWindow; taskProgressView = NSView; }; 
+            OUTLETS = {
+                fileNameText = NSTextField; 
+                filePreview = NSTextView; 
+                importSheet = NSWindow; 
+                loader = id; 
+                progressSheet = NSWindow; 
+            }; 
             SUPERCLASS = NSWindowController; 
         }, 
         {

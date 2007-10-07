@@ -310,7 +310,7 @@ public class GedcomParser implements XMLReader, Locator {
 					  if (Verifier.isXMLCharacter(c)) {
 						  cleanedData.append(c);
 					  } else {
-						  log.info("Removing illegal character "+Integer.toHexString(c)+" from GEDCOM document");
+						  log.warn("Removing illegal character "+Integer.toHexString(c)+" from GEDCOM document");
 					  }
 				  }
 				  valu = cleanedData.toString();

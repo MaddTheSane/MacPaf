@@ -101,7 +101,7 @@ public class JDOMUtils {
 			  if (Verifier.isXMLCharacter(c)) {
 				  cleanedData.append(c);
 			  } else {
-				  log.info("Removing illegal character "+Integer.toHexString(c)+" from JDOM Text");
+				  log.warn("Removing illegal character "+Integer.toHexString(c)+" from JDOM Text");
 			  }
 		  }
 		  return cleanedData.toString();

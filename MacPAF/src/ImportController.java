@@ -15,7 +15,10 @@ import com.apple.cocoa.foundation.*;
 import com.redbugz.macpaf.*;
 import com.redbugz.macpaf.jdom.*;
 
-public class ImportController {
+/*
+ * @deprecated use Obj-C ImportController instead
+ */
+class ImportController {
   private static final Logger log = Logger.getLogger(ImportController.class);
 
   public NSWindow importWindow; /* IBOutlet */
@@ -95,7 +98,7 @@ private NSOpenPanel openPanel;
 					}
 					
 				}
-				new GedcomLoaderJDOM(doc.doc, progress).loadXMLFile(new File(filePathField.stringValue()));
+				doc.doc.importGedcom(new File(filePathField.stringValue()), progress);
 				if (doc.getPrimaryIndividual() instanceof Individual.UnknownIndividual) {
 					doc.doc.chooseNewPrimaryIndividual();
 					doc.setPrimaryIndividual(doc.doc.getPrimaryIndividual());

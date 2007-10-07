@@ -33,7 +33,7 @@ public class NoteLink implements Note {
 	 */
 	private Note getNote() {
 		if (actualNote == null) {
-			actualNote = document.getNote(id);
+			actualNote = document.getNoteJDOM(id);
 		}
 		return actualNote;
 	}

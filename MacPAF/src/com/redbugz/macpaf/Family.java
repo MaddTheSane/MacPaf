@@ -42,9 +42,11 @@ public interface Family {
 
   public void removeChildAtPosition(int position);
 
-  public Ordinance getSealingToSpouse();
+  public void reorderChildToPosition(Individual child, int newPosition);
 
-  public void setSealingToSpouse(Ordinance sealing);
+  public Ordinance getPreferredSealingToSpouse();
+
+  public void setPreferredSealingToSpouse(Ordinance sealing);
 
   public String getId();
 
@@ -58,7 +60,8 @@ public interface Family {
   
 //  public List getOrdinances();
 
-  public Event getMarriageEvent();
+  public Event getPreferredMarriageEvent();
+  public List getMarriageEvents();
 
   public String getNoteText();
   
@@ -132,14 +135,14 @@ public interface Family {
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Family#getSealingToSpouse()
 	 */
-	public Ordinance getSealingToSpouse() {
+	public Ordinance getPreferredSealingToSpouse() {
 		return Ordinance.UNKNOWN_ORDINANCE;
 	}
 
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Family#setSealingToSpouse(com.redbugz.macpaf.Ordinance)
 	 */
-	public void setSealingToSpouse(Ordinance sealing) {
+	public void setPreferredSealingToSpouse(Ordinance sealing) {
 		throw new UnsupportedOperationException("Cannot modify an UnknownFamily");
 	}
 
@@ -174,7 +177,7 @@ public interface Family {
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Family#getMarriageEvent()
 	 */
-	public Event getMarriageEvent() {
+	public Event getPreferredMarriageEvent() {
 		return Event.UNKNOWN_EVENT;
 	}
 
@@ -188,6 +191,15 @@ public interface Family {
 
 	public String getUID() {
 		return "";
+	}
+
+	public void reorderChildToPosition(Individual child, int newPosition) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public List getMarriageEvents() {
+		return Collections.EMPTY_LIST;
 	}
   	
   }

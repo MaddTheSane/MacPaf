@@ -29,7 +29,7 @@ public class MultimediaLink implements Multimedia {
 	 */
 	private Multimedia getMultimedia() {
 		if (actualMultimedia == null) {
-			actualMultimedia = document.getMultimedia(id);
+			actualMultimedia = document.getMultimediaJDOM(id);
 		}
 		return actualMultimedia;
 	}

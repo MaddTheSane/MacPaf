@@ -49,7 +49,6 @@
 {
 	// All member variables are *private*:
     IBOutlet NSProgressIndicator	*progressBar;			// Progress bar we update.
-    IBOutlet NSWindow				*progressTaskSheet;		// Window for displaying progress as a sheet
     IBOutlet NSView					*progressTaskView;		// View we display our stuff in.
     IBOutlet NSTextField			*progressStatusField;	// Status field we display detailed in.
     IBOutlet NSTextField			*progressTitleField;	// Title field that describes the general operation.
@@ -64,10 +63,7 @@
 	The caller (i.e. you) is responsible for releasing this object once the
 	operation is finished. */
 +(id)			newProgressPanelTask;
-+(id)			newProgressSheetTask;
 
-// Shows progress as a sheet for the given window
--(void)			showSheetForWindow:(NSWindow *)window;
 
 // Controlling progress bar:
 -(double)		minValue;

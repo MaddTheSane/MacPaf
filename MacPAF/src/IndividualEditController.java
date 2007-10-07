@@ -9,6 +9,7 @@
 import org.apache.log4j.*;
 
 import com.apple.cocoa.application.*;
+import com.apple.cocoa.foundation.NSAttributedString;
 import com.redbugz.macpaf.*;
 import com.redbugz.macpaf.jdom.*;
 import com.redbugz.macpaf.util.*;
@@ -34,16 +35,17 @@ public class IndividualEditController extends NSWindowController {
   public NSComboBox suffix; /* IBOutlet */
   public NSTextField afn; /* IBOutlet */
   public NSTextField rin; /* IBOutlet */
-  public EventTableController eventTableController; /* IBOutlet */
-  public EventTableController attributeTableController; /* IBOutlet */
+	public EventTableController attributeTableController; /* IBOutlet */
   public NSTabView tabView; /* IBOutlet */
+  public NSTextField notesIndividualName; /* IBOutlet */
+  public NSTextView notesTextView; /* IBOutlet */
 
   private Individual individual;
 
   public void windowDidLoad() {
 	super.windowDidLoad();
 	log.debug("windowdidload doc=" + document() + " surname=" + surname);
-	eventTableController.setup();
+	//eventTableController.setup();
 	attributeTableController.setup();
   }
 
@@ -150,9 +152,11 @@ public class IndividualEditController extends NSWindowController {
 	sealingToParentTemple.setStringValue(individual.getLDSSealingToParents().getTemple().getCode());
 	afn.setStringValue(individual.getAFN());
 	rin.setStringValue(String.valueOf(individual.getRin()));
-	eventTableController.setEventSource(newIndividual);
+	//eventTableController.setEventSource(newIndividual);
 	attributeTableController.setEventSource(individual);
 	attributeTableController.setEventType("attribute");
+	notesIndividualName.setStringValue(individual.getFullName());
+	notesTextView.textStorage().setAttributedString(new NSAttributedString(individual.getNoteText()));
 	tabView.selectFirstTabViewItem(this);
   }
 

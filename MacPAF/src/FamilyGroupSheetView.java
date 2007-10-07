@@ -307,7 +307,7 @@ public class FamilyGroupSheetView extends NSView {
 	detailStr.appendAttributedString(new NSAttributedString("Bur.: ", LABEL_FONT));
 	detailStr.appendAttributedString(new NSAttributedString(burialEvent.getDateString() + " ", DATA_FONT));
 	if (isChild || individual.getGender().equals(Gender.MALE)) {
-	  Event marriageEvent = individual.getPreferredFamilyAsSpouse().getMarriageEvent();
+	  Event marriageEvent = individual.getPreferredFamilyAsSpouse().getPreferredMarriageEvent();
 	  if (marriageEvent == null) {marriageEvent = new MyEvent();
 	  }
 	  detailStr.appendAttributedString(new NSAttributedString("\nMarr: ", LABEL_FONT));
@@ -339,7 +339,7 @@ public class FamilyGroupSheetView extends NSView {
 	detailStr.appendAttributedString(new NSAttributedString("Place: ", LABEL_FONT));
 	detailStr.appendAttributedString(new NSAttributedString(burialEvent.getPlace().getFormatString() + " ", DATA_FONT));
 	if (isChild || individual.getGender().equals(Gender.MALE)) {
-	  Event marriageEvent = individual.getPreferredFamilyAsSpouse().getMarriageEvent();
+	  Event marriageEvent = individual.getPreferredFamilyAsSpouse().getPreferredMarriageEvent();
 	  if (marriageEvent == null) {marriageEvent = new MyEvent();
 	  }
 	  detailStr.appendAttributedString(new NSAttributedString("\nPlace: ", LABEL_FONT));
@@ -369,7 +369,7 @@ public class FamilyGroupSheetView extends NSView {
 	detailStr.appendAttributedString(new NSAttributedString(sealingParentsEvent.getDateString() + "  " +
 		sealingParentsEvent.getTemple().getCode(), DATA_FONT));
 	if (isChild || individual.getGender().equals(Gender.MALE) /* || currColor++%2==0*/) {
-	  Ordinance sealingSpouseEvent = individual.getPreferredFamilyAsSpouse().getSealingToSpouse();
+	  Ordinance sealingSpouseEvent = individual.getPreferredFamilyAsSpouse().getPreferredSealingToSpouse();
 	  if (sealingSpouseEvent == null) {sealingSpouseEvent = new MyOrdinance();
 	  }
 	  detailStr.appendAttributedString(new NSAttributedString("\n\nSlg S: ", LABEL_FONT));

@@ -19,6 +19,7 @@ import org.xml.sax.*;
 
 import com.apple.cocoa.application.*;
 import com.apple.cocoa.foundation.*;
+import com.redbugz.macpaf.util.StringUtils;
 
 public class TempleList implements NSComboBox.DataSource {
   private static final Logger log = Logger.getLogger(TempleList.class);
@@ -104,13 +105,17 @@ public class TempleList implements NSComboBox.DataSource {
   }
 
   public static Temple templeWithCode(String templeCode) {
+//	  System.out.println("TempleList.templeWithCode():"+templeCode);
 	TempleList tl = getInstance();
 	for (Iterator iterator = tl.getTempleList().iterator(); iterator.hasNext(); ) {
 	  Temple temple = (Temple) iterator.next();
-	  if (temple.getCode().equals(templeCode)) {
+//	  System.out.println("code: "+temple.getCode()+" oldcode: "+temple.getOldCode());
+	  if (temple.getCode().equals(templeCode) || (!StringUtils.isEmpty(temple.getOldCode()) && temple.getOldCode().equals(templeCode))) {
+//		  System.out.println("TempleList.templeWithCode() found match: "+temple);
 		return temple;
 	  }
 	}
+	System.out.println("TempleList.templeWithCode() no match returning blank temple");
 	return new Temple();
   }
 

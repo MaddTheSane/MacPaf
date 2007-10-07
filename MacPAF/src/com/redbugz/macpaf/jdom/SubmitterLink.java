@@ -31,7 +31,7 @@ public class SubmitterLink implements Submitter {
 	 */
 	private Submitter getSubmitter() {
 		if (actualSubmitter == null) {
-			actualSubmitter = document.getSubmitter(id);
+			actualSubmitter = document.getSubmitterJDOM(id);
 		}
 		return actualSubmitter;
 	}

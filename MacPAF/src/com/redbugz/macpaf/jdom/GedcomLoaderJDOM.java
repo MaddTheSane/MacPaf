@@ -1,4 +1,4 @@
-package com.redbugz.macpaf.jdom;
+	package com.redbugz.macpaf.jdom;
 
 import java.io.*;
 import java.util.*;
@@ -57,14 +57,15 @@ public class GedcomLoaderJDOM {
 		this.progressDelegate = progressDelegate;
 	}
 	
-	public String test() {return ""+_doc+progressDelegate;}
+//	public String test() {return ""+_doc+progressDelegate;}
 	
-	public static GedcomLoaderJDOM loadDataForDocumentWithUpdateDelegate(NSDictionary dictionary) {
+	public static void loadDataForDocumentWithUpdateDelegate(NSDictionary dictionary) {
 		System.out.println("GedcomLoaderJDOM.loadDataForDocumentWithUpdateDelegate()"+dictionary);
-		return loadDataForDocumentWithUpdateDelegate((NSData)dictionary.valueForKey("data"), (MacPAFDocumentJDOM)dictionary.valueForKey("document"), (NSObject)dictionary.valueForKey("delegate"), (NSObject)dictionary.valueForKey("controller"));
+		//return
+		loadDataForDocumentWithUpdateDelegate((NSData)dictionary.valueForKey("data"), (MacPAFDocumentJDOM)dictionary.valueForKey("document"), (NSObject)dictionary.valueForKey("delegate"), (NSObject)dictionary.valueForKey("controller"));
 	}
 
-	public static GedcomLoaderJDOM loadDataForDocumentWithUpdateDelegate(NSData data, MacPAFDocumentJDOM document, NSObject delegate, NSObject controller) {
+	public static void loadDataForDocumentWithUpdateDelegate(NSData data, MacPAFDocumentJDOM document, NSObject delegate, NSObject controller) {
 		System.out.println("GedcomLoaderJDOM.loadDataForDocumentWithUpdateDelegate():"+delegate);
 		GedcomLoaderJDOM gedcomLoaderJDOM = new GedcomLoaderJDOM(document, delegate);
 //		NSNotificationCenter.defaultCenter().addObserver(delegate, CocoaUtils.UPDATE_PROGRESS_SELECTOR, CocoaUtils.UPDATE_PROGRESS_NOTIFICATION, gedcomLoaderJDOM);
@@ -77,9 +78,10 @@ public class GedcomLoaderJDOM {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			NSNotificationCenter.defaultCenter().removeObserver(controller, CocoaUtils.TASK_DONE_NOTIFICATION, delegate);			
+			NSNotificationCenter.defaultCenter().removeObserver(controller, CocoaUtils.TASK_DONE_NOTIFICATION, delegate);
+			gedcomLoaderJDOM.progressDelegate = null;
 		}
-		return gedcomLoaderJDOM;
+//		return gedcomLoaderJDOM;
 	}
 	
 	public void loadXMLFile(File file) {
@@ -153,19 +155,9 @@ public class GedcomLoaderJDOM {
 			List submitterElements = root.getChildren("SUBM");
 			// detach the root from the children nodes so they can be imported into the new document
 			root.detach();
-			int fake=new Random().nextInt(20);
-			maxProgressValue = fake+familyElements.size() + individualElements.size() + multimediaElements.size() + noteElements.size() + repositoryElements.size() + sourceElements.size() + submitterElements.size();
+			maxProgressValue = familyElements.size() + individualElements.size() + multimediaElements.size() + noteElements.size() + repositoryElements.size() + sourceElements.size() + submitterElements.size();
 			status = "Loading data...";
 			notifyDelegateOfStatus();
-			for (int i = 0; i < fake; i++) {
-				try {
-					Thread.sleep(1000);
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				incrementAndUpdateProgress();
-			}
 			
 //			MacPAFDocumentJDOM importedDoc = new MacPAFDocumentJDOM();
 			HeaderJDOM header = new HeaderJDOM(root.getChild("HEAD"), _doc);//importedDoc);
@@ -302,11 +294,11 @@ public class GedcomLoaderJDOM {
 					firstIndi = indi;
 				}
 				if (debug) {
-					log.error("\n *** " + " mem:" + rt.freeMemory() / 1024 + " Kb\n");
+					log.info("\n *** " + " mem:" + rt.freeMemory() / 1024 + " Kb\n");
 				}
 				if (rt.freeMemory() < 50000) {
 					if (debug) {
-						log.error("gc");
+						log.info("gc");
 					}
 					rt.gc();
 				}
@@ -364,7 +356,7 @@ public class GedcomLoaderJDOM {
 						log.warn("Found old FAM.CHIL.SLGC for child "+childId+":"+oldSealing);
 						// has old sealing format at FAM.CHIL.SLGC, move to correct location at INDI.SLGC
 						if (StringUtils.notEmpty(childId)) {
-							IndividualJDOM indi = _doc.getIndividual(childId);
+							IndividualJDOM indi = _doc.getIndividualJDOM(childId);
 							if (indi != null) {
 								log.warn("Moving old FAM.CHIL.SLGC to correct location at INDI.SLGC for child "+childId+":"+oldSealing);
 								oldSealing.detach();
@@ -375,11 +367,11 @@ public class GedcomLoaderJDOM {
 				}
 
 				if (debug) {
-					log.error("\n *** " + " mem:" + rt.freeMemory() / 1024 + " Kb\n");
+					log.info("\n *** " + " mem:" + rt.freeMemory() / 1024 + " Kb\n");
 				}
 				if (rt.freeMemory() < 50000) {
 					if (debug) {
-						log.error("gc");
+						log.info("gc");
 					}
 					rt.gc();
 				}
@@ -442,6 +434,7 @@ public class GedcomLoaderJDOM {
 				}
 				Note note = new NoteJDOM(element, _doc);
 				_doc.addNote(note);
+				incrementAndUpdateProgress();
 			}
 			log.debug("notes: " + noteElements.size());
 			
@@ -514,7 +507,7 @@ public class GedcomLoaderJDOM {
 		log.info("progress: "+currentProgressValue + " out of "+maxProgressValue);
 		statusDict.setObjectForKey(new Double(currentProgressValue), "currentValue");
 		statusDict.setObjectForKey(new Double(maxProgressValue), "maxValue");
-		statusDict.setObjectForKey(status+":"+currentProgressValue+" of "+maxProgressValue, "status");
+		statusDict.setObjectForKey(status+": "+(int)currentProgressValue+" of "+(int)maxProgressValue+" records loaded.", "status");
 		//		NSNotificationCenter.defaultCenter().postNotification(CocoaUtils.UPDATE_PROGRESS_NOTIFICATION, this, statusDict);
 		if (maxProgressValue > 0) {
 			progressDelegate.takeValueForKey(new Integer(0), "indeterminate");

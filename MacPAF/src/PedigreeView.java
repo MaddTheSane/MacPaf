@@ -33,12 +33,12 @@ public class PedigreeView extends NSView {
 
   public PedigreeView() {
 	super();
-	log.error("PedigreeView()");
+	log.debug("PedigreeView()");
   }
 
   public PedigreeView(NSRect frameRect) {
 	super(frameRect);
-	log.error("PedigreeView(NSRect): " + frameRect);
+	log.debug("PedigreeView(NSRect): " + frameRect);
   }
 
   public PedigreeView(NSRect frame, Individual individual, int numGenerations) {
@@ -225,7 +225,7 @@ public class PedigreeView extends NSView {
 	ordinances[0] = individual.getLDSBaptism();
 	ordinances[1] = individual.getLDSEndowment();
 	ordinances[2] = individual.getLDSSealingToParents();
-	ordinances[3] = individual.getPreferredFamilyAsSpouse().getSealingToSpouse();
+	ordinances[3] = individual.getPreferredFamilyAsSpouse().getPreferredSealingToSpouse();
 	ordinances[4] = null;
 	log.debug("B size=" + NSGraphics.sizeOfAttributedString(ordString));
 	log.debug("w size=" + NSGraphics.sizeOfAttributedString(ordString2));
@@ -263,7 +263,7 @@ public class PedigreeView extends NSView {
 	String detailStr = "Born: " + birthEvent.getDateString() + "\n";
 	detailStr += "Place: " + birthEvent.getPlace().getFormatString() + "\n";
 	if (individual.getGender().equals(Gender.MALE) || individual.equals(this.individual)) {
-	  Event marriageEvent = individual.getPreferredFamilyAsSpouse().getMarriageEvent();
+	  Event marriageEvent = individual.getPreferredFamilyAsSpouse().getPreferredMarriageEvent();
 	  if (marriageEvent == null) {marriageEvent = new MyEvent();
 	  }
 	  detailStr += "Married: " + marriageEvent.getDateString() + "\n";

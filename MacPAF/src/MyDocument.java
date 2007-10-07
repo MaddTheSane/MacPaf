@@ -19,8 +19,8 @@ import org.apache.log4j.*;
 
 import com.apple.cocoa.application.*;
 import com.apple.cocoa.foundation.*;
-import com.mysql.jdbc.NotImplemented;
 import com.redbugz.macpaf.*;
+import com.redbugz.macpaf.gdbi.GdbiDocument;
 import com.redbugz.macpaf.jdom.*;
 import com.redbugz.macpaf.util.*;
 
@@ -49,7 +49,7 @@ public class MyDocument extends NSDocument implements Observer {
 	public static final String MACPAF_DOCUMENT_TYPE = "MacPAF File";
 	public static final String TEMPLEREADY_UPDATE_DOCUMENT_TYPE = "TempleReady Update File";
 
-	MacPAFDocumentJDOM doc;// = null;//new MacPAFDocumentJDOM();
+	MafDocument doc;// = null;//new MacPAFDocumentJDOM();
 
 	// Maps the buttons to the individuals they represent
 	protected NSMutableDictionary individualsButtonMap = new NSMutableDictionary();
@@ -91,7 +91,6 @@ public class MyDocument extends NSDocument implements Observer {
 	public NSButton familyAsSpouseButton; /* IBOutlet */
 	public NSButton familyAsChildButton; /* IBOutlet */
 	public NSWindow noteWindow; /* IBOutlet */
-	public NSTextView noteTextView; /* IBOutlet */
 	public NSMatrix reportsRadio; /* IBOutlet */
 	public NSTableView childrenTable; /* IBOutlet */
 	public NSTableView spouseTable; /* IBOutlet */
@@ -113,11 +112,11 @@ public class MyDocument extends NSDocument implements Observer {
 //	private IndividualList startupIndividualList;
 //	private FamilyList startupFamilyList;
 	/**
-	 * This the internal name for the gedcom file in the .macpaf file package
+	 * This the internal name for the gedcom file in the .MacPAF file package
 	 */
 	private static final String DEFAULT_GEDCOM_FILENAME = "data.ged";
 	/**
-	 * This the internal name for the data xml file in the .macpaf file package
+	 * This the internal name for the data xml file in the .MacPAF file package
 	 */
 	private static final String DEFAULT_XML_FILENAME = "data.xml";
 	private static final String TEMPLEREADY_UPDATE_EXTENSION = "oup";
@@ -133,7 +132,7 @@ public class MyDocument extends NSDocument implements Observer {
 		try {
 			if (doc == null) {
 				log.info("MyDocument.initDoc(): doc is null, making new doc");
-				doc = new MacPAFDocumentJDOM();
+				doc = new MacPAFDocumentJDOM();//GdbiDocument();
 			}
 		}
 		catch (Exception e) {
@@ -356,7 +355,6 @@ public class MyDocument extends NSDocument implements Observer {
 			assignIndividualToButton(individual.getFather().getMother(), paternalGrandmotherButton);
 			assignIndividualToButton(individual.getMother().getFather(), maternalGrandfatherButton);
 			assignIndividualToButton(individual.getMother().getMother(), maternalGrandmotherButton);
-			noteTextView.setString(individual.getNoteText());
 			pedigreeViewController.setPrimaryIndividual(individual);
 //			individualDetailController.setIndividual(individual);
 			log.debug("famsp id:"+familyAsSpouse.getId());
@@ -403,7 +401,9 @@ public class MyDocument extends NSDocument implements Observer {
 						float stepy = (individualButtonOrigin.y() - animateButtonOrigin.y()) / 10;
 						NSImage image = new NSImage();
 						log.debug("animatebutton.bounds:" + animateButton.bounds());
+						animateButton.lockFocus();
 						image.addRepresentation(new NSBitmapImageRep(animateButton.bounds()));
+						animateButton.unlockFocus();
 						NSImageView view = new NSImageView(animateButton.frame());
 						view.setImage(image);
 						animateButton.superview().addSubview(view);
@@ -440,7 +440,9 @@ public class MyDocument extends NSDocument implements Observer {
 					float stepy = (individualButtonOrigin.y() - tvOrigin.y()) / 10;
 					NSImage image = new NSImage();
 					log.debug("rowrect:" + rowRect);
+					superview.lockFocus();
 					image.addRepresentation(new NSBitmapImageRep(rowRect));
+					superview.unlockFocus();
 					NSImageView view = new NSImageView(rowRect);
 					view.setImage(image);
 					superview.addSubview(view);
@@ -534,7 +536,7 @@ public class MyDocument extends NSDocument implements Observer {
 				setIndividual(individualButton);
 			}
 			else {
-				log.info("!!! Setting primary individual to UKNOWN--No individuals in file:"+this);
+				log.info("!!! Setting primary individual to UNKNOWN--No individuals in file:"+this);
 				setPrimaryIndividual(Individual.UNKNOWN);
 			}
 			// add famMap to FamilyList
@@ -588,7 +590,7 @@ log.debug("taskprogresswindow:"+taskProgressSheetWindow);
 				.objectEnumerator();
 				while (en.hasMoreElements()) {
 					NSFileWrapper wrapper = ((NSFileWrapper) en.nextElement());
-					log.error(wrapper.filename() + " subattr:"
+					log.debug(wrapper.filename() + " subattr:"
 							+ wrapper.fileAttributes());
 					if (NSPathUtilities.pathExtension(wrapper.filename())
 							.equalsIgnoreCase("ged")) {
@@ -669,7 +671,7 @@ log.debug("taskprogresswindow:"+taskProgressSheetWindow);
 		Enumeration en = nsFileWrapper.fileWrappers().objectEnumerator();
 		while (en.hasMoreElements()) {
 			NSFileWrapper wrapper = ((NSFileWrapper) en.nextElement());
-			log.error(wrapper.filename() + " subattr:"
+			log.debug(wrapper.filename() + " subattr:"
 					+ wrapper.fileAttributes());
 			if (NSPathUtilities.pathExtension(wrapper.filename())
 					.equalsIgnoreCase("ged")) {
@@ -729,7 +731,7 @@ if (true) return true;
 				.objectEnumerator();
 				while (en.hasMoreElements()) {
 					NSFileWrapper wrapper = ((NSFileWrapper) en.nextElement());
-					log.error(wrapper.filename() + " subattr:"
+					log.debug(wrapper.filename() + " subattr:"
 							+ wrapper.fileAttributes());
 					if (NSPathUtilities.pathExtension(wrapper.filename())
 							.equalsIgnoreCase("ged")) {
@@ -1035,7 +1037,7 @@ if (true) return true;
 		if (individual.getLDSSealingToParents().isCompleted()) {
 			ordinanceString.applyFontTraitsInRange(NSAttributedString.UnderlineStrikethroughMask, new NSRange(2,1));
 		}
-		if (individual.getPreferredFamilyAsSpouse().getSealingToSpouse().isCompleted()) {
+		if (individual.getPreferredFamilyAsSpouse().getPreferredSealingToSpouse().isCompleted()) {
 			ordinanceString.applyFontTraitsInRange(NSAttributedString.UnderlineStrikethroughMask, new NSRange(3,1));
 		}
 		if (individual.childrensOrdinancesAreCompleted()) {
@@ -1285,7 +1287,7 @@ if (true) return true;
 	private void importGEDCOM(File importFile) {
 		log.debug("MyDocument.importGEDCOM():" + importFile);
 		try {
-			new GedcomLoaderJDOM(doc, null).loadXMLFile(importFile);
+			doc.importGedcom(importFile, null);
 			if (getPrimaryIndividual().equals(Individual.UNKNOWN)) {
 				// set first individual in imported file to primary individual
 				setPrimaryIndividual(individualList.getSelectedIndividual());
@@ -1388,6 +1390,7 @@ if (true) return true;
 	}
 
 	public Note createAndInsertNewNote() {
+		log.debug("MyDocument.createAndInsertNewNote()");
 		return doc.createAndInsertNewNote();
 	}
 
@@ -1875,4 +1878,12 @@ if (true) return true;
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * getMaf\Document
+	 */
+	public MafDocument getMafDocument() {
+		return doc;
+	}
+	
 }

@@ -32,7 +32,7 @@ public class IndividualLink implements Individual {
 	 */
 	private Individual getIndividual() {
 		if (actualIndividual == null) {
-			actualIndividual = document.getIndividual(id);
+			actualIndividual = document.getIndividualJDOM(id);
 		}
 		return actualIndividual;
 	}
@@ -478,6 +478,14 @@ public class IndividualLink implements Individual {
 
 	public String getUID() {
 		return getIndividual().getUID();
+	}
+
+	public void addFamilyAsChild(Family family) {
+		getIndividual().addFamilyAsChild(family);
+	}
+
+	public void removeFamilyAsChild(Family familyToRemove) {
+		getIndividual().removeFamilyAsChild(familyToRemove);
 	}
 
 }

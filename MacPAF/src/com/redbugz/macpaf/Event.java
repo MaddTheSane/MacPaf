@@ -27,7 +27,7 @@ public interface Event {
   
   public String getEventTypeString();
 
-  static class UnknownEvent implements Event {
+  public static class UnknownEvent implements Event {
 
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Event#getDate()

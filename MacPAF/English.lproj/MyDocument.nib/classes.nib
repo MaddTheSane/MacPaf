@@ -136,6 +136,8 @@
                 eventTableController = EventTableController; 
                 gender = NSPopUpButton; 
                 givenNames = NSTextField; 
+                notesIndividualName = NSTextField; 
+                notesTextView = NSTextView; 
                 photo = NSImageView; 
                 prefix = NSComboBox; 
                 rin = NSTextField; 
@@ -204,7 +206,6 @@
                 maternalGrandfatherButton = NSButton; 
                 maternalGrandmotherButton = NSButton; 
                 motherButton = NSButton; 
-                noteTextView = NSTextView; 
                 noteWindow = NSWindow; 
                 objCDelegate = MyDocumentObjCDelegate; 
                 paternalGrandfatherButton = NSButton; 
@@ -298,7 +299,6 @@
         {
             CLASS = "com.redbugz.macpaf.jdom.GedcomLoaderJDOM"; 
             LANGUAGE = Java; 
-            OUTLETS = {}; 
             SUPERCLASS = "java.lang.Object"; 
         }
     ); 

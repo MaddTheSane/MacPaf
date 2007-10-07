@@ -49,16 +49,10 @@
             SUPERCLASS = NSObject; 
         }, 
         {
-            ACTIONS = {doSomething = id; }; 
-            CLASS = TestObjc; 
-            LANGUAGE = ObjC; 
-            SUPERCLASS = NSObject; 
-        }, 
-        {
             CLASS = TransparentSplashScreenWindow; 
             LANGUAGE = ObjC; 
             SUPERCLASS = NSWindow; 
         }
     ); 
     IBVersion = 1; 
-}
+}		

@@ -33,7 +33,7 @@ public class RepositoryLink implements Repository {
 	 */
 	private Repository getRepository() {
 		if (actualRepository == null) {
-			actualRepository = document.getRepository(id);
+			actualRepository = document.getRepositoryJDOM(id);
 		}
 		return actualRepository;
 	}

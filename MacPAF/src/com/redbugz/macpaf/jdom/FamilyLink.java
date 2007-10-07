@@ -31,7 +31,7 @@ public class FamilyLink implements Family {
 	 */
 	private Family getFamily() {
 		if (actualFamily == null) {
-			actualFamily = document.getFamily(id);
+			actualFamily = document.getFamilyJDOM(id);
 		}
 		return actualFamily;
 	}
@@ -119,15 +119,15 @@ public class FamilyLink implements Family {
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Family#getSealingToSpouse()
 	 */
-	public Ordinance getSealingToSpouse() {
-		return getFamily().getSealingToSpouse();
+	public Ordinance getPreferredSealingToSpouse() {
+		return getFamily().getPreferredSealingToSpouse();
 	}
 
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Family#setSealingToSpouse(com.redbugz.macpaf.Ordinance)
 	 */
-	public void setSealingToSpouse(Ordinance sealing) {
-		getFamily().setSealingToSpouse(sealing);
+	public void setPreferredSealingToSpouse(Ordinance sealing) {
+		getFamily().setPreferredSealingToSpouse(sealing);
 	}
 
 	/* (non-Javadoc)
@@ -147,8 +147,8 @@ public class FamilyLink implements Family {
 	/* (non-Javadoc)
 	 * @see com.redbugz.macpaf.Family#getMarriageEvent()
 	 */
-	public Event getMarriageEvent() {
-		return getFamily().getMarriageEvent();
+	public Event getPreferredMarriageEvent() {
+		return getFamily().getPreferredMarriageEvent();
 	}
 
 	public List getEvents() {
@@ -161,6 +161,14 @@ public class FamilyLink implements Family {
 
 	public String getUID() {
 		return getFamily().getUID();
+	}
+
+	public void reorderChildToPosition(Individual child, int newPosition) {
+		getFamily().reorderChildToPosition(child, newPosition);
+	}
+
+	public List getMarriageEvents() {
+		return getFamily().getMarriageEvents();
 	}
 
 }

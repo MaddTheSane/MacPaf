@@ -5,7 +5,7 @@ package com.redbugz.macpaf.util;
 //MacPAF
 
 //Created by Logan Allred on 2/6/05.
-//Copyright 2005 __MyCompanyName__. All rights reserved.
+//Copyright 2005 RedBugz Software. All rights reserved.
 
 
 import java.lang.reflect.InvocationTargetException;
@@ -173,5 +173,14 @@ public class CocoaUtils {
 
 	public static void makeObjectsPerformSelector(NSArray array, NSSelector selector, Object argument) {
 		CocoaUtils.makeObjectsPerformSelector(array, selector, new Object[] {argument});
+	}
+	
+	public static List javaListFromNSArray(NSArray array) {
+		List list = new ArrayList();
+		Enumeration enumeration = array.objectEnumerator();
+		while (enumeration.hasMoreElements()) {
+			list.add(enumeration.nextElement());			
+		}
+		return list;
 	}
 }

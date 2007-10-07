@@ -3,12 +3,12 @@
 //  PAFImporter
 //
 //  Created by Logan Allred on 12/2/06.
-//  Copyright 2006 __MyCompanyName__. All rights reserved.
+//  Copyright 2006 RedBugz Software. All rights reserved.
 //
 
 #import "PAF21Data.h"
 #import "UKProgressPanelTask.h"
-#include "unistd.h"
+#import "unistd.h"
 
 @implementation PAF21Data
 
@@ -121,22 +121,22 @@ NSDateFormatter *dateFormatter;
 }
 
 - (NSString *)dateStringForDualDate:(struct DualDate_t *)dualDate {
-	return [dateFormatter stringForDate:[self dateForDualDate:dualDate]];
+	return [dateFormatter stringFromDate:[self dateForDualDate:dualDate]];
 }
 
 - (NSString *)dateStringForRegDate:(struct RegDate_t *)regDate {
-	return [dateFormatter stringForDate:[self dateStringForRegDate:regDate]];
+	return [dateFormatter stringFromDate:[self dateForRegDate:regDate]];
 }
 
 - (struct RegDate_t *)regDateFromData:(NSData *)data atOffset:(int)offset {
 	struct RegDate_t *value = [[data subdataWithRange:NSMakeRange(offset,3)] bytes];
-	NSLog(@"regDateFromData:atOffset:%i returns: y=%i m=%i d=%i mod=%i", offset, value->year, value->month, value->day, value->modifier);
+	NSLog(@"regDateFromData:atOffset:%i returns: y=%i m=%i d=%i mod=%i data:%@", offset, value->year, value->month, value->day, value->modifier, [data subdataWithRange:NSMakeRange(offset,3)]);
 	return value;
 }
 
 - (struct DualDate_t *)dualDateFromData:(NSData *)data atOffset:(int)offset {
 	struct DualDate_t *value = [[data subdataWithRange:NSMakeRange(offset,4)] bytes];
-	NSLog(@"dualDateFromData:atOffset:%i returns: y=%i m=%i d=%i mod=%i dual=%i", offset, value->year, value->month, value->day, value->modifier, value->offset);
+	NSLog(@"dualDateFromData:atOffset:%i returns: y=%i m=%i d=%i mod=%i dual=%i data:%@", offset, value->year, value->month, value->day, value->modifier, value->offset, [data subdataWithRange:NSMakeRange(offset,4)]);
 	return value;
 }
 
@@ -201,6 +201,43 @@ NSDateFormatter *dateFormatter;
 
 - (unsigned short)shortFromData:(NSData *)data atOffset:(int)offset{
 	return [self shortFromData:data withRange:NSMakeRange(offset,sizeof(unsigned short))];
+}
+
+- (NSString *)placeStringFromData:(NSData *)data atOffset:(int)offset {
+	NSLog(@"%s place data:", _cmd, [data subdataWithRange:NSMakeRange(offset, 8)]);
+	unsigned short place1 = [self shortFromData:data atOffset:offset];
+	unsigned short place2 = [self shortFromData:data atOffset:offset+2];
+	unsigned short place3 = [self shortFromData:data atOffset:offset+4];
+	unsigned short place4 = [self shortFromData:data atOffset:offset+6];
+	NSLog(@"place1=(%i) %s place2=(%i) %s place3=(%i) %s place4=(%i) %s",
+	 	place1, [self nameForPointer:place1],
+		place2, [self nameForPointer:place2],
+		place3, [self nameForPointer:place3],
+		place4, [self nameForPointer:place4]);
+	
+	NSString* place1String = [self nameForPointer:place1];
+	if (!place1String) {
+		place1String = @"";
+	}
+	NSString* place2String = [self nameForPointer:place2];
+	if (!place2String) {
+		place2String = @"";
+	}
+	NSString* place3String = [self nameForPointer:place3];
+	if (!place3String) {
+		place3String = @"";
+	}
+	NSString* place4String = [self nameForPointer:place4];
+	if (!place4String) {
+		place4String = @"";
+	}
+	NSString *placeString = [[NSArray arrayWithObjects:
+						place1String,
+						place2String,
+						place3String,
+						place4String, nil] componentsJoinedByString:@","];
+	NSLog(@"placeString:%@", placeString);
+	return placeString;
 }
 
 //- (NSString *)stringFromASCIIBytes:(const void *)bytes length:(int)length {
@@ -290,10 +327,11 @@ NSDateFormatter *dateFormatter;
     return YES;
 }
 
-- (id) init
+/*- (id) init
 {
+	NSLog(@"%s", _cmd);
 }
-
+*/
 - (id) initWithData: (NSData *) newData
 {
     self = [super init];
@@ -338,8 +376,9 @@ NSDateFormatter *dateFormatter;
 	nameList = [[NSMutableArray new] retain];
 	individualList = [[NSMutableArray new] retain];
 	marriageList = [[NSMutableArray new] retain];
-	noteList = [[NSMutableArray new] retain];
-	
+	noteList = [[NSMutableArray new] retain];	
+	individualLinksList = [[NSMutableArray new] retain];
+
 	int totalChunks = oneHead->ChunkCount, i;
 	for (i=0; i < totalChunks; i++) {
 		NSData *chunk = [data subdataWithRange:NSMakeRange(1536+(1024*i),1024)];
@@ -366,7 +405,7 @@ NSDateFormatter *dateFormatter;
 				[noteChunks addObject:chunk];
 				break;
 			default:
-				NSLog(@"default: %@", type);
+				NSLog(@"unknown chunk type: %@", type);
 				[otherChunks addObject:chunk];
 				break;
 		}
@@ -383,9 +422,14 @@ NSDateFormatter *dateFormatter;
 
 - (void)importData {
 	NSLog(@"importData");
+	[self importDataIntoDocument:[[NSDocumentController sharedDocumentController] currentDocument]];
+}
+
+- (void)importDataIntoDocument:(NSDocument *)document {
+	NSLog(@"%s document: %@", _cmd, document);
 	
-	int							x, xmax = 25;							// Just some vars so we can fake a lengthy operation
-	UKProgressPanelTask*		task = [UKProgressPanelTask newProgressPanelTask];	// Create a progress bar etc. in our progress panel, showing and creating a panel if necessary.
+//	int							x, xmax = 25;							// Just some vars so we can fake a lengthy operation
+	UKProgressPanelTask*		task = [[UKProgressPanelTask alloc] init];	// Create a progress bar etc. in our progress panel, showing and creating a panel if necessary.
 /*	
 	// Set up the progress bar and title/status message to be shown for this task:
 	[task setIndeterminate: YES];										// By default, you get a determinate scrollbar, but we want barber-pole style.
@@ -451,7 +495,9 @@ NSDateFormatter *dateFormatter;
 		unsigned int i;
 		NSMutableArray *noteRecordList = [NSMutableArray new];
 		NSMutableArray *noteDataList = [NSMutableArray new];
-		for (i = 0; i < recCount; i++) {
+		// the first record of the notes is a header record that we can ignore
+		[noteRecordList addObject:[NSNull null]];
+		for (i = 1; i < recCount; i++) {
 			int chunkIndex = i / recsPerChunk;
 			int recIndex = i % recsPerChunk;
 			int offset = recSize * recIndex;
@@ -468,7 +514,7 @@ NSDateFormatter *dateFormatter;
 				unsigned short nextNote = [self shortFromData:obj atOffset:0]; // one-based index
 				nextNote = (nextNote == 0 ? 0 : nextNote-1);// convert to zero-based index
 					[data appendData:[obj subdataWithRange:NSMakeRange(2,254)]];
-					NSLog(@"note curr=%i nextNote=%i noteData=%@", currRec, nextNote, data);
+					NSLog(@"note curr=%i nextNoteIndex=%i noteData=%@", currRec, nextNote, data);
 					
 					[noteRecordList replaceObjectAtIndex:currRec withObject:[NSNull null]];
 					
@@ -478,17 +524,21 @@ NSDateFormatter *dateFormatter;
 			}
 			[noteDataList addObject:data];
 		}
+		NSLog(@"noterecordlist: %@\n@notedatalist: %@", noteRecordList, noteDataList);	
 		for (i = 0; i < [noteDataList count]; i++) {
 			NSData *data = [noteDataList objectAtIndex:i];
 			if ([data length] > 0) {
-				id newNote = [[[NSDocumentController sharedDocumentController] currentDocument] performSelector:@selector(createAndInsertNewNote)];
+				NSLog(@"doc %@ ctrl %@ currdoc %@", document, [NSDocumentController sharedDocumentController], [[NSDocumentController sharedDocumentController] currentDocument]);
+				id newNote = [document performSelector:@selector(createAndInsertNewNote)];
 				NSString *text = [self cleanNoteString:[self stringFromMacRomanData:data]];
 				[newNote takeValue:text	forKey:@"text"];
 				
 				[noteList addObject:newNote];
+			} else {
+				[noteList addObject:[NSNull null]];
 			}
 		}
-		NSLog(@"notelist: %@", [noteList valueForKeyPath:@"text"]);	
+		NSLog(@"notelist: %@", [noteList valueForKeyPath:@"description"]);	
 	}
 	{	
 		// individuals
@@ -502,92 +552,133 @@ NSDateFormatter *dateFormatter;
 				
 				NSData * obj = [indivChunks objectAtIndex:chunkIndex];
 				
-				unsigned short Surname = [self shortFromData:obj atOffset:offset+0];
-				unsigned short GivenName1 = [self shortFromData:obj atOffset:offset+2];
-				unsigned short GivenName2 = [self shortFromData:obj atOffset:offset+4];
-				unsigned short GivenName3 = [self shortFromData:obj atOffset:offset+6];
-				unsigned short Title = [self shortFromData:obj atOffset:offset+8];
-				NSLog(@"swapped indiv surname=%i givenname1=%i givenname2=%i givenname3=%i", Surname, GivenName1, GivenName2, GivenName3);
-				NSLog(@"surname=%@ givenname1=%@ givenname2=%@ givenname3=%@", [self nameForPointer:Surname], [self nameForPointer:GivenName1], [self nameForPointer:GivenName2], [self nameForPointer:GivenName3]);
+				NSData *genderData = [obj subdataWithRange:NSMakeRange(offset+10,1)];
+				NSString *gender = [self stringFromMacRomanData:genderData];
+				NSLog(@"indiv gender=%@", gender);
+				if ([gender isEqualTo:@"D"]) {
+					NSLog(@"%s skipping deleted individual %i", _cmd, i);
+					[individualList addObject:[NSNull null]];
+					[individualLinksList addObject:[NSNull null]];
+				} else {
+
+				unsigned short surname = [self shortFromData:obj atOffset:offset+0];
+				unsigned short givenName1 = [self shortFromData:obj atOffset:offset+2];
+				unsigned short givenName2 = [self shortFromData:obj atOffset:offset+4];
+				unsigned short givenName3 = [self shortFromData:obj atOffset:offset+6];
+				unsigned short title = [self shortFromData:obj atOffset:offset+8];
+				NSLog(@"swapped indiv surname=%i givenname1=%i givenname2=%i givenname3=%i", surname, givenName1, givenName2, givenName3);
+				NSLog(@"surname=%@ givenname1=%@ givenname2=%@ givenname3=%@", [self nameForPointer:surname], [self nameForPointer:givenName1], [self nameForPointer:givenName2], [self nameForPointer:givenName3]);
+				NSString *givenNames = [[NSArray arrayWithObjects:
+									[self nameForPointer:givenName1],
+									[self nameForPointer:givenName2],
+									[self nameForPointer:givenName3], nil] componentsJoinedByString:@" "];
+				NSLog(@"givenNames:%@", givenNames);
 				
-				NSString *sex = [self stringFromMacRomanData:[obj subdataWithRange:NSMakeRange(offset+10,1)]];
-				NSLog(@"indiv gender=%@", sex);
 				struct DualDate_t *birthDate = [self dualDateFromData:obj atOffset:offset+11];
-				unsigned short BirthPlace1 = [self shortFromData:obj atOffset:offset+15];
-				unsigned short BirthPlace2 = [self shortFromData:obj atOffset:offset+17];
-				unsigned short BirthPlace3 = [self shortFromData:obj atOffset:offset+19];
-				unsigned short BirthPlace4 = [self shortFromData:obj atOffset:offset+21];
-				struct DualDate_t *ChristeningDate = [self dualDateFromData:obj atOffset:offset+23];
-				unsigned short ChristeningPlace1 = [self shortFromData:obj atOffset:offset+27];
-				unsigned short ChristeningPlace2 = [self shortFromData:obj atOffset:offset+29];
-				unsigned short ChristeningPlace3 = [self shortFromData:obj atOffset:offset+31];
-				unsigned short ChristeningPlace4 = [self shortFromData:obj atOffset:offset+33];
-				struct DualDate_t *DeathDate = [self dualDateFromData:obj atOffset:offset+35];
-				unsigned short DeathPlace1 = [self shortFromData:obj atOffset:offset+39];
-				unsigned short DeathPlace2 = [self shortFromData:obj atOffset:offset+41];
-				unsigned short DeathPlace3 = [self shortFromData:obj atOffset:offset+43];
-				unsigned short DeathPlace4 = [self shortFromData:obj atOffset:offset+45];
-				struct DualDate_t *BurialDate = [self dualDateFromData:obj atOffset:offset+47];
-				unsigned short BurialPlace1 = [self shortFromData:obj atOffset:offset+51];
-				unsigned short BurialPlace2 = [self shortFromData:obj atOffset:offset+53];
-				unsigned short BurialPlace3 = [self shortFromData:obj atOffset:offset+55];
-				unsigned short BurialPlace4 = [self shortFromData:obj atOffset:offset+57];
-				struct RegDate_t *BaptismDate = [self regDateFromData:obj atOffset:offset+59];
-				unsigned short BaptismTemple = [self shortFromData:obj atOffset:offset+62];
-				struct RegDate_t *EndowmentDate = [self regDateFromData:obj atOffset:offset+64];
-				unsigned short EndowmentTemple = [self shortFromData:obj atOffset:offset+67];
-				struct RegDate_t *ChildToParentSealingDate = [self regDateFromData:obj atOffset:offset+69];
-				unsigned short ChildToParentSealingTemple = [self shortFromData:obj atOffset:offset+72];
-				unsigned short OlderSibling = [self shortFromData:obj atOffset:offset+74];
-				unsigned short IndividualMarriageRecord = [self shortFromData:obj atOffset:offset+76];
-				unsigned short ParentsMarriageRecord = [self shortFromData:obj atOffset:offset+78];
+				NSString *birthPlaceString = [self placeStringFromData:obj atOffset:offset+15];
+				struct DualDate_t *christeningDate = [self dualDateFromData:obj atOffset:offset+23];
+				NSString *christeningPlaceString = [self placeStringFromData:obj atOffset:offset+27];
+				struct DualDate_t *deathDate = [self dualDateFromData:obj atOffset:offset+35];
+				NSString *deathPlaceString = [self placeStringFromData:obj atOffset:offset+39];
+				struct DualDate_t *burialDate = [self dualDateFromData:obj atOffset:offset+47];
+				NSString *burialPlaceString = [self placeStringFromData:obj atOffset:offset+51];
+				
+				struct RegDate_t *baptismDate = [self regDateFromData:obj atOffset:offset+59];
+				NSString *baptismTempleString = [self nameForPointer:[self shortFromData:obj atOffset:offset+62]];
+				struct RegDate_t *endowmentDate = [self regDateFromData:obj atOffset:offset+64];
+				NSString *endowmentTempleString = [self nameForPointer:[self shortFromData:obj atOffset:offset+67]];
+				struct RegDate_t *childToParentSealingDate = [self regDateFromData:obj atOffset:offset+69];
+				NSString *childToParentSealingTempleString = [self nameForPointer:[self shortFromData:obj atOffset:offset+72]];
+				unsigned short olderSibling = [self shortFromData:obj atOffset:offset+74];
+				unsigned short individualMarriageRecord = [self shortFromData:obj atOffset:offset+76];
+				unsigned short parentsMarriageRecord = [self shortFromData:obj atOffset:offset+78];
+				NSMutableDictionary *individualLinksDict = [NSMutableDictionary dictionary];
+				[individualLinksDict setObject:[NSNumber numberWithInt:olderSibling] forKey:@"olderSibling"];
+				[individualLinksDict setObject:[NSNumber numberWithInt:individualMarriageRecord] forKey:@"individualMarriageRecord"];
+				[individualLinksDict setObject:[NSNumber numberWithInt:parentsMarriageRecord] forKey:@"parentsMarriageRecord"];
 				NSString *ID = [NSString stringWithCString:[[obj subdataWithRange:NSMakeRange(offset+80,10)] bytes] encoding:NSMacOSRomanStringEncoding];
-				unsigned short NotePadRecord = [self shortFromData:obj atOffset:offset+90];
+				unsigned short notePadRecord = [self shortFromData:obj atOffset:offset+90];
 				//	if (NotePadRecord != 0) {
 				//		[notepadLinks addObject:[self noteForPointer:NotePadRecord]];
 				//	}
 				
+/*				NSLog(@"%s Surname: %d GivenName1: %d GivenName2: %d GivenName3: %d Title: %d gender: %@", _cmd, Surname, GivenName1, GivenName2, GivenName3, Title, gender);
+				NSLog(@"%s birthDate: %@ BirthPlace1: %d BirthPlace2: %d BirthPlace3: %d BirthPlace4: %d", _cmd, [self dateStringForDualDate:birthDate], BirthPlace1, BirthPlace2, BirthPlace3, BirthPlace4);
+*/				
 				
-				
-				id newIndividual = [[[NSDocumentController sharedDocumentController] currentDocument] performSelector:@selector(createAndInsertNewIndividual)];
+				id newIndividual = [document performSelector:@selector(createAndInsertNewIndividual)];
 				//	[newIndividual takeValue:@"Created From ObjC" forKey:@"fullName"];
 				
-				[newIndividual takeValue:[self nameForPointer:Surname]	forKey:@"surname"];
-				NSString *givenNames = [[NSArray arrayWithObjects:
-					[self nameForPointer:GivenName1],
-					[self nameForPointer:GivenName2],
-					[self nameForPointer:GivenName3], nil] componentsJoinedByString:@" "];
-NSLog(@"givenNames:%@", givenNames);
+				[newIndividual takeValue:[self nameForPointer:surname]	forKey:@"surname"];
 				[newIndividual takeValue:givenNames forKey:@"givenNames"];
-				[newIndividual takeValue:[self dateStringForDualDate:birthDate]	forKeyPath:@"birthEvent.dateString"];
-//				[newIndividual takeValue:[self noteForPointer:NotePadRecord]	forKey:@"noteText"];
-				[newIndividual takeValue:sex	forKey:@"gender"];
-				/*
-				 individual.setSurname(surname.stringValue());
-				 individual.setGivenNames(givenNames.stringValue());
-				 individual.setNamePrefix(prefix.stringValue());
-				 individual.setNameSuffix(suffix.stringValue());
-				 log.debug("IndividualEditController.save() gendercode:"+gender.titleOfSelectedItem());
-				 log.debug("IndividualEditController.save() gender:"+Gender.genderWithCode(gender.titleOfSelectedItem()));
-				 individual.setGender(Gender.genderWithCode(gender.titleOfSelectedItem()));
-				 individual.setAFN(afn.stringValue());
-				 individual.getBirthEvent().setDateString(birthForm.cellAtIndex(0).stringValue());
-				 individual.getBirthEvent().setPlace(new PlaceJDOM(birthForm.cellAtIndex(1).stringValue()));
-				 individual.getChristeningEvent().setDateString(christeningForm.cellAtIndex(0).stringValue());
-				 individual.getChristeningEvent().setPlace(new PlaceJDOM(christeningForm.cellAtIndex(1).stringValue()));
-				 individual.getDeathEvent().setDateString(deathForm.cellAtIndex(0).stringValue());
-				 individual.getDeathEvent().setPlace(new PlaceJDOM(deathForm.cellAtIndex(1).stringValue()));
-				 individual.getBurialEvent().setDateString(burialForm.cellAtIndex(0).stringValue());
-				 individual.getBurialEvent().setPlace(new PlaceJDOM(burialForm.cellAtIndex(1).stringValue()));
-				 individual.getLDSBaptism().setDateString(baptismDate.stringValue());
-				 individual.getLDSBaptism().setTemple(CocoaUtils.templeForComboBox(baptismTemple));
-				 individual.getLDSEndowment().setDateString(endowmentDate.stringValue());
-				 individual.getLDSEndowment().setTemple(CocoaUtils.templeForComboBox(endowmentTemple));
-				 individual.getLDSSealingToParents().setDateString(sealingToParentDate.stringValue());
-				 individual.getLDSSealingToParents().setTemple(CocoaUtils.templeForComboBox(sealingToParentTemple));
-				 */	
+				[newIndividual takeValue:[self nameForPointer:title] forKey:@"namePrefix"];
+
+				[newIndividual takeValue:gender	forKey:@"genderAsString"];
+				[newIndividual takeValue:ID forKey:@"AFN"];
+
+				if (birthDate->year >= 100) {
+					[newIndividual takeValue:[self dateStringForDualDate:birthDate]	forKeyPath:@"birthEvent.dateString"];
+				}
+				if ([birthPlaceString length] > 0) {
+					id birthPlace=[NSClassFromString(@"com.redbugz.macpaf.jdom.PlaceJDOM") newWithSignature:@"(Ljava/lang/String;)",birthPlaceString];
+					[newIndividual takeValue:birthPlace	forKeyPath:@"birthEvent.place"];					
+				}
+				if (christeningDate->year >= 100) {
+					[newIndividual takeValue:[self dateStringForDualDate:christeningDate]	forKeyPath:@"christeningEvent.dateString"];
+				}
+				if ([christeningPlaceString length] > 0) {
+					id christeningPlace=[NSClassFromString(@"com.redbugz.macpaf.jdom.PlaceJDOM") newWithSignature:@"(Ljava/lang/String;)",christeningPlaceString];
+					[newIndividual takeValue:christeningPlace	forKeyPath:@"christeningEvent.place"];
+				}
+				if (deathDate->year >= 100) {
+					[newIndividual takeValue:[self dateStringForDualDate:deathDate]	forKeyPath:@"deathEvent.dateString"];
+				}
+				if ([deathPlaceString length] > 0) {
+					id deathPlace=[NSClassFromString(@"com.redbugz.macpaf.jdom.PlaceJDOM") newWithSignature:@"(Ljava/lang/String;)",deathPlaceString];
+					[newIndividual takeValue:deathPlace	forKeyPath:@"deathEvent.place"];
+				}
+				if (burialDate->year >= 100) {
+					[newIndividual takeValue:[self dateStringForDualDate:burialDate]	forKeyPath:@"burialEvent.dateString"];
+				}
+				if ([burialPlaceString length] > 0) {
+					id burialPlace=[NSClassFromString(@"com.redbugz.macpaf.jdom.PlaceJDOM") newWithSignature:@"(Ljava/lang/String;)",burialPlaceString];
+					[newIndividual takeValue:burialPlace	forKeyPath:@"burialEvent.place"];
+				}
+				
+				if (baptismDate->year >= 100) {
+					[newIndividual takeValue:[self dateStringForRegDate:baptismDate]	forKeyPath:@"LDSBaptism.dateString"];
+				}
+				if ([baptismTempleString length] > 0) {
+					id baptismTemple=[NSClassFromString(@"com.redbugz.macpaf.TempleList") templeWithCode:baptismTempleString];
+					if (baptismTemple) {
+						[newIndividual takeValue:baptismTemple	forKeyPath:@"LDSBaptism.temple"];
+					}
+				}
+				if (endowmentDate->year >= 100) {
+					[newIndividual takeValue:[self dateStringForRegDate:endowmentDate]	forKeyPath:@"LDSEndowment.dateString"];
+				}
+				if ([endowmentTempleString length] > 0) {
+					id endowmentTemple=[NSClassFromString(@"com.redbugz.macpaf.TempleList") templeWithCode:endowmentTempleString];
+					if (endowmentTemple) {
+						[newIndividual takeValue:endowmentTemple	forKeyPath:@"LDSEndowment.temple"];
+					}
+				}
+				if (childToParentSealingDate->year >= 100) {
+					[newIndividual takeValue:[self dateStringForRegDate:childToParentSealingDate]	forKeyPath:@"LDSSealingToParents.dateString"];
+				}
+				if ([childToParentSealingTempleString length] > 0) {
+					id childToParentSealingTemple=[NSClassFromString(@"com.redbugz.macpaf.TempleList") templeWithCode:childToParentSealingTempleString];
+					if (childToParentSealingTemple) {
+						[newIndividual takeValue:childToParentSealingTemple	forKeyPath:@"LDSSealingToParents.temple"];
+					}
+				}
+
+				id noteLink = [NSClassFromString(@"com.redbugz.macpaf.jdom.NoteLink") newWithSignature:@"(Ljava/lang/String;Lcom/redbugz/macpaf/jdom/MacPAFDocumentJDOM;)",[[self noteForPointer:notePadRecord] valueForKey:@"id"], document];
+				[newIndividual addNoteLink:noteLink];
 				[individualList addObject:newIndividual];
+				[individualLinksList addObject:individualLinksDict];
 			}
+		}
 	}
 	
 	
@@ -602,6 +693,13 @@ NSLog(@"givenNames:%@", givenNames);
 				NSLog(@"i=%i chunkIndex=%i recIndex=%i offset=%i", i, chunkIndex, recIndex, offset);
 				
 				NSData * obj = [marrChunks objectAtIndex:chunkIndex];
+
+				NSString *divorceFlag = [self stringFromMacRomanData:[obj subdataWithRange:NSMakeRange(offset+27,1)]];
+				NSLog(@"marr divorce=%@", divorceFlag);
+				if ([divorceFlag isEqualTo:@"D"]) {
+					NSLog(@"%s skipping deleted family %i", _cmd, i);
+					[marriageList addObject:[NSNull null]];
+				} else {
 				
 				unsigned short husband = [self shortFromData:obj atOffset:offset+0];
 				unsigned short wife = [self shortFromData:obj atOffset:offset+2];
@@ -609,44 +707,60 @@ NSLog(@"givenNames:%@", givenNames);
 				NSLog(@"marr husb=%i wife=%i youngestchild=%i", husband, wife, youngestChild);
 				//		NSLog(@"surname=%@ givenname1=%@ givenname2=%@ givenname3=%@", [self nameForPointer:Surname], [self nameForPointer:GivenName1], [self nameForPointer:GivenName2], [self nameForPointer:GivenName3]);
 				struct DualDate_t *marriageDate = [self dualDateFromData:obj atOffset:offset+6];
-				unsigned short marriagePlace1 = [self shortFromData:obj atOffset:offset+10];
-				unsigned short marriagePlace2 = [self shortFromData:obj atOffset:offset+12];
-				unsigned short marriagePlace3 = [self shortFromData:obj atOffset:offset+14];
-				unsigned short marriagePlace4 = [self shortFromData:obj atOffset:offset+16];
-				NSLog(@"marr place1=%i place2=%i place3=%i place4=%i", marriagePlace1, marriagePlace2, marriagePlace3, marriagePlace4);
+				NSString *marriagePlaceString = [self placeStringFromData:obj atOffset:offset+10];
+				NSLog(@"marr place=%s", marriagePlaceString);
 				struct RegDate_t *sealingToSpouseDate = [self regDateFromData:obj atOffset:offset+18];
-				unsigned short sealingToSpouseTemple = [self shortFromData:obj atOffset:offset+21];
+				NSString *sealingToSpouseTempleString = [self nameForPointer:[self shortFromData:obj atOffset:offset+21]];
+				
 				unsigned short husbandOtherMarriageRecord = [self shortFromData:obj atOffset:offset+23];
 				unsigned short wifeOtherMarriageRecord = [self shortFromData:obj atOffset:offset+25];
-				NSLog(@"marr sealtemple=%i husbothmarr=%i wifeothmarr=%i", sealingToSpouseTemple, husbandOtherMarriageRecord, wifeOtherMarriageRecord);
-				NSString *divorceFlag = [self stringFromMacRomanData:[obj subdataWithRange:NSMakeRange(offset+27,1)]];
-				NSLog(@"marr divorce=%@", divorceFlag);
+				NSLog(@"marr sealtemple=%s husbothmarr=%i wifeothmarr=%i", sealingToSpouseTempleString, husbandOtherMarriageRecord, wifeOtherMarriageRecord);
 				
-				id newMarriage = [[[NSDocumentController sharedDocumentController] currentDocument] performSelector:@selector(createAndInsertNewFamily)];
-				
-				//	[newMarriage takeValue:[self nameForPointer:Surname]	forKey:@"surname"];
-				//	[newMarriage takeValue:givenNames forKey:@"givenNames"];
-				//	[newMarriage takeValue:[self dateForDualDate:birthDate]	forKeyPath:@"birthEvent.date"];
-				//	[newMarriage takeValue:[self noteForPointer:NotePadRecord]	forKey:@"notepad"];
-				//	[newMarriage takeValue:sex	forKey:@"gender"];
+				id newMarriage = [document performSelector:@selector(createAndInsertNewFamily)];
 				
 				if (husband > 0) {
 					[newMarriage setValue:[self individualForPointer:husband]	forKey:@"father"];
-					[[self individualForPointer:husband] setValue:newMarriage	forKey:@"familyAsSpouse"];
+					[[self individualForPointer:husband] addFamilyAsSpouse:newMarriage];
 				}
 				if (wife > 0) {
 					[newMarriage setValue:[self individualForPointer:wife]	forKey:@"mother"];
-					[[self individualForPointer:wife] setValue:newMarriage	forKey:@"familyAsSpouse"];
+					[[self individualForPointer:wife] addFamilyAsSpouse:newMarriage];
 				}
-					//	[newMarriage setValue:[self individualForPointer:youngestChild]	forKey:@"youngestChild"];
-				[newMarriage setValue:[self dateStringForDualDate:marriageDate]	forKeyPath:@"marriageEvent.dateString"];
-				//	[newMarriage setValue:[self nameForPointer:marriagePlace1]	forKey:@"marriagePlace1"];
-				//	[newMarriage setValue:[self nameForPointer:marriagePlace2]	forKey:@"marriagePlace2"];
-				//	[newMarriage setValue:[self nameForPointer:marriagePlace3]	forKey:@"marriagePlace3"];
-				//	[newMarriage setValue:[self nameForPointer:marriagePlace4]	forKey:@"marriagePlace4"];
-				[newMarriage setValue:[self dateStringForRegDate:sealingToSpouseDate]	forKey:@"sealingToSpouse.dateString"];
-				//	[newMarriage setValue:[self nameForPointer:sealingToSpouseTemple]	forKey:@"sealingToSpouseTemple"];
-				//	[newMarriage setValue:[divorceFlag isCaseInsensitiveLike:@"Y"]	forKey:@"divorced"];
+				if (youngestChild > 0) {
+					NSMutableArray *children = [NSMutableArray array];
+					[children insertObject:[self individualForPointer:youngestChild] atIndex:0];
+					[[self individualForPointer:youngestChild] takeValue:newMarriage forKey:@"familyAsChild"];
+					int nextChild = [[[individualLinksList objectAtIndex:youngestChild-1] valueForKeyPath:@"olderSibling"] intValue];
+					while (nextChild) {
+						[[self individualForPointer:nextChild] takeValue:newMarriage forKey:@"familyAsChild"];
+						[children insertObject:[self individualForPointer:nextChild] atIndex:0];
+						NSLog(@"children: %@", children);
+						nextChild = [[[individualLinksList objectAtIndex:nextChild-1] valueForKeyPath:@"olderSibling"] intValue];
+					}
+					[newMarriage setValue:[NSClassFromString(@"com.redbugz.macpaf.util.CocoaUtils") javaListFromNSArray:children]	forKey:@"children"];
+				}
+				
+				if (marriageDate->year >= 100) {
+					[newMarriage takeValue:[self dateStringForDualDate:marriageDate]	forKeyPath:@"marriageEvent.dateString"];
+				}
+				if ([marriagePlaceString length] > 0) {
+					id marriagePlace=[NSClassFromString(@"com.redbugz.macpaf.jdom.PlaceJDOM") newWithSignature:@"(Ljava/lang/String;)",marriagePlaceString];
+					[newMarriage takeValue:marriagePlace	forKeyPath:@"marriageEvent.place"];					
+				}
+				
+				if (sealingToSpouseDate->year >= 100) {
+					[newMarriage takeValue:[self dateStringForRegDate:sealingToSpouseDate]	forKeyPath:@"sealingToSpouse.dateString"];
+				}
+				if ([sealingToSpouseTempleString length] > 0) {
+					id sealingToSpouseTemple=[NSClassFromString(@"com.redbugz.macpaf.TempleList") templeWithCode:sealingToSpouseTempleString];
+					if (sealingToSpouseTemple) {
+						[newMarriage takeValue:sealingToSpouseTemple	forKeyPath:@"sealingToSpouse.temple"];
+					}
+				}
+
+				if ([divorceFlag isEqualTo:@"Y"]) {
+					[newMarriage addEvent:[NSClassFromString(@"com.redbugz.macpaf.jdom.EventJDOM") createDivorceEventInstance]];
+				}
 				/*
 				 father.setGender(Gender.MALE);
 				 father.setFamilyAsSpouse(family);
@@ -661,8 +775,9 @@ NSLog(@"givenNames:%@", givenNames);
 				 family.getSealingToSpouse().setTemple(CocoaUtils.templeForComboBox(sealingTemple));
 				 */	
 				[marriageList addObject:newMarriage];
-				
+			
 			}
+		}
 	}
 	
 	//	NSArray *orphans = [noteList mutableCopy];
@@ -672,11 +787,11 @@ NSLog(@"givenNames:%@", givenNames);
 	//[context save:nil];
 }
 	
-	+ (id)importFromData:(NSData *)data {
+	+ (void)importFromData:(NSData *)data intoDocument:(NSDocument *)document {
+		NSLog(@"%s document: %@", _cmd, document);
 	    NSLog(@"%i, chunks %i", [data length], ([data length]-512)/1024);
-		PAF21Data *pafData = [[PAF21Data alloc] initWithData:data];
-		[pafData importData];
-		return pafData;
+		PAF21Data *pafData = [[[PAF21Data alloc] initWithData:data] autorelease];
+		[pafData importDataIntoDocument:document];
 	}
 
 @end

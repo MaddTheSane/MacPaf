@@ -100,7 +100,7 @@
             OUTLETS = {
                 document = MyDocument; 
                 importSheet = NSWindow; 
-                loader = "com.redbugz.macpaf.jdom.GedcomLoaderJDOM"; 
+                loader = "com.redbugz.maf.jdom.GedcomLoaderJDOM"; 
             }; 
             SUPERCLASS = NSWindowController; 
         }, 
@@ -272,32 +272,32 @@
             SUPERCLASS = NSObject; 
         }, 
         {
-            CLASS = "com.redbugz.macpaf.DateFormatter"; 
+            CLASS = "com.redbugz.maf.DateFormatter"; 
             LANGUAGE = Java; 
             SUPERCLASS = NSFormatter; 
         }, 
         {
-            CLASS = "com.redbugz.macpaf.DateFormatter1"; 
+            CLASS = "com.redbugz.maf.DateFormatter1"; 
             LANGUAGE = Java; 
             SUPERCLASS = NSFormatter; 
         }, 
         {
-            CLASS = "com.redbugz.macpaf.LocationList"; 
+            CLASS = "com.redbugz.maf.LocationList"; 
             LANGUAGE = Java; 
             SUPERCLASS = "java.lang.Object"; 
         }, 
         {
-            CLASS = "com.redbugz.macpaf.SurnameList"; 
+            CLASS = "com.redbugz.maf.SurnameList"; 
             LANGUAGE = Java; 
             SUPERCLASS = "java.lang.Object"; 
         }, 
         {
-            CLASS = "com.redbugz.macpaf.TempleList"; 
+            CLASS = "com.redbugz.maf.TempleList"; 
             LANGUAGE = Java; 
             SUPERCLASS = "java.lang.Object"; 
         }, 
         {
-            CLASS = "com.redbugz.macpaf.jdom.GedcomLoaderJDOM"; 
+            CLASS = "com.redbugz.maf.jdom.GedcomLoaderJDOM"; 
             LANGUAGE = Java; 
             SUPERCLASS = "java.lang.Object"; 
         }

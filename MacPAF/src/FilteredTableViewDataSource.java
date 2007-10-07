@@ -4,7 +4,7 @@ import org.apache.log4j.*;
 
 import com.apple.cocoa.application.*;
 import com.apple.cocoa.foundation.*;
-import com.redbugz.macpaf.util.*;
+import com.redbugz.maf.util.*;
 
 /**
  * <p>Title: </p>

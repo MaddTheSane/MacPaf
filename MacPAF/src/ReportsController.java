@@ -9,7 +9,7 @@
 import org.apache.log4j.*;
 
 import com.apple.cocoa.application.*;
-import com.redbugz.macpaf.*;
+import com.redbugz.maf.*;
 
 public class ReportsController extends NSWindowController {
   private static final Logger log = Logger.getLogger(ReportsController.class);

@@ -28,7 +28,7 @@
             SUPERCLASS = NSWindowController; 
         }, 
         {
-            CLASS = "com.redbugz.macpaf.jdom.GedcomLoaderJDOM"; 
+            CLASS = "com.redbugz.maf.jdom.GedcomLoaderJDOM"; 
             LANGUAGE = Java; 
             SUPERCLASS = "java.lang.Object"; 
         }

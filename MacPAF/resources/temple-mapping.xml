@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mapping>
-  <class name="com.redbugz.macpaf.TempleXML">
+  <class name="com.redbugz.maf.TempleXML">
     <map-to xml="temple-list"/>
-    <field collection="vector" name="templeList" type="com.redbugz.macpaf.Temple">
+    <field collection="vector" name="templeList" type="com.redbugz.maf.Temple">
       <bind-xml name="temple"/>
     </field>
   </class>
-  <class name="com.redbugz.macpaf.Temple">
+  <class name="com.redbugz.maf.Temple">
     <map-to xml="temple"/>
     <field name="name" type="java.lang.String">
       <bind-xml name="name" node="element"/>

@@ -4,7 +4,7 @@ import org.apache.log4j.*;
 
 import com.apple.cocoa.application.*;
 import com.apple.cocoa.foundation.*;
-import com.redbugz.macpaf.*;
+import com.redbugz.maf.*;
 
 public class IndividualListController extends NSWindowController {
 	private static Logger log = Logger.getLogger(IndividualListController.class);

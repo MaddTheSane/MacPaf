@@ -53,7 +53,7 @@ NSString * const TEMPLEREADY_UPDATE_DOCUMENT_TYPE = @"TempleReady Update File";
         }
 		[fileNameText setStringValue:fileNameToImport];
 		
-		importDocument = [NSClassFromString(@"com.redbugz.macpaf.jdom.MacPAFDocumentJDOM") new];
+		importDocument = [NSClassFromString(@"com.redbugz.maf.jdom.MacPAFDocumentJDOM") new];
 		UKProgressPanelTask *task = [[UKProgressPanelTask alloc] init];
 
 		NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys: [NSData dataWithContentsOfFile:fileNameToImport], @"data", importDocument, @"doc", task, @"task", nil];
@@ -299,7 +299,7 @@ NSString * const TEMPLEREADY_UPDATE_DOCUMENT_TYPE = @"TempleReady Update File";
 			[NSApp endSheet:progressSheet returnCode:0]; // stop the app's modality
 //			[NSApp endSheet:[[self document] windowForSheet] returnCode:0]; // stop the app's modality
 //			NSData *data = [NSData dataWithContentsOfFile:fileNameToImport];//[[filePreview string] dataUsingEncoding:NSUTF8StringEncoding];
-//			[[NSNotificationCenter defaultCenter] postNotificationName:@"com.redbugz.macpaf.ImportDataNotification" object:[self document] userInfo:[NSDictionary dictionaryWithObjectsAndKeys:data, @"data", nil]];
+//			[[NSNotificationCenter defaultCenter] postNotificationName:@"com.redbugz.maf.ImportDataNotification" object:[self document] userInfo:[NSDictionary dictionaryWithObjectsAndKeys:data, @"data", nil]];
 		}
 		@catch (NSException * e) {
 			NSLog(@"exception loading data: %@", e);

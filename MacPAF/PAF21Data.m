@@ -620,28 +620,28 @@ NSDateFormatter *dateFormatter;
 					[newIndividual takeValue:[self dateStringForDualDate:birthDate]	forKeyPath:@"birthEvent.dateString"];
 				}
 				if ([birthPlaceString length] > 0) {
-					id birthPlace=[NSClassFromString(@"com.redbugz.macpaf.jdom.PlaceJDOM") newWithSignature:@"(Ljava/lang/String;)",birthPlaceString];
+					id birthPlace=[NSClassFromString(@"com.redbugz.maf.jdom.PlaceJDOM") newWithSignature:@"(Ljava/lang/String;)",birthPlaceString];
 					[newIndividual takeValue:birthPlace	forKeyPath:@"birthEvent.place"];					
 				}
 				if (christeningDate->year >= 100) {
 					[newIndividual takeValue:[self dateStringForDualDate:christeningDate]	forKeyPath:@"christeningEvent.dateString"];
 				}
 				if ([christeningPlaceString length] > 0) {
-					id christeningPlace=[NSClassFromString(@"com.redbugz.macpaf.jdom.PlaceJDOM") newWithSignature:@"(Ljava/lang/String;)",christeningPlaceString];
+					id christeningPlace=[NSClassFromString(@"com.redbugz.maf.jdom.PlaceJDOM") newWithSignature:@"(Ljava/lang/String;)",christeningPlaceString];
 					[newIndividual takeValue:christeningPlace	forKeyPath:@"christeningEvent.place"];
 				}
 				if (deathDate->year >= 100) {
 					[newIndividual takeValue:[self dateStringForDualDate:deathDate]	forKeyPath:@"deathEvent.dateString"];
 				}
 				if ([deathPlaceString length] > 0) {
-					id deathPlace=[NSClassFromString(@"com.redbugz.macpaf.jdom.PlaceJDOM") newWithSignature:@"(Ljava/lang/String;)",deathPlaceString];
+					id deathPlace=[NSClassFromString(@"com.redbugz.maf.jdom.PlaceJDOM") newWithSignature:@"(Ljava/lang/String;)",deathPlaceString];
 					[newIndividual takeValue:deathPlace	forKeyPath:@"deathEvent.place"];
 				}
 				if (burialDate->year >= 100) {
 					[newIndividual takeValue:[self dateStringForDualDate:burialDate]	forKeyPath:@"burialEvent.dateString"];
 				}
 				if ([burialPlaceString length] > 0) {
-					id burialPlace=[NSClassFromString(@"com.redbugz.macpaf.jdom.PlaceJDOM") newWithSignature:@"(Ljava/lang/String;)",burialPlaceString];
+					id burialPlace=[NSClassFromString(@"com.redbugz.maf.jdom.PlaceJDOM") newWithSignature:@"(Ljava/lang/String;)",burialPlaceString];
 					[newIndividual takeValue:burialPlace	forKeyPath:@"burialEvent.place"];
 				}
 				
@@ -649,7 +649,7 @@ NSDateFormatter *dateFormatter;
 					[newIndividual takeValue:[self dateStringForRegDate:baptismDate]	forKeyPath:@"LDSBaptism.dateString"];
 				}
 				if ([baptismTempleString length] > 0) {
-					id baptismTemple=[NSClassFromString(@"com.redbugz.macpaf.TempleList") templeWithCode:baptismTempleString];
+					id baptismTemple=[NSClassFromString(@"com.redbugz.maf.TempleList") templeWithCode:baptismTempleString];
 					if (baptismTemple) {
 						[newIndividual takeValue:baptismTemple	forKeyPath:@"LDSBaptism.temple"];
 					}
@@ -658,7 +658,7 @@ NSDateFormatter *dateFormatter;
 					[newIndividual takeValue:[self dateStringForRegDate:endowmentDate]	forKeyPath:@"LDSEndowment.dateString"];
 				}
 				if ([endowmentTempleString length] > 0) {
-					id endowmentTemple=[NSClassFromString(@"com.redbugz.macpaf.TempleList") templeWithCode:endowmentTempleString];
+					id endowmentTemple=[NSClassFromString(@"com.redbugz.maf.TempleList") templeWithCode:endowmentTempleString];
 					if (endowmentTemple) {
 						[newIndividual takeValue:endowmentTemple	forKeyPath:@"LDSEndowment.temple"];
 					}
@@ -667,13 +667,13 @@ NSDateFormatter *dateFormatter;
 					[newIndividual takeValue:[self dateStringForRegDate:childToParentSealingDate]	forKeyPath:@"LDSSealingToParents.dateString"];
 				}
 				if ([childToParentSealingTempleString length] > 0) {
-					id childToParentSealingTemple=[NSClassFromString(@"com.redbugz.macpaf.TempleList") templeWithCode:childToParentSealingTempleString];
+					id childToParentSealingTemple=[NSClassFromString(@"com.redbugz.maf.TempleList") templeWithCode:childToParentSealingTempleString];
 					if (childToParentSealingTemple) {
 						[newIndividual takeValue:childToParentSealingTemple	forKeyPath:@"LDSSealingToParents.temple"];
 					}
 				}
 
-				id noteLink = [NSClassFromString(@"com.redbugz.macpaf.jdom.NoteLink") newWithSignature:@"(Ljava/lang/String;Lcom/redbugz/macpaf/jdom/MacPAFDocumentJDOM;)",[[self noteForPointer:notePadRecord] valueForKey:@"id"], document];
+				id noteLink = [NSClassFromString(@"com.redbugz.maf.jdom.NoteLink") newWithSignature:@"(Ljava/lang/String;Lcom/redbugz/macpaf/jdom/MacPAFDocumentJDOM;)",[[self noteForPointer:notePadRecord] valueForKey:@"id"], document];
 				[newIndividual addNoteLink:noteLink];
 				[individualList addObject:newIndividual];
 				[individualLinksList addObject:individualLinksDict];
@@ -737,14 +737,14 @@ NSDateFormatter *dateFormatter;
 						NSLog(@"children: %@", children);
 						nextChild = [[[individualLinksList objectAtIndex:nextChild-1] valueForKeyPath:@"olderSibling"] intValue];
 					}
-					[newMarriage setValue:[NSClassFromString(@"com.redbugz.macpaf.util.CocoaUtils") javaListFromNSArray:children]	forKey:@"children"];
+					[newMarriage setValue:[NSClassFromString(@"com.redbugz.maf.util.CocoaUtils") javaListFromNSArray:children]	forKey:@"children"];
 				}
 				
 				if (marriageDate->year >= 100) {
 					[newMarriage takeValue:[self dateStringForDualDate:marriageDate]	forKeyPath:@"marriageEvent.dateString"];
 				}
 				if ([marriagePlaceString length] > 0) {
-					id marriagePlace=[NSClassFromString(@"com.redbugz.macpaf.jdom.PlaceJDOM") newWithSignature:@"(Ljava/lang/String;)",marriagePlaceString];
+					id marriagePlace=[NSClassFromString(@"com.redbugz.maf.jdom.PlaceJDOM") newWithSignature:@"(Ljava/lang/String;)",marriagePlaceString];
 					[newMarriage takeValue:marriagePlace	forKeyPath:@"marriageEvent.place"];					
 				}
 				
@@ -752,14 +752,14 @@ NSDateFormatter *dateFormatter;
 					[newMarriage takeValue:[self dateStringForRegDate:sealingToSpouseDate]	forKeyPath:@"sealingToSpouse.dateString"];
 				}
 				if ([sealingToSpouseTempleString length] > 0) {
-					id sealingToSpouseTemple=[NSClassFromString(@"com.redbugz.macpaf.TempleList") templeWithCode:sealingToSpouseTempleString];
+					id sealingToSpouseTemple=[NSClassFromString(@"com.redbugz.maf.TempleList") templeWithCode:sealingToSpouseTempleString];
 					if (sealingToSpouseTemple) {
 						[newMarriage takeValue:sealingToSpouseTemple	forKeyPath:@"sealingToSpouse.temple"];
 					}
 				}
 
 				if ([divorceFlag isEqualTo:@"Y"]) {
-					[newMarriage addEvent:[NSClassFromString(@"com.redbugz.macpaf.jdom.EventJDOM") createDivorceEventInstance]];
+					[newMarriage addEvent:[NSClassFromString(@"com.redbugz.maf.jdom.EventJDOM") createDivorceEventInstance]];
 				}
 				/*
 				 father.setGender(Gender.MALE);

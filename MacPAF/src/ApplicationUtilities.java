@@ -14,10 +14,10 @@ import org.apache.log4j.*;
 
 import com.apple.cocoa.application.*;
 import com.apple.cocoa.foundation.*;
-import com.redbugz.macpaf.util.CocoaUtils;
+import com.redbugz.maf.util.CocoaUtils;
 
 public class ApplicationUtilities extends NSObject {
-  private static final String DEFAULTS_KEY_OPENED_DOCUMENTS = "com.redbugz.macpaf.OpenedDocuments";
+  private static final String DEFAULTS_KEY_OPENED_DOCUMENTS = "com.redbugz.maf.OpenedDocuments";
   public NSWindow splashScreen; /* IBOutlet */
   public NSProgressIndicator progress; /* IBOutlet */
   public static boolean didFinish = false;

@@ -10,9 +10,13 @@ import org.apache.log4j.*;
 
 import com.apple.cocoa.application.*;
 import com.apple.cocoa.foundation.NSAttributedString;
-import com.redbugz.macpaf.*;
-import com.redbugz.macpaf.jdom.*;
-import com.redbugz.macpaf.util.*;
+import com.redbugz.macpaf.CocoaUtils;
+import com.redbugz.macpaf.MultimediaUtils;
+import com.redbugz.macpaf.PlaceJDOM;
+import com.redbugz.macpaf.StringUtils;
+import com.redbugz.maf.*;
+import com.redbugz.maf.jdom.*;
+import com.redbugz.maf.util.*;
 
 public class IndividualEditController extends NSWindowController {
   private static final Logger log = Logger.getLogger(IndividualEditController.class);

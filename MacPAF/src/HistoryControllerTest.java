@@ -1,7 +1,8 @@
 import junit.framework.*;
 
-import com.redbugz.macpaf.*;
-import com.redbugz.macpaf.test.*;
+import com.redbugz.macpaf.MyIndividual;
+import com.redbugz.maf.*;
+import com.redbugz.maf.test.*;
 
 public class HistoryControllerTest extends TestCase {
 

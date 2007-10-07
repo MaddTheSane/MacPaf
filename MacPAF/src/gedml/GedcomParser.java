@@ -23,7 +23,7 @@ import org.xml.sax.helpers.AttributesImpl;
 import org.xml.sax.helpers.DefaultHandler;
 
 import com.outerrim.io.UnicodeInputStream;
-import com.redbugz.macpaf.util.StringUtils;
+import com.redbugz.maf.util.StringUtils;
 
 /**
  *  GedcomParser

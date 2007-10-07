@@ -6,9 +6,10 @@ import org.apache.log4j.*;
 
 import com.apple.cocoa.application.*;
 import com.apple.cocoa.foundation.*;
-import com.redbugz.macpaf.*;
-import com.redbugz.macpaf.util.*;
-import com.redbugz.macpaf.util.CocoaUtils.*;
+import com.redbugz.macpaf.CocoaUtils;
+import com.redbugz.maf.*;
+import com.redbugz.maf.util.*;
+import com.redbugz.maf.util.CocoaUtils.*;
 
 public class PedigreeViewController extends NSObject {
 	private static final KeyValueComparator TAG_COMPARATOR = new CocoaUtils.KeyValueComparator("tag");

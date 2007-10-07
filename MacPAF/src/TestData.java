@@ -1,7 +1,9 @@
 import java.util.*;
 
-import com.redbugz.macpaf.*;
-import com.redbugz.macpaf.test.*;
+import com.redbugz.macpaf.MyIndividual;
+import com.redbugz.macpaf.TestFamily;
+import com.redbugz.maf.*;
+import com.redbugz.maf.test.*;
 
 /**
  * Created by IntelliJ IDEA.

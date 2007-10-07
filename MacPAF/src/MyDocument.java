@@ -19,10 +19,15 @@ import org.apache.log4j.*;
 
 import com.apple.cocoa.application.*;
 import com.apple.cocoa.foundation.*;
-import com.redbugz.macpaf.*;
-import com.redbugz.macpaf.gdbi.GdbiDocument;
-import com.redbugz.macpaf.jdom.*;
-import com.redbugz.macpaf.util.*;
+import com.redbugz.macpaf.CocoaUtils;
+import com.redbugz.macpaf.DateUtils;
+import com.redbugz.macpaf.MacPAFDocumentJDOM;
+import com.redbugz.macpaf.MultimediaUtils;
+import com.redbugz.macpaf.StringUtils;
+import com.redbugz.maf.*;
+import com.redbugz.maf.gdbi.GdbiDocument;
+import com.redbugz.maf.jdom.*;
+import com.redbugz.maf.util.*;
 
 /**
  * @todo This document is getting too large. I need to subclass NSDocumentController and move

@@ -10,8 +10,9 @@ import org.apache.log4j.*;
 
 import com.apple.cocoa.application.*;
 import com.apple.cocoa.foundation.*;
-import com.redbugz.macpaf.*;
-import com.redbugz.macpaf.test.*;
+import com.redbugz.macpaf.MyEvent;
+import com.redbugz.maf.*;
+import com.redbugz.maf.test.*;
 
 
 public class PocketPedigreeView extends NSView {

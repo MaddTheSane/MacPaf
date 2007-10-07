@@ -6,7 +6,7 @@ import org.apache.log4j.*;
 
 import com.apple.cocoa.application.*;
 import com.apple.cocoa.foundation.*;
-import com.redbugz.macpaf.*;
+import com.redbugz.maf.*;
 
 public class FamilyList /*extends AbstractMap*/ {
   private static final Logger log = Logger.getLogger(FamilyList.class);

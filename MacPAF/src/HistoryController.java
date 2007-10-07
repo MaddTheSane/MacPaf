@@ -5,7 +5,7 @@ import java.util.*;
 import org.apache.log4j.*;
 
 import com.apple.cocoa.application.*;
-import com.redbugz.macpaf.*;
+import com.redbugz.maf.*;
 
 public class HistoryController implements NSMenu.MenuValidation {
 	private static Logger log = Logger.getLogger(HistoryController.class);

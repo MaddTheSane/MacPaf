@@ -13,11 +13,17 @@ import org.jdom.Element;
 
 import com.apple.cocoa.application.*;
 import com.apple.cocoa.foundation.*;
-import com.redbugz.macpaf.*;
-import com.redbugz.macpaf.Event.UnknownEvent;
-import com.redbugz.macpaf.jdom.*;
-import com.redbugz.macpaf.util.*;
-import com.redbugz.macpaf.validation.*;
+import com.redbugz.macpaf.CocoaUtils;
+import com.redbugz.macpaf.EventJDOM;
+import com.redbugz.macpaf.FamilyJDOM;
+import com.redbugz.macpaf.OrdinanceJDOM;
+import com.redbugz.macpaf.PlaceJDOM;
+import com.redbugz.macpaf.ValidationException;
+import com.redbugz.maf.*;
+import com.redbugz.maf.Event.UnknownEvent;
+import com.redbugz.maf.jdom.*;
+import com.redbugz.maf.util.*;
+import com.redbugz.maf.validation.*;
 
 public class FamilyEditController extends NSWindowController {
   private static final Logger log = Logger.getLogger(FamilyEditController.class);

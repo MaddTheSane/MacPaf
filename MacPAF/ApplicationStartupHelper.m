@@ -1,6 +1,6 @@
 //
 //  ApplicationStartupHelper.m
-//  MacPAF
+//  MAF
 //
 //  Created by Logan Allred on 5/21/06.
 //  Copyright 2006 RedBugz Software. All rights reserved.

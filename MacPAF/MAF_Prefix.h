@@ -1,5 +1,5 @@
 //
-// Prefix header for all source files of the 'MacPAF' target in the 'MacPAF' project
+// Prefix header for all source files of the 'MAF' target in the 'MAF' project
 //
 
 #ifdef __OBJC__

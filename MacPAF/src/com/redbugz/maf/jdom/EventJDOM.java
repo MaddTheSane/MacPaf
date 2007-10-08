@@ -3,19 +3,20 @@ package com.redbugz.maf.jdom;
 //import java.text.DateFormat;
 //import java.text.ParseException;
 //import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
-import org.apache.log4j.*;
-import org.apache.log4j.helpers.*;
-import org.jdom.*;
-import org.joda.time.*;
-import org.joda.time.format.*;
+import org.apache.log4j.Logger;
+import org.apache.log4j.helpers.DateTimeDateFormat;
+import org.jdom.Element;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 
-import com.redbugz.macpaf.EventJDOM;
-import com.redbugz.macpaf.PlaceJDOM;
-import com.redbugz.macpaf.StringUtils;
-import com.redbugz.maf.*;
-import com.redbugz.maf.util.*;
+import com.redbugz.maf.Event;
+import com.redbugz.maf.Family;
+import com.redbugz.maf.Place;
+import com.redbugz.maf.util.StringUtils;
 
 /**
  * Created by IntelliJ IDEA.

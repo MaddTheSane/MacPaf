@@ -1,6 +1,6 @@
 //
 //  ImportSheetController.h
-//  MacPAF
+//  MAF
 //
 //  Created by Logan Allred on 12/31/06.
 //  Copyright 2006 RedBugz Software. All rights reserved.
@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 
 @class UKProgressPanelTask;	
-@class MacPAFDocumentJDOM;
+@class MAFDocumentJDOM;
 
 @interface ImportSheetController : NSWindowController {
 	IBOutlet NSWindow *importSheet;
@@ -22,7 +22,7 @@
 	
 //	UKProgressPanelTask *task;
 	NSString *fileNameToImport;
-	MacPAFDocumentJDOM *importDocument;
+	MAFDocumentJDOM *importDocument;
 //	NSData *data;
 }
 

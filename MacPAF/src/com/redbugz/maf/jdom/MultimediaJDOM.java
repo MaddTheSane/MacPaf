@@ -6,18 +6,17 @@
  */
 package com.redbugz.maf.jdom;
 
-import java.io.*;
-import java.util.*;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
-import org.apache.log4j.*;
-import org.jdom.*;
+import org.apache.log4j.Logger;
+import org.jdom.Element;
 
-import com.redbugz.macpaf.Base64;
-import com.redbugz.macpaf.MacPAFDocumentJDOM;
-import com.redbugz.macpaf.MultimediaJDOM;
-import com.redbugz.macpaf.MultimediaUtils;
-import com.redbugz.maf.*;
-import com.redbugz.maf.util.*;
+import com.redbugz.maf.Multimedia;
+import com.redbugz.maf.util.Base64;
+import com.redbugz.maf.util.MultimediaUtils;
 
 /**
  * @author logan
@@ -35,13 +34,13 @@ public class MultimediaJDOM implements Multimedia {
   public static final String MULTIMEDIA = "OBJE";
 
   Element element = new Element(MULTIMEDIA);
-private MacPAFDocumentJDOM document;
+private MAFDocumentJDOM document;
 
   /**
    * @param element
  * @param parentDocument TODO
    */
-  public MultimediaJDOM(Element element, MacPAFDocumentJDOM parentDocument) {
+  public MultimediaJDOM(Element element, MAFDocumentJDOM parentDocument) {
   	if (parentDocument == null) {
   		throw new IllegalArgumentException("Cannot create MultimediaJDOM with null parentDocument");
   	}

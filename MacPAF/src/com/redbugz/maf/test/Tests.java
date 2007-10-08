@@ -75,17 +75,17 @@ public static void testImageFileBytes(File file) {
 public static void testImageFiles() {
 	log.debug("image filetypes: "+NSImage.imageFileTypes());
 	try {
-		File testbmp = new File("/Users/logan/Projects/MacPAF/gedcom/Test files/test.bmp");
-		File testgif = new File("/Users/logan/Projects/MacPAF/gedcom/Test files/test.gif");
-		File testjpeg = new File("/Users/logan/Projects/MacPAF/gedcom/Test files/test.jpeg");
-		File testpict = new File("/Users/logan/Projects/MacPAF/gedcom/Test files/test.pict");
-		File testpng = new File("/Users/logan/Projects/MacPAF/gedcom/Test files/test.png");
-		File testtiff = new File("/Users/logan/Projects/MacPAF/gedcom/Test files/test.tiff");
-		File test2pict = new File("/Users/logan/Projects/MacPAF/gedcom/Test files/test2.pict");
-		File test2tiff = new File("/Users/logan/Projects/MacPAF/gedcom/Test files/test2.tiff");
-		File test2gif = new File("/Users/logan/Projects/MacPAF/gedcom/Test files/test2.gif");
-		File test3gif = new File("/Users/logan/Projects/MacPAF/gedcom/Test files/test3.gif");
-		File test4gif = new File("/Users/logan/Projects/MacPAF/gedcom/Test files/test4.gif");
+		File testbmp = new File("/Users/logan/Projects/MAF/gedcom/Test files/test.bmp");
+		File testgif = new File("/Users/logan/Projects/MAF/gedcom/Test files/test.gif");
+		File testjpeg = new File("/Users/logan/Projects/MAF/gedcom/Test files/test.jpeg");
+		File testpict = new File("/Users/logan/Projects/MAF/gedcom/Test files/test.pict");
+		File testpng = new File("/Users/logan/Projects/MAF/gedcom/Test files/test.png");
+		File testtiff = new File("/Users/logan/Projects/MAF/gedcom/Test files/test.tiff");
+		File test2pict = new File("/Users/logan/Projects/MAF/gedcom/Test files/test2.pict");
+		File test2tiff = new File("/Users/logan/Projects/MAF/gedcom/Test files/test2.tiff");
+		File test2gif = new File("/Users/logan/Projects/MAF/gedcom/Test files/test2.gif");
+		File test3gif = new File("/Users/logan/Projects/MAF/gedcom/Test files/test3.gif");
+		File test4gif = new File("/Users/logan/Projects/MAF/gedcom/Test files/test4.gif");
 
 		testImageFileBytes(testbmp);
 		testImageFileBytes(testgif);

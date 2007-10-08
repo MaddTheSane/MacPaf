@@ -1,11 +1,11 @@
 package com.redbugz.maf.test;
 
-import org.apache.log4j.*;
-import org.jdom.*;
+import org.apache.log4j.Logger;
+import org.jdom.Element;
 
-import com.redbugz.macpaf.MyEvent;
-import com.redbugz.macpaf.MyOrdinance;
-import com.redbugz.maf.*;
+import com.redbugz.maf.Ordinance;
+import com.redbugz.maf.Temple;
+import com.redbugz.maf.TempleList;
 
 /**
  * Created by IntelliJ IDEA.

@@ -1,14 +1,16 @@
 package com.redbugz.maf.test;
 
-import java.text.*;
-import java.util.*;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
-import org.apache.log4j.*;
-import org.jdom.*;
+import org.apache.log4j.Logger;
+import org.jdom.Element;
 
-import com.redbugz.macpaf.MyEvent;
-import com.redbugz.macpaf.MyPlace;
-import com.redbugz.maf.*;
+import com.redbugz.maf.Event;
+import com.redbugz.maf.Place;
 
 /**
  * Created by IntelliJ IDEA.

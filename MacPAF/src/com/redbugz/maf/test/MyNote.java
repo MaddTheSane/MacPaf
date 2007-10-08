@@ -1,12 +1,11 @@
 package com.redbugz.maf.test;
 
-import java.util.*;
+import java.util.List;
 
-import org.apache.log4j.*;
-import org.jdom.*;
+import org.apache.log4j.Logger;
+import org.jdom.Element;
 
-import com.redbugz.macpaf.MyNote;
-import com.redbugz.maf.*;
+import com.redbugz.maf.Note;
 
 /**
  * Created by IntelliJ IDEA.

@@ -6,7 +6,6 @@
  */
 package com.redbugz.maf.jdom;
 
-import com.redbugz.macpaf.MacPAFDocumentJDOM;
 import com.redbugz.maf.Repository;
 
 /**
@@ -17,14 +16,14 @@ import com.redbugz.maf.Repository;
  */
 public class RepositoryLink implements Repository {
 	private Repository actualRepository = null;
-	private MacPAFDocumentJDOM document = null;
+	private MAFDocumentJDOM document = null;
 	String id = "";
 
-	RepositoryLink(MacPAFDocumentJDOM doc) {
+	RepositoryLink(MAFDocumentJDOM doc) {
 		document = doc;
 	}
 	
-	RepositoryLink(String id, MacPAFDocumentJDOM doc) {
+	RepositoryLink(String id, MAFDocumentJDOM doc) {
 		this(doc);
 		setId(id);
 	}

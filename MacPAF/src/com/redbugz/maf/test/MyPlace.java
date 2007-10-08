@@ -1,12 +1,11 @@
 package com.redbugz.maf.test;
 
-import java.util.*;
+import java.util.StringTokenizer;
 
-import org.apache.log4j.*;
-import org.jdom.*;
+import org.apache.log4j.Logger;
+import org.jdom.Element;
 
-import com.redbugz.macpaf.MyPlace;
-import com.redbugz.maf.*;
+import com.redbugz.maf.Place;
 
 /**
  * Created by IntelliJ IDEA.

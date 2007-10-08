@@ -1,6 +1,6 @@
 //
 //  TransparentSplashScreenWindow.h
-//  MacPAF
+//  MAF
 //
 //  Created by Logan Allred on 1/2/07.
 //  Copyright 2007 RedBugz Software. All rights reserved.

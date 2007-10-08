@@ -6,17 +6,18 @@
  */
 package com.redbugz.maf.jdom;
 
-import java.io.*;
-import java.util.*;
+import java.io.IOException;
+import java.util.Iterator;
+import java.util.List;
 
-import org.apache.log4j.*;
-import org.jdom.*;
-import org.jdom.output.*;
-import org.jdom.xpath.*;
+import org.apache.log4j.Logger;
+import org.jdom.Element;
+import org.jdom.JDOMException;
+import org.jdom.output.Format;
+import org.jdom.output.XMLOutputter;
+import org.jdom.xpath.XPath;
 
-import com.redbugz.macpaf.MacPAFDocumentJDOM;
-import com.redbugz.macpaf.SourceJDOM;
-import com.redbugz.maf.*;
+import com.redbugz.maf.Source;
 
 /**
  * @author logan
@@ -32,9 +33,9 @@ public class SourceJDOM implements Source {
 	  Element element = new Element(SOURCE);
 	  private static final String newLine = System.getProperty("line.separator");
 
-	private MacPAFDocumentJDOM document = null;
+	private MAFDocumentJDOM document = null;
 
-	  public SourceJDOM(Element element, MacPAFDocumentJDOM parentDocument) {
+	  public SourceJDOM(Element element, MAFDocumentJDOM parentDocument) {
 	  	if (parentDocument == null) {
 	  		throw new IllegalArgumentException("Cannot create SourceJDOM with null parentDocument");
 	  	}

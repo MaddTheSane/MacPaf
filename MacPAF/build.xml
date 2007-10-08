@@ -2,14 +2,14 @@
 <!-- ====================================================================== 
 	Apr 14, 2005 7:47:44 PM                                                        
 
-	MacPAF with Eclipse    
-	build MacPAF with the wondiferous Eclipse
+	MAF with Eclipse    
+	build MAF with the wondiferous Eclipse
                    
 	thanks to mike                                                                
 	====================================================================== -->
-<project name="MacPAF with Eclipse" default="build">
+<project name="MAF with Eclipse" default="build">
 	<description>	
-		build MacPAF with the wondiferous Eclipse
+		build MAF with the wondiferous Eclipse
 	</description>
 
     <!-- ================================= 
@@ -20,7 +20,7 @@
 			build - only those files that have changed will be 
 			updated.           
          ================================= -->
-	<target name="build" depends="jar, populateBundle" description="--> build MacPAF with the wondiferous Eclipse">
+	<target name="build" depends="jar, populateBundle" description="--> build MAF with the wondiferous Eclipse">
 		
 	</target>
 
@@ -82,7 +82,7 @@
 			build file
 		- - - - - - - - - - - - - - - - - -->
 	<target name="init">
-		<property file="MacPAF.build.properties"/>
+		<property file="MAF.build.properties"/>
 		<path id="classpath">
 			<pathelement path="/System/Library/Java/"/>
 			<fileset dir="lib" id="lib">

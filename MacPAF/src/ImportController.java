@@ -1,6 +1,6 @@
 //
 //  ReportsController.java
-//  MacPAFTest
+//  MAF
 //
 //  Created by Logan Allred on Sun Mar 30 2003.
 //  Copyright (c) 2002-2004 RedBugz Software. All rights reserved.
@@ -60,7 +60,7 @@ private NSOpenPanel openPanel;
 	  NDC.push(((MyDocument) NSDocumentController.sharedDocumentController().currentDocument()).displayName()+" import browse");
 	  try {
 		  openPanel = NSOpenPanel.openPanel();
-		//panther only?        panel.setMessage("Please select a GEDCOM file to import into this MacPAF file.");
+		//panther only?        panel.setMessage("Please select a GEDCOM file to import into this MAF file.");
 //		  NSWindow mainWindow = ((MyDocument) NSDocumentController.sharedDocumentController().currentDocument()).mainWindow;
 //		  log.debug("mainwindow:"+mainWindow.title());
 		  NSApplication.sharedApplication().endSheet(importWindow);
@@ -114,7 +114,7 @@ private NSOpenPanel openPanel;
 		}
 	} catch (RuntimeException e) {
 		e.printStackTrace();
-		MyDocument.showUserErrorMessage("There was an unexpected error during import.", "An unexpected error occurred while attempting to import the file. The data may not have been imported. Please try again or report this to the MacPAF developers");
+		MyDocument.showUserErrorMessage("There was an unexpected error during import.", "An unexpected error occurred while attempting to import the file. The data may not have been imported. Please try again or report this to the MAF developers");
 	} finally {
 		NDC.pop();
 		NSApplication.sharedApplication().endSheet(importWindow);

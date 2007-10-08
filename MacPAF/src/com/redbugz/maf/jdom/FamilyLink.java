@@ -4,10 +4,12 @@
  */
 package com.redbugz.maf.jdom;
 
-import java.util.*;
+import java.util.List;
 
-import com.redbugz.macpaf.MacPAFDocumentJDOM;
-import com.redbugz.maf.*;
+import com.redbugz.maf.Event;
+import com.redbugz.maf.Family;
+import com.redbugz.maf.Individual;
+import com.redbugz.maf.Ordinance;
 
 /**
  * @author logan
@@ -15,14 +17,14 @@ import com.redbugz.maf.*;
  */
 public class FamilyLink implements Family {
 	private Family actualFamily = null;
-	private MacPAFDocumentJDOM document = null;
+	private MAFDocumentJDOM document = null;
 	String id = "";
 
-	FamilyLink(MacPAFDocumentJDOM doc) {
+	FamilyLink(MAFDocumentJDOM doc) {
 		document = doc;
 	}
 	
-	FamilyLink(String id, MacPAFDocumentJDOM doc) {
+	FamilyLink(String id, MAFDocumentJDOM doc) {
 		this(doc);
 		setId(id);
 	}

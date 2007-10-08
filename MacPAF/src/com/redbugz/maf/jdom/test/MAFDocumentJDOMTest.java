@@ -6,13 +6,12 @@
  */
 package com.redbugz.maf.jdom.test;
 
-import java.io.*;
+import java.io.IOException;
 
-import junit.framework.*;
+import junit.framework.TestCase;
 
-import com.redbugz.macpaf.MacPAFDocumentJDOM;
 import com.redbugz.maf.*;
-import com.redbugz.maf.jdom.*;
+import com.redbugz.maf.jdom.MAFDocumentJDOM;
 
 /**
  * @author logan
@@ -20,9 +19,9 @@ import com.redbugz.maf.jdom.*;
  * TODO To change the template for this generated type comment go to
  * Window - Preferences - Java - Code Style - Code Templates
  */
-public class MacPAFDocumentJDOMTest extends TestCase {
+public class MAFDocumentJDOMTest extends TestCase {
 
-	MacPAFDocumentJDOM doc = new MacPAFDocumentJDOM();
+	MAFDocumentJDOM doc = new MAFDocumentJDOM();
 	
 	/*
 	 * @see TestCase#setUp()

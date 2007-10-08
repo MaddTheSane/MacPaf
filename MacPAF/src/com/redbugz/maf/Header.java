@@ -45,8 +45,8 @@ public interface Header {
   public static final String GEDCOM_VERSION_55 = "5.5";
   public static final String LANG_ENGLISH = "English";
 
-  public static final String MACPAF_APPROVED_SYSTEM_ID = "MacPAF";
-  public static final String MACPAF_NAME_OF_PRODUCT = "MacPAF";
+  public static final String MACPAF_APPROVED_SYSTEM_ID = "MAF";
+  public static final String MACPAF_NAME_OF_PRODUCT = "MAF";
   public static final String MACPAF_VERSION_NUMBER = "1.0";
   public static final String MACPAF_NAME_OF_BUSINESS = "RedBugz Software";
   public static final String MACPAF_BUSINESS_ADDR1 = "258 E 900 N";

@@ -6,7 +6,6 @@
  */
 package com.redbugz.maf.jdom;
 
-import com.redbugz.macpaf.MacPAFDocumentJDOM;
 import com.redbugz.maf.Note;
 
 /**
@@ -17,14 +16,14 @@ import com.redbugz.maf.Note;
  */
 public class NoteLink implements Note {
 	private Note actualNote = null;
-	private MacPAFDocumentJDOM document = null;
+	private MAFDocumentJDOM document = null;
 	String id = "";
 
-	NoteLink(MacPAFDocumentJDOM doc) {
+	NoteLink(MAFDocumentJDOM doc) {
 		document = doc;
 	}
 	
-	NoteLink(String id, MacPAFDocumentJDOM doc) {
+	NoteLink(String id, MAFDocumentJDOM doc) {
 		this(doc);
 		setId(id);
 	}

@@ -4,12 +4,12 @@
  */
 package com.redbugz.maf.jdom;
 
-import java.util.*;
+import java.util.Date;
+import java.util.List;
 
-import com.redbugz.macpaf.MacPAFDocumentJDOM;
-import com.redbugz.macpaf.MultimediaLink;
-import com.redbugz.macpaf.SubmitterJDOM;
-import com.redbugz.maf.*;
+import com.redbugz.maf.Address;
+import com.redbugz.maf.MultimediaLink;
+import com.redbugz.maf.Submitter;
 
 /**
  * @author logan
@@ -17,14 +17,14 @@ import com.redbugz.maf.*;
  */
 public class SubmitterLink implements Submitter {
 	private SubmitterJDOM actualSubmitter = null;
-	private MacPAFDocumentJDOM document = null;
+	private MAFDocumentJDOM document = null;
 	String id = "";
 	
-	SubmitterLink(MacPAFDocumentJDOM doc) {
+	SubmitterLink(MAFDocumentJDOM doc) {
 		document = doc;
 	}
 	
-	SubmitterLink(String id, MacPAFDocumentJDOM doc) {
+	SubmitterLink(String id, MAFDocumentJDOM doc) {
 		this(doc);
 		setId(id);
 	}

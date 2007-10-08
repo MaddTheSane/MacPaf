@@ -1,6 +1,6 @@
 //
 //  Individual.java
-//  MacPAFTest
+//  MAF
 //
 //  Created by Logan Allred on Sun Feb 16 2003.
 //  Copyright (c) 2002-2004 RedBugz Software. All rights reserved.
@@ -16,12 +16,10 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import org.apache.log4j.*;
+import org.apache.log4j.Logger;
 
-import com.apple.cocoa.foundation.*;
-import com.redbugz.macpaf.MyNote;
-import com.redbugz.maf.jdom.FamilyJDOM;
-import com.redbugz.maf.test.*;
+import com.apple.cocoa.foundation.NSBundle;
+import com.redbugz.maf.test.MyNote;
 
 public interface Individual {
   public static Individual UNKNOWN = new UnknownIndividual();

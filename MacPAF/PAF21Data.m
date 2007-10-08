@@ -673,7 +673,7 @@ NSDateFormatter *dateFormatter;
 					}
 				}
 
-				id noteLink = [NSClassFromString(@"com.redbugz.maf.jdom.NoteLink") newWithSignature:@"(Ljava/lang/String;Lcom/redbugz/macpaf/jdom/MacPAFDocumentJDOM;)",[[self noteForPointer:notePadRecord] valueForKey:@"id"], document];
+				id noteLink = [NSClassFromString(@"com.redbugz.maf.jdom.NoteLink") newWithSignature:@"(Ljava/lang/String;Lcom/redbugz/maf/jdom/MAFDocumentJDOM;)",[[self noteForPointer:notePadRecord] valueForKey:@"id"], document];
 				[newIndividual addNoteLink:noteLink];
 				[individualList addObject:newIndividual];
 				[individualLinksList addObject:individualLinksDict];

@@ -1,6 +1,6 @@
 //
 //  ReportsController.java
-//  MacPAFTest
+//  MAF
 //
 //  Created by Logan Allred on Sun Mar 30 2003.
 //  Copyright (c) 2002-2004 RedBugz Software. All rights reserved.

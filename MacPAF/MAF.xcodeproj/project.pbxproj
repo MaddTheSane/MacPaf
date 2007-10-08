@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		020341910CBA61DD00B92D3F /* MultimediaLinkJDOM.java in Sources */ = {isa = PBXBuildFile; fileRef = 020341900CBA61DD00B92D3F /* MultimediaLinkJDOM.java */; };
 		0205627E0BB7355700CB9F64 /* ThreadWorker.h in Headers */ = {isa = PBXBuildFile; fileRef = 0205627C0BB7355700CB9F64 /* ThreadWorker.h */; };
 		0205627F0BB7355700CB9F64 /* ThreadWorker.m in Sources */ = {isa = PBXBuildFile; fileRef = 0205627D0BB7355700CB9F64 /* ThreadWorker.m */; };
 		021664900BAE494E006ECC47 /* commons-collections-3.2.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0262491A0BA44B9D00013B7B /* commons-collections-3.2.jar */; };
@@ -20,12 +21,10 @@
 		0262491B0BA44B9E00013B7B /* commons-collections-3.2.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 0262491A0BA44B9D00013B7B /* commons-collections-3.2.jar */; };
 		0263E45D0A20DCD00087A335 /* castor-1.0-xml.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 0263E45C0A20DCCF0087A335 /* castor-1.0-xml.jar */; };
 		0263E4C40A20F09C0087A335 /* castor-1.0-xml.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0263E45C0A20DCCF0087A335 /* castor-1.0-xml.jar */; };
-		0263E4C50A20F0B00087A335 /* castor-1.0-xml.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0263E45C0A20DCCF0087A335 /* castor-1.0-xml.jar */; };
 		0263E4E30A20F4450087A335 /* ApplicationStartupHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 0263E4E10A20F4450087A335 /* ApplicationStartupHelper.h */; };
 		0263E4E40A20F4450087A335 /* ApplicationStartupHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0263E4E20A20F4450087A335 /* ApplicationStartupHelper.m */; };
 		02AB42310A2B0663000EE9F5 /* jug-asl-2.0.0.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 02AB42300A2B0662000EE9F5 /* jug-asl-2.0.0.jar */; };
 		02AB424C0A2B067A000EE9F5 /* jug-asl-2.0.0.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 02AB42300A2B0662000EE9F5 /* jug-asl-2.0.0.jar */; };
-		02AB424D0A2B0692000EE9F5 /* jug-asl-2.0.0.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 02AB42300A2B0662000EE9F5 /* jug-asl-2.0.0.jar */; };
 		02B51F040B23D727003C1D2E /* PAF21Data.h in Headers */ = {isa = PBXBuildFile; fileRef = 02B51F020B23D727003C1D2E /* PAF21Data.h */; };
 		02B51F050B23D727003C1D2E /* PAF21Data.m in Sources */ = {isa = PBXBuildFile; fileRef = 02B51F030B23D727003C1D2E /* PAF21Data.m */; };
 		02C876970B3EF267005E8B53 /* UKProgressPanel.strings in Resources */ = {isa = PBXBuildFile; fileRef = 02C8768D0B3EF267005E8B53 /* UKProgressPanel.strings */; };
@@ -35,72 +34,17 @@
 		02C8769B0B3EF267005E8B53 /* UKProgressPanelTask.h in Headers */ = {isa = PBXBuildFile; fileRef = 02C876930B3EF267005E8B53 /* UKProgressPanelTask.h */; };
 		02C8769C0B3EF267005E8B53 /* UKProgressPanelTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 02C876940B3EF267005E8B53 /* UKProgressPanelTask.m */; };
 		02D0013B0B481E3200C3CDF4 /* ImportSheet.nib in Resources */ = {isa = PBXBuildFile; fileRef = 02D0013A0B481E3200C3CDF4 /* ImportSheet.nib */; };
-		02D0013C0B481E3200C3CDF4 /* ImportSheet.nib in Resources */ = {isa = PBXBuildFile; fileRef = 02D0013A0B481E3200C3CDF4 /* ImportSheet.nib */; };
-		02D001430B482EDB00C3CDF4 /* ImportSheetController.h in Headers */ = {isa = PBXBuildFile; fileRef = 02D001410B482EDB00C3CDF4 /* ImportSheetController.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		02D001440B482EDB00C3CDF4 /* ImportSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02D001420B482EDB00C3CDF4 /* ImportSheetController.m */; };
 		02D001450B482EDB00C3CDF4 /* ImportSheetController.h in Headers */ = {isa = PBXBuildFile; fileRef = 02D001410B482EDB00C3CDF4 /* ImportSheetController.h */; };
 		02D001460B482EDB00C3CDF4 /* ImportSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02D001420B482EDB00C3CDF4 /* ImportSheetController.m */; };
 		02D0062C0B4A445600C3CDF4 /* TransparentSplashScreenWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 02D0062A0B4A445600C3CDF4 /* TransparentSplashScreenWindow.h */; };
 		02D0062D0B4A445600C3CDF4 /* TransparentSplashScreenWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 02D0062B0B4A445600C3CDF4 /* TransparentSplashScreenWindow.m */; };
-		02D015770A1ADCAB0005E632 /* MacPAF_Prefix.h in Headers */ = {isa = PBXBuildFile; fileRef = 32DBCF820370BDBC00C91783 /* MacPAF_Prefix.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		02D015780A1ADCAB0005E632 /* UKCrashReporter.h in Headers */ = {isa = PBXBuildFile; fileRef = 02DDDD240A12BA9C003BC70E /* UKCrashReporter.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		02D0157A0A1ADCAB0005E632 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */; };
-		02D0157B0A1ADCAB0005E632 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */; };
-		02D0157C0A1ADCAB0005E632 /* MyDocument.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B4FDCFA73011CA2CEA /* MyDocument.nib */; };
-		02D0157D0A1ADCAB0005E632 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165FFE840EACC02AAC07 /* InfoPlist.strings */; };
-		02D0157E0A1ADCAB0005E632 /* notepad.gif in Resources */ = {isa = PBXBuildFile; fileRef = 026ED7A305D932E50001D1D2 /* notepad.gif */; };
-		02D0157F0A1ADCAB0005E632 /* tree.gif in Resources */ = {isa = PBXBuildFile; fileRef = 026ED7A505D932E50001D1D2 /* tree.gif */; };
-		02D015800A1ADCAB0005E632 /* Tree.icns in Resources */ = {isa = PBXBuildFile; fileRef = 026ED7A605D932E50001D1D2 /* Tree.icns */; };
-		02D015810A1ADCAB0005E632 /* GedcomToHtml.xsl in Resources */ = {isa = PBXBuildFile; fileRef = 026ED7A805D932E50001D1D2 /* GedcomToHtml.xsl */; };
-		02D015820A1ADCAB0005E632 /* GedcomToXml.xsl in Resources */ = {isa = PBXBuildFile; fileRef = 026ED7A905D932E50001D1D2 /* GedcomToXml.xsl */; };
-		02D015830A1ADCAB0005E632 /* Temple Codes (official).xml in Resources */ = {isa = PBXBuildFile; fileRef = 026ED7AF05D932E50001D1D2 /* Temple Codes (official).xml */; };
-		02D015840A1ADCAB0005E632 /* Temple Codes.csv in Resources */ = {isa = PBXBuildFile; fileRef = 026ED7B005D932E50001D1D2 /* Temple Codes.csv */; };
-		02D015850A1ADCAB0005E632 /* Temple Codes.xls in Resources */ = {isa = PBXBuildFile; fileRef = 026ED7B105D932E50001D1D2 /* Temple Codes.xls */; };
-		02D015860A1ADCAB0005E632 /* Temple List in Resources */ = {isa = PBXBuildFile; fileRef = 026ED7B205D932E50001D1D2 /* Temple List */; };
-		02D015870A1ADCAB0005E632 /* Temple List.csv in Resources */ = {isa = PBXBuildFile; fileRef = 026ED7B305D932E50001D1D2 /* Temple List.csv */; };
-		02D015880A1ADCAB0005E632 /* Temple List.plist in Resources */ = {isa = PBXBuildFile; fileRef = 026ED7B405D932E50001D1D2 /* Temple List.plist */; };
-		02D015890A1ADCAB0005E632 /* temple-mapping.xml in Resources */ = {isa = PBXBuildFile; fileRef = 026ED7B505D932E50001D1D2 /* temple-mapping.xml */; };
-		02D0158A0A1ADCAB0005E632 /* TempleList.xml in Resources */ = {isa = PBXBuildFile; fileRef = 026ED7B605D932E50001D1D2 /* TempleList.xml */; };
-		02D0158B0A1ADCAB0005E632 /* XmlToGedcom.xsl in Resources */ = {isa = PBXBuildFile; fileRef = 026ED7B705D932E50001D1D2 /* XmlToGedcom.xsl */; };
-		02D0158C0A1ADCAB0005E632 /* Disc Add.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 027D36AC0707D2BE00F146F8 /* Disc Add.tiff */; };
-		02D0158D0A1ADCAB0005E632 /* Drawer.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 027D36AD0707D2BE00F146F8 /* Drawer.tiff */; };
-		02D0158E0A1ADCAB0005E632 /* Badge Add.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 027D36B00707D41E00F146F8 /* Badge Add.tiff */; };
-		02D0158F0A1ADCAB0005E632 /* Magnifing Glass.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 027D36B10707D41E00F146F8 /* Magnifing Glass.tiff */; };
-		02D015900A1ADCAB0005E632 /* Metal Window.psd in Resources */ = {isa = PBXBuildFile; fileRef = 027D36B20707D41E00F146F8 /* Metal Window.psd */; };
-		02D015910A1ADCAB0005E632 /* Page.psd in Resources */ = {isa = PBXBuildFile; fileRef = 027D36B30707D41E00F146F8 /* Page.psd */; };
-		02D015920A1ADCAB0005E632 /* Family.png in Resources */ = {isa = PBXBuildFile; fileRef = 026BF51707AD765200CBA37C /* Family.png */; };
-		02D015930A1ADCAB0005E632 /* Individual.png in Resources */ = {isa = PBXBuildFile; fileRef = 026BF51907AD992300CBA37C /* Individual.png */; };
-		02D015940A1ADCAB0005E632 /* IndividualListWindow.nib in Resources */ = {isa = PBXBuildFile; fileRef = 02A77AEE08B0425A007897F4 /* IndividualListWindow.nib */; };
-		02D015950A1ADCAB0005E632 /* FamilyListWindow.nib in Resources */ = {isa = PBXBuildFile; fileRef = 02A77AF308B0445C007897F4 /* FamilyListWindow.nib */; };
-		02D015960A1ADCAB0005E632 /* RecordSelectionWindow.nib in Resources */ = {isa = PBXBuildFile; fileRef = 02C5C0C3095466130086B510 /* RecordSelectionWindow.nib */; };
-		02D015970A1ADCAB0005E632 /* UKCrashReporter.strings in Resources */ = {isa = PBXBuildFile; fileRef = 02DDDD210A12BA9B003BC70E /* UKCrashReporter.strings */; };
-		02D015980A1ADCAB0005E632 /* UKCrashReporter Readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 02DDDD230A12BA9C003BC70E /* UKCrashReporter Readme.txt */; };
-		02D015990A1ADCAB0005E632 /* MacPAF Help in Resources */ = {isa = PBXBuildFile; fileRef = 02DDDDF70A165EF5003BC70E /* MacPAF Help */; };
-		02D0159B0A1ADCAB0005E632 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
-		02D0159C0A1ADCAB0005E632 /* UKCrashReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 02DDDD250A12BA9C003BC70E /* UKCrashReporter.m */; };
-		02D0159F0A1ADCAB0005E632 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
-		02D015A20A1ADCAB0005E632 /* MacPAF.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 02E2897A09E9FA71000846AC /* MacPAF.jar */; };
-		02D015A40A1ADCAB0005E632 /* unicodeIO.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 02E5284709EDE9770093ECEF /* unicodeIO.jar */; };
-		02D015A70A1ADCAB0005E632 /* jaxen-core.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 026ED7F405D9330B0001D1D2 /* jaxen-core.jar */; };
-		02D015A80A1ADCAB0005E632 /* jaxen-jdom.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 026ED7F505D9330B0001D1D2 /* jaxen-jdom.jar */; };
-		02D015A90A1ADCAB0005E632 /* jdom-1.0.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 026ED7F605D9330B0001D1D2 /* jdom-1.0.jar */; };
-		02D015AA0A1ADCAB0005E632 /* saxpath.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 026ED7F705D9330B0001D1D2 /* saxpath.jar */; };
-		02D015AB0A1ADCAB0005E632 /* xalan.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 02C50B0E0621296600B54464 /* xalan.jar */; };
-		02D015AC0A1ADCAB0005E632 /* xerces.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 02C50B0F0621296600B54464 /* xerces.jar */; };
-		02D015AD0A1ADCAB0005E632 /* xml-apis.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 02C50B100621296600B54464 /* xml-apis.jar */; };
-		02D015AE0A1ADCAB0005E632 /* log4j-1.2.9.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 023701D7062056080087E765 /* log4j-1.2.9.jar */; };
-		02D015AF0A1ADCAB0005E632 /* log4j.properties in CopyFiles */ = {isa = PBXBuildFile; fileRef = 02370211062059920087E765 /* log4j.properties */; };
-		02D015B00A1ADCAB0005E632 /* commons-codec-1.3.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0236ED18098D5FED00E276AB /* commons-codec-1.3.jar */; };
-		02D015B10A1ADCAB0005E632 /* commons-httpclient-3.0.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0236ED19098D5FEE00E276AB /* commons-httpclient-3.0.jar */; };
-		02D015B20A1ADCAB0005E632 /* commons-logging.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0236ED1A098D5FEE00E276AB /* commons-logging.jar */; };
-		02D015B30A1ADCAB0005E632 /* joda-time-1.2.1.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 026AAA39099F225C00F742A5 /* joda-time-1.2.1.jar */; };
 		02DDDD260A12BA9C003BC70E /* UKCrashReporter.strings in Resources */ = {isa = PBXBuildFile; fileRef = 02DDDD210A12BA9B003BC70E /* UKCrashReporter.strings */; };
 		02DDDD270A12BA9C003BC70E /* UKCrashReporter Readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 02DDDD230A12BA9C003BC70E /* UKCrashReporter Readme.txt */; };
 		02DDDD280A12BA9C003BC70E /* UKCrashReporter.h in Headers */ = {isa = PBXBuildFile; fileRef = 02DDDD240A12BA9C003BC70E /* UKCrashReporter.h */; };
 		02DDDD290A12BA9C003BC70E /* UKCrashReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 02DDDD250A12BA9C003BC70E /* UKCrashReporter.m */; };
 		02DDDDB40A147208003BC70E /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02DDDDB30A147208003BC70E /* Sparkle.framework */; };
 		02DDDDEA0A147462003BC70E /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 02DDDDB30A147208003BC70E /* Sparkle.framework */; };
-		02DDDE100A165EF6003BC70E /* MacPAF Help in Resources */ = {isa = PBXBuildFile; fileRef = 02DDDDF70A165EF5003BC70E /* MacPAF Help */; };
+		02DDDE100A165EF6003BC70E /* MAF Help in Resources */ = {isa = PBXBuildFile; fileRef = 02DDDDF70A165EF5003BC70E /* MAF Help */; };
 		02DE74BC09E965E1003B896A /* AllTests.java in Sources */ = {isa = PBXBuildFile; fileRef = 0218FF3F08F98E4800F67E81 /* AllTests.java */; };
 		02DE74BD09E965E3003B896A /* ImportController.java in Sources */ = {isa = PBXBuildFile; fileRef = 026ED74405D932BD0001D1D2 /* ImportController.java */; };
 		02DE74BE09E965E3003B896A /* Source.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D1A0077B11CE0069077B /* Source.java */; };
@@ -160,7 +104,7 @@
 		02DE762809E96643003B896A /* MultimediaLink.java in Sources */ = {isa = PBXBuildFile; fileRef = 023F05C007AD16B5005A4D0A /* MultimediaLink.java */; };
 		02DE762909E96643003B896A /* Base64.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D1B1077B11CF0069077B /* Base64.java */; };
 		02DE762A09E96643003B896A /* GedcomParser.java in Sources */ = {isa = PBXBuildFile; fileRef = 026ED74305D932BD0001D1D2 /* GedcomParser.java */; };
-		02DE762B09E96643003B896A /* MacPAFDocumentJDOM.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D18B077B11CE0069077B /* MacPAFDocumentJDOM.java */; };
+		02DE762B09E96643003B896A /* MAFDocumentJDOM.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D18B077B11CE0069077B /* MAFDocumentJDOM.java */; };
 		02DE762C09E96643003B896A /* SubmitterJDOM.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D197077B11CE0069077B /* SubmitterJDOM.java */; };
 		02DE762D09E96643003B896A /* MyOrdinance.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D1AC077B11CF0069077B /* MyOrdinance.java */; };
 		02DE762E09E96643003B896A /* MyIndividual.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D1A9077B11CF0069077B /* MyIndividual.java */; };
@@ -175,7 +119,6 @@
 		02DE763709E96643003B896A /* TestFamily.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D1AE077B11CF0069077B /* TestFamily.java */; };
 		02DE763809E96643003B896A /* HistoryController.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B8AC5008F045D700AE39EC /* HistoryController.java */; };
 		02DE763909E96643003B896A /* FamilyJDOM.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D186077B11CE0069077B /* FamilyJDOM.java */; };
-		02DE763B09E96643003B896A /* MultimediaLink.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D18D077B11CE0069077B /* MultimediaLink.java */; };
 		02DE763C09E96643003B896A /* Place.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D19E077B11CE0069077B /* Place.java */; };
 		02DE763D09E96643003B896A /* Temple.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D1A4077B11CF0069077B /* Temple.java */; };
 		02DE763E09E96643003B896A /* SurnameList.java in Sources */ = {isa = PBXBuildFile; fileRef = 02B3D1A3077B11CF0069077B /* SurnameList.java */; };
@@ -205,7 +148,7 @@
 		02DE767A09E96862003B896A /* junit.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 0260D11208F9D6E000F9A745 /* junit.jar */; };
 		02DE767B09E96863003B896A /* jaxen-jdom.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 026ED7F505D9330B0001D1D2 /* jaxen-jdom.jar */; };
 		02DE767C09E96866003B896A /* commons-httpclient-3.0.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 0236ED19098D5FEE00E276AB /* commons-httpclient-3.0.jar */; };
-		02DE769309E96A04003B896A /* MacPAF_Prefix.h in Headers */ = {isa = PBXBuildFile; fileRef = 32DBCF820370BDBC00C91783 /* MacPAF_Prefix.h */; };
+		02DE769309E96A04003B896A /* MAF_Prefix.h in Headers */ = {isa = PBXBuildFile; fileRef = 32DBCF820370BDBC00C91783 /* MAF_Prefix.h */; };
 		02DE769509E96A04003B896A /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */; };
 		02DE769609E96A04003B896A /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B6FDCFA73011CA2CEA /* MainMenu.nib */; };
 		02DE769709E96A04003B896A /* MyDocument.nib in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B4FDCFA73011CA2CEA /* MyDocument.nib */; };
@@ -250,7 +193,7 @@
 		02DE76C709E96A04003B896A /* commons-httpclient-3.0.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0236ED19098D5FEE00E276AB /* commons-httpclient-3.0.jar */; };
 		02DE76C809E96A04003B896A /* commons-logging.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 0236ED1A098D5FEE00E276AB /* commons-logging.jar */; };
 		02DE76C909E96A04003B896A /* joda-time-1.2.1.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 026AAA39099F225C00F742A5 /* joda-time-1.2.1.jar */; };
-		02E2897E09E9FA9D000846AC /* MacPAF.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 02E2897A09E9FA71000846AC /* MacPAF.jar */; };
+		02E2897E09E9FA9D000846AC /* MAF.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 02E2897A09E9FA71000846AC /* MAF.jar */; };
 		02E5284809EDE9770093ECEF /* unicodeIO.jar in Frameworks */ = {isa = PBXBuildFile; fileRef = 02E5284709EDE9770093ECEF /* unicodeIO.jar */; };
 		02E5284A09EDE9860093ECEF /* unicodeIO.jar in CopyFiles */ = {isa = PBXBuildFile; fileRef = 02E5284709EDE9770093ECEF /* unicodeIO.jar */; };
 		02E8DAB60CB911220035F786 /* EventTableController.java in Sources */ = {isa = PBXBuildFile; fileRef = 02E8DAB30CB911220035F786 /* EventTableController.java */; };
@@ -261,74 +204,23 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		02D015750A1ADCAB0005E632 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 02DE74B409E9657E003B896A;
-			remoteInfo = "MacPAF Java Archive";
-		};
 		02DE769109E96A04003B896A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 02DE74B409E9657E003B896A;
-			remoteInfo = "MacPAF Java Archive";
+			remoteInfo = "MAF Java Archive";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		02D015A10A1ADCAB0005E632 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 15;
-			files = (
-				02D015A20A1ADCAB0005E632 /* MacPAF.jar in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		02D015A30A1ADCAB0005E632 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = lib;
-			dstSubfolderSpec = 15;
-			files = (
-				02AB424D0A2B0692000EE9F5 /* jug-asl-2.0.0.jar in CopyFiles */,
-				0263E4C50A20F0B00087A335 /* castor-1.0-xml.jar in CopyFiles */,
-				02D015B30A1ADCAB0005E632 /* joda-time-1.2.1.jar in CopyFiles */,
-				02D015A40A1ADCAB0005E632 /* unicodeIO.jar in CopyFiles */,
-				02D015A70A1ADCAB0005E632 /* jaxen-core.jar in CopyFiles */,
-				02D015A80A1ADCAB0005E632 /* jaxen-jdom.jar in CopyFiles */,
-				02D015A90A1ADCAB0005E632 /* jdom-1.0.jar in CopyFiles */,
-				02D015AA0A1ADCAB0005E632 /* saxpath.jar in CopyFiles */,
-				02D015AB0A1ADCAB0005E632 /* xalan.jar in CopyFiles */,
-				02D015AC0A1ADCAB0005E632 /* xerces.jar in CopyFiles */,
-				02D015AD0A1ADCAB0005E632 /* xml-apis.jar in CopyFiles */,
-				02D015AE0A1ADCAB0005E632 /* log4j-1.2.9.jar in CopyFiles */,
-				02D015AF0A1ADCAB0005E632 /* log4j.properties in CopyFiles */,
-				02D015B00A1ADCAB0005E632 /* commons-codec-1.3.jar in CopyFiles */,
-				02D015B10A1ADCAB0005E632 /* commons-httpclient-3.0.jar in CopyFiles */,
-				02D015B20A1ADCAB0005E632 /* commons-logging.jar in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		02D015B40A1ADCAB0005E632 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 12;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		02DE76B809E96A04003B896A /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 15;
 			files = (
-				02E2897E09E9FA9D000846AC /* MacPAF.jar in CopyFiles */,
+				02E2897E09E9FA9D000846AC /* MAF.jar in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,6 +265,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		020341900CBA61DD00B92D3F /* MultimediaLinkJDOM.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = MultimediaLinkJDOM.java; sourceTree = "<group>"; };
 		020561160BB6AC5100CB9F64 /* ImportSheetController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImportSheetController.m; sourceTree = "<group>"; };
 		0205627C0BB7355700CB9F64 /* ThreadWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadWorker.h; sourceTree = "<group>"; };
 		0205627D0BB7355700CB9F64 /* ThreadWorker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreadWorker.m; sourceTree = "<group>"; };
@@ -413,7 +306,7 @@
 		0263E4A60A20EF430087A335 /* License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
 		0263E4E10A20F4450087A335 /* ApplicationStartupHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationStartupHelper.h; sourceTree = "<group>"; };
 		0263E4E20A20F4450087A335 /* ApplicationStartupHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationStartupHelper.m; sourceTree = "<group>"; };
-		026AAA37099F222200F742A5 /* HeaderJDOMTest.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = HeaderJDOMTest.java; path = src/com/redbugz/macpaf/test/HeaderJDOMTest.java; sourceTree = "<group>"; };
+		026AAA37099F222200F742A5 /* HeaderJDOMTest.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = HeaderJDOMTest.java; path = src/com/redbugz/maf/test/HeaderJDOMTest.java; sourceTree = "<group>"; };
 		026AAA39099F225C00F742A5 /* joda-time-1.2.1.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; name = "joda-time-1.2.1.jar"; path = "lib/joda-time-1.2.1.jar"; sourceTree = "<group>"; };
 		026BF51707AD765200CBA37C /* Family.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Family.png; sourceTree = "<group>"; };
 		026BF51907AD992300CBA37C /* Individual.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Individual.png; sourceTree = "<group>"; };
@@ -478,9 +371,8 @@
 		02B3D188077B11CE0069077B /* HeaderJDOM.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = HeaderJDOM.java; sourceTree = "<group>"; };
 		02B3D189077B11CE0069077B /* IndividualJDOM.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = IndividualJDOM.java; sourceTree = "<group>"; };
 		02B3D18A077B11CE0069077B /* IndividualLink.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = IndividualLink.java; sourceTree = "<group>"; };
-		02B3D18B077B11CE0069077B /* MacPAFDocumentJDOM.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = MacPAFDocumentJDOM.java; sourceTree = "<group>"; };
+		02B3D18B077B11CE0069077B /* MAFDocumentJDOM.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = MAFDocumentJDOM.java; sourceTree = "<group>"; };
 		02B3D18C077B11CE0069077B /* MultimediaJDOM.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = MultimediaJDOM.java; sourceTree = "<group>"; };
-		02B3D18D077B11CE0069077B /* MultimediaLink.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = MultimediaLink.java; sourceTree = "<group>"; };
 		02B3D18E077B11CE0069077B /* NoteJDOM.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = NoteJDOM.java; sourceTree = "<group>"; };
 		02B3D18F077B11CE0069077B /* NoteLink.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = NoteLink.java; sourceTree = "<group>"; };
 		02B3D190077B11CE0069077B /* OrdinanceJDOM.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = OrdinanceJDOM.java; sourceTree = "<group>"; };
@@ -538,16 +430,15 @@
 		02D001420B482EDB00C3CDF4 /* ImportSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportSheetController.m; sourceTree = "<group>"; };
 		02D0062A0B4A445600C3CDF4 /* TransparentSplashScreenWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransparentSplashScreenWindow.h; sourceTree = "<group>"; };
 		02D0062B0B4A445600C3CDF4 /* TransparentSplashScreenWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransparentSplashScreenWindow.m; sourceTree = "<group>"; };
-		02D015BA0A1ADCAB0005E632 /* MacPAF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacPAF.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02DDDD220A12BA9B003BC70E /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/UKCrashReporter.strings; sourceTree = "<group>"; };
 		02DDDD230A12BA9C003BC70E /* UKCrashReporter Readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "UKCrashReporter Readme.txt"; sourceTree = "<group>"; };
 		02DDDD240A12BA9C003BC70E /* UKCrashReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UKCrashReporter.h; sourceTree = "<group>"; };
 		02DDDD250A12BA9C003BC70E /* UKCrashReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UKCrashReporter.m; sourceTree = "<group>"; };
 		02DDDDB30A147208003BC70E /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
-		02DDDDF80A165EF5003BC70E /* English */ = {isa = PBXFileReference; lastKnownFileType = folder; name = English; path = "English.lproj/MacPAF Help"; sourceTree = "<group>"; };
+		02DDDDF80A165EF5003BC70E /* MAF Help */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "MAF Help"; path = "English.lproj/MAF Help"; sourceTree = "<group>"; };
 		02DE76D009E96A05003B896A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Info.plist; sourceTree = "<group>"; };
-		02E2897A09E9FA71000846AC /* MacPAF.jar */ = {isa = PBXFileReference; explicitFileType = archive.jar; includeInIndex = 0; path = MacPAF.jar; sourceTree = BUILT_PRODUCTS_DIR; };
-		02E2897B09E9FA94000846AC /* MacPAF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MacPAF.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		02E2897A09E9FA71000846AC /* MAF.jar */ = {isa = PBXFileReference; explicitFileType = archive.jar; includeInIndex = 0; path = MAF.jar; sourceTree = BUILT_PRODUCTS_DIR; };
+		02E2897B09E9FA94000846AC /* MAF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MAF.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02E5284709EDE9770093ECEF /* unicodeIO.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; name = unicodeIO.jar; path = lib/unicodeIO.jar; sourceTree = "<group>"; };
 		02E8DAB30CB911220035F786 /* EventTableController.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = EventTableController.java; path = src/EventTableController.java; sourceTree = "<group>"; };
 		02E8DAB40CB911220035F786 /* FilteredTableViewDataSource.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = FilteredTableViewDataSource.java; path = src/FilteredTableViewDataSource.java; sourceTree = "<group>"; };
@@ -561,18 +452,10 @@
 		2A37F4BAFDCFA73011CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = English; path = English.lproj/Credits.rtf; sourceTree = "<group>"; };
 		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
-		32DBCF820370BDBC00C91783 /* MacPAF_Prefix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacPAF_Prefix.h; sourceTree = "<group>"; };
+		32DBCF820370BDBC00C91783 /* MAF_Prefix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAF_Prefix.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		02D0159E0A1ADCAB0005E632 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				02D0159F0A1ADCAB0005E632 /* Cocoa.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		02DE74B309E9657E003B896A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -626,7 +509,7 @@
 			isa = PBXGroup;
 			children = (
 				02C8769D0B3EF28B005E8B53 /* UKProgressPanel */,
-				02DDDDF70A165EF5003BC70E /* MacPAF Help */,
+				02DDDDF70A165EF5003BC70E /* MAF Help */,
 				026ED79C05D932E50001D1D2 /* images */,
 				026ED7A705D932E50001D1D2 /* resources */,
 				2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */,
@@ -777,12 +660,12 @@
 		02B3D17B077B11CD0069077B /* redbugz */ = {
 			isa = PBXGroup;
 			children = (
-				02B3D17C077B11CD0069077B /* macpaf */,
+				02B3D17C077B11CD0069077B /* maf */,
 			);
 			path = redbugz;
 			sourceTree = "<group>";
 		};
-		02B3D17C077B11CD0069077B /* macpaf */ = {
+		02B3D17C077B11CD0069077B /* maf */ = {
 			isa = PBXGroup;
 			children = (
 				02433BEB0C9D5ED700FE5892 /* MafDocument.java */,
@@ -812,12 +695,13 @@
 				02B3D1B0077B11CF0069077B /* util */,
 				0250C09B07AC858500AC3629 /* validation */,
 			);
-			path = macpaf;
+			path = maf;
 			sourceTree = "<group>";
 		};
 		02B3D183077B11CE0069077B /* jdom */ = {
 			isa = PBXGroup;
 			children = (
+				020341900CBA61DD00B92D3F /* MultimediaLinkJDOM.java */,
 				02C5BFBD0948218C0086B510 /* GedcomLoaderJDOM.java */,
 				02B3D184077B11CE0069077B /* AddressJDOM.java */,
 				02B3D185077B11CE0069077B /* EventJDOM.java */,
@@ -826,9 +710,8 @@
 				02B3D188077B11CE0069077B /* HeaderJDOM.java */,
 				02B3D189077B11CE0069077B /* IndividualJDOM.java */,
 				02B3D18A077B11CE0069077B /* IndividualLink.java */,
-				02B3D18B077B11CE0069077B /* MacPAFDocumentJDOM.java */,
+				02B3D18B077B11CE0069077B /* MAFDocumentJDOM.java */,
 				02B3D18C077B11CE0069077B /* MultimediaJDOM.java */,
-				02B3D18D077B11CE0069077B /* MultimediaLink.java */,
 				02B3D18E077B11CE0069077B /* NoteJDOM.java */,
 				02B3D18F077B11CE0069077B /* NoteLink.java */,
 				02B3D190077B11CE0069077B /* OrdinanceJDOM.java */,
@@ -911,14 +794,13 @@
 		19C28FB0FE9D524F11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				02E2897A09E9FA71000846AC /* MacPAF.jar */,
-				02E2897B09E9FA94000846AC /* MacPAF.app */,
-				02D015BA0A1ADCAB0005E632 /* MacPAF.app */,
+				02E2897A09E9FA71000846AC /* MAF.jar */,
+				02E2897B09E9FA94000846AC /* MAF.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		2A37F4AAFDCFA73011CA2CEA /* MacPAF */ = {
+		2A37F4AAFDCFA73011CA2CEA /* MAF */ = {
 			isa = PBXGroup;
 			children = (
 				32DBCF800370BD9700C91783 /* Classes */,
@@ -930,7 +812,7 @@
 				02DE76D009E96A05003B896A /* Info.plist */,
 				020561160BB6AC5100CB9F64 /* ImportSheetController.m */,
 			);
-			name = MacPAF;
+			name = MAF;
 			sourceTree = "<group>";
 		};
 		2A37F4C3FDCFA73011CA2CEA /* Frameworks */ = {
@@ -1012,7 +894,7 @@
 				02DDDD200A12BA9B003BC70E /* UKCrashReporter */,
 				0205627C0BB7355700CB9F64 /* ThreadWorker.h */,
 				0205627D0BB7355700CB9F64 /* ThreadWorker.m */,
-				32DBCF820370BDBC00C91783 /* MacPAF_Prefix.h */,
+				32DBCF820370BDBC00C91783 /* MAF_Prefix.h */,
 				2A37F4B0FDCFA73011CA2CEA /* main.m */,
 			);
 			name = "Other Sources";
@@ -1021,21 +903,11 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		02D015760A1ADCAB0005E632 /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				02D015770A1ADCAB0005E632 /* MacPAF_Prefix.h in Headers */,
-				02D015780A1ADCAB0005E632 /* UKCrashReporter.h in Headers */,
-				02D001430B482EDB00C3CDF4 /* ImportSheetController.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		02DE769209E96A04003B896A /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				02DE769309E96A04003B896A /* MacPAF_Prefix.h in Headers */,
+				02DE769309E96A04003B896A /* MAF_Prefix.h in Headers */,
 				02DDDD280A12BA9C003BC70E /* UKCrashReporter.h in Headers */,
 				0263E4E30A20F4450087A335 /* ApplicationStartupHelper.h in Headers */,
 				02B51F040B23D727003C1D2E /* PAF21Data.h in Headers */,
@@ -1051,13 +923,6 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXJavaArchiveBuildPhase section */
-		02D0159D0A1ADCAB0005E632 /* JavaArchive */ = {
-			isa = PBXJavaArchiveBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		02DE74B209E9657E003B896A /* JavaArchive */ = {
 			isa = PBXJavaArchiveBuildPhase;
 			buildActionMask = 2147483647;
@@ -1069,9 +934,9 @@
 /* End PBXJavaArchiveBuildPhase section */
 
 /* Begin PBXLibraryTarget section */
-		02DE74B409E9657E003B896A /* MacPAF Java Archive */ = {
+		02DE74B409E9657E003B896A /* MAF Java Archive */ = {
 			isa = PBXLibraryTarget;
-			buildConfigurationList = 02DE74B809E965DD003B896A /* Build configuration list for PBXLibraryTarget "MacPAF Java Archive" */;
+			buildConfigurationList = 02DE74B809E965DD003B896A /* Build configuration list for PBXLibraryTarget "MAF Java Archive" */;
 			buildPhases = (
 				02DE74B109E9657E003B896A /* Sources */,
 				02DE74B209E9657E003B896A /* JavaArchive */,
@@ -1079,41 +944,17 @@
 			);
 			dependencies = (
 			);
-			name = "MacPAF Java Archive";
+			name = "MAF Java Archive";
 			productInstallPath = /usr/local/lib;
-			productName = "MacPAF Java Archive";
-			productReference = 02E2897A09E9FA71000846AC /* MacPAF.jar */;
+			productName = "MAF Java Archive";
+			productReference = 02E2897A09E9FA71000846AC /* MAF.jar */;
 		};
 /* End PBXLibraryTarget section */
 
 /* Begin PBXNativeTarget section */
-		02D015730A1ADCAB0005E632 /* MacPAF Jaguar */ = {
+		02DE768F09E96A04003B896A /* MAF */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 02D015B60A1ADCAB0005E632 /* Build configuration list for PBXNativeTarget "MacPAF Jaguar" */;
-			buildPhases = (
-				02D015760A1ADCAB0005E632 /* Headers */,
-				02D015790A1ADCAB0005E632 /* Resources */,
-				02D0159A0A1ADCAB0005E632 /* Sources */,
-				02D0159D0A1ADCAB0005E632 /* JavaArchive */,
-				02D0159E0A1ADCAB0005E632 /* Frameworks */,
-				02D015A10A1ADCAB0005E632 /* CopyFiles */,
-				02D015A30A1ADCAB0005E632 /* CopyFiles */,
-				02D015B40A1ADCAB0005E632 /* CopyFiles */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				02D015740A1ADCAB0005E632 /* PBXTargetDependency */,
-			);
-			name = "MacPAF Jaguar";
-			productInstallPath = "$(HOME)/Applications";
-			productName = MacPAF;
-			productReference = 02D015BA0A1ADCAB0005E632 /* MacPAF.app */;
-			productType = "com.apple.product-type.application";
-		};
-		02DE768F09E96A04003B896A /* MacPAF */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 02DE76CC09E96A04003B896A /* Build configuration list for PBXNativeTarget "MacPAF" */;
+			buildConfigurationList = 02DE76CC09E96A04003B896A /* Build configuration list for PBXNativeTarget "MAF" */;
 			buildPhases = (
 				02DE769209E96A04003B896A /* Headers */,
 				02DE769409E96A04003B896A /* Resources */,
@@ -1128,10 +969,10 @@
 			dependencies = (
 				02DE769009E96A04003B896A /* PBXTargetDependency */,
 			);
-			name = MacPAF;
+			name = MAF;
 			productInstallPath = "$(HOME)/Applications";
-			productName = MacPAF;
-			productReference = 02E2897B09E9FA94000846AC /* MacPAF.app */;
+			productName = MAF;
+			productReference = 02E2897B09E9FA94000846AC /* MAF.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1139,60 +980,19 @@
 /* Begin PBXProject section */
 		2A37F4A9FDCFA73011CA2CEA /* Project object */ = {
 			isa = PBXProject;
-			buildConfigurationList = 02BC1D21086ECAAD00BD394E /* Build configuration list for PBXProject "MacPAF" */;
+			buildConfigurationList = 02BC1D21086ECAAD00BD394E /* Build configuration list for PBXProject "MAF" */;
 			hasScannedForEncodings = 1;
-			mainGroup = 2A37F4AAFDCFA73011CA2CEA /* MacPAF */;
+			mainGroup = 2A37F4AAFDCFA73011CA2CEA /* MAF */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				02DE768F09E96A04003B896A /* MacPAF */,
-				02DE74B409E9657E003B896A /* MacPAF Java Archive */,
-				02D015730A1ADCAB0005E632 /* MacPAF Jaguar */,
+				02DE768F09E96A04003B896A /* MAF */,
+				02DE74B409E9657E003B896A /* MAF Java Archive */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		02D015790A1ADCAB0005E632 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				02D0157A0A1ADCAB0005E632 /* Credits.rtf in Resources */,
-				02D0157B0A1ADCAB0005E632 /* MainMenu.nib in Resources */,
-				02D0157C0A1ADCAB0005E632 /* MyDocument.nib in Resources */,
-				02D0157D0A1ADCAB0005E632 /* InfoPlist.strings in Resources */,
-				02D0157E0A1ADCAB0005E632 /* notepad.gif in Resources */,
-				02D0157F0A1ADCAB0005E632 /* tree.gif in Resources */,
-				02D015800A1ADCAB0005E632 /* Tree.icns in Resources */,
-				02D015810A1ADCAB0005E632 /* GedcomToHtml.xsl in Resources */,
-				02D015820A1ADCAB0005E632 /* GedcomToXml.xsl in Resources */,
-				02D015830A1ADCAB0005E632 /* Temple Codes (official).xml in Resources */,
-				02D015840A1ADCAB0005E632 /* Temple Codes.csv in Resources */,
-				02D015850A1ADCAB0005E632 /* Temple Codes.xls in Resources */,
-				02D015860A1ADCAB0005E632 /* Temple List in Resources */,
-				02D015870A1ADCAB0005E632 /* Temple List.csv in Resources */,
-				02D015880A1ADCAB0005E632 /* Temple List.plist in Resources */,
-				02D015890A1ADCAB0005E632 /* temple-mapping.xml in Resources */,
-				02D0158A0A1ADCAB0005E632 /* TempleList.xml in Resources */,
-				02D0158B0A1ADCAB0005E632 /* XmlToGedcom.xsl in Resources */,
-				02D0158C0A1ADCAB0005E632 /* Disc Add.tiff in Resources */,
-				02D0158D0A1ADCAB0005E632 /* Drawer.tiff in Resources */,
-				02D0158E0A1ADCAB0005E632 /* Badge Add.tiff in Resources */,
-				02D0158F0A1ADCAB0005E632 /* Magnifing Glass.tiff in Resources */,
-				02D015900A1ADCAB0005E632 /* Metal Window.psd in Resources */,
-				02D015910A1ADCAB0005E632 /* Page.psd in Resources */,
-				02D015920A1ADCAB0005E632 /* Family.png in Resources */,
-				02D015930A1ADCAB0005E632 /* Individual.png in Resources */,
-				02D015940A1ADCAB0005E632 /* IndividualListWindow.nib in Resources */,
-				02D015950A1ADCAB0005E632 /* FamilyListWindow.nib in Resources */,
-				02D015960A1ADCAB0005E632 /* RecordSelectionWindow.nib in Resources */,
-				02D015970A1ADCAB0005E632 /* UKCrashReporter.strings in Resources */,
-				02D015980A1ADCAB0005E632 /* UKCrashReporter Readme.txt in Resources */,
-				02D015990A1ADCAB0005E632 /* MacPAF Help in Resources */,
-				02D0013C0B481E3200C3CDF4 /* ImportSheet.nib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		02DE769409E96A04003B896A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1228,7 +1028,7 @@
 				02DE76B109E96A04003B896A /* RecordSelectionWindow.nib in Resources */,
 				02DDDD260A12BA9C003BC70E /* UKCrashReporter.strings in Resources */,
 				02DDDD270A12BA9C003BC70E /* UKCrashReporter Readme.txt in Resources */,
-				02DDDE100A165EF6003BC70E /* MacPAF Help in Resources */,
+				02DDDE100A165EF6003BC70E /* MAF Help in Resources */,
 				02C876970B3EF267005E8B53 /* UKProgressPanel.strings in Resources */,
 				02C876980B3EF267005E8B53 /* UKProgressPanelTask.nib in Resources */,
 				02D0013B0B481E3200C3CDF4 /* ImportSheet.nib in Resources */,
@@ -1239,16 +1039,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		02D0159A0A1ADCAB0005E632 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				02D0159B0A1ADCAB0005E632 /* main.m in Sources */,
-				02D0159C0A1ADCAB0005E632 /* UKCrashReporter.m in Sources */,
-				02D001440B482EDB00C3CDF4 /* ImportSheetController.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		02DE74B109E9657E003B896A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1298,7 +1088,7 @@
 				02DE762809E96643003B896A /* MultimediaLink.java in Sources */,
 				02DE762909E96643003B896A /* Base64.java in Sources */,
 				02DE762A09E96643003B896A /* GedcomParser.java in Sources */,
-				02DE762B09E96643003B896A /* MacPAFDocumentJDOM.java in Sources */,
+				02DE762B09E96643003B896A /* MAFDocumentJDOM.java in Sources */,
 				02DE762C09E96643003B896A /* SubmitterJDOM.java in Sources */,
 				02DE762D09E96643003B896A /* MyOrdinance.java in Sources */,
 				02DE762E09E96643003B896A /* MyIndividual.java in Sources */,
@@ -1313,7 +1103,6 @@
 				02DE763709E96643003B896A /* TestFamily.java in Sources */,
 				02DE763809E96643003B896A /* HistoryController.java in Sources */,
 				02DE763909E96643003B896A /* FamilyJDOM.java in Sources */,
-				02DE763B09E96643003B896A /* MultimediaLink.java in Sources */,
 				02DE763C09E96643003B896A /* Place.java in Sources */,
 				02DE763D09E96643003B896A /* Temple.java in Sources */,
 				02DE763E09E96643003B896A /* SurnameList.java in Sources */,
@@ -1348,6 +1137,7 @@
 				02E8DAB60CB911220035F786 /* EventTableController.java in Sources */,
 				02E8DAB70CB911230035F786 /* FilteredTableViewDataSource.java in Sources */,
 				02E8DAB80CB911230035F786 /* SortableFilteredTableViewDataSource.java in Sources */,
+				020341910CBA61DD00B92D3F /* MultimediaLinkJDOM.java in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1371,14 +1161,9 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		02D015740A1ADCAB0005E632 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 02DE74B409E9657E003B896A /* MacPAF Java Archive */;
-			targetProxy = 02D015750A1ADCAB0005E632 /* PBXContainerItemProxy */;
-		};
 		02DE769009E96A04003B896A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 02DE74B409E9657E003B896A /* MacPAF Java Archive */;
+			target = 02DE74B409E9657E003B896A /* MAF Java Archive */;
 			targetProxy = 02DE769109E96A04003B896A /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1434,12 +1219,12 @@
 			name = UKCrashReporter.strings;
 			sourceTree = "<group>";
 		};
-		02DDDDF70A165EF5003BC70E /* MacPAF Help */ = {
+		02DDDDF70A165EF5003BC70E /* MAF Help */ = {
 			isa = PBXVariantGroup;
 			children = (
-				02DDDDF80A165EF5003BC70E /* English */,
+				02DDDDF80A165EF5003BC70E /* MAF Help */,
 			);
-			name = "MacPAF Help";
+			name = "MAF Help";
 			sourceTree = "<group>";
 		};
 		089C165FFE840EACC02AAC07 /* InfoPlist.strings */ = {
@@ -1513,131 +1298,6 @@
 			};
 			name = Default;
 		};
-		02D015B70A1ADCAB0005E632 /* Development */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = (
-					ppc,
-					i386,
-				);
-				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(FRAMEWORK_SEARCH_PATHS)",
-					"$(SRCROOT)",
-				);
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = YES;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = MacPAF_Prefix.h;
-				HEADER_SEARCH_PATHS = "";
-				INFOPLIST_FILE = /Users/logan/Projects/MAF/Info.plist;
-				INSTALL_PATH = "$(HOME)/Applications";
-				JAVAC_SOURCE_FILE_ENCODING = "UTF-8";
-				JAVA_COMPILER_DEPRECATED_WARNINGS = YES;
-				JAVA_COMPILER_SOURCE_VERSION = 1.4;
-				JAVA_COMPILER_TARGET_VM_VERSION = 1.4;
-				JAVA_SOURCE_SUBDIR = .;
-				LIBRARY_SEARCH_PATHS = "";
-				MACOSX_DEPLOYMENT_TARGET_i386 = 10.4;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = MacPAF;
-				PROFILING_CODE = YES;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-				WRAPPER_EXTENSION = app;
-				ZERO_LINK = NO;
-			};
-			name = Development;
-		};
-		02D015B80A1ADCAB0005E632 /* Deployment */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = (
-					ppc,
-					i386,
-				);
-				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(FRAMEWORK_SEARCH_PATHS)",
-					"$(SRCROOT)",
-				);
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_FIX_AND_CONTINUE = NO;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = MacPAF_Prefix.h;
-				HEADER_SEARCH_PATHS = "";
-				INFOPLIST_FILE = "/Users/logan/Projects/MAF/Info copy.plist";
-				INSTALL_PATH = "$(HOME)/Applications";
-				JAVAC_SOURCE_FILE_ENCODING = "UTF-8";
-				JAVA_COMPILER_DEBUGGING_SYMBOLS = NO;
-				JAVA_COMPILER_DEPRECATED_WARNINGS = YES;
-				JAVA_COMPILER_SOURCE_VERSION = 1.4;
-				JAVA_COMPILER_TARGET_VM_VERSION = 1.4;
-				JAVA_SOURCE_SUBDIR = .;
-				LIBRARY_SEARCH_PATHS = "";
-				MACOSX_DEPLOYMENT_TARGET_i386 = 10.4;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = MacPAF;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-				WRAPPER_EXTENSION = app;
-				ZERO_LINK = NO;
-			};
-			name = Deployment;
-		};
-		02D015B90A1ADCAB0005E632 /* Default */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = (
-					ppc,
-					i386,
-				);
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(FRAMEWORK_SEARCH_PATHS)",
-					"$(SRCROOT)",
-				);
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = MacPAF_Prefix.h;
-				HEADER_SEARCH_PATHS = "";
-				INFOPLIST_FILE = "/Users/logan/Projects/MAF/Info copy.plist";
-				INSTALL_PATH = "$(HOME)/Applications";
-				JAVAC_SOURCE_FILE_ENCODING = "UTF-8";
-				JAVA_COMPILER_DEPRECATED_WARNINGS = YES;
-				JAVA_COMPILER_SOURCE_VERSION = 1.4;
-				JAVA_COMPILER_TARGET_VM_VERSION = 1.4;
-				JAVA_SOURCE_SUBDIR = .;
-				LIBRARY_SEARCH_PATHS = "";
-				MACOSX_DEPLOYMENT_TARGET_i386 = 10.4;
-				OTHER_CFLAGS = "";
-				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = MacPAF;
-				PROFILING_CODE = YES;
-				SECTORDER_FLAGS = "";
-				WARNING_CFLAGS = (
-					"-Wmost",
-					"-Wno-four-char-constants",
-					"-Wno-unknown-pragmas",
-				);
-				WRAPPER_EXTENSION = app;
-				ZERO_LINK = NO;
-			};
-			name = Default;
-		};
 		02DE74B909E965DD003B896A /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1662,7 +1322,7 @@
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOL_FLAGS = "";
 				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = MacPAF;
+				PRODUCT_NAME = MAF;
 				PURE_JAVA = YES;
 				REZ_EXECUTABLE = YES;
 				SECTORDER_FLAGS = "";
@@ -1696,7 +1356,7 @@
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOL_FLAGS = "";
 				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = MacPAF;
+				PRODUCT_NAME = MAF;
 				PURE_JAVA = YES;
 				REZ_EXECUTABLE = YES;
 				SECTORDER_FLAGS = "";
@@ -1727,7 +1387,7 @@
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOL_FLAGS = "";
 				OTHER_REZFLAGS = "";
-				PRODUCT_NAME = MacPAF;
+				PRODUCT_NAME = MAF;
 				PURE_JAVA = YES;
 				REZ_EXECUTABLE = YES;
 				SECTORDER_FLAGS = "";
@@ -1759,7 +1419,7 @@
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = MacPAF_Prefix.h;
+				GCC_PREFIX_HEADER = MAF_Prefix.h;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
@@ -1775,7 +1435,7 @@
 				MACOSX_DEPLOYMENT_TARGET_i386 = 10.4;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = MacPAF;
+				PRODUCT_NAME = MAF;
 				PROFILING_CODE = YES;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
@@ -1807,7 +1467,7 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = MacPAF_Prefix.h;
+				GCC_PREFIX_HEADER = MAF_Prefix.h;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
@@ -1819,7 +1479,7 @@
 				MACOSX_DEPLOYMENT_TARGET_i386 = 10.4;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = MacPAF;
+				PRODUCT_NAME = MAF;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
 					"-Wmost",
@@ -1848,7 +1508,7 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = MacPAF_Prefix.h;
+				GCC_PREFIX_HEADER = MAF_Prefix.h;
 				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
@@ -1864,7 +1524,7 @@
 				MACOSX_DEPLOYMENT_TARGET_i386 = 10.4;
 				OTHER_CFLAGS = "";
 				OTHER_LDFLAGS = "";
-				PRODUCT_NAME = MacPAF;
+				PRODUCT_NAME = MAF;
 				PROFILING_CODE = YES;
 				SECTORDER_FLAGS = "";
 				WARNING_CFLAGS = (
@@ -1880,7 +1540,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		02BC1D21086ECAAD00BD394E /* Build configuration list for PBXProject "MacPAF" */ = {
+		02BC1D21086ECAAD00BD394E /* Build configuration list for PBXProject "MAF" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				02BC1D22086ECAAD00BD394E /* Development */,
@@ -1890,17 +1550,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Default;
 		};
-		02D015B60A1ADCAB0005E632 /* Build configuration list for PBXNativeTarget "MacPAF Jaguar" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				02D015B70A1ADCAB0005E632 /* Development */,
-				02D015B80A1ADCAB0005E632 /* Deployment */,
-				02D015B90A1ADCAB0005E632 /* Default */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Default;
-		};
-		02DE74B809E965DD003B896A /* Build configuration list for PBXLibraryTarget "MacPAF Java Archive" */ = {
+		02DE74B809E965DD003B896A /* Build configuration list for PBXLibraryTarget "MAF Java Archive" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				02DE74B909E965DD003B896A /* Development */,
@@ -1910,7 +1560,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Default;
 		};
-		02DE76CC09E96A04003B896A /* Build configuration list for PBXNativeTarget "MacPAF" */ = {
+		02DE76CC09E96A04003B896A /* Build configuration list for PBXNativeTarget "MAF" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				02DE76CD09E96A04003B896A /* Development */,

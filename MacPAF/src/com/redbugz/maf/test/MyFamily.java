@@ -2,13 +2,12 @@ package com.redbugz.maf.test;
 
 import java.util.*;
 
-import org.apache.log4j.*;
+import org.apache.log4j.Logger;
 
-import com.redbugz.macpaf.MyEvent;
-import com.redbugz.macpaf.MyFamily;
-import com.redbugz.macpaf.MyIndividual;
-import com.redbugz.macpaf.MyOrdinance;
-import com.redbugz.maf.*;
+import com.redbugz.maf.Event;
+import com.redbugz.maf.Family;
+import com.redbugz.maf.Individual;
+import com.redbugz.maf.Ordinance;
 
 /**
  * Created by IntelliJ IDEA.

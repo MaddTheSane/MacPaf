@@ -32,12 +32,13 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
+				<string>maf</string>
 				<string>macpaf</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string></string>
 			<key>CFBundleTypeName</key>
-			<string>MacPAF File</string>
+			<string>MAF File</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>LSTypeIsPackage</key>
@@ -88,21 +89,21 @@
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
-	<string>MacPAF</string>
+	<string>MAF</string>
 	<key>CFBundleGetInfoString</key>
 	<string>1.0 Preview 3</string>
 	<key>CFBundleHelpBookFolder</key>
-	<string>MacPAF Help</string>
+	<string>MAF Help</string>
 	<key>CFBundleHelpBookName</key>
-	<string>MacPAF Help</string>
+	<string>MAF Help</string>
 	<key>CFBundleIconFile</key>
 	<string>Tree</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.redbugz.MacPAF</string>
+	<string>com.redbugz.MAF</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>MacPAF</string>
+	<string>MAF</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -122,7 +123,7 @@
 	<string>YES</string>
 	<key>NSJavaPath</key>
 	<array>
-		<string>MacPAF.jar</string>
+		<string>MAF.jar</string>
 		<string>lib/castor-1.0-xml.jar</string>
 		<string>lib/jaxen-core.jar</string>
 		<string>lib/jaxen-jdom.jar</string>

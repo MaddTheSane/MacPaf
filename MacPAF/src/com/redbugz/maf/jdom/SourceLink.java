@@ -6,7 +6,6 @@
  */
 package com.redbugz.maf.jdom;
 
-import com.redbugz.macpaf.MacPAFDocumentJDOM;
 import com.redbugz.maf.Source;
 
 /**
@@ -17,14 +16,14 @@ import com.redbugz.maf.Source;
  */
 public class SourceLink implements Source {
 	private Source actualSource = null;
-	private MacPAFDocumentJDOM document = null;
+	private MAFDocumentJDOM document = null;
 	String id = "";
 
-	SourceLink(MacPAFDocumentJDOM doc) {
+	SourceLink(MAFDocumentJDOM doc) {
 		document = doc;
 	}
 	
-	SourceLink(String id, MacPAFDocumentJDOM doc) {
+	SourceLink(String id, MAFDocumentJDOM doc) {
 		this(doc);
 		setId(id);
 	}

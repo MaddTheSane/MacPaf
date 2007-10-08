@@ -1,11 +1,11 @@
 package com.redbugz.maf.jdom;
 
-import org.apache.log4j.*;
-import org.jdom.*;
-import org.jdom.output.*;
+import org.apache.log4j.Logger;
+import org.jdom.Element;
+import org.jdom.output.Format;
+import org.jdom.output.XMLOutputter;
 
-import com.redbugz.macpaf.TempleJDOM;
-import com.redbugz.maf.*;
+import com.redbugz.maf.Temple;
 
 /**
  * Created by IntelliJ IDEA. User: logan Date: Nov 9, 2003 Time: 2:53:43 PM To

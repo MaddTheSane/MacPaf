@@ -1,22 +1,21 @@
 //
 //  IndividualEditController.java
-//  MacPAFTest
+//  MAF
 //
 //  Created by Logan Allred on Sun Mar 30 2003.
 //  Copyright (c) 2002-2004 RedBugz Software. All rights reserved.
 //
 
-import org.apache.log4j.*;
+import org.apache.log4j.Logger;
 
 import com.apple.cocoa.application.*;
 import com.apple.cocoa.foundation.NSAttributedString;
-import com.redbugz.macpaf.CocoaUtils;
-import com.redbugz.macpaf.MultimediaUtils;
-import com.redbugz.macpaf.PlaceJDOM;
-import com.redbugz.macpaf.StringUtils;
-import com.redbugz.maf.*;
-import com.redbugz.maf.jdom.*;
-import com.redbugz.maf.util.*;
+import com.redbugz.maf.Gender;
+import com.redbugz.maf.Individual;
+import com.redbugz.maf.jdom.PlaceJDOM;
+import com.redbugz.maf.util.CocoaUtils;
+import com.redbugz.maf.util.MultimediaUtils;
+import com.redbugz.maf.util.StringUtils;
 
 public class IndividualEditController extends NSWindowController {
   private static final Logger log = Logger.getLogger(IndividualEditController.class);

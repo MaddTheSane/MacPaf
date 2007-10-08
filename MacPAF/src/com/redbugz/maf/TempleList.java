@@ -1,6 +1,6 @@
 //
 //  TempleList.java
-//  MacPAFTest
+//  MAF
 //
 //  Created by Logan Allred on Sun Mar 09 2003.
 //  Copyright (c) 2002-2004 RedBugz Software. All rights reserved.
@@ -12,14 +12,15 @@ import java.io.FileReader;
 import java.util.Iterator;
 import java.util.Vector;
 
-import org.apache.log4j.*;
-import org.exolab.castor.mapping.*;
-import org.exolab.castor.xml.*;
-import org.xml.sax.*;
+import org.apache.log4j.Logger;
+import org.exolab.castor.mapping.Mapping;
+import org.exolab.castor.xml.Unmarshaller;
+import org.xml.sax.InputSource;
 
-import com.apple.cocoa.application.*;
-import com.apple.cocoa.foundation.*;
-import com.redbugz.macpaf.StringUtils;
+import com.apple.cocoa.application.NSComboBox;
+import com.apple.cocoa.foundation.NSArray;
+import com.apple.cocoa.foundation.NSBundle;
+import com.redbugz.maf.util.StringUtils;
 
 public class TempleList implements NSComboBox.DataSource {
   private static final Logger log = Logger.getLogger(TempleList.class);

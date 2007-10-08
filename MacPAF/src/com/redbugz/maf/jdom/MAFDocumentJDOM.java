@@ -4,34 +4,25 @@ import java.io.*;
 import java.util.*;
 
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.log4j.*;
-import org.jdom.*;
+import org.apache.log4j.Logger;
+import org.jdom.Content;
+import org.jdom.Document;
+import org.jdom.Element;
+import org.jdom.JDOMException;
 import org.jdom.input.SAXBuilder;
-import org.jdom.output.*;
-import org.jdom.xpath.*;
+import org.jdom.output.Format;
+import org.jdom.output.XMLOutputter;
+import org.jdom.xpath.XPath;
 
 import com.apple.cocoa.foundation.NSData;
 import com.apple.cocoa.foundation.NSObject;
-import com.redbugz.macpaf.FamilyJDOM;
-import com.redbugz.macpaf.GedcomLoaderJDOM;
-import com.redbugz.macpaf.HeaderJDOM;
-import com.redbugz.macpaf.IndividualJDOM;
-import com.redbugz.macpaf.MacPAFDocumentJDOM;
-import com.redbugz.macpaf.MultimediaJDOM;
-import com.redbugz.macpaf.NoteJDOM;
-import com.redbugz.macpaf.RepositoryJDOM;
-import com.redbugz.macpaf.SourceJDOM;
-import com.redbugz.macpaf.StringUtils;
-import com.redbugz.macpaf.SubmissionJDOM;
-import com.redbugz.macpaf.SubmitterJDOM;
-import com.redbugz.macpaf.UnknownGedcomLinkException;
-import com.redbugz.macpaf.XMLTest;
 import com.redbugz.maf.*;
-import com.redbugz.maf.util.*;
-import com.redbugz.maf.validation.*;
+import com.redbugz.maf.util.StringUtils;
+import com.redbugz.maf.util.XMLTest;
+import com.redbugz.maf.validation.UnknownGedcomLinkException;
 
-public class MacPAFDocumentJDOM extends Observable implements Observer, MafDocument {
-	private static final Logger log = Logger.getLogger(MacPAFDocumentJDOM.class);
+public class MAFDocumentJDOM extends Observable implements Observer, MafDocument {
+	private static final Logger log = Logger.getLogger(MAFDocumentJDOM.class);
 
 	/**
 	 * This is the main JDOM document that holds all of the data
@@ -61,7 +52,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer, MafDocum
 
 	private boolean suppressUpdates;
 	
-	public MacPAFDocumentJDOM() {
+	public MAFDocumentJDOM() {
 		Element root = new Element("GED");
 		doc = new Document(root);
 //		Element newSubmitterElement = new Element(SubmitterJDOM.SUBMITTER);
@@ -77,7 +68,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer, MafDocum
 	 * @see com.redbugz.maf.jdom.MafDocument#addFamily(com.redbugz.maf.Family)
 	 */
 	public void addFamily(Family newFamily) {
-		log.debug("MacPAFDocumentJDOM.addFamily(newFamily)");
+		log.debug("MAFDocumentJDOM.addFamily(newFamily)");
 		// todo: figure out how to handle RIN vs ID, blank vs dups
 //		if (newFamily.getRin())
 		if (StringUtils.isEmpty(newFamily.getId())) {
@@ -103,7 +94,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer, MafDocum
 	 * @see com.redbugz.maf.jdom.MafDocument#addIndividual(com.redbugz.maf.Individual)
 	 */
 	public void addIndividual(Individual newIndividual) {
-		log.debug("MacPAFDocumentJDOM.addIndividual():"+newIndividual);
+		log.debug("MAFDocumentJDOM.addIndividual():"+newIndividual);
 		if (!(newIndividual instanceof IndividualJDOM)) {
 			throw new IllegalArgumentException("Expected IndividualJDOM, received: "+newIndividual.getClass().getName());
 		}
@@ -128,7 +119,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer, MafDocum
 	 * @see com.redbugz.maf.jdom.MafDocument#addSubmitter(com.redbugz.maf.Submitter)
 	 */
 	public void addSubmitter(Submitter newSubmitter) {
-		log.debug("MacPAFDocumentJDOM.addSubmitter():"+newSubmitter);
+		log.debug("MAFDocumentJDOM.addSubmitter():"+newSubmitter);
 		// for now, don't add default submitters, they should already exist
 		if (newSubmitter instanceof SubmitterJDOM) {
 			SubmitterJDOM submitterJDOM = (SubmitterJDOM) newSubmitter;
@@ -178,7 +169,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer, MafDocum
 	 * @param submitter
 	 */
 	private void addDefaultSubmitter(Submitter newSubmitter) {
-		log.debug("MacPAFDocumentJDOM.addDefaultSubmitter():"+newSubmitter);
+		log.debug("MAFDocumentJDOM.addDefaultSubmitter():"+newSubmitter);
 		if (StringUtils.isEmpty(newSubmitter.getId())) {
 			newSubmitter.setId("T"+getNextAvailableSubmitterId());
 			log.info("Submitter added with blank Id. Assigning Id: "+newSubmitter.getId());
@@ -224,7 +215,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer, MafDocum
 	 * @see com.redbugz.maf.jdom.MafDocument#addRepository(com.redbugz.maf.Repository)
 	 */
 	public void addRepository(Repository newRepository) {
-		log.debug("MacPAFDocumentJDOM.addRepository():"+newRepository);
+		log.debug("MAFDocumentJDOM.addRepository():"+newRepository);
 		if (StringUtils.isEmpty(newRepository.getId())) {
 			newRepository.setId("R"+getNextAvailableRepositoryId());
 			log.info("Repository added with blank Id. Assigning Id: "+newRepository.getId());
@@ -243,7 +234,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer, MafDocum
 	 * @see com.redbugz.maf.jdom.MafDocument#addSource(com.redbugz.maf.Source)
 	 */
 	public void addSource(Source newSource) {
-		log.debug("MacPAFDocumentJDOM.addSource():"+newSource);
+		log.debug("MAFDocumentJDOM.addSource():"+newSource);
 		if (StringUtils.isEmpty(newSource.getId())) {
 			newSource.setId("S"+getNextAvailableSourceId());
 			log.info("Source added with blank Id. Assigning Id: "+newSource.getId());
@@ -262,7 +253,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer, MafDocum
 	 * @see com.redbugz.maf.jdom.MafDocument#addNote(com.redbugz.maf.Note)
 	 */
 	public void addNote(Note newNote) {
-		log.debug("MacPAFDocumentJDOM.addNote():"+newNote);
+		log.debug("MAFDocumentJDOM.addNote():"+newNote);
 		if (StringUtils.isEmpty(newNote.getId())) {
 			newNote.setId("N"+getNextAvailableNoteId());
 			log.info("Note added with blank Id. Assigning Id: "+newNote.getId());
@@ -281,7 +272,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer, MafDocum
 	 * @see com.redbugz.maf.jdom.MafDocument#addMultimedia(com.redbugz.maf.Multimedia)
 	 */
 	public void addMultimedia(Multimedia newMultimedia) {
-		log.debug("MacPAFDocumentJDOM.addMultimedia():"+newMultimedia);
+		log.debug("MAFDocumentJDOM.addMultimedia():"+newMultimedia);
 		if (StringUtils.isEmpty(newMultimedia.getId())) {
 			newMultimedia.setId("M"+getNextAvailableMultimediaId());
 			log.info("Multimedia added with blank Id. Assigning Id: "+newMultimedia.getId());
@@ -754,7 +745,7 @@ public class MacPAFDocumentJDOM extends Observable implements Observer, MafDocum
 	 * @see com.redbugz.maf.jdom.MafDocument#update(java.util.Observable, java.lang.Object)
 	 */
 	public void update(Observable o, Object arg) {
-		log.debug("MacPAFDocumentJDOM.update() observable="+o+", object="+arg);
+		log.debug("MAFDocumentJDOM.update() observable="+o+", object="+arg);
 		if (!suppressUpdates) {
 			setChanged();
 			notifyObservers();
@@ -906,11 +897,11 @@ public class MacPAFDocumentJDOM extends Observable implements Observer, MafDocum
 	 * @see com.redbugz.maf.jdom.MafDocument#createAndInsertNewNote()
 	 */
 	public Note createAndInsertNewNote() {
-		System.out.println("MacPAFDocumentJDOM.createAndInsertNewNote()");
+		System.out.println("MAFDocumentJDOM.createAndInsertNewNote()");
 		Element newNoteElement = new Element(NoteJDOM.NOTE);
 		NoteJDOM newNote = new NoteJDOM(newNoteElement, this);
 		addNote(newNote);
-		System.out.println("MacPAFDocumentJDOM.createAndInsertNewNote() returning "+newNote);
+		System.out.println("MAFDocumentJDOM.createAndInsertNewNote() returning "+newNote);
 		return newNote;
 	}
 
@@ -998,10 +989,10 @@ public class MacPAFDocumentJDOM extends Observable implements Observer, MafDocum
 	}
 	
 	/* (non-Javadoc)
-	 * @see com.redbugz.maf.jdom.MafDocument#importFromDocument(com.redbugz.maf.jdom.MacPAFDocumentJDOM)
+	 * @see com.redbugz.maf.jdom.MafDocument#importFromDocument(com.redbugz.maf.jdom.MAFDocumentJDOM)
 	 */
 	public void importFromDocument(MafDocument importDocument) {
-		System.out.println("MacPAFDocumentJDOM.importFromDocument() this:"+this+" importDoc:"+importDocument);
+		System.out.println("MAFDocumentJDOM.importFromDocument() this:"+this+" importDoc:"+importDocument);
 		startSuppressUpdates();
 		// first resolve duplicate ids
 		log.debug("indivs keyset:"+individuals.keySet());

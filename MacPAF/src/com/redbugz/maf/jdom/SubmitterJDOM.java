@@ -6,16 +6,17 @@
  */
 package com.redbugz.maf.jdom;
 
-import java.text.*;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
 
-import org.jdom.*;
+import org.jdom.Element;
 
-import com.redbugz.macpaf.AddressJDOM;
-import com.redbugz.macpaf.MacPAFDocumentJDOM;
-import com.redbugz.macpaf.MultimediaLink;
-import com.redbugz.macpaf.StringUtils;
-import com.redbugz.maf.*;
+import com.redbugz.maf.Address;
+import com.redbugz.maf.MultimediaLink;
+import com.redbugz.maf.Submitter;
+import com.redbugz.maf.util.StringUtils;
 
 /**
  * @author logan
@@ -24,10 +25,10 @@ import com.redbugz.maf.*;
  * Window - Preferences - Java - Code Generation - Code and Comments
  */
 public class SubmitterJDOM implements Submitter {
-	private MacPAFDocumentJDOM document = null;
+	private MAFDocumentJDOM document = null;
 	private Element element = new Element(SUBMITTER);
 
-  public SubmitterJDOM(MacPAFDocumentJDOM parentDocument) {
+  public SubmitterJDOM(MAFDocumentJDOM parentDocument) {
   	if (parentDocument == null) {
   		throw new IllegalArgumentException("Cannot create SubmitterJDOM with null parentDocument");
   	}
@@ -70,7 +71,7 @@ public class SubmitterJDOM implements Submitter {
   }
 
 
-  public SubmitterJDOM(Element element, MacPAFDocumentJDOM parentDocument) {
+  public SubmitterJDOM(Element element, MAFDocumentJDOM parentDocument) {
   	if (parentDocument == null) {
   		throw new IllegalArgumentException("Cannot create SubmitterJDOM with null parentDocument");
   	}
@@ -121,7 +122,7 @@ public class SubmitterJDOM implements Submitter {
    */
   public MultimediaLink getMultimediaLink() {
 	// TODO Auto-generated method stub
-	return new MultimediaLink(document);
+	return new MultimediaLinkJDOM(document);
   }
 
   /* (non-Javadoc)

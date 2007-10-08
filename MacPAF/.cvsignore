@@ -4,6 +4,7 @@ bak
 .DS_Store
 gedcom
 *.macpaf
+*.maf
 tools
 
 debug

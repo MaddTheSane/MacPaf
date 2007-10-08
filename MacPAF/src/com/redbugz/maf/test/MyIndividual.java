@@ -1,17 +1,17 @@
 package com.redbugz.maf.test;
 
-import java.io.*;
-import java.net.*;
-import java.util.*;
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
 
-import org.apache.log4j.*;
-import org.jdom.*;
+import org.apache.log4j.Logger;
+import org.jdom.Element;
 
-import com.apple.cocoa.foundation.*;
-import com.redbugz.macpaf.MyEvent;
-import com.redbugz.macpaf.MyIndividual;
-import com.redbugz.macpaf.MyOrdinance;
-import com.redbugz.macpaf.TestFamily;
+import com.apple.cocoa.foundation.NSBundle;
 import com.redbugz.maf.*;
 
 /**

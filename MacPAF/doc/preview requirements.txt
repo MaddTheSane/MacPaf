@@ -1,7 +1,7 @@
 Preview release:
 
 Import GEDCOM from Family Records and PAF
-Save .macpaf
+Save .maf
 New file
 Edit file
 save file

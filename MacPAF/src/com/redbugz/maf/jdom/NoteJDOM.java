@@ -1,16 +1,15 @@
 package com.redbugz.maf.jdom;
 
-import java.util.*;
+import java.util.Iterator;
+import java.util.List;
 
-import org.apache.log4j.*;
-import org.jdom.*;
-import org.jdom.output.*;
+import org.apache.log4j.Logger;
+import org.jdom.Element;
+import org.jdom.output.Format;
+import org.jdom.output.XMLOutputter;
 
-import com.redbugz.macpaf.JDOMUtils;
-import com.redbugz.macpaf.MacPAFDocumentJDOM;
-import com.redbugz.macpaf.NoteJDOM;
-import com.redbugz.maf.*;
-import com.redbugz.maf.util.StringUtils;
+import com.redbugz.maf.Note;
+import com.redbugz.maf.util.JDOMUtils;
 
 /**
  * Created by IntelliJ IDEA.
@@ -27,7 +26,7 @@ public class NoteJDOM implements Note {
   Element element = new Element(NOTE);
   private static final String newLine = System.getProperty("line.separator");
 
-  public NoteJDOM(Element element, MacPAFDocumentJDOM parentDocument) {
+  public NoteJDOM(Element element, MAFDocumentJDOM parentDocument) {
   	if (parentDocument == null) {
   		throw new IllegalArgumentException("Cannot create NoteJDOM with null parentDocument");
   	}

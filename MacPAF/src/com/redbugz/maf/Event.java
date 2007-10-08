@@ -1,6 +1,6 @@
 //
 //  Event.java
-//  MacPAFTest
+//  MAF
 //
 //  Created by Logan Allred on Sun Feb 16 2003.
 //  Copyright (c) 2002-2004 RedBugz Software. All rights reserved.

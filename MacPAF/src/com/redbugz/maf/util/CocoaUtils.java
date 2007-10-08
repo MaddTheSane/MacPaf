@@ -2,25 +2,25 @@ package com.redbugz.maf.util;
 
 
 //CocoaUtils.java
-//MacPAF
+//MAF
 
 //Created by Logan Allred on 2/6/05.
 //Copyright 2005 RedBugz Software. All rights reserved.
 
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.Enumeration;
+import java.util.List;
 
-import org.apache.log4j.*;
+import org.apache.log4j.Logger;
 
 import com.apple.cocoa.application.*;
-import com.apple.cocoa.application.NSComboBox.*;
+import com.apple.cocoa.application.NSComboBox.DataSource;
 import com.apple.cocoa.foundation.*;
-import com.redbugz.macpaf.CocoaUtils;
-import com.redbugz.macpaf.TempleJDOM;
-import com.redbugz.macpaf.WrappedTableViewDataSource;
-import com.redbugz.maf.*;
-import com.redbugz.maf.jdom.*;
+import com.redbugz.maf.Temple;
+import com.redbugz.maf.jdom.TempleJDOM;
 
 
 public class CocoaUtils {

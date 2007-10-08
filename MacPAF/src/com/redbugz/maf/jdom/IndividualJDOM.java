@@ -1,30 +1,34 @@
 package com.redbugz.maf.jdom;
 
-import java.io.*;
-import java.net.*;
-import java.util.*;
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
 
-import org.apache.log4j.*;
-import org.jdom.*;
-import org.jdom.filter.*;
-import org.jdom.output.*;
-import org.jdom.xpath.*;
+import org.apache.log4j.Logger;
+import org.jdom.Element;
+import org.jdom.JDOMException;
+import org.jdom.Text;
+import org.jdom.filter.ContentFilter;
+import org.jdom.output.Format;
+import org.jdom.output.XMLOutputter;
+import org.jdom.xpath.XPath;
 
-import com.apple.cocoa.foundation.*;
-import com.redbugz.macpaf.CocoaUtils;
-import com.redbugz.macpaf.EventJDOM;
-import com.redbugz.macpaf.FamilyLink;
-import com.redbugz.macpaf.IndividualJDOM;
-import com.redbugz.macpaf.JDOMUtils;
-import com.redbugz.macpaf.MacPAFDocumentJDOM;
-import com.redbugz.macpaf.MultimediaJDOM;
-import com.redbugz.macpaf.MultimediaLink;
-import com.redbugz.macpaf.NoteJDOM;
-import com.redbugz.macpaf.NoteLink;
-import com.redbugz.macpaf.OrdinanceJDOM;
-import com.redbugz.macpaf.StringUtils;
-import com.redbugz.maf.*;
-import com.redbugz.maf.util.*;
+import com.apple.cocoa.foundation.NSBundle;
+import com.redbugz.maf.Event;
+import com.redbugz.maf.Family;
+import com.redbugz.maf.Gender;
+import com.redbugz.maf.Individual;
+import com.redbugz.maf.Multimedia;
+import com.redbugz.maf.Note;
+import com.redbugz.maf.Ordinance;
+import com.redbugz.maf.util.CocoaUtils;
+import com.redbugz.maf.util.JDOMUtils;
+import com.redbugz.maf.util.StringUtils;
 
 /**
  * This class is a wrapper around a JDOM Element that represents an Individual.
@@ -67,7 +71,7 @@ private static final Logger log = Logger.getLogger(IndividualJDOM.class);
   private Element element = null;//new Element(INDIVIDUAL);
 //  private List events = new ArrayList();
 
-  private MacPAFDocumentJDOM document = null;
+  private MAFDocumentJDOM document = null;
 //  private Family familyAsChild;
 //  private Family familyAsSpouse;
 private static final Collection commonNamePrefixes = Arrays.asList(new String[] {
@@ -75,12 +79,12 @@ private static final Collection commonNamePrefixes = Arrays.asList(new String[] 
 		"Mr.", "Mrs.", "Miss", "Ms."
 });
 
-//  public IndividualJDOM(MacPAFDocumentJDOM parentDocument) {
+//  public IndividualJDOM(MAFDocumentJDOM parentDocument) {
 //	document = parentDocument;
 //	element = new Element(INDIVIDUAL);
 //  }
 
-  public IndividualJDOM(Element newElement, MacPAFDocumentJDOM parentDocument) {
+  public IndividualJDOM(Element newElement, MAFDocumentJDOM parentDocument) {
   	if (parentDocument == null) {
   		throw new IllegalArgumentException("Cannot create IndividualJDOM with null parentDocument");
   	}
@@ -1029,7 +1033,7 @@ public List getAllMultimedia() {
 	for (Iterator iter = element.getChildren("OBJE").iterator(); iter.hasNext();) {
 		Element theElement = (Element) iter.next();
 		if (theElement.getAttributeValue("REF") != null) {
-			list.add(new MultimediaLink(theElement.getAttributeValue("REF"), document));
+			list.add(new MultimediaLinkJDOM(theElement.getAttributeValue("REF"), document));
 		} else {
 			list.add(new MultimediaJDOM(theElement, document));
 		}

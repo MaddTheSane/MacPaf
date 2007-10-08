@@ -1,15 +1,13 @@
 package com.redbugz.maf.test;
 
-import junit.framework.*;
+import junit.framework.TestCase;
 
-import org.apache.log4j.*;
-import org.jdom.*;
+import org.apache.log4j.Logger;
+import org.jdom.Element;
 
-import com.redbugz.macpaf.HeaderJDOM;
-import com.redbugz.macpaf.HeaderJDOMTest;
-import com.redbugz.macpaf.MacPAFDocumentJDOM;
-import com.redbugz.maf.*;
-import com.redbugz.maf.jdom.*;
+import com.redbugz.maf.Header;
+import com.redbugz.maf.jdom.HeaderJDOM;
+import com.redbugz.maf.jdom.MAFDocumentJDOM;
 
 public class HeaderJDOMTest extends TestCase {
 
@@ -19,9 +17,9 @@ public class HeaderJDOMTest extends TestCase {
 
 	protected void setUp() throws Exception {
 		super.setUp();
-		MacPAFDocumentJDOM doc = new MacPAFDocumentJDOM();
+		MAFDocumentJDOM doc = new MAFDocumentJDOM();
 		standardHeader = new HeaderJDOM(((HeaderJDOM) doc.getHeader()).getElement(), doc);
-		emptyHeader = new HeaderJDOM(new Element(Header.HEADER), new MacPAFDocumentJDOM());
+		emptyHeader = new HeaderJDOM(new Element(Header.HEADER), new MAFDocumentJDOM());
 	}
 	
 	public void testFields() {

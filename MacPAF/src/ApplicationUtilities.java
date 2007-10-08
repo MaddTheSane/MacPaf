@@ -1,6 +1,6 @@
 //
 //  ApplicationUtilities.java
-//  MacPAFTest
+//  MAF
 //
 //  Created by Logan Allred on Sat Mar 22 2003.
 //  Copyright (c) 2002-2004 RedBugz Software. All rights reserved.
@@ -28,7 +28,7 @@ public class ApplicationUtilities extends NSObject {
 	  String javaVersion = System.getProperty("java.version");
 	log.debug("java.version:"+javaVersion);
 	  if (javaVersion.startsWith("1.3")) {
-		  MyDocument.showUserErrorMessage("System Not Supported", "MacPAF requires that you update your system. It requires Mac OS X 10.2.8 with Java Update 1.4.1, which can be obtained here:\nhttp://www.apple.com/support/downloads/java141update1formacosx.html");
+		  MyDocument.showUserErrorMessage("System Not Supported", "MAF requires that you update your system. It requires Mac OS X 10.2.8 with Java Update 1.4.1, which can be obtained here:\nhttp://www.apple.com/support/downloads/java141update1formacosx.html");
 		  NSApplication.sharedApplication().terminate(this);
 	  }
 	if (progress != null) {
@@ -47,7 +47,7 @@ public class ApplicationUtilities extends NSObject {
 	  NSArray lastOpenedDocuments = NSUserDefaults.standardUserDefaults().arrayForKey(DEFAULTS_KEY_OPENED_DOCUMENTS);
 	  log.debug("OpenedDocuments=" + lastOpenedDocuments);
 	  if (lastOpenedDocuments == null || lastOpenedDocuments.count() == 0) {
-			NSDocumentController.sharedDocumentController().openUntitledDocumentOfType(MyDocument.MACPAF_DOCUMENT_TYPE, true);		  
+			NSDocumentController.sharedDocumentController().openUntitledDocumentOfType(MyDocument.MAF_DOCUMENT_TYPE, true);		  
 	  } else {
 		  // open documents that were open last time the user quit if there are any
 		  for (Enumeration documentsToOpen = lastOpenedDocuments.objectEnumerator(); documentsToOpen.hasMoreElements();) {
@@ -73,7 +73,7 @@ public class ApplicationUtilities extends NSObject {
 //	log.debug("ApplicationUtilities.applicationShouldOpenUntitledFile():" + sender);
 //	log.debug("didfinish=" + didFinish);
 //		if (!didFinish) {
-//			((NSApplication.Delegate)sender.delegate()).applicationOpenFile(sender, "/Projects/MacPAFTest/startup.macpaf");
+//			((NSApplication.Delegate)sender.delegate()).applicationOpenFile(sender, "/Projects/MAF/startup.maf");
 //		}
 	return false; // didFinish;
   }

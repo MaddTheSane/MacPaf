@@ -6,20 +6,23 @@
  */
 package com.redbugz.maf.jdom;
 
-import java.text.*;
-import java.util.*;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
-import org.apache.log4j.*;
-import org.jdom.*;
+import org.apache.log4j.Logger;
+import org.jdom.Content;
+import org.jdom.Element;
+import org.jdom.Text;
 
-import com.redbugz.macpaf.AddressJDOM;
-import com.redbugz.macpaf.HeaderJDOM;
-import com.redbugz.macpaf.JDOMUtils;
-import com.redbugz.macpaf.MacPAFDocumentJDOM;
-import com.redbugz.macpaf.NoteJDOM;
-import com.redbugz.macpaf.StringUtils;
-import com.redbugz.maf.*;
-import com.redbugz.maf.util.*;
+import com.redbugz.maf.Address;
+import com.redbugz.maf.Header;
+import com.redbugz.maf.Note;
+import com.redbugz.maf.Submission;
+import com.redbugz.maf.Submitter;
+import com.redbugz.maf.util.JDOMUtils;
+import com.redbugz.maf.util.StringUtils;
 
 /**
  * @author logan
@@ -30,7 +33,7 @@ import com.redbugz.maf.util.*;
 public class HeaderJDOM implements Header {
   private static final SimpleDateFormat SIMPLE_DATE_FORMAT = new SimpleDateFormat("dd MMM yyyy");
 private static final Logger log = Logger.getLogger(HeaderJDOM.class);
-private MacPAFDocumentJDOM document = null;
+private MAFDocumentJDOM document = null;
   Element element = new Element(HEADER);
 
   public HeaderJDOM(Submitter submitter) {
@@ -54,7 +57,7 @@ private MacPAFDocumentJDOM document = null;
 	element.addContent(new Element(LANGUAGE).setText(LANG_ENGLISH));
   }
 
-  public HeaderJDOM(Element element, MacPAFDocumentJDOM doc) {
+  public HeaderJDOM(Element element, MAFDocumentJDOM doc) {
 	this.element = element;
 	document = doc;
   }

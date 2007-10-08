@@ -10,7 +10,7 @@ import com.redbugz.maf.*;
 
 public class EventTableController extends NSObject {
 	private static final Logger log = Logger.getLogger(EventTableController.class);
-	private static final String MACPAF_TABLE_REORDER_DRAG_TYPE = "MacPAFTableReorderDragType";
+	private static final String MACPAF_TABLE_REORDER_DRAG_TYPE = "MAFTableReorderDragType";
 	private static final NSArray DRAG_TYPES_ARRAY = new NSArray(new Object[] {MACPAF_TABLE_REORDER_DRAG_TYPE});
 	private Object _source = Individual.UNKNOWN;
 	private String _type = "event";

@@ -1,33 +1,23 @@
 	package com.redbugz.maf.jdom;
 
-import java.io.*;
-import java.util.*;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
 
-import org.apache.log4j.*;
-import org.jdom.*;
+import org.apache.log4j.Logger;
+import org.jdom.Document;
+import org.jdom.Element;
+import org.jdom.JDOMException;
 import org.jdom.input.SAXBuilder;
-import org.jdom.xpath.*;
+import org.jdom.xpath.XPath;
 
-import com.apple.cocoa.foundation.NSData;
-import com.apple.cocoa.foundation.NSDictionary;
-import com.apple.cocoa.foundation.NSMutableArray;
-import com.apple.cocoa.foundation.NSMutableDictionary;
-import com.apple.cocoa.foundation.NSNotificationCenter;
-import com.apple.cocoa.foundation.NSObject;
-import com.redbugz.macpaf.CocoaUtils;
-import com.redbugz.macpaf.FamilyJDOM;
-import com.redbugz.macpaf.GedcomLoaderJDOM;
-import com.redbugz.macpaf.HeaderJDOM;
-import com.redbugz.macpaf.IndividualJDOM;
-import com.redbugz.macpaf.MacPAFDocumentJDOM;
-import com.redbugz.macpaf.MultimediaJDOM;
-import com.redbugz.macpaf.NoteJDOM;
-import com.redbugz.macpaf.RepositoryJDOM;
-import com.redbugz.macpaf.SourceJDOM;
-import com.redbugz.macpaf.StringUtils;
-import com.redbugz.macpaf.SubmitterJDOM;
+import com.apple.cocoa.foundation.*;
 import com.redbugz.maf.*;
-import com.redbugz.maf.util.*;
+import com.redbugz.maf.util.CocoaUtils;
+import com.redbugz.maf.util.StringUtils;
 
 public class GedcomLoaderJDOM {
 	private static final Logger log = Logger.getLogger(GedcomLoaderJDOM.class);
@@ -35,7 +25,7 @@ public class GedcomLoaderJDOM {
 	/**
 	 * This is the main jdom document that holds all of the data
 	 */
-	private MacPAFDocumentJDOM _doc;
+	private MAFDocumentJDOM _doc;
 	NSObject progressDelegate;
 	private double currentProgressValue = 0;
 	private double maxProgressValue = 0;
@@ -64,7 +54,7 @@ public class GedcomLoaderJDOM {
 	
 	public GedcomLoaderJDOM() {}
 		
-	public GedcomLoaderJDOM(MacPAFDocumentJDOM document, NSObject progressDelegate) {
+	public GedcomLoaderJDOM(MAFDocumentJDOM document, NSObject progressDelegate) {
 		_doc = document;
 		this.progressDelegate = progressDelegate;
 	}
@@ -74,10 +64,10 @@ public class GedcomLoaderJDOM {
 	public static void loadDataForDocumentWithUpdateDelegate(NSDictionary dictionary) {
 		System.out.println("GedcomLoaderJDOM.loadDataForDocumentWithUpdateDelegate()"+dictionary);
 		//return
-		loadDataForDocumentWithUpdateDelegate((NSData)dictionary.valueForKey("data"), (MacPAFDocumentJDOM)dictionary.valueForKey("document"), (NSObject)dictionary.valueForKey("delegate"), (NSObject)dictionary.valueForKey("controller"));
+		loadDataForDocumentWithUpdateDelegate((NSData)dictionary.valueForKey("data"), (MAFDocumentJDOM)dictionary.valueForKey("document"), (NSObject)dictionary.valueForKey("delegate"), (NSObject)dictionary.valueForKey("controller"));
 	}
 
-	public static void loadDataForDocumentWithUpdateDelegate(NSData data, MacPAFDocumentJDOM document, NSObject delegate, NSObject controller) {
+	public static void loadDataForDocumentWithUpdateDelegate(NSData data, MAFDocumentJDOM document, NSObject delegate, NSObject controller) {
 		System.out.println("GedcomLoaderJDOM.loadDataForDocumentWithUpdateDelegate():"+delegate);
 		GedcomLoaderJDOM gedcomLoaderJDOM = new GedcomLoaderJDOM(document, delegate);
 //		NSNotificationCenter.defaultCenter().addObserver(delegate, CocoaUtils.UPDATE_PROGRESS_SELECTOR, CocoaUtils.UPDATE_PROGRESS_NOTIFICATION, gedcomLoaderJDOM);
@@ -171,7 +161,7 @@ public class GedcomLoaderJDOM {
 			status = "Loading data...";
 			notifyDelegateOfStatus();
 			
-//			MacPAFDocumentJDOM importedDoc = new MacPAFDocumentJDOM();
+//			MAFDocumentJDOM importedDoc = new MAFDocumentJDOM();
 			HeaderJDOM header = new HeaderJDOM(root.getChild("HEAD"), _doc);//importedDoc);
 			try {
 				log.debug("header: " + header);

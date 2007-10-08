@@ -6,16 +6,21 @@
  */
 package com.redbugz.maf.util;
 
-import java.io.*;
-import java.util.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Vector;
 
-import org.apache.log4j.*;
+import org.apache.log4j.Logger;
 
-import com.apple.cocoa.application.*;
-import com.apple.cocoa.foundation.*;
-import com.redbugz.macpaf.Hex;
-import com.redbugz.macpaf.MultimediaUtils;
-import com.redbugz.maf.*;
+import com.apple.cocoa.application.NSDocument;
+import com.apple.cocoa.application.NSDocumentController;
+import com.apple.cocoa.application.NSImage;
+import com.apple.cocoa.application.NSPICTImageRep;
+import com.apple.cocoa.foundation.NSData;
+import com.apple.cocoa.foundation.NSPathUtilities;
+import com.redbugz.maf.Multimedia;
 
 /**
  * @author logan

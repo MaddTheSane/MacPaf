@@ -4,10 +4,9 @@
  */
 package com.redbugz.maf.jdom;
 
-import java.net.*;
-import java.util.*;
+import java.net.URL;
+import java.util.List;
 
-import com.redbugz.macpaf.MacPAFDocumentJDOM;
 import com.redbugz.maf.*;
 
 /**
@@ -16,14 +15,14 @@ import com.redbugz.maf.*;
  */
 public class IndividualLink implements Individual {
 	private Individual actualIndividual = null;
-	private MacPAFDocumentJDOM document = null;
+	private MAFDocumentJDOM document = null;
 	String id = "";
 	
-	IndividualLink(MacPAFDocumentJDOM doc) {
+	IndividualLink(MAFDocumentJDOM doc) {
 		document = doc;
 	}
 	
-	IndividualLink(String id, MacPAFDocumentJDOM doc) {
+	IndividualLink(String id, MAFDocumentJDOM doc) {
 		this(doc);
 		setId(id);
 	}

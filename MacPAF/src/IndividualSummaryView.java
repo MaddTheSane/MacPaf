@@ -1,6 +1,6 @@
 //
 //  IndividualDetailView.java
-//  MacPAFTest
+//  MAF
 //
 //  Created by Logan Allred on Sun Apr 27 2003.
 //  Copyright (c) 2002-2004 RedBugz Software. All rights reserved.

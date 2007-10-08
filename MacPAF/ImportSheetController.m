@@ -1,6 +1,6 @@
 //
 //  ImportSheetController.m
-//  MacPAF
+//  MAF
 //
 //  Created by Logan Allred on 12/31/06.
 //  Copyright 2006 RedBugz Software. All rights reserved.
@@ -13,7 +13,7 @@
 
 NSString * const GEDCOM_DOCUMENT_TYPE = @"GEDCOM File (.ged)";
 NSString * const PAF21_DOCUMENT_TYPE = @"PAF 2.1/2.3.1 File";
-NSString * const MACPAF_DOCUMENT_TYPE = @"MacPAF File";
+NSString * const MACPAF_DOCUMENT_TYPE = @"MAF File";
 NSString * const TEMPLEREADY_UPDATE_DOCUMENT_TYPE = @"TempleReady Update File";
 
 @implementation ImportSheetController
@@ -53,7 +53,7 @@ NSString * const TEMPLEREADY_UPDATE_DOCUMENT_TYPE = @"TempleReady Update File";
         }
 		[fileNameText setStringValue:fileNameToImport];
 		
-		importDocument = [NSClassFromString(@"com.redbugz.maf.jdom.MacPAFDocumentJDOM") new];
+		importDocument = [NSClassFromString(@"com.redbugz.maf.jdom.MAFDocumentJDOM") new];
 		UKProgressPanelTask *task = [[UKProgressPanelTask alloc] init];
 
 		NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys: [NSData dataWithContentsOfFile:fileNameToImport], @"data", importDocument, @"doc", task, @"task", nil];

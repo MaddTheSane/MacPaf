@@ -1,6 +1,6 @@
 
 //MyDocument.java
-//MacPAFTest
+//MAF
 
 //Created by Logan Allred on Sun Dec 22 2002.
 //Copyright (c) 2002-2004 RedBugz Software. All rights reserved.
@@ -8,26 +8,28 @@
 
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
-import java.net.URL;
 import java.util.*;
-import java.util.zip.*;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
-import org.apache.commons.httpclient.*;
-import org.apache.commons.httpclient.methods.*;
-import org.apache.commons.httpclient.methods.multipart.*;
-import org.apache.log4j.*;
+import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.HttpStatus;
+import org.apache.commons.httpclient.methods.PostMethod;
+import org.apache.commons.httpclient.methods.multipart.FilePart;
+import org.apache.commons.httpclient.methods.multipart.MultipartRequestEntity;
+import org.apache.commons.httpclient.methods.multipart.Part;
+import org.apache.commons.httpclient.methods.multipart.StringPart;
+import org.apache.log4j.Logger;
+import org.apache.log4j.NDC;
 
 import com.apple.cocoa.application.*;
 import com.apple.cocoa.foundation.*;
-import com.redbugz.macpaf.CocoaUtils;
-import com.redbugz.macpaf.DateUtils;
-import com.redbugz.macpaf.MacPAFDocumentJDOM;
-import com.redbugz.macpaf.MultimediaUtils;
-import com.redbugz.macpaf.StringUtils;
 import com.redbugz.maf.*;
-import com.redbugz.maf.gdbi.GdbiDocument;
-import com.redbugz.maf.jdom.*;
-import com.redbugz.maf.util.*;
+import com.redbugz.maf.jdom.MAFDocumentJDOM;
+import com.redbugz.maf.util.CocoaUtils;
+import com.redbugz.maf.util.DateUtils;
+import com.redbugz.maf.util.MultimediaUtils;
+import com.redbugz.maf.util.StringUtils;
 
 /**
  * @todo This document is getting too large. I need to subclass NSDocumentController and move
@@ -51,10 +53,10 @@ public class MyDocument extends NSDocument implements Observer {
 
 	public static final String GEDCOM_DOCUMENT_TYPE = "GEDCOM File (.ged)";
 	public static final String PAF21_DOCUMENT_TYPE = "PAF 2.1/2.3.1 File";
-	public static final String MACPAF_DOCUMENT_TYPE = "MacPAF File";
+	public static final String MAF_DOCUMENT_TYPE = "MAF File";
 	public static final String TEMPLEREADY_UPDATE_DOCUMENT_TYPE = "TempleReady Update File";
 
-	MafDocument doc;// = null;//new MacPAFDocumentJDOM();
+	MafDocument doc;// = null;//new MAFDocumentJDOM();
 
 	// Maps the buttons to the individuals they represent
 	protected NSMutableDictionary individualsButtonMap = new NSMutableDictionary();
@@ -117,11 +119,11 @@ public class MyDocument extends NSDocument implements Observer {
 //	private IndividualList startupIndividualList;
 //	private FamilyList startupFamilyList;
 	/**
-	 * This the internal name for the gedcom file in the .MacPAF file package
+	 * This the internal name for the gedcom file in the .MAF file package
 	 */
 	private static final String DEFAULT_GEDCOM_FILENAME = "data.ged";
 	/**
-	 * This the internal name for the data xml file in the .MacPAF file package
+	 * This the internal name for the data xml file in the .MAF file package
 	 */
 	private static final String DEFAULT_XML_FILENAME = "data.xml";
 	private static final String TEMPLEREADY_UPDATE_EXTENSION = "oup";
@@ -137,7 +139,7 @@ public class MyDocument extends NSDocument implements Observer {
 		try {
 			if (doc == null) {
 				log.info("MyDocument.initDoc(): doc is null, making new doc");
-				doc = new MacPAFDocumentJDOM();//GdbiDocument();
+				doc = new MAFDocumentJDOM();//GdbiDocument();
 			}
 		}
 		catch (Exception e) {
@@ -559,7 +561,7 @@ public class MyDocument extends NSDocument implements Observer {
 			tabFamilyListController.setDocument(this);
 			tabIndividualListController.setup();
 			tabIndividualListController.setDocument(this);
-			// register as an observer of the MacPAFDocumentJDOM
+			// register as an observer of the MAFDocumentJDOM
 			doc.addObserver(this);
 			
 			NSNotificationCenter.defaultCenter().addObserver(importController, CocoaUtils.BEGIN_IMPORT_PROCESS_SELECTOR, CocoaUtils.BEGIN_IMPORT_PROCESS_NOTIFICATION, this);
@@ -704,11 +706,11 @@ log.debug("taskprogresswindow:"+taskProgressSheetWindow);
 	public boolean loadFileWrapperRepresentation(NSFileWrapper nsFileWrapper,	String aType) {
 		log.info("MyDocument.loadFileWrapperRepresentation():" + nsFileWrapper + ":" + aType);
 		try {
-			// If this is not a MacPAF document, then pass it up to loadDataRepresentation for import.
-			if (!MACPAF_DOCUMENT_TYPE.equals(aType)) {
+			// If this is not a MAF document, then pass it up to loadDataRepresentation for import.
+			if (!MAF_DOCUMENT_TYPE.equals(aType)) {
 				return super.loadFileWrapperRepresentation(nsFileWrapper, aType);
 			} else {
-				// Since MacPAF files are File Packages, we will load the various files here
+				// Since MAF files are File Packages, we will load the various files here
 				NDC.push(this.toString());
 //				NSNotificationCenter.defaultCenter().postNotification(CocoaUtils.LOAD_DOCUMENT_NOTIFICATION, this);
 fileWrapperToLoad = nsFileWrapper;
@@ -769,7 +771,7 @@ if (true) return true;
 				"There was a problem opening the file:\n"
 				+ nsFileWrapper.filename() + ".",
 				"This is usually caused by a corrupt file. If the file is a GEDCOM file, it may not be the right version"
-				+ " or it may not conform to the GEDCOM 5.5 specification. If this is a MacPAF file, it is missing "
+				+ " or it may not conform to the GEDCOM 5.5 specification. If this is a MAF file, it is missing "
 				+ "some required data or the data has become corrupted. This can often be fixed by manually inspecting "
 				+ "the contents of the file. Please contact support to see if this can be fixed.");
 		return false;
@@ -796,7 +798,7 @@ if (true) return true;
 			} else {
 				// not sure what type of document this is, look at the data and see if we can find out
 				// TODO look at the data to figure out the type
-				showUserErrorMessage("Unable to load document", "Could not determine what type of document this is. Data may be corrupted or is a file that MacPAF cannot understand.");
+				showUserErrorMessage("Unable to load document", "Could not determine what type of document this is. Data may be corrupted or is a file that MAF cannot understand.");
 			}
 			//	PAF21Data pafData = new PAF21Data(data);
 //			[self setString: [[NSAttributedString alloc] initWithString:[pafData hexString:40] attributes:attrsDictionary]];
@@ -816,18 +818,18 @@ if (true) return true;
 	public NSFileWrapper fileWrapperRepresentationOfType(String aType) {
 		log.debug("MyDocument.fileWrapperRepresentationOfType:" + aType);
 		try {
-			if (MACPAF_DOCUMENT_TYPE.equals(aType)) {
+			if (MAF_DOCUMENT_TYPE.equals(aType)) {
 				ByteArrayOutputStream baos = new ByteArrayOutputStream();
 				ByteArrayOutputStream baosGed = new ByteArrayOutputStream();
 				try {
 //					out.output(
 //					doc,
-//					new FileWriter("/Projects/MacPAFTest/savetest.xml"));
+//					new FileWriter("/Projects/MAF/savetest.xml"));
 					doc.outputToXML(baos);
 //					doc.outputToXML(System.out);
 //					XMLTest.outputWithKay(
 //					doc,
-//					new FileOutputStream("/Projects/MacPAFTest/savetest.ged"));
+//					new FileOutputStream("/Projects/MAF/savetest.ged"));
 					doc.outputToGedcom(baosGed);
 //					doc.outputToGedcom(System.out);
 				}
@@ -858,13 +860,13 @@ if (true) return true;
 				//         log.debug("end serialize");
 //				String file1 =
 //				imagesFolder.addFileWithPath(
-//				"/Projects/MacPAFTest/macpaf-screenshot.png");
+//				"/Projects/MAF/macpaf-screenshot.png");
 //				String file2 =
 //				imagesFolder.addFileWithPath(
-//				"/Projects/MacPAFTest/macpaf-screenshot.tiff");
+//				"/Projects/MAF/macpaf-screenshot.tiff");
 //				String file3 =
 //				imagesFolder.addFileWithPath(
-//				"/Projects/MacPAFTest/macpaf-screenshot.jpg");
+//				"/Projects/MAF/macpaf-screenshot.jpg");
 //				String file4 =
 //				imagesFolder.addFileWithPath(
 //				"/Projects/Mcreenshot.gif");
@@ -1220,7 +1222,7 @@ if (true) return true;
 //	//        NSApplication nsapp = NSApplication.sharedApplication();
 //	//        nsapp.beginSheet(importSheet, mainWindow, this, null, null);
 //	NSOpenPanel panel = NSOpenPanel.openPanel();
-//	//panther only?        panel.setMessage("Please select a GEDCOM file to import into this MacPAF file.");
+//	//panther only?        panel.setMessage("Please select a GEDCOM file to import into this MAF file.");
 //	panel.beginSheetForDirectory(null, null, new NSArray(new Object[] {"GED"}), mainWindow,
 //	this,
 //	new NSSelector("openPanelDidEnd", new Class[] {NSOpenPanel.class, int.class, Object.class}), null);
@@ -1250,11 +1252,11 @@ if (true) return true;
 //	}
 //	}
 
-	private void importMacPAF(NSFileWrapper importFile) {
-		log.debug("MyDocument.importMacPAF():" + importFile);
+	private void importMAF(NSFileWrapper importFile) {
+		log.debug("MyDocument.importMAF():" + importFile);
 		try {
 //			doc.loadXMLFile(importFile);
-			if (true) throw new RuntimeException("Importing from another MacPAF file not yet implemented");
+			if (true) throw new RuntimeException("Importing from another MAF file not yet implemented");
 			if (getPrimaryIndividual().equals(Individual.UNKNOWN)) {
 				// set first individual in imported file to primary individual
 				setPrimaryIndividual(individualList.getSelectedIndividual());
@@ -1264,7 +1266,7 @@ if (true) return true;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			showUserErrorMessage("There was an error importing the file.", "The file was not in a format that MacPAF could read. The file may be incorrect or corrupted. Please verify that the file is in the correct format, and then report this error to the developer if it persists.");
+			showUserErrorMessage("There was an error importing the file.", "The file was not in a format that MAF could read. The file may be incorrect or corrupted. Please verify that the file is in the correct format, and then report this error to the developer if it persists.");
 		}	  
 	}
 
@@ -1286,7 +1288,7 @@ if (true) return true;
 //		} catch (Exception e) {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
-//			showUserErrorMessage("There was an error importing the file.", "The file was not in a format that MacPAF could read. The file may be incorrect or corrupted. Please verify that the file is in the correct format, and then report this error to the developer if it persists.");
+//			showUserErrorMessage("There was an error importing the file.", "The file was not in a format that MAF could read. The file may be incorrect or corrupted. Please verify that the file is in the correct format, and then report this error to the developer if it persists.");
 //		}
 //	}
 	private void importGEDCOM(File importFile) {
@@ -1302,7 +1304,7 @@ if (true) return true;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			showUserErrorMessage("There was an error importing the file.", "The file was not in a format that MacPAF could read. The file may be incorrect or corrupted. Please verify that the file is in the correct format, and then report this error to the developer if it persists.");
+			showUserErrorMessage("There was an error importing the file.", "The file was not in a format that MAF could read. The file may be incorrect or corrupted. Please verify that the file is in the correct format, and then report this error to the developer if it persists.");
 		}
 	}
 
@@ -1321,7 +1323,7 @@ if (true) return true;
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			showUserErrorMessage("There was an error importing the file.", "The file was not in a format that MacPAF could read. The file may be incorrect or corrupted. Please verify that the file is in the correct format, and then report this error to the developer if it persists.");
+			showUserErrorMessage("There was an error importing the file.", "The file was not in a format that MAF could read. The file may be incorrect or corrupted. Please verify that the file is in the correct format, and then report this error to the developer if it persists.");
 		}
 	}
 
@@ -1645,7 +1647,7 @@ if (true) return true;
 		if (searchPaths.count() > 0) {
 			String logFileDirectoryPath = NSPathUtilities.stringByAppendingPathComponent((String) searchPaths.objectAtIndex(0), "Logs");
 			log.debug("logFileDirectoryPath:"+logFileDirectoryPath);
-			String logFileBasePath = NSPathUtilities.stringByAppendingPathComponent(logFileDirectoryPath, "macpaf.log");
+			String logFileBasePath = NSPathUtilities.stringByAppendingPathComponent(logFileDirectoryPath, "maf.log");
 			log.debug("logFileBasePath:"+logFileBasePath);
 			NSArray logFileExtensions = new NSArray(new String[] {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"});
 			log.debug("logFileExtensions:"+logFileExtensions);
@@ -1676,7 +1678,7 @@ if (true) return true;
 			List parts = new ArrayList();
 			parts.add(new StringPart("message", bugReportText.string()));
 			if (filePaths.count() > 0) {
-				File targetFile = createZipFile(null, CocoaUtils.arrayAsList(filePaths));//new File("/Users/logan/Library/Logs/macpaf.log");
+				File targetFile = createZipFile(null, CocoaUtils.arrayAsList(filePaths));//new File("/Users/logan/Library/Logs/maf.log");
 				FilePart filePart = new FilePart("fileatt", targetFile);
 				log.debug("Uploading " + targetFile.getName() + " to " + targetURL);
 				parts.add(filePart);
@@ -1715,7 +1717,7 @@ if (true) return true;
 		// Create a buffer for reading the files
 		byte[] buf = new byte[1024];
 		if (StringUtils.isEmpty(outFilename)) {
-			outFilename = NSPathUtilities.stringByAppendingPathComponent(NSPathUtilities.temporaryDirectory(),"macpaf"+DateUtils.makeFileTimestampString()+".zip");
+			outFilename = NSPathUtilities.stringByAppendingPathComponent(NSPathUtilities.temporaryDirectory(),"maf"+DateUtils.makeFileTimestampString()+".zip");
 		}
 
 //		try {
@@ -1829,7 +1831,7 @@ if (true) return true;
 	 */
 	public void update(Observable o, Object arg) {
 		log.debug("MyDocument.update(): o="+o+" : arg="+arg);
-		// The MacPAFDocumentJDOM has changed
+		// The MAFDocumentJDOM has changed
 		// @todo: do something here
 		updateChangeCount(NSDocument.ChangeDone);
 		if (familyListWindowController != null) {

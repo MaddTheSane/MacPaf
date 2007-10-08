@@ -1,18 +1,20 @@
 //
 //  PedigreeView.java
-//  MacPAFTest
+//  MAF
 //
 //  Created by Logan Allred on Sun May 18 2003.
 //  Copyright (c) 2002-2004 RedBugz Software. All rights reserved.
 //
 
-import org.apache.log4j.*;
+import org.apache.log4j.Logger;
 
 import com.apple.cocoa.application.*;
 import com.apple.cocoa.foundation.*;
-import com.redbugz.macpaf.MyEvent;
-import com.redbugz.maf.*;
-import com.redbugz.maf.test.*;
+import com.redbugz.maf.Event;
+import com.redbugz.maf.Gender;
+import com.redbugz.maf.Individual;
+import com.redbugz.maf.Ordinance;
+import com.redbugz.maf.test.MyEvent;
 
 public class PedigreeView extends NSView {
   private static final Logger log = Logger.getLogger(PedigreeView.class);

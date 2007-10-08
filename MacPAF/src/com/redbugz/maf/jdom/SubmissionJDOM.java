@@ -6,11 +6,10 @@
  */
 package com.redbugz.maf.jdom;
 
-import org.jdom.*;
+import org.jdom.Element;
 
-import com.redbugz.macpaf.MacPAFDocumentJDOM;
-import com.redbugz.macpaf.SubmitterLink;
-import com.redbugz.maf.*;
+import com.redbugz.maf.Submission;
+import com.redbugz.maf.Submitter;
 
 /**
  * @author logan
@@ -20,9 +19,9 @@ import com.redbugz.maf.*;
  */
 public class SubmissionJDOM implements Submission {
   Element element = new Element(SUBMISSION);
-private MacPAFDocumentJDOM document;
+private MAFDocumentJDOM document;
 
-  public SubmissionJDOM(Element element, MacPAFDocumentJDOM parentDocument) {
+  public SubmissionJDOM(Element element, MAFDocumentJDOM parentDocument) {
   	if (parentDocument == null) {
   		throw new IllegalArgumentException("Cannot create SubmissionJDOM with null parentDocument");
   	}

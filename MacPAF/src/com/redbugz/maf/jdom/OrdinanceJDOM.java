@@ -1,14 +1,11 @@
 package com.redbugz.maf.jdom;
 
-import org.apache.log4j.*;
-import org.jdom.*;
+import org.apache.log4j.Logger;
+import org.jdom.Element;
 
-import com.redbugz.macpaf.EventJDOM;
-import com.redbugz.macpaf.JDOMUtils;
-import com.redbugz.macpaf.OrdinanceJDOM;
-import com.redbugz.macpaf.TempleJDOM;
-import com.redbugz.maf.*;
-import com.redbugz.maf.util.*;
+import com.redbugz.maf.Ordinance;
+import com.redbugz.maf.Temple;
+import com.redbugz.maf.util.JDOMUtils;
 
 /**
  * Created by IntelliJ IDEA.

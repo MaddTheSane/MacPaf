@@ -2,14 +2,17 @@
 
 import java.util.*;
 
-import org.apache.log4j.*;
+import org.apache.log4j.Logger;
 
 import com.apple.cocoa.application.*;
-import com.apple.cocoa.foundation.*;
-import com.redbugz.macpaf.CocoaUtils;
-import com.redbugz.maf.*;
-import com.redbugz.maf.util.*;
-import com.redbugz.maf.util.CocoaUtils.*;
+import com.apple.cocoa.foundation.NSArray;
+import com.apple.cocoa.foundation.NSObject;
+import com.apple.cocoa.foundation.NSSelector;
+import com.redbugz.maf.Family;
+import com.redbugz.maf.Gender;
+import com.redbugz.maf.Individual;
+import com.redbugz.maf.util.CocoaUtils;
+import com.redbugz.maf.util.CocoaUtils.KeyValueComparator;
 
 public class PedigreeViewController extends NSObject {
 	private static final KeyValueComparator TAG_COMPARATOR = new CocoaUtils.KeyValueComparator("tag");

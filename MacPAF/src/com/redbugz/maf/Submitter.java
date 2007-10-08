@@ -3,7 +3,7 @@ package com.redbugz.maf;
 import java.util.Date;
 import java.util.List;
 
-import com.redbugz.macpaf.MultimediaLink;
+import com.redbugz.maf.MultimediaLink;
 
 /*
  * Created on Oct 5, 2003

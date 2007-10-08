@@ -1,29 +1,25 @@
 //
 //  FamilyEditController.java
-//  MacPAFTest
+//  MAF
 //
 //  Created by Logan Allred on Sun Apr 06 2003.
 //  Copyright (c) 2002-2004 RedBugz Software. All rights reserved.
 //
 
-import java.util.*;
+import java.util.Enumeration;
 
-import org.apache.log4j.*;
-import org.jdom.Element;
+import org.apache.log4j.Logger;
 
 import com.apple.cocoa.application.*;
 import com.apple.cocoa.foundation.*;
-import com.redbugz.macpaf.CocoaUtils;
-import com.redbugz.macpaf.EventJDOM;
-import com.redbugz.macpaf.FamilyJDOM;
-import com.redbugz.macpaf.OrdinanceJDOM;
-import com.redbugz.macpaf.PlaceJDOM;
-import com.redbugz.macpaf.ValidationException;
 import com.redbugz.maf.*;
 import com.redbugz.maf.Event.UnknownEvent;
-import com.redbugz.maf.jdom.*;
-import com.redbugz.maf.util.*;
-import com.redbugz.maf.validation.*;
+import com.redbugz.maf.jdom.EventJDOM;
+import com.redbugz.maf.jdom.FamilyJDOM;
+import com.redbugz.maf.jdom.OrdinanceJDOM;
+import com.redbugz.maf.jdom.PlaceJDOM;
+import com.redbugz.maf.util.CocoaUtils;
+import com.redbugz.maf.validation.ValidationException;
 
 public class FamilyEditController extends NSWindowController {
   private static final Logger log = Logger.getLogger(FamilyEditController.class);
@@ -371,7 +367,7 @@ private void undoChanges() {
   }
   
   //  tableview drag reordering api	  
-	private static final String MACPAF_TABLE_REORDER_DRAG_TYPE = "MacPAFTableReorderDragType";
+	private static final String MACPAF_TABLE_REORDER_DRAG_TYPE = "MAFTableReorderDragType";
 	private static final NSArray DRAG_TYPES_ARRAY = new NSArray(new Object[] {MACPAF_TABLE_REORDER_DRAG_TYPE});
  
   public boolean tableViewWriteRowsToPasteboard(NSTableView aTable, NSArray rows, NSPasteboard pboard ) {

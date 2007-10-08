@@ -1,9 +1,10 @@
 package com.redbugz.maf.jdom;
 
-import java.util.*;
+import java.util.Date;
+import java.util.List;
 
-import com.redbugz.macpaf.MacPAFDocumentJDOM;
-import com.redbugz.maf.*;
+import com.redbugz.maf.Multimedia;
+import com.redbugz.maf.MultimediaLink;
 
 /*
  * Created on Oct 5, 2003
@@ -11,16 +12,16 @@ import com.redbugz.maf.*;
  * @author logan
  *
  */
-public class MultimediaLink implements Multimedia {
+public class MultimediaLinkJDOM implements MultimediaLink {
 	private Multimedia actualMultimedia = null;
-	private MacPAFDocumentJDOM document = null;
+	private MAFDocumentJDOM document = null;
 	String id = "";
 
-	MultimediaLink(MacPAFDocumentJDOM doc) {
+	MultimediaLinkJDOM(MAFDocumentJDOM doc) {
 		document = doc;
 	}
 	
-	MultimediaLink(String id, MacPAFDocumentJDOM doc) {
+	MultimediaLinkJDOM(String id, MAFDocumentJDOM doc) {
 		this(doc);
 		setId(id);
 	}
@@ -28,7 +29,7 @@ public class MultimediaLink implements Multimedia {
 	/**
 	 * @return
 	 */
-	private Multimedia getMultimedia() {
+	public Multimedia getMultimedia() {
 		if (actualMultimedia == null) {
 			actualMultimedia = document.getMultimediaJDOM(id);
 		}
@@ -141,6 +142,16 @@ public class MultimediaLink implements Multimedia {
 	 */
 	public boolean isImage() {
 		return getMultimedia().isImage();
+	}
+
+	public String getFileReference() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public boolean isEmbedded() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

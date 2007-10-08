@@ -4,13 +4,12 @@
  */
 package com.redbugz.maf.jdom;
 
-import org.apache.log4j.*;
-import org.jdom.*;
-import org.jdom.output.*;
+import org.apache.log4j.Logger;
+import org.jdom.Element;
+import org.jdom.output.Format;
+import org.jdom.output.XMLOutputter;
 
-import com.redbugz.macpaf.MacPAFDocumentJDOM;
-import com.redbugz.macpaf.RepositoryJDOM;
-import com.redbugz.maf.*;
+import com.redbugz.maf.Repository;
 
 /**
  * @author logan
@@ -22,9 +21,9 @@ public class RepositoryJDOM implements Repository {
 
 //	  private StringBuffer text = new StringBuffer();
 	  Element element = new Element(REPOSITORY);
-private MacPAFDocumentJDOM document = null;
+private MAFDocumentJDOM document = null;
 	  
-	  public RepositoryJDOM(Element element, MacPAFDocumentJDOM parentDocument) {
+	  public RepositoryJDOM(Element element, MAFDocumentJDOM parentDocument) {
 	  	if (parentDocument == null) {
 	  		throw new IllegalArgumentException("Cannot create RepositoryJDOM with null parentDocument");
 	  	}

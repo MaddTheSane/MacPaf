@@ -1,18 +1,19 @@
 //
 //  PocketPedigreeView.java
-//  MacPAF
+//  MAF
 //
 //  Created by Logan Allred on Sun May 30 2004.
 //  Copyright (c) 2004 RedBugz Software. All rights reserved.
 //
 
-import org.apache.log4j.*;
+import org.apache.log4j.Logger;
 
 import com.apple.cocoa.application.*;
 import com.apple.cocoa.foundation.*;
-import com.redbugz.macpaf.MyEvent;
-import com.redbugz.maf.*;
-import com.redbugz.maf.test.*;
+import com.redbugz.maf.Event;
+import com.redbugz.maf.Individual;
+import com.redbugz.maf.Place;
+import com.redbugz.maf.test.MyEvent;
 
 
 public class PocketPedigreeView extends NSView {

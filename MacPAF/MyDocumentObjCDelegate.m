@@ -1,6 +1,6 @@
 //
 //  MyDocumentObjCDelegate.m
-//  MacPAF
+//  MAF
 //
 //  Created by Logan Allred on 12/24/06.
 //  Copyright 2006 __MyCompanyName__. All rights reserved.

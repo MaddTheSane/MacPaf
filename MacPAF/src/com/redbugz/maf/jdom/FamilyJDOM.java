@@ -1,22 +1,19 @@
 package com.redbugz.maf.jdom;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
-import org.apache.log4j.*;
-import org.jdom.*;
-import org.jdom.output.*;
-import org.jdom.xpath.*;
+import org.apache.log4j.Logger;
+import org.jdom.Element;
+import org.jdom.JDOMException;
+import org.jdom.output.Format;
+import org.jdom.output.XMLOutputter;
+import org.jdom.xpath.XPath;
 
-import com.redbugz.macpaf.EventJDOM;
-import com.redbugz.macpaf.FamilyJDOM;
-import com.redbugz.macpaf.IndividualLink;
-import com.redbugz.macpaf.JDOMUtils;
-import com.redbugz.macpaf.MacPAFDocumentJDOM;
-import com.redbugz.macpaf.NoteJDOM;
-import com.redbugz.macpaf.OrdinanceJDOM;
-import com.redbugz.macpaf.StringUtils;
 import com.redbugz.maf.*;
-import com.redbugz.maf.util.*;
+import com.redbugz.maf.util.JDOMUtils;
+import com.redbugz.maf.util.StringUtils;
 
 /**
  * Created by IntelliJ IDEA. User: logan Date: Mar 16, 2003 Time: 3:39:21 PM To
@@ -31,7 +28,7 @@ public class FamilyJDOM implements Family {
 	// private String id;
 	// private Event marriageEvent = EventJDOM.createMarriageEventInstance();
 	protected Element element = new Element(FAMILY);
-	private MacPAFDocumentJDOM document = null;
+	private MAFDocumentJDOM document = null;
 
 	// int numberOfChildren = -1;
 	// private Individual father;
@@ -72,7 +69,7 @@ public class FamilyJDOM implements Family {
 	// spouse="+getFather().getFamilyAsSpouse().getMother().getFullName());
 	// }
 
-	// public FamilyJDOM(MacPAFDocumentJDOM parentDocument) {
+	// public FamilyJDOM(MAFDocumentJDOM parentDocument) {
 	// document = parentDocument;
 	// // dad = new Individual.UnknownMaleIndividual();
 	// // mom = new Individual.UnknownFemaleIndividual();
@@ -81,7 +78,7 @@ public class FamilyJDOM implements Family {
 	// setId("");
 	// }
 
-	public FamilyJDOM(Element newElement, MacPAFDocumentJDOM parentDocument) {
+	public FamilyJDOM(Element newElement, MAFDocumentJDOM parentDocument) {
 		if (parentDocument == null) {
 			throw new IllegalArgumentException(
 					"Cannot create FamilyJDOM with null parentDocument");
@@ -96,7 +93,7 @@ public class FamilyJDOM implements Family {
 		confirmUID();
 	}
 
-	public FamilyJDOM(Family oldFamily, MacPAFDocumentJDOM parentDocument) {
+	public FamilyJDOM(Family oldFamily, MAFDocumentJDOM parentDocument) {
 		if (parentDocument == null) {
 			throw new IllegalArgumentException(
 					"Cannot create FamilyJDOM with null parentDocument");

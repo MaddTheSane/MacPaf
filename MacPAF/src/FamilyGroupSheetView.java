@@ -1,22 +1,23 @@
 //
 //  FamilyGroupSheetView.java
-//  MacPAFTest
+//  MAF
 //
 //  Created by Logan Allred on Sun May 18 2003.
 //  Copyright (c) 2002-2004 RedBugz Software. All rights reserved.
 //
 
-import java.util.*;
+import java.util.GregorianCalendar;
+import java.util.Iterator;
+import java.util.List;
 
-import org.apache.log4j.*;
+import org.apache.log4j.Logger;
 
 import com.apple.cocoa.application.*;
 import com.apple.cocoa.foundation.*;
-import com.redbugz.macpaf.MyEvent;
-import com.redbugz.macpaf.MyIndividual;
-import com.redbugz.macpaf.MyOrdinance;
 import com.redbugz.maf.*;
-import com.redbugz.maf.test.*;
+import com.redbugz.maf.test.MyEvent;
+import com.redbugz.maf.test.MyIndividual;
+import com.redbugz.maf.test.MyOrdinance;
 
 public class FamilyGroupSheetView extends NSView {
   private static final Logger log = Logger.getLogger(FamilyGroupSheetView.class);

@@ -287,16 +287,8 @@
 		023F05C007AD16B5005A4D0A /* MultimediaLink.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = MultimediaLink.java; sourceTree = "<group>"; };
 		02433BEB0C9D5ED700FE5892 /* MafDocument.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = MafDocument.java; sourceTree = "<group>"; };
 		02433BFA0C9D680300FE5892 /* GdbiDocument.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = GdbiDocument.java; sourceTree = "<group>"; };
-		02433C2E0C9D850A00FE5892 /* CgiAccess.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = CgiAccess.java; sourceTree = "<group>"; };
-		02433C2F0C9D850A00FE5892 /* CgiFeatures.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = CgiFeatures.java; sourceTree = "<group>"; };
-		02433C300C9D850A00FE5892 /* FsdbPgvDatabase.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = FsdbPgvDatabase.java; sourceTree = "<group>"; };
-		02433C310C9D850A00FE5892 /* FsdbPgvOpener.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = FsdbPgvOpener.java; sourceTree = "<group>"; };
-		02433C330C9D850A00FE5892 /* PgvcgiDatabase.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = PgvcgiDatabase.java; sourceTree = "<group>"; };
-		02433C340C9D850A00FE5892 /* PgvcgiLoginFields.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = PgvcgiLoginFields.java; sourceTree = "<group>"; };
-		02433C350C9D850A00FE5892 /* PgvcgiPreLogin.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = PgvcgiPreLogin.java; sourceTree = "<group>"; };
-		02433C360C9D850A00FE5892 /* PgvcgiUrlInfo.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = PgvcgiUrlInfo.java; sourceTree = "<group>"; };
-		02433C440C9D855E00FE5892 /* api.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; name = api.jar; path = ../workspaceMAF/gdbi/src/build/jars/api.jar; sourceTree = SOURCE_ROOT; };
-		02433C450C9D855E00FE5892 /* util.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; name = util.jar; path = ../workspaceMAF/gdbi/src/build/jars/util.jar; sourceTree = SOURCE_ROOT; };
+		02433C440C9D855E00FE5892 /* api.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; name = api.jar; path = lib/api.jar; sourceTree = "<group>"; };
+		02433C450C9D855E00FE5892 /* util.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; name = util.jar; path = lib/util.jar; sourceTree = "<group>"; };
 		024E77CF0782F44800B7A2CC /* MultimediaUtils.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = MultimediaUtils.java; sourceTree = "<group>"; };
 		0250C09C07AC858500AC3629 /* UnknownGedcomLinkException.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = UnknownGedcomLinkException.java; sourceTree = "<group>"; };
 		025FC08D092EC045006B2989 /* WrappedTableViewDataSource.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = WrappedTableViewDataSource.java; sourceTree = "<group>"; };
@@ -438,7 +430,7 @@
 		02DDDDF80A165EF5003BC70E /* MAF Help */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "MAF Help"; path = "English.lproj/MAF Help"; sourceTree = "<group>"; };
 		02DE76D009E96A05003B896A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Info.plist; sourceTree = "<group>"; };
 		02E2897A09E9FA71000846AC /* MAF.jar */ = {isa = PBXFileReference; explicitFileType = archive.jar; includeInIndex = 0; path = MAF.jar; sourceTree = BUILT_PRODUCTS_DIR; };
-		02E2897B09E9FA94000846AC /* MAF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MAF.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		02E2897B09E9FA94000846AC /* MAF.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = MAF.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02E5284709EDE9770093ECEF /* unicodeIO.jar */ = {isa = PBXFileReference; lastKnownFileType = archive.jar; name = unicodeIO.jar; path = lib/unicodeIO.jar; sourceTree = "<group>"; };
 		02E8DAB30CB911220035F786 /* EventTableController.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = EventTableController.java; path = src/EventTableController.java; sourceTree = "<group>"; };
 		02E8DAB40CB911220035F786 /* FilteredTableViewDataSource.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = FilteredTableViewDataSource.java; path = src/FilteredTableViewDataSource.java; sourceTree = "<group>"; };
@@ -571,14 +563,6 @@
 		02433C2D0C9D850A00FE5892 /* pgvcgi */ = {
 			isa = PBXGroup;
 			children = (
-				02433C2E0C9D850A00FE5892 /* CgiAccess.java */,
-				02433C2F0C9D850A00FE5892 /* CgiFeatures.java */,
-				02433C300C9D850A00FE5892 /* FsdbPgvDatabase.java */,
-				02433C310C9D850A00FE5892 /* FsdbPgvOpener.java */,
-				02433C330C9D850A00FE5892 /* PgvcgiDatabase.java */,
-				02433C340C9D850A00FE5892 /* PgvcgiLoginFields.java */,
-				02433C350C9D850A00FE5892 /* PgvcgiPreLogin.java */,
-				02433C360C9D850A00FE5892 /* PgvcgiUrlInfo.java */,
 			);
 			path = pgvcgi;
 			sourceTree = "<group>";

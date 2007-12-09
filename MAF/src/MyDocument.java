@@ -495,6 +495,7 @@ public class MyDocument extends NSDocument implements Observer {
 			log.debug("fileWrapperToLoad:"+fileWrapperToLoad);
 			if (fileWrapperToLoad != null) {
 				log.debug("posting loaddocumentdata notification...");
+				startSuppressUpdates();
 				NSNotificationCenter.defaultCenter().postNotification(CocoaUtils.LOAD_DOCUMENT_NOTIFICATION, this, new NSDictionary(new Object[] {dataForFileWrapper(fileWrapperToLoad), doc}, new Object[] {"data", "doc"}));
 			}
 
@@ -515,6 +516,7 @@ public class MyDocument extends NSDocument implements Observer {
 	public void documentDidFinishLoading() {
 		importData = null;
 		fileWrapperToLoad = null;
+		endSuppressUpdates();
 	}
 
 	public void windowControllerDidLoadNib(NSWindowController aController) {

@@ -44,11 +44,11 @@ public class GedcomLoaderJDOM {
 		try {
 			builder.build("");
 		} catch (JDOMException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			// ignore
+//			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			// ignore
+//			e.printStackTrace();
 		}
 	}
 	

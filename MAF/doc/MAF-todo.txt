@@ -1,0 +1,14 @@
+Todo items for MAF:
+
+* Improve searching/sorting/filtering algorithms
+* Improve file loading so it does not do an import every time
+* Unit tests for maintaining custom GEDCOM tags through import/export cycle
+* Clean up any areas where MVC separation has been violated
+* Add multimedia/image support, including using iMedia Browser (http://code.google.com/p/imedia/)
+* Integrate with FSKit for new FamilySearch synchronization and searching (http://code.google.com/p/fskit/)
+* Complete LDS ordinance support (qualification, TempleReady submission)
+* Add more reports, possibly a report engine or custom report functionality
+* Match/Merge
+* Master places list
+* Master sources list
+* Rewrite in Obj-C/Ruby

@@ -1,0 +1,38 @@
+MAF Domain Design Document
+
+I have been thinking about using some principles from Domain Driven Design, by Eric Evans.
+Entities have identity and have a single canonical representation.
+Value Objects are immutable and disposable
+
+Entities:
+	Individual
+		An individual represents a person and is involved in relationships with other individuals.
+		They have several IDs, at least one must be unique
+		
+	
+	Family
+		A family represents a couple and their children. MAF currently uses the GEDCOM model of families
+		which assumes an optional male father and an optional female mother with zero or more children.
+		Each family has a unique ID.
+
+	Place
+		I'm not sure if these should be entities yet, but I would like a master list of places with
+		some sort of identity so they can be distinguished and correlated.
+
+Value Objects:
+	Date
+		Represents a specific moment in time, or a range of time. May have several alternate representations
+		Will have a normalized form that can be formatted to various locales and display formats.
+	
+	Event
+		Has a date and a place
+	
+	Fact
+		Describes some attribute or information known about an individual or family.
+		May have a date due to some inconsistencies in GEDCOM and other data differences.
+		
+		
+	
+	
+
+

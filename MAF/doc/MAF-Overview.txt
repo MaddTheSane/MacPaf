@@ -1,0 +1,17 @@
+MAF Overview
+
+MAF is a genealogy/family history application for the Macintosh. It is designed to help people record and organize information
+about their families. It is designed specifically to be useful to the LDS community, though at some time it may be possible
+to disable the LDS-specific functionality.
+
+MAF is an NSDocument-based Cocoa application. Currently most of the implementation is written in Java using the Cocoa-Java
+bridge, but since the Cocoa-Java bridge has been deprecated and will likely not exist in 10.6, plans are to migrate to
+Objective-C or Ruby.
+
+MAF is designed to be familiar and comfortable to use for previous users of the old PAF for Mac (Family Records) 2.3.1
+application written by the LDS Church, which is no longer maintained and does not run on the latest Macintoshes.
+
+MAF currently uses the GEDCOM data model as it's primary data model. Initially it will support versions 5.5 and 5.5.1, though
+support for older versions may be added if requested. MAF will not initially expose all of the functionality present
+in GEDCOM, but should not lose any data it doesn't know how to deal with, including custom GEDCOM tags.
+

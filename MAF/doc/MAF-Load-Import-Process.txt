@@ -1,0 +1,45 @@
+Loading & Importing Files
+
+MAF only deals with MAF documents. All other file types are imported or converted into MAF documents for viewing or editing.
+	Import types:
+		1. GEDCOM 5.5/5.5.1
+		2. MAF Documents
+		3. PAF for Mac 2.1/2.3.1 Documents (Family Records 2.3.1)
+		4. TempleReady Update Files (.oup) *not implemented*
+
+Opening a file always consists of loading that data into a new MAF document and making it the current active document.
+	Ways to Open a file:
+		1. When launching MAF, it will automatically open files that were open the last time it was quit
+		2. File->Open
+		3. Drag & drop a file onto the application icon
+		4. File->Import and select Import into new MAF document option
+Importing can either add the data from that file into the current active MAF document, or we will give the user the option to load into a new document as well
+	Ways to import a file:
+		1. File->Import and select Import into current MAF document option
+		2. (possible future consideration: drag & drop a file onto an open MAF document window)
+
+For now, the ImportController handles all file loading and importing. In the future we would like to split MAF document opening away from the ImportController.
+
+Opening a file:
+	1. At some point in the open process, MAF will be given a file path and optionally a file type. A new valid MAF document is also provided
+	2. An NSData object is filled with the contents of the file.
+		- If path is not valid or data cannot be loaded, user is notified and process stops.
+	3. MAF will attempt to determine the file type if it is not provided, using both the file extension or by examining the first few bytes of the NSData object
+		- If file type cannot be determined, user is notified of error and process is aborted.
+	4. Using the correct conversion algorithm for the file type, data is turned into MAF domain objects and inserted into MAF document.
+		- errors and warnings during conversion should be saved as a collection and presented to the user at the end of the Open process.
+	5. The new MAF Document window is displayed and made the active current document. User is presented with any errors or warnings.
+	
+Importing a file:
+	1. At some point in the open process, MAF will be given a file path and optionally a file type. There should be an existing current MAF document.
+	2. An NSData object is filled with the contents of the file.
+		- If path is not valid or data cannot be loaded, user is notified and process stops.
+	3. MAF will attempt to determine the file type if it is not provided, using both the file extension or by examining the first few bytes of the NSData object
+		- If file type cannot be determined, user is notified of error and process is aborted.
+	4. Using the correct conversion algorithm for the file type, data is turned into MAF domain objects and inserted into a temporary MAF document.
+		- errors and warnings during conversion should be saved as a collection and presented to the user.
+	5. User is presented with a preview of the import document contents, as well as any errors or warnings, and given the option to complete the import.
+	6. If user chooses to import, domain objects from temporary MAF document are inserted into the current active MAF document
+		- Some domain objects will need to be modified so as to avoid ID conflicts. This should be performed in the temporary MAF document prior to insertion
+	7. Current MAF document display is refreshed to include newly imported data.
+	

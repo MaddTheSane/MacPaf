@@ -1,0 +1,10 @@
+Current known issues in MAF:
+
+* Searching/Sorting/Filtering uses naive algorithms so is slow and inefficient (both time and memory)
+* Lots of empty XML tags are created that are not necessary
+* Need unit tests for domain layer
+* Need to make sure all data from a GEDCOM import is maintained during editing, even if not exposed through the UI
+* Loading an existing file is currently treated as an import, so slow and inefficient
+* UUIDs not quite working correctly, especially for Families
+* Need to make sure that custom GEDCOM tags survive a GEDCOM import/export cycle 
+

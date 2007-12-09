@@ -1,0 +1,14 @@
+MAF Implementation Notes
+
+Key classes:
+
+	MyDocument - Cocoa NSDocument subclass that acts as the main application controller
+	
+	MAFDocumentJDOM - Root domain model repository class. Holds collections and instances to all other domain objects
+	
+	
+	
+Importing:
+1. Static import methods, take data and load into a given MPdoc
+2. Objects that represent the imported file. Will load these and inspect them, once they are imported throw them away
+

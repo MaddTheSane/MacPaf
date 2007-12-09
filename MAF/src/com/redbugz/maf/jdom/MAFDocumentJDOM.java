@@ -1,6 +1,9 @@
 package com.redbugz.maf.jdom;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.*;
 
 import org.apache.commons.collections.CollectionUtils;
@@ -9,12 +12,10 @@ import org.jdom.Content;
 import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.JDOMException;
-import org.jdom.input.SAXBuilder;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
 import org.jdom.xpath.XPath;
 
-import com.apple.cocoa.foundation.NSData;
 import com.apple.cocoa.foundation.NSObject;
 import com.redbugz.maf.*;
 import com.redbugz.maf.util.StringUtils;
@@ -302,306 +303,6 @@ public class MAFDocumentJDOM extends Observable implements Observer, MafDocument
 		XMLTest.outputWithKay(doc, outputStream);
 	}
 	
-//	public void loadXMLFile(File file) {
-//		if (file == null) {
-//			throw new IllegalArgumentException("Cannot parse XML file because file is null.");
-//		}
-//		try {
-//			loadXMLData(new NSData(file));
-//		} catch (RuntimeException e) {
-//			e.printStackTrace();
-//			throw e;
-//		}
-//	}
-	
-	// uses parser from Kay (gedml)
-	public void loadXMLData_USEGEDCOMLOADERINSTEAD(NSData data) {
-		try {
-			long start = System.currentTimeMillis();
-			SAXBuilder builder = new SAXBuilder("gedml.GedcomParser");
-			Document doc = null;
-			try {
-			  doc = builder.build(new ByteArrayInputStream(data.bytes(0, data.length())));
-			}
-			catch (JDOMException e2) {
-			  log.error("Exception: ", e2);
-			  throw new IllegalArgumentException("Cannot parse GEDCOM data "+data+". Cause:"+e2.getLocalizedMessage());
-			}
-			catch (IOException e1) {
-			  log.error("Exception: ", e1); //To change body of catch statement use Options | File Templates.
-			  throw new IllegalArgumentException("Cannot parse GEDCOM data "+data+". Cause:"+e1.getLocalizedMessage());
-			}
-//			if (XMLTest.debugging) {
-//			  log.debug("^*^*^* Doc parsed with gedml:");
-//			  XMLTest.outputDocToConsole(doc);
-//			}
-			//      Document doc = XMLTest.parseGedcom(file);
-			Document newDoc = doc;
-			Element root = newDoc.getRootElement();
-			long end = System.currentTimeMillis();
-			log.debug("Time to parse: " + (end - start) / 1000D + " seconds.");
-			List familyElements = root.getChildren("FAM");
-			List individualElements = root.getChildren("INDI");
-			List multimediaElements = root.getChildren("OBJE");
-			List noteElements = root.getChildren("NOTE");
-			List repositoryElements = root.getChildren("REPO");
-			List sourceElements = root.getChildren("SOUR");
-			List submitterElements = root.getChildren("SUBM");
-			// detach the root from the children nodes so they can be imported into the new document
-			root.detach();
-			
-			try {
-				HeaderJDOM header = new HeaderJDOM(root.getChild("HEAD"), this);
-				log.debug("header: " + header);
-				log.debug("Header charset:"+header.getCharacterSet());
-				log.debug("Header charversion:"+header.getCharacterVersionNumber());
-				log.debug("Header copyright:"+header.getCopyright());
-				log.debug("Header destination:"+header.getDestination());
-				log.debug("Header filename:"+header.getFileName());
-				log.debug("Header gedcomform:"+header.getGedcomForm());
-				log.debug("Header gedcomversion:"+header.getGedcomVersion());
-				log.debug("Header language:"+header.getLanguage());
-				log.debug("Header placeformat:"+header.getPlaceFormat());
-				log.debug("Header sourcecorp:"+header.getSourceCorporation());
-				log.debug("Header sourcecorpaddr:"+header.getSourceCorporationAddress());
-				log.debug("Header sourcedata:"+header.getSourceData());
-				log.debug("Header sourcedatacopyright:"+header.getSourceDataCopyright());
-				log.debug("Header sourceid:"+header.getSourceId());
-				log.debug("Header sourcename:"+header.getSourceName());
-				log.debug("Header sourceversion:"+header.getSourceVersion());
-				log.debug("Header sourcedatadate:"+header.getSourceDataDate());
-				log.debug("Header creationdate:"+header.getCreationDate());
-				log.debug("Header note:"+header.getNote());
-				log.debug("Header element:"+header.getElement());
-
-				log.debug("Header submission:"+header.getSubmission());
-				log.debug("Header submitter:"+header.getSubmitter());
-			} catch (RuntimeException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			log.debug("file has:\n\t" + individualElements.size() + " individuals\n\t" + familyElements.size() + " families\n\t" + noteElements.size() +
-					" notes\n\t" + multimediaElements.size() + " multimedia objects\n\t" + sourceElements.size() + " sources\n\t" +
-					repositoryElements.size() + " repositories\n\t" + submitterElements.size() + " submitters\n");
-			
-			boolean debug = false;
-			Runtime rt = Runtime.getRuntime();
-			
-			log.debug("------------------------------");
-			log.debug("-------------------Individuals");
-			log.debug("------------------------------");
-			Individual firstIndi = Individual.UNKNOWN;
-			for (Iterator iterator = individualElements.iterator(); iterator.hasNext();) {
-//			type element = (type) iter.next();
-				
-//		}
-//		for (int i = 0; i < individualElements.size(); i++) {
-				Element element = (Element) iterator.next();
-				// this removes this element from it's parent so it can be inserted into the new doc
-				iterator.remove();
-				if (debug) {
-					log.debug("element:" + element.getContent());
-				}
-				if (debug) {
-					log.debug("name:" + element.getChildText("NAME"));
-					//log.debug("bday:" + element.getChild("BIRT").getChildText("DATE"));
-				}
-				Individual indi = new IndividualJDOM(element, this);
-				String oldKey = indi.getId();
-				addIndividual(indi);
-				String newKey = indi.getId();
-				// ID may change when individual is inserted if it is a duplicate
-				log.debug("indi oldkey="+oldKey+" newkey="+newKey);
-				if (!newKey.equals(oldKey)) {
-					/** @todo change all instances of the old key to new key in import document */
-					try {
-						String ref = "[@REF='" + oldKey + "']";
-						List needsFixing = XPath.selectNodes(newDoc, "//HUSB"+ref+" | //WIFE"+ref+" | //CHIL"+ref+" | //ALIA"+ref);
-						log.debug("needsFixing: " + needsFixing);
-						Iterator iter = needsFixing.iterator();
-						while (iter.hasNext()) {
-							Element item = (Element) iter.next();
-							log.debug("setting REF from " + item.getAttribute("REF") + " to " + newKey);
-							item.setAttribute("REF", newKey);
-						}
-					}
-					catch (JDOMException ex1) {
-						log.error("problem with xpath during duplicate key fixing", ex1);
-					}
-				}
-				if (indi.getRin() > 0 && indi.getRin() < firstIndi.getRin()) {
-					log.debug("Setting 1st Individual to: " + indi);
-					firstIndi = indi;
-				}
-				if (debug) {
-					log.info("\n *** " + " mem:" + rt.freeMemory() / 1024 + " Kb\n");
-				}
-				if (rt.freeMemory() < 50000) {
-					if (debug) {
-						log.info("gc");
-					}
-					rt.gc();
-				}
-			}
-			log.info("individuals: "+individuals.size());
-			
-			log.debug("------------------------------");
-			log.debug("----------------------Families");
-			log.debug("------------------------------");
-			for (Iterator iterator = familyElements.iterator(); iterator.hasNext();) {
-				Element element = (Element) iterator.next();
-				// this removes this element from it's parent so it can be inserted into the new doc
-				iterator.remove();
-//		}
-//		for (int i = 0; i < familyElements.size(); i++) {
-//			Element element = (Element) familyElements.get(i);
-				Family fam = new FamilyJDOM(element, this);
-				String oldKey = fam.getId();
-				addFamily(fam);
-				// ID may change when family is inserted if there is a duplicate
-				String newKey = fam.getId();
-				log.debug("oldkey="+oldKey+" newkey="+newKey);
-				if (!newKey.equals(oldKey)) {
-					/** @todo change all instances of the old key to new key in import document */
-					try {
-						String ref = "[@REF='" + oldKey + "']";
-						List needsFixing = XPath.selectNodes(newDoc, "//FAMC"+ref+" | //FAMS"+ref);
-						log.debug("needsFixing: "+needsFixing);
-						Iterator iter = needsFixing.iterator();
-						while (iter.hasNext()) {
-							Element item = (Element)iter.next();
-							log.debug("setting REF from "+item.getAttribute("REF") + " to "+newKey);
-							item.setAttribute("REF", newKey);
-						}
-					}
-					catch (JDOMException ex1) {
-						log.error("problem with xpath during duplicate key fixing", ex1);
-					}
-				}
-				if (debug) {
-					log.info("\n *** " + " mem:" + rt.freeMemory() / 1024 + " Kb\n");
-				}
-				if (rt.freeMemory() < 50000) {
-					if (debug) {
-						log.info("gc");
-					}
-					rt.gc();
-				}
-				log.info("families: "+families.size());			
-			}
-			//      log.debug("setting individuals");
-			//      individuals = new NSMutableDictionary(new NSDictionary(indiMap.values().toArray(), indiMap.keySet().toArray()));
-			//      log.debug("individuals: "+individuals.count()+"("+individuals+")");
-			//        for (Iterator iterator = tempFams.iterator(); iterator.hasNext();) {
-			//            Fam fam = (Fam) iterator.next();
-			//            familyList.add(fam);
-			//        }
-			//        for (Iterator iterator = indiMap.values().iterator(); iterator.hasNext();) {
-			//            Indi indi = (Indi) iterator.next();
-			//            individualList.add(indi);
-			//            surnameList.add(indi.getSurname());
-			//        }
-			log.debug("MPDJ.loadXMLFile setindividual:" + firstIndi);
-			//            assignIndividualToButton(firstIndi, individualButton);
-			//            setIndividual(individualButton);
-			setPrimaryIndividual(firstIndi);
-			//        final List objects = doc.getRootElement().getChildren("OBJE");
-			
-			log.debug("------------------------------");
-			log.debug("--------------------Multimedia");
-			log.debug("------------------------------");
-			for (Iterator iterator = multimediaElements.iterator(); iterator.hasNext();) {
-				Element obje = (Element) iterator.next();
-				// this removes this element from it's parent so it can be inserted into the new doc
-				iterator.remove();
-			
-//		for (int i = 0; i < multimediaElements.size(); i++) {
-//			Element obje = (Element) multimediaElements.get(i);
-				if (obje != null) {
-					addMultimedia(new MultimediaJDOM(obje, this));
-//			    byte[] raw = Base64.decode(buf.toString());
-//			    log.debug("decoded=" + raw);
-//			    NSImageView nsiv = new NSImageView(new NSRect(0, 0, 100, 100));
-//			    nsiv.setImage(new NSImage(new NSData(raw)));
-//			    individualButton.superview().addSubview(nsiv);
-//			    nsiv.display();
-				}
-			}
-			log.debug("multimedia: " + multimediaElements.size());
-			
-			log.debug("------------------------------");
-			log.debug("-------------------------Notes");
-			log.debug("------------------------------");
-			for (Iterator iterator = noteElements.iterator(); iterator.hasNext();) {
-				Element element = (Element) iterator.next();
-				// this removes this element from it's parent so it can be inserted into the new doc
-				iterator.remove();
-//		for (int i = 0; i < noteElements.size(); i++) {
-//			Element element = (Element) noteElements.get(i);
-				if (debug) {
-					log.debug("element:" + element.getContent());
-				}
-				Note note = new NoteJDOM(element, this);
-				addNote(note);
-			}
-			log.debug("notes: " + noteElements.size());
-			
-			log.debug("------------------------------");
-			log.debug("-----------------------Sources");
-			log.debug("------------------------------");
-			for (Iterator iterator = sourceElements.iterator(); iterator.hasNext();) {
-				Element element = (Element) iterator.next();
-				// this removes this element from it's parent so it can be inserted into the new doc
-				iterator.remove();
-//		for (int i = 0; i < sourceElements.size(); i++) {
-//			Element element = (Element) sourceElements.get(i);
-				if (debug) {
-					log.debug("element:" + element.getContent());
-				}
-				Source source = new SourceJDOM(element, this);
-				addSource(source);
-			}
-			log.debug("sources: " + sourceElements.size());
-			
-			log.debug("------------------------------");
-			log.debug("------------------Repositories");
-			log.debug("------------------------------");
-			for (Iterator iterator = repositoryElements.iterator(); iterator.hasNext();) {
-				Element element = (Element) iterator.next();
-				// this removes this element from it's parent so it can be inserted into the new doc
-				iterator.remove();
-//		for (int i = 0; i < repositoryElements.size(); i++) {
-//			Element element = (Element) repositoryElements.get(i);
-				if (debug) {
-					log.debug("element:" + element.getContent());
-				}
-				Repository repository = new RepositoryJDOM(element, this);
-				addRepository(repository);
-			}
-			log.debug("repositories: " + repositoryElements.size());
-			
-			log.debug("------------------------------");
-			log.debug("--------------------Submitters");
-			log.debug("------------------------------");
-			for (Iterator iterator = submitterElements.iterator(); iterator.hasNext();) {
-				Element element = (Element) iterator.next();
-				// this removes this element from it's parent so it can be inserted into the new doc
-				iterator.remove();
-//		for (int i = 0; i < submitterElements.size(); i++) {
-//			Element element = (Element) submitterElements.get(i);
-				if (debug) {
-					log.debug("element:" + element.getContent());
-				}
-				Submitter submitter = new SubmitterJDOM(element, this);
-				addSubmitter(submitter);
-			}	
-			log.debug("submitters: " + submitterElements.size());
-		} catch (RuntimeException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			throw e;
-		}
-	}
 	
 	/* (non-Javadoc)
 	 * @see com.redbugz.maf.jdom.MafDocument#setPrimaryIndividual(com.redbugz.maf.Individual)
@@ -1187,3 +888,303 @@ public class MAFDocumentJDOM extends Observable implements Observer, MafDocument
               }
               }
               */
+//public void loadXMLFile(File file) {
+//if (file == null) {
+//	throw new IllegalArgumentException("Cannot parse XML file because file is null.");
+//}
+//try {
+//	loadXMLData(new NSData(file));
+//} catch (RuntimeException e) {
+//	e.printStackTrace();
+//	throw e;
+//}
+//}
+
+// uses parser from Kay (gedml)
+//public void loadXMLData_USEGEDCOMLOADERINSTEAD(NSData data) {
+//try {
+//	long start = System.currentTimeMillis();
+//	SAXBuilder builder = new SAXBuilder("gedml.GedcomParser");
+//	Document doc = null;
+//	try {
+//	  doc = builder.build(new ByteArrayInputStream(data.bytes(0, data.length())));
+//	}
+//	catch (JDOMException e2) {
+//	  log.error("Exception: ", e2);
+//	  throw new IllegalArgumentException("Cannot parse GEDCOM data "+data+". Cause:"+e2.getLocalizedMessage());
+//	}
+//	catch (IOException e1) {
+//	  log.error("Exception: ", e1); //To change body of catch statement use Options | File Templates.
+//	  throw new IllegalArgumentException("Cannot parse GEDCOM data "+data+". Cause:"+e1.getLocalizedMessage());
+//	}
+////	if (XMLTest.debugging) {
+////	  log.debug("^*^*^* Doc parsed with gedml:");
+////	  XMLTest.outputDocToConsole(doc);
+////	}
+//	//      Document doc = XMLTest.parseGedcom(file);
+//	Document newDoc = doc;
+//	Element root = newDoc.getRootElement();
+//	long end = System.currentTimeMillis();
+//	log.debug("Time to parse: " + (end - start) / 1000D + " seconds.");
+//	List familyElements = root.getChildren("FAM");
+//	List individualElements = root.getChildren("INDI");
+//	List multimediaElements = root.getChildren("OBJE");
+//	List noteElements = root.getChildren("NOTE");
+//	List repositoryElements = root.getChildren("REPO");
+//	List sourceElements = root.getChildren("SOUR");
+//	List submitterElements = root.getChildren("SUBM");
+//	// detach the root from the children nodes so they can be imported into the new document
+//	root.detach();
+//	
+//	try {
+//		HeaderJDOM header = new HeaderJDOM(root.getChild("HEAD"), this);
+//		log.debug("header: " + header);
+//		log.debug("Header charset:"+header.getCharacterSet());
+//		log.debug("Header charversion:"+header.getCharacterVersionNumber());
+//		log.debug("Header copyright:"+header.getCopyright());
+//		log.debug("Header destination:"+header.getDestination());
+//		log.debug("Header filename:"+header.getFileName());
+//		log.debug("Header gedcomform:"+header.getGedcomForm());
+//		log.debug("Header gedcomversion:"+header.getGedcomVersion());
+//		log.debug("Header language:"+header.getLanguage());
+//		log.debug("Header placeformat:"+header.getPlaceFormat());
+//		log.debug("Header sourcecorp:"+header.getSourceCorporation());
+//		log.debug("Header sourcecorpaddr:"+header.getSourceCorporationAddress());
+//		log.debug("Header sourcedata:"+header.getSourceData());
+//		log.debug("Header sourcedatacopyright:"+header.getSourceDataCopyright());
+//		log.debug("Header sourceid:"+header.getSourceId());
+//		log.debug("Header sourcename:"+header.getSourceName());
+//		log.debug("Header sourceversion:"+header.getSourceVersion());
+//		log.debug("Header sourcedatadate:"+header.getSourceDataDate());
+//		log.debug("Header creationdate:"+header.getCreationDate());
+//		log.debug("Header note:"+header.getNote());
+//		log.debug("Header element:"+header.getElement());
+//
+//		log.debug("Header submission:"+header.getSubmission());
+//		log.debug("Header submitter:"+header.getSubmitter());
+//	} catch (RuntimeException e) {
+//		// TODO Auto-generated catch block
+//		e.printStackTrace();
+//	}
+//	log.debug("file has:\n\t" + individualElements.size() + " individuals\n\t" + familyElements.size() + " families\n\t" + noteElements.size() +
+//			" notes\n\t" + multimediaElements.size() + " multimedia objects\n\t" + sourceElements.size() + " sources\n\t" +
+//			repositoryElements.size() + " repositories\n\t" + submitterElements.size() + " submitters\n");
+//	
+//	boolean debug = false;
+//	Runtime rt = Runtime.getRuntime();
+//	
+//	log.debug("------------------------------");
+//	log.debug("-------------------Individuals");
+//	log.debug("------------------------------");
+//	Individual firstIndi = Individual.UNKNOWN;
+//	for (Iterator iterator = individualElements.iterator(); iterator.hasNext();) {
+////	type element = (type) iter.next();
+//		
+////}
+////for (int i = 0; i < individualElements.size(); i++) {
+//		Element element = (Element) iterator.next();
+//		// this removes this element from it's parent so it can be inserted into the new doc
+//		iterator.remove();
+//		if (debug) {
+//			log.debug("element:" + element.getContent());
+//		}
+//		if (debug) {
+//			log.debug("name:" + element.getChildText("NAME"));
+//			//log.debug("bday:" + element.getChild("BIRT").getChildText("DATE"));
+//		}
+//		Individual indi = new IndividualJDOM(element, this);
+//		String oldKey = indi.getId();
+//		addIndividual(indi);
+//		String newKey = indi.getId();
+//		// ID may change when individual is inserted if it is a duplicate
+//		log.debug("indi oldkey="+oldKey+" newkey="+newKey);
+//		if (!newKey.equals(oldKey)) {
+//			/** @todo change all instances of the old key to new key in import document */
+//			try {
+//				String ref = "[@REF='" + oldKey + "']";
+//				List needsFixing = XPath.selectNodes(newDoc, "//HUSB"+ref+" | //WIFE"+ref+" | //CHIL"+ref+" | //ALIA"+ref);
+//				log.debug("needsFixing: " + needsFixing);
+//				Iterator iter = needsFixing.iterator();
+//				while (iter.hasNext()) {
+//					Element item = (Element) iter.next();
+//					log.debug("setting REF from " + item.getAttribute("REF") + " to " + newKey);
+//					item.setAttribute("REF", newKey);
+//				}
+//			}
+//			catch (JDOMException ex1) {
+//				log.error("problem with xpath during duplicate key fixing", ex1);
+//			}
+//		}
+//		if (indi.getRin() > 0 && indi.getRin() < firstIndi.getRin()) {
+//			log.debug("Setting 1st Individual to: " + indi);
+//			firstIndi = indi;
+//		}
+//		if (debug) {
+//			log.info("\n *** " + " mem:" + rt.freeMemory() / 1024 + " Kb\n");
+//		}
+//		if (rt.freeMemory() < 50000) {
+//			if (debug) {
+//				log.info("gc");
+//			}
+//			rt.gc();
+//		}
+//	}
+//	log.info("individuals: "+individuals.size());
+//	
+//	log.debug("------------------------------");
+//	log.debug("----------------------Families");
+//	log.debug("------------------------------");
+//	for (Iterator iterator = familyElements.iterator(); iterator.hasNext();) {
+//		Element element = (Element) iterator.next();
+//		// this removes this element from it's parent so it can be inserted into the new doc
+//		iterator.remove();
+////}
+////for (int i = 0; i < familyElements.size(); i++) {
+////	Element element = (Element) familyElements.get(i);
+//		Family fam = new FamilyJDOM(element, this);
+//		String oldKey = fam.getId();
+//		addFamily(fam);
+//		// ID may change when family is inserted if there is a duplicate
+//		String newKey = fam.getId();
+//		log.debug("oldkey="+oldKey+" newkey="+newKey);
+//		if (!newKey.equals(oldKey)) {
+//			/** @todo change all instances of the old key to new key in import document */
+//			try {
+//				String ref = "[@REF='" + oldKey + "']";
+//				List needsFixing = XPath.selectNodes(newDoc, "//FAMC"+ref+" | //FAMS"+ref);
+//				log.debug("needsFixing: "+needsFixing);
+//				Iterator iter = needsFixing.iterator();
+//				while (iter.hasNext()) {
+//					Element item = (Element)iter.next();
+//					log.debug("setting REF from "+item.getAttribute("REF") + " to "+newKey);
+//					item.setAttribute("REF", newKey);
+//				}
+//			}
+//			catch (JDOMException ex1) {
+//				log.error("problem with xpath during duplicate key fixing", ex1);
+//			}
+//		}
+//		if (debug) {
+//			log.info("\n *** " + " mem:" + rt.freeMemory() / 1024 + " Kb\n");
+//		}
+//		if (rt.freeMemory() < 50000) {
+//			if (debug) {
+//				log.info("gc");
+//			}
+//			rt.gc();
+//		}
+//		log.info("families: "+families.size());			
+//	}
+//	//      log.debug("setting individuals");
+//	//      individuals = new NSMutableDictionary(new NSDictionary(indiMap.values().toArray(), indiMap.keySet().toArray()));
+//	//      log.debug("individuals: "+individuals.count()+"("+individuals+")");
+//	//        for (Iterator iterator = tempFams.iterator(); iterator.hasNext();) {
+//	//            Fam fam = (Fam) iterator.next();
+//	//            familyList.add(fam);
+//	//        }
+//	//        for (Iterator iterator = indiMap.values().iterator(); iterator.hasNext();) {
+//	//            Indi indi = (Indi) iterator.next();
+//	//            individualList.add(indi);
+//	//            surnameList.add(indi.getSurname());
+//	//        }
+//	log.debug("MPDJ.loadXMLFile setindividual:" + firstIndi);
+//	//            assignIndividualToButton(firstIndi, individualButton);
+//	//            setIndividual(individualButton);
+//	setPrimaryIndividual(firstIndi);
+//	//        final List objects = doc.getRootElement().getChildren("OBJE");
+//	
+//	log.debug("------------------------------");
+//	log.debug("--------------------Multimedia");
+//	log.debug("------------------------------");
+//	for (Iterator iterator = multimediaElements.iterator(); iterator.hasNext();) {
+//		Element obje = (Element) iterator.next();
+//		// this removes this element from it's parent so it can be inserted into the new doc
+//		iterator.remove();
+//	
+////for (int i = 0; i < multimediaElements.size(); i++) {
+////	Element obje = (Element) multimediaElements.get(i);
+//		if (obje != null) {
+//			addMultimedia(new MultimediaJDOM(obje, this));
+////	    byte[] raw = Base64.decode(buf.toString());
+////	    log.debug("decoded=" + raw);
+////	    NSImageView nsiv = new NSImageView(new NSRect(0, 0, 100, 100));
+////	    nsiv.setImage(new NSImage(new NSData(raw)));
+////	    individualButton.superview().addSubview(nsiv);
+////	    nsiv.display();
+//		}
+//	}
+//	log.debug("multimedia: " + multimediaElements.size());
+//	
+//	log.debug("------------------------------");
+//	log.debug("-------------------------Notes");
+//	log.debug("------------------------------");
+//	for (Iterator iterator = noteElements.iterator(); iterator.hasNext();) {
+//		Element element = (Element) iterator.next();
+//		// this removes this element from it's parent so it can be inserted into the new doc
+//		iterator.remove();
+////for (int i = 0; i < noteElements.size(); i++) {
+////	Element element = (Element) noteElements.get(i);
+//		if (debug) {
+//			log.debug("element:" + element.getContent());
+//		}
+//		Note note = new NoteJDOM(element, this);
+//		addNote(note);
+//	}
+//	log.debug("notes: " + noteElements.size());
+//	
+//	log.debug("------------------------------");
+//	log.debug("-----------------------Sources");
+//	log.debug("------------------------------");
+//	for (Iterator iterator = sourceElements.iterator(); iterator.hasNext();) {
+//		Element element = (Element) iterator.next();
+//		// this removes this element from it's parent so it can be inserted into the new doc
+//		iterator.remove();
+////for (int i = 0; i < sourceElements.size(); i++) {
+////	Element element = (Element) sourceElements.get(i);
+//		if (debug) {
+//			log.debug("element:" + element.getContent());
+//		}
+//		Source source = new SourceJDOM(element, this);
+//		addSource(source);
+//	}
+//	log.debug("sources: " + sourceElements.size());
+//	
+//	log.debug("------------------------------");
+//	log.debug("------------------Repositories");
+//	log.debug("------------------------------");
+//	for (Iterator iterator = repositoryElements.iterator(); iterator.hasNext();) {
+//		Element element = (Element) iterator.next();
+//		// this removes this element from it's parent so it can be inserted into the new doc
+//		iterator.remove();
+////for (int i = 0; i < repositoryElements.size(); i++) {
+////	Element element = (Element) repositoryElements.get(i);
+//		if (debug) {
+//			log.debug("element:" + element.getContent());
+//		}
+//		Repository repository = new RepositoryJDOM(element, this);
+//		addRepository(repository);
+//	}
+//	log.debug("repositories: " + repositoryElements.size());
+//	
+//	log.debug("------------------------------");
+//	log.debug("--------------------Submitters");
+//	log.debug("------------------------------");
+//	for (Iterator iterator = submitterElements.iterator(); iterator.hasNext();) {
+//		Element element = (Element) iterator.next();
+//		// this removes this element from it's parent so it can be inserted into the new doc
+//		iterator.remove();
+////for (int i = 0; i < submitterElements.size(); i++) {
+////	Element element = (Element) submitterElements.get(i);
+//		if (debug) {
+//			log.debug("element:" + element.getContent());
+//		}
+//		Submitter submitter = new SubmitterJDOM(element, this);
+//		addSubmitter(submitter);
+//	}	
+//	log.debug("submitters: " + submitterElements.size());
+//} catch (RuntimeException e) {
+//	// TODO Auto-generated catch block
+//	e.printStackTrace();
+//	throw e;
+//}
+//}

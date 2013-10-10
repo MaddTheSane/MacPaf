@@ -11,7 +11,22 @@
 #import "MAFTempleList.h"
 #include <unistd.h>
 
+@interface PAF21Data ()
+- (NSString *)hexString:(int)width;
+- (NSString *)cleanNoteString:(NSString *)noteString;
+- (NSString *)nameForPointer:(int)pointer;
+@end
+
 @implementation PAF21Data
+@synthesize familyRecords;
+@synthesize individualLinksList;
+@synthesize individualList;
+@synthesize individualRecords;
+@synthesize marriageList;
+@synthesize nameList;
+@synthesize nameRecords;
+@synthesize noteList;
+@synthesize noteRecords;
 
 struct OneHead_t {
     unsigned short IndivRCount;
@@ -77,15 +92,6 @@ NSData *firstMapChunkData;
 NSMutableArray *indivChunks, *marrChunks, *nameChunks, *noteChunks, *mapChunks, *otherChunks;
 NSDateFormatter *dateFormatter;
 
-//@end
-//
-//@interface PAF21Data (Private)
-//- (NSString *)hexString:(int)width;
-//- (NSString *)cleanNoteString:(NSString *)noteString;
-//- (NSString *)nameForPointer:(int)pointer;
-//@end
-//
-//@implementation PAF21Data (Private)
 
 //- (NSString *)combineNoteString:(NSManagedObject *)note {
 //	NSString *combinedString = [NSString new];
@@ -98,7 +104,8 @@ NSDateFormatter *dateFormatter;
 //	return combinedString;
 //}
 
-- (NSString *)cleanNoteString:(NSString *)noteString {
+- (NSString *)cleanNoteString:(NSString *)noteString
+{
 //	NSLog(@"illegal:%@", [[NSCharacterSet illegalCharacterSet] bitmapRepresentation]);
 //	NSLog(@"control:%@", [[NSCharacterSet controlCharacterSet] bitmapRepresentation]);
 //	NSLog(@"white:%@", [[NSCharacterSet whitespaceCharacterSet] bitmapRepresentation]);
@@ -113,35 +120,42 @@ NSDateFormatter *dateFormatter;
 }
 
 
-- (NSCalendarDate *)dateForDualDate:(struct DualDate_t *)dualDate {
+- (NSCalendarDate *)dateForDualDate:(struct DualDate_t *)dualDate
+{
 	return [NSCalendarDate dateWithYear:dualDate->year month:dualDate->month day:dualDate->day hour:0 minute:0 second:0 timeZone:nil];
 }
 
-- (NSCalendarDate *)dateForRegDate:(struct RegDate_t *)regDate {
+- (NSCalendarDate *)dateForRegDate:(struct RegDate_t *)regDate
+{
 	return [NSCalendarDate dateWithYear:regDate->year month:regDate->month day:regDate->day hour:0 minute:0 second:0 timeZone:nil];
 }
 
-- (NSString *)dateStringForDualDate:(struct DualDate_t *)dualDate {
+- (NSString *)dateStringForDualDate:(struct DualDate_t *)dualDate
+{
 	return [dateFormatter stringFromDate:[self dateForDualDate:dualDate]];
 }
 
-- (NSString *)dateStringForRegDate:(struct RegDate_t *)regDate {
+- (NSString *)dateStringForRegDate:(struct RegDate_t *)regDate
+{
 	return [dateFormatter stringFromDate:[self dateForRegDate:regDate]];
 }
 
-- (struct RegDate_t *)regDateFromData:(NSData *)data atOffset:(int)offset {
+- (struct RegDate_t *)regDateFromData:(NSData *)data atOffset:(int)offset
+{
 	struct RegDate_t *value = [[data subdataWithRange:NSMakeRange(offset,3)] bytes];
 	NSLog(@"regDateFromData:atOffset:%i returns: y=%i m=%i d=%i mod=%i data:%@", offset, value->year, value->month, value->day, value->modifier, [data subdataWithRange:NSMakeRange(offset,3)]);
 	return value;
 }
 
-- (struct DualDate_t *)dualDateFromData:(NSData *)data atOffset:(int)offset {
+- (struct DualDate_t *)dualDateFromData:(NSData *)data atOffset:(int)offset
+{
 	struct DualDate_t *value = [[data subdataWithRange:NSMakeRange(offset,4)] bytes];
 	NSLog(@"dualDateFromData:atOffset:%i returns: y=%i m=%i d=%i mod=%i dual=%i data:%@", offset, value->year, value->month, value->day, value->modifier, value->offset, [data subdataWithRange:NSMakeRange(offset,4)]);
 	return value;
 }
 
-- (NSString *)nameForPointer:(int)pointer {
+- (NSString *)nameForPointer:(int)pointer
+{
 	if (pointer > [nameList count]) {
 		NSLog(@"invalid name pointer %i", pointer);
 		return nil;
@@ -152,7 +166,8 @@ NSDateFormatter *dateFormatter;
 	return nameList[pointer-1];
 }
 
-- (id)individualForPointer:(int)pointer {
+- (id)individualForPointer:(int)pointer
+{
 	if (pointer > [individualList count]) {
 		NSLog(@"invalid individual pointer %i", pointer);
 		return nil;
@@ -163,7 +178,8 @@ NSDateFormatter *dateFormatter;
 	return individualList[pointer-1];
 }
 
-- (id)marriageForPointer:(int)pointer {
+- (id)marriageForPointer:(int)pointer
+{
 	if (pointer > [marriageList count]) {
 		NSLog(@"invalid marriage pointer %i", pointer);
 		return nil;
@@ -174,7 +190,8 @@ NSDateFormatter *dateFormatter;
 	return marriageList[pointer-1];
 }
 
-- (id)noteForPointer:(int)pointer {
+- (id)noteForPointer:(int)pointer
+{
 	if (pointer > [noteList count]) {
 		NSLog(@"invalid note pointer %i", pointer);
 		return nil;
@@ -186,25 +203,29 @@ NSDateFormatter *dateFormatter;
 }
 
 
-- (unsigned short)shortFromData:(NSData *)data {
+- (unsigned short)shortFromData:(NSData *)data
+{
 	unsigned short value;
 	[data getBytes:&value length:sizeof(value)];
 	value = NSSwapLittleShortToHost(value);
 	return value;
 }
 
-- (unsigned short)shortFromData:(NSData *)data withRange:(NSRange)range {
+- (unsigned short)shortFromData:(NSData *)data withRange:(NSRange)range
+{
 	unsigned short value;
 	[data getBytes:&value range:range];
 	value = NSSwapLittleShortToHost(value);
 	return value;
 }
 
-- (unsigned short)shortFromData:(NSData *)data atOffset:(int)offset{
+- (unsigned short)shortFromData:(NSData *)data atOffset:(int)offset
+{
 	return [self shortFromData:data withRange:NSMakeRange(offset,sizeof(unsigned short))];
 }
 
-- (NSString *)placeStringFromData:(NSData *)data atOffset:(int)offset {
+- (NSString *)placeStringFromData:(NSData *)data atOffset:(int)offset
+{
 	NSLog(@"%s place data: %@", sel_getName(_cmd), [data subdataWithRange:NSMakeRange(offset, 8)]);
 	unsigned short place1 = [self shortFromData:data atOffset:offset];
 	unsigned short place2 = [self shortFromData:data atOffset:offset+2];
@@ -240,19 +261,22 @@ NSDateFormatter *dateFormatter;
 	return placeString;
 }
 
-//- (NSString *)stringFromASCIIBytes:(const void *)bytes length:(int)length {
-//	return  [[NSString alloc] initWithBytes:bytes length:length encoding:NSASCIIStringEncoding]; // convert NSData -> NSString
-//}
+- (NSString *)stringFromASCIIBytes:(const void *)bytes length:(int)length {
+	return  [[NSString alloc] initWithBytes:bytes length:length encoding:NSASCIIStringEncoding]; // convert NSData -> NSString
+}
 
-- (NSString *)stringFromASCIIData:(NSData *)data {
+- (NSString *)stringFromASCIIData:(NSData *)data
+{
 	return  [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding]; // convert NSData -> NSString
 }
 
-- (NSString *)stringFromMacRomanBytes:(const void *)bytes length:(int)length {
+- (NSString *)stringFromMacRomanBytes:(const void *)bytes length:(int)length
+{
 	return  [[NSString alloc] initWithBytes:bytes length:length encoding:NSMacOSRomanStringEncoding]; // convert NSData -> NSString
 }
 
-- (NSString *)stringFromMacRomanData:(NSData *)data {
+- (NSString *)stringFromMacRomanData:(NSData *)data
+{
 	return  [[NSString alloc] initWithData:data encoding:NSMacOSRomanStringEncoding]; // convert NSData -> NSString
 }
 
@@ -306,11 +330,13 @@ NSDateFormatter *dateFormatter;
 	return representation;
 }
 
-- (NSString *)hexString:(int)width {
+- (NSString *)hexString:(int)width
+{
 	return [self hexRepresentation:data length:width];
 }
 
-- (NSString *)hexRepresentation:(NSData *)data {
+- (NSString *)hexRepresentation:(NSData *)data
+{
 	return [self hexRepresentation:data	length:40];
 }
 
@@ -421,12 +447,14 @@ NSDateFormatter *dateFormatter;
     return self;
 }
 
-- (void)importData {
+- (void)importData
+{
 	NSLog(@"importData");
 	[self importDataIntoDocument:[[NSDocumentController sharedDocumentController] currentDocument]];
 }
 
-- (void)importDataIntoDocument:(NSDocument *)document {
+- (void)importDataIntoDocument:(NSDocument *)document
+{
 	NSLog(@"%s document: %@", sel_getName(_cmd), document);
 	
 //	int							x, xmax = 25;							// Just some vars so we can fake a lengthy operation
@@ -787,11 +815,13 @@ NSDateFormatter *dateFormatter;
 	//[context save:nil];
 }
 	
-+ (void)importFromData:(NSData *)data intoDocument:(NSDocument *)document {
++ (void)importFromData:(NSData *)data intoDocument:(NSDocument *)document
+{
 	NSLog(@"%s document: %@", sel_getName(_cmd), document);
 	NSLog(@"%lu, chunks %lu", (unsigned long)[data length], (unsigned long)(([data length]-512)/1024));
-	PAF21Data *pafData = [[[PAF21Data alloc] initWithData:data] autorelease];
+	PAF21Data *pafData = [[PAF21Data alloc] initWithData:data];
 	[pafData importDataIntoDocument:document];
+	[pafData release];
 }
 
 @end

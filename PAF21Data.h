@@ -9,17 +9,17 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface PAF21Data : NSObject {
-NSArray *individualRecords;
-NSArray *familyRecords;
-NSArray *nameRecords;
-NSArray *noteRecords;
-NSMutableArray *nameList;
-NSMutableArray *individualList;
-NSMutableArray *marriageList;
-NSMutableArray *noteList;
-NSMutableArray *individualLinksList;
-}
+@interface PAF21Data : NSObject
+@property (strong) NSArray *individualRecords;
+@property (strong) NSArray *familyRecords;
+@property (strong) NSArray *nameRecords;
+@property (strong) NSArray *noteRecords;
+@property (strong) NSMutableArray *nameList;
+@property (strong) NSMutableArray *individualList;
+@property (strong) NSMutableArray *marriageList;
+@property (strong) NSMutableArray *noteList;
+@property (strong) NSMutableArray *individualLinksList;
+
 - (id)initWithData:(NSData *)data;
 
 - (void)importData;

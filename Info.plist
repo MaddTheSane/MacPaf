@@ -41,6 +41,10 @@
 			<string>MAF File</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>org.sourceforge.macpaf.maf</string>
+			</array>
 			<key>LSTypeIsPackage</key>
 			<true/>
 			<key>NSDocumentClass</key>
@@ -120,5 +124,26 @@
 	<string>NSApplication</string>
 	<key>SUFeedURL</key>
 	<string>http://www.macpaf.org/appcasts/macpaf/profileInfo.php</string>
+	<key>UTExportedTypeDeclarations</key>
+	<array>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>com.apple.package</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>MAF file</string>
+			<key>UTTypeIdentifier</key>
+			<string>org.sourceforge.macpaf.maf</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>maf</string>
+					<string>macpaf</string>
+				</array>
+			</dict>
+		</dict>
+	</array>
 </dict>
 </plist>

@@ -63,6 +63,7 @@
 		559A717718061026005DE4AE /* FamilyListWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 559A717918061026005DE4AE /* FamilyListWindow.xib */; };
 		559A717A18061031005DE4AE /* IndividualListWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 559A717C18061031005DE4AE /* IndividualListWindow.xib */; };
 		559A717D1806103A005DE4AE /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 559A717F1806103A005DE4AE /* MainMenu.xib */; };
+		55C8A292180726DA00A7BB42 /* UKProgressPanel.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55C8A291180726DA00A7BB42 /* UKProgressPanel.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -239,6 +240,7 @@
 		559A717818061026005DE4AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/FamilyListWindow.xib; sourceTree = "<group>"; };
 		559A717B18061031005DE4AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/IndividualListWindow.xib; sourceTree = "<group>"; };
 		559A717E1806103A005DE4AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		55C8A291180726DA00A7BB42 /* UKProgressPanel.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = UKProgressPanel.xib; path = UKProgressPanel/UKProgressPanel.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -512,6 +514,7 @@
 			isa = PBXGroup;
 			children = (
 				02C8768D0B3EF267005E8B53 /* UKProgressPanel.strings */,
+				55C8A291180726DA00A7BB42 /* UKProgressPanel.xib */,
 				559A716818060F51005DE4AE /* UKProgressPanelTask.xib */,
 			);
 			name = UKProgressPanel;
@@ -734,6 +737,7 @@
 				559A716618060F51005DE4AE /* UKProgressPanelTask.xib in Resources */,
 				02DDDD260A12BA9C003BC70E /* UKCrashReporter.strings in Resources */,
 				559A717A18061031005DE4AE /* IndividualListWindow.xib in Resources */,
+				55C8A292180726DA00A7BB42 /* UKProgressPanel.xib in Resources */,
 				02DDDD270A12BA9C003BC70E /* UKCrashReporter Readme.txt in Resources */,
 				559A71761806101D005DE4AE /* RecordSelectionWindow.xib in Resources */,
 				02DDDE100A165EF6003BC70E /* MAF Help in Resources */,

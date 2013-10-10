@@ -12,8 +12,8 @@
 @implementation ApplicationStartupHelper
 - init
 {
-	if(self =[super init]);
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidFinishLaunching:) name:@"NSApplicationDidFinishLaunchingNotification" object:NSApp];
+	if(self =[super init])
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidFinishLaunching:) name:@"NSApplicationDidFinishLaunchingNotification" object:NSApp];
 	return self;
 }
 

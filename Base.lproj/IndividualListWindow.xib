@@ -7,7 +7,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="IndividualListController">
             <connections>
-                <outlet property="individualCountText" destination="19" id="41"/>
+                <outlet property="individualCountText" destination="JMO-wj-CJG" id="7g5-Jc-2dA"/>
                 <outlet property="individualDetailController" destination="48" id="58"/>
                 <outlet property="individualListTableView" destination="11" id="44"/>
                 <outlet property="searchField" destination="17" id="45"/>
@@ -104,7 +104,7 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" verticalHuggingPriority="750" id="89">
-                            <rect key="frame" x="480" y="17" width="15" height="553"/>
+                            <rect key="frame" x="479" y="17" width="16" height="553"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <tableHeaderView key="headerView" id="88">
@@ -167,9 +167,9 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JMO-wj-CJG">
-                        <rect key="frame" x="137" y="40" width="118" height="13"/>
+                        <rect key="frame" x="137" y="40" width="46" height="13"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" title="Number of Individuals: " id="bRG-up-t5R">
+                        <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" title="TheNum" id="bRG-up-t5R">
                             <font key="font" size="10" name="LucidaGrande"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>

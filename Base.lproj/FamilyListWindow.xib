@@ -7,7 +7,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="FamilyListController">
             <connections>
-                <outlet property="familyCountText" destination="20" id="32"/>
+                <outlet property="familyCountText" destination="cdA-mM-Pem" id="1O4-Ju-hUN"/>
                 <outlet property="familyDetailController" destination="49" id="59"/>
                 <outlet property="familyListTableView" destination="14" id="34"/>
                 <outlet property="searchField" destination="21" id="33"/>
@@ -117,7 +117,7 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" verticalHuggingPriority="750" id="95">
-                            <rect key="frame" x="506" y="17" width="15" height="545"/>
+                            <rect key="frame" x="505" y="17" width="16" height="545"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <tableHeaderView key="headerView" id="94">
@@ -183,9 +183,9 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="cdA-mM-Pem">
-                        <rect key="frame" x="124" y="49" width="105" height="13"/>
+                        <rect key="frame" x="124" y="49" width="30" height="13"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" title="Number of Families: " id="wfV-jb-vQv">
+                        <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" title="1000" id="wfV-jb-vQv">
                             <font key="font" size="10" name="LucidaGrande"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -293,7 +293,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                     <scroller key="verticalScroller" verticalHuggingPriority="750" id="103">
-                        <rect key="frame" x="312" y="17" width="15" height="87"/>
+                        <rect key="frame" x="311" y="17" width="16" height="87"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                     <tableHeaderView key="headerView" id="102">
@@ -364,7 +364,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                     <scroller key="verticalScroller" verticalHuggingPriority="750" id="100">
-                        <rect key="frame" x="312" y="17" width="15" height="87"/>
+                        <rect key="frame" x="311" y="17" width="16" height="87"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
                     <tableHeaderView key="headerView" id="99">

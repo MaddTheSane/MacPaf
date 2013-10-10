@@ -11,13 +11,12 @@
 @class IndividualDetailController;
 
 @interface IndividualListController : NSWindowController
-
-- (IBAction)search:(id)sender;
-- (IBAction)selectIndividual:(id)sender;
-
 @property (weak) IBOutlet NSTextField *searchField;
 @property (weak) IBOutlet NSTableView *individualListTableView;
 @property (weak) IBOutlet NSTextField *individualCountText;
 @property (unsafe_unretained) IBOutlet IndividualDetailController *individualDetailController;
+
+- (IBAction)search:(id)sender;
+- (IBAction)selectIndividual:(id)sender;
 
 @end

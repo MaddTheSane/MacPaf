@@ -1,0 +1,687 @@
+
+/* Class = "NSWindow"; title = "MacPAF"; ObjectID = "5"; */
+"5.title" = "MacPAF";
+
+/* Class = "NSTabViewItem"; label = "Pedigree View"; ObjectID = "148"; */
+"148.label" = "Pedigree View";
+
+/* Class = "NSTabViewItem"; label = "Family View"; ObjectID = "177"; */
+"177.label" = "Family View";
+
+/* Class = "NSBox"; title = "Children"; ObjectID = "222"; */
+"222.title" = "Children";
+
+/* Class = "NSBox"; title = "Individual's Spouses"; ObjectID = "224"; */
+"224.title" = "Individual's Spouses";
+
+/* Class = "NSWindow"; title = "IndividualEdit"; ObjectID = "226"; */
+"226.title" = "IndividualEdit";
+
+/* Class = "NSWindow"; title = "FamilyEdit"; ObjectID = "248"; */
+"248.title" = "FamilyEdit";
+
+/* Class = "NSBox"; title = "Children"; ObjectID = "264"; */
+"264.title" = "Children";
+
+/* Class = "NSFormCell"; title = "Burial date"; ObjectID = "394"; */
+"394.title" = "Burial date";
+
+/* Class = "NSWindow"; title = "IndividualEdit2"; ObjectID = "395"; */
+"395.title" = "IndividualEdit2";
+
+/* Class = "NSFormCell"; title = "Temple code"; ObjectID = "396"; */
+"396.title" = "Temple code";
+
+/* Class = "NSDateFormatter"; ibShadowedDateFormat = "%e %B %Y"; ObjectID = "398"; */
+"398.ibShadowedDateFormat" = "%e %B %Y";
+
+/* Class = "NSDateFormatter"; ibShadowedDateFormat = "%e %B %Y"; ObjectID = "399"; */
+"399.ibShadowedDateFormat" = "%e %B %Y";
+
+/* Class = "NSDateFormatter"; ibShadowedDateFormat = "%e %B %Y"; ObjectID = "400"; */
+"400.ibShadowedDateFormat" = "%e %B %Y";
+
+/* Class = "NSDateFormatter"; ibShadowedDateFormat = "%e %B %Y"; ObjectID = "401"; */
+"401.ibShadowedDateFormat" = "%e %B %Y";
+
+/* Class = "NSFormCell"; stringValue = "PROVO"; ObjectID = "402"; */
+"402.stringValue" = "PROVO";
+
+/* Class = "NSFormCell"; title = "Temple code"; ObjectID = "402"; */
+"402.title" = "Temple code";
+
+/* Class = "NSFormCell"; stringValue = "21 October 1994"; ObjectID = "403"; */
+"403.stringValue" = "21 October 1994";
+
+/* Class = "NSFormCell"; title = "Endowment date"; ObjectID = "403"; */
+"403.title" = "Endowment date";
+
+/* Class = "NSFormCell"; stringValue = "Logan Thomas"; ObjectID = "404"; */
+"404.stringValue" = "Logan Thomas";
+
+/* Class = "NSFormCell"; title = "Given names"; ObjectID = "404"; */
+"404.title" = "Given names";
+
+/* Class = "NSFormCell"; title = "Death place"; ObjectID = "405"; */
+"405.title" = "Death place";
+
+/* Class = "NSFormCell"; title = "Temple code"; ObjectID = "407"; */
+"407.title" = "Temple code";
+
+/* Class = "NSFormCell"; stringValue = "4 March 1971"; ObjectID = "408"; */
+"408.stringValue" = "4 March 1971";
+
+/* Class = "NSFormCell"; title = "Birthdate"; ObjectID = "408"; */
+"408.title" = "Birthdate";
+
+/* Class = "NSDateFormatter"; ibShadowedDateFormat = "%e %B %Y"; ObjectID = "410"; */
+"410.ibShadowedDateFormat" = "%e %B %Y";
+
+/* Class = "NSFormCell"; stringValue = "Allred"; ObjectID = "411"; */
+"411.stringValue" = "Allred";
+
+/* Class = "NSFormCell"; title = "Surname"; ObjectID = "411"; */
+"411.title" = "Surname";
+
+/* Class = "NSFormCell"; stringValue = "Provo, Utah, Utah"; ObjectID = "413"; */
+"413.stringValue" = "Provo, Utah, Utah";
+
+/* Class = "NSFormCell"; title = "Birth place"; ObjectID = "413"; */
+"413.title" = "Birth place";
+
+/* Class = "NSFormCell"; title = "Burial place"; ObjectID = "414"; */
+"414.title" = "Burial place";
+
+/* Class = "NSFormCell"; stringValue = "BIC"; ObjectID = "415"; */
+"415.stringValue" = "BIC";
+
+/* Class = "NSFormCell"; title = "Seal to parents date"; ObjectID = "415"; */
+"415.title" = "Seal to parents date";
+
+/* Class = "NSFormCell"; stringValue = "M"; ObjectID = "416"; */
+"416.stringValue" = "M";
+
+/* Class = "NSFormCell"; title = "Gender"; ObjectID = "416"; */
+"416.title" = "Gender";
+
+/* Class = "NSFormCell"; stringValue = "24 March 1979"; ObjectID = "417"; */
+"417.stringValue" = "24 March 1979";
+
+/* Class = "NSFormCell"; title = "Baptism date"; ObjectID = "417"; */
+"417.title" = "Baptism date";
+
+/* Class = "NSFormCell"; title = "Death date"; ObjectID = "418"; */
+"418.title" = "Death date";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "419"; */
+"419.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Male"; ObjectID = "421"; */
+"421.title" = "Male";
+
+/* Class = "NSMenuItem"; title = "Female"; ObjectID = "422"; */
+"422.title" = "Female";
+
+/* Class = "NSMenuItem"; title = "Unknown"; ObjectID = "423"; */
+"423.title" = "Unknown";
+
+/* Class = "NSFormCell"; title = "Place"; ObjectID = "470"; */
+"470.title" = "Place";
+
+/* Class = "NSFormCell"; title = "Date"; ObjectID = "471"; */
+"471.title" = "Date";
+
+/* Class = "NSBox"; title = "Birth"; ObjectID = "472"; */
+"472.title" = "Birth";
+
+/* Class = "NSBox"; title = "Christening"; ObjectID = "548"; */
+"548.title" = "Christening";
+
+/* Class = "NSFormCell"; title = "Date"; ObjectID = "550"; */
+"550.title" = "Date";
+
+/* Class = "NSFormCell"; title = "Place"; ObjectID = "552"; */
+"552.title" = "Place";
+
+/* Class = "NSFormCell"; title = "Date"; ObjectID = "554"; */
+"554.title" = "Date";
+
+/* Class = "NSFormCell"; title = "Place"; ObjectID = "555"; */
+"555.title" = "Place";
+
+/* Class = "NSBox"; title = "Death"; ObjectID = "556"; */
+"556.title" = "Death";
+
+/* Class = "NSBox"; title = "Burial"; ObjectID = "560"; */
+"560.title" = "Burial";
+
+/* Class = "NSFormCell"; title = "Date"; ObjectID = "562"; */
+"562.title" = "Date";
+
+/* Class = "NSFormCell"; title = "Place"; ObjectID = "563"; */
+"563.title" = "Place";
+
+/* Class = "NSFormCell"; title = "Date"; ObjectID = "641"; */
+"641.title" = "Date";
+
+/* Class = "NSBox"; title = "Marriage"; ObjectID = "643"; */
+"643.title" = "Marriage";
+
+/* Class = "NSDateFormatter"; ibShadowedDateFormat = "%d %b %Y"; ObjectID = "644"; */
+"644.ibShadowedDateFormat" = "%d %b %Y";
+
+/* Class = "NSFormCell"; title = "Place"; ObjectID = "645"; */
+"645.title" = "Place";
+
+/* Class = "NSDateFormatter"; ibShadowedDateFormat = "%e %b %Y"; ObjectID = "648"; */
+"648.ibShadowedDateFormat" = "%e %b %Y";
+
+/* Class = "NSWindow"; title = "Individual Notes"; ObjectID = "711"; */
+"711.title" = "Individual Notes";
+
+/* Class = "NSWindow"; title = "Print Reports"; ObjectID = "720"; */
+"720.title" = "Print Reports";
+
+/* Class = "NSButtonCell"; title = "Pedigree Chart"; ObjectID = "838"; */
+"838.title" = "Pedigree Chart";
+
+/* Class = "NSButtonCell"; title = "Family Group Sheet"; ObjectID = "839"; */
+"839.title" = "Family Group Sheet";
+
+/* Class = "NSButtonCell"; title = "Individual Summary"; ObjectID = "840"; */
+"840.title" = "Individual Summary";
+
+/* Class = "NSButtonCell"; title = "Pocket Pedigree"; ObjectID = "841"; */
+"841.title" = "Pocket Pedigree";
+
+/* Class = "NSTabViewItem"; label = "Basic"; ObjectID = "950"; */
+"950.label" = "Basic";
+
+/* Class = "NSTabViewItem"; label = "Details"; ObjectID = "951"; */
+"951.label" = "Details";
+
+/* Class = "NSTableColumn"; headerCell.title = "Type"; ObjectID = "956"; */
+"956.headerCell.title" = "Type";
+
+/* Class = "NSTableColumn"; headerCell.title = "Place"; ObjectID = "957"; */
+"957.headerCell.title" = "Place";
+
+/* Class = "NSTableColumn"; headerCell.title = "Date"; ObjectID = "958"; */
+"958.headerCell.title" = "Date";
+
+/* Class = "NSTableColumn"; headerCell.title = "Type"; ObjectID = "962"; */
+"962.headerCell.title" = "Type";
+
+/* Class = "NSTableColumn"; headerCell.title = "Date"; ObjectID = "963"; */
+"963.headerCell.title" = "Date";
+
+/* Class = "NSTableColumn"; headerCell.title = "Place"; ObjectID = "964"; */
+"964.headerCell.title" = "Place";
+
+/* Class = "NSTabViewItem"; label = "Basic"; ObjectID = "971"; */
+"971.label" = "Basic";
+
+/* Class = "NSTabViewItem"; label = "Details"; ObjectID = "972"; */
+"972.label" = "Details";
+
+/* Class = "NSTableColumn"; headerCell.title = "Type"; ObjectID = "977"; */
+"977.headerCell.title" = "Type";
+
+/* Class = "NSTableColumn"; headerCell.title = "Date"; ObjectID = "978"; */
+"978.headerCell.title" = "Date";
+
+/* Class = "NSTableColumn"; headerCell.title = "Place"; ObjectID = "979"; */
+"979.headerCell.title" = "Place";
+
+/* Class = "NSTabViewItem"; label = "Individual List"; ObjectID = "991"; */
+"991.label" = "Individual List";
+
+/* Class = "NSTabViewItem"; label = "Family List"; ObjectID = "993"; */
+"993.label" = "Family List";
+
+/* Class = "NSTableColumn"; headerCell.title = "ID"; ObjectID = "999"; */
+"999.headerCell.title" = "ID";
+
+/* Class = "NSTableColumn"; headerCell.title = "Husband"; ObjectID = "1001"; */
+"1001.headerCell.title" = "Husband";
+
+/* Class = "NSBox"; title = "Box"; ObjectID = "1011"; */
+"1011.title" = "Box";
+
+/* Class = "NSTableColumn"; headerCell.title = "Birth"; ObjectID = "1022"; */
+"1022.headerCell.title" = "Birth";
+
+/* Class = "NSTableColumn"; headerCell.title = "Name"; ObjectID = "1023"; */
+"1023.headerCell.title" = "Name";
+
+/* Class = "NSBox"; title = "Box"; ObjectID = "1045"; */
+"1045.title" = "Box";
+
+/* Class = "NSTableColumn"; headerCell.title = "Name"; ObjectID = "1061"; */
+"1061.headerCell.title" = "Name";
+
+/* Class = "NSTableColumn"; headerCell.title = "ID"; ObjectID = "1062"; */
+"1062.headerCell.title" = "ID";
+
+/* Class = "NSBox"; title = "Box"; ObjectID = "1066"; */
+"1066.title" = "Box";
+
+/* Class = "NSTableColumn"; headerCell.title = "Birth Date"; ObjectID = "1189"; */
+"1189.headerCell.title" = "Birth Date";
+
+/* Class = "NSTableColumn"; headerCell.title = "Birth Place"; ObjectID = "1190"; */
+"1190.headerCell.title" = "Birth Place";
+
+/* Class = "NSTableColumn"; headerCell.title = "Wife"; ObjectID = "1191"; */
+"1191.headerCell.title" = "Wife";
+
+/* Class = "NSTableColumn"; headerCell.title = "Marriage Date"; ObjectID = "1192"; */
+"1192.headerCell.title" = "Marriage Date";
+
+/* Class = "NSTableColumn"; headerCell.title = "Marriage Place"; ObjectID = "1193"; */
+"1193.headerCell.title" = "Marriage Place";
+
+/* Class = "NSMenu"; title = "OtherViews"; ObjectID = "1250"; */
+"1250.title" = "OtherViews";
+
+/* Class = "NSMenuItem"; title = "Item3"; ObjectID = "1251"; */
+"1251.title" = "Item3";
+
+/* Class = "NSMenuItem"; title = "Item2"; ObjectID = "1253"; */
+"1253.title" = "Item2";
+
+/* Class = "NSWindow"; title = "Report a Problem"; ObjectID = "1258"; */
+"1258.title" = "Report a Problem";
+
+/* Class = "NSWindow"; title = "Window"; ObjectID = "1330"; */
+"1330.title" = "Window";
+
+/* Class = "NSButtonCell"; title = "Unknown"; ObjectID = "1351"; */
+"1351.title" = "Unknown";
+
+/* Class = "NSButtonCell"; title = "Unknown"; ObjectID = "1352"; */
+"1352.title" = "Unknown";
+
+/* Class = "NSButtonCell"; title = "Unknown"; ObjectID = "1353"; */
+"1353.title" = "Unknown";
+
+/* Class = "NSButtonCell"; title = "Unknown"; ObjectID = "1354"; */
+"1354.title" = "Unknown";
+
+/* Class = "NSButtonCell"; title = "Unknown"; ObjectID = "1355"; */
+"1355.title" = "Unknown";
+
+/* Class = "NSButtonCell"; title = "Unknown"; ObjectID = "1357"; */
+"1357.title" = "Unknown";
+
+/* Class = "NSButtonCell"; title = "Unknown"; ObjectID = "1358"; */
+"1358.title" = "Unknown";
+
+/* Class = "NSButtonCell"; title = "Unknown"; ObjectID = "1359"; */
+"1359.title" = "Unknown";
+
+/* Class = "NSButtonCell"; title = "Unknown"; ObjectID = "1360"; */
+"1360.title" = "Unknown";
+
+/* Class = "NSButtonCell"; title = "Unknown"; ObjectID = "1361"; */
+"1361.title" = "Unknown";
+
+/* Class = "NSButtonCell"; title = "Unknown"; ObjectID = "1362"; */
+"1362.title" = "Unknown";
+
+/* Class = "NSButtonCell"; title = "Unknown"; ObjectID = "1363"; */
+"1363.title" = "Unknown";
+
+/* Class = "NSButtonCell"; title = "Unknown"; ObjectID = "1364"; */
+"1364.title" = "Unknown";
+
+/* Class = "NSButtonCell"; title = "Unknown"; ObjectID = "1365"; */
+"1365.title" = "Unknown";
+
+/* Class = "NSButtonCell"; title = "Unknown"; ObjectID = "1366"; */
+"1366.title" = "Unknown";
+
+/* Class = "NSButtonCell"; title = "Unknown"; ObjectID = "1367"; */
+"1367.title" = "Unknown";
+
+/* Class = "NSButtonCell"; title = "Unknown"; ObjectID = "1368"; */
+"1368.title" = "Unknown";
+
+/* Class = "NSButtonCell"; title = "Unknown"; ObjectID = "1369"; */
+"1369.title" = "Unknown";
+
+/* Class = "NSButtonCell"; title = "Unknown"; ObjectID = "1370"; */
+"1370.title" = "Unknown";
+
+/* Class = "NSButtonCell"; title = "Unknown"; ObjectID = "1371"; */
+"1371.title" = "Unknown";
+
+/* Class = "NSButtonCell"; title = "Unknown"; ObjectID = "1372"; */
+"1372.title" = "Unknown";
+
+/* Class = "NSButtonCell"; title = "Unknown"; ObjectID = "1373"; */
+"1373.title" = "Unknown";
+
+/* Class = "NSButtonCell"; title = "Unknown"; ObjectID = "1374"; */
+"1374.title" = "Unknown";
+
+/* Class = "NSButtonCell"; title = "Unknown"; ObjectID = "1375"; */
+"1375.title" = "Unknown";
+
+/* Class = "NSButtonCell"; title = "Unknown"; ObjectID = "1376"; */
+"1376.title" = "Unknown";
+
+/* Class = "NSButtonCell"; title = "Unknown"; ObjectID = "1377"; */
+"1377.title" = "Unknown";
+
+/* Class = "NSButtonCell"; title = "Unknown"; ObjectID = "1378"; */
+"1378.title" = "Unknown";
+
+/* Class = "NSButtonCell"; title = "Unknown"; ObjectID = "1379"; */
+"1379.title" = "Unknown";
+
+/* Class = "NSButtonCell"; title = "Unknown"; ObjectID = "1380"; */
+"1380.title" = "Unknown";
+
+/* Class = "NSButtonCell"; title = "Unknown"; ObjectID = "1381"; */
+"1381.title" = "Unknown";
+
+/* Class = "NSButtonCell"; title = "Unknown"; ObjectID = "1382"; */
+"1382.title" = "Unknown";
+
+/* Class = "NSButtonCell"; title = "Family: 3"; ObjectID = "1383"; */
+"1383.title" = "Family: 3";
+
+/* Class = "NSTextFieldCell"; title = "Grandfather\n"; ObjectID = "1385"; */
+"1385.title" = "Grandfather\n";
+
+/* Class = "NSTextFieldCell"; title = "Father\n"; ObjectID = "1387"; */
+"1387.title" = "Father\n";
+
+/* Class = "NSTextFieldCell"; title = "Individual\n"; ObjectID = "1389"; */
+"1389.title" = "Individual\n";
+
+/* Class = "NSTextFieldCell"; title = "Spouse\n"; ObjectID = "1391"; */
+"1391.title" = "Spouse\n";
+
+/* Class = "NSTextFieldCell"; title = "Mother\n"; ObjectID = "1393"; */
+"1393.title" = "Mother\n";
+
+/* Class = "NSTextFieldCell"; title = "Grandmother\n"; ObjectID = "1395"; */
+"1395.title" = "Grandmother\n";
+
+/* Class = "NSTextFieldCell"; title = "Grandfather\n"; ObjectID = "1397"; */
+"1397.title" = "Grandfather\n";
+
+/* Class = "NSTextFieldCell"; title = "Grandmother\n"; ObjectID = "1399"; */
+"1399.title" = "Grandmother\n";
+
+/* Class = "NSButtonCell"; title = "Family: 1"; ObjectID = "1400"; */
+"1400.title" = "Family: 1";
+
+/* Class = "NSTextFieldCell"; title = "Search:"; ObjectID = "1402"; */
+"1402.title" = "Search:";
+
+/* Class = "NSTextFieldCell"; title = "Number of Individuals: "; ObjectID = "1403"; */
+"1403.title" = "Number of Individuals: ";
+
+/* Class = "NSTextFieldCell"; title = "Individual Details"; ObjectID = "1404"; */
+"1404.title" = "Individual Details";
+
+/* Class = "NSButtonCell"; title = "Select Individual"; ObjectID = "1405"; */
+"1405.title" = "Select Individual";
+
+/* Class = "NSTextFieldCell"; title = "Family Details"; ObjectID = "1406"; */
+"1406.title" = "Family Details";
+
+/* Class = "NSButtonCell"; title = "Search"; ObjectID = "1407"; */
+"1407.title" = "Search";
+
+/* Class = "NSTextFieldCell"; title = "Search:"; ObjectID = "1409"; */
+"1409.title" = "Search:";
+
+/* Class = "NSButtonCell"; title = "Select Family"; ObjectID = "1410"; */
+"1410.title" = "Select Family";
+
+/* Class = "NSTextFieldCell"; title = "Number of Families: "; ObjectID = "1411"; */
+"1411.title" = "Number of Families: ";
+
+/* Class = "NSTextFieldCell"; title = "No Children"; ObjectID = "1412"; */
+"1412.title" = "No Children";
+
+/* Class = "NSTextFieldCell"; title = "Husband Details"; ObjectID = "1413"; */
+"1413.title" = "Husband Details";
+
+/* Class = "NSTextFieldCell"; title = "Wife Details"; ObjectID = "1414"; */
+"1414.title" = "Wife Details";
+
+/* Class = "NSButtonCell"; title = "Search"; ObjectID = "1415"; */
+"1415.title" = "Search";
+
+/* Class = "NSButtonCell"; title = "Save"; ObjectID = "1416"; */
+"1416.title" = "Save";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "1417"; */
+"1417.title" = "Cancel";
+
+/* Class = "NSTextFieldCell"; title = "Gender"; ObjectID = "1419"; */
+"1419.title" = "Gender";
+
+/* Class = "NSTextFieldCell"; title = "Surname"; ObjectID = "1420"; */
+"1420.title" = "Surname";
+
+/* Class = "NSTextFieldCell"; title = "Given names"; ObjectID = "1421"; */
+"1421.title" = "Given names";
+
+/* Class = "NSTextFieldCell"; title = "Suffix"; ObjectID = "1423"; */
+"1423.title" = "Suffix";
+
+/* Class = "NSComboBoxCell"; 1424.ibShadowedObjectValues[1] = "Jr."; ObjectID = "1424"; */
+"1424.ibShadowedObjectValues[1]" = "Jr.";
+
+/* Class = "NSComboBoxCell"; 1424.ibShadowedObjectValues[2] = "Sr."; ObjectID = "1424"; */
+"1424.ibShadowedObjectValues[2]" = "Sr.";
+
+/* Class = "NSComboBoxCell"; 1424.ibShadowedObjectValues[3] = "III"; ObjectID = "1424"; */
+"1424.ibShadowedObjectValues[3]" = "III";
+
+/* Class = "NSTextFieldCell"; title = "RIN: "; ObjectID = "1426"; */
+"1426.title" = "RIN: ";
+
+/* Class = "NSTextFieldCell"; title = "Unknown"; ObjectID = "1427"; */
+"1427.title" = "Unknown";
+
+/* Class = "NSComboBoxCell"; 1428.ibShadowedObjectValues[1] = "Dr."; ObjectID = "1428"; */
+"1428.ibShadowedObjectValues[1]" = "Dr.";
+
+/* Class = "NSComboBoxCell"; 1428.ibShadowedObjectValues[2] = "Mr."; ObjectID = "1428"; */
+"1428.ibShadowedObjectValues[2]" = "Mr.";
+
+/* Class = "NSComboBoxCell"; 1428.ibShadowedObjectValues[3] = "Mrs."; ObjectID = "1428"; */
+"1428.ibShadowedObjectValues[3]" = "Mrs.";
+
+/* Class = "NSComboBoxCell"; 1428.ibShadowedObjectValues[4] = "Ms."; ObjectID = "1428"; */
+"1428.ibShadowedObjectValues[4]" = "Ms.";
+
+/* Class = "NSComboBoxCell"; 1428.ibShadowedObjectValues[5] = "Sir"; ObjectID = "1428"; */
+"1428.ibShadowedObjectValues[5]" = "Sir";
+
+/* Class = "NSTextFieldCell"; title = "Prefix"; ObjectID = "1429"; */
+"1429.title" = "Prefix";
+
+/* Class = "NSTextFieldCell"; title = "Baptism"; ObjectID = "1431"; */
+"1431.title" = "Baptism";
+
+/* Class = "NSButtonCell"; title = "Choose Photo"; ObjectID = "1433"; */
+"1433.title" = "Choose Photo";
+
+/* Class = "NSTextFieldCell"; title = "Date:"; ObjectID = "1435"; */
+"1435.title" = "Date:";
+
+/* Class = "NSTextFieldCell"; title = "Temple:"; ObjectID = "1436"; */
+"1436.title" = "Temple:";
+
+/* Class = "NSTextFieldCell"; title = "Date:"; ObjectID = "1437"; */
+"1437.title" = "Date:";
+
+/* Class = "NSTextFieldCell"; title = "Endowment"; ObjectID = "1438"; */
+"1438.title" = "Endowment";
+
+/* Class = "NSTextFieldCell"; title = "Temple:"; ObjectID = "1439"; */
+"1439.title" = "Temple:";
+
+/* Class = "NSTextFieldCell"; title = "Temple:"; ObjectID = "1444"; */
+"1444.title" = "Temple:";
+
+/* Class = "NSTextFieldCell"; title = "Date:"; ObjectID = "1445"; */
+"1445.title" = "Date:";
+
+/* Class = "NSTextFieldCell"; title = "Sealing to Parents"; ObjectID = "1446"; */
+"1446.title" = "Sealing to Parents";
+
+/* Class = "NSButtonCell"; title = "Notes"; ObjectID = "1447"; */
+"1447.title" = "Notes";
+
+/* Class = "NSTextFieldCell"; title = "AFN:"; ObjectID = "1449"; */
+"1449.title" = "AFN:";
+
+/* Class = "NSTextFieldCell"; title = "Events:"; ObjectID = "1450"; */
+"1450.title" = "Events:";
+
+/* Class = "NSTextFieldCell"; title = "Attributes:"; ObjectID = "1451"; */
+"1451.title" = "Attributes:";
+
+/* Class = "NSButtonCell"; alternateTitle = "Add"; ObjectID = "1452"; */
+"1452.alternateTitle" = "Add";
+
+/* Class = "NSButtonCell"; title = "+"; ObjectID = "1452"; */
+"1452.title" = "+";
+
+/* Class = "NSButtonCell"; alternateTitle = "Remove"; ObjectID = "1453"; */
+"1453.alternateTitle" = "Remove";
+
+/* Class = "NSButtonCell"; title = "-"; ObjectID = "1453"; */
+"1453.title" = "-";
+
+/* Class = "NSButtonCell"; alternateTitle = "Add"; ObjectID = "1454"; */
+"1454.alternateTitle" = "Add";
+
+/* Class = "NSButtonCell"; title = "+"; ObjectID = "1454"; */
+"1454.title" = "+";
+
+/* Class = "NSButtonCell"; alternateTitle = "Remove"; ObjectID = "1455"; */
+"1455.alternateTitle" = "Remove";
+
+/* Class = "NSButtonCell"; title = "-"; ObjectID = "1455"; */
+"1455.title" = "-";
+
+/* Class = "NSButtonCell"; title = "Save Family"; ObjectID = "1456"; */
+"1456.title" = "Save Family";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "1457"; */
+"1457.title" = "Cancel";
+
+/* Class = "NSButtonCell"; title = "Husband"; ObjectID = "1458"; */
+"1458.title" = "Husband";
+
+/* Class = "NSTextFieldCell"; title = "Husband"; ObjectID = "1459"; */
+"1459.title" = "Husband";
+
+/* Class = "NSButtonCell"; title = "Wife"; ObjectID = "1460"; */
+"1460.title" = "Wife";
+
+/* Class = "NSTextFieldCell"; title = "Wife"; ObjectID = "1461"; */
+"1461.title" = "Wife";
+
+/* Class = "NSTextFieldCell"; title = "Date:"; ObjectID = "1462"; */
+"1462.title" = "Date:";
+
+/* Class = "NSTextFieldCell"; title = "Temple:"; ObjectID = "1464"; */
+"1464.title" = "Temple:";
+
+/* Class = "NSTextFieldCell"; title = "Sealing of Wife to Husband"; ObjectID = "1465"; */
+"1465.title" = "Sealing of Wife to Husband";
+
+/* Class = "NSButtonCell"; title = "Add Child"; ObjectID = "1467"; */
+"1467.title" = "Add Child";
+
+/* Class = "NSButtonCell"; title = "Remove Child"; ObjectID = "1468"; */
+"1468.title" = "Remove Child";
+
+/* Class = "NSTextFieldCell"; title = "Events:"; ObjectID = "1469"; */
+"1469.title" = "Events:";
+
+/* Class = "NSButtonCell"; alternateTitle = "Add"; ObjectID = "1470"; */
+"1470.alternateTitle" = "Add";
+
+/* Class = "NSButtonCell"; title = "+"; ObjectID = "1470"; */
+"1470.title" = "+";
+
+/* Class = "NSButtonCell"; alternateTitle = "Remove"; ObjectID = "1471"; */
+"1471.alternateTitle" = "Remove";
+
+/* Class = "NSButtonCell"; title = "-"; ObjectID = "1471"; */
+"1471.title" = "-";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "1472"; */
+"1472.title" = "Cancel";
+
+/* Class = "NSButtonCell"; title = "Save"; ObjectID = "1473"; */
+"1473.title" = "Save";
+
+/* Class = "NSTextFieldCell"; title = "Notes for "; ObjectID = "1474"; */
+"1474.title" = "Notes for ";
+
+/* Class = "NSTextFieldCell"; title = "Person Name"; ObjectID = "1475"; */
+"1475.title" = "Person Name";
+
+/* Class = "NSButtonCell"; title = "Print"; ObjectID = "1476"; */
+"1476.title" = "Print";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "1477"; */
+"1477.title" = "Cancel";
+
+/* Class = "NSTextFieldCell"; title = "Print report for:"; ObjectID = "1478"; */
+"1478.title" = "Print report for:";
+
+/* Class = "NSTextFieldCell"; title = "Person Name"; ObjectID = "1479"; */
+"1479.title" = "Person Name";
+
+/* Class = "NSButtonCell"; title = "Submit Bug Report"; ObjectID = "1480"; */
+"1480.title" = "Submit Bug Report";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "1481"; */
+"1481.title" = "Cancel";
+
+/* Class = "NSTextFieldCell"; title = "Clicking the Submit Bug Report button will send your problem description above as well as a copy of your MacPAF file (if that option is selected above) and some diagnostic data about this application to the developers to assist them in fixing this problem and improving the quality of MacPAF. This information will only be used to improve the quality of the MacPAF application and will be kept confidential or destroyed after the issue is resolved. It will not be used for any other purpose without your explicit permission."; ObjectID = "1482"; */
+"1482.title" = "Clicking the Submit Bug Report button will send your problem description above as well as a copy of your MacPAF file (if that option is selected above) and some diagnostic data about this application to the developers to assist them in fixing this problem and improving the quality of MacPAF. This information will only be used to improve the quality of the MacPAF application and will be kept confidential or destroyed after the issue is resolved. It will not be used for any other purpose without your explicit permission.";
+
+/* Class = "NSTextFieldCell"; title = "Please describe the problem you are having, what you were doing before this problem occurred and what you expected to happen. Please be as detailed as possible."; ObjectID = "1483"; */
+"1483.title" = "Please describe the problem you are having, what you were doing before this problem occurred and what you expected to happen. Please be as detailed as possible.";
+
+/* Class = "NSButtonCell"; title = "Include a copy of your MacPAF file"; ObjectID = "1484"; */
+"1484.title" = "Include a copy of your MacPAF file";
+
+/* Class = "NSFormCell"; title = "Field:"; ObjectID = "1485"; */
+"1485.title" = "Field:";
+
+/* Class = "NSFormCell"; title = "Field:"; ObjectID = "1486"; */
+"1486.title" = "Field:";
+
+/* Class = "NSFormCell"; title = "Field:"; ObjectID = "1487"; */
+"1487.title" = "Field:";
+
+/* Class = "NSFormCell"; title = "Field:"; ObjectID = "1488"; */
+"1488.title" = "Field:";
+
+/* Class = "NSFormCell"; title = "Field:"; ObjectID = "1489"; */
+"1489.title" = "Field:";
+
+/* Class = "NSFormCell"; title = "Field:"; ObjectID = "1490"; */
+"1490.title" = "Field:";
+
+/* Class = "NSButtonCell"; title = "Radio"; ObjectID = "1491"; */
+"1491.title" = "Radio";
+
+/* Class = "NSDateFormatter"; ibShadowedDateFormat = "%e %B %Y"; ObjectID = "1520"; */
+"1520.ibShadowedDateFormat" = "%e %B %Y";

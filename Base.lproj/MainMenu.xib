@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1070" identifier="macosx"/>
+        <deployment defaultVersion="1080" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4510"/>
     </dependencies>
     <objects>
@@ -61,7 +61,7 @@
                             </menuItem>
                             <menuItem title="Quit MacPAF" keyEquivalent="q" id="136">
                                 <connections>
-                                    <action selector="terminate:" target="251" id="378"/>
+                                    <action selector="terminate:" target="-2" id="Uot-Lu-6wK"/>
                                 </connections>
                             </menuItem>
                         </items>

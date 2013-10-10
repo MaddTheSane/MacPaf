@@ -96,8 +96,6 @@
 	<string>MAF Help</string>
 	<key>CFBundleHelpBookName</key>
 	<string>MAF Help</string>
-	<key>CFBundleIconFile</key>
-	<string>Tree</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.redbugz.${PRODUCT_NAME:rfc1034identifier}</string>
 	<key>CFBundleInfoDictionaryVersion</key>

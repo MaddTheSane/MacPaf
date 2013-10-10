@@ -53,7 +53,7 @@ const unsigned int kDefaultMaxBytesToHexDump = 1024;
 	}
 	
 	// Start the hexdump out with an overview of the content
-	NSMutableString *buf = [NSMutableString stringWithFormat:@"NSData %d bytes%@:\n", [self length], curtailInfo];
+	NSMutableString *buf = [NSMutableString stringWithFormat:@"NSData %lu bytes%@:\n", (unsigned long)[self length], curtailInfo];
 	
 	// One row of 16-bytes at a time ...
     int i, j;

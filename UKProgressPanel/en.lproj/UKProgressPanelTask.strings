@@ -1,0 +1,15 @@
+
+/* Class = "NSBox"; title = "Box"; ObjectID = "16"; */
+"16.title" = "Box";
+
+/* Class = "NSWindow"; title = "UKProgressTaskSheet"; ObjectID = "25"; */
+"25.title" = "UKProgressTaskSheet";
+
+/* Class = "NSButtonCell"; title = "Stop"; ObjectID = "29"; */
+"29.title" = "Stop";
+
+/* Class = "NSTextFieldCell"; title = "Attempting to get a job at Apple"; ObjectID = "30"; */
+"30.title" = "Attempting to get a job at Apple";
+
+/* Class = "NSTextFieldCell"; title = "Just don't break it...\n... better destroy it completely."; ObjectID = "31"; */
+"31.title" = "Just don't break it...\n... better destroy it completely.";

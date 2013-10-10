@@ -8,7 +8,8 @@
 
 #import "PAF21Data.h"
 #import "UKProgressPanelTask.h"
-#import "unistd.h"
+#import "MAFTempleList.h"
+#include <unistd.h>
 
 @implementation PAF21Data
 
@@ -148,7 +149,7 @@ NSDateFormatter *dateFormatter;
 	if (pointer == 0) {
 		return nil;
 	}
-	return [nameList objectAtIndex:pointer-1];
+	return nameList[pointer-1];
 }
 
 - (id)individualForPointer:(int)pointer {
@@ -159,7 +160,7 @@ NSDateFormatter *dateFormatter;
 	if (pointer == 0) {
 		return nil;
 	}
-	return [individualList objectAtIndex:pointer-1];
+	return individualList[pointer-1];
 }
 
 - (id)marriageForPointer:(int)pointer {
@@ -170,7 +171,7 @@ NSDateFormatter *dateFormatter;
 	if (pointer == 0) {
 		return nil;
 	}
-	return [marriageList objectAtIndex:pointer-1];
+	return marriageList[pointer-1];
 }
 
 - (id)noteForPointer:(int)pointer {
@@ -181,7 +182,7 @@ NSDateFormatter *dateFormatter;
 	if (pointer == 0) {
 		return nil;
 	}
-	return [noteList objectAtIndex:pointer-1];
+	return noteList[pointer-1];
 }
 
 
@@ -204,12 +205,12 @@ NSDateFormatter *dateFormatter;
 }
 
 - (NSString *)placeStringFromData:(NSData *)data atOffset:(int)offset {
-	NSLog(@"%s place data:", _cmd, [data subdataWithRange:NSMakeRange(offset, 8)]);
+	NSLog(@"%s place data: %@", sel_getName(_cmd), [data subdataWithRange:NSMakeRange(offset, 8)]);
 	unsigned short place1 = [self shortFromData:data atOffset:offset];
 	unsigned short place2 = [self shortFromData:data atOffset:offset+2];
 	unsigned short place3 = [self shortFromData:data atOffset:offset+4];
 	unsigned short place4 = [self shortFromData:data atOffset:offset+6];
-	NSLog(@"place1=(%i) %s place2=(%i) %s place3=(%i) %s place4=(%i) %s",
+	NSLog(@"place1=(%i) %@ place2=(%i) %@ place3=(%i) %@ place4=(%i) %@",
 	 	place1, [self nameForPointer:place1],
 		place2, [self nameForPointer:place2],
 		place3, [self nameForPointer:place3],
@@ -231,11 +232,10 @@ NSDateFormatter *dateFormatter;
 	if (!place4String) {
 		place4String = @"";
 	}
-	NSString *placeString = [[NSArray arrayWithObjects:
-						place1String,
+	NSString *placeString = [@[place1String,
 						place2String,
 						place3String,
-						place4String, nil] componentsJoinedByString:@","];
+						place4String] componentsJoinedByString:@","];
 	NSLog(@"placeString:%@", placeString);
 	return placeString;
 }
@@ -300,7 +300,7 @@ NSDateFormatter *dateFormatter;
 		buffer[bytesPerRow*3] = 0x00;
 		
 		// append buffer to representation
-		[representation appendString:[NSString stringWithCString:buffer]];
+		[representation appendString:@(buffer)];
 	}
 	
 	return representation;
@@ -317,7 +317,7 @@ NSDateFormatter *dateFormatter;
 - (BOOL)loadDataRepresentation:(NSData *)data ofType:(NSString *)aType
 {
     // Insert code here to read your document from the given data.  You can also choose to override -loadFileWrapperRepresentation:ofType: or -readFromFile:ofType: instead.
-    NSLog(@"%i, chunks %i", [data length], ([data length]-512)/1024);
+    NSLog(@"%lu, chunks %lu", (unsigned long)[data length], (unsigned long)(([data length]-512)/1024));
 	PAF21Data *pafData = [[PAF21Data alloc] initWithData:data];
 //	[self setString: [[NSAttributedString alloc] initWithString:[pafData hexString:40] attributes:attrsDictionary]];
 	[pafData importData];
@@ -334,89 +334,90 @@ NSDateFormatter *dateFormatter;
 */
 - (id) initWithData: (NSData *) newData
 {
-    self = [super init];
-	data = [newData retain];
-	dateFormatter = [[NSDateFormatter alloc] initWithDateFormat:@"%d %b %Y" allowNaturalLanguage:NO];
-	
-	NSLog(@"version: %@", [self stringFromASCIIData:[data subdataWithRange:NSMakeRange(0,4)]]);
-    NSLog(@"%s, %@ ", "ascii", [self hexRepresentation:[data subdataWithRange:NSMakeRange(0,4)]]);
-    NSLog(@"%s, %@ ", "ascii", [self hexRepresentation:[data subdataWithRange:NSMakeRange(121,9)]]);
-	NSString *apple = [self stringFromMacRomanData:[data subdataWithRange:NSMakeRange(121,9)]];
-    NSLog(@"%s, %@ ", "macroman", [self hexRepresentation:[apple dataUsingEncoding:NSMacOSRomanStringEncoding]]);
-    NSLog(@"%s, %@ ", "utf8    ", [self hexRepresentation:[apple dataUsingEncoding:NSUTF8StringEncoding]]);
-    NSLog(@"%s, %@ ", "apple:", apple);
-	
-	signatureData = [[data subdataWithRange:NSMakeRange(0,4)] retain];
-	reportTitleRecordData = [[data subdataWithRange:NSMakeRange(4,92)] retain];
-	submitterRecordData = [[data subdataWithRange:NSMakeRange(96,224)] retain];
-	preferenceData = [[data subdataWithRange:NSMakeRange(320,146)] retain];
-	oneHeaderData = [[data subdataWithRange:NSMakeRange(466,26)] retain];
-	firstMapChunkData = [[data subdataWithRange:NSMakeRange(512,1024)] retain];
-    NSLog(@"%s: %@ ", "signature", [self stringFromASCIIData:signatureData]);
-    NSLog(@"%s: %@ ", "reportTitle", [self hexRepresentation:reportTitleRecordData]);
-    NSLog(@"%s: %@ ", "submitter", [self hexRepresentation:submitterRecordData]);
-    NSLog(@"%s: %@ ", "prefs", [self hexRepresentation:preferenceData]);
-    NSLog(@"%s: %@ ", "oneHeader", [self hexRepresentation:oneHeaderData]);
-    NSLog(@"%s: %@ ", "firstmap", [self stringFromASCIIData:firstMapChunkData]);
-	oneHead = [oneHeaderData bytes];
-	NSLog(@"Struct: indiv: rcount = %i, chunks = %i, free=%i", oneHead->IndivRCount, oneHead->IChunkCount, oneHead->IndivFree);
-	NSLog(@"Struct: marr: rcount = %i, chunks = %i, free=%i", oneHead->MarrRCount, oneHead->MChunkCount, oneHead->MarrFree);
-	NSLog(@"Struct: name: rcount = %i, chunks = %i", oneHead->NameRCount, oneHead->NChunkCount);
-	NSLog(@"Struct: note: rcount = %i, chunks = %i", oneHead->NoteRCount, oneHead->TChunkCount);
-	NSLog(@"Struct: name index: rcount = %i, chunks = %i", oneHead->NameIndexRCount, oneHead->XChunkCount, oneHead->ChunkCount);
-	NSLog(@"Struct: total chunks = %i", oneHead->ChunkCount);
-	
-	indivChunks = [[NSMutableArray new] retain];
-	marrChunks = [[NSMutableArray new] retain];
-	nameChunks = [[NSMutableArray new] retain];
-	noteChunks = [[NSMutableArray new] retain];
-	mapChunks = [[NSMutableArray new] retain];
-	otherChunks = [[NSMutableArray new] retain];
-	
-	nameList = [[NSMutableArray new] retain];
-	individualList = [[NSMutableArray new] retain];
-	marriageList = [[NSMutableArray new] retain];
-	noteList = [[NSMutableArray new] retain];	
-	individualLinksList = [[NSMutableArray new] retain];
-
-	int totalChunks = oneHead->ChunkCount, i;
-	for (i=0; i < totalChunks; i++) {
-		NSData *chunk = [data subdataWithRange:NSMakeRange(1536+(1024*i),1024)];
-		NSString *type = [self stringFromMacRomanData:[firstMapChunkData subdataWithRange:NSMakeRange(i,1)]];
-		switch ([type characterAtIndex:0] ) {
-			case 'X':
-				//NSLog(@"X");
-				[mapChunks addObject:chunk];
-				break;
-			case 'I':
-				//NSLog(@"I");
-				[indivChunks addObject:chunk];
-				break;
-			case 'M':
-				//NSLog(@"M");
-				[marrChunks addObject:chunk];
-				break;
-			case 'N':
-				//NSLog(@"N");
-				[nameChunks addObject:chunk];
-				break;
-			case 'T':
-				//NSLog(@"T");
-				[noteChunks addObject:chunk];
-				break;
-			default:
-				NSLog(@"unknown chunk type: %@", type);
-				[otherChunks addObject:chunk];
-				break;
+    if(self = [super init])
+	{
+		data = newData;
+		dateFormatter = [[NSDateFormatter alloc] initWithDateFormat:@"%d %b %Y" allowNaturalLanguage:NO];
+		
+		NSLog(@"version: %@", [self stringFromASCIIData:[data subdataWithRange:NSMakeRange(0,4)]]);
+		NSLog(@"%s, %@ ", "ascii", [self hexRepresentation:[data subdataWithRange:NSMakeRange(0,4)]]);
+		NSLog(@"%s, %@ ", "ascii", [self hexRepresentation:[data subdataWithRange:NSMakeRange(121,9)]]);
+		NSString *apple = [self stringFromMacRomanData:[data subdataWithRange:NSMakeRange(121,9)]];
+		NSLog(@"%s, %@ ", "macroman", [self hexRepresentation:[apple dataUsingEncoding:NSMacOSRomanStringEncoding]]);
+		NSLog(@"%s, %@ ", "utf8    ", [self hexRepresentation:[apple dataUsingEncoding:NSUTF8StringEncoding]]);
+		NSLog(@"%s, %@ ", "apple:", apple);
+		
+		signatureData = [data subdataWithRange:NSMakeRange(0,4)];
+		reportTitleRecordData = [data subdataWithRange:NSMakeRange(4,92)];
+		submitterRecordData = [data subdataWithRange:NSMakeRange(96,224)];
+		preferenceData = [data subdataWithRange:NSMakeRange(320,146)];
+		oneHeaderData = [data subdataWithRange:NSMakeRange(466,26)];
+		firstMapChunkData = [data subdataWithRange:NSMakeRange(512,1024)];
+		NSLog(@"%s: %@ ", "signature", [self stringFromASCIIData:signatureData]);
+		NSLog(@"%s: %@ ", "reportTitle", [self hexRepresentation:reportTitleRecordData]);
+		NSLog(@"%s: %@ ", "submitter", [self hexRepresentation:submitterRecordData]);
+		NSLog(@"%s: %@ ", "prefs", [self hexRepresentation:preferenceData]);
+		NSLog(@"%s: %@ ", "oneHeader", [self hexRepresentation:oneHeaderData]);
+		NSLog(@"%s: %@ ", "firstmap", [self stringFromASCIIData:firstMapChunkData]);
+		oneHead = [oneHeaderData bytes];
+		NSLog(@"Struct: indiv: rcount = %i, chunks = %i, free=%i", oneHead->IndivRCount, oneHead->IChunkCount, oneHead->IndivFree);
+		NSLog(@"Struct: marr: rcount = %i, chunks = %i, free=%i", oneHead->MarrRCount, oneHead->MChunkCount, oneHead->MarrFree);
+		NSLog(@"Struct: name: rcount = %i, chunks = %i", oneHead->NameRCount, oneHead->NChunkCount);
+		NSLog(@"Struct: note: rcount = %i, chunks = %i", oneHead->NoteRCount, oneHead->TChunkCount);
+		NSLog(@"Struct: name index: rcount = %i, chunks = %i", oneHead->NameIndexRCount, oneHead->XChunkCount, oneHead->ChunkCount);
+		NSLog(@"Struct: total chunks = %i", oneHead->ChunkCount);
+		
+		indivChunks = [NSMutableArray new];
+		marrChunks = [NSMutableArray new];
+		nameChunks = [NSMutableArray new];
+		noteChunks = [NSMutableArray new];
+		mapChunks = [NSMutableArray new];
+		otherChunks = [NSMutableArray new];
+		
+		nameList = [NSMutableArray new];
+		individualList = [NSMutableArray new];
+		marriageList = [NSMutableArray new];
+		noteList = [NSMutableArray new];
+		individualLinksList = [NSMutableArray new];
+		
+		int totalChunks = oneHead->ChunkCount, i;
+		for (i=0; i < totalChunks; i++) {
+			NSData *chunk = [data subdataWithRange:NSMakeRange(1536+(1024*i),1024)];
+			NSString *type = [self stringFromMacRomanData:[firstMapChunkData subdataWithRange:NSMakeRange(i,1)]];
+			switch ([type characterAtIndex:0] ) {
+				case 'X':
+					//NSLog(@"X");
+					[mapChunks addObject:chunk];
+					break;
+				case 'I':
+					//NSLog(@"I");
+					[indivChunks addObject:chunk];
+					break;
+				case 'M':
+					//NSLog(@"M");
+					[marrChunks addObject:chunk];
+					break;
+				case 'N':
+					//NSLog(@"N");
+					[nameChunks addObject:chunk];
+					break;
+				case 'T':
+					//NSLog(@"T");
+					[noteChunks addObject:chunk];
+					break;
+				default:
+					NSLog(@"unknown chunk type: %@", type);
+					[otherChunks addObject:chunk];
+					break;
+			}
 		}
+		NSLog(@"mapChunks: %lu", (unsigned long)[mapChunks count]);
+		NSLog(@"indivChunks: %lu", (unsigned long)[indivChunks count]);
+		NSLog(@"marrChunks: %lu", (unsigned long)[marrChunks count]);
+		NSLog(@"nameChunks: %lu", (unsigned long)[nameChunks count]);
+		NSLog(@"noteChunks: %lu", (unsigned long)[noteChunks count]);
+		NSLog(@"otherChunks: %lu", (unsigned long)[otherChunks count]);
 	}
-	NSLog(@"mapChunks: %i", [mapChunks count]);
-	NSLog(@"indivChunks: %i", [indivChunks count]);
-	NSLog(@"marrChunks: %i", [marrChunks count]);
-	NSLog(@"nameChunks: %i", [nameChunks count]);
-	NSLog(@"noteChunks: %i", [noteChunks count]);
-	NSLog(@"otherChunks: %i", [otherChunks count]);
-	
     return self;
 }
 
@@ -426,7 +427,7 @@ NSDateFormatter *dateFormatter;
 }
 
 - (void)importDataIntoDocument:(NSDocument *)document {
-	NSLog(@"%s document: %@", _cmd, document);
+	NSLog(@"%s document: %@", sel_getName(_cmd), document);
 	
 //	int							x, xmax = 25;							// Just some vars so we can fake a lengthy operation
 	UKProgressPanelTask*		task = [[UKProgressPanelTask alloc] init];	// Create a progress bar etc. in our progress panel, showing and creating a panel if necessary.
@@ -475,7 +476,7 @@ NSDateFormatter *dateFormatter;
 				int offset = recSize * recIndex;
 				NSLog(@"i=%i chunkIndex=%i recIndex=%i offset=%i", i, chunkIndex, recIndex, offset);
 				
-				NSData * obj = [nameChunks objectAtIndex:chunkIndex];
+				NSData * obj = nameChunks[chunkIndex];
 				struct NameRecord_t *nameRec = [[obj subdataWithRange:NSMakeRange(offset,recSize)] bytes];
 				int leftLink = EndianU16_LtoN(nameRec->leftLink);
 				int rightLink = EndianU16_LtoN(nameRec->rightLink);
@@ -503,12 +504,12 @@ NSDateFormatter *dateFormatter;
 			int offset = recSize * recIndex;
 			NSLog(@"i=%i chunkIndex=%i recIndex=%i offset=%i", i, chunkIndex, recIndex, offset);
 			
-			NSData * obj = [noteChunks objectAtIndex:chunkIndex];
+			NSData * obj = noteChunks[chunkIndex];
 			[noteRecordList addObject:[obj subdataWithRange:NSMakeRange(offset,recSize)]];
 		}
 		for (i = 0; i < [noteRecordList count]; i++) {
 			int currRec = i;
-			NSData *obj = [noteRecordList objectAtIndex:i];
+			NSData *obj = noteRecordList[i];
 			NSMutableData *data = [NSMutableData data];
 			while (![obj isEqualTo:[NSNull null]]) {
 				unsigned short nextNote = [self shortFromData:obj atOffset:0]; // one-based index
@@ -516,17 +517,17 @@ NSDateFormatter *dateFormatter;
 					[data appendData:[obj subdataWithRange:NSMakeRange(2,254)]];
 					NSLog(@"note curr=%i nextNoteIndex=%i noteData=%@", currRec, nextNote, data);
 					
-					[noteRecordList replaceObjectAtIndex:currRec withObject:[NSNull null]];
+					noteRecordList[currRec] = [NSNull null];
 					
 					//NSLog(@"combined:\n%@", [self combineNoteString:[noteList objectAtIndex:i]]);
-					obj = [noteRecordList objectAtIndex:nextNote];
+					obj = noteRecordList[nextNote];
 					currRec = nextNote;
 			}
 			[noteDataList addObject:data];
 		}
 		NSLog(@"noterecordlist: %@\n@notedatalist: %@", noteRecordList, noteDataList);	
 		for (i = 0; i < [noteDataList count]; i++) {
-			NSData *data = [noteDataList objectAtIndex:i];
+			NSData *data = noteDataList[i];
 			if ([data length] > 0) {
 				NSLog(@"doc %@ ctrl %@ currdoc %@", document, [NSDocumentController sharedDocumentController], [[NSDocumentController sharedDocumentController] currentDocument]);
 				id newNote = [document performSelector:@selector(createAndInsertNewNote)];
@@ -550,13 +551,13 @@ NSDateFormatter *dateFormatter;
 				int offset = recSize * recIndex;
 				NSLog(@"i=%i chunkIndex=%i recIndex=%i offset=%i", i, chunkIndex, recIndex, offset);
 				
-				NSData * obj = [indivChunks objectAtIndex:chunkIndex];
+				NSData * obj = indivChunks[chunkIndex];
 				
 				NSData *genderData = [obj subdataWithRange:NSMakeRange(offset+10,1)];
 				NSString *gender = [self stringFromMacRomanData:genderData];
 				NSLog(@"indiv gender=%@", gender);
 				if ([gender isEqualTo:@"D"]) {
-					NSLog(@"%s skipping deleted individual %i", _cmd, i);
+					NSLog(@"%s skipping deleted individual %i", sel_getName(_cmd), i);
 					[individualList addObject:[NSNull null]];
 					[individualLinksList addObject:[NSNull null]];
 				} else {
@@ -568,10 +569,9 @@ NSDateFormatter *dateFormatter;
 				unsigned short title = [self shortFromData:obj atOffset:offset+8];
 				NSLog(@"swapped indiv surname=%i givenname1=%i givenname2=%i givenname3=%i", surname, givenName1, givenName2, givenName3);
 				NSLog(@"surname=%@ givenname1=%@ givenname2=%@ givenname3=%@", [self nameForPointer:surname], [self nameForPointer:givenName1], [self nameForPointer:givenName2], [self nameForPointer:givenName3]);
-				NSString *givenNames = [[NSArray arrayWithObjects:
-									[self nameForPointer:givenName1],
+				NSString *givenNames = [@[[self nameForPointer:givenName1],
 									[self nameForPointer:givenName2],
-									[self nameForPointer:givenName3], nil] componentsJoinedByString:@" "];
+									[self nameForPointer:givenName3]] componentsJoinedByString:@" "];
 				NSLog(@"givenNames:%@", givenNames);
 				
 				struct DualDate_t *birthDate = [self dualDateFromData:obj atOffset:offset+11];
@@ -593,9 +593,9 @@ NSDateFormatter *dateFormatter;
 				unsigned short individualMarriageRecord = [self shortFromData:obj atOffset:offset+76];
 				unsigned short parentsMarriageRecord = [self shortFromData:obj atOffset:offset+78];
 				NSMutableDictionary *individualLinksDict = [NSMutableDictionary dictionary];
-				[individualLinksDict setObject:[NSNumber numberWithInt:olderSibling] forKey:@"olderSibling"];
-				[individualLinksDict setObject:[NSNumber numberWithInt:individualMarriageRecord] forKey:@"individualMarriageRecord"];
-				[individualLinksDict setObject:[NSNumber numberWithInt:parentsMarriageRecord] forKey:@"parentsMarriageRecord"];
+				individualLinksDict[@"olderSibling"] = @(olderSibling);
+				individualLinksDict[@"individualMarriageRecord"] = @(individualMarriageRecord);
+				individualLinksDict[@"parentsMarriageRecord"] = @(parentsMarriageRecord);
 				NSString *ID = [NSString stringWithCString:[[obj subdataWithRange:NSMakeRange(offset+80,10)] bytes] encoding:NSMacOSRomanStringEncoding];
 				unsigned short notePadRecord = [self shortFromData:obj atOffset:offset+90];
 				//	if (NotePadRecord != 0) {
@@ -649,7 +649,7 @@ NSDateFormatter *dateFormatter;
 					[newIndividual takeValue:[self dateStringForRegDate:baptismDate]	forKeyPath:@"LDSBaptism.dateString"];
 				}
 				if ([baptismTempleString length] > 0) {
-					id baptismTemple=[NSClassFromString(@"com.redbugz.maf.TempleList") templeWithCode:baptismTempleString];
+					id baptismTemple=[MAFTempleList templeWithCode:baptismTempleString];
 					if (baptismTemple) {
 						[newIndividual takeValue:baptismTemple	forKeyPath:@"LDSBaptism.temple"];
 					}
@@ -658,7 +658,7 @@ NSDateFormatter *dateFormatter;
 					[newIndividual takeValue:[self dateStringForRegDate:endowmentDate]	forKeyPath:@"LDSEndowment.dateString"];
 				}
 				if ([endowmentTempleString length] > 0) {
-					id endowmentTemple=[NSClassFromString(@"com.redbugz.maf.TempleList") templeWithCode:endowmentTempleString];
+					id endowmentTemple=[MAFTempleList templeWithCode:endowmentTempleString];
 					if (endowmentTemple) {
 						[newIndividual takeValue:endowmentTemple	forKeyPath:@"LDSEndowment.temple"];
 					}
@@ -667,7 +667,7 @@ NSDateFormatter *dateFormatter;
 					[newIndividual takeValue:[self dateStringForRegDate:childToParentSealingDate]	forKeyPath:@"LDSSealingToParents.dateString"];
 				}
 				if ([childToParentSealingTempleString length] > 0) {
-					id childToParentSealingTemple=[NSClassFromString(@"com.redbugz.maf.TempleList") templeWithCode:childToParentSealingTempleString];
+					id childToParentSealingTemple=[MAFTempleList templeWithCode:childToParentSealingTempleString];
 					if (childToParentSealingTemple) {
 						[newIndividual takeValue:childToParentSealingTemple	forKeyPath:@"LDSSealingToParents.temple"];
 					}
@@ -692,12 +692,12 @@ NSDateFormatter *dateFormatter;
 				int offset = recSize * recIndex;
 				NSLog(@"i=%i chunkIndex=%i recIndex=%i offset=%i", i, chunkIndex, recIndex, offset);
 				
-				NSData * obj = [marrChunks objectAtIndex:chunkIndex];
+				NSData * obj = marrChunks[chunkIndex];
 
 				NSString *divorceFlag = [self stringFromMacRomanData:[obj subdataWithRange:NSMakeRange(offset+27,1)]];
 				NSLog(@"marr divorce=%@", divorceFlag);
 				if ([divorceFlag isEqualTo:@"D"]) {
-					NSLog(@"%s skipping deleted family %i", _cmd, i);
+					NSLog(@"%s skipping deleted family %i", sel_getName(_cmd), i);
 					[marriageList addObject:[NSNull null]];
 				} else {
 				
@@ -708,13 +708,13 @@ NSDateFormatter *dateFormatter;
 				//		NSLog(@"surname=%@ givenname1=%@ givenname2=%@ givenname3=%@", [self nameForPointer:Surname], [self nameForPointer:GivenName1], [self nameForPointer:GivenName2], [self nameForPointer:GivenName3]);
 				struct DualDate_t *marriageDate = [self dualDateFromData:obj atOffset:offset+6];
 				NSString *marriagePlaceString = [self placeStringFromData:obj atOffset:offset+10];
-				NSLog(@"marr place=%s", marriagePlaceString);
+				NSLog(@"marr place=%@", marriagePlaceString);
 				struct RegDate_t *sealingToSpouseDate = [self regDateFromData:obj atOffset:offset+18];
 				NSString *sealingToSpouseTempleString = [self nameForPointer:[self shortFromData:obj atOffset:offset+21]];
 				
 				unsigned short husbandOtherMarriageRecord = [self shortFromData:obj atOffset:offset+23];
 				unsigned short wifeOtherMarriageRecord = [self shortFromData:obj atOffset:offset+25];
-				NSLog(@"marr sealtemple=%s husbothmarr=%i wifeothmarr=%i", sealingToSpouseTempleString, husbandOtherMarriageRecord, wifeOtherMarriageRecord);
+				NSLog(@"marr sealtemple=%@ husbothmarr=%i wifeothmarr=%i", sealingToSpouseTempleString, husbandOtherMarriageRecord, wifeOtherMarriageRecord);
 				
 				id newMarriage = [document performSelector:@selector(createAndInsertNewFamily)];
 				
@@ -730,12 +730,12 @@ NSDateFormatter *dateFormatter;
 					NSMutableArray *children = [NSMutableArray array];
 					[children insertObject:[self individualForPointer:youngestChild] atIndex:0];
 					[[self individualForPointer:youngestChild] takeValue:newMarriage forKey:@"familyAsChild"];
-					int nextChild = [[[individualLinksList objectAtIndex:youngestChild-1] valueForKeyPath:@"olderSibling"] intValue];
+					int nextChild = [[individualLinksList[youngestChild-1] valueForKeyPath:@"olderSibling"] intValue];
 					while (nextChild) {
 						[[self individualForPointer:nextChild] takeValue:newMarriage forKey:@"familyAsChild"];
 						[children insertObject:[self individualForPointer:nextChild] atIndex:0];
 						NSLog(@"children: %@", children);
-						nextChild = [[[individualLinksList objectAtIndex:nextChild-1] valueForKeyPath:@"olderSibling"] intValue];
+						nextChild = [[individualLinksList[nextChild-1] valueForKeyPath:@"olderSibling"] intValue];
 					}
 					[newMarriage setValue:[NSClassFromString(@"com.redbugz.maf.util.CocoaUtils") javaListFromNSArray:children]	forKey:@"children"];
 				}
@@ -752,7 +752,7 @@ NSDateFormatter *dateFormatter;
 					[newMarriage takeValue:[self dateStringForRegDate:sealingToSpouseDate]	forKeyPath:@"sealingToSpouse.dateString"];
 				}
 				if ([sealingToSpouseTempleString length] > 0) {
-					id sealingToSpouseTemple=[NSClassFromString(@"com.redbugz.maf.TempleList") templeWithCode:sealingToSpouseTempleString];
+					id sealingToSpouseTemple=[MAFTempleList templeWithCode:sealingToSpouseTempleString];
 					if (sealingToSpouseTemple) {
 						[newMarriage takeValue:sealingToSpouseTemple	forKeyPath:@"sealingToSpouse.temple"];
 					}
@@ -787,11 +787,11 @@ NSDateFormatter *dateFormatter;
 	//[context save:nil];
 }
 	
-	+ (void)importFromData:(NSData *)data intoDocument:(NSDocument *)document {
-		NSLog(@"%s document: %@", _cmd, document);
-	    NSLog(@"%i, chunks %i", [data length], ([data length]-512)/1024);
-		PAF21Data *pafData = [[[PAF21Data alloc] initWithData:data] autorelease];
-		[pafData importDataIntoDocument:document];
-	}
++ (void)importFromData:(NSData *)data intoDocument:(NSDocument *)document {
+	NSLog(@"%s document: %@", sel_getName(_cmd), document);
+	NSLog(@"%lu, chunks %lu", (unsigned long)[data length], (unsigned long)(([data length]-512)/1024));
+	PAF21Data *pafData = [[[PAF21Data alloc] initWithData:data] autorelease];
+	[pafData importDataIntoDocument:document];
+}
 
 @end

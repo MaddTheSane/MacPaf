@@ -62,16 +62,16 @@
     // Make sure the target has that selector
     if( ![target respondsToSelector:selector] )
     {	
-        NSLog( @"\nThreadWorker reports: Target %@ does not respond to selector %@.", target, selector );
+        NSLog( @"\nThreadWorker reports: Target %@ does not respond to selector %@.", target, NSStringFromSelector(selector));
         return nil;
     }   // end if: error
     
     // Create an instance of ThreadWorker
-    tw = [[[ThreadWorker alloc] 
+    tw = [[ThreadWorker alloc] 
             initWithTarget:target 
             selector:selector 
             argument:argument
-            didEndSelector:didEndSelector] autorelease];
+            didEndSelector:didEndSelector];
 
     if( !tw )
         return nil;
@@ -81,7 +81,7 @@
     port2 = [NSPort port];
     conn = [NSConnection connectionWithReceivePort:port1 sendPort:port2];
     [conn setRootObject:target];
-    callingPortArray = [NSArray arrayWithObjects:port2, port1, conn, nil];
+    callingPortArray = @[port2, port1, conn];
     
     // Launch thread in an internal selector that will handle the strange NSThread requirements.
     [NSThread detachNewThreadSelector:@selector(startThread:) toTarget:tw withObject:callingPortArray];
@@ -111,8 +111,6 @@
     _cancelled          = [[NSConditionLock alloc] initWithCondition:NO];
 
     // Retain instance variables
-    [_target   		retain];
-    [_argument 		retain];
 
     return self;
 }   // end initWithTarget
@@ -124,9 +122,6 @@
 - (void)dealloc
 {
     // Release instance variables
-    [_target            release];
-    [_argument          release];
-    [_cancelled         release];
 
     // Releasing these makes the program crash...
     //[_callingConnection release];
@@ -143,7 +138,6 @@
     _port2             = nil;
     _cancelled         = nil;
 
-    [super dealloc];
 }   // end dealloc
 
 
@@ -182,42 +176,41 @@
  */
 - (void)startThread:(NSArray *)callingPortArray
 {
-    NSAutoreleasePool *pool;
     
     // Thread startup maintenance
-    pool = [[NSAutoreleasePool alloc] init];
+    @autoreleasepool {
     
     // Set up connections on new thread
-    _port1 = [callingPortArray objectAtIndex:0];
-    _port2 = [callingPortArray objectAtIndex:1];
-    _conn2 = [callingPortArray objectAtIndex:2];
-    _callingConnection = [NSConnection connectionWithReceivePort:_port1 sendPort:_port2];
+        _port1 = callingPortArray[0];
+        _port2 = callingPortArray[1];
+        _conn2 = callingPortArray[2];
+        _callingConnection = [NSConnection connectionWithReceivePort:_port1 sendPort:_port2];
 
-    // Prime the run loop
-    
-    [[NSRunLoop currentRunLoop] 
-        addTimer:[NSTimer scheduledTimerWithTimeInterval:0 
-            target:self 
-            selector:@selector(runPrimaryTask:) 
-            userInfo:nil 
-            repeats:NO] 
-        forMode:NSDefaultRunLoopMode];
-    //[[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
-    //                         beforeDate:[NSDate distantFuture]];
-    
-    //[self runPrimaryTask:nil];
-    
-    // Run one iteration of the run loop
-    _endRunLoop = NO;
-    BOOL isRunning;
-    do {
-        isRunning = [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
-                                             beforeDate:[NSDate distantFuture]];
-        NSLog(@"isRunning: %d, _endRunLoop: %d", isRunning, _endRunLoop );
-    } while ( isRunning && !_endRunLoop);   
+        // Prime the run loop
+        
+        [[NSRunLoop currentRunLoop] 
+            addTimer:[NSTimer scheduledTimerWithTimeInterval:0 
+                target:self 
+                selector:@selector(runPrimaryTask:) 
+                userInfo:nil 
+                repeats:NO] 
+            forMode:NSDefaultRunLoopMode];
+        //[[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
+        //                         beforeDate:[NSDate distantFuture]];
+        
+        //[self runPrimaryTask:nil];
+        
+        // Run one iteration of the run loop
+        _endRunLoop = NO;
+        BOOL isRunning;
+        do {
+            isRunning = [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
+                                                 beforeDate:[NSDate distantFuture]];
+            NSLog(@"isRunning: %d, _endRunLoop: %d", isRunning, _endRunLoop );
+        } while ( isRunning && !_endRunLoop);   
 
     
-    [pool release];
+    }
 }   // end startThread
 
 

@@ -97,7 +97,6 @@ extern NSLock*						gUKProgressPanelThreadLock;		// Mutex lock used to allow cal
 -(void)	dealloc
 {
 	[[UKProgressPanel sharedProgressPanel] removeProgressPanelTask: self];
-	[super dealloc];
 }
 
 

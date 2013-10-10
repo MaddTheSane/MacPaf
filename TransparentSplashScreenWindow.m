@@ -10,7 +10,7 @@
 
 
 @implementation TransparentSplashScreenWindow
-- (id)initWithContentRect:(NSRect)contentRect styleMask:(unsigned int)style
+- (id)initWithContentRect:(NSRect)contentRect styleMask:(NSUInteger)style
 				  backing:(NSBackingStoreType)bufferingType defer:(BOOL)flag
 {
 	// Determine the center of the main screen and set the origin of the content rect

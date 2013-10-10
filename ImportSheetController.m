@@ -43,12 +43,12 @@ NSString * const TEMPLEREADY_UPDATE_DOCUMENT_TYPE = @"TempleReady Update File";
 	NSLog(@"ImportSheetController.openPanelDidEnd: %@ : returncode=%d contextinfo=%@", panel, returnCode, contextInfo);
 	[panel orderOut:self];
 	if (returnCode == NSOKButton) {
-		NSLog(@"filename:%@", [panel filename]);
+		NSLog(@"filename:%@", [panel URL]);
 		fileNameToImport = [[panel filename] retain];
         NSArray *filesToOpen = [panel filenames];
         int i, count = [filesToOpen count];
         for (i=0; i<count; i++) {
-            NSString *aFile = [filesToOpen objectAtIndex:i];
+            NSString *aFile = filesToOpen[i];
 			NSLog(@"file:%@", aFile);			
         }
 		[fileNameText setStringValue:fileNameToImport];
@@ -56,7 +56,7 @@ NSString * const TEMPLEREADY_UPDATE_DOCUMENT_TYPE = @"TempleReady Update File";
 		importDocument = [NSClassFromString(@"com.redbugz.maf.jdom.MAFDocumentJDOM") new];
 		UKProgressPanelTask *task = [[UKProgressPanelTask alloc] init];
 
-		NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys: [NSData dataWithContentsOfFile:fileNameToImport], @"data", importDocument, @"doc", task, @"task", nil];
+		NSDictionary *dict = @{@"data": [NSData dataWithContentsOfFile:fileNameToImport], @"doc": importDocument, @"task": task};
 		[NSThread detachNewThreadSelector:@selector(loadDataPreviewInThread:)
 			toTarget:self
 			withObject:dict];
@@ -103,7 +103,7 @@ NSString * const TEMPLEREADY_UPDATE_DOCUMENT_TYPE = @"TempleReady Update File";
 
 -(void)longTaskFinished:(id)userInfo
 {
-	NSLog(@"%s userInfo: %@", _cmd, userInfo);
+	NSLog(@"%s userInfo: %@", sel_getName(_cmd), userInfo);
 	[NSApp endSheet:progressSheet];
 }
 
@@ -134,7 +134,6 @@ NSString * const TEMPLEREADY_UPDATE_DOCUMENT_TYPE = @"TempleReady Update File";
 	if (!task) {
 		task = [[UKProgressPanelTask alloc] init];
 	}
-	NSLog(@"ldit task start rc:%d",[task retainCount] );
 
 	[task setIndeterminate:YES];
 	[task setTitle:@"Load Document Data"];
@@ -144,111 +143,104 @@ NSString * const TEMPLEREADY_UPDATE_DOCUMENT_TYPE = @"TempleReady Update File";
 
 	[self showSheetForWindow:[[self document] windowForSheet] task:task];
 	
-	NSDictionary *loaderDict = [NSDictionary dictionaryWithObjectsAndKeys:task, @"delegate", [dict valueForKey:@"data"], @"data", [dict valueForKey:@"doc"], @"document", self, @"controller", nil];
+	NSDictionary *loaderDict = @{@"delegate": task, @"data": [dict valueForKey:@"data"], @"document": [dict valueForKey:@"doc"], @"controller": self};
 
 	//id newLoader = 
 	[[loader class] loadDataForDocumentWithUpdateDelegate:loaderDict];
 
-	NSLog(@"ldit task b4 rel rc:%d",[task retainCount] );
 	[task release];
-	NSLog(@"ldit task after rel rc:%d",[task retainCount] );
 	
 	[myAutoreleasePool release];	
 }
 
 - (void) loadDataPreviewInThread:(id)dict
 {
-	NSAutoreleasePool* myAutoreleasePool = [[NSAutoreleasePool alloc] init];
-	@try {
-	UKProgressPanelTask* task = [dict valueForKey:@"task"];
-	if (!task) {
-		task = [[UKProgressPanelTask alloc] init];
-	}
-	NSLog(@"ldpit task start rc:%d",[task retainCount] );
-
-	[task setIndeterminate:YES];
-	[task setTitle:@"Loading Document Preview"];
-	[task setStatus:@"Preparing to load data for preview..."];
-	[task setStopAction:@selector(cancel:)];
-	[task setStopDelegate:self];
-	
-	[self showSheetForWindow:[[self document] windowForSheet] task:task];
-	
-	NSData *data = [dict valueForKey:@"data"];
-	NSString *fileTypeByExtension = [[NSDocumentController sharedDocumentController] typeFromFileExtension:[fileNameToImport pathExtension]];
-	NSLog(@"type of file by ext: %@", fileTypeByExtension);
-	NSString *fileTypeByContent = [self typeForContent:data];
-	NSLog(@"type of file by content: %@", fileTypeByContent);
-	NSString *fileType = fileTypeByExtension;
-	if (!fileType) {
-		fileType = fileTypeByContent;
-	}
-	if (![fileType isEqualToString:fileTypeByContent]) {
-		NSLog(@"%s mismatched file types %@ (extension) and %@ (content)", _cmd, fileTypeByExtension, fileTypeByContent);
-	}
-	
-	if ([fileType isEqualToString:GEDCOM_DOCUMENT_TYPE]) {
-		NSLog(@"%s loading preview for document type %@", _cmd, GEDCOM_DOCUMENT_TYPE);
-		NSDictionary *loaderDict = [NSDictionary dictionaryWithObjectsAndKeys:task, @"delegate", data, @"data", [dict valueForKey:@"doc"], @"document", self, @"controller", nil];
-
-		//id newLoader = 
-		[[loader class] loadDataForDocumentWithUpdateDelegate:loaderDict];
-	} else if ([fileType isEqualToString:PAF21_DOCUMENT_TYPE]) {
-		NSLog(@"%s loading preview for document type %@", _cmd, PAF21_DOCUMENT_TYPE);
-		[PAF21Data importFromData:data intoDocument:importDocument];
-	} else if ([fileType isEqualToString:MACPAF_DOCUMENT_TYPE]) {
-		NSLog(@"%s loading preview for document type %@", _cmd, MACPAF_DOCUMENT_TYPE);
+	@autoreleasepool {
+		@try {
+			UKProgressPanelTask* task = [dict valueForKey:@"task"];
+			if (!task) {
+				task = [[UKProgressPanelTask alloc] init];
+			}
+			
+			[task setIndeterminate:YES];
+			[task setTitle:@"Loading Document Preview"];
+			[task setStatus:@"Preparing to load data for preview..."];
+			[task setStopAction:@selector(cancel:)];
+			[task setStopDelegate:self];
+			
+			[self showSheetForWindow:[[self document] windowForSheet] task:task];
+			
+			NSData *data = [dict valueForKey:@"data"];
+			NSString *fileTypeByExtension = [[NSDocumentController sharedDocumentController] typeFromFileExtension:[fileNameToImport pathExtension]];
+			NSLog(@"type of file by ext: %@", fileTypeByExtension);
+			NSString *fileTypeByContent = [self typeForContent:data];
+			NSLog(@"type of file by content: %@", fileTypeByContent);
+			NSString *fileType = fileTypeByExtension;
+			if (!fileType) {
+				fileType = fileTypeByContent;
+			}
+			if (![fileType isEqualToString:fileTypeByContent]) {
+				NSLog(@"%s mismatched file types %@ (extension) and %@ (content)", _cmd, fileTypeByExtension, fileTypeByContent);
+			}
+			
+			if ([fileType isEqualToString:GEDCOM_DOCUMENT_TYPE]) {
+				NSLog(@"%s loading preview for document type %@", _cmd, GEDCOM_DOCUMENT_TYPE);
+				NSDictionary *loaderDict = @{@"delegate": task, @"data": data, @"document": [dict valueForKey:@"doc"], @"controller": self};
+				
+				//id newLoader =
+				[[loader class] loadDataForDocumentWithUpdateDelegate:loaderDict];
+			} else if ([fileType isEqualToString:PAF21_DOCUMENT_TYPE]) {
+				NSLog(@"%s loading preview for document type %@", _cmd, PAF21_DOCUMENT_TYPE);
+				[PAF21Data importFromData:data intoDocument:importDocument];
+			} else if ([fileType isEqualToString:MACPAF_DOCUMENT_TYPE]) {
+				NSLog(@"%s loading preview for document type %@", _cmd, MACPAF_DOCUMENT_TYPE);
+				
+			} else if ([fileType isEqualToString:TEMPLEREADY_UPDATE_DOCUMENT_TYPE]) {
+				NSLog(@"%s loading preview for document type %@", _cmd, TEMPLEREADY_UPDATE_DOCUMENT_TYPE);
+				
+			} else {
+				// unknown type
+				NSLog(@"%s !!! unknown document type for data %@", _cmd, data);
+				[task dealloc];
+				return;
+			}
+			
+			id doc = [dict valueForKey:@"doc"];
+			NSLog(@"%s importDoc:%@ doc:%@ selfdoc:%@ currdoc:%@", _cmd, importDocument, doc, [self document], [[NSDocumentController sharedDocumentController] currentDocument]);
+			
+			[NSApp endSheet:progressSheet];
+			
+			NSString *string = [NSString stringWithFormat:@"This file contains:\n\t%@ Individuals\t\t%@ Sources\t\t%@ Repositories\n\t%@ Families%\t\t%@ Notes\t\t%@ Multimedia\t\t%@ Submitters\n\n%@",
+								[importDocument valueForKeyPath:@"individualsMap.size"],
+								[importDocument valueForKeyPath:@"sourcesMap.size"],
+								[importDocument valueForKeyPath:@"repositoriesMap.size"],
+								[importDocument valueForKeyPath:@"familiesMap.size"],
+								[importDocument valueForKeyPath:@"notesMap.size"],
+								[importDocument valueForKeyPath:@"multimediaMap.size"],
+								[importDocument valueForKeyPath:@"submittersMap.size"],
+								@""];
+			[filePreview setString:string];//[NSString stringWithContentsOfFile:fileNameToImport]]];
+			
+			
+			[NSApp beginSheet: importSheet
+			   modalForWindow: [[self document] windowForSheet]
+				modalDelegate: self
+			   didEndSelector: @selector(didEndSheet:returnCode:contextInfo:)
+				  contextInfo: nil];
+		}
+		@catch ( NSException *e ) {
+			NSLog(@"%s exception %@", sel_getName(_cmd), e);
+			[NSApp endSheet:[[[self document] windowForSheet] attachedSheet]];
+		}
 		
-	} else if ([fileType isEqualToString:TEMPLEREADY_UPDATE_DOCUMENT_TYPE]) {
-		NSLog(@"%s loading preview for document type %@", _cmd, TEMPLEREADY_UPDATE_DOCUMENT_TYPE);
-		
-	} else {
-		// unknown type
-		NSLog(@"%s !!! unknown document type for data %@", _cmd, data);
-		[task dealloc];
-		return;
+		@finally {
+		}
 	}
-	
-	id doc = [dict valueForKey:@"doc"];
-	NSLog(@"%s importDoc:%@ doc:%@ selfdoc:%@ currdoc:%@", _cmd, importDocument, doc, [self document], [[NSDocumentController sharedDocumentController] currentDocument]);
-
-	NSLog(@"ldpit task b4 rel rc:%d",[task retainCount] );
-	[task release];
-	NSLog(@"ldpit task aft rel rc:%d",[task retainCount] );
-	[NSApp endSheet:progressSheet];
-
-	NSString *string = [NSString stringWithFormat:@"This file contains:\n\t%@ Individuals\t\t%@ Sources\t\t%@ Repositories\n\t%@ Families%\t\t%@ Notes\t\t%@ Multimedia\t\t%@ Submitters\n\n%@", 
-		[importDocument valueForKeyPath:@"individualsMap.size"], 
-		[importDocument valueForKeyPath:@"sourcesMap.size"], 
-		[importDocument valueForKeyPath:@"repositoriesMap.size"], 
-		[importDocument valueForKeyPath:@"familiesMap.size"], 
-		[importDocument valueForKeyPath:@"notesMap.size"],
-		[importDocument valueForKeyPath:@"multimediaMap.size"],
-		[importDocument valueForKeyPath:@"submittersMap.size"],
-		@""];
-	[filePreview setString:string];//[NSString stringWithContentsOfFile:fileNameToImport]]];
-	
-	
-	[NSApp beginSheet: importSheet
-	   modalForWindow: [[self document] windowForSheet]
-		modalDelegate: self
-	   didEndSelector: @selector(didEndSheet:returnCode:contextInfo:)
-		  contextInfo: nil];
-}
-@catch ( NSException *e ) {
-    NSLog(@"%s exception %@", _cmd, e);
-    [NSApp endSheet:[[[self document] windowForSheet] attachedSheet]];
-}
-
-@finally {
-}
-
-	[myAutoreleasePool release];	
 }
 
 - (void)didEndSheet:(NSWindow *)sheet returnCode:(int)returnCode  contextInfo:(void  *)contextInfo
 {
-	NSLog(@"ImportSheetController.didEndSheet: %@ : returncode=%d contextinfo=", sheet, returnCode, contextInfo);
+	NSLog(@"ImportSheetController.didEndSheet: %@ : returncode=%d contextinfo=%p", sheet, returnCode, contextInfo);
 	
 	[sheet orderOut:self];
 }
@@ -264,7 +256,7 @@ NSString * const TEMPLEREADY_UPDATE_DOCUMENT_TYPE = @"TempleReady Update File";
 
 - (IBAction)import:(id)sender;
 {
-	NSLog(@"%s", _cmd);    
+	NSLog(@"%s", sel_getName(_cmd));
 	
 /*	NSRect contentFrameInWindowCoordinates = [[self window] contentRectForFrameRect:[[self window] frame]];
 	float heightAdjustment = 100;//newHeight - NSHeight(contentFrameInWindowCoordinates);
@@ -305,7 +297,7 @@ NSString * const TEMPLEREADY_UPDATE_DOCUMENT_TYPE = @"TempleReady Update File";
 			NSLog(@"exception loading data: %@", e);
 		}
 		@finally {
-			NSLog(@"%s finally", _cmd);
+			NSLog(@"%s finally", sel_getName(_cmd));
 		}
 //	[[self document] loadDataRepresentation:data ofType:[[NSDocumentController sharedDocumentController] typeFromFileExtension:[fileNameToImport pathExtension]]];
 }

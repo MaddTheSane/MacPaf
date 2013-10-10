@@ -12,7 +12,7 @@
 @implementation ApplicationStartupHelper
 - init
 {
-	[super init];
+	if(self =[super init]);
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidFinishLaunching:) name:@"NSApplicationDidFinishLaunchingNotification" object:NSApp];
 	return self;
 }

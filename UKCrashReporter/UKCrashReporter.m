@@ -41,7 +41,7 @@ void	UKCrashReporterCheckForCrash()
 		
 		// Get the log file, it's last change date and last report date:
 		NSLog(@"checking for crashes");
-		NSString*		appName = [[[NSBundle mainBundle] infoDictionary] objectForKey: @"CFBundleExecutable"];
+		NSString*		appName = [[NSBundle mainBundle] infoDictionary][@"CFBundleExecutable"];
 		NSString*		crashLogsFolder = [@"~/Library/Logs/CrashReporter/" stringByExpandingTildeInPath];
 		NSString*		crashLogName = [appName stringByAppendingString: @".crash.log"];
 		NSString*		crashLogPath = [crashLogsFolder stringByAppendingPathComponent: crashLogName];
@@ -64,7 +64,7 @@ void	UKCrashReporterCheckForCrash()
 					// Fetch the newest report from the log:
 					NSString*			crashLog = [NSString stringWithContentsOfFile: crashLogPath];
 					NSArray*			separateReports = [crashLog componentsSeparatedByString: @"\n\n**********\n\n"];
-					NSString*			currentReport = [separateReports count] > 0 ? [separateReports objectAtIndex: [separateReports count] -1] : @"*** Couldn't read Report ***";
+					NSString*			currentReport = [separateReports count] > 0 ? separateReports[[separateReports count] -1] : @"*** Couldn't read Report ***";
 					NSData*				crashReport = [currentReport dataUsingEncoding: NSUTF8StringEncoding];	// 1 since report 0 is empty (file has a delimiter at the top).
 					//NSLog(@"Report = \"%@\"", currentReport);
 					
@@ -78,7 +78,7 @@ void	UKCrashReporterCheckForCrash()
 					
 					// Add form trappings to crashReport:
 					NSData*			header = [[NSString stringWithFormat:@"--%@\r\nContent-Disposition: form-data; name=\"crashlog\"\r\n\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding];
-					NSMutableData*	formData = [[header mutableCopy] autorelease];
+					NSMutableData*	formData = [header mutableCopy];
 					[formData appendData: crashReport];
 					[formData appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
 					

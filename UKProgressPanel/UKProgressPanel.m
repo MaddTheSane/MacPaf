@@ -108,12 +108,10 @@ NSLock*						gUKProgressPanelThreadLock = nil;			// Users will want to use threa
 {
 	[gUKProgressPanelThreadLock lock];
 	[taskListWindow orderOut: nil];
-	[taskListWindow release];
 	
 	gMainProgressPanel = nil;	// Make sure user can create a new shared instance if desired.
 	[gUKProgressPanelThreadLock unlock];
 	
-	[super dealloc];
 }
 
 

@@ -9,5 +9,5 @@
 #import <Foundation/Foundation.h>
 
 @interface MAFTempleList : NSObject
-
++ (NSDictionary*)templeWithCode:(NSString*)theCode;
 @end

@@ -1,5 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict/>
+<dict>
+	<key>Aba Nigeria</key>
+	<dict>
+		<key>code</key>
+		<string>ABA</string>
+		<key>number</key>
+		<integer>120</integer>
+	</dict>
+	<key>Accra Ghana</key>
+	<dict>
+		<key>code</key>
+		<string>ACCRA</string>
+		<key>number</key>
+		<integer>76</integer>
+	</dict>
+	<key>Adelaide Australia</key>
+	<dict>
+		<key>code</key>
+		<string>ADELA</string>
+		<key>number</key>
+		<integer>110</integer>
+	</dict>
+	<key>Cardston Alberta</key>
+	<dict>
+		<key>code</key>
+		<string>ALBER</string>
+		<key>number</key>
+		<integer>10</integer>
+		<key>old code</key>
+		<string>AL</string>
+		<key>open date</key>
+		<date>1923-08-29T07:00:00Z</date>
+	</dict>
+</dict>
 </plist>

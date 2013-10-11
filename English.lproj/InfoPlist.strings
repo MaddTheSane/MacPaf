@@ -1,6 +1,6 @@
 /* Localized versions of Info.plist keys */
 
 CFBundleName = "MacPAF";
-CFBundleShortVersionString = "MacPAF 1.0 Preview, Copyright 2003-2006 RedBugz Software.";
+CFBundleShortVersionString = "MacPAF 1.0 Preview 3";
 CFBundleGetInfoString = "MacPAF 1.0 Preview 3, Copyright 2003-2006 RedBugz Software.";
 NSHumanReadableCopyright = "Copyright 2003-2006 Redbugz Software.";

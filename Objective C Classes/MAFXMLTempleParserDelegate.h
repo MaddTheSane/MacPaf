@@ -10,6 +10,6 @@
 
 @interface MAFXMLTempleParserDelegate : NSObject <NSXMLParserDelegate>
 
-	- (NSDictionary*)templeDictionary;
-	
+@property (unsafe_unretained, readonly) NSDictionary *templeDictionary;
+
 @end

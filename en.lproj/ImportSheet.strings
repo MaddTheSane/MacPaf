@@ -1,0 +1,30 @@
+
+/* Class = "NSWindow"; title = "Import"; ObjectID = "8"; */
+"8.title" = "Import";
+
+/* Class = "NSButtonCell"; title = "This MacPAF file"; ObjectID = "12"; */
+"12.title" = "This MacPAF file";
+
+/* Class = "NSButtonCell"; title = "A new MacPAF file"; ObjectID = "13"; */
+"13.title" = "A new MacPAF file";
+
+/* Class = "NSWindow"; title = "Progress"; ObjectID = "41"; */
+"41.title" = "Progress";
+
+/* Class = "NSTextFieldCell"; title = "Import file into:"; ObjectID = "45"; */
+"45.title" = "Import file into:";
+
+/* Class = "NSButtonCell"; title = "Import"; ObjectID = "46"; */
+"46.title" = "Import";
+
+/* Class = "NSButtonCell"; title = "Cancel"; ObjectID = "47"; */
+"47.title" = "Cancel";
+
+/* Class = "NSTextFieldCell"; title = "File contains:\n     ? Individuals     ? Submitters     ? Sources\n     ? Families         ? Notes             ? Repositories"; ObjectID = "48"; */
+"48.title" = "File contains:\n     ? Individuals     ? Submitters     ? Sources\n     ? Families         ? Notes             ? Repositories";
+
+/* Class = "NSTextFieldCell"; title = "File: "; ObjectID = "49"; */
+"49.title" = "File: ";
+
+/* Class = "NSButtonCell"; title = "Radio"; ObjectID = "50"; */
+"50.title" = "Radio";

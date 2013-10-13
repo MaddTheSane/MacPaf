@@ -1,0 +1,60 @@
+
+/* Class = "NSWindow"; title = "Individual List"; ObjectID = "7"; */
+"7.title" = "Individual List";
+
+/* Class = "NSTableColumn"; headerCell.title = "ID"; ObjectID = "12"; */
+"12.headerCell.title" = "ID";
+
+/* Class = "NSTableColumn"; headerCell.title = "Name"; ObjectID = "13"; */
+"13.headerCell.title" = "Name";
+
+/* Class = "NSTableColumn"; headerCell.title = "Birth date"; ObjectID = "14"; */
+"14.headerCell.title" = "Birth date";
+
+/* Class = "NSTableColumn"; headerCell.title = "Birth place"; ObjectID = "15"; */
+"15.headerCell.title" = "Birth place";
+
+/* Class = "NSButtonCell"; title = "Locked"; ObjectID = "24"; */
+"24.title" = "Locked";
+
+/* Class = "NSButtonCell"; title = "Privacy"; ObjectID = "25"; */
+"25.title" = "Privacy";
+
+/* Class = "NSTableColumn"; headerCell.title = "Type"; ObjectID = "35"; */
+"35.headerCell.title" = "Type";
+
+/* Class = "NSTableColumn"; headerCell.title = "Date"; ObjectID = "36"; */
+"36.headerCell.title" = "Date";
+
+/* Class = "NSTableColumn"; headerCell.title = "Place"; ObjectID = "37"; */
+"37.headerCell.title" = "Place";
+
+/* Class = "NSButtonCell"; title = "Select Individual"; ObjectID = "68"; */
+"68.title" = "Select Individual";
+
+/* Class = "NSTextFieldCell"; title = "Search:"; ObjectID = "71"; */
+"71.title" = "Search:";
+
+/* Class = "NSTextFieldCell"; title = "Number of Individuals: "; ObjectID = "72"; */
+"72.title" = "Number of Individuals: ";
+
+/* Class = "NSTextFieldCell"; title = "Notes:"; ObjectID = "74"; */
+"74.title" = "Notes:";
+
+/* Class = "NSTextFieldCell"; title = "Events:"; ObjectID = "75"; */
+"75.title" = "Events:";
+
+/* Class = "NSTextFieldCell"; title = "Individual Info"; ObjectID = "76"; */
+"76.title" = "Individual Info";
+
+/* Class = "NSTextFieldCell"; title = "Details Info"; ObjectID = "77"; */
+"77.title" = "Details Info";
+
+/* Class = "NSTextFieldCell"; title = "Marriage Info"; ObjectID = "78"; */
+"78.title" = "Marriage Info";
+
+/* Class = "NSButtonCell"; title = "Switch"; ObjectID = "79"; */
+"79.title" = "Switch";
+
+/* Class = "NSTextFieldCell"; title = "TheNum"; ObjectID = "bRG-up-t5R"; */
+"bRG-up-t5R.title" = "TheNum";

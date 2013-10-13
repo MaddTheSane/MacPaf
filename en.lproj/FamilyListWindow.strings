@@ -1,0 +1,51 @@
+
+/* Class = "NSWindow"; title = "Family List"; ObjectID = "8"; */
+"8.title" = "Family List";
+
+/* Class = "NSTableColumn"; headerCell.title = "Marriage Date"; ObjectID = "15"; */
+"15.headerCell.title" = "Marriage Date";
+
+/* Class = "NSTableColumn"; headerCell.title = "Children"; ObjectID = "16"; */
+"16.headerCell.title" = "Children";
+
+/* Class = "NSTableColumn"; headerCell.title = "ID"; ObjectID = "17"; */
+"17.headerCell.title" = "ID";
+
+/* Class = "NSTableColumn"; headerCell.title = "Husband"; ObjectID = "18"; */
+"18.headerCell.title" = "Husband";
+
+/* Class = "NSTableColumn"; headerCell.title = "Wife"; ObjectID = "19"; */
+"19.headerCell.title" = "Wife";
+
+/* Class = "NSTableColumn"; headerCell.title = "Date"; ObjectID = "43"; */
+"43.headerCell.title" = "Date";
+
+/* Class = "NSTableColumn"; headerCell.title = "Event"; ObjectID = "44"; */
+"44.headerCell.title" = "Event";
+
+/* Class = "NSTableColumn"; headerCell.title = "Name"; ObjectID = "47"; */
+"47.headerCell.title" = "Name";
+
+/* Class = "NSTableColumn"; headerCell.title = "Place"; ObjectID = "57"; */
+"57.headerCell.title" = "Place";
+
+/* Class = "NSTableColumn"; headerCell.title = "Birth"; ObjectID = "58"; */
+"58.headerCell.title" = "Birth";
+
+/* Class = "NSTextFieldCell"; title = "Search:"; ObjectID = "73"; */
+"73.title" = "Search:";
+
+/* Class = "NSButtonCell"; title = "Select Family"; ObjectID = "75"; */
+"75.title" = "Select Family";
+
+/* Class = "NSTextFieldCell"; title = "Number of Families: "; ObjectID = "76"; */
+"76.title" = "Number of Families: ";
+
+/* Class = "NSTextFieldCell"; title = "System Font Text"; ObjectID = "80"; */
+"80.title" = "System Font Text";
+
+/* Class = "NSTextFieldCell"; title = "System Font Text"; ObjectID = "81"; */
+"81.title" = "System Font Text";
+
+/* Class = "NSTextFieldCell"; title = "1000"; ObjectID = "wfV-jb-vQv"; */
+"wfV-jb-vQv.title" = "1000";

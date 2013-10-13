@@ -56,8 +56,9 @@
 		556AC8A41806A5900046242E /* Temple List.plist in Resources */ = {isa = PBXBuildFile; fileRef = 556AC8A31806A5900046242E /* Temple List.plist */; };
 		556AC8A51806A6210046242E /* MyDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = 556AC8A71806A6210046242E /* MyDocument.xib */; };
 		556AC8AB1806A94C0046242E /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 556AC8AA1806A94C0046242E /* Media.xcassets */; };
+		557B6536180B0E5F009FABAE /* MainToolbarDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 557B6534180B0E5F009FABAE /* MainToolbarDelegate.h */; };
+		557B6537180B0E5F009FABAE /* MainToolbarDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 557B6535180B0E5F009FABAE /* MainToolbarDelegate.m */; };
 		559A716618060F51005DE4AE /* UKProgressPanelTask.xib in Resources */ = {isa = PBXBuildFile; fileRef = 559A716818060F51005DE4AE /* UKProgressPanelTask.xib */; };
-		559A71721806101D005DE4AE /* ImportSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 559A716C1806101D005DE4AE /* ImportSheet.xib */; };
 		559A71761806101D005DE4AE /* RecordSelectionWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 559A71701806101D005DE4AE /* RecordSelectionWindow.xib */; };
 		559A717718061026005DE4AE /* FamilyListWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 559A717918061026005DE4AE /* FamilyListWindow.xib */; };
 		559A717A18061031005DE4AE /* IndividualListWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 559A717C18061031005DE4AE /* IndividualListWindow.xib */; };
@@ -69,6 +70,7 @@
 		55C8A2A71807302900A7BB42 /* MAFXMLTempleParserDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 55C8A2A51807302900A7BB42 /* MAFXMLTempleParserDelegate.h */; };
 		55C8A2A81807302900A7BB42 /* MAFXMLTempleParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C8A2A61807302900A7BB42 /* MAFXMLTempleParserDelegate.m */; };
 		55C8A2A91807302900A7BB42 /* MAFXMLTempleParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C8A2A61807302900A7BB42 /* MAFXMLTempleParserDelegate.m */; };
+		55C8A42F1808A45E00A7BB42 /* ImportSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55C8A4311808A45E00A7BB42 /* ImportSheet.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -257,9 +259,10 @@
 		556AC8A61806A6210046242E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MyDocument.xib; sourceTree = "<group>"; };
 		556AC8A91806A6290046242E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MyDocument.strings; sourceTree = "<group>"; };
 		556AC8AA1806A94C0046242E /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		557B6534180B0E5F009FABAE /* MainToolbarDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainToolbarDelegate.h; path = "Objective C Classes/MainToolbarDelegate.h"; sourceTree = "<group>"; };
+		557B6535180B0E5F009FABAE /* MainToolbarDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainToolbarDelegate.m; path = "Objective C Classes/MainToolbarDelegate.m"; sourceTree = "<group>"; };
 		559A716718060F51005DE4AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/UKProgressPanelTask.xib; sourceTree = "<group>"; };
 		559A716A18060F57005DE4AE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/UKProgressPanelTask.strings; sourceTree = "<group>"; };
-		559A716C1806101D005DE4AE /* ImportSheet.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImportSheet.xib; sourceTree = "<group>"; };
 		559A71701806101D005DE4AE /* RecordSelectionWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecordSelectionWindow.xib; sourceTree = "<group>"; };
 		559A717818061026005DE4AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/FamilyListWindow.xib; sourceTree = "<group>"; };
 		559A717B18061031005DE4AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/IndividualListWindow.xib; sourceTree = "<group>"; };
@@ -271,6 +274,11 @@
 		55C8A29E18072CDB00A7BB42 /* TempleListGenerator.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = TempleListGenerator.1; sourceTree = "<group>"; };
 		55C8A2A51807302900A7BB42 /* MAFXMLTempleParserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MAFXMLTempleParserDelegate.h; path = "Objective C Classes/MAFXMLTempleParserDelegate.h"; sourceTree = "<group>"; };
 		55C8A2A61807302900A7BB42 /* MAFXMLTempleParserDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MAFXMLTempleParserDelegate.m; path = "Objective C Classes/MAFXMLTempleParserDelegate.m"; sourceTree = "<group>"; };
+		55C8A42C1808A11F00A7BB42 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MainMenu.strings; sourceTree = "<group>"; };
+		55C8A42E1808A12E00A7BB42 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/IndividualListWindow.strings; sourceTree = "<group>"; };
+		55C8A4301808A45E00A7BB42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ImportSheet.xib; sourceTree = "<group>"; };
+		55C8A4331808A46700A7BB42 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ImportSheet.strings; sourceTree = "<group>"; };
+		55C8A4351808A47700A7BB42 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/FamilyListWindow.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -312,7 +320,7 @@
 				02DDDDF70A165EF5003BC70E /* MAF Help */,
 				026ED79C05D932E50001D1D2 /* images */,
 				559A717918061026005DE4AE /* FamilyListWindow.xib */,
-				559A716C1806101D005DE4AE /* ImportSheet.xib */,
+				55C8A4311808A45E00A7BB42 /* ImportSheet.xib */,
 				559A717C18061031005DE4AE /* IndividualListWindow.xib */,
 				559A717F1806103A005DE4AE /* MainMenu.xib */,
 				559A71701806101D005DE4AE /* RecordSelectionWindow.xib */,
@@ -618,6 +626,8 @@
 				02D0062B0B4A445600C3CDF4 /* TransparentSplashScreenWindow.m */,
 				556AC89B180641F40046242E /* MAFTempleList.h */,
 				556AC89C180641F40046242E /* MAFTempleList.m */,
+				557B6534180B0E5F009FABAE /* MainToolbarDelegate.h */,
+				557B6535180B0E5F009FABAE /* MainToolbarDelegate.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -712,6 +722,7 @@
 				02DDDD280A12BA9C003BC70E /* UKCrashReporter.h in Headers */,
 				0263E4E30A20F4450087A335 /* ApplicationStartupHelper.h in Headers */,
 				02B51F040B23D727003C1D2E /* PAF21Data.h in Headers */,
+				557B6536180B0E5F009FABAE /* MainToolbarDelegate.h in Headers */,
 				02C876990B3EF267005E8B53 /* UKProgressPanel.h in Headers */,
 				02C8769B0B3EF267005E8B53 /* UKProgressPanelTask.h in Headers */,
 				02D001450B482EDB00C3CDF4 /* ImportSheetController.h in Headers */,
@@ -809,7 +820,7 @@
 				02DE76A509E96A04003B896A /* TempleList.xml in Resources */,
 				559A717718061026005DE4AE /* FamilyListWindow.xib in Resources */,
 				02DE76A609E96A04003B896A /* XmlToGedcom.xsl in Resources */,
-				559A71721806101D005DE4AE /* ImportSheet.xib in Resources */,
+				55C8A42F1808A45E00A7BB42 /* ImportSheet.xib in Resources */,
 				556AC8A51806A6210046242E /* MyDocument.xib in Resources */,
 				02DE76AC09E96A04003B896A /* Page.psd in Resources */,
 				559A716618060F51005DE4AE /* UKProgressPanelTask.xib in Resources */,
@@ -838,6 +849,7 @@
 				556AC8A21806432F0046242E /* FamilyListController.m in Sources */,
 				0263E4E40A20F4450087A335 /* ApplicationStartupHelper.m in Sources */,
 				02B51F050B23D727003C1D2E /* PAF21Data.m in Sources */,
+				557B6537180B0E5F009FABAE /* MainToolbarDelegate.m in Sources */,
 				02C8769A0B3EF267005E8B53 /* UKProgressPanel.m in Sources */,
 				556AC89E180641F40046242E /* MAFTempleList.m in Sources */,
 				02C8769C0B3EF267005E8B53 /* UKProgressPanelTask.m in Sources */,
@@ -933,6 +945,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				559A717818061026005DE4AE /* Base */,
+				55C8A4351808A47700A7BB42 /* en */,
 			);
 			name = FamilyListWindow.xib;
 			sourceTree = "<group>";
@@ -941,6 +954,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				559A717B18061031005DE4AE /* Base */,
+				55C8A42E1808A12E00A7BB42 /* en */,
 			);
 			name = IndividualListWindow.xib;
 			sourceTree = "<group>";
@@ -949,8 +963,18 @@
 			isa = PBXVariantGroup;
 			children = (
 				559A717E1806103A005DE4AE /* Base */,
+				55C8A42C1808A11F00A7BB42 /* en */,
 			);
 			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+		55C8A4311808A45E00A7BB42 /* ImportSheet.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				55C8A4301808A45E00A7BB42 /* Base */,
+				55C8A4331808A46700A7BB42 /* en */,
+			);
+			name = ImportSheet.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -963,6 +987,7 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				LLVM_LTO = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -976,6 +1001,7 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_OPTIMIZATION_LEVEL = fast;
+				LLVM_LTO = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				SDKROOT = macosx;
 			};
@@ -1117,6 +1143,7 @@
 				55C8A2A218072CDB00A7BB42 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

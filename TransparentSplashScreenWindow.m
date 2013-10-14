@@ -10,6 +10,7 @@
 
 
 @implementation TransparentSplashScreenWindow
+
 - (id)initWithContentRect:(NSRect)contentRect styleMask:(NSUInteger)style
 				  backing:(NSBackingStoreType)bufferingType defer:(BOOL)flag
 {
@@ -45,7 +46,7 @@
 		// to the highest application level window instead so that the user can
 		// continue to use their computer while your program is loading. See the
 		// documentation on NSWindow for descriptions of the various levels of windows.
-		[window setLevel:NSFloatingWindowLevel];
+		[window setLevel:NSModalPanelWindowLevel];
 	}
 	
 	return window;

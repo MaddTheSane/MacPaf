@@ -58,6 +58,8 @@
 		556AC8AB1806A94C0046242E /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 556AC8AA1806A94C0046242E /* Media.xcassets */; };
 		557B6536180B0E5F009FABAE /* MainToolbarDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 557B6534180B0E5F009FABAE /* MainToolbarDelegate.h */; };
 		557B6537180B0E5F009FABAE /* MainToolbarDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 557B6535180B0E5F009FABAE /* MainToolbarDelegate.m */; };
+		557B653B180B6B50009FABAE /* MyDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 557B6538180B6B50009FABAE /* MyDocument.h */; };
+		557B653C180B6B50009FABAE /* MyDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 557B6539180B6B50009FABAE /* MyDocument.m */; };
 		559A716618060F51005DE4AE /* UKProgressPanelTask.xib in Resources */ = {isa = PBXBuildFile; fileRef = 559A716818060F51005DE4AE /* UKProgressPanelTask.xib */; };
 		559A71761806101D005DE4AE /* RecordSelectionWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 559A71701806101D005DE4AE /* RecordSelectionWindow.xib */; };
 		559A717718061026005DE4AE /* FamilyListWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 559A717918061026005DE4AE /* FamilyListWindow.xib */; };
@@ -128,8 +130,8 @@
 		0250C09C07AC858500AC3629 /* UnknownGedcomLinkException.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = UnknownGedcomLinkException.java; sourceTree = "<group>"; };
 		025FC08D092EC045006B2989 /* WrappedTableViewDataSource.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = WrappedTableViewDataSource.java; sourceTree = "<group>"; };
 		0263E4A60A20EF430087A335 /* License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
-		0263E4E10A20F4450087A335 /* ApplicationStartupHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationStartupHelper.h; sourceTree = "<group>"; };
-		0263E4E20A20F4450087A335 /* ApplicationStartupHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationStartupHelper.m; sourceTree = "<group>"; };
+		0263E4E10A20F4450087A335 /* ApplicationStartupHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ApplicationStartupHelper.h; path = ../ApplicationStartupHelper.h; sourceTree = "<group>"; };
+		0263E4E20A20F4450087A335 /* ApplicationStartupHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ApplicationStartupHelper.m; path = ../ApplicationStartupHelper.m; sourceTree = "<group>"; };
 		026AAA37099F222200F742A5 /* HeaderJDOMTest.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = HeaderJDOMTest.java; path = src/com/redbugz/maf/test/HeaderJDOMTest.java; sourceTree = "<group>"; };
 		026ED71205D932BC0001D1D2 /* ApplicationUtilities.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = ApplicationUtilities.java; path = src/ApplicationUtilities.java; sourceTree = "<group>"; };
 		026ED73C05D932BD0001D1D2 /* FamilyEditController.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = FamilyEditController.java; path = src/FamilyEditController.java; sourceTree = "<group>"; };
@@ -216,8 +218,8 @@
 		02B3D1B2077B11CF0069077B /* Hex.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = Hex.java; sourceTree = "<group>"; };
 		02B3D1B3077B11CF0069077B /* StringUtils.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = StringUtils.java; sourceTree = "<group>"; };
 		02B3D1B4077B11CF0069077B /* XMLTest.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = XMLTest.java; sourceTree = "<group>"; };
-		02B51F020B23D727003C1D2E /* PAF21Data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PAF21Data.h; sourceTree = "<group>"; };
-		02B51F030B23D727003C1D2E /* PAF21Data.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PAF21Data.m; sourceTree = "<group>"; wrapsLines = 1; };
+		02B51F020B23D727003C1D2E /* PAF21Data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PAF21Data.h; path = ../PAF21Data.h; sourceTree = "<group>"; };
+		02B51F030B23D727003C1D2E /* PAF21Data.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PAF21Data.m; path = ../PAF21Data.m; sourceTree = "<group>"; wrapsLines = 1; };
 		02B8AC5008F045D700AE39EC /* HistoryController.java */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.java; name = HistoryController.java; path = src/HistoryController.java; sourceTree = "<group>"; };
 		02C5BE4F0939F8EF0086B510 /* ValidationException.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = ValidationException.java; sourceTree = "<group>"; };
 		02C5BFBD0948218C0086B510 /* GedcomLoaderJDOM.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = GedcomLoaderJDOM.java; sourceTree = "<group>"; };
@@ -226,10 +228,10 @@
 		02C876920B3EF267005E8B53 /* UKProgressPanel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UKProgressPanel.m; sourceTree = "<group>"; };
 		02C876930B3EF267005E8B53 /* UKProgressPanelTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UKProgressPanelTask.h; sourceTree = "<group>"; };
 		02C876940B3EF267005E8B53 /* UKProgressPanelTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UKProgressPanelTask.m; sourceTree = "<group>"; };
-		02D001410B482EDB00C3CDF4 /* ImportSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImportSheetController.h; sourceTree = "<group>"; };
-		02D001420B482EDB00C3CDF4 /* ImportSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImportSheetController.m; sourceTree = "<group>"; };
-		02D0062A0B4A445600C3CDF4 /* TransparentSplashScreenWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransparentSplashScreenWindow.h; sourceTree = "<group>"; };
-		02D0062B0B4A445600C3CDF4 /* TransparentSplashScreenWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransparentSplashScreenWindow.m; sourceTree = "<group>"; };
+		02D001410B482EDB00C3CDF4 /* ImportSheetController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImportSheetController.h; path = ../ImportSheetController.h; sourceTree = "<group>"; };
+		02D001420B482EDB00C3CDF4 /* ImportSheetController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImportSheetController.m; path = ../ImportSheetController.m; sourceTree = "<group>"; };
+		02D0062A0B4A445600C3CDF4 /* TransparentSplashScreenWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TransparentSplashScreenWindow.h; path = ../TransparentSplashScreenWindow.h; sourceTree = "<group>"; };
+		02D0062B0B4A445600C3CDF4 /* TransparentSplashScreenWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TransparentSplashScreenWindow.m; path = ../TransparentSplashScreenWindow.m; sourceTree = "<group>"; };
 		02DDDD220A12BA9B003BC70E /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/UKCrashReporter.strings; sourceTree = "<group>"; };
 		02DDDD230A12BA9C003BC70E /* UKCrashReporter Readme.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "UKCrashReporter Readme.txt"; sourceTree = "<group>"; };
 		02DDDD240A12BA9C003BC70E /* UKCrashReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UKCrashReporter.h; sourceTree = "<group>"; };
@@ -249,18 +251,20 @@
 		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32DBCF820370BDBC00C91783 /* MAF_Prefix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAF_Prefix.h; sourceTree = "<group>"; };
-		556AC897180636760046242E /* IndividualListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IndividualListController.h; path = "Objective C Classes/IndividualListController.h"; sourceTree = "<group>"; };
-		556AC898180636760046242E /* IndividualListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IndividualListController.m; path = "Objective C Classes/IndividualListController.m"; sourceTree = "<group>"; };
-		556AC89B180641F40046242E /* MAFTempleList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MAFTempleList.h; path = "Objective C Classes/MAFTempleList.h"; sourceTree = "<group>"; };
-		556AC89C180641F40046242E /* MAFTempleList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MAFTempleList.m; path = "Objective C Classes/MAFTempleList.m"; sourceTree = "<group>"; };
-		556AC89F1806432F0046242E /* FamilyListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FamilyListController.h; path = "Objective C Classes/FamilyListController.h"; sourceTree = "<group>"; };
-		556AC8A01806432F0046242E /* FamilyListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FamilyListController.m; path = "Objective C Classes/FamilyListController.m"; sourceTree = "<group>"; };
+		556AC897180636760046242E /* IndividualListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndividualListController.h; sourceTree = "<group>"; };
+		556AC898180636760046242E /* IndividualListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndividualListController.m; sourceTree = "<group>"; };
+		556AC89B180641F40046242E /* MAFTempleList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAFTempleList.h; sourceTree = "<group>"; };
+		556AC89C180641F40046242E /* MAFTempleList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAFTempleList.m; sourceTree = "<group>"; };
+		556AC89F1806432F0046242E /* FamilyListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FamilyListController.h; sourceTree = "<group>"; };
+		556AC8A01806432F0046242E /* FamilyListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FamilyListController.m; sourceTree = "<group>"; };
 		556AC8A31806A5900046242E /* Temple List.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Temple List.plist"; sourceTree = "<group>"; };
 		556AC8A61806A6210046242E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MyDocument.xib; sourceTree = "<group>"; };
 		556AC8A91806A6290046242E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MyDocument.strings; sourceTree = "<group>"; };
 		556AC8AA1806A94C0046242E /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
-		557B6534180B0E5F009FABAE /* MainToolbarDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainToolbarDelegate.h; path = "Objective C Classes/MainToolbarDelegate.h"; sourceTree = "<group>"; };
-		557B6535180B0E5F009FABAE /* MainToolbarDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainToolbarDelegate.m; path = "Objective C Classes/MainToolbarDelegate.m"; sourceTree = "<group>"; };
+		557B6534180B0E5F009FABAE /* MainToolbarDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainToolbarDelegate.h; sourceTree = "<group>"; };
+		557B6535180B0E5F009FABAE /* MainToolbarDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainToolbarDelegate.m; sourceTree = "<group>"; };
+		557B6538180B6B50009FABAE /* MyDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDocument.h; sourceTree = "<group>"; };
+		557B6539180B6B50009FABAE /* MyDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyDocument.m; sourceTree = "<group>"; };
 		559A716718060F51005DE4AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/UKProgressPanelTask.xib; sourceTree = "<group>"; };
 		559A716A18060F57005DE4AE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/UKProgressPanelTask.strings; sourceTree = "<group>"; };
 		559A71701806101D005DE4AE /* RecordSelectionWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecordSelectionWindow.xib; sourceTree = "<group>"; };
@@ -272,8 +276,8 @@
 		55C8A29A18072CDB00A7BB42 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		55C8A29D18072CDB00A7BB42 /* TempleListGenerator-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TempleListGenerator-Prefix.pch"; sourceTree = "<group>"; };
 		55C8A29E18072CDB00A7BB42 /* TempleListGenerator.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = TempleListGenerator.1; sourceTree = "<group>"; };
-		55C8A2A51807302900A7BB42 /* MAFXMLTempleParserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MAFXMLTempleParserDelegate.h; path = "Objective C Classes/MAFXMLTempleParserDelegate.h"; sourceTree = "<group>"; };
-		55C8A2A61807302900A7BB42 /* MAFXMLTempleParserDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MAFXMLTempleParserDelegate.m; path = "Objective C Classes/MAFXMLTempleParserDelegate.m"; sourceTree = "<group>"; };
+		55C8A2A51807302900A7BB42 /* MAFXMLTempleParserDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAFXMLTempleParserDelegate.h; sourceTree = "<group>"; };
+		55C8A2A61807302900A7BB42 /* MAFXMLTempleParserDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAFXMLTempleParserDelegate.m; sourceTree = "<group>"; };
 		55C8A42C1808A11F00A7BB42 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MainMenu.strings; sourceTree = "<group>"; };
 		55C8A42E1808A12E00A7BB42 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/IndividualListWindow.strings; sourceTree = "<group>"; };
 		55C8A4301808A45E00A7BB42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ImportSheet.xib; sourceTree = "<group>"; };
@@ -588,6 +592,7 @@
 		2A37F4AAFDCFA73011CA2CEA /* MAF */ = {
 			isa = PBXGroup;
 			children = (
+				55F03E9418060E190043C72C /* Java classes */,
 				32DBCF800370BD9700C91783 /* Classes */,
 				0218FF4908F98E5E00F67E81 /* Tests */,
 				32DBCF810370BDA300C91783 /* Other Sources */,
@@ -614,7 +619,6 @@
 		32DBCF800370BD9700C91783 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				55F03E9418060E190043C72C /* Java classes */,
 				556AC892180635D70046242E /* Delegates */,
 				0263E4E10A20F4450087A335 /* ApplicationStartupHelper.h */,
 				0263E4E20A20F4450087A335 /* ApplicationStartupHelper.m */,
@@ -628,8 +632,11 @@
 				556AC89C180641F40046242E /* MAFTempleList.m */,
 				557B6534180B0E5F009FABAE /* MainToolbarDelegate.h */,
 				557B6535180B0E5F009FABAE /* MainToolbarDelegate.m */,
+				557B6538180B6B50009FABAE /* MyDocument.h */,
+				557B6539180B6B50009FABAE /* MyDocument.m */,
 			);
 			name = Classes;
+			path = "Objective C Classes";
 			sourceTree = "<group>";
 		};
 		32DBCF810370BDA300C91783 /* Other Sources */ = {
@@ -723,6 +730,7 @@
 				0263E4E30A20F4450087A335 /* ApplicationStartupHelper.h in Headers */,
 				02B51F040B23D727003C1D2E /* PAF21Data.h in Headers */,
 				557B6536180B0E5F009FABAE /* MainToolbarDelegate.h in Headers */,
+				557B653B180B6B50009FABAE /* MyDocument.h in Headers */,
 				02C876990B3EF267005E8B53 /* UKProgressPanel.h in Headers */,
 				02C8769B0B3EF267005E8B53 /* UKProgressPanelTask.h in Headers */,
 				02D001450B482EDB00C3CDF4 /* ImportSheetController.h in Headers */,
@@ -855,6 +863,7 @@
 				02C8769C0B3EF267005E8B53 /* UKProgressPanelTask.m in Sources */,
 				556AC89A180636760046242E /* IndividualListController.m in Sources */,
 				02D001460B482EDB00C3CDF4 /* ImportSheetController.m in Sources */,
+				557B653C180B6B50009FABAE /* MyDocument.m in Sources */,
 				02D0062D0B4A445600C3CDF4 /* TransparentSplashScreenWindow.m in Sources */,
 				022394AA0BA2246900D268F1 /* NSData+RSHexDump.m in Sources */,
 				0205627F0BB7355700CB9F64 /* ThreadWorker.m in Sources */,
@@ -985,8 +994,10 @@
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				LLVM_LTO = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
@@ -999,8 +1010,10 @@
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_OPTIMIZATION_LEVEL = fast;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				LLVM_LTO = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				SDKROOT = macosx;
@@ -1019,6 +1032,7 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MAF_Prefix.h;
+				GCC_PREPROCESSOR_DEFINITIONS = "USEAPPKITFUNCTIONS=1";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				PRODUCT_NAME = MAF;
@@ -1038,6 +1052,7 @@
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = MAF_Prefix.h;
+				GCC_PREPROCESSOR_DEFINITIONS = "USEAPPKITFUNCTIONS=1";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				PRODUCT_NAME = MAF;

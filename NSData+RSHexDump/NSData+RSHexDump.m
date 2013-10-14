@@ -21,15 +21,15 @@ const unsigned int kDefaultMaxBytesToHexDump = 1024;
 	return [self descriptionFromOffset:0];
 }
 
-- (NSString *)descriptionFromOffset:(int)startOffset
+- (NSString *)descriptionFromOffset:(NSInteger)startOffset
 {
 	return [self descriptionFromOffset:startOffset limitingToByteCount:kDefaultMaxBytesToHexDump];
 }
 
-- (NSString *)descriptionFromOffset:(int)startOffset limitingToByteCount:(unsigned int)maxBytes
+- (NSString *)descriptionFromOffset:(NSInteger)startOffset limitingToByteCount:(NSUInteger)maxBytes
 {
     unsigned char *bytes = (unsigned char *)[self bytes];
-    unsigned int stopOffset = [self length];
+    NSUInteger stopOffset = [self length];
 
 	// Translate negative offset to positive, by subtracting from end
 	if (startOffset < 0)
@@ -49,20 +49,20 @@ const unsigned int kDefaultMaxBytesToHexDump = 1024;
 	NSString* curtailInfo = @"";
 	if ((startOffset > 0) || (stopOffset < [self length]))
 	{
-		curtailInfo = [NSString stringWithFormat:@" (showing bytes %d through %d)", startOffset, stopOffset];
+		curtailInfo = [NSString stringWithFormat:@" (showing bytes %lu through %lu)", (unsigned long)startOffset, (unsigned long)stopOffset];
 	}
 	
 	// Start the hexdump out with an overview of the content
 	NSMutableString *buf = [NSMutableString stringWithFormat:@"NSData %lu bytes%@:\n", (unsigned long)[self length], curtailInfo];
 	
 	// One row of 16-bytes at a time ...
-    int i, j;
+    NSInteger i, j;
     for ( i = startOffset ; i < stopOffset ; i += 16 )
     {
 		// Show the row in Hex first
         for ( j = 0 ; j < 16 ; j++ )    
         {
-            int rowOffset = i+j;
+            NSInteger rowOffset = i+j;
             if (rowOffset < stopOffset)
             {
                 [buf appendFormat:@"%02X ", bytes[rowOffset]];
@@ -77,7 +77,7 @@ const unsigned int kDefaultMaxBytesToHexDump = 1024;
         [buf appendString:@"| "];   
         for ( j = 0 ; j < 16 ; j++ )
         {
-            int rowOffset = i+j;
+            NSInteger rowOffset = i+j;
             if (rowOffset < stopOffset)
             {
                 unsigned char theChar = bytes[rowOffset];

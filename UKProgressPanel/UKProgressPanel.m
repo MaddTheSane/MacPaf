@@ -192,7 +192,7 @@ NSLock*						gUKProgressPanelThreadLock = nil;			// Users will want to use threa
 	[gUKProgressPanelThreadLock lock];
 
 	NSArray*			subs = [taskContentView subviews];
-	unsigned int		pos = [subs indexOfObject: [theElement progressTaskView]];
+	NSUInteger			pos = [subs indexOfObject: [theElement progressTaskView]];
 	NSEnumerator*		elEnum = [subs objectEnumerator];
 	NSSize				sizeGone = [[theElement progressTaskView] frame].size;
 	unsigned int		x;
@@ -213,7 +213,7 @@ NSLock*						gUKProgressPanelThreadLock = nil;			// Users will want to use threa
 	[taskContentView setNeedsDisplay:YES];
 	
 	// Update "number of tasks" status display:
-	unsigned int tCount = [subs count];
+	NSUInteger tCount = [subs count];
 	if( tCount == 0 )
 		[taskStatus setStringValue: NSLocalizedStringFromTable(@"No active tasks.",@"UKProgressPanel", nil)];
 	else

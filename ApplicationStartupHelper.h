@@ -9,8 +9,6 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface ApplicationStartupHelper : NSObject {
-
-}
+@interface ApplicationStartupHelper : NSObject
 
 @end

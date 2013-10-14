@@ -9,8 +9,6 @@
 #import <Cocoa/Cocoa.h>
 
 
-@interface TransparentSplashScreenWindow : NSWindow {
-
-}
+@interface TransparentSplashScreenWindow : NSWindow
 
 @end

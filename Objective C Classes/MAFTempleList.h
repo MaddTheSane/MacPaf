@@ -6,8 +6,8 @@
 //
 //
 
-#import <Foundation/Foundation.h>
+#import <Cocoa/Cocoa.h>
 
-@interface MAFTempleList : NSObject
+@interface MAFTempleList : NSObject <NSComboBoxDataSource>
 + (NSDictionary*)templeWithCode:(NSString*)theCode;
 @end

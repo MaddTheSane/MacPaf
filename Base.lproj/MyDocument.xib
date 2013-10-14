@@ -62,21 +62,21 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <box title="Children" boxType="oldStyle" borderType="none" id="222">
-                                            <rect key="frame" x="17" y="4" width="218" height="213"/>
+                                            <rect key="frame" x="17" y="4" width="217" height="212"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                             <view key="contentView">
-                                                <rect key="frame" x="0.0" y="0.0" width="218" height="195"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="217" height="194"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" findBarPosition="aboveHorizontalRuler" id="137">
-                                                        <rect key="frame" x="14" y="14" width="186" height="175"/>
+                                                        <rect key="frame" x="14" y="14" width="185" height="174"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                         <clipView key="contentView" id="xm5-6Z-WGj">
-                                                            <rect key="frame" x="1" y="1" width="184" height="173"/>
+                                                            <rect key="frame" x="1" y="1" width="183" height="172"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <tableView verticalHuggingPriority="750" tag="1" allowsExpansionToolTips="YES" alternatingRowBackgroundColors="YES" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" id="196">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="184" height="173"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="183" height="172"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <size key="intercellSpacing" width="3" height="2"/>
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -94,7 +94,7 @@
                                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                             </textFieldCell>
                                                                         </tableColumn>
-                                                                        <tableColumn identifier="name" editable="NO" width="154" minWidth="8" maxWidth="1000" id="171">
+                                                                        <tableColumn identifier="name" editable="NO" width="153" minWidth="8" maxWidth="1000" id="171">
                                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                                                 <font key="font" metaFont="smallSystem"/>
                                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -133,27 +133,27 @@
                                             <font key="titleFont" metaFont="systemBold"/>
                                         </box>
                                         <box title="Individual's Spouses" boxType="oldStyle" borderType="none" id="224">
-                                            <rect key="frame" x="237" y="4" width="212" height="213"/>
+                                            <rect key="frame" x="237" y="4" width="205" height="211"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                             <view key="contentView">
-                                                <rect key="frame" x="0.0" y="0.0" width="212" height="195"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="205" height="193"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" findBarPosition="aboveHorizontalRuler" id="125">
-                                                        <rect key="frame" x="14" y="14" width="186" height="175"/>
+                                                        <rect key="frame" x="14" y="14" width="181" height="174"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                                         <clipView key="contentView" id="Evc-vG-arq">
-                                                            <rect key="frame" x="1" y="1" width="184" height="173"/>
+                                                            <rect key="frame" x="1" y="1" width="179" height="172"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <tableView verticalHuggingPriority="750" tag="2" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" id="121">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="184" height="173"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="179" height="172"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <size key="intercellSpacing" width="3" height="2"/>
                                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                                     <tableColumns>
-                                                                        <tableColumn editable="NO" width="181" minWidth="40" maxWidth="1000" id="190">
+                                                                        <tableColumn editable="NO" width="176" minWidth="40" maxWidth="1000" id="190">
                                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                                                 <font key="font" metaFont="smallSystem"/>
                                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -202,7 +202,7 @@
                                             </connections>
                                         </button>
                                         <button id="301">
-                                            <rect key="frame" x="458" y="364" width="208" height="106"/>
+                                            <rect key="frame" x="459" y="365" width="207" height="105"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" heightSizable="YES"/>
                                             <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" imagePosition="right" alignment="left" borderStyle="border" inset="2" id="1384">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -224,7 +224,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <button id="303">
-                                            <rect key="frame" x="238" y="364" width="204" height="106"/>
+                                            <rect key="frame" x="238" y="364" width="203" height="105"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                             <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" imagePosition="right" alignment="left" borderStyle="border" inset="2" id="1386">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -246,7 +246,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <button id="305">
-                                            <rect key="frame" x="18" y="364" width="204" height="106"/>
+                                            <rect key="frame" x="18" y="365" width="203" height="105"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
                                             <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" imagePosition="right" alignment="left" lineBreakMode="truncatingMiddle" borderStyle="border" inset="2" id="1388">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -268,7 +268,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <button id="307">
-                                            <rect key="frame" x="18" y="220" width="204" height="106"/>
+                                            <rect key="frame" x="18" y="220" width="203" height="105"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                             <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" imagePosition="right" alignment="left" borderStyle="border" inset="2" id="1390">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -279,7 +279,7 @@
                                             </connections>
                                         </button>
                                         <textField verticalHuggingPriority="750" id="308">
-                                            <rect key="frame" x="17" y="311" width="114" height="32"/>
+                                            <rect key="frame" x="17" y="310" width="114" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" id="1391">
                                                 <font key="font" metaFont="systemBold"/>
@@ -290,7 +290,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <button id="309">
-                                            <rect key="frame" x="238" y="220" width="204" height="106"/>
+                                            <rect key="frame" x="238" y="220" width="203" height="105"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                             <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" imagePosition="right" alignment="left" borderStyle="border" inset="2" id="1392">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -301,7 +301,7 @@
                                             </connections>
                                         </button>
                                         <textField verticalHuggingPriority="750" id="310">
-                                            <rect key="frame" x="237" y="311" width="114" height="32"/>
+                                            <rect key="frame" x="237" y="310" width="114" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" id="1393">
                                                 <font key="font" metaFont="systemBold"/>
@@ -312,7 +312,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <button id="311">
-                                            <rect key="frame" x="458" y="243" width="204.00000000000006" height="106"/>
+                                            <rect key="frame" x="458.99999999999994" y="243" width="203" height="105"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                             <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" imagePosition="right" alignment="left" borderStyle="border" inset="2" id="1394">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -323,7 +323,7 @@
                                             </connections>
                                         </button>
                                         <textField verticalHuggingPriority="750" id="312">
-                                            <rect key="frame" x="457" y="334" width="114" height="32"/>
+                                            <rect key="frame" x="457" y="333" width="114" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" id="1395">
                                                 <font key="font" metaFont="systemBold"/>
@@ -334,7 +334,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <button id="313">
-                                            <rect key="frame" x="458" y="121" width="207" height="106"/>
+                                            <rect key="frame" x="458" y="121" width="207" height="105"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                             <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" imagePosition="right" alignment="left" borderStyle="border" inset="2" id="1396">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -345,7 +345,7 @@
                                             </connections>
                                         </button>
                                         <textField verticalHuggingPriority="750" id="314">
-                                            <rect key="frame" x="457" y="212" width="114" height="32"/>
+                                            <rect key="frame" x="457" y="211" width="114" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" id="1397">
                                                 <font key="font" metaFont="systemBold"/>
@@ -356,7 +356,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <button id="315">
-                                            <rect key="frame" x="458.00000000000006" y="0.0" width="204" height="106"/>
+                                            <rect key="frame" x="458.99999999999994" y="0.0" width="203" height="106"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                             <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" imagePosition="right" alignment="left" borderStyle="border" inset="2" id="1398">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -2052,7 +2052,7 @@ DQ
                                                                             </textFieldCell>
                                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                         </tableColumn>
-                                                                        <tableColumn identifier="birthdate" editable="NO" width="139" minWidth="10" maxWidth="1000" id="266">
+                                                                        <tableColumn identifier="birthdate" editable="NO" width="140" minWidth="10" maxWidth="1000" id="266">
                                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                                                 <font key="font" metaFont="smallSystem"/>
                                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -2065,7 +2065,7 @@ DQ
                                                                             </textFieldCell>
                                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                         </tableColumn>
-                                                                        <tableColumn identifier="birthplace" editable="NO" width="135" minWidth="4" maxWidth="1000" id="267">
+                                                                        <tableColumn identifier="birthplace" editable="NO" width="134" minWidth="4" maxWidth="1000" id="267">
                                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                                                 <font key="font" metaFont="smallSystem"/>
                                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -2459,7 +2459,7 @@ DQ
                 </subviews>
             </view>
         </window>
-        <customObject id="481" userLabel="TempleList" customClass="com.redbugz.maf.TempleList"/>
+        <customObject id="481" userLabel="TempleList" customClass="MAFTempleList"/>
         <customObject id="514" userLabel="FamilyList" customClass="FamilyList">
             <connections>
                 <outlet property="document" destination="-2" id="523"/>
@@ -2512,8 +2512,8 @@ DQ
                 <outlet property="window" destination="248" id="660"/>
             </connections>
         </customObject>
-        <customObject id="707" userLabel="SurnameList" customClass="com.redbugz.maf.SurnameList"/>
-        <customObject id="709" userLabel="LocationList" customClass="com.redbugz.maf.LocationList"/>
+        <customObject id="707" userLabel="SurnameList" customClass="MAFSurnameList"/>
+        <customObject id="709" userLabel="LocationList" customClass="MAFLocationList"/>
         <window title="Individual Notes" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" wantsToBeColor="NO" visibleAtLaunch="NO" animationBehavior="default" id="711" userLabel="noteWindow">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>

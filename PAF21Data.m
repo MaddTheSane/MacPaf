@@ -120,36 +120,36 @@ NSDateFormatter *dateFormatter;
 }
 
 
-- (NSCalendarDate *)dateForDualDate:(struct DualDate_t *)dualDate
+- (NSCalendarDate *)dateForDualDate:(const struct DualDate_t *)dualDate
 {
 	return [NSCalendarDate dateWithYear:dualDate->year month:dualDate->month day:dualDate->day hour:0 minute:0 second:0 timeZone:nil];
 }
 
-- (NSCalendarDate *)dateForRegDate:(struct RegDate_t *)regDate
+- (NSCalendarDate *)dateForRegDate:(const struct RegDate_t *)regDate
 {
 	return [NSCalendarDate dateWithYear:regDate->year month:regDate->month day:regDate->day hour:0 minute:0 second:0 timeZone:nil];
 }
 
-- (NSString *)dateStringForDualDate:(struct DualDate_t *)dualDate
+- (NSString *)dateStringForDualDate:(const struct DualDate_t *)dualDate
 {
 	return [dateFormatter stringFromDate:[self dateForDualDate:dualDate]];
 }
 
-- (NSString *)dateStringForRegDate:(struct RegDate_t *)regDate
+- (NSString *)dateStringForRegDate:(const struct RegDate_t *)regDate
 {
 	return [dateFormatter stringFromDate:[self dateForRegDate:regDate]];
 }
 
-- (struct RegDate_t *)regDateFromData:(NSData *)data atOffset:(int)offset
+- (const struct RegDate_t *)regDateFromData:(NSData *)data atOffset:(int)offset
 {
-	struct RegDate_t *value = [[data subdataWithRange:NSMakeRange(offset,3)] bytes];
+	const struct RegDate_t *value = [[data subdataWithRange:NSMakeRange(offset,3)] bytes];
 	NSLog(@"regDateFromData:atOffset:%i returns: y=%i m=%i d=%i mod=%i data:%@", offset, value->year, value->month, value->day, value->modifier, [data subdataWithRange:NSMakeRange(offset,3)]);
 	return value;
 }
 
-- (struct DualDate_t *)dualDateFromData:(NSData *)data atOffset:(int)offset
+- (const struct DualDate_t *)dualDateFromData:(NSData *)data atOffset:(int)offset
 {
-	struct DualDate_t *value = [[data subdataWithRange:NSMakeRange(offset,4)] bytes];
+	const struct DualDate_t *value = [[data subdataWithRange:NSMakeRange(offset,4)] bytes];
 	NSLog(@"dualDateFromData:atOffset:%i returns: y=%i m=%i d=%i mod=%i dual=%i data:%@", offset, value->year, value->month, value->day, value->modifier, value->offset, [data subdataWithRange:NSMakeRange(offset,4)]);
 	return value;
 }
@@ -390,7 +390,7 @@ NSDateFormatter *dateFormatter;
 		NSLog(@"Struct: marr: rcount = %i, chunks = %i, free=%i", oneHead->MarrRCount, oneHead->MChunkCount, oneHead->MarrFree);
 		NSLog(@"Struct: name: rcount = %i, chunks = %i", oneHead->NameRCount, oneHead->NChunkCount);
 		NSLog(@"Struct: note: rcount = %i, chunks = %i", oneHead->NoteRCount, oneHead->TChunkCount);
-		NSLog(@"Struct: name index: rcount = %i, chunks = %i", oneHead->NameIndexRCount, oneHead->XChunkCount, oneHead->ChunkCount);
+		NSLog(@"Struct: name index: rcount = %i, chunks = %i, %i", oneHead->NameIndexRCount, oneHead->XChunkCount, oneHead->ChunkCount);
 		NSLog(@"Struct: total chunks = %i", oneHead->ChunkCount);
 		
 		indivChunks = [NSMutableArray new];
@@ -453,7 +453,7 @@ NSDateFormatter *dateFormatter;
 	[self importDataIntoDocument:[[NSDocumentController sharedDocumentController] currentDocument]];
 }
 
-- (void)importDataIntoDocument:(NSObject<MAFDocumentDelegate> *)document
+- (void)importDataIntoDocument:(MAFDocument *)document
 {
 	NSLog(@"%s document: %@", sel_getName(_cmd), document);
 	
@@ -505,7 +505,7 @@ NSDateFormatter *dateFormatter;
 				NSLog(@"i=%i chunkIndex=%i recIndex=%i offset=%i", i, chunkIndex, recIndex, offset);
 				
 				NSData * obj = nameChunks[chunkIndex];
-				struct NameRecord_t *nameRec = [[obj subdataWithRange:NSMakeRange(offset,recSize)] bytes];
+				const struct NameRecord_t *nameRec = [[obj subdataWithRange:NSMakeRange(offset,recSize)] bytes];
 				int leftLink = EndianU16_LtoN(nameRec->leftLink);
 				int rightLink = EndianU16_LtoN(nameRec->rightLink);
 				NSString *name = [NSString stringWithCString:nameRec->name encoding:NSMacOSRomanStringEncoding];
@@ -558,7 +558,7 @@ NSDateFormatter *dateFormatter;
 			NSData *data = noteDataList[i];
 			if ([data length] > 0) {
 				NSLog(@"doc %@ ctrl %@ currdoc %@", document, [NSDocumentController sharedDocumentController], [[NSDocumentController sharedDocumentController] currentDocument]);
-				id newNote = [document performSelector:@selector(createAndInsertNewNote)];
+				id newNote = [document createAndInsertNewNote];
 				NSString *text = [self cleanNoteString:[self stringFromMacRomanData:data]];
 				[newNote takeValue:text	forKey:@"text"];
 				
@@ -602,20 +602,20 @@ NSDateFormatter *dateFormatter;
 									[self nameForPointer:givenName3]] componentsJoinedByString:@" "];
 				NSLog(@"givenNames:%@", givenNames);
 				
-				struct DualDate_t *birthDate = [self dualDateFromData:obj atOffset:offset+11];
+				const struct DualDate_t *birthDate = [self dualDateFromData:obj atOffset:offset+11];
 				NSString *birthPlaceString = [self placeStringFromData:obj atOffset:offset+15];
-				struct DualDate_t *christeningDate = [self dualDateFromData:obj atOffset:offset+23];
+				const struct DualDate_t *christeningDate = [self dualDateFromData:obj atOffset:offset+23];
 				NSString *christeningPlaceString = [self placeStringFromData:obj atOffset:offset+27];
-				struct DualDate_t *deathDate = [self dualDateFromData:obj atOffset:offset+35];
+				const struct DualDate_t *deathDate = [self dualDateFromData:obj atOffset:offset+35];
 				NSString *deathPlaceString = [self placeStringFromData:obj atOffset:offset+39];
-				struct DualDate_t *burialDate = [self dualDateFromData:obj atOffset:offset+47];
+				const struct DualDate_t *burialDate = [self dualDateFromData:obj atOffset:offset+47];
 				NSString *burialPlaceString = [self placeStringFromData:obj atOffset:offset+51];
 				
-				struct RegDate_t *baptismDate = [self regDateFromData:obj atOffset:offset+59];
+				const struct RegDate_t *baptismDate = [self regDateFromData:obj atOffset:offset+59];
 				NSString *baptismTempleString = [self nameForPointer:[self shortFromData:obj atOffset:offset+62]];
-				struct RegDate_t *endowmentDate = [self regDateFromData:obj atOffset:offset+64];
+				const struct RegDate_t *endowmentDate = [self regDateFromData:obj atOffset:offset+64];
 				NSString *endowmentTempleString = [self nameForPointer:[self shortFromData:obj atOffset:offset+67]];
-				struct RegDate_t *childToParentSealingDate = [self regDateFromData:obj atOffset:offset+69];
+				const struct RegDate_t *childToParentSealingDate = [self regDateFromData:obj atOffset:offset+69];
 				NSString *childToParentSealingTempleString = [self nameForPointer:[self shortFromData:obj atOffset:offset+72]];
 				unsigned short olderSibling = [self shortFromData:obj atOffset:offset+74];
 				unsigned short individualMarriageRecord = [self shortFromData:obj atOffset:offset+76];
@@ -634,7 +634,7 @@ NSDateFormatter *dateFormatter;
 				NSLog(@"%s birthDate: %@ BirthPlace1: %d BirthPlace2: %d BirthPlace3: %d BirthPlace4: %d", _cmd, [self dateStringForDualDate:birthDate], BirthPlace1, BirthPlace2, BirthPlace3, BirthPlace4);
 */				
 				
-				id newIndividual = [document performSelector:@selector(createAndInsertNewIndividual)];
+				id newIndividual = [document createAndInsertNewIndividual];
 				//	[newIndividual takeValue:@"Created From ObjC" forKey:@"fullName"];
 				
 				[newIndividual takeValue:[self nameForPointer:surname]	forKey:@"surname"];
@@ -734,17 +734,17 @@ NSDateFormatter *dateFormatter;
 				unsigned short youngestChild = [self shortFromData:obj atOffset:offset+4];
 				NSLog(@"marr husb=%i wife=%i youngestchild=%i", husband, wife, youngestChild);
 				//		NSLog(@"surname=%@ givenname1=%@ givenname2=%@ givenname3=%@", [self nameForPointer:Surname], [self nameForPointer:GivenName1], [self nameForPointer:GivenName2], [self nameForPointer:GivenName3]);
-				struct DualDate_t *marriageDate = [self dualDateFromData:obj atOffset:offset+6];
+				const struct DualDate_t *marriageDate = [self dualDateFromData:obj atOffset:offset+6];
 				NSString *marriagePlaceString = [self placeStringFromData:obj atOffset:offset+10];
 				NSLog(@"marr place=%@", marriagePlaceString);
-				struct RegDate_t *sealingToSpouseDate = [self regDateFromData:obj atOffset:offset+18];
+				const struct RegDate_t *sealingToSpouseDate = [self regDateFromData:obj atOffset:offset+18];
 				NSString *sealingToSpouseTempleString = [self nameForPointer:[self shortFromData:obj atOffset:offset+21]];
 				
 				unsigned short husbandOtherMarriageRecord = [self shortFromData:obj atOffset:offset+23];
 				unsigned short wifeOtherMarriageRecord = [self shortFromData:obj atOffset:offset+25];
 				NSLog(@"marr sealtemple=%@ husbothmarr=%i wifeothmarr=%i", sealingToSpouseTempleString, husbandOtherMarriageRecord, wifeOtherMarriageRecord);
 				
-				id newMarriage = [document performSelector:@selector(createAndInsertNewFamily)];
+				id newMarriage = [document createAndInsertNewFamily];
 				
 				if (husband > 0) {
 					[newMarriage setValue:[self individualForPointer:husband]	forKey:@"father"];
@@ -815,7 +815,7 @@ NSDateFormatter *dateFormatter;
 	//[context save:nil];
 }
 	
-+ (void)importFromData:(NSData *)data intoDocument:(NSObject<MAFDocumentDelegate> *)document
++ (void)importFromData:(NSData *)data intoDocument:(MAFDocument *)document
 {
 	NSLog(@"%s document: %@", sel_getName(_cmd), document);
 	NSLog(@"%lu, chunks %lu", (unsigned long)[data length], (unsigned long)(([data length]-512)/1024));

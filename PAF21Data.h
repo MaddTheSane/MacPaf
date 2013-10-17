@@ -23,8 +23,8 @@
 - (id)initWithData:(NSData *)data;
 
 - (void)importData;
-- (void)importDataIntoDocument:(NSObject<MAFDocumentDelegate> *)document;
+- (void)importDataIntoDocument:(MAFDocument *)document;
 
-+ (void)importFromData:(NSData *)data intoDocument:(NSObject<MAFDocumentDelegate> *)document;
++ (void)importFromData:(NSData *)data intoDocument:(MAFDocument *)document;
 
 @end

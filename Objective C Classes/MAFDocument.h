@@ -8,14 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol MAFDocumentDelegate;
 
 @interface MAFDocument : NSObject
+@property (strong, readonly) NSMutableSet *peopleList;
+@property (strong, readonly) NSMutableSet *familyList;
 
-@end
-
-@protocol MAFDocumentDelegate <NSObject>
-
-
+- (id)createAndInsertNewIndividual;
+- (id)createAndInsertNewFamily;
 
 @end

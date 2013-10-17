@@ -17,6 +17,7 @@
 @class MAFHistoryController;
 @class MAFPedigreeViewController;
 @class MAFPedigreeView;
+@class MAFDocument;
 
 @interface MyDocument : NSDocument
 @property (weak) IBOutlet NSTableView *childrenTable;
@@ -55,6 +56,8 @@
 @property (weak) IBOutlet NSWindow *bugReportWindow; /* IBOutlet */
 @property (weak) IBOutlet NSButton *bugReportFileCheckbox; /* IBOutlet */
 @property (unsafe_unretained) IBOutlet NSTextView *bugReportText; /* IBOutlet */
+
+@property (strong, readonly) MAFDocument *mafDocument;
 
 - (IBAction)openFamilyEditSheet:(id)sender;
 - (IBAction)openIndividualEditSheet:(id)sender;

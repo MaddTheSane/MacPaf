@@ -76,6 +76,12 @@
 		55D8D4AC180F71890045C98F /* MAFDocumentData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 55D8D4AA180F71890045C98F /* MAFDocumentData.xcdatamodeld */; };
 		55D8D4AF180F722B0045C98F /* MAFDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 55D8D4AD180F722B0045C98F /* MAFDocument.h */; };
 		55D8D4B0180F722B0045C98F /* MAFDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D8D4AE180F722B0045C98F /* MAFDocument.m */; };
+		55D8D4B3181067EF0045C98F /* MAFPerson.h in Headers */ = {isa = PBXBuildFile; fileRef = 55D8D4B1181067EF0045C98F /* MAFPerson.h */; };
+		55D8D4B4181067EF0045C98F /* MAFPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D8D4B2181067EF0045C98F /* MAFPerson.m */; };
+		55D8D4B7181069740045C98F /* MAFFamily.h in Headers */ = {isa = PBXBuildFile; fileRef = 55D8D4B5181069740045C98F /* MAFFamily.h */; };
+		55D8D4B8181069740045C98F /* MAFFamily.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D8D4B6181069740045C98F /* MAFFamily.m */; };
+		55D8D4BB181069740045C98F /* MAFLocation.h in Headers */ = {isa = PBXBuildFile; fileRef = 55D8D4B9181069740045C98F /* MAFLocation.h */; };
+		55D8D4BC181069740045C98F /* MAFLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D8D4BA181069740045C98F /* MAFLocation.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -289,6 +295,12 @@
 		55D8D4AB180F71890045C98F /* MAFDocumentData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MAFDocumentData.xcdatamodel; sourceTree = "<group>"; };
 		55D8D4AD180F722B0045C98F /* MAFDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAFDocument.h; sourceTree = "<group>"; };
 		55D8D4AE180F722B0045C98F /* MAFDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAFDocument.m; sourceTree = "<group>"; };
+		55D8D4B1181067EF0045C98F /* MAFPerson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAFPerson.h; sourceTree = "<group>"; };
+		55D8D4B2181067EF0045C98F /* MAFPerson.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAFPerson.m; sourceTree = "<group>"; };
+		55D8D4B5181069740045C98F /* MAFFamily.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAFFamily.h; sourceTree = "<group>"; };
+		55D8D4B6181069740045C98F /* MAFFamily.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAFFamily.m; sourceTree = "<group>"; };
+		55D8D4B9181069740045C98F /* MAFLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAFLocation.h; sourceTree = "<group>"; };
+		55D8D4BA181069740045C98F /* MAFLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAFLocation.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -643,6 +655,7 @@
 				557B6539180B6B50009FABAE /* MyDocument.m */,
 				55D8D4AD180F722B0045C98F /* MAFDocument.h */,
 				55D8D4AE180F722B0045C98F /* MAFDocument.m */,
+				55D8D4BD18106A210045C98F /* Core Data enteties */,
 			);
 			name = Classes;
 			path = "Objective C Classes";
@@ -693,6 +706,19 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		55D8D4BD18106A210045C98F /* Core Data enteties */ = {
+			isa = PBXGroup;
+			children = (
+				55D8D4B1181067EF0045C98F /* MAFPerson.h */,
+				55D8D4B2181067EF0045C98F /* MAFPerson.m */,
+				55D8D4B9181069740045C98F /* MAFLocation.h */,
+				55D8D4BA181069740045C98F /* MAFLocation.m */,
+				55D8D4B5181069740045C98F /* MAFFamily.h */,
+				55D8D4B6181069740045C98F /* MAFFamily.m */,
+			);
+			name = "Core Data enteties";
+			sourceTree = "<group>";
+		};
 		55F03E9418060E190043C72C /* Java classes */ = {
 			isa = PBXGroup;
 			children = (
@@ -741,14 +767,17 @@
 				02B51F040B23D727003C1D2E /* PAF21Data.h in Headers */,
 				557B6536180B0E5F009FABAE /* MainToolbarDelegate.h in Headers */,
 				557B653B180B6B50009FABAE /* MyDocument.h in Headers */,
+				55D8D4B7181069740045C98F /* MAFFamily.h in Headers */,
 				02C876990B3EF267005E8B53 /* UKProgressPanel.h in Headers */,
 				02C8769B0B3EF267005E8B53 /* UKProgressPanelTask.h in Headers */,
 				02D001450B482EDB00C3CDF4 /* ImportSheetController.h in Headers */,
 				556AC89D180641F40046242E /* MAFTempleList.h in Headers */,
 				02D0062C0B4A445600C3CDF4 /* TransparentSplashScreenWindow.h in Headers */,
 				022394A90BA2246900D268F1 /* NSData+RSHexDump.h in Headers */,
+				55D8D4BB181069740045C98F /* MAFLocation.h in Headers */,
 				0205627E0BB7355700CB9F64 /* ThreadWorker.h in Headers */,
 				556AC8A11806432F0046242E /* FamilyListController.h in Headers */,
+				55D8D4B3181067EF0045C98F /* MAFPerson.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -863,11 +892,14 @@
 			files = (
 				02DE76B309E96A04003B896A /* main.m in Sources */,
 				55C8A2A81807302900A7BB42 /* MAFXMLTempleParserDelegate.m in Sources */,
+				55D8D4B4181067EF0045C98F /* MAFPerson.m in Sources */,
 				02DDDD290A12BA9C003BC70E /* UKCrashReporter.m in Sources */,
 				556AC8A21806432F0046242E /* FamilyListController.m in Sources */,
+				55D8D4BC181069740045C98F /* MAFLocation.m in Sources */,
 				0263E4E40A20F4450087A335 /* ApplicationStartupHelper.m in Sources */,
 				55D8D4B0180F722B0045C98F /* MAFDocument.m in Sources */,
 				02B51F050B23D727003C1D2E /* PAF21Data.m in Sources */,
+				55D8D4B8181069740045C98F /* MAFFamily.m in Sources */,
 				557B6537180B0E5F009FABAE /* MainToolbarDelegate.m in Sources */,
 				02C8769A0B3EF267005E8B53 /* UKProgressPanel.m in Sources */,
 				556AC89E180641F40046242E /* MAFTempleList.m in Sources */,

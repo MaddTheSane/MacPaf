@@ -1,23 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3396" systemVersion="12F45" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic">
-    <entity name="Family" syncable="YES">
+<model userDefinedModelVersionIdentifier="MAFv2" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3396" systemVersion="12F45" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic">
+    <entity name="Family" representedClassName="MAFFamily" syncable="YES">
         <attribute name="divorceDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="marriageDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="marriageLocation" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="sealingDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="sealingTemple" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="children" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Person" inverseName="children" inverseEntity="Person" syncable="YES"/>
         <relationship name="father" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Person" inverseName="relationship" inverseEntity="Person" syncable="YES"/>
         <relationship name="mother" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Person" inverseName="relationship1" inverseEntity="Person" syncable="YES"/>
     </entity>
-    <entity name="Location" syncable="YES">
+    <entity name="Location" representedClassName="MAFLocation" syncable="YES">
         <attribute name="lattidude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="locationName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="locationNumber" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
     </entity>
-    <entity name="Person" syncable="YES">
+    <entity name="Person" representedClassName="MAFPerson" syncable="YES">
+        <attribute name="afn" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="birthDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="birthPlace" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="burialDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="burialPlace" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="deathDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="deathPlace" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="gender" optional="YES" attributeType="Integer 16" minValueString="0" maxValueString="2" defaultValueString="0" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
@@ -31,8 +37,8 @@
         </fetchedProperty>
     </entity>
     <elements>
-        <element name="Family" positionX="232" positionY="342" width="128" height="148"/>
+        <element name="Family" positionX="232" positionY="342" width="128" height="163"/>
+        <element name="Location" positionX="331" positionY="99" width="128" height="103"/>
         <element name="Person" positionX="0" positionY="0" width="128" height="236"/>
-        <element name="Location" positionX="331" positionY="99" width="128" height="90"/>
     </elements>
 </model>

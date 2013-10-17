@@ -7,6 +7,14 @@
 //
 
 #import "MyDocument.h"
+#import "MAFDocument.h"
+#import "MAFPerson.h"
+#import "MAFFamily.h"
+#import "MAFLocation.h"
+
+@interface MyDocument ()
+@property (strong, readwrite) MAFDocument *mafDocument;
+@end
 
 @implementation MyDocument
 
@@ -14,6 +22,7 @@
 {
     self = [super init];
     if (self) {
+		self.mafDocument = [[MAFDocument alloc] init];
         // Add your subclass-specific initialization here.
     }
     return self;

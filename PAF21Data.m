@@ -9,12 +9,27 @@
 #import "PAF21Data.h"
 #import "UKProgressPanelTask.h"
 #import "MAFTempleList.h"
+#import "MAFPerson.h"
+#import "MAFFamily.h"
+#import "MAFLocation.h"
 #include <unistd.h>
 
 @interface PAF21Data ()
-- (NSString *)hexString:(int)width;
+- (NSString *)hexString:(NSInteger)width;
 - (NSString *)cleanNoteString:(NSString *)noteString;
 - (NSString *)nameForPointer:(int)pointer;
+@property (retain) NSData *data;
+
+@property (retain) NSData *signatureData;
+@property (retain)NSData *reportTitleRecordData;
+@property (retain)NSData *submitterRecordData;
+@property (retain)NSData *preferenceData;
+@property (retain)NSData *oneHeaderData;
+@property (retain)NSData *firstMapChunkData;
+
+@property (retain)NSMutableArray *indivChunks, *marrChunks, *nameChunks, *noteChunks, *mapChunks, *otherChunks;
+@property (retain)NSDateFormatter *dateFormatter;
+
 @end
 
 @implementation PAF21Data
@@ -27,6 +42,10 @@
 @synthesize nameRecords;
 @synthesize noteList;
 @synthesize noteRecords;
+@synthesize signatureData, reportTitleRecordData, submitterRecordData, preferenceData, oneHeaderData, firstMapChunkData;
+//@synthesize data;
+@synthesize indivChunks, marrChunks, nameChunks, noteChunks, mapChunks, otherChunks;
+//@synthesize dateFormatter;
 
 struct OneHead_t {
     unsigned short IndivRCount;
@@ -80,19 +99,6 @@ struct NameRecord_t {
 };
 
 
-NSData *data;
-
-NSData *signatureData;
-NSData *reportTitleRecordData;
-NSData *submitterRecordData;
-NSData *preferenceData;
-NSData *oneHeaderData;
-NSData *firstMapChunkData;
-
-NSMutableArray *indivChunks, *marrChunks, *nameChunks, *noteChunks, *mapChunks, *otherChunks;
-NSDateFormatter *dateFormatter;
-
-
 //- (NSString *)combineNoteString:(NSManagedObject *)note {
 //	NSString *combinedString = [NSString new];
 //	NSManagedObject *nextNote = nil;
@@ -120,24 +126,24 @@ NSDateFormatter *dateFormatter;
 }
 
 
-- (NSCalendarDate *)dateForDualDate:(const struct DualDate_t *)dualDate
+- (NSDate *)dateForDualDate:(const struct DualDate_t *)dualDate
 {
 	return [NSCalendarDate dateWithYear:dualDate->year month:dualDate->month day:dualDate->day hour:0 minute:0 second:0 timeZone:nil];
 }
 
-- (NSCalendarDate *)dateForRegDate:(const struct RegDate_t *)regDate
+- (NSDate *)dateForRegDate:(const struct RegDate_t *)regDate
 {
 	return [NSCalendarDate dateWithYear:regDate->year month:regDate->month day:regDate->day hour:0 minute:0 second:0 timeZone:nil];
 }
 
 - (NSString *)dateStringForDualDate:(const struct DualDate_t *)dualDate
 {
-	return [dateFormatter stringFromDate:[self dateForDualDate:dualDate]];
+	return [self.dateFormatter stringFromDate:[self dateForDualDate:dualDate]];
 }
 
 - (NSString *)dateStringForRegDate:(const struct RegDate_t *)regDate
 {
-	return [dateFormatter stringFromDate:[self dateForRegDate:regDate]];
+	return [self.dateFormatter stringFromDate:[self dateForRegDate:regDate]];
 }
 
 - (const struct RegDate_t *)regDateFromData:(NSData *)data atOffset:(int)offset
@@ -262,7 +268,7 @@ NSDateFormatter *dateFormatter;
 }
 
 - (NSString *)stringFromASCIIBytes:(const void *)bytes length:(int)length {
-	return  [[NSString alloc] initWithBytes:bytes length:length encoding:NSASCIIStringEncoding]; // convert NSData -> NSString
+	return [self stringFromASCIIData:[NSData dataWithBytes:bytes length:length]];
 }
 
 - (NSString *)stringFromASCIIData:(NSData *)data
@@ -272,7 +278,7 @@ NSDateFormatter *dateFormatter;
 
 - (NSString *)stringFromMacRomanBytes:(const void *)bytes length:(int)length
 {
-	return  [[NSString alloc] initWithBytes:bytes length:length encoding:NSMacOSRomanStringEncoding]; // convert NSData -> NSString
+	return [self stringFromMacRomanData:[NSData dataWithBytes:bytes length:length]];
 }
 
 - (NSString *)stringFromMacRomanData:(NSData *)data
@@ -330,9 +336,9 @@ NSDateFormatter *dateFormatter;
 	return representation;
 }
 
-- (NSString *)hexString:(int)width
+- (NSString *)hexString:(NSInteger)width
 {
-	return [self hexRepresentation:data length:width];
+	return [self hexRepresentation:self.data length:width];
 }
 
 - (NSString *)hexRepresentation:(NSData *)data
@@ -362,23 +368,23 @@ NSDateFormatter *dateFormatter;
 {
     if(self = [super init])
 	{
-		data = newData;
-		dateFormatter = [[NSDateFormatter alloc] initWithDateFormat:@"%d %b %Y" allowNaturalLanguage:NO];
+		self.data = newData;
+		self.dateFormatter = [[[NSDateFormatter alloc] initWithDateFormat:@"%d %b %Y" allowNaturalLanguage:NO] autorelease];
 		
-		NSLog(@"version: %@", [self stringFromASCIIData:[data subdataWithRange:NSMakeRange(0,4)]]);
-		NSLog(@"%s, %@ ", "ascii", [self hexRepresentation:[data subdataWithRange:NSMakeRange(0,4)]]);
-		NSLog(@"%s, %@ ", "ascii", [self hexRepresentation:[data subdataWithRange:NSMakeRange(121,9)]]);
-		NSString *apple = [self stringFromMacRomanData:[data subdataWithRange:NSMakeRange(121,9)]];
+		NSLog(@"version: %@", [self stringFromASCIIData:[self.data subdataWithRange:NSMakeRange(0,4)]]);
+		NSLog(@"%s, %@ ", "ascii", [self hexRepresentation:[self.data subdataWithRange:NSMakeRange(0,4)]]);
+		NSLog(@"%s, %@ ", "ascii", [self hexRepresentation:[self.data subdataWithRange:NSMakeRange(121,9)]]);
+		NSString *apple = [self stringFromMacRomanData:[self.data subdataWithRange:NSMakeRange(121,9)]];
 		NSLog(@"%s, %@ ", "macroman", [self hexRepresentation:[apple dataUsingEncoding:NSMacOSRomanStringEncoding]]);
 		NSLog(@"%s, %@ ", "utf8    ", [self hexRepresentation:[apple dataUsingEncoding:NSUTF8StringEncoding]]);
 		NSLog(@"%s, %@ ", "apple:", apple);
 		
-		signatureData = [data subdataWithRange:NSMakeRange(0,4)];
-		reportTitleRecordData = [data subdataWithRange:NSMakeRange(4,92)];
-		submitterRecordData = [data subdataWithRange:NSMakeRange(96,224)];
-		preferenceData = [data subdataWithRange:NSMakeRange(320,146)];
-		oneHeaderData = [data subdataWithRange:NSMakeRange(466,26)];
-		firstMapChunkData = [data subdataWithRange:NSMakeRange(512,1024)];
+		self.signatureData = [_data subdataWithRange:NSMakeRange(0,4)];
+		self.reportTitleRecordData = [_data subdataWithRange:NSMakeRange(4,92)];
+		self.submitterRecordData = [_data subdataWithRange:NSMakeRange(96,224)];
+		self.preferenceData = [_data subdataWithRange:NSMakeRange(320,146)];
+		self.oneHeaderData = [_data subdataWithRange:NSMakeRange(466,26)];
+		self.firstMapChunkData = [_data subdataWithRange:NSMakeRange(512,1024)];
 		NSLog(@"%s: %@ ", "signature", [self stringFromASCIIData:signatureData]);
 		NSLog(@"%s: %@ ", "reportTitle", [self hexRepresentation:reportTitleRecordData]);
 		NSLog(@"%s: %@ ", "submitter", [self hexRepresentation:submitterRecordData]);
@@ -408,7 +414,7 @@ NSDateFormatter *dateFormatter;
 		
 		int totalChunks = oneHead->ChunkCount, i;
 		for (i=0; i < totalChunks; i++) {
-			NSData *chunk = [data subdataWithRange:NSMakeRange(1536+(1024*i),1024)];
+			NSData *chunk = [_data subdataWithRange:NSMakeRange(1536+(1024*i),1024)];
 			NSString *type = [self stringFromMacRomanData:[firstMapChunkData subdataWithRange:NSMakeRange(i,1)]];
 			switch ([type characterAtIndex:0] ) {
 				case 'X':
@@ -634,18 +640,18 @@ NSDateFormatter *dateFormatter;
 				NSLog(@"%s birthDate: %@ BirthPlace1: %d BirthPlace2: %d BirthPlace3: %d BirthPlace4: %d", _cmd, [self dateStringForDualDate:birthDate], BirthPlace1, BirthPlace2, BirthPlace3, BirthPlace4);
 */				
 				
-				id newIndividual = [document createAndInsertNewIndividual];
+				MAFPerson *newIndividual = [document createAndInsertNewIndividual];
 				//	[newIndividual takeValue:@"Created From ObjC" forKey:@"fullName"];
 				
-				[newIndividual takeValue:[self nameForPointer:surname]	forKey:@"surname"];
-				[newIndividual takeValue:givenNames forKey:@"givenNames"];
+					newIndividual.lastName = [self nameForPointer:surname];
+					newIndividual.middleNames = givenNames;
 				[newIndividual takeValue:[self nameForPointer:title] forKey:@"namePrefix"];
 
-				[newIndividual takeValue:gender	forKey:@"genderAsString"];
-				[newIndividual takeValue:ID forKey:@"AFN"];
+					[newIndividual setGenderWithString:gender];
+					newIndividual.afn = ID;
 
 				if (birthDate->year >= 100) {
-					[newIndividual takeValue:[self dateStringForDualDate:birthDate]	forKeyPath:@"birthEvent.dateString"];
+					newIndividual.birthDate = [self dateForDualDate:birthDate];
 				}
 				if ([birthPlaceString length] > 0) {
 					id birthPlace=[NSClassFromString(@"com.redbugz.maf.jdom.PlaceJDOM") newWithSignature:@"(Ljava/lang/String;)",birthPlaceString];
@@ -744,7 +750,7 @@ NSDateFormatter *dateFormatter;
 				unsigned short wifeOtherMarriageRecord = [self shortFromData:obj atOffset:offset+25];
 				NSLog(@"marr sealtemple=%@ husbothmarr=%i wifeothmarr=%i", sealingToSpouseTempleString, husbandOtherMarriageRecord, wifeOtherMarriageRecord);
 				
-				id newMarriage = [document createAndInsertNewFamily];
+				MAFFamily *newMarriage = [document createAndInsertNewFamily];
 				
 				if (husband > 0) {
 					[newMarriage setValue:[self individualForPointer:husband]	forKey:@"father"];

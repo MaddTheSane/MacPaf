@@ -7,6 +7,8 @@
 //
 
 #import "MAFDocument.h"
+#import "MAFPerson.h"
+#import "MAFFamily.h"
 
 @interface MAFDocument ()
 @property (strong, readwrite) NSMutableSet *peopleList;
@@ -24,14 +26,18 @@
 	return self;
 }
 
-- (id)createAndInsertNewIndividual
+- (MAFPerson*)createAndInsertNewIndividual
 {
-	return nil;
+	MAFPerson *newval = [[MAFPerson alloc] init];
+	[self.peopleList addObject:newval];
+	return newval;
 }
 
-- (id)createAndInsertNewFamily
+- (MAFFamily*)createAndInsertNewFamily
 {
-	
+	MAFFamily *newval = [[MAFFamily alloc] init];
+	[self.familyList addObject:newval];
+	return newval;
 }
 
 @end

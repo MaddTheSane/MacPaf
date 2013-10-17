@@ -8,13 +8,19 @@
 
 #import <Cocoa/Cocoa.h>
 
+@protocol MAFJDOM <NSObject>
+
+- (void)loadDataForDocumentWithUpdateDelegate:(NSDictionary*)theDict;
+
+@end
+
 @class UKProgressPanelTask;	
 @class MAFDocument;
 
 @interface ImportSheetController : NSWindowController {
 	IBOutlet NSWindow *importSheet;
 	IBOutlet NSWindow *progressSheet;
-	IBOutlet id loader; // GedcomLoaderJDOM
+	IBOutlet id<MAFJDOM> loader; // GedcomLoaderJDOM
 	IBOutlet NSTextView *filePreview;
 	IBOutlet NSTextField *fileNameText;
 //	IBOutlet NSView *progressView;

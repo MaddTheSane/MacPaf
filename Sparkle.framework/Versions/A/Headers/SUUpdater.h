@@ -5,78 +5,102 @@
 //  Created by Andy Matuschak on 1/4/06.
 //  Copyright 2006 Andy Matuschak. All rights reserved.
 //
-// $Id: SUUpdater.h 56 2006-07-29 21:49:55Z atomicbird $
-// $HeadURL: http://ironcoder.org/svn/SparklePlus/trunk/SUUpdater.h $
 
-#import <Cocoa/Cocoa.h>
+#ifndef SUUPDATER_H
+#define SUUPDATER_H
 
-// Before you use Sparkle in your app, you must set SUFeedURL in Info.plist to the
-// address of the appcast on your webserver. If you don't already have an 
-// appcast, please see the Sparkle documentation to learn about how to set one up.
+#import <Sparkle/SUVersionComparisonProtocol.h>
 
-// .zip, .dmg, .tar, .tbz, .tgz archives are supported at this time.
-
-// By default, Sparkle offers to show the user the release notes of the build they'll be
-// getting, which it assumes are in the description (or body) field of the relevant RSS item.
-// Set SUShowReleaseNotes to <false/> in Info.plist to hide the button.
-
-@class SUAppcastItem, SUUpdateAlert, SUStatusController;
+@class SUUpdateDriver, SUAppcastItem, SUHost, SUAppcast;
 @interface SUUpdater : NSObject {
-	SUAppcastItem *updateItem;
-	
-	SUStatusController *statusController;
-	SUUpdateAlert *updateAlert;
-	
-	NSURLDownload *downloader;
-	NSString *downloadPath;
-			
 	NSTimer *checkTimer;
-	NSTimeInterval checkInterval;	
+	SUUpdateDriver *driver;
 	
-	BOOL verbose;
-	BOOL updateInProgress;
-	
-	id delegate;
-	
-	IBOutlet NSWindow *profileMoreInfoWindow;
-	IBOutlet NSView *profileMoreInfoView;
-	IBOutlet NSButton *profileMoreInfoButton;
-	IBOutlet NSTextField *checkForUpdatesText;
-	BOOL moreInfoVisible;
-	
-	NSString *currentSystemVersion;
+	SUHost *host;
 }
+
+@property (unsafe_unretained) id delegate;
+@property BOOL automaticallyChecksForUpdates;
+@property NSTimeInterval updateCheckInterval;
+@property (strong) NSURL *feedURL;
+@property BOOL sendsSystemProfile;
+@property BOOL automaticallyDownloadsUpdates;
+
++ (SUUpdater *)sharedUpdater;
++ (SUUpdater *)updaterForBundle:(NSBundle *)bundle;
+- (NSBundle *)hostBundle;
 
 // This IBAction is meant for a main menu item. Hook up any menu item to this action,
 // and Sparkle will check for updates and report back its findings verbosely.
 - (IBAction)checkForUpdates:sender;
 
-// This method is similar to the above, but it's intended for updates initiated by
-// the computer instead of by the user. It does not alert the user when he is up to date,
-// and it remains silent about network errors in fetching the feed. This is what you
-// want to call to update programmatically; only use checkForUpdates: with buttons and menu items.
+// This kicks off an update meant to be programmatically initiated. That is, it will display no UI unless it actually finds an update,
+// in which case it proceeds as usual. If the fully automated updating is turned on, however, this will invoke that behavior, and if an
+// update is found, it will be downloaded and prepped for installation.
 - (void)checkForUpdatesInBackground;
 
-// This method allows you to schedule a check to run every time interval. You can
-// pass 0 to this method to cancel a previously scheduled timer. You probably don't want
-// to call this directly: if you set a SUScheduledCheckInterval key in Info.plist or
-// the user defaults, Sparkle will set this up for you automatically on startup. You might
-// just want to call this every time the user changes the setting in the preferences.
-- (void)scheduleCheckWithInterval:(NSTimeInterval)interval;
+// Date of last update check. Returns null if no check has been performed.
+- (NSDate*)lastUpdateCheckDate;
 
-// Get information that will be included with update-check requests.  This method can be used
-// whether or not profile information is enabled.  Use this method to show the user what kind
-// of information will be included.  This method will invoke -updaterCustomizeProfileInfo: on
-// the delegate, if it's implemented.
-- (NSMutableArray *)systemProfileInformationArray;
+// This begins a "probing" check for updates which will not actually offer to update to that version. The delegate methods, though,
+// (up to updater:didFindValidUpdate: and updaterDidNotFindUpdate:), are called, so you can use that information in your UI.
+- (void)checkForUpdateInformation;
 
-- (IBAction)closeProfileInfoSheet:(id)sender;
+// Call this to appropriately schedule or cancel the update checking timer according to the preferences for time interval and automatic checks. This call does not change the date of the next check, but only the internal NSTimer.
+- (void)resetUpdateCycle;
+
+- (BOOL)updateInProgress;
+@end
+
+@interface NSObject (SUUpdaterDelegateInformalProtocol)
+// This method allows you to add extra parameters to the appcast URL, potentially based on whether or not Sparkle will also be sending along the system profile. This method should return an array of dictionaries with keys: "key", "value", "displayKey", "displayValue", the latter two being specifically for display to the user.
+- (NSArray *)feedParametersForUpdater:(SUUpdater *)updater sendingSystemProfile:(BOOL)sendingProfile;
+
+// Use this to override the default behavior for Sparkle prompting the user about automatic update checks.
+- (BOOL)updaterShouldPromptForPermissionToCheckForUpdates:(SUUpdater *)bundle;
+
+// Implement this if you want to do some special handling with the appcast once it finishes loading.
+- (void)updater:(SUUpdater *)updater didFinishLoadingAppcast:(SUAppcast *)appcast;
+
+// If you're using special logic or extensions in your appcast, implement this to use your own logic for finding
+// a valid update, if any, in the given appcast.
+- (SUAppcastItem *)bestValidUpdateInAppcast:(SUAppcast *)appcast forUpdater:(SUUpdater *)bundle;
+
+// Sent when a valid update is found by the update driver.
+- (void)updater:(SUUpdater *)updater didFindValidUpdate:(SUAppcastItem *)update;
+
+// Sent when a valid update is not found.
+- (void)updaterDidNotFindUpdate:(SUUpdater *)update;
+
+// Sent immediately before installing the specified update.
+- (void)updater:(SUUpdater *)updater willInstallUpdate:(SUAppcastItem *)update;
+
+// Return YES to delay the relaunch until you do some processing; invoke the given NSInvocation to continue.
+- (BOOL)updater:(SUUpdater *)updater shouldPostponeRelaunchForUpdate:(SUAppcastItem *)update untilInvoking:(NSInvocation *)invocation;
+
+// Called immediately before relaunching.
+- (void)updaterWillRelaunchApplication:(SUUpdater *)updater;
+
+// This method allows you to provide a custom version comparator.
+// If you don't implement this method or return nil, the standard version comparator will be used.
+- (id <SUVersionComparison>)versionComparatorForUpdater:(SUUpdater *)updater;
+
+// Returns the path which is used to relaunch the client after the update is installed. By default, the path of the host bundle.
+- (NSString *)pathToRelaunchForUpdater:(SUUpdater *)updater;
 
 @end
-@interface NSObject (SUUpdaterDelegate)
-// Specify whether the updater should include system-profile information with update checks.
-- (BOOL)updaterShouldSendProfileInfo;
-// This method gives the delegate the opportunity to customize the information that will
-// be included with update checks.  Add or remove items from the dictionary as desired.
-- (NSMutableArray *)updaterCustomizeProfileInfo:(NSMutableArray *)profileInfo;
-@end
+
+// Define some minimum intervals to avoid DOS-like checking attacks. These are in seconds.
+#ifdef DEBUG
+#define SU_MIN_CHECK_INTERVAL 60
+#else
+#define SU_MIN_CHECK_INTERVAL 60*60
+#endif
+
+#ifdef DEBUG
+#define SU_DEFAULT_CHECK_INTERVAL 60
+#else
+#define SU_DEFAULT_CHECK_INTERVAL 60*60*24
+#endif
+
+#endif

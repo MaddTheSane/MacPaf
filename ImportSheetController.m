@@ -11,6 +11,7 @@
 #import "ThreadWorker.h"
 #import "PAF21Data.h"
 #import "MAFDocument.h"
+#import "MyDocument.h"
 
 NSString * const GEDCOM_DOCUMENT_TYPE = @"GEDCOM File (.ged)";
 NSString * const PAF21_DOCUMENT_TYPE = @"PAF 2.1/2.3.1 File";
@@ -58,7 +59,7 @@ NSString * const TEMPLEREADY_UPDATE_DOCUMENT_TYPE = @"TempleReady Update File";
         }
 		[fileNameText setStringValue:self.fileNameToImport];
 		
-		self.importDocument = [[MAFDocument new] autorelease];
+		self.importDocument = [MAFDocument new];
 		UKProgressPanelTask *task = [[UKProgressPanelTask alloc] init];
 
 		NSDictionary *dict = @{@"data": [NSData dataWithContentsOfFile:self.fileNameToImport], @"doc": self.importDocument, @"task": task};
@@ -88,7 +89,7 @@ NSString * const TEMPLEREADY_UPDATE_DOCUMENT_TYPE = @"TempleReady Update File";
 		[NSBundle loadNibNamed: @"ImportSheet" owner: self];		
 	}
 
-	NSData *data = [[[notification userInfo] valueForKey:@"data"] retain];
+	NSData *data = [notification userInfo][@"data"];
 	if (!data) {
 		NSLog(@"laadDocumentDataNotification received with no data to load for document: %@", [self document]);
 		return;
@@ -96,10 +97,10 @@ NSString * const TEMPLEREADY_UPDATE_DOCUMENT_TYPE = @"TempleReady Update File";
 	
 	NSLog(@"self window: %@ : windowforsheet=%@", importSheet, [[self document] windowForSheet]);
 
-	ThreadWorker *_tw = [[ThreadWorker workOn:self
+	ThreadWorker *_tw = [ThreadWorker workOn:self
                    withSelector:@selector(loadDataInThread:)
                      withObject:[notification userInfo]
-                 didEndSelector:@selector(longTaskFinished:)] retain];
+                 didEndSelector:@selector(longTaskFinished:)];
 	
 /*	[NSThread detachNewThreadSelector:@selector(loadDataInThread:)
 							 toTarget:self
@@ -131,31 +132,27 @@ NSString * const TEMPLEREADY_UPDATE_DOCUMENT_TYPE = @"TempleReady Update File";
     // Return processing to the event loop
 }
 
-- (void) loadDataInThread:(id)dict
+- (void)loadDataInThread:(id)dict
 {
-	NSAutoreleasePool* myAutoreleasePool = [[NSAutoreleasePool alloc] init];
-	
-	UKProgressPanelTask* task = [dict valueForKey:@"task"];
-	if (!task) {
-		task = [[UKProgressPanelTask alloc] init];
+	@autoreleasepool {
+		UKProgressPanelTask* task = [dict valueForKey:@"task"];
+		if (!task) {
+			task = [[UKProgressPanelTask alloc] init];
+		}
+		
+		[task setIndeterminate:YES];
+		[task setTitle:@"Load Document Data"];
+		[task setStatus:@"Preparing to load data..."];
+		[task setStopAction:@selector(cancel:)];
+		[task setStopDelegate:self];
+		
+		[self showSheetForWindow:[[self document] windowForSheet] task:task];
+		
+		NSDictionary *loaderDict = @{@"delegate": task, @"data": [dict valueForKey:@"data"], @"document": [dict valueForKey:@"doc"], @"controller": self};
+		
+		//id newLoader =
+		[[loader class] loadDataForDocumentWithUpdateDelegate:loaderDict];
 	}
-
-	[task setIndeterminate:YES];
-	[task setTitle:@"Load Document Data"];
-	[task setStatus:@"Preparing to load data..."];
-	[task setStopAction:@selector(cancel:)];
-	[task setStopDelegate:self];
-
-	[self showSheetForWindow:[[self document] windowForSheet] task:task];
-	
-	NSDictionary *loaderDict = @{@"delegate": task, @"data": [dict valueForKey:@"data"], @"document": [dict valueForKey:@"doc"], @"controller": self};
-
-	//id newLoader = 
-	[[loader class] loadDataForDocumentWithUpdateDelegate:loaderDict];
-
-	[task release];
-	
-	[myAutoreleasePool release];	
 }
 
 - (void) loadDataPreviewInThread:(id)dict
@@ -206,7 +203,6 @@ NSString * const TEMPLEREADY_UPDATE_DOCUMENT_TYPE = @"TempleReady Update File";
 			} else {
 				// unknown type
 				NSLog(@"%s !!! unknown document type for data %@", sel_getName(_cmd), data);
-				[task dealloc];
 				return;
 			}
 			
@@ -287,7 +283,7 @@ NSString * const TEMPLEREADY_UPDATE_DOCUMENT_TYPE = @"TempleReady Update File";
 			[self showSheetForWindow:[[self document] windowForSheet] task:task];
 
 			[[self document] startSuppressUpdates];
-			[[[self document] valueForKey:@"mafDocument"] importFromDocument:self.importDocument];
+			[[[self document] mafDocument] importFromDocument:self.importDocument];
 			[[self document] endSuppressUpdates];
 			[[self document] save];
 
@@ -320,14 +316,8 @@ NSString * const TEMPLEREADY_UPDATE_DOCUMENT_TYPE = @"TempleReady Update File";
 	if (![self initWithWindowNibName:@"ImportSheet"])
 		return nil;
     
-	[self setDocument:[aDocument retain]];
+	[self setDocument:aDocument];
 	return self;
-}
-
-- (void)dealloc;
-{
-	self.fileNameToImport = nil;
-	[super dealloc];
 }
 
 // private callbacks

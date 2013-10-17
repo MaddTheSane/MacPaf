@@ -6,22 +6,27 @@
 //  Copyright 2006 Andy Matuschak. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
+#ifndef SUAPPCAST_H
+#define SUAPPCAST_H
 
-@class RSS, SUAppcastItem;
+@protocol SUAppcastDelegate;
+
+@class SUAppcastItem;
 @interface SUAppcast : NSObject {
 	NSArray *items;
-	id delegate;
+	NSMutableData *incrementalData;
 }
+@property (copy) NSString *userAgentString;
+@property (unsafe_unretained) id<SUAppcastDelegate> delegate;
 
 - (void)fetchAppcastFromURL:(NSURL *)url;
-- (void)setDelegate:delegate;
-
-- (SUAppcastItem *)newestItem;
 - (NSArray *)items;
 
 @end
 
-@interface NSObject (SUAppcastDelegate)
-- appcastDidFinishLoading:(SUAppcast *)appcast;
+@protocol SUAppcastDelegate <NSObject>
+- (void)appcastDidFinishLoading:(SUAppcast *)appcast;
+- (void)appcast:(SUAppcast *)appcast failedToLoadWithError:(NSError *)error;
 @end
+
+#endif

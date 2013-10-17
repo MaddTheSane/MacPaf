@@ -30,6 +30,8 @@
 @property (retain)NSMutableArray *indivChunks, *marrChunks, *nameChunks, *noteChunks, *mapChunks, *otherChunks;
 @property (retain)NSDateFormatter *dateFormatter;
 
+@property (strong) NSCalendar *gregorianCalendar;
+
 @end
 
 @implementation PAF21Data
@@ -128,6 +130,12 @@ struct NameRecord_t {
 
 - (NSDate *)dateForDualDate:(const struct DualDate_t *)dualDate
 {
+	NSDateComponents *dateComponents = [NSDateComponents new];
+	dateComponents.year = dualDate->year;
+	dateComponents.month = dualDate->month;
+	dateComponents.day = dualDate->day;
+	dateComponents.timeZone = [NSTimeZone localTimeZone];
+	return [self.gregorianCalendar dateFromComponents:dateComponents];
 	return [NSCalendarDate dateWithYear:dualDate->year month:dualDate->month day:dualDate->day hour:0 minute:0 second:0 timeZone:nil];
 }
 
@@ -364,12 +372,14 @@ struct NameRecord_t {
 	NSLog(@"%s", _cmd);
 }
 */
-- (id) initWithData: (NSData *) newData
+- (id)initWithData:(NSData *)newData
 {
     if(self = [super init])
 	{
 		self.data = newData;
-		self.dateFormatter = [[[NSDateFormatter alloc] initWithDateFormat:@"%d %b %Y" allowNaturalLanguage:NO] autorelease];
+		self.dateFormatter = [[NSDateFormatter alloc] initWithDateFormat:@"%d %b %Y" allowNaturalLanguage:NO];
+		
+		self.gregorianCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
 		
 		NSLog(@"version: %@", [self stringFromASCIIData:[self.data subdataWithRange:NSMakeRange(0,4)]]);
 		NSLog(@"%s, %@ ", "ascii", [self hexRepresentation:[self.data subdataWithRange:NSMakeRange(0,4)]]);
@@ -399,18 +409,18 @@ struct NameRecord_t {
 		NSLog(@"Struct: name index: rcount = %i, chunks = %i, %i", oneHead->NameIndexRCount, oneHead->XChunkCount, oneHead->ChunkCount);
 		NSLog(@"Struct: total chunks = %i", oneHead->ChunkCount);
 		
-		indivChunks = [NSMutableArray new];
-		marrChunks = [NSMutableArray new];
-		nameChunks = [NSMutableArray new];
-		noteChunks = [NSMutableArray new];
-		mapChunks = [NSMutableArray new];
-		otherChunks = [NSMutableArray new];
+		self.indivChunks = [NSMutableArray new];
+		self.marrChunks = [NSMutableArray new];
+		self.nameChunks = [NSMutableArray new];
+		self.noteChunks = [NSMutableArray new];
+		self.mapChunks = [NSMutableArray new];
+		self.otherChunks = [NSMutableArray new];
 		
-		nameList = [NSMutableArray new];
-		individualList = [NSMutableArray new];
-		marriageList = [NSMutableArray new];
-		noteList = [NSMutableArray new];
-		individualLinksList = [NSMutableArray new];
+		self.nameList = [NSMutableArray new];
+		self.individualList = [NSMutableArray new];
+		self.marriageList = [NSMutableArray new];
+		self.noteList = [NSMutableArray new];
+		self.individualLinksList = [NSMutableArray new];
 		
 		int totalChunks = oneHead->ChunkCount, i;
 		for (i=0; i < totalChunks; i++) {
@@ -463,29 +473,29 @@ struct NameRecord_t {
 {
 	NSLog(@"%s document: %@", sel_getName(_cmd), document);
 	
-//	int							x, xmax = 25;							// Just some vars so we can fake a lengthy operation
+	//	int							x, xmax = 25;							// Just some vars so we can fake a lengthy operation
 	UKProgressPanelTask*		task = [[UKProgressPanelTask alloc] init];	// Create a progress bar etc. in our progress panel, showing and creating a panel if necessary.
-/*	
-	// Set up the progress bar and title/status message to be shown for this task:
-	[task setIndeterminate: YES];										// By default, you get a determinate scrollbar, but we want barber-pole style.
-	[task setTitle: @"Inviting folks to the party"];					// Title should describe the action the user triggered, so she knows what progress bar belongs to what operation
-	[task setStatus: @"The Witnesses of TeachText are everywhere..."];	// Status is the display that changes and gives some more information than the progress bar would.
-	[NSBundle loadNibNamed: @"TaskProgressSheet" owner: self];      
-    [NSApp beginSheet: taskProgressSheet
-	   modalForWindow: [[[NSDocumentController sharedDocumentController] currentDocument] window]
-		modalDelegate: self
-	   didEndSelector: @selector(didEndSheet:returnCode:contextInfo:)
-		  contextInfo: nil];
-	
-	
-	for( x = 0; x <= xmax && ![task stopped]; x++ )		// Loop until we have xmax iterations or the user clicked the "Stop" button.
-	{
-		[task animate: nil];	// Keep the progress bar spinning.
-		sleep(1);				// short delay so user can see the tasks in the task panel. Otherwise this loop would be over before the user even notices.
-	}
-	
-	[task release];		// Remove the progress bar, status fields etc. from the progress panel, we're finished!
-*/	
+	/*
+	 // Set up the progress bar and title/status message to be shown for this task:
+	 [task setIndeterminate: YES];										// By default, you get a determinate scrollbar, but we want barber-pole style.
+	 [task setTitle: @"Inviting folks to the party"];					// Title should describe the action the user triggered, so she knows what progress bar belongs to what operation
+	 [task setStatus: @"The Witnesses of TeachText are everywhere..."];	// Status is the display that changes and gives some more information than the progress bar would.
+	 [NSBundle loadNibNamed: @"TaskProgressSheet" owner: self];
+	 [NSApp beginSheet: taskProgressSheet
+	 modalForWindow: [[[NSDocumentController sharedDocumentController] currentDocument] window]
+	 modalDelegate: self
+	 didEndSelector: @selector(didEndSheet:returnCode:contextInfo:)
+	 contextInfo: nil];
+	 
+	 
+	 for( x = 0; x <= xmax && ![task stopped]; x++ )		// Loop until we have xmax iterations or the user clicked the "Stop" button.
+	 {
+	 [task animate: nil];	// Keep the progress bar spinning.
+	 sleep(1);				// short delay so user can see the tasks in the task panel. Otherwise this loop would be over before the user even notices.
+	 }
+	 
+	 [task release];		// Remove the progress bar, status fields etc. from the progress panel, we're finished!
+	 */
 	//		int datetest = 8061098 << 8;
 	//	NSData *dateData = [[NSData alloc] initWithBytes:&datetest+1 length:3];
 	//    NSLog(@"%s, %@ ", "datedata", [self hexRepresentation:dateData]);
@@ -504,27 +514,25 @@ struct NameRecord_t {
 		[nameList removeAllObjects];
 		int recCount = oneHead->NameRCount, recSize = 21, recsPerChunk = 1024 / recSize;
 		unsigned int i;//, count = [nameChunks count], curr=0;
-			for (i = 0; i < recCount; i++) {
-				int chunkIndex = i / recsPerChunk;
-				int recIndex = i % recsPerChunk;
-				int offset = recSize * recIndex;
-				NSLog(@"i=%i chunkIndex=%i recIndex=%i offset=%i", i, chunkIndex, recIndex, offset);
-				
-				NSData * obj = nameChunks[chunkIndex];
-				const struct NameRecord_t *nameRec = [[obj subdataWithRange:NSMakeRange(offset,recSize)] bytes];
-				int leftLink = EndianU16_LtoN(nameRec->leftLink);
-				int rightLink = EndianU16_LtoN(nameRec->rightLink);
-				NSString *name = [NSString stringWithCString:nameRec->name encoding:NSMacOSRomanStringEncoding];
-				NSLog(@"namerec bytes=%@ name=%@ leftLink=%i rightLink=%i", [self hexRepresentation:[name dataUsingEncoding:NSUnicodeStringEncoding]], name, leftLink, rightLink);
-				
-				[nameList addObject:name];
-			}
-			NSLog(@"namelist: %@", nameList);
-	}	
+		for (i = 0; i < recCount; i++) {
+			int chunkIndex = i / recsPerChunk;
+			int recIndex = i % recsPerChunk;
+			int offset = recSize * recIndex;
+			NSLog(@"i=%i chunkIndex=%i recIndex=%i offset=%i", i, chunkIndex, recIndex, offset);
+			
+			NSData * obj = nameChunks[chunkIndex];
+			const struct NameRecord_t *nameRec = [[obj subdataWithRange:NSMakeRange(offset,recSize)] bytes];
+			int leftLink = EndianU16_LtoN(nameRec->leftLink);
+			int rightLink = EndianU16_LtoN(nameRec->rightLink);
+			NSString *name = [NSString stringWithCString:nameRec->name encoding:NSMacOSRomanStringEncoding];
+			NSLog(@"namerec bytes=%@ name=%@ leftLink=%i rightLink=%i", [self hexRepresentation:[name dataUsingEncoding:NSUnicodeStringEncoding]], name, leftLink, rightLink);
+			
+			[nameList addObject:name];
+		}
+		NSLog(@"namelist: %@", nameList);
+	}
 	
-	//	NSMutableArray *notepadLinks = [NSMutableArray new];
-	//	NSMutableArray *internalLinks = [NSMutableArray new];
-	{	
+	{
 		// notes
 		int recCount = oneHead->NoteRCount, recSize = 256, recsPerChunk = 1024 / recSize;
 		unsigned int i;
@@ -548,54 +556,54 @@ struct NameRecord_t {
 			while (![obj isEqualTo:[NSNull null]]) {
 				unsigned short nextNote = [self shortFromData:obj atOffset:0]; // one-based index
 				nextNote = (nextNote == 0 ? 0 : nextNote-1);// convert to zero-based index
-					[data appendData:[obj subdataWithRange:NSMakeRange(2,254)]];
-					NSLog(@"note curr=%i nextNoteIndex=%i noteData=%@", currRec, nextNote, data);
-					
-					noteRecordList[currRec] = [NSNull null];
-					
-					//NSLog(@"combined:\n%@", [self combineNoteString:[noteList objectAtIndex:i]]);
-					obj = noteRecordList[nextNote];
-					currRec = nextNote;
+				[data appendData:[obj subdataWithRange:NSMakeRange(2,254)]];
+				NSLog(@"note curr=%i nextNoteIndex=%i noteData=%@", currRec, nextNote, data);
+				
+				noteRecordList[currRec] = [NSNull null];
+				
+				//NSLog(@"combined:\n%@", [self combineNoteString:[noteList objectAtIndex:i]]);
+				obj = noteRecordList[nextNote];
+				currRec = nextNote;
 			}
 			[noteDataList addObject:data];
 		}
-		NSLog(@"noterecordlist: %@\n@notedatalist: %@", noteRecordList, noteDataList);	
+		NSLog(@"noterecordlist: %@\n@notedatalist: %@", noteRecordList, noteDataList);
 		for (i = 0; i < [noteDataList count]; i++) {
 			NSData *data = noteDataList[i];
 			if ([data length] > 0) {
 				NSLog(@"doc %@ ctrl %@ currdoc %@", document, [NSDocumentController sharedDocumentController], [[NSDocumentController sharedDocumentController] currentDocument]);
-				id newNote = [document createAndInsertNewNote];
+				NSMutableString *newNote = [document createAndInsertNewNote];
 				NSString *text = [self cleanNoteString:[self stringFromMacRomanData:data]];
-				[newNote takeValue:text	forKey:@"text"];
+				[newNote setString:text];
 				
 				[noteList addObject:newNote];
 			} else {
 				[noteList addObject:[NSNull null]];
 			}
 		}
-		NSLog(@"notelist: %@", [noteList valueForKeyPath:@"description"]);	
+		NSLog(@"notelist: %@", [noteList valueForKeyPath:@"description"]);
 	}
-	{	
+	{
 		// individuals
 		int recCount = oneHead->IndivRCount, recSize = 92, recsPerChunk = 1024 / recSize;
 		unsigned int i;//, count = [nameChunks count], curr=0;
-			for (i = 0; i < recCount; i++) {
-				int chunkIndex = i / recsPerChunk;
-				int recIndex = i % recsPerChunk;
-				int offset = recSize * recIndex;
-				NSLog(@"i=%i chunkIndex=%i recIndex=%i offset=%i", i, chunkIndex, recIndex, offset);
+		for (i = 0; i < recCount; i++) {
+			int chunkIndex = i / recsPerChunk;
+			int recIndex = i % recsPerChunk;
+			int offset = recSize * recIndex;
+			NSLog(@"i=%i chunkIndex=%i recIndex=%i offset=%i", i, chunkIndex, recIndex, offset);
+			
+			NSData * obj = indivChunks[chunkIndex];
+			
+			NSData *genderData = [obj subdataWithRange:NSMakeRange(offset+10,1)];
+			NSString *gender = [self stringFromMacRomanData:genderData];
+			NSLog(@"indiv gender=%@", gender);
+			if ([gender isEqualTo:@"D"]) {
+				NSLog(@"%s skipping deleted individual %i", sel_getName(_cmd), i);
+				[individualList addObject:[NSNull null]];
+				[individualLinksList addObject:[NSNull null]];
+			} else {
 				
-				NSData * obj = indivChunks[chunkIndex];
-				
-				NSData *genderData = [obj subdataWithRange:NSMakeRange(offset+10,1)];
-				NSString *gender = [self stringFromMacRomanData:genderData];
-				NSLog(@"indiv gender=%@", gender);
-				if ([gender isEqualTo:@"D"]) {
-					NSLog(@"%s skipping deleted individual %i", sel_getName(_cmd), i);
-					[individualList addObject:[NSNull null]];
-					[individualLinksList addObject:[NSNull null]];
-				} else {
-
 				unsigned short surname = [self shortFromData:obj atOffset:offset+0];
 				unsigned short givenName1 = [self shortFromData:obj atOffset:offset+2];
 				unsigned short givenName2 = [self shortFromData:obj atOffset:offset+4];
@@ -604,8 +612,8 @@ struct NameRecord_t {
 				NSLog(@"swapped indiv surname=%i givenname1=%i givenname2=%i givenname3=%i", surname, givenName1, givenName2, givenName3);
 				NSLog(@"surname=%@ givenname1=%@ givenname2=%@ givenname3=%@", [self nameForPointer:surname], [self nameForPointer:givenName1], [self nameForPointer:givenName2], [self nameForPointer:givenName3]);
 				NSString *givenNames = [@[[self nameForPointer:givenName1],
-									[self nameForPointer:givenName2],
-									[self nameForPointer:givenName3]] componentsJoinedByString:@" "];
+										  [self nameForPointer:givenName2],
+										  [self nameForPointer:givenName3]] componentsJoinedByString:@" "];
 				NSLog(@"givenNames:%@", givenNames);
 				
 				const struct DualDate_t *birthDate = [self dualDateFromData:obj atOffset:offset+11];
@@ -636,27 +644,30 @@ struct NameRecord_t {
 				//		[notepadLinks addObject:[self noteForPointer:NotePadRecord]];
 				//	}
 				
-/*				NSLog(@"%s Surname: %d GivenName1: %d GivenName2: %d GivenName3: %d Title: %d gender: %@", _cmd, Surname, GivenName1, GivenName2, GivenName3, Title, gender);
-				NSLog(@"%s birthDate: %@ BirthPlace1: %d BirthPlace2: %d BirthPlace3: %d BirthPlace4: %d", _cmd, [self dateStringForDualDate:birthDate], BirthPlace1, BirthPlace2, BirthPlace3, BirthPlace4);
-*/				
+				/*				NSLog(@"%s Surname: %d GivenName1: %d GivenName2: %d GivenName3: %d Title: %d gender: %@", _cmd, Surname, GivenName1, GivenName2, GivenName3, Title, gender);
+				 NSLog(@"%s birthDate: %@ BirthPlace1: %d BirthPlace2: %d BirthPlace3: %d BirthPlace4: %d", _cmd, [self dateStringForDualDate:birthDate], BirthPlace1, BirthPlace2, BirthPlace3, BirthPlace4);
+				 */
 				
 				MAFPerson *newIndividual = [document createAndInsertNewIndividual];
 				//	[newIndividual takeValue:@"Created From ObjC" forKey:@"fullName"];
 				
-					newIndividual.lastName = [self nameForPointer:surname];
-					newIndividual.middleNames = givenNames;
-				[newIndividual takeValue:[self nameForPointer:title] forKey:@"namePrefix"];
-
-					[newIndividual setGenderWithString:gender];
-					newIndividual.afn = ID;
-
+				newIndividual.lastName = [self nameForPointer:surname];
+				newIndividual.middleNames = givenNames;
+				//[newIndividual takeValue:[self nameForPointer:title] forKey:@"namePrefix"];
+				
+				[newIndividual setGenderWithString:gender];
+				newIndividual.afn = ID;
+				
 				if (birthDate->year >= 100) {
 					newIndividual.birthDate = [self dateForDualDate:birthDate];
 				}
 				if ([birthPlaceString length] > 0) {
-					id birthPlace=[NSClassFromString(@"com.redbugz.maf.jdom.PlaceJDOM") newWithSignature:@"(Ljava/lang/String;)",birthPlaceString];
-					[newIndividual takeValue:birthPlace	forKeyPath:@"birthEvent.place"];					
+					int64_t birthPlace = [document locationFromString:birthPlaceString];
+					//[newIndividual takeValue:birthPlace	forKeyPath:@"birthEvent.place"];
+					newIndividual.birthPlace = birthPlace;
 				}
+#if 0
+				//TODO: Christening
 				if (christeningDate->year >= 100) {
 					[newIndividual takeValue:[self dateStringForDualDate:christeningDate]	forKeyPath:@"christeningEvent.dateString"];
 				}
@@ -664,21 +675,24 @@ struct NameRecord_t {
 					id christeningPlace=[NSClassFromString(@"com.redbugz.maf.jdom.PlaceJDOM") newWithSignature:@"(Ljava/lang/String;)",christeningPlaceString];
 					[newIndividual takeValue:christeningPlace	forKeyPath:@"christeningEvent.place"];
 				}
+#endif
 				if (deathDate->year >= 100) {
-					[newIndividual takeValue:[self dateStringForDualDate:deathDate]	forKeyPath:@"deathEvent.dateString"];
+					newIndividual.deathDate = [self dateForDualDate:deathDate];
 				}
 				if ([deathPlaceString length] > 0) {
-					id deathPlace=[NSClassFromString(@"com.redbugz.maf.jdom.PlaceJDOM") newWithSignature:@"(Ljava/lang/String;)",deathPlaceString];
-					[newIndividual takeValue:deathPlace	forKeyPath:@"deathEvent.place"];
+					int64_t deathPlace = [document locationFromString:deathPlaceString];
+					newIndividual.deathPlace = deathPlace;
 				}
 				if (burialDate->year >= 100) {
-					[newIndividual takeValue:[self dateStringForDualDate:burialDate]	forKeyPath:@"burialEvent.dateString"];
+					newIndividual.burialDate = [self dateForDualDate:burialDate];
 				}
 				if ([burialPlaceString length] > 0) {
-					id burialPlace=[NSClassFromString(@"com.redbugz.maf.jdom.PlaceJDOM") newWithSignature:@"(Ljava/lang/String;)",burialPlaceString];
-					[newIndividual takeValue:burialPlace	forKeyPath:@"burialEvent.place"];
+					int64_t burialPlace = [document locationFromString:burialPlaceString];
+					newIndividual.burialPlace = burialPlace;
 				}
 				
+#if 0
+				//TODO: temple/LDS data
 				if (baptismDate->year >= 100) {
 					[newIndividual takeValue:[self dateStringForRegDate:baptismDate]	forKeyPath:@"LDSBaptism.dateString"];
 				}
@@ -706,9 +720,9 @@ struct NameRecord_t {
 						[newIndividual takeValue:childToParentSealingTemple	forKeyPath:@"LDSSealingToParents.temple"];
 					}
 				}
-
-				id noteLink = [NSClassFromString(@"com.redbugz.maf.jdom.NoteLink") newWithSignature:@"(Ljava/lang/String;Lcom/redbugz/maf/jdom/MAFDocumentJDOM;)",[[self noteForPointer:notePadRecord] valueForKey:@"id"], document];
-				[newIndividual addNoteLink:noteLink];
+#endif
+				NSMutableString *noteLink = [self noteForPointer:notePadRecord];
+				[newIndividual addNoteObject:noteLink];
 				[individualList addObject:newIndividual];
 				[individualLinksList addObject:individualLinksDict];
 			}
@@ -716,24 +730,24 @@ struct NameRecord_t {
 	}
 	
 	
-	{	
+	{
 		// marriages
 		int recCount = oneHead->MarrRCount, recSize = 28, recsPerChunk = 1024 / recSize;
 		unsigned int i;//, count = [nameChunks count], curr=0;
-			for (i = 0; i < recCount; i++) {
-				int chunkIndex = i / recsPerChunk;
-				int recIndex = i % recsPerChunk;
-				int offset = recSize * recIndex;
-				NSLog(@"i=%i chunkIndex=%i recIndex=%i offset=%i", i, chunkIndex, recIndex, offset);
-				
-				NSData * obj = marrChunks[chunkIndex];
-
-				NSString *divorceFlag = [self stringFromMacRomanData:[obj subdataWithRange:NSMakeRange(offset+27,1)]];
-				NSLog(@"marr divorce=%@", divorceFlag);
-				if ([divorceFlag isEqualTo:@"D"]) {
-					NSLog(@"%s skipping deleted family %i", sel_getName(_cmd), i);
-					[marriageList addObject:[NSNull null]];
-				} else {
+		for (i = 0; i < recCount; i++) {
+			int chunkIndex = i / recsPerChunk;
+			int recIndex = i % recsPerChunk;
+			int offset = recSize * recIndex;
+			NSLog(@"i=%i chunkIndex=%i recIndex=%i offset=%i", i, chunkIndex, recIndex, offset);
+			
+			NSData * obj = marrChunks[chunkIndex];
+			
+			NSString *divorceFlag = [self stringFromMacRomanData:[obj subdataWithRange:NSMakeRange(offset+27,1)]];
+			NSLog(@"marr divorce=%@", divorceFlag);
+			if ([divorceFlag isEqualTo:@"D"]) {
+				NSLog(@"%s skipping deleted family %i", sel_getName(_cmd), i);
+				[marriageList addObject:[NSNull null]];
+			} else {
 				
 				unsigned short husband = [self shortFromData:obj atOffset:offset+0];
 				unsigned short wife = [self shortFromData:obj atOffset:offset+2];
@@ -753,12 +767,10 @@ struct NameRecord_t {
 				MAFFamily *newMarriage = [document createAndInsertNewFamily];
 				
 				if (husband > 0) {
-					[newMarriage setValue:[self individualForPointer:husband]	forKey:@"father"];
-					[[self individualForPointer:husband] addFamilyAsSpouse:newMarriage];
+					[newMarriage setFather:[self individualForPointer:husband]];
 				}
 				if (wife > 0) {
-					[newMarriage setValue:[self individualForPointer:wife]	forKey:@"mother"];
-					[[self individualForPointer:wife] addFamilyAsSpouse:newMarriage];
+					[newMarriage setMother:[self individualForPointer:wife]];
 				}
 				if (youngestChild > 0) {
 					NSMutableArray *children = [NSMutableArray array];
@@ -771,30 +783,36 @@ struct NameRecord_t {
 						NSLog(@"children: %@", children);
 						nextChild = [[individualLinksList[nextChild-1] valueForKeyPath:@"olderSibling"] intValue];
 					}
-					[newMarriage setValue:[NSClassFromString(@"com.redbugz.maf.util.CocoaUtils") javaListFromNSArray:children]	forKey:@"children"];
+					//[newMarriage setValue:[NSClassFromString(@"com.redbugz.maf.util.CocoaUtils") javaListFromNSArray:children]	forKey:@"children"];
+					for (MAFPerson *child in children) {
+						
+					}
 				}
 				
 				if (marriageDate->year >= 100) {
-					[newMarriage takeValue:[self dateStringForDualDate:marriageDate]	forKeyPath:@"marriageEvent.dateString"];
+					newMarriage.marriageDate = [self dateForDualDate:marriageDate];
 				}
 				if ([marriagePlaceString length] > 0) {
-					id marriagePlace=[NSClassFromString(@"com.redbugz.maf.jdom.PlaceJDOM") newWithSignature:@"(Ljava/lang/String;)",marriagePlaceString];
-					[newMarriage takeValue:marriagePlace	forKeyPath:@"marriageEvent.place"];					
+					int64_t marriagePlace = [document locationFromString:marriagePlaceString];
+					newMarriage.marriageLocation = marriagePlace;
+					
 				}
 				
 				if (sealingToSpouseDate->year >= 100) {
-					[newMarriage takeValue:[self dateStringForRegDate:sealingToSpouseDate]	forKeyPath:@"sealingToSpouse.dateString"];
+					newMarriage.sealingDate = [self dateForRegDate:sealingToSpouseDate];
 				}
 				if ([sealingToSpouseTempleString length] > 0) {
-					id sealingToSpouseTemple=[MAFTempleList templeWithCode:sealingToSpouseTempleString];
+					NSDictionary *sealingToSpouseTemple = [MAFTempleList templeWithCode:sealingToSpouseTempleString];
 					if (sealingToSpouseTemple) {
-						[newMarriage takeValue:sealingToSpouseTemple	forKeyPath:@"sealingToSpouse.temple"];
+						int32_t templeNum = [sealingToSpouseTemple[kMAFTempleNumber] intValue];
 					}
 				}
-
+				
+#if 0
 				if ([divorceFlag isEqualTo:@"Y"]) {
 					[newMarriage addEvent:[NSClassFromString(@"com.redbugz.maf.jdom.EventJDOM") createDivorceEventInstance]];
 				}
+#endif
 				/*
 				 father.setGender(Gender.MALE);
 				 father.setFamilyAsSpouse(family);
@@ -807,9 +825,9 @@ struct NameRecord_t {
 				 family.getMarriageEvent().setPlace(new PlaceJDOM(marriageForm.cellAtIndex(1).stringValue()));
 				 family.getSealingToSpouse().setDateString(sealingDate.stringValue());
 				 family.getSealingToSpouse().setTemple(CocoaUtils.templeForComboBox(sealingTemple));
-				 */	
+				 */
 				[marriageList addObject:newMarriage];
-			
+				
 			}
 		}
 	}
@@ -820,14 +838,13 @@ struct NameRecord_t {
 	//		orphans);
 	//[context save:nil];
 }
-	
+
 + (void)importFromData:(NSData *)data intoDocument:(MAFDocument *)document
 {
 	NSLog(@"%s document: %@", sel_getName(_cmd), document);
 	NSLog(@"%lu, chunks %lu", (unsigned long)[data length], (unsigned long)(([data length]-512)/1024));
 	PAF21Data *pafData = [[PAF21Data alloc] initWithData:data];
 	[pafData importDataIntoDocument:document];
-	[pafData release];
 }
 
 @end

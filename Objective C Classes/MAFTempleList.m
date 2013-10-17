@@ -8,6 +8,8 @@
 
 #import "MAFTempleList.h"
 
+NSString * const kMAFTempleNumber = @"MAF Temple Number";
+
 static MAFTempleList *permTempleList;
 
 @interface MAFTempleList ()

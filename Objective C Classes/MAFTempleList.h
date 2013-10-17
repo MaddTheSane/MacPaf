@@ -8,6 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 
+extern NSString * const kMAFTempleNumber;
+
 @interface MAFTempleList : NSObject <NSComboBoxDataSource>
 + (NSDictionary*)templeWithCode:(NSString*)theCode;
 @end

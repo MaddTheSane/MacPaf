@@ -20,6 +20,7 @@ NS_ENUM(int16_t, MAFGenders)
 
 @interface MAFPerson : NSManagedObject
 
+@property (strong) NSMutableArray *notes;
 @property (nonatomic, retain) NSDate * birthDate;
 @property (nonatomic, retain) NSDate * burialDate;
 @property (nonatomic, retain) NSDate * deathDate;
@@ -36,6 +37,9 @@ NS_ENUM(int16_t, MAFGenders)
 @property (nonatomic) int64_t deathPlace;
 @property (nonatomic, retain) NSString *afn;
 - (void)setGenderWithString:(NSString*)gen;
+- (void)addNoteObject:(NSMutableString*)noteobj;
+- (void)removeNoteObject:(NSMutableString*)value;
+
 @end
 
 @interface MAFPerson (CoreDataGeneratedAccessors)

@@ -71,4 +71,8 @@
 - (IBAction)openReportsSheet:(id)sender;
 - (IBAction)selectPrintableView:(id)sender;
 
+- (void)save;
+- (void)startSuppressUpdates;
+- (void)endSuppressUpdates;
+
 @end

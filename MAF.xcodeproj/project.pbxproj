@@ -15,14 +15,14 @@
 		0263E4E30A20F4450087A335 /* ApplicationStartupHelper.h in Headers */ = {isa = PBXBuildFile; fileRef = 0263E4E10A20F4450087A335 /* ApplicationStartupHelper.h */; };
 		0263E4E40A20F4450087A335 /* ApplicationStartupHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 0263E4E20A20F4450087A335 /* ApplicationStartupHelper.m */; };
 		02B51F040B23D727003C1D2E /* PAF21Data.h in Headers */ = {isa = PBXBuildFile; fileRef = 02B51F020B23D727003C1D2E /* PAF21Data.h */; };
-		02B51F050B23D727003C1D2E /* PAF21Data.m in Sources */ = {isa = PBXBuildFile; fileRef = 02B51F030B23D727003C1D2E /* PAF21Data.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		02B51F050B23D727003C1D2E /* PAF21Data.m in Sources */ = {isa = PBXBuildFile; fileRef = 02B51F030B23D727003C1D2E /* PAF21Data.m */; };
 		02C876970B3EF267005E8B53 /* UKProgressPanel.strings in Resources */ = {isa = PBXBuildFile; fileRef = 02C8768D0B3EF267005E8B53 /* UKProgressPanel.strings */; };
 		02C876990B3EF267005E8B53 /* UKProgressPanel.h in Headers */ = {isa = PBXBuildFile; fileRef = 02C876910B3EF267005E8B53 /* UKProgressPanel.h */; };
 		02C8769A0B3EF267005E8B53 /* UKProgressPanel.m in Sources */ = {isa = PBXBuildFile; fileRef = 02C876920B3EF267005E8B53 /* UKProgressPanel.m */; };
 		02C8769B0B3EF267005E8B53 /* UKProgressPanelTask.h in Headers */ = {isa = PBXBuildFile; fileRef = 02C876930B3EF267005E8B53 /* UKProgressPanelTask.h */; };
 		02C8769C0B3EF267005E8B53 /* UKProgressPanelTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 02C876940B3EF267005E8B53 /* UKProgressPanelTask.m */; };
 		02D001450B482EDB00C3CDF4 /* ImportSheetController.h in Headers */ = {isa = PBXBuildFile; fileRef = 02D001410B482EDB00C3CDF4 /* ImportSheetController.h */; };
-		02D001460B482EDB00C3CDF4 /* ImportSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02D001420B482EDB00C3CDF4 /* ImportSheetController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		02D001460B482EDB00C3CDF4 /* ImportSheetController.m in Sources */ = {isa = PBXBuildFile; fileRef = 02D001420B482EDB00C3CDF4 /* ImportSheetController.m */; };
 		02D0062C0B4A445600C3CDF4 /* TransparentSplashScreenWindow.h in Headers */ = {isa = PBXBuildFile; fileRef = 02D0062A0B4A445600C3CDF4 /* TransparentSplashScreenWindow.h */; };
 		02D0062D0B4A445600C3CDF4 /* TransparentSplashScreenWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 02D0062B0B4A445600C3CDF4 /* TransparentSplashScreenWindow.m */; };
 		02DDDD260A12BA9C003BC70E /* UKCrashReporter.strings in Resources */ = {isa = PBXBuildFile; fileRef = 02DDDD210A12BA9B003BC70E /* UKCrashReporter.strings */; };
@@ -352,6 +352,7 @@
 				2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */,
 				089C165FFE840EACC02AAC07 /* InfoPlist.strings */,
 				0263E4A60A20EF430087A335 /* License.txt */,
+				02DE76D009E96A05003B896A /* Info.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -619,7 +620,6 @@
 				55C8A29918072CDB00A7BB42 /* TempleListGenerator */,
 				2A37F4C3FDCFA73011CA2CEA /* Frameworks */,
 				19C28FB0FE9D524F11CA2CBB /* Products */,
-				02DE76D009E96A05003B896A /* Info.plist */,
 			);
 			name = MAF;
 			sourceTree = "<group>";

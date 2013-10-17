@@ -10,6 +10,8 @@
 
 @implementation MAFPerson
 
+@synthesize notes;
+
 - (void)setGenderWithString:(NSString*)gen
 {
 	if (gen == nil && ![gen isEqualToString:@""]) {
@@ -21,6 +23,16 @@
 			self.gender = MAFGenderFemale;
 		}
 	}
+}
+
+- (void)addNoteObject:(NSMutableString*)noteobj
+{
+	[self.notes addObject:noteobj];
+}
+
+- (void)removeNoteObject:(NSMutableString*)value
+{
+	[self.notes removeObject:value];
 }
 
 @dynamic birthDate;

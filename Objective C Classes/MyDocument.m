@@ -18,6 +18,21 @@
 
 @implementation MyDocument
 
+- (void)save
+{
+	[self saveDocument:nil];
+}
+
+- (void)startSuppressUpdates
+{
+	
+}
+
+- (void)endSuppressUpdates
+{
+	
+}
+
 - (id)init
 {
     self = [super init];

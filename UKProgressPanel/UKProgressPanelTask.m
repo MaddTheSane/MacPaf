@@ -326,9 +326,11 @@ extern NSLock*						gUKProgressPanelThreadLock;		// Mutex lock used to allow cal
 		for this task.
    -------------------------------------------------------------------------- */
 
+#if 0
 -(NSView*)	progressTaskView
 {
 	return progressTaskView;
 }
+#endif
 
 @end

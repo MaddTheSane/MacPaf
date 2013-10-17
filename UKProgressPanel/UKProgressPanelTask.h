@@ -49,52 +49,37 @@
 {
 	// All member variables are *private*:
     IBOutlet NSProgressIndicator	*progressBar;			// Progress bar we update.
-    IBOutlet NSView					*progressTaskView;		// View we display our stuff in.
     IBOutlet NSTextField			*progressStatusField;	// Status field we display detailed in.
     IBOutlet NSTextField			*progressTitleField;	// Title field that describes the general operation.
 	IBOutlet NSButton				*progressStopButton;	// The "Stop" button for cancelling this task.
-	
-	IBOutlet id						stopDelegate;			// The delegate that is sent our "stop" message.
-	SEL								stopAction;				// The selector to be called on the "stop delegate" when the user clicks the "stop" button. Defaults to stop:
-	BOOL							stopped;				// Has this task been stopped by the user?
 }
+
+@property (weak) IBOutlet id stopDelegate; // The delegate that is sent our "stop" message.
+@property SEL stopAction; // The selector to be called on the "stop delegate" when the user clicks the "stop" button. Defaults to stop:
+@property (readonly, getter = stopped) BOOL stopped; // Has this task been stopped by the user?
 
 /* Convenience constructors:
 	The caller (i.e. you) is responsible for releasing this object once the
 	operation is finished. */
-+(id)			newProgressPanelTask;
++ (id)newProgressPanelTask;
 
 
 // Controlling progress bar:
--(double)		minValue;
--(double)		maxValue;
--(void)			setMinValue: (double)newMinimum;
--(void)			setMaxValue: (double)newMaximum;
 
--(double)		doubleValue;
--(void)			setDoubleValue: (double)doubleValue;
--(void)			incrementBy: (double)delta;
-
--(BOOL)			isIndeterminate;				
--(void)			setIndeterminate: (BOOL)flag;
--(void)			animate: (id)sender;						// I'm not letting you have automatic timer animation. This is for feedback, not for making the user dizzy.
+@property double doubleValue;
+@property double minValue;
+@property double maxValue;
+@property (getter = isIndeterminate) BOOL indeterminate;
+- (void)incrementBy: (double)delta;
+- (void)animate: (id)sender;						// I'm not letting you have automatic timer animation. This is for feedback, not for making the user dizzy.
 
 
 // Title/Status:
--(void)			setTitle: (NSString*)title;		// "Emptying trash", or whatever, above the p-bar in bold-face.
--(void)			setStatus: (NSString*)status;	// "15 bytes of 1024 deleted" below the p-bar.
-
-
-// Handling the "Stop" button:
--(BOOL)			stopped;						// Has the user requested this task to be stopped?
-
--(void)			setStopDelegate: (id)target;	// Alternate approach: Call an action on an object.
--(id)			stopDelegate;
--(void)			setStopAction: (SEL)action;
--(SEL)			stopAction;
+@property (weak) NSString *title;
+@property (weak) NSString *status;
 
 // private:
--(IBAction)		stop: (id)sender;
--(NSView*)		progressTaskView;
+- (IBAction)stop: (id)sender;
+@property (weak) IBOutlet NSView *progressTaskView; // View we display our stuff in.
 
 @end

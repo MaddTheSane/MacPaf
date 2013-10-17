@@ -7,7 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-
+#import "MAFDocument.h"
 
 @interface PAF21Data : NSObject
 @property (strong) NSArray *individualRecords;
@@ -23,8 +23,8 @@
 - (id)initWithData:(NSData *)data;
 
 - (void)importData;
-- (void)importDataIntoDocument:(NSDocument *)document;
+- (void)importDataIntoDocument:(NSObject<MAFDocumentDelegate> *)document;
 
-+ (void)importFromData:(NSData *)data intoDocument:(NSDocument *)document;
++ (void)importFromData:(NSData *)data intoDocument:(NSObject<MAFDocumentDelegate> *)document;
 
 @end

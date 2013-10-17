@@ -47,8 +47,15 @@
 
 extern NSLock*						gUKProgressPanelThreadLock;		// Mutex lock used to allow calling this from several threads.
 
+@interface UKProgressPanelTask ()
+@property (readwrite, getter = stopped) BOOL stopped; // Has this task been stopped by the user?
+@end
 
 @implementation UKProgressPanelTask
+@synthesize stopDelegate;
+@synthesize stopAction;
+@synthesize stopped;
+@synthesize progressTaskView;
 
 /* -----------------------------------------------------------------------------
 	newProgressPanelTask:
@@ -82,7 +89,7 @@ extern NSLock*						gUKProgressPanelThreadLock;		// Mutex lock used to allow cal
 		[NSBundle loadNibNamed: @"UKProgressPanelTask" owner: self];
 		stopAction = @selector(stop:);
 		//[progressStopButton setEnabled: NO];
-		stopped = NO;
+		self.stopped = NO;
 	}
 	
 	return self;
@@ -116,28 +123,110 @@ extern NSLock*						gUKProgressPanelThreadLock;		// Mutex lock used to allow cal
 		These methods simply forward the messages to our progress bar.
    -------------------------------------------------------------------------- */
 
--(double)		minValue								{ return [progressBar minValue]; }
--(double)		maxValue								{ return [progressBar maxValue]; }
--(void)			setMinValue: (double)newMinimum			{ [gUKProgressPanelThreadLock lock]; [progressBar setMinValue: newMinimum]; [gUKProgressPanelThreadLock unlock]; }
--(void)			setMaxValue: (double)newMaximum			{ [gUKProgressPanelThreadLock lock]; [progressBar setMaxValue: newMaximum]; [gUKProgressPanelThreadLock unlock]; }
+-(double)minValue
+{
+	return [progressBar minValue];
+}
 
--(double)		doubleValue								{ return [progressBar doubleValue]; }
--(void)			setDoubleValue: (double)doubleValue		{ [gUKProgressPanelThreadLock lock]; [progressBar setDoubleValue: doubleValue]; [progressBar setNeedsDisplay:YES]; [gUKProgressPanelThreadLock unlock]; }
--(void)			incrementBy: (double)delta				{ [gUKProgressPanelThreadLock lock]; [progressBar incrementBy: delta]; [progressBar setNeedsDisplay:YES]; [gUKProgressPanelThreadLock unlock]; }
+-(double)maxValue
+{
+	return [progressBar maxValue];
+}
 
--(BOOL)			isIndeterminate							{ return [progressBar isIndeterminate]; }				
--(void)			setIndeterminate: (BOOL)flag			{ [gUKProgressPanelThreadLock lock]; [progressBar setIndeterminate: flag]; [gUKProgressPanelThreadLock unlock]; }
--(void)			animate: (id)sender						{ [gUKProgressPanelThreadLock lock]; [progressBar animate:sender]; [progressBar setNeedsDisplay:YES]; [gUKProgressPanelThreadLock unlock]; }
+-(void)setMinValue:(double)newMinimum
+{
+	[gUKProgressPanelThreadLock lock];
+	[progressBar setMinValue: newMinimum];
+	[gUKProgressPanelThreadLock unlock];
+}
+-(void)setMaxValue:(double)newMaximum
+{
+	[gUKProgressPanelThreadLock lock];
+	[progressBar setMaxValue: newMaximum];
+	[gUKProgressPanelThreadLock unlock];
+}
+
+-(double)doubleValue
+{
+	return [progressBar doubleValue];
+}
+
+-(void)setDoubleValue:(double)doubleValue
+{
+	[gUKProgressPanelThreadLock lock];
+	[progressBar setDoubleValue: doubleValue];
+	[progressBar setNeedsDisplay:YES];
+	[gUKProgressPanelThreadLock unlock];
+}
+
+-(void)incrementBy:(double)delta
+{
+	[gUKProgressPanelThreadLock lock];
+	[progressBar incrementBy: delta];
+	[progressBar setNeedsDisplay:YES];
+	[gUKProgressPanelThreadLock unlock];
+}
+
+-(BOOL)isIndeterminate
+{
+	return [progressBar isIndeterminate];
+}
+
+-(void)setIndeterminate:(BOOL)flag
+{
+	[gUKProgressPanelThreadLock lock];
+	[progressBar setIndeterminate: flag];
+	[gUKProgressPanelThreadLock unlock];
+}
+
+-(void)animate:(id)sender
+{
+	[gUKProgressPanelThreadLock lock];
+	[progressBar animate:sender];
+	[progressBar setNeedsDisplay:YES];
+	[gUKProgressPanelThreadLock unlock];
+}
 
 
 /* -----------------------------------------------------------------------------
 	title/status:
    -------------------------------------------------------------------------- */
 
--(void)			setTitle: (NSString*)title				{ [gUKProgressPanelThreadLock lock]; [progressTitleField setStringValue: title]; [progressTitleField setNeedsDisplay:YES]; [gUKProgressPanelThreadLock unlock]; }
--(void)			setStatus: (NSString*)status			{ [gUKProgressPanelThreadLock lock]; [progressStatusField setStringValue: status]; [progressStatusField setNeedsDisplay:YES]; [gUKProgressPanelThreadLock unlock]; }
+- (NSString*)title
+{
+	NSString *title;
+	[gUKProgressPanelThreadLock lock];
+	title = progressTitleField.stringValue;
+	[progressTitleField setNeedsDisplay:YES];
+	[gUKProgressPanelThreadLock unlock];
+	return title;
+}
 
+-(void)setTitle:(NSString*)title
+{
+	[gUKProgressPanelThreadLock lock];
+	progressTitleField.stringValue = title;
+	[progressTitleField setNeedsDisplay:YES];
+	[gUKProgressPanelThreadLock unlock];
+}
 
+- (NSString *)status
+{
+	NSString *status;
+	[gUKProgressPanelThreadLock lock];
+	status = progressStatusField.stringValue;
+	[progressStatusField setNeedsDisplay:YES];
+	[gUKProgressPanelThreadLock unlock];
+	return status;
+}
+
+-(void)setStatus:(NSString*)status
+{
+	[gUKProgressPanelThreadLock lock];
+	progressStatusField.stringValue = status;
+	[progressStatusField setNeedsDisplay:YES];
+	[gUKProgressPanelThreadLock unlock];
+}
 
 /* -----------------------------------------------------------------------------
 	setStopDelegate:
@@ -150,7 +239,8 @@ extern NSLock*						gUKProgressPanelThreadLock;		// Mutex lock used to allow cal
 		This defaults to nil, meaning no notification will be sent.
    -------------------------------------------------------------------------- */
 
--(void)			setStopDelegate: (id)target
+#if 0
+-(void)setStopDelegate: (id)target
 {
 	stopDelegate = target;
 	//[progressStopButton setEnabled: (stopDelegate != nil)];
@@ -163,11 +253,11 @@ extern NSLock*						gUKProgressPanelThreadLock;		// Mutex lock used to allow cal
 		button.
    -------------------------------------------------------------------------- */
 
--(id)			stopDelegate
+-(id)stopDelegate
 {
 	return stopDelegate;
 }
-
+#endif
 
 /* -----------------------------------------------------------------------------
 	setStopAction:
@@ -178,7 +268,8 @@ extern NSLock*						gUKProgressPanelThreadLock;		// Mutex lock used to allow cal
 		I want to encourage writing abortable operations).
    -------------------------------------------------------------------------- */
 
--(void)			setStopAction: (SEL)action
+#if 0
+-(void)setStopAction: (SEL)action
 {
 	stopAction = action;
 }
@@ -190,7 +281,7 @@ extern NSLock*						gUKProgressPanelThreadLock;		// Mutex lock used to allow cal
 		stopDelegate when the user clicks the "Stop" button in this panel.
    -------------------------------------------------------------------------- */
 
--(SEL)			stopAction
+-(SEL)stopAction
 {
 	return stopAction;
 }
@@ -202,11 +293,11 @@ extern NSLock*						gUKProgressPanelThreadLock;		// Mutex lock used to allow cal
 		user clicks the "Stop" button.
    -------------------------------------------------------------------------- */
 
--(BOOL)			stopped
+-(BOOL)stopped
 {
 	return stopped;
 }
-
+#endif
 
 /* -----------------------------------------------------------------------------
 	stop:
@@ -216,13 +307,13 @@ extern NSLock*						gUKProgressPanelThreadLock;		// Mutex lock used to allow cal
 		check, and it sends the stopAction to the stopDelegate.
    -------------------------------------------------------------------------- */
 
--(IBAction)	stop: (id)sender
+-(IBAction)stop:(id)sender
 {
 	[gUKProgressPanelThreadLock lock];
 	[progressStopButton setEnabled: NO];
-	stopped = YES;
-	SEL		vStopAction = stopAction;
-	id		vStopDelegate = stopDelegate;
+	self.stopped = YES;
+	SEL		vStopAction = self.stopAction;
+	id		vStopDelegate = self.stopDelegate;
 	[gUKProgressPanelThreadLock unlock];
 	
 	[vStopDelegate performSelector: vStopAction withObject: sender];

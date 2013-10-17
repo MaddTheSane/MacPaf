@@ -32,11 +32,22 @@
 	Globals:
    -------------------------------------------------------------------------- */
 
-static UKProgressPanel*		gMainProgressPanel = nil;	// Here we keep track of our shared panel instance (singleton pattern).
-NSLock*						gUKProgressPanelThreadLock = nil;			// Users will want to use threads with this. We need a mutex lock to avoid several progress panels and such stuff.
+static UKProgressPanel*	gMainProgressPanel = nil;			// Here we keep track of our shared panel instance (singleton pattern).
+NSLock*					gUKProgressPanelThreadLock = nil;	// Users will want to use threads with this. We need a mutex lock to avoid several progress panels and such stuff.
 
 
 @implementation UKProgressPanel
+
+- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(id __unsafe_unretained [])buffer count:(NSUInteger)len
+{
+	NSUInteger retVal = 0;
+	NSArray *theArray;
+	[gUKProgressPanelThreadLock lock];
+	theArray = [taskContentView subviews];
+	retVal = [theArray countByEnumeratingWithState:state objects:buffer count:len];
+	[gUKProgressPanelThreadLock unlock];
+	return retVal;
+}
 
 +(void)	initialize
 {
@@ -82,7 +93,7 @@ NSLock*						gUKProgressPanelThreadLock = nil;			// Users will want to use threa
 		working.
    -------------------------------------------------------------------------- */
 
--(id)	init
+-(id)init
 {
 	if( self = [super init] )
 	{
@@ -167,7 +178,7 @@ NSLock*						gUKProgressPanelThreadLock = nil;			// Users will want to use threa
 	}
 	
 	// Update "number of tasks" status display:
-	[taskStatus setStringValue: [NSString stringWithFormat: NSLocalizedStringFromTable(@"%u tasks in progress...",@"UKProgressPanel", nil), [subs count]]];
+	[taskStatus setStringValue: [NSString stringWithFormat: NSLocalizedStringFromTable(@"%u tasks in progress...",@"UKProgressPanel", nil), (unsigned long)[subs count]]];
 	[taskStatus setNeedsDisplay:YES];
 	
 	[taskListWindow orderFront: nil];
@@ -191,12 +202,12 @@ NSLock*						gUKProgressPanelThreadLock = nil;			// Users will want to use threa
 {
 	[gUKProgressPanelThreadLock lock];
 
-	NSArray*			subs = [taskContentView subviews];
-	NSUInteger			pos = [subs indexOfObject: [theElement progressTaskView]];
-	NSEnumerator*		elEnum = [subs objectEnumerator];
-	NSSize				sizeGone = [[theElement progressTaskView] frame].size;
-	unsigned int		x;
-	NSView*				currElemView;
+	NSArray*		subs = [taskContentView subviews];
+	NSUInteger		pos = [subs indexOfObject: [theElement progressTaskView]];
+	NSEnumerator*	elEnum = [subs objectEnumerator];
+	NSSize			sizeGone = [[theElement progressTaskView] frame].size;
+	unsigned int	x;
+	NSView*			currElemView;
 	
 	// Move down elements above the one we're removing:
 	for( x = 0; currElemView = [elEnum nextObject]; x++ )
@@ -244,9 +255,9 @@ NSLock*						gUKProgressPanelThreadLock = nil;			// Users will want to use threa
 		he has hidden it by clicking its close box.
    -------------------------------------------------------------------------- */
 
--(IBAction)			orderFrontProgressPanel: (id)sender
+-(IBAction)orderFrontProgressPanel:(id)sender
 {
-	[[UKProgressPanel sharedProgressPanel] orderFront: self];
+	[[UKProgressPanel sharedProgressPanel] orderFront:sender];
 }
 
 @end

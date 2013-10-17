@@ -280,10 +280,10 @@ NSDateFormatter *dateFormatter;
 	return  [[NSString alloc] initWithData:data encoding:NSMacOSRomanStringEncoding]; // convert NSData -> NSString
 }
 
-- (NSString *)hexRepresentation:(NSData *)data length:(int)width
+- (NSString *)hexRepresentation:(NSData *)data length:(NSInteger)width
 {
-	int currentByte = 0, dataLength = [data length], bytesPerRow = width;
-	int rows = (dataLength / bytesPerRow) + ((dataLength % bytesPerRow)? 1:0);
+	NSInteger currentByte = 0, dataLength = [data length], bytesPerRow = width;
+	NSInteger rows = (dataLength / bytesPerRow) + ((dataLength % bytesPerRow)? 1:0);
 	char buffer[bytesPerRow*3 +1], hex1, hex2;
 	char *bytes = (char *) [data bytes];
 	NSMutableString *representation = [NSMutableString string];
@@ -453,7 +453,7 @@ NSDateFormatter *dateFormatter;
 	[self importDataIntoDocument:[[NSDocumentController sharedDocumentController] currentDocument]];
 }
 
-- (void)importDataIntoDocument:(NSDocument *)document
+- (void)importDataIntoDocument:(NSObject<MAFDocumentDelegate> *)document
 {
 	NSLog(@"%s document: %@", sel_getName(_cmd), document);
 	
@@ -815,7 +815,7 @@ NSDateFormatter *dateFormatter;
 	//[context save:nil];
 }
 	
-+ (void)importFromData:(NSData *)data intoDocument:(NSDocument *)document
++ (void)importFromData:(NSData *)data intoDocument:(NSObject<MAFDocumentDelegate> *)document
 {
 	NSLog(@"%s document: %@", sel_getName(_cmd), document);
 	NSLog(@"%lu, chunks %lu", (unsigned long)[data length], (unsigned long)(([data length]-512)/1024));

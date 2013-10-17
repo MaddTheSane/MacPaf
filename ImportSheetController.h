@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 
 @class UKProgressPanelTask;	
-@class MAFDocumentJDOM;
+@class MAFDocument;
 
 @interface ImportSheetController : NSWindowController {
 	IBOutlet NSWindow *importSheet;
@@ -21,10 +21,12 @@
 	IBOutlet NSButton *importButton;
 	
 //	UKProgressPanelTask *task;
-	NSString *fileNameToImport;
-	MAFDocumentJDOM *importDocument;
 //	NSData *data;
 }
+
+@property (retain) NSString *fileNameToImport;
+@property (retain) MAFDocument *importDocument;
+
 
 // Notifications to be sent by Java code
 

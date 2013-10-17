@@ -38,7 +38,7 @@
 	Controller:
    -------------------------------------------------------------------------- */
 
-@interface UKProgressPanel : NSObject
+@interface UKProgressPanel : NSObject <NSFastEnumeration>
 {
 	// All instance variables are *private*:
     IBOutlet NSView			*taskContentView;	// View that we add our progress elements' views to.
@@ -48,12 +48,11 @@
 
 +(UKProgressPanel*)	sharedProgressPanel;
 
-
--(void)			orderFront: (id)sender;
+-(void)orderFront: (id)sender;
 
 // Private (automatically done for you on task creation):
--(void)			addProgressPanelTask: (UKProgressPanelTask*)element;
--(void)			removeProgressPanelTask: (UKProgressPanelTask*)element;
+-(void)addProgressPanelTask: (UKProgressPanelTask*)element;
+-(void)removeProgressPanelTask: (UKProgressPanelTask*)element;
 
 @end
 
@@ -64,7 +63,5 @@
    -------------------------------------------------------------------------- */
 
 @interface NSApplication (UKProgressPanel)
-
--(IBAction)			orderFrontProgressPanel: (id)sender;	// Create and show the progress panel.
-
+-(IBAction) orderFrontProgressPanel: (id)sender;	// Create and show the progress panel.
 @end

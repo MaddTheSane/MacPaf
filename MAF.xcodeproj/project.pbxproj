@@ -73,6 +73,9 @@
 		55C8A2A81807302900A7BB42 /* MAFXMLTempleParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C8A2A61807302900A7BB42 /* MAFXMLTempleParserDelegate.m */; };
 		55C8A2A91807302900A7BB42 /* MAFXMLTempleParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C8A2A61807302900A7BB42 /* MAFXMLTempleParserDelegate.m */; };
 		55C8A42F1808A45E00A7BB42 /* ImportSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55C8A4311808A45E00A7BB42 /* ImportSheet.xib */; };
+		55D8D4AC180F71890045C98F /* MAFDocumentData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 55D8D4AA180F71890045C98F /* MAFDocumentData.xcdatamodeld */; };
+		55D8D4AF180F722B0045C98F /* MAFDocument.h in Headers */ = {isa = PBXBuildFile; fileRef = 55D8D4AD180F722B0045C98F /* MAFDocument.h */; };
+		55D8D4B0180F722B0045C98F /* MAFDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D8D4AE180F722B0045C98F /* MAFDocument.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -283,6 +286,9 @@
 		55C8A4301808A45E00A7BB42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ImportSheet.xib; sourceTree = "<group>"; };
 		55C8A4331808A46700A7BB42 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ImportSheet.strings; sourceTree = "<group>"; };
 		55C8A4351808A47700A7BB42 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/FamilyListWindow.strings; sourceTree = "<group>"; };
+		55D8D4AB180F71890045C98F /* MAFDocumentData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MAFDocumentData.xcdatamodel; sourceTree = "<group>"; };
+		55D8D4AD180F722B0045C98F /* MAFDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAFDocument.h; sourceTree = "<group>"; };
+		55D8D4AE180F722B0045C98F /* MAFDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAFDocument.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -320,6 +326,7 @@
 		02218D9AFECEFA92C02AAC07 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				55D8D4AA180F71890045C98F /* MAFDocumentData.xcdatamodeld */,
 				02C8769D0B3EF28B005E8B53 /* UKProgressPanel */,
 				02DDDDF70A165EF5003BC70E /* MAF Help */,
 				026ED79C05D932E50001D1D2 /* images */,
@@ -634,6 +641,8 @@
 				557B6535180B0E5F009FABAE /* MainToolbarDelegate.m */,
 				557B6538180B6B50009FABAE /* MyDocument.h */,
 				557B6539180B6B50009FABAE /* MyDocument.m */,
+				55D8D4AD180F722B0045C98F /* MAFDocument.h */,
+				55D8D4AE180F722B0045C98F /* MAFDocument.m */,
 			);
 			name = Classes;
 			path = "Objective C Classes";
@@ -725,6 +734,7 @@
 			files = (
 				55C8A2A71807302900A7BB42 /* MAFXMLTempleParserDelegate.h in Headers */,
 				556AC899180636760046242E /* IndividualListController.h in Headers */,
+				55D8D4AF180F722B0045C98F /* MAFDocument.h in Headers */,
 				02DE769309E96A04003B896A /* MAF_Prefix.h in Headers */,
 				02DDDD280A12BA9C003BC70E /* UKCrashReporter.h in Headers */,
 				0263E4E30A20F4450087A335 /* ApplicationStartupHelper.h in Headers */,
@@ -856,6 +866,7 @@
 				02DDDD290A12BA9C003BC70E /* UKCrashReporter.m in Sources */,
 				556AC8A21806432F0046242E /* FamilyListController.m in Sources */,
 				0263E4E40A20F4450087A335 /* ApplicationStartupHelper.m in Sources */,
+				55D8D4B0180F722B0045C98F /* MAFDocument.m in Sources */,
 				02B51F050B23D727003C1D2E /* PAF21Data.m in Sources */,
 				557B6537180B0E5F009FABAE /* MainToolbarDelegate.m in Sources */,
 				02C8769A0B3EF267005E8B53 /* UKProgressPanel.m in Sources */,
@@ -867,6 +878,7 @@
 				02D0062D0B4A445600C3CDF4 /* TransparentSplashScreenWindow.m in Sources */,
 				022394AA0BA2246900D268F1 /* NSData+RSHexDump.m in Sources */,
 				0205627F0BB7355700CB9F64 /* ThreadWorker.m in Sources */,
+				55D8D4AC180F71890045C98F /* MAFDocumentData.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1161,6 +1173,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		55D8D4AA180F71890045C98F /* MAFDocumentData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				55D8D4AB180F71890045C98F /* MAFDocumentData.xcdatamodel */,
+			);
+			currentVersion = 55D8D4AB180F71890045C98F /* MAFDocumentData.xcdatamodel */;
+			name = MAFDocumentData.xcdatamodeld;
+			path = resources/MAFDocumentData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 2A37F4A9FDCFA73011CA2CEA /* Project object */;
 }

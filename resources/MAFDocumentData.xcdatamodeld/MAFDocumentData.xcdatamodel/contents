@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3396" systemVersion="12F45" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Entity" syncable="YES"/>
+    <entity name="Family" syncable="YES">
+        <attribute name="divorceDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="marriageDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="sealingDate" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="sealingTemple" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="children" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Person" inverseName="family" inverseEntity="Person" syncable="YES"/>
+        <relationship name="father" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Person" syncable="YES"/>
+        <relationship name="mother" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Person" syncable="YES"/>
+    </entity>
+    <entity name="Person" syncable="YES">
+        <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="gender" optional="YES" attributeType="Integer 16" minValueString="0" maxValueString="2" defaultValueString="0" syncable="YES"/>
+        <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="middleNames" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="family" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Family" inverseName="children" inverseEntity="Family" syncable="YES"/>
+        <relationship name="spouses" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Person" inverseName="spouses" inverseEntity="Person" syncable="YES"/>
+    </entity>
     <elements>
-        <element name="Entity" positionX="160" positionY="192" width="128" height="45"/>
+        <element name="Person" positionX="0" positionY="0" width="128" height="133"/>
+        <element name="Family" positionX="160" positionY="192" width="128" height="148"/>
     </elements>
 </model>

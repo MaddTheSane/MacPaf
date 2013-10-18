@@ -18,17 +18,23 @@
 - (NSString *)hexString:(NSInteger)width;
 - (NSString *)cleanNoteString:(NSString *)noteString;
 - (NSString *)nameForPointer:(int)pointer;
-@property (retain) NSData *data;
 
-@property (retain) NSData *signatureData;
-@property (retain)NSData *reportTitleRecordData;
-@property (retain)NSData *submitterRecordData;
-@property (retain)NSData *preferenceData;
-@property (retain)NSData *oneHeaderData;
-@property (retain)NSData *firstMapChunkData;
+@property (strong) NSData *data;
 
-@property (retain)NSMutableArray *indivChunks, *marrChunks, *nameChunks, *noteChunks, *mapChunks, *otherChunks;
-@property (retain)NSDateFormatter *dateFormatter;
+@property (strong) NSData *signatureData;
+@property (strong) NSData *reportTitleRecordData;
+@property (strong) NSData *submitterRecordData;
+@property (strong) NSData *preferenceData;
+@property (strong) NSData *oneHeaderData;
+@property (strong) NSData *firstMapChunkData;
+
+@property (strong) NSMutableArray *indivChunks;
+@property (strong) NSMutableArray *marrChunks;
+@property (strong) NSMutableArray *nameChunks;
+@property (strong) NSMutableArray *noteChunks;
+@property (strong) NSMutableArray *mapChunks;
+@property (strong) NSMutableArray *otherChunks;
+@property (strong) NSDateFormatter *dateFormatter;
 
 @property (strong) NSCalendar *gregorianCalendar;
 
@@ -44,10 +50,18 @@
 @synthesize nameRecords;
 @synthesize noteList;
 @synthesize noteRecords;
-@synthesize signatureData, reportTitleRecordData, submitterRecordData, preferenceData, oneHeaderData, firstMapChunkData;
-//@synthesize data;
-@synthesize indivChunks, marrChunks, nameChunks, noteChunks, mapChunks, otherChunks;
-//@synthesize dateFormatter;
+@synthesize signatureData;
+@synthesize reportTitleRecordData;
+@synthesize submitterRecordData;
+@synthesize preferenceData;
+@synthesize oneHeaderData;
+@synthesize firstMapChunkData;
+@synthesize indivChunks;
+@synthesize marrChunks;
+@synthesize nameChunks;
+@synthesize noteChunks;
+@synthesize mapChunks;
+@synthesize otherChunks;
 
 struct OneHead_t {
     unsigned short IndivRCount;
@@ -114,13 +128,6 @@ struct NameRecord_t {
 
 - (NSString *)cleanNoteString:(NSString *)noteString
 {
-//	NSLog(@"illegal:%@", [[NSCharacterSet illegalCharacterSet] bitmapRepresentation]);
-//	NSLog(@"control:%@", [[NSCharacterSet controlCharacterSet] bitmapRepresentation]);
-//	NSLog(@"white:%@", [[NSCharacterSet whitespaceCharacterSet] bitmapRepresentation]);
-//	NSLog(@"white+newline:%@", [[NSCharacterSet whitespaceAndNewlineCharacterSet] bitmapRepresentation]);
-//	NSLog(@"punct:%@", [[NSCharacterSet punctuationCharacterSet] bitmapRepresentation]);
-//	NSLog(@"symbol:%@", [[NSCharacterSet symbolCharacterSet] bitmapRepresentation]);
-
 	NSString *string = [[[[noteString componentsSeparatedByString:@"\0\1"] componentsJoinedByString:@"\n\n"] componentsSeparatedByString:@"\0\0"] componentsJoinedByString:@"\n"];
 	NSLog(@"bytes:%@", [string dataUsingEncoding:NSUTF8StringEncoding]);
 	NSLog(@"control:%@", [[string stringByTrimmingCharactersInSet:[NSCharacterSet controlCharacterSet]] dataUsingEncoding:NSUTF8StringEncoding]);
@@ -134,14 +141,18 @@ struct NameRecord_t {
 	dateComponents.year = dualDate->year;
 	dateComponents.month = dualDate->month;
 	dateComponents.day = dualDate->day;
-	dateComponents.timeZone = [NSTimeZone localTimeZone];
+	dateComponents.timeZone = nil;
 	return [self.gregorianCalendar dateFromComponents:dateComponents];
-	return [NSCalendarDate dateWithYear:dualDate->year month:dualDate->month day:dualDate->day hour:0 minute:0 second:0 timeZone:nil];
 }
 
 - (NSDate *)dateForRegDate:(const struct RegDate_t *)regDate
 {
-	return [NSCalendarDate dateWithYear:regDate->year month:regDate->month day:regDate->day hour:0 minute:0 second:0 timeZone:nil];
+	NSDateComponents *dateComponents = [NSDateComponents new];
+	dateComponents.year = regDate->year;
+	dateComponents.month = regDate->month;
+	dateComponents.day = regDate->day;
+	dateComponents.timeZone = nil;
+	return [self.gregorianCalendar dateFromComponents:dateComponents];
 }
 
 - (NSString *)dateStringForDualDate:(const struct DualDate_t *)dualDate
@@ -473,9 +484,10 @@ struct NameRecord_t {
 {
 	NSLog(@"%s document: %@", sel_getName(_cmd), document);
 	
-	//	int							x, xmax = 25;							// Just some vars so we can fake a lengthy operation
-	UKProgressPanelTask*		task = [[UKProgressPanelTask alloc] init];	// Create a progress bar etc. in our progress panel, showing and creating a panel if necessary.
 	/*
+		int							x, xmax = 25;							// Just some vars so we can fake a lengthy operation
+	UKProgressPanelTask*		task = [[UKProgressPanelTask alloc] init];	// Create a progress bar etc. in our progress panel, showing and creating a panel if necessary.
+	
 	 // Set up the progress bar and title/status message to be shown for this task:
 	 [task setIndeterminate: YES];										// By default, you get a determinate scrollbar, but we want barber-pole style.
 	 [task setTitle: @"Inviting folks to the party"];					// Title should describe the action the user triggered, so she knows what progress bar belongs to what operation
@@ -561,7 +573,6 @@ struct NameRecord_t {
 				
 				noteRecordList[currRec] = [NSNull null];
 				
-				//NSLog(@"combined:\n%@", [self combineNoteString:[noteList objectAtIndex:i]]);
 				obj = noteRecordList[nextNote];
 				currRec = nextNote;
 			}
@@ -581,7 +592,7 @@ struct NameRecord_t {
 				[noteList addObject:[NSNull null]];
 			}
 		}
-		NSLog(@"notelist: %@", [noteList valueForKeyPath:@"description"]);
+		NSLog(@"notelist: %@", [noteList description]);
 	}
 	{
 		// individuals
@@ -640,13 +651,6 @@ struct NameRecord_t {
 				individualLinksDict[@"parentsMarriageRecord"] = @(parentsMarriageRecord);
 				NSString *ID = [NSString stringWithCString:[[obj subdataWithRange:NSMakeRange(offset+80,10)] bytes] encoding:NSMacOSRomanStringEncoding];
 				unsigned short notePadRecord = [self shortFromData:obj atOffset:offset+90];
-				//	if (NotePadRecord != 0) {
-				//		[notepadLinks addObject:[self noteForPointer:NotePadRecord]];
-				//	}
-				
-				/*				NSLog(@"%s Surname: %d GivenName1: %d GivenName2: %d GivenName3: %d Title: %d gender: %@", _cmd, Surname, GivenName1, GivenName2, GivenName3, Title, gender);
-				 NSLog(@"%s birthDate: %@ BirthPlace1: %d BirthPlace2: %d BirthPlace3: %d BirthPlace4: %d", _cmd, [self dateStringForDualDate:birthDate], BirthPlace1, BirthPlace2, BirthPlace3, BirthPlace4);
-				 */
 				
 				MAFPerson *newIndividual = [document createAndInsertNewIndividual];
 				//	[newIndividual takeValue:@"Created From ObjC" forKey:@"fullName"];
@@ -783,10 +787,7 @@ struct NameRecord_t {
 						NSLog(@"children: %@", children);
 						nextChild = [[individualLinksList[nextChild-1] valueForKeyPath:@"olderSibling"] intValue];
 					}
-					//[newMarriage setValue:[NSClassFromString(@"com.redbugz.maf.util.CocoaUtils") javaListFromNSArray:children]	forKey:@"children"];
-					for (MAFPerson *child in children) {
-						
-					}
+					[newMarriage addChildren:[NSSet setWithArray:children]];
 				}
 				
 				if (marriageDate->year >= 100) {
@@ -795,7 +796,6 @@ struct NameRecord_t {
 				if ([marriagePlaceString length] > 0) {
 					int64_t marriagePlace = [document locationFromString:marriagePlaceString];
 					newMarriage.marriageLocation = marriagePlace;
-					
 				}
 				
 				if (sealingToSpouseDate->year >= 100) {
@@ -805,6 +805,7 @@ struct NameRecord_t {
 					NSDictionary *sealingToSpouseTemple = [MAFTempleList templeWithCode:sealingToSpouseTempleString];
 					if (sealingToSpouseTemple) {
 						int32_t templeNum = [sealingToSpouseTemple[kMAFTempleNumber] intValue];
+						newMarriage.sealingTemple = templeNum;
 					}
 				}
 				

@@ -33,7 +33,7 @@
    -------------------------------------------------------------------------- */
 
 static UKProgressPanel*	gMainProgressPanel = nil;			// Here we keep track of our shared panel instance (singleton pattern).
-NSLock*					gUKProgressPanelThreadLock = nil;	// Users will want to use threads with this. We need a mutex lock to avoid several progress panels and such stuff.
+static NSLock*			gUKProgressPanelThreadLock = nil;	// Users will want to use threads with this. We need a mutex lock to avoid several progress panels and such stuff.
 
 
 @implementation UKProgressPanel
@@ -49,9 +49,12 @@ NSLock*					gUKProgressPanelThreadLock = nil;	// Users will want to use threads 
 	return retVal;
 }
 
-+(void)	initialize
++ (void)initialize
 {
-	gUKProgressPanelThreadLock = [[NSLock alloc] init];
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		gUKProgressPanelThreadLock = [[NSLock alloc] init];
+	});
 }
 
 

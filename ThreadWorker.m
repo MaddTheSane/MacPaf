@@ -1,7 +1,7 @@
 #import "ThreadWorker.h"
 
 
-@interface ThreadWorker (PrivateAPI)
+@interface ThreadWorker ()
 
 /*!
  * @method initWithTarget:selector:argument:didEndSelector:

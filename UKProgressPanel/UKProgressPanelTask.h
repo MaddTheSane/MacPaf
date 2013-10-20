@@ -71,8 +71,7 @@
 @property double maxValue;
 @property (getter = isIndeterminate) BOOL indeterminate;
 - (void)incrementBy: (double)delta;
-- (void)animate: (id)sender;						// I'm not letting you have automatic timer animation. This is for feedback, not for making the user dizzy.
-
+- (void)animate: (id)sender; // I'm not letting you have automatic timer animation. This is for feedback, not for making the user dizzy.
 
 // Title/Status:
 @property (weak) NSString *title;

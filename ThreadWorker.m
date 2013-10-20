@@ -117,33 +117,6 @@
 
 
 /*!
- * When deallocating, release instance variables.
- */
-- (void)dealloc
-{
-    // Release instance variables
-
-    // Releasing these makes the program crash...
-    //[_callingConnection release];
-    //[_conn2 release];
-    //[_port1 release];
-    //[_port2 release];
-    
-    // Clear instance variables - Probably unnecessary.
-    _target            = nil;
-    _argument          = nil;
-    _callingConnection = nil;
-    _conn2             = nil;
-    _port1             = nil;
-    _port2             = nil;
-    _cancelled         = nil;
-
-}   // end dealloc
-
-
-
-
-/*!
  * Marks thread as cancelled but cannot actually cause thread to quit.
  */
 -(void)markAsCancelled

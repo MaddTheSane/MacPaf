@@ -26,14 +26,14 @@
 
 #import "UKProgressPanel.h"
 #import "UKProgressPanelTask.h"
-
+#import "UKProgressPanel-private.h"
 
 /* -----------------------------------------------------------------------------
 	Globals:
    -------------------------------------------------------------------------- */
 
-static UKProgressPanel*	gMainProgressPanel = nil;			// Here we keep track of our shared panel instance (singleton pattern).
-static NSLock*			gUKProgressPanelThreadLock = nil;	// Users will want to use threads with this. We need a mutex lock to avoid several progress panels and such stuff.
+static	UKProgressPanel*	gMainProgressPanel = nil;			// Here we keep track of our shared panel instance (singleton pattern).
+		NSLock*				gUKProgressPanelThreadLock = nil;	// Users will want to use threads with this. We need a mutex lock to avoid several progress panels and such stuff.
 
 
 @implementation UKProgressPanel
@@ -225,7 +225,7 @@ static NSLock*			gUKProgressPanelThreadLock = nil;	// Users will want to use thr
 	
 	[[theElement progressTaskView] removeFromSuperview];
 	[taskContentView setNeedsDisplay:YES];
-	
+		
 	// Update "number of tasks" status display:
 	NSUInteger tCount = [subs count];
 	if( tCount == 0 )

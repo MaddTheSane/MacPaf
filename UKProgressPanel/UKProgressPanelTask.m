@@ -39,13 +39,12 @@
 
 #import "UKProgressPanelTask.h"
 #import "UKProgressPanel.h"
+#import "UKProgressPanel-private.h"
 
 
 /* -----------------------------------------------------------------------------
 	Globals:
    -------------------------------------------------------------------------- */
-
-extern NSLock*						gUKProgressPanelThreadLock;		// Mutex lock used to allow calling this from several threads.
 
 @interface UKProgressPanelTask ()
 @property (readwrite, getter = stopped) BOOL stopped; // Has this task been stopped by the user?
@@ -65,11 +64,9 @@ extern NSLock*						gUKProgressPanelThreadLock;		// Mutex lock used to allow cal
 		Caller is responsible for releasing the result of this.
    -------------------------------------------------------------------------- */
 
-+(id)	newProgressPanelTask
++(id)newProgressPanelTask
 {
-	UKProgressPanelTask*	el;
-	
-	el = [[self alloc] init];
+	UKProgressPanelTask* el = [[self alloc] init];
 	
 	[[UKProgressPanel sharedProgressPanel] addProgressPanelTask: el];
 	
@@ -82,12 +79,12 @@ extern NSLock*						gUKProgressPanelThreadLock;		// Mutex lock used to allow cal
 		Do not call this unless you really know what you're doing.
    -------------------------------------------------------------------------- */
 
--(id)	init
+-(id)init
 {
-	if( self = [super init] )
+	if(self = [super init])
 	{
 		[NSBundle loadNibNamed: @"UKProgressPanelTask" owner: self];
-		stopAction = @selector(stop:);
+		self.stopAction = @selector(stop:);
 		//[progressStopButton setEnabled: NO];
 		self.stopped = NO;
 	}
@@ -101,18 +98,20 @@ extern NSLock*						gUKProgressPanelThreadLock;		// Mutex lock used to allow cal
 		Makes sure we no longer belong to our progress window.
    -------------------------------------------------------------------------- */
 
--(void)	dealloc
+#if 0
+-(void)dealloc
 {
+	//TODO: call this at the right place
 	[[UKProgressPanel sharedProgressPanel] removeProgressPanelTask: self];
 }
-
+#endif
 
 /* -----------------------------------------------------------------------------
 	awakeFromNib
 		Makes sure the "stop" button is enabled if we have a stop delegate.
    -------------------------------------------------------------------------- */
 
--(void)	awakeFromNib
+-(void)awakeFromNib
 {
 	//[progressStopButton setEnabled: (stopDelegate != nil)];
 }

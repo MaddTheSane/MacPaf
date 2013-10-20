@@ -233,15 +233,6 @@ Enjoy.
 -(BOOL)cancelled;
 
 
-
-    /*!
-    @method dealloc
-    @abstract Make sure we clean up after ourselves.
-    @discussion Make sure we clean up after ourselves.
-    */
-- (void) dealloc;
-
-
     /*!
     @method description
      @abstract Just a little note to say, "Good job, Rob!"

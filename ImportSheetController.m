@@ -20,7 +20,6 @@ NSString * const TEMPLEREADY_UPDATE_DOCUMENT_TYPE = @"TempleReady Update File";
 
 @interface ImportSheetController ()
 - (NSString *)typeForContent:(NSData *)data;
-
 @end
 
 @implementation ImportSheetController
@@ -41,32 +40,29 @@ NSString * const TEMPLEREADY_UPDATE_DOCUMENT_TYPE = @"TempleReady Update File";
 	
     [oPanel setAllowsMultipleSelection:NO];
 	[oPanel setMessage:@"Please choose a file to import"];
-//    result = 
-		[oPanel beginSheetForDirectory:nil file:nil types:fileTypes modalForWindow:[[self document] windowForSheet] modalDelegate:self didEndSelector:@selector(openPanelDidEnd:returnCode:contextInfo:) contextInfo:nil];	
-}
-
-- (void)openPanelDidEnd:(NSOpenPanel *)panel returnCode:(int)returnCode  contextInfo:(void  *)contextInfo
-{
-	NSLog(@"ImportSheetController.openPanelDidEnd: %@ : returncode=%d contextinfo=%@", panel, returnCode, contextInfo);
-	[panel orderOut:self];
-	if (returnCode == NSOKButton) {
-		NSLog(@"filename:%@", [panel URL]);
-		self.fileNameToImport = [[panel URL] path] ;
-        NSArray *filesToOpen = [panel URLs];
-        NSUInteger i, count = [filesToOpen count];
-        for (NSURL *aURL in filesToOpen) {
-			NSLog(@"file:%@", aURL);
-        }
-		[fileNameText setStringValue:self.fileNameToImport];
-		
-		self.importDocument = [MAFDocument new];
-		UKProgressPanelTask *task = [[UKProgressPanelTask alloc] init];
-
-		NSDictionary *dict = @{@"data": [NSData dataWithContentsOfFile:self.fileNameToImport], @"doc": self.importDocument, @"task": task};
-		[NSThread detachNewThreadSelector:@selector(loadDataPreviewInThread:)
-			toTarget:self
-			withObject:dict];
-	}
+	
+	[oPanel beginSheetModalForWindow:[[self document] windowForSheet] completionHandler:^(NSInteger result) {
+		if (result == NSOKButton) {
+			NSLog(@"filename:%@", [oPanel URL]);
+			self.fileNameToImport = [[oPanel URL] path];
+			NSArray *filesToOpen = [oPanel URLs];
+			NSUInteger i, count = [filesToOpen count];
+			for (NSURL *aURL in filesToOpen) {
+				NSLog(@"file:%@", aURL);
+			}
+			[fileNameText setStringValue:self.fileNameToImport];
+			
+			self.importDocument = [MAFDocument new];
+			UKProgressPanelTask *task = [[UKProgressPanelTask alloc] init];
+			
+			NSDictionary *dict = @{@"data": [NSData dataWithContentsOfFile:self.fileNameToImport],
+								   @"doc": self.importDocument,
+								   @"task": task};
+			[NSThread detachNewThreadSelector:@selector(loadDataPreviewInThread:)
+									 toTarget:self
+								   withObject:dict];
+		}
+	}];
 }
 
 	// import data that has already been loaded into a new or existing document

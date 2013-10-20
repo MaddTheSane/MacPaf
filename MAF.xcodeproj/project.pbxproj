@@ -260,6 +260,7 @@
 		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		2A37F4C5FDCFA73011CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32DBCF820370BDBC00C91783 /* MAF_Prefix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAF_Prefix.h; sourceTree = "<group>"; };
+		553EFE03181493FE00F0D51E /* UKProgressPanel-private.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UKProgressPanel-private.h"; sourceTree = "<group>"; };
 		556AC897180636760046242E /* IndividualListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndividualListController.h; sourceTree = "<group>"; };
 		556AC898180636760046242E /* IndividualListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndividualListController.m; sourceTree = "<group>"; };
 		556AC89B180641F40046242E /* MAFTempleList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAFTempleList.h; sourceTree = "<group>"; };
@@ -575,6 +576,7 @@
 				02C876920B3EF267005E8B53 /* UKProgressPanel.m */,
 				02C876930B3EF267005E8B53 /* UKProgressPanelTask.h */,
 				02C876940B3EF267005E8B53 /* UKProgressPanelTask.m */,
+				553EFE03181493FE00F0D51E /* UKProgressPanel-private.h */,
 			);
 			path = UKProgressPanel;
 			sourceTree = "<group>";

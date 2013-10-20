@@ -45,7 +45,7 @@ void	UKCrashReporterCheckForCrash()
 		NSString*		crashLogsFolder = [@"~/Library/Logs/CrashReporter/" stringByExpandingTildeInPath];
 		NSString*		crashLogName = [appName stringByAppendingString: @".crash.log"];
 		NSString*		crashLogPath = [crashLogsFolder stringByAppendingPathComponent: crashLogName];
-		NSDictionary*	fileAttrs = [[NSFileManager defaultManager] fileAttributesAtPath: crashLogPath traverseLink: YES];
+		NSDictionary*	fileAttrs = [[NSFileManager defaultManager] attributesOfItemAtPath:crashLogPath error:NULL];
 		NSDate*			lastTimeCrashLogged = (fileAttrs == nil) ? nil : [fileAttrs fileModificationDate];
 		NSTimeInterval	lastCrashReportInterval = [[NSUserDefaults standardUserDefaults] floatForKey: @"UKCrashReporterLastCrashReportDate"];
 		NSDate*			lastTimeCrashReported = [NSDate dateWithTimeIntervalSince1970: lastCrashReportInterval];
@@ -62,7 +62,7 @@ void	UKCrashReporterCheckForCrash()
 									@"", appName ) )
 				{
 					// Fetch the newest report from the log:
-					NSString*			crashLog = [NSString stringWithContentsOfFile: crashLogPath];
+					NSString*			crashLog = [NSString stringWithContentsOfFile: crashLogPath encoding:NSUTF8StringEncoding error:NULL];
 					NSArray*			separateReports = [crashLog componentsSeparatedByString: @"\n\n**********\n\n"];
 					NSString*			currentReport = [separateReports count] > 0 ? separateReports[[separateReports count] -1] : @"*** Couldn't read Report ***";
 					NSData*				crashReport = [currentReport dataUsingEncoding: NSUTF8StringEncoding];	// 1 since report 0 is empty (file has a delimiter at the top).
@@ -88,7 +88,7 @@ void	UKCrashReporterCheckForCrash()
 					[postRequest setValue: agent forHTTPHeaderField: @"User-Agent"];
 					[postRequest setHTTPBody: formData];
 					
-					(NSData*) [NSURLConnectionClass sendSynchronousRequest: postRequest returningResponse: &response error: &error];
+					[NSURLConnectionClass sendSynchronousRequest: postRequest returningResponse: &response error: &error];
 				}
 				
 				// Remember we just reported a crash, so we don't ask twice:

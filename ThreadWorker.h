@@ -3,7 +3,7 @@
 
 /*!
 @class ThreadWorker
-@abstract v0.7 - Throws a task onto another thread and notifies you when it's done.
+@abstract v0.7.1 - Throws a task onto another thread and notifies you when it's done.
 @discussion
 
 Usage:
@@ -29,12 +29,10 @@ files to your project directory.
 To see how to use this class, see the documentation for
 the "workOn" method below.
 
-I recommend registering at the link below to let
-SourceForge contact you when new versions of ThreadWorker
-are released:
-
-<a href="http://sourceforge.net/project/filemodule_monitor.php?filemodule_id=24102">http://sourceforge.net/project/filemodule_monitor.php?filemodule_id=24102</a>
-
+Consider adding the file release feed to your news aggregator
+(if you use one) to be notified of new releases:
+<a href="https://sourceforge.net/api/file/index/project-id/23200/rss?path=%2Fthreadworker">Follow the file release RSS feed...</a>
+ 
 I'm releasing this code into the Public Domain.
 Do with it as you will. Enjoy!
 
@@ -44,6 +42,7 @@ Original author: Robert Harder, rob&#064;iharder.net
 Change History
 
 <pre>
+0.7.1 - Modified example to build in Xcode 3.2.
 0.7 -
  o  Added ability to mark thread as cancelled.
  o  Changed the behavior when "longTask" takes a second argument.
@@ -191,7 +190,7 @@ Of course you will have to have imported the ThreadWorker.h
 file in your class's header file. The top of your header file
 might then look like this:
  <pre>
-    import <Cocoa/Cocoa.h>
+    import &lt;Cocoa/Cocoa.h&gt;
     import "ThreadWorker.h"
  </pre>
 Enjoy.

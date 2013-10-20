@@ -34,15 +34,9 @@
  */
 -(void)runPrimaryTask:(id)notUsed;
 
-    
-
 @end // PrivateAPI
 
-
-
-
 @implementation ThreadWorker
-
 
 /*!
  * This is a public class method that you call 
@@ -67,7 +61,7 @@
     }   // end if: error
     
     // Create an instance of ThreadWorker
-    tw = [[ThreadWorker alloc] 
+    tw = [[ThreadWorker alloc]
             initWithTarget:target 
             selector:selector 
             argument:argument
@@ -89,9 +83,6 @@
     return tw;
 }   // end workOn
 
-
-
-
 /*!
  * Private init method that establishes instance variables.
  */
@@ -110,11 +101,8 @@
     _didEndSelector	= didEndSelector;
     _cancelled          = [[NSConditionLock alloc] initWithCondition:NO];
 
-    // Retain instance variables
-
     return self;
 }   // end initWithTarget
-
 
 /*!
  * Marks thread as cancelled but cannot actually cause thread to quit.
@@ -126,10 +114,6 @@
         [_cancelled unlockWithCondition:YES];
 }	// end markAsCancelled
 
-
-
-
-
 /*!
  * Indicates whether or not thread is cancelled.
  */
@@ -138,10 +122,6 @@
     return [_cancelled condition];
 }	// end cancelled
 
-
-
-
-
 /*!
  * Private method that is called in a detached thread.
  * It sets up the thread maintenance - primarily the
@@ -149,41 +129,39 @@
  */
 - (void)startThread:(NSArray *)callingPortArray
 {
-    
     // Thread startup maintenance
     @autoreleasepool {
-    
-    // Set up connections on new thread
-        _port1 = callingPortArray[0];
-        _port2 = callingPortArray[1];
-        _conn2 = callingPortArray[2];
-        _callingConnection = [NSConnection connectionWithReceivePort:_port1 sendPort:_port2];
-
-        // Prime the run loop
-        
-        [[NSRunLoop currentRunLoop] 
-            addTimer:[NSTimer scheduledTimerWithTimeInterval:0 
-                target:self 
-                selector:@selector(runPrimaryTask:) 
-                userInfo:nil 
-                repeats:NO] 
-            forMode:NSDefaultRunLoopMode];
-        //[[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
-        //                         beforeDate:[NSDate distantFuture]];
-        
-        //[self runPrimaryTask:nil];
-        
-        // Run one iteration of the run loop
-        _endRunLoop = NO;
-        BOOL isRunning;
-        do {
-            isRunning = [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
-                                                 beforeDate:[NSDate distantFuture]];
-            NSLog(@"isRunning: %d, _endRunLoop: %d", isRunning, _endRunLoop );
-        } while ( isRunning && !_endRunLoop);   
-
-    
-    }
+		// Set up connections on new thread
+		_port1 = [callingPortArray objectAtIndex:0];
+		_port2 = [callingPortArray objectAtIndex:1];
+		_conn2 = [callingPortArray objectAtIndex:2];
+		_callingConnection = [NSConnection connectionWithReceivePort:_port1 sendPort:_port2];
+		
+		// Prime the run loop
+		
+		[[NSRunLoop currentRunLoop]
+		 addTimer:[NSTimer scheduledTimerWithTimeInterval:0
+												   target:self
+												 selector:@selector(runPrimaryTask:)
+												 userInfo:nil
+												  repeats:NO]
+		 forMode:NSDefaultRunLoopMode];
+		//[[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
+		//                         beforeDate:[NSDate distantFuture]];
+		
+		//[self runPrimaryTask:nil];
+		
+		// Run one iteration of the run loop
+		_endRunLoop = NO;
+		BOOL isRunning;
+		do {
+			isRunning = [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
+												 beforeDate:[NSDate distantFuture]];
+			NSLog(@"isRunning: %d, _endRunLoop: %d", isRunning, _endRunLoop );
+		} while ( isRunning && !_endRunLoop);
+		
+		
+	}
 }   // end startThread
 
 
@@ -222,10 +200,7 @@
  * the original author of this Public Domain software.
  */
 + (NSString *)description
-{   return @"ThreadWorker v0.7. Public Domain. Original author: Robert Harder, rob@iharder.net. Keep up-to-date at http://iHarder.net";
+{   return @"ThreadWorker v0.7.1. Public Domain. Original author: Robert Harder, rob@iharder.net. Keep up-to-date at http://iHarder.net";
 }   // end description
 
-
-
 @end
-

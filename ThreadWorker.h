@@ -107,8 +107,6 @@ back to the main, i.e. calling, thread from the secondary thread.
    BOOL		        _endRunLoop;
 }
 
-
-
 /*!
 @method workOn:withSelector:withObject:didEndSelector:
 @param target The object to receive the selector message. It is retained.
@@ -202,7 +200,6 @@ Enjoy.
     withObject:(id)userInfo
     didEndSelector:(SEL)didEndSelector;
 
-
     /*!
      @method markAsCancelled
      @abstract Mark the ThreadWorker as cancelled.
@@ -223,7 +220,6 @@ Enjoy.
      */
 -(void)markAsCancelled;
 
-
     /*!
      @method cancelled
      @abstract Returns whether or not someone has tried to cancel the thread.
@@ -231,18 +227,13 @@ Enjoy.
      */
 -(BOOL)cancelled;
 
-
-    /*!
-    @method description
-     @abstract Just a little note to say, "Good job, Rob!"
-     @discussion
-     Just a little note to say, "Good job, Rob!" to
-     the original author of this Public Domain software.
-     */
+	/*!
+	 @method description
+	 @abstract Just a little note to say, "Good job, Rob!"
+	 @discussion
+	 Just a little note to say, "Good job, Rob!" to
+	 the original author of this Public Domain software.
+	 */
 + (NSString *)description;
 
-
-
-
 @end
-

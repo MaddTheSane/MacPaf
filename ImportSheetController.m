@@ -140,22 +140,25 @@ NSString * const TEMPLEREADY_UPDATE_DOCUMENT_TYPE = @"TempleReady Update File";
 			task = [[UKProgressPanelTask alloc] init];
 		}
 		
-		[task setIndeterminate:YES];
-		[task setTitle:@"Load Document Data"];
-		[task setStatus:@"Preparing to load data..."];
-		[task setStopAction:@selector(cancel:)];
-		[task setStopDelegate:self];
+		task.indeterminate = YES;
+		task.title = @"Load Document Data";
+		task.status = @"Preparing to load data...";
+		task.stopAction = @selector(cancel:);
+		task.stopDelegate = self;
 		
 		[self showSheetForWindow:[[self document] windowForSheet] task:task];
 		
-		NSDictionary *loaderDict = @{@"delegate": task, @"data": [dict valueForKey:@"data"], @"document": [dict valueForKey:@"doc"], @"controller": self};
+		NSDictionary *loaderDict = @{@"delegate": task,
+									 @"data": [dict valueForKey:@"data"],
+									 @"document": [dict valueForKey:@"doc"],
+									 @"controller": self};
 		
 		//id newLoader =
 		[[loader class] loadDataForDocumentWithUpdateDelegate:loaderDict];
 	}
 }
 
-- (void) loadDataPreviewInThread:(id)dict
+- (void)loadDataPreviewInThread:(id)dict
 {
 	@autoreleasepool {
 		@try {
@@ -259,54 +262,54 @@ NSString * const TEMPLEREADY_UPDATE_DOCUMENT_TYPE = @"TempleReady Update File";
 {
 	NSLog(@"%s", sel_getName(_cmd));
 	
-/*	NSRect contentFrameInWindowCoordinates = [[self window] contentRectForFrameRect:[[self window] frame]];
-	float heightAdjustment = 100;//newHeight - NSHeight(contentFrameInWindowCoordinates);
-		contentFrameInWindowCoordinates.origin.y -= heightAdjustment;
-		contentFrameInWindowCoordinates.size.height += heightAdjustment;
-		[[self window] setFrame:[[self window] frameRectForContentRect:contentFrameInWindowCoordinates] display:[[self window] isVisible] animate:[[self window] isVisible]];
-*/
-
-		[NSApp endSheet:importSheet returnCode:0]; // stop the app's modality
-
-		
+	/*	NSRect contentFrameInWindowCoordinates = [[self window] contentRectForFrameRect:[[self window] frame]];
+	 float heightAdjustment = 100;//newHeight - NSHeight(contentFrameInWindowCoordinates);
+	 contentFrameInWindowCoordinates.origin.y -= heightAdjustment;
+	 contentFrameInWindowCoordinates.size.height += heightAdjustment;
+	 [[self window] setFrame:[[self window] frameRectForContentRect:contentFrameInWindowCoordinates] display:[[self window] isVisible] animate:[[self window] isVisible]];
+	 */
+	
+	[NSApp endSheet:importSheet returnCode:0]; // stop the app's modality
+	
+	
 	//
 	// actually import the data, based on the user's settings on the sheet
 	//
-		@try {
-			UKProgressPanelTask *task = [[UKProgressPanelTask alloc] init];
-			[task setIndeterminate:YES];
-			[task setTitle:@"Importing Document Data"];
-			[task setStatus:@"Preparing to import data..."];
-			[task setStopAction:@selector(cancel:)];
-			[task setStopDelegate:self];
-
-			[self showSheetForWindow:[[self document] windowForSheet] task:task];
-
-			[[self document] startSuppressUpdates];
-			[[[self document] mafDocument] importFromDocument:self.importDocument];
-			[[self document] endSuppressUpdates];
-			[[self document] save];
-
-			[NSApp endSheet:[[self document] windowForSheet] returnCode:0]; // stop the app's modality
-			[NSApp endSheet:importSheet returnCode:0]; // stop the app's modality
-			[NSApp endSheet:progressSheet returnCode:0]; // stop the app's modality
-//			[NSApp endSheet:[[self document] windowForSheet] returnCode:0]; // stop the app's modality
-//			NSData *data = [NSData dataWithContentsOfFile:fileNameToImport];//[[filePreview string] dataUsingEncoding:NSUTF8StringEncoding];
-//			[[NSNotificationCenter defaultCenter] postNotificationName:@"com.redbugz.maf.ImportDataNotification" object:[self document] userInfo:[NSDictionary dictionaryWithObjectsAndKeys:data, @"data", nil]];
-		}
-		@catch (NSException * e) {
-			NSLog(@"exception loading data: %@", e);
-		}
-		@finally {
-			NSLog(@"%s finally", sel_getName(_cmd));
-		}
-//	[[self document] loadDataRepresentation:data ofType:[[NSDocumentController sharedDocumentController] typeFromFileExtension:[fileNameToImport pathExtension]]];
+	@try {
+		UKProgressPanelTask *task = [[UKProgressPanelTask alloc] init];
+		[task setIndeterminate:YES];
+		[task setTitle:@"Importing Document Data"];
+		[task setStatus:@"Preparing to import data..."];
+		[task setStopAction:@selector(cancel:)];
+		[task setStopDelegate:self];
+		
+		[self showSheetForWindow:[[self document] windowForSheet] task:task];
+		
+		[[self document] startSuppressUpdates];
+		[[[self document] mafDocument] importFromDocument:self.importDocument];
+		[[self document] endSuppressUpdates];
+		[[self document] save];
+		
+		[NSApp endSheet:[[self document] windowForSheet] returnCode:0]; // stop the app's modality
+		[NSApp endSheet:importSheet returnCode:0]; // stop the app's modality
+		[NSApp endSheet:progressSheet returnCode:0]; // stop the app's modality
+		//			[NSApp endSheet:[[self document] windowForSheet] returnCode:0]; // stop the app's modality
+		//			NSData *data = [NSData dataWithContentsOfFile:fileNameToImport];//[[filePreview string] dataUsingEncoding:NSUTF8StringEncoding];
+		//			[[NSNotificationCenter defaultCenter] postNotificationName:@"com.redbugz.maf.ImportDataNotification" object:[self document] userInfo:[NSDictionary dictionaryWithObjectsAndKeys:data, @"data", nil]];
+	}
+	@catch (NSException * e) {
+		NSLog(@"exception loading data: %@", e);
+	}
+	@finally {
+		NSLog(@"%s finally", sel_getName(_cmd));
+	}
+	//	[[self document] loadDataRepresentation:data ofType:[[NSDocumentController sharedDocumentController] typeFromFileExtension:[fileNameToImport pathExtension]]];
 }
 
 - (IBAction)cancel:(id)sender;
 {
 	NSLog(@"cancel:%@ win:%@", sender, [sender window]);
-	[NSApp endSheet:[sender window] returnCode:0]; // stop the app's modality
+	[NSApp endSheet:[sender window] returnCode:NSCancelButton]; // stop the app's modality
 }
 
 // Init and dealloc
@@ -322,7 +325,7 @@ NSString * const TEMPLEREADY_UPDATE_DOCUMENT_TYPE = @"TempleReady Update File";
 
 // private callbacks
 
-- (void)_sheetDidEnd:(NSWindow *)sheetWindow returnCode:(int)returnCode
+- (void)_sheetDidEnd:(NSWindow *)sheetWindow returnCode:(NSInteger)returnCode
 		 contextInfo:(void  *)contextInfo; // [NSApp beginSheet:...]
 {
 	NSLog(@"_sheetDidEnd");

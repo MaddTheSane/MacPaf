@@ -44,7 +44,6 @@
 		02DE76A209E96A04003B896A /* Temple List.csv in Resources */ = {isa = PBXBuildFile; fileRef = 026ED7B305D932E50001D1D2 /* Temple List.csv */; };
 		02DE76A509E96A04003B896A /* TempleList.xml in Resources */ = {isa = PBXBuildFile; fileRef = 026ED7B605D932E50001D1D2 /* TempleList.xml */; };
 		02DE76A609E96A04003B896A /* XmlToGedcom.xsl in Resources */ = {isa = PBXBuildFile; fileRef = 026ED7B705D932E50001D1D2 /* XmlToGedcom.xsl */; };
-		02DE76AC09E96A04003B896A /* Page.psd in Resources */ = {isa = PBXBuildFile; fileRef = 027D36B30707D41E00F146F8 /* Page.psd */; };
 		02DE76B309E96A04003B896A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		02DE76B609E96A04003B896A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
 		556AC899180636760046242E /* IndividualListController.h in Headers */ = {isa = PBXBuildFile; fileRef = 556AC897180636760046242E /* IndividualListController.h */; };
@@ -871,7 +870,6 @@
 				02DE76A609E96A04003B896A /* XmlToGedcom.xsl in Resources */,
 				55C8A42F1808A45E00A7BB42 /* ImportSheet.xib in Resources */,
 				556AC8A51806A6210046242E /* MyDocument.xib in Resources */,
-				02DE76AC09E96A04003B896A /* Page.psd in Resources */,
 				559A716618060F51005DE4AE /* UKProgressPanelTask.xib in Resources */,
 				02DDDD260A12BA9C003BC70E /* UKCrashReporter.strings in Resources */,
 				559A717A18061031005DE4AE /* IndividualListWindow.xib in Resources */,

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment defaultVersion="1080" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MyDocument">
@@ -117,11 +117,11 @@
                                                             </subviews>
                                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         </clipView>
-                                                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" id="1521">
+                                                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="1521">
                                                             <rect key="frame" x="1" y="-30" width="169" height="15"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                         </scroller>
-                                                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" id="1522">
+                                                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="1522">
                                                             <rect key="frame" x="-30" y="1" width="15" height="173"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                         </scroller>
@@ -175,11 +175,11 @@
                                                             </subviews>
                                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         </clipView>
-                                                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" id="1523">
+                                                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="1523">
                                                             <rect key="frame" x="1" y="-30" width="169" height="15"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                         </scroller>
-                                                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" id="1524">
+                                                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="1524">
                                                             <rect key="frame" x="-30" y="1" width="15" height="173"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                         </scroller>
@@ -312,7 +312,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <button id="311">
-                                            <rect key="frame" x="458.99999999999994" y="243" width="203" height="105"/>
+                                            <rect key="frame" x="459" y="243" width="203" height="105"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                             <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" imagePosition="right" alignment="left" borderStyle="border" inset="2" id="1394">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -356,7 +356,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <button id="315">
-                                            <rect key="frame" x="458.99999999999994" y="0.0" width="203" height="106"/>
+                                            <rect key="frame" x="459" y="0.0" width="203" height="106"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                             <buttonCell key="cell" type="bevel" bezelStyle="regularSquare" imagePosition="right" alignment="left" borderStyle="border" inset="2" id="1398">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -799,11 +799,11 @@
                                                 </subviews>
                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </clipView>
-                                            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" id="1525">
+                                            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="1525">
                                                 <rect key="frame" x="1" y="-30" width="623" height="15"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
-                                            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" id="1527">
+                                            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="1527">
                                                 <rect key="frame" x="-30" y="17" width="15" height="228"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
@@ -941,11 +941,11 @@ DQ
                                                 </subviews>
                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </clipView>
-                                            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" id="1528">
+                                            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="1528">
                                                 <rect key="frame" x="1" y="-30" width="623" height="15"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
-                                            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" id="1530">
+                                            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="1530">
                                                 <rect key="frame" x="-30" y="17" width="15" height="228"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
@@ -1096,11 +1096,11 @@ DQ
                                                 </subviews>
                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </clipView>
-                                            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" controlSize="small" id="1531">
+                                            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" controlSize="small" horizontal="YES" id="1531">
                                                 <rect key="frame" x="1" y="-22" width="308" height="11"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
-                                            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" controlSize="small" id="1532">
+                                            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" controlSize="small" horizontal="NO" id="1532">
                                                 <rect key="frame" x="-22" y="1" width="11" height="115"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
@@ -1126,7 +1126,7 @@ DQ
                     </tabView>
                 </subviews>
             </view>
-            <toolbar key="toolbar" implicitIdentifier="880DBE38-6760-4EC3-8375-8D81900B8BC5" allowsUserCustomization="NO" displayMode="iconAndLabel" sizeMode="regular" id="p66-UM-iec" customClass="MyToolbarDelegate">
+            <toolbar key="toolbar" implicitIdentifier="880DBE38-6760-4EC3-8375-8D81900B8BC5" allowsUserCustomization="NO" displayMode="iconAndLabel" sizeMode="regular" id="p66-UM-iec" customClass="MainToolbarDelegate">
                 <allowedToolbarItems>
                     <toolbarItem implicitItemIdentifier="NSToolbarPrintItem" id="cbj-Q0-HGT"/>
                     <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="1US-NW-Eij"/>
@@ -1759,11 +1759,11 @@ DQ
                                                 </subviews>
                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </clipView>
-                                            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" id="1533">
+                                            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="1533">
                                                 <rect key="frame" x="1" y="-30" width="478" height="15"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
-                                            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" id="1535">
+                                            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="1535">
                                                 <rect key="frame" x="-30" y="17" width="15" height="149"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
@@ -1843,11 +1843,11 @@ DQ
                                                 </subviews>
                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </clipView>
-                                            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" id="1536">
+                                            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="1536">
                                                 <rect key="frame" x="1" y="-30" width="478" height="15"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
-                                            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" id="1538">
+                                            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="1538">
                                                 <rect key="frame" x="-30" y="17" width="15" height="148"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
@@ -2052,7 +2052,7 @@ DQ
                                                                             </textFieldCell>
                                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                         </tableColumn>
-                                                                        <tableColumn identifier="birthdate" editable="NO" width="140" minWidth="10" maxWidth="1000" id="266">
+                                                                        <tableColumn identifier="birthdate" editable="NO" width="141" minWidth="10" maxWidth="1000" id="266">
                                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                                                 <font key="font" metaFont="smallSystem"/>
                                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -2065,7 +2065,7 @@ DQ
                                                                             </textFieldCell>
                                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                         </tableColumn>
-                                                                        <tableColumn identifier="birthplace" editable="NO" width="134" minWidth="4" maxWidth="1000" id="267">
+                                                                        <tableColumn identifier="birthplace" editable="NO" width="133" minWidth="4" maxWidth="1000" id="267">
                                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                                                 <font key="font" metaFont="smallSystem"/>
                                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -2088,11 +2088,11 @@ DQ
                                                             </subviews>
                                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         </clipView>
-                                                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" id="1539">
+                                                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="1539">
                                                             <rect key="frame" x="-100" y="-100" width="470" height="15"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                         </scroller>
-                                                        <scroller key="verticalScroller" verticalHuggingPriority="750" id="1540">
+                                                        <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="1540">
                                                             <rect key="frame" x="470" y="1" width="16" height="209"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                         </scroller>
@@ -2291,11 +2291,11 @@ DQ
                                                 </subviews>
                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </clipView>
-                                            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" id="1541">
+                                            <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="1541">
                                                 <rect key="frame" x="1" y="-30" width="490" height="15"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
-                                            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" id="1543">
+                                            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="1543">
                                                 <rect key="frame" x="-30" y="17" width="15" height="114"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
@@ -2543,11 +2543,11 @@ DQ
                             </subviews>
                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </clipView>
-                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" id="1544">
+                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="1544">
                             <rect key="frame" x="-100" y="-100" width="87" height="18"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
-                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" id="1545">
+                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="1545">
                             <rect key="frame" x="423" y="1" width="16" height="291"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
@@ -2753,11 +2753,11 @@ DQ
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </clipView>
-                        <scroller key="horizontalScroller" verticalHuggingPriority="750" doubleValue="1" id="1546">
+                        <scroller key="horizontalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="1546">
                             <rect key="frame" x="-100" y="-100" width="87" height="18"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
-                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" id="1547">
+                        <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="1547">
                             <rect key="frame" x="550" y="1" width="15" height="268"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
@@ -2844,10 +2844,6 @@ DQ
             </connections>
         </customObject>
         <customObject id="1345" userLabel="GedcomLoaderJDOM" customClass="com.redbugz.maf.jdom.GedcomLoaderJDOM"/>
-        <view id="1067">
-            <rect key="frame" x="0.0" y="0.0" width="1" height="111"/>
-            <autoresizingMask key="autoresizingMask"/>
-        </view>
     </objects>
     <resources>
         <image name="Badge Add" width="32" height="32"/>

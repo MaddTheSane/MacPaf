@@ -10,9 +10,7 @@
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>paf</string>
-				<string>PAF</string>
 				<string>dat</string>
-				<string>DAT</string>
 			</array>
 			<key>CFBundleTypeName</key>
 			<string>PAF 2.1/2.3.1 File</string>
@@ -26,8 +24,6 @@
 			<false/>
 			<key>NSDocumentClass</key>
 			<string>MyDocument</string>
-			<key>NSPersistentStoreTypeKey</key>
-			<string>Binary</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -54,8 +50,6 @@
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>ged</string>
-				<string>GED</string>
-				<string>Ged</string>
 				<string>xml</string>
 			</array>
 			<key>CFBundleTypeName</key>
@@ -75,8 +69,6 @@
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>oup</string>
-				<string>OUP</string>
-				<string>Oup</string>
 			</array>
 			<key>CFBundleTypeName</key>
 			<string>TempleReady Update File</string>

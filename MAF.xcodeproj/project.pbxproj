@@ -27,21 +27,13 @@
 		02DE769809E96A04003B896A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165FFE840EACC02AAC07 /* InfoPlist.strings */; };
 		02DE769C09E96A04003B896A /* GedcomToHtml.xsl in Resources */ = {isa = PBXBuildFile; fileRef = 026ED7A805D932E50001D1D2 /* GedcomToHtml.xsl */; };
 		02DE769D09E96A04003B896A /* GedcomToXml.xsl in Resources */ = {isa = PBXBuildFile; fileRef = 026ED7A905D932E50001D1D2 /* GedcomToXml.xsl */; };
-		02DE769E09E96A04003B896A /* Temple Codes (official).xml in Resources */ = {isa = PBXBuildFile; fileRef = 026ED7AF05D932E50001D1D2 /* Temple Codes (official).xml */; };
-		02DE769F09E96A04003B896A /* Temple Codes.csv in Resources */ = {isa = PBXBuildFile; fileRef = 026ED7B005D932E50001D1D2 /* Temple Codes.csv */; };
-		02DE76A009E96A04003B896A /* Temple Codes.xls in Resources */ = {isa = PBXBuildFile; fileRef = 026ED7B105D932E50001D1D2 /* Temple Codes.xls */; };
-		02DE76A109E96A04003B896A /* Temple List in Resources */ = {isa = PBXBuildFile; fileRef = 026ED7B205D932E50001D1D2 /* Temple List */; };
-		02DE76A209E96A04003B896A /* Temple List.csv in Resources */ = {isa = PBXBuildFile; fileRef = 026ED7B305D932E50001D1D2 /* Temple List.csv */; };
-		02DE76A509E96A04003B896A /* TempleList.xml in Resources */ = {isa = PBXBuildFile; fileRef = 026ED7B605D932E50001D1D2 /* TempleList.xml */; };
 		02DE76A609E96A04003B896A /* XmlToGedcom.xsl in Resources */ = {isa = PBXBuildFile; fileRef = 026ED7B705D932E50001D1D2 /* XmlToGedcom.xsl */; };
 		02DE76B309E96A04003B896A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2A37F4B0FDCFA73011CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
 		02DE76B609E96A04003B896A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */; };
-		5507BABF181861BD005A7F21 /* TempleListGenerator in Resources */ = {isa = PBXBuildFile; fileRef = 55C8A29718072CDB00A7BB42 /* TempleListGenerator */; };
 		5507BAC0181861D9005A7F21 /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0263E4A60A20EF430087A335 /* License.txt */; };
 		556AC89A180636760046242E /* IndividualListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 556AC898180636760046242E /* IndividualListController.m */; };
 		556AC89E180641F40046242E /* MAFTempleList.m in Sources */ = {isa = PBXBuildFile; fileRef = 556AC89C180641F40046242E /* MAFTempleList.m */; };
 		556AC8A21806432F0046242E /* FamilyListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 556AC8A01806432F0046242E /* FamilyListController.m */; };
-		556AC8A41806A5900046242E /* Temple List.plist in Resources */ = {isa = PBXBuildFile; fileRef = 556AC8A31806A5900046242E /* Temple List.plist */; };
 		556AC8A51806A6210046242E /* MyDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = 556AC8A71806A6210046242E /* MyDocument.xib */; };
 		556AC8AB1806A94C0046242E /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 556AC8AA1806A94C0046242E /* Media.xcassets */; };
 		557B6537180B0E5F009FABAE /* MainToolbarDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 557B6535180B0E5F009FABAE /* MainToolbarDelegate.m */; };
@@ -59,6 +51,7 @@
 		55C8A2A91807302900A7BB42 /* MAFXMLTempleParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C8A2A61807302900A7BB42 /* MAFXMLTempleParserDelegate.m */; };
 		55C8A42F1808A45E00A7BB42 /* ImportSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55C8A4311808A45E00A7BB42 /* ImportSheet.xib */; };
 		55C930311819B85100D9E072 /* IndividualDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C930301819B85100D9E072 /* IndividualDetailController.m */; };
+		55C930341819C5FD00D9E072 /* ApplicationUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C930331819C5FD00D9E072 /* ApplicationUtilities.m */; };
 		55D8D4AC180F71890045C98F /* MAFDocumentData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 55D8D4AA180F71890045C98F /* MAFDocumentData.xcdatamodeld */; };
 		55D8D4B0180F722B0045C98F /* MAFDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D8D4AE180F722B0045C98F /* MAFDocument.m */; };
 		55D8D4B4181067EF0045C98F /* MAFPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D8D4B2181067EF0045C98F /* MAFPerson.m */; };
@@ -251,7 +244,6 @@
 		556AC8A01806432F0046242E /* FamilyListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FamilyListController.m; sourceTree = "<group>"; };
 		556AC8A31806A5900046242E /* Temple List.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Temple List.plist"; sourceTree = "<group>"; };
 		556AC8A61806A6210046242E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MyDocument.xib; sourceTree = "<group>"; };
-		556AC8A91806A6290046242E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MyDocument.strings; sourceTree = "<group>"; };
 		556AC8AA1806A94C0046242E /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		557B6534180B0E5F009FABAE /* MainToolbarDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainToolbarDelegate.h; sourceTree = "<group>"; };
 		557B6535180B0E5F009FABAE /* MainToolbarDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainToolbarDelegate.m; sourceTree = "<group>"; };
@@ -277,6 +269,9 @@
 		55C8A4351808A47700A7BB42 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/FamilyListWindow.strings; sourceTree = "<group>"; };
 		55C9302F1819B85100D9E072 /* IndividualDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndividualDetailController.h; sourceTree = "<group>"; };
 		55C930301819B85100D9E072 /* IndividualDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndividualDetailController.m; sourceTree = "<group>"; };
+		55C930321819C5FD00D9E072 /* ApplicationUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationUtilities.h; sourceTree = "<group>"; };
+		55C930331819C5FD00D9E072 /* ApplicationUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationUtilities.m; sourceTree = "<group>"; };
+		55C930361819C94400D9E072 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MyDocument.strings; sourceTree = "<group>"; };
 		55D8D4AB180F71890045C98F /* MAFDocumentData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MAFDocumentData.xcdatamodel; sourceTree = "<group>"; };
 		55D8D4AD180F722B0045C98F /* MAFDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAFDocument.h; sourceTree = "<group>"; };
 		55D8D4AE180F722B0045C98F /* MAFDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAFDocument.m; sourceTree = "<group>"; };
@@ -672,6 +667,8 @@
 				55C8A2A61807302900A7BB42 /* MAFXMLTempleParserDelegate.m */,
 				55C9302F1819B85100D9E072 /* IndividualDetailController.h */,
 				55C930301819B85100D9E072 /* IndividualDetailController.m */,
+				55C930321819C5FD00D9E072 /* ApplicationUtilities.h */,
+				55C930331819C5FD00D9E072 /* ApplicationUtilities.m */,
 			);
 			name = Delegates;
 			sourceTree = "<group>";
@@ -810,20 +807,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5507BABF181861BD005A7F21 /* TempleListGenerator in Resources */,
 				556AC8AB1806A94C0046242E /* Media.xcassets in Resources */,
 				02DE769509E96A04003B896A /* Credits.rtf in Resources */,
 				02DE769809E96A04003B896A /* InfoPlist.strings in Resources */,
 				559A717D1806103A005DE4AE /* MainMenu.xib in Resources */,
 				02DE769C09E96A04003B896A /* GedcomToHtml.xsl in Resources */,
 				02DE769D09E96A04003B896A /* GedcomToXml.xsl in Resources */,
-				02DE769E09E96A04003B896A /* Temple Codes (official).xml in Resources */,
-				02DE769F09E96A04003B896A /* Temple Codes.csv in Resources */,
-				02DE76A009E96A04003B896A /* Temple Codes.xls in Resources */,
-				02DE76A109E96A04003B896A /* Temple List in Resources */,
-				02DE76A209E96A04003B896A /* Temple List.csv in Resources */,
 				5507BAC0181861D9005A7F21 /* License.txt in Resources */,
-				02DE76A509E96A04003B896A /* TempleList.xml in Resources */,
 				559A717718061026005DE4AE /* FamilyListWindow.xib in Resources */,
 				02DE76A609E96A04003B896A /* XmlToGedcom.xsl in Resources */,
 				55C8A42F1808A45E00A7BB42 /* ImportSheet.xib in Resources */,
@@ -836,7 +826,6 @@
 				559A71761806101D005DE4AE /* RecordSelectionWindow.xib in Resources */,
 				02DDDE100A165EF6003BC70E /* MAF Help in Resources */,
 				02C876970B3EF267005E8B53 /* UKProgressPanel.strings in Resources */,
-				556AC8A41806A5900046242E /* Temple List.plist in Resources */,
 				022394A80BA2246900D268F1 /* MIT-License.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -870,6 +859,7 @@
 				022394AA0BA2246900D268F1 /* NSData+RSHexDump.m in Sources */,
 				0205627F0BB7355700CB9F64 /* ThreadWorker.m in Sources */,
 				55D8D4AC180F71890045C98F /* MAFDocumentData.xcdatamodeld in Sources */,
+				55C930341819C5FD00D9E072 /* ApplicationUtilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -938,7 +928,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				556AC8A61806A6210046242E /* Base */,
-				556AC8A91806A6290046242E /* en */,
+				55C930361819C94400D9E072 /* en */,
 			);
 			name = MyDocument.xib;
 			sourceTree = "<group>";

@@ -685,3 +685,51 @@
 
 /* Class = "NSDateFormatter"; ibShadowedDateFormat = "%e %B %Y"; ObjectID = "1520"; */
 "1520.ibShadowedDateFormat" = "%e %B %Y";
+
+/* Class = "NSToolbarItem"; label = "Family"; ObjectID = "9ho-lV-CJR"; */
+"9ho-lV-CJR.label" = "Family";
+
+/* Class = "NSToolbarItem"; paletteLabel = "Find Family"; ObjectID = "9ho-lV-CJR"; */
+"9ho-lV-CJR.paletteLabel" = "Find Family";
+
+/* Class = "NSToolbarItem"; label = "Person"; ObjectID = "BKb-3e-Rdx"; */
+"BKb-3e-Rdx.label" = "Person";
+
+/* Class = "NSToolbarItem"; paletteLabel = "Add Individual"; ObjectID = "BKb-3e-Rdx"; */
+"BKb-3e-Rdx.paletteLabel" = "Add Individual";
+
+/* Class = "NSToolbarItem"; label = "Pedigree"; ObjectID = "ESH-pd-34D"; */
+"ESH-pd-34D.label" = "Pedigree";
+
+/* Class = "NSToolbarItem"; paletteLabel = "View Pedigree"; ObjectID = "ESH-pd-34D"; */
+"ESH-pd-34D.paletteLabel" = "View Pedigree";
+
+/* Class = "NSToolbarItem"; label = "Family"; ObjectID = "JuJ-xF-qYo"; */
+"JuJ-xF-qYo.label" = "Family";
+
+/* Class = "NSToolbarItem"; paletteLabel = "Add Family"; ObjectID = "JuJ-xF-qYo"; */
+"JuJ-xF-qYo.paletteLabel" = "Add Family";
+
+/* Class = "NSToolbarItem"; label = "Notes"; ObjectID = "XPw-OU-t0K"; */
+"XPw-OU-t0K.label" = "Notes";
+
+/* Class = "NSToolbarItem"; paletteLabel = "Show Notes"; ObjectID = "XPw-OU-t0K"; */
+"XPw-OU-t0K.paletteLabel" = "Show Notes";
+
+/* Class = "NSToolbarItem"; label = "Families"; ObjectID = "idf-Q5-8cC"; */
+"idf-Q5-8cC.label" = "Families";
+
+/* Class = "NSToolbarItem"; paletteLabel = "Family List"; ObjectID = "idf-Q5-8cC"; */
+"idf-Q5-8cC.paletteLabel" = "Family List";
+
+/* Class = "NSToolbarItem"; label = "Person"; ObjectID = "lIy-PG-dk2"; */
+"lIy-PG-dk2.label" = "Person";
+
+/* Class = "NSToolbarItem"; paletteLabel = "Find Person"; ObjectID = "lIy-PG-dk2"; */
+"lIy-PG-dk2.paletteLabel" = "Find Person";
+
+/* Class = "NSToolbarItem"; label = "Individuals"; ObjectID = "uCc-lF-iHH"; */
+"uCc-lF-iHH.label" = "Individuals";
+
+/* Class = "NSToolbarItem"; paletteLabel = "Show Individuals"; ObjectID = "uCc-lF-iHH"; */
+"uCc-lF-iHH.paletteLabel" = "Show Individuals";

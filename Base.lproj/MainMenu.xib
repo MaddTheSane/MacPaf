@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4510" systemVersion="12F45" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment defaultVersion="1080" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -18,11 +18,13 @@
                     <menu key="submenu" title="MacPAF" systemMenu="apple" id="57">
                         <items>
                             <menuItem title="About MacPAF" id="58">
+                                <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="orderFrontStandardAboutPanel:" target="-2" id="142"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Check for Updates..." id="357">
+                                <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="checkForUpdates:" target="371" id="372"/>
                                 </connections>
@@ -30,7 +32,7 @@
                             <menuItem isSeparatorItem="YES" id="358">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Preferences..." id="129"/>
+                            <menuItem title="Preferences..." keyEquivalent="," id="129"/>
                             <menuItem isSeparatorItem="YES" id="143">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
@@ -52,6 +54,7 @@
                                 </connections>
                             </menuItem>
                             <menuItem title="Show All" id="150">
+                                <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="unhideAllApplications:" target="-2" id="153"/>
                                 </connections>
@@ -143,6 +146,7 @@
                     </menu>
                 </menuItem>
                 <menuItem title="Edit" id="163">
+                    <modifierMask key="keyEquivalentModifierMask"/>
                     <menu key="submenu" title="Edit" id="169">
                         <items>
                             <menuItem title="Undo" keyEquivalent="z" id="158">
@@ -174,6 +178,7 @@
                                 </connections>
                             </menuItem>
                             <menuItem title="Delete" id="164">
+                                <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="delete:" target="-1" id="201"/>
                                 </connections>
@@ -255,6 +260,7 @@
                     <menu key="submenu" title="Individual" id="216">
                         <items>
                             <menuItem title="Individual List…" id="284">
+                                <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="showIndividualList:" target="-1" id="286"/>
                                 </connections>
@@ -263,40 +269,52 @@
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
                             <menuItem title="Add New Individual" id="217">
+                                <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="addNewIndividual:" target="-1" id="273"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Add Child" id="267">
+                                <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="addNewChild:" target="-1" id="274"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Add Spouse" id="268">
+                                <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="addNewSpouse:" target="-1" id="275"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Add Father" id="269">
+                                <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="addNewFather:" target="-1" id="276"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Add Mother" id="270">
+                                <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="addNewMother:" target="-1" id="277"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Edit Individual" id="235">
+                                <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="editPrimaryIndividual:" target="-1" id="349"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Edit Notes" id="236"/>
+                            <menuItem title="Edit Notes" id="236">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <connections>
+                                    <action selector="editNotes:" target="-1" id="GT6-4Q-dAe"/>
+                                </connections>
+                            </menuItem>
                             <menuItem isSeparatorItem="YES" id="324">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
                             <menuItem title="Delete Individual" id="323">
+                                <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="deletePrimaryIndividual:" target="-1" id="343"/>
                                 </connections>
@@ -308,6 +326,7 @@
                     <menu key="submenu" title="Family" id="219">
                         <items>
                             <menuItem title="Family List…" id="282">
+                                <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="showFamilyList:" target="-1" id="285"/>
                                 </connections>
@@ -316,30 +335,37 @@
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
                             <menuItem title="Add New Family" id="220">
+                                <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="addNewFamily:" target="-1" id="278"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Add Family As Spouse" id="271">
+                                <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="addNewFamilyAsSpouse:" target="-1" id="348"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Add Family As Child" tag="1" id="272">
+                                <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="addNewFamilyAsChild:" target="-1" id="280"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Edit Family" id="237">
+                                <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="editCurrentFamily:" target="-1" id="346"/>
                                 </connections>
                             </menuItem>
-                            <menuItem title="Edit Family Notes" id="238"/>
+                            <menuItem title="Edit Family Notes" id="238">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
                             <menuItem isSeparatorItem="YES" id="322">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
                             <menuItem title="Delete Family" id="321">
+                                <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="deletePrimaryFamily:" target="-1" id="345"/>
                                 </connections>
@@ -350,26 +376,48 @@
                 <menuItem title="Reports" id="212">
                     <menu key="submenu" title="Reports" id="213">
                         <items>
-                            <menuItem title="Pedigree Chart" id="214"/>
-                            <menuItem title="Family Group Sheet" id="221"/>
+                            <menuItem title="Pedigree Chart" id="214">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
+                            <menuItem title="Family Group Sheet" id="221">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
                             <menuItem isSeparatorItem="YES" id="231">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Individual Reports…" id="222"/>
-                            <menuItem title="Family Reports…" id="223"/>
-                            <menuItem title="Descendants Chart…" id="224"/>
-                            <menuItem title="Locality Reports…" id="225"/>
+                            <menuItem title="Individual Reports…" id="222">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
+                            <menuItem title="Family Reports…" id="223">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
+                            <menuItem title="Descendants Chart…" id="224">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
+                            <menuItem title="Locality Reports…" id="225">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
                             <menuItem isSeparatorItem="YES" id="232">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Birth Date Graph" id="227"/>
-                            <menuItem title="Count Ancestors" id="228"/>
-                            <menuItem title="Count Descendants" id="229"/>
-                            <menuItem title="Temple List" id="230"/>
+                            <menuItem title="Birth Date Graph" id="227">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
+                            <menuItem title="Count Ancestors" id="228">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
+                            <menuItem title="Count Descendants" id="229">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
+                            <menuItem title="Temple List" id="230">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
                             <menuItem isSeparatorItem="YES" id="233">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Custom Reports…" id="234"/>
+                            <menuItem title="Custom Reports…" id="234">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                            </menuItem>
                         </items>
                     </menu>
                 </menuItem>
@@ -377,11 +425,13 @@
                     <menu key="submenu" title="History" id="304">
                         <items>
                             <menuItem title="Remember Individual" tag="101" id="305">
+                                <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="rememberIndividual:" target="-1" id="335"/>
                                 </connections>
                             </menuItem>
                             <menuItem title="Forget Individual" tag="102" id="306">
+                                <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="forgetIndividual:" target="-1" id="336"/>
                                 </connections>
@@ -470,6 +520,7 @@
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
                             <menuItem title="Bring All to Front" id="5">
+                                <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="arrangeInFront:" target="-1" id="39"/>
                                 </connections>
@@ -488,7 +539,8 @@
                             <menuItem isSeparatorItem="YES" id="354">
                                 <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                             </menuItem>
-                            <menuItem title="Report a problem …" id="355">
+                            <menuItem title="Report a problem…" id="355">
+                                <modifierMask key="keyEquivalentModifierMask"/>
                                 <connections>
                                     <action selector="showBugReportWindow:" target="-1" id="356"/>
                                 </connections>
@@ -522,7 +574,7 @@
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="tree" id="380"/>
                     </imageView>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="256">
-                        <rect key="frame" x="154" y="50" width="53" height="17"/>
+                        <rect key="frame" x="154" y="50" width="52" height="17"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="MacPAF" id="381">
                             <font key="font" metaFont="system"/>

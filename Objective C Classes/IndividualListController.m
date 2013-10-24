@@ -7,6 +7,7 @@
 //
 
 #import "IndividualListController.h"
+#import "IndividualDetailController.h"
 
 @interface IndividualListController ()
 

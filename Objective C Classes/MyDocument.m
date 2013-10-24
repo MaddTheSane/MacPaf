@@ -11,12 +11,14 @@
 #import "MAFPerson.h"
 #import "MAFFamily.h"
 #import "MAFLocation.h"
-
-@interface MyDocument ()
-@property (strong, readwrite) MAFDocument *mafDocument;
-@end
+#import "IndividualListController.h"
 
 @implementation MyDocument
+
+- (MAFDocument*)mafDocument
+{
+	
+}
 
 - (void)save
 {
@@ -37,7 +39,7 @@
 {
     self = [super init];
     if (self) {
-		self.mafDocument = [[MAFDocument alloc] init];
+		//self.mafDocument = [[MAFDocument alloc] init];
         // Add your subclass-specific initialization here.
     }
     return self;
@@ -76,6 +78,14 @@
     }
     return YES;
 }
+
+#if 0
+- (void)makeWindowControllers
+{
+	[super makeWindowControllers];
+	[self addWindowController:[[IndividualListController alloc] initWithWindowNibName:@"IndividualListWindow"]];
+}
+#endif
 
 + (BOOL)autosavesInPlace
 {
@@ -123,6 +133,56 @@
 }
 
 - (IBAction)selectPrintableView:(id)sender
+{
+	
+}
+
+- (IBAction)addNewFamily:(id)sender
+{
+	
+}
+
+- (IBAction)addNewIndividual:(id)sender
+{
+	
+}
+
+- (IBAction)viewPedigree:(id)sender
+{
+	
+}
+
+- (IBAction)findFamily:(id)sender
+{
+	
+}
+
+- (IBAction)findIndividual:(id)sender
+{
+	
+}
+
+- (IBAction)showIndividualList:(id)sender
+{
+	
+}
+
+- (IBAction)showFamilyList:(id)sender
+{
+	
+}
+
+- (IBAction)editNotes:(id)sender
+{
+	
+}
+
+- (IBAction)setIndividual:(id)sender
+{
+	
+}
+
+- (IBAction)transmitBugReport:(id)sender
 {
 	
 }

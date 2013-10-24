@@ -19,45 +19,45 @@
 @class MAFPedigreeView;
 @class MAFDocument;
 
-@interface MyDocument : NSDocument
+@interface MyDocument : NSPersistentDocument
 @property (weak) IBOutlet NSTableView *childrenTable;
-@property (weak) IBOutlet NSWindow *mainWindow; /* IBOutlet */
-@property (weak) IBOutlet NSWindow *reportsWindow; /* IBOutlet */
-@property (weak) IBOutlet NSWindow *individualEditWindow; /* IBOutlet */
-@property (weak) IBOutlet NSWindow *familyEditWindow; /* IBOutlet */
-@property (weak) IBOutlet NSWindow *taskProgressSheetWindow; /* IBOutlet */
-@property (weak) IBOutlet FamilyListController *familyListWindowController; /* IBOutlet */
-@property (weak) IBOutlet IndividualListController *individualListWindowController; /* IBOutlet */
-@property (weak) IBOutlet FamilyListController *tabFamilyListController; /* IBOutlet */
-@property (weak) IBOutlet IndividualListController *tabIndividualListController; /* IBOutlet */
-@property (weak) IBOutlet NSObject *importController; /* IBOutlet */
-@property (weak) IBOutlet MAFFamilyList *familyList; /* IBOutlet */
-@property (weak) IBOutlet MAFIndividualList *individualList; /* IBOutlet */
-@property (weak) IBOutlet MAFSurnameList *surnameList; /* IBOutlet */
-@property (weak) IBOutlet MAFLocationList *locationList; /* IBOutlet */
-@property (weak) IBOutlet MAFHistoryController *historyController; /* IBOutlet */
-@property (weak) IBOutlet MAFPedigreeViewController *pedigreeViewController; /* IBOutlet */
-@property (weak) IBOutlet NSButton *fatherButton; /* IBOutlet */
-@property (weak) IBOutlet NSButton *individualButton; /* IBOutlet */
-@property (weak) IBOutlet NSButton *individualFamilyButton; /* IBOutlet */
-@property (weak) IBOutlet NSButton *maternalGrandfatherButton; /* IBOutlet */
-@property (weak) IBOutlet NSButton *maternalGrandmotherButton; /* IBOutlet */
-@property (weak) IBOutlet NSButton *motherButton; /* IBOutlet */
-@property (weak) IBOutlet NSButton *paternalGrandfatherButton; /* IBOutlet */
-@property (weak) IBOutlet NSButton *paternalGrandmotherButton; /* IBOutlet */
-@property (weak) IBOutlet NSButton *spouseButton; /* IBOutlet */
-@property (weak) IBOutlet NSButton *familyAsSpouseButton; /* IBOutlet */
-@property (weak) IBOutlet NSButton *familyAsChildButton; /* IBOutlet */
-@property (weak) IBOutlet NSWindow *noteWindow; /* IBOutlet */
-@property (weak) IBOutlet NSMatrix *reportsRadio; /* IBOutlet */
-@property (weak) IBOutlet NSTableView *spouseTable; /* IBOutlet */
-@property (weak) IBOutlet MAFPedigreeView *pedigreeView; /* IBOutlet */
-@property (weak) IBOutlet NSTabView *mainTabView; /* IBOutlet */
-@property (weak) IBOutlet NSWindow *bugReportWindow; /* IBOutlet */
-@property (weak) IBOutlet NSButton *bugReportFileCheckbox; /* IBOutlet */
-@property (unsafe_unretained) IBOutlet NSTextView *bugReportText; /* IBOutlet */
+@property (weak) IBOutlet NSWindow *mainWindow;  
+@property (weak) IBOutlet NSWindow *reportsWindow;  
+@property (weak) IBOutlet NSWindow *individualEditWindow;  
+@property (weak) IBOutlet NSWindow *familyEditWindow;  
+@property (weak) IBOutlet NSWindow *taskProgressSheetWindow;  
+@property (weak) IBOutlet FamilyListController *familyListWindowController;  
+@property (weak) IBOutlet IndividualListController *individualListWindowController;  
+@property (weak) IBOutlet FamilyListController *tabFamilyListController;  
+@property (weak) IBOutlet IndividualListController *tabIndividualListController;  
+@property (weak) IBOutlet NSObject *importController;  
+@property (weak) IBOutlet MAFFamilyList *familyList;  
+@property (weak) IBOutlet MAFIndividualList *individualList;  
+@property (weak) IBOutlet MAFSurnameList *surnameList;  
+@property (weak) IBOutlet MAFLocationList *locationList;  
+@property (weak) IBOutlet MAFHistoryController *historyController;  
+@property (weak) IBOutlet MAFPedigreeViewController *pedigreeViewController;  
+@property (weak) IBOutlet NSButton *fatherButton;  
+@property (weak) IBOutlet NSButton *individualButton;  
+@property (weak) IBOutlet NSButton *individualFamilyButton;  
+@property (weak) IBOutlet NSButton *maternalGrandfatherButton;  
+@property (weak) IBOutlet NSButton *maternalGrandmotherButton;  
+@property (weak) IBOutlet NSButton *motherButton;  
+@property (weak) IBOutlet NSButton *paternalGrandfatherButton;  
+@property (weak) IBOutlet NSButton *paternalGrandmotherButton;  
+@property (weak) IBOutlet NSButton *spouseButton;  
+@property (weak) IBOutlet NSButton *familyAsSpouseButton;  
+@property (weak) IBOutlet NSButton *familyAsChildButton;  
+@property (weak) IBOutlet NSWindow *noteWindow;  
+@property (weak) IBOutlet NSMatrix *reportsRadio;  
+@property (weak) IBOutlet NSTableView *spouseTable;  
+@property (weak) IBOutlet MAFPedigreeView *pedigreeView;  
+@property (weak) IBOutlet NSTabView *mainTabView;
+@property (weak) IBOutlet NSWindow *bugReportWindow;
+@property (weak) IBOutlet NSButton *bugReportFileCheckbox;
+@property (unsafe_unretained) IBOutlet NSTextView *bugReportText;
 
-@property (strong, readonly) MAFDocument *mafDocument;
+@property (unsafe_unretained, readonly) MAFDocument *mafDocument;
 
 - (IBAction)openFamilyEditSheet:(id)sender;
 - (IBAction)openIndividualEditSheet:(id)sender;
@@ -70,6 +70,18 @@
 
 - (IBAction)openReportsSheet:(id)sender;
 - (IBAction)selectPrintableView:(id)sender;
+
+- (IBAction)addNewFamily:(id)sender;
+- (IBAction)addNewIndividual:(id)sender;
+- (IBAction)viewPedigree:(id)sender;
+- (IBAction)findFamily:(id)sender;
+- (IBAction)findIndividual:(id)sender;
+- (IBAction)showIndividualList:(id)sender;
+- (IBAction)showFamilyList:(id)sender;
+- (IBAction)editNotes:(id)sender;
+
+- (IBAction)setIndividual:(id)sender;
+- (IBAction)transmitBugReport:(id)sender;
 
 - (void)save;
 - (void)startSuppressUpdates;

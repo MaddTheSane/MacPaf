@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="MAFv2" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3396" systemVersion="12F45" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="MAFv2" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3400" systemVersion="13A603" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic">
+    <entity name="Base" representedClassName="MAFBase" syncable="YES">
+        <relationship name="families" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Family" inverseName="base" inverseEntity="Family" syncable="YES"/>
+        <relationship name="locations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Location" inverseName="base" inverseEntity="Location" syncable="YES"/>
+        <relationship name="people" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Person" inverseName="base" inverseEntity="Person" syncable="YES"/>
+    </entity>
     <entity name="Family" representedClassName="MAFFamily" syncable="YES">
         <attribute name="divorceDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="marriageDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="marriageLocation" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="sealingDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="sealingTemple" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="base" maxCount="1" deletionRule="Nullify" destinationEntity="Base" inverseName="families" inverseEntity="Base" syncable="YES"/>
         <relationship name="children" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Person" inverseName="children" inverseEntity="Person" syncable="YES"/>
         <relationship name="father" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Person" inverseName="relationship" inverseEntity="Person" syncable="YES"/>
         <relationship name="mother" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Person" inverseName="relationship1" inverseEntity="Person" syncable="YES"/>
@@ -15,6 +21,7 @@
         <attribute name="locationName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="locationNumber" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="base" maxCount="1" deletionRule="Nullify" destinationEntity="Base" inverseName="locations" inverseEntity="Base" syncable="YES"/>
     </entity>
     <entity name="Person" representedClassName="MAFPerson" syncable="YES">
         <attribute name="afn" optional="YES" attributeType="String" syncable="YES"/>
@@ -24,10 +31,11 @@
         <attribute name="burialPlace" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="deathDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="deathPlace" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
-        <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="firstName" optional="YES" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
         <attribute name="gender" optional="YES" attributeType="Integer 16" minValueString="0" maxValueString="2" defaultValueString="0" syncable="YES"/>
-        <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="middleNames" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lastName" optional="YES" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <attribute name="middleNames" optional="YES" attributeType="String" spotlightIndexingEnabled="YES" syncable="YES"/>
+        <relationship name="base" maxCount="1" deletionRule="Nullify" destinationEntity="Base" inverseName="people" inverseEntity="Base" syncable="YES"/>
         <relationship name="children" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Family" inverseName="children" inverseEntity="Family" syncable="YES"/>
         <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Family" inverseName="father" inverseEntity="Family" syncable="YES"/>
         <relationship name="relationship1" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Family" inverseName="mother" inverseEntity="Family" syncable="YES"/>
@@ -40,5 +48,6 @@
         <element name="Family" positionX="0" positionY="0" width="0" height="0"/>
         <element name="Location" positionX="0" positionY="0" width="0" height="0"/>
         <element name="Person" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Base" positionX="0" positionY="0" width="0" height="0"/>
     </elements>
 </model>

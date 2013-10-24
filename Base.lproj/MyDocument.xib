@@ -1126,14 +1126,60 @@ DQ
                     </tabView>
                 </subviews>
             </view>
-            <toolbar key="toolbar" implicitIdentifier="880DBE38-6760-4EC3-8375-8D81900B8BC5" allowsUserCustomization="NO" displayMode="iconAndLabel" sizeMode="regular" id="p66-UM-iec" customClass="MainToolbarDelegate">
+            <toolbar key="toolbar" implicitIdentifier="880DBE38-6760-4EC3-8375-8D81900B8BC5" displayMode="iconAndLabel" sizeMode="regular" id="p66-UM-iec">
                 <allowedToolbarItems>
                     <toolbarItem implicitItemIdentifier="NSToolbarPrintItem" id="cbj-Q0-HGT"/>
                     <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="1US-NW-Eij"/>
                     <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="W8h-uL-icP"/>
-                    <toolbarItem implicitItemIdentifier="46BB5CB6-C370-411F-BE1F-FA2F1FA58162" explicitItemIdentifier="AddFamily" label="Add Family" paletteLabel="Add Family" tag="-1" image="Badge Add" id="JuJ-xF-qYo"/>
+                    <toolbarItem implicitItemIdentifier="NSToolbarSeparatorItem" id="0Dr-nt-3HH"/>
+                    <toolbarItem implicitItemIdentifier="NSToolbarCustomizeToolbarItem" id="JmT-JF-irR"/>
+                    <toolbarItem implicitItemIdentifier="46BB5CB6-C370-411F-BE1F-FA2F1FA58162" explicitItemIdentifier="AddFamily" label="Family" paletteLabel="Add Family" tag="-1" image="Badge Add" id="JuJ-xF-qYo">
+                        <connections>
+                            <action selector="addNewFamily:" target="-2" id="3YS-Mr-Onu"/>
+                        </connections>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="EEEE8A1B-833A-46E0-A555-51632BBC4DA4" explicitItemIdentifier="AddIndividual" label="Person" paletteLabel="Add Individual" tag="-1" image="Badge Add" id="BKb-3e-Rdx">
+                        <connections>
+                            <action selector="addNewIndividual:" target="-2" id="LEN-RW-iHW"/>
+                        </connections>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="42297D6B-8D4B-4479-8B67-65D5B9A2A9C2" explicitItemIdentifier="ViewPedigree" label="Pedigree" paletteLabel="View Pedigree" tag="-1" image="Pedigree" id="ESH-pd-34D">
+                        <connections>
+                            <action selector="viewPedigree:" target="-2" id="tUD-3z-NZE"/>
+                        </connections>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="668ECED3-E585-455A-9E38-21F8A8A14290" explicitItemIdentifier="FindFamily" label="Family" paletteLabel="Find Family" tag="-1" image="Magnifing Glass" id="9ho-lV-CJR">
+                        <connections>
+                            <action selector="findFamily:" target="-2" id="jZF-uV-Pi0"/>
+                        </connections>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="615B6AD2-BBE8-4455-8D32-BCDE49BEB193" explicitItemIdentifier="FindIndividual" label="Person" paletteLabel="Find Person" tag="-1" image="Magnifing Glass" id="lIy-PG-dk2">
+                        <connections>
+                            <action selector="findIndividual:" target="-2" id="DjH-tI-wAN"/>
+                        </connections>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="CA8A4CFA-0BB6-4D72-BC3A-8982783A0894" explicitItemIdentifier="IndividualList" label="Individuals" paletteLabel="Show Individuals" tag="-1" image="Metal Window" id="uCc-lF-iHH">
+                        <connections>
+                            <action selector="showIndividualList:" target="-2" id="Mc4-41-zk6"/>
+                        </connections>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="A81DE3B9-ED61-4F0F-916F-421D9C3FC91D" explicitItemIdentifier="FamilyList" label="Families" paletteLabel="Family List" tag="-1" image="Metal Window" id="idf-Q5-8cC">
+                        <connections>
+                            <action selector="showFamilyList:" target="-2" id="xoL-i1-sUn"/>
+                        </connections>
+                    </toolbarItem>
+                    <toolbarItem implicitItemIdentifier="7483123E-7354-4751-84D3-026419062D96" explicitItemIdentifier="EditNotes" label="Notes" paletteLabel="Show Notes" tag="-1" image="notepad" id="XPw-OU-t0K">
+                        <connections>
+                            <action selector="editNotes:" target="-2" id="A4E-PL-CWU"/>
+                        </connections>
+                    </toolbarItem>
                 </allowedToolbarItems>
                 <defaultToolbarItems>
+                    <toolbarItem reference="BKb-3e-Rdx"/>
+                    <toolbarItem reference="JuJ-xF-qYo"/>
+                    <toolbarItem reference="XPw-OU-t0K"/>
+                    <toolbarItem reference="uCc-lF-iHH"/>
+                    <toolbarItem reference="idf-Q5-8cC"/>
                     <toolbarItem reference="W8h-uL-icP"/>
                     <toolbarItem reference="cbj-Q0-HGT"/>
                 </defaultToolbarItems>
@@ -2052,7 +2098,7 @@ DQ
                                                                             </textFieldCell>
                                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                         </tableColumn>
-                                                                        <tableColumn identifier="birthdate" editable="NO" width="141" minWidth="10" maxWidth="1000" id="266">
+                                                                        <tableColumn identifier="birthdate" editable="NO" width="142" minWidth="10" maxWidth="1000" id="266">
                                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                                                 <font key="font" metaFont="smallSystem"/>
                                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -2065,7 +2111,7 @@ DQ
                                                                             </textFieldCell>
                                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                         </tableColumn>
-                                                                        <tableColumn identifier="birthplace" editable="NO" width="133" minWidth="4" maxWidth="1000" id="267">
+                                                                        <tableColumn identifier="birthplace" editable="NO" width="132" minWidth="4" maxWidth="1000" id="267">
                                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                                                 <font key="font" metaFont="smallSystem"/>
                                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -2459,6 +2505,11 @@ DQ
                 </subviews>
             </view>
         </window>
+        <dictionaryController objectClassName="_NSControllerKeyValuePair" id="a92-4s-u83">
+            <connections>
+                <binding destination="-2" name="managedObjectContext" keyPath="managedObjectContext" id="U9f-DV-n6Y"/>
+            </connections>
+        </dictionaryController>
         <customObject id="481" userLabel="TempleList" customClass="MAFTempleList"/>
         <customObject id="514" userLabel="FamilyList" customClass="FamilyList">
             <connections>
@@ -2730,7 +2781,7 @@ DQ
             <rect key="contentRect" x="440" y="215" width="606" height="488"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1058"/>
             <view key="contentView" id="1259">
-                <rect key="frame" x="1" y="9" width="606" height="488"/>
+                <rect key="frame" x="0.0" y="0.0" width="606" height="488"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" findBarPosition="aboveHorizontalRuler" id="1262">
@@ -2738,7 +2789,7 @@ DQ
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <clipView key="contentView" id="PpY-NX-etm">
                             <rect key="frame" x="1" y="1" width="564" height="268"/>
-                            <autoresizingMask key="autoresizingMask"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <textView importsGraphics="NO" richText="NO" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="1263">
                                     <rect key="frame" x="0.0" y="0.0" width="564" height="268"/>
@@ -2753,12 +2804,12 @@ DQ
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </clipView>
-                        <scroller key="horizontalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="1546">
+                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="1546">
                             <rect key="frame" x="-100" y="-100" width="87" height="18"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="1547">
-                            <rect key="frame" x="550" y="1" width="15" height="268"/>
+                            <rect key="frame" x="549" y="1" width="16" height="268"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
@@ -2784,7 +2835,7 @@ DQ
                     </textField>
                     <button verticalHuggingPriority="750" id="1261">
                         <rect key="frame" x="352" y="12" width="82" height="32"/>
-                        <autoresizingMask key="autoresizingMask"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="1481">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -2795,7 +2846,7 @@ DQ
                     </button>
                     <button verticalHuggingPriority="750" id="1260">
                         <rect key="frame" x="434" y="12" width="158" height="32"/>
-                        <autoresizingMask key="autoresizingMask"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                         <buttonCell key="cell" type="push" title="Submit Bug Report" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="1480">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" metaFont="system"/>
@@ -2847,6 +2898,9 @@ DQ
     </objects>
     <resources>
         <image name="Badge Add" width="32" height="32"/>
+        <image name="Magnifing Glass" width="32" height="32"/>
+        <image name="Metal Window" width="32.450702667236328" height="32.450702667236328"/>
+        <image name="Pedigree" width="128" height="128"/>
         <image name="notepad" width="40" height="37"/>
     </resources>
 </document>

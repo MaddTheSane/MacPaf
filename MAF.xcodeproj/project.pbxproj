@@ -58,6 +58,7 @@
 		55C8A2A81807302900A7BB42 /* MAFXMLTempleParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C8A2A61807302900A7BB42 /* MAFXMLTempleParserDelegate.m */; };
 		55C8A2A91807302900A7BB42 /* MAFXMLTempleParserDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C8A2A61807302900A7BB42 /* MAFXMLTempleParserDelegate.m */; };
 		55C8A42F1808A45E00A7BB42 /* ImportSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = 55C8A4311808A45E00A7BB42 /* ImportSheet.xib */; };
+		55C930311819B85100D9E072 /* IndividualDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55C930301819B85100D9E072 /* IndividualDetailController.m */; };
 		55D8D4AC180F71890045C98F /* MAFDocumentData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 55D8D4AA180F71890045C98F /* MAFDocumentData.xcdatamodeld */; };
 		55D8D4B0180F722B0045C98F /* MAFDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D8D4AE180F722B0045C98F /* MAFDocument.m */; };
 		55D8D4B4181067EF0045C98F /* MAFPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 55D8D4B2181067EF0045C98F /* MAFPerson.m */; };
@@ -274,6 +275,8 @@
 		55C8A4301808A45E00A7BB42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ImportSheet.xib; sourceTree = "<group>"; };
 		55C8A4331808A46700A7BB42 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ImportSheet.strings; sourceTree = "<group>"; };
 		55C8A4351808A47700A7BB42 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/FamilyListWindow.strings; sourceTree = "<group>"; };
+		55C9302F1819B85100D9E072 /* IndividualDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndividualDetailController.h; sourceTree = "<group>"; };
+		55C930301819B85100D9E072 /* IndividualDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndividualDetailController.m; sourceTree = "<group>"; };
 		55D8D4AB180F71890045C98F /* MAFDocumentData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MAFDocumentData.xcdatamodel; sourceTree = "<group>"; };
 		55D8D4AD180F722B0045C98F /* MAFDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAFDocument.h; sourceTree = "<group>"; };
 		55D8D4AE180F722B0045C98F /* MAFDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAFDocument.m; sourceTree = "<group>"; };
@@ -667,6 +670,8 @@
 				556AC898180636760046242E /* IndividualListController.m */,
 				55C8A2A51807302900A7BB42 /* MAFXMLTempleParserDelegate.h */,
 				55C8A2A61807302900A7BB42 /* MAFXMLTempleParserDelegate.m */,
+				55C9302F1819B85100D9E072 /* IndividualDetailController.h */,
+				55C930301819B85100D9E072 /* IndividualDetailController.m */,
 			);
 			name = Delegates;
 			sourceTree = "<group>";
@@ -854,6 +859,7 @@
 				02B51F050B23D727003C1D2E /* PAF21Data.m in Sources */,
 				55D8D4B8181069740045C98F /* MAFFamily.m in Sources */,
 				557B6537180B0E5F009FABAE /* MainToolbarDelegate.m in Sources */,
+				55C930311819B85100D9E072 /* IndividualDetailController.m in Sources */,
 				02C8769A0B3EF267005E8B53 /* UKProgressPanel.m in Sources */,
 				556AC89E180641F40046242E /* MAFTempleList.m in Sources */,
 				02C8769C0B3EF267005E8B53 /* UKProgressPanelTask.m in Sources */,

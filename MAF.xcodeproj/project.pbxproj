@@ -98,9 +98,6 @@
 		0205627C0BB7355700CB9F64 /* ThreadWorker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadWorker.h; sourceTree = "<group>"; };
 		0205627D0BB7355700CB9F64 /* ThreadWorker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreadWorker.m; sourceTree = "<group>"; };
 		020D7BC009A8955800664545 /* DateUtils.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = DateUtils.java; sourceTree = "<group>"; };
-		021612DC096A499E005AC0B6 /* PedigreeViewController.java */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.java; name = PedigreeViewController.java; path = src/PedigreeViewController.java; sourceTree = "<group>"; };
-		0218FF3F08F98E4800F67E81 /* AllTests.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = AllTests.java; path = src/AllTests.java; sourceTree = "<group>"; };
-		0218FF4008F98E4900F67E81 /* HistoryControllerTest.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = HistoryControllerTest.java; path = src/HistoryControllerTest.java; sourceTree = "<group>"; };
 		022394A50BA2246900D268F1 /* MIT-License.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "MIT-License.rtf"; sourceTree = "<group>"; };
 		022394A60BA2246900D268F1 /* NSData+RSHexDump.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+RSHexDump.h"; sourceTree = "<group>"; };
 		022394A70BA2246900D268F1 /* NSData+RSHexDump.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+RSHexDump.m"; sourceTree = "<group>"; };
@@ -116,7 +113,6 @@
 		0263E4A60A20EF430087A335 /* License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
 		0263E4E10A20F4450087A335 /* ApplicationStartupHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ApplicationStartupHelper.h; path = ../ApplicationStartupHelper.h; sourceTree = "<group>"; };
 		0263E4E20A20F4450087A335 /* ApplicationStartupHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ApplicationStartupHelper.m; path = ../ApplicationStartupHelper.m; sourceTree = "<group>"; };
-		026AAA37099F222200F742A5 /* HeaderJDOMTest.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = HeaderJDOMTest.java; path = src/com/redbugz/maf/test/HeaderJDOMTest.java; sourceTree = "<group>"; };
 		026ED71205D932BC0001D1D2 /* ApplicationUtilities.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = ApplicationUtilities.java; path = src/ApplicationUtilities.java; sourceTree = "<group>"; };
 		026ED73C05D932BD0001D1D2 /* FamilyEditController.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = FamilyEditController.java; path = src/FamilyEditController.java; sourceTree = "<group>"; };
 		026ED73D05D932BD0001D1D2 /* FamilyGroupSheetView.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = FamilyGroupSheetView.java; path = src/FamilyGroupSheetView.java; sourceTree = "<group>"; };
@@ -304,17 +300,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0218FF4908F98E5E00F67E81 /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-				026AAA37099F222200F742A5 /* HeaderJDOMTest.java */,
-				0218FF3F08F98E4800F67E81 /* AllTests.java */,
-				0218FF4008F98E4900F67E81 /* HistoryControllerTest.java */,
-				021612DC096A499E005AC0B6 /* PedigreeViewController.java */,
-			);
-			name = Tests;
-			sourceTree = "<group>";
-		};
 		02218D9AFECEFA92C02AAC07 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -595,7 +580,6 @@
 			children = (
 				55F03E9418060E190043C72C /* Java classes */,
 				32DBCF800370BD9700C91783 /* Classes */,
-				0218FF4908F98E5E00F67E81 /* Tests */,
 				32DBCF810370BDA300C91783 /* Other Sources */,
 				02218D9AFECEFA92C02AAC07 /* Resources */,
 				55C8A29918072CDB00A7BB42 /* TempleListGenerator */,

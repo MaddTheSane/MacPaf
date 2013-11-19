@@ -36,7 +36,6 @@
 		556AC8A21806432F0046242E /* FamilyListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 556AC8A01806432F0046242E /* FamilyListController.m */; };
 		556AC8A51806A6210046242E /* MyDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = 556AC8A71806A6210046242E /* MyDocument.xib */; };
 		556AC8AB1806A94C0046242E /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 556AC8AA1806A94C0046242E /* Media.xcassets */; };
-		557B6537180B0E5F009FABAE /* MainToolbarDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 557B6535180B0E5F009FABAE /* MainToolbarDelegate.m */; };
 		557B653C180B6B50009FABAE /* MyDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 557B6539180B6B50009FABAE /* MyDocument.m */; };
 		559A716618060F51005DE4AE /* UKProgressPanelTask.xib in Resources */ = {isa = PBXBuildFile; fileRef = 559A716818060F51005DE4AE /* UKProgressPanelTask.xib */; };
 		559A71761806101D005DE4AE /* RecordSelectionWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 559A71701806101D005DE4AE /* RecordSelectionWindow.xib */; };
@@ -831,7 +830,6 @@
 				55D8D4B0180F722B0045C98F /* MAFDocument.m in Sources */,
 				02B51F050B23D727003C1D2E /* PAF21Data.m in Sources */,
 				55D8D4B8181069740045C98F /* MAFFamily.m in Sources */,
-				557B6537180B0E5F009FABAE /* MainToolbarDelegate.m in Sources */,
 				55C930311819B85100D9E072 /* IndividualDetailController.m in Sources */,
 				02C8769A0B3EF267005E8B53 /* UKProgressPanel.m in Sources */,
 				556AC89E180641F40046242E /* MAFTempleList.m in Sources */,

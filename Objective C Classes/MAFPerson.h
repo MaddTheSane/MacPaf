@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-NS_ENUM(int16_t, MAFGenders)
+typedef NS_ENUM(int16_t, MAFGenders)
 {
 	MAFGenderUnknown = 0,
 	MAFGenderMale,

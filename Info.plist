@@ -28,8 +28,7 @@
 		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
-				<string>maf</string>
-				<string>macpaf</string>
+				<string>maf2</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string></string>
@@ -39,12 +38,14 @@
 			<string>Editor</string>
 			<key>LSItemContentTypes</key>
 			<array>
-				<string>org.sourceforge.macpaf.maf</string>
+				<string>org.sourceforge.macpaf.maf2</string>
 			</array>
 			<key>LSTypeIsPackage</key>
-			<true/>
+			<false/>
 			<key>NSDocumentClass</key>
 			<string>MyDocument</string>
+			<key>NSPersistentStoreTypeKey</key>
+			<string>SQLite</string>
 		</dict>
 		<dict>
 			<key>CFBundleTypeExtensions</key>
@@ -80,14 +81,12 @@
 			<string>Viewer</string>
 			<key>LSTypeIsPackage</key>
 			<false/>
-			<key>NSDocumentClass</key>
-			<string>MyDocument</string>
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
 	<key>CFBundleGetInfoString</key>
-	<string>1.0 Preview 3</string>
+	<string>1.0 Preview 4</string>
 	<key>CFBundleHelpBookFolder</key>
 	<string>MAF Help</string>
 	<key>CFBundleHelpBookName</key>
@@ -101,11 +100,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0pre3</string>
+	<string>1.0pre4</string>
 	<key>CFBundleSignature</key>
 	<string>MPAF</string>
 	<key>CFBundleVersion</key>
-	<string>1.0.0.3</string>
+	<string>1.0.0.4</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.productivity</string>
 	<key>LSMinimumSystemVersion</key>
@@ -121,18 +120,17 @@
 		<dict>
 			<key>UTTypeConformsTo</key>
 			<array>
-				<string>com.apple.package</string>
+				<string>public.file</string>
 			</array>
 			<key>UTTypeDescription</key>
-			<string>MAF file</string>
+			<string>MAF2 file</string>
 			<key>UTTypeIdentifier</key>
-			<string>org.sourceforge.macpaf.maf</string>
+			<string>org.sourceforge.macpaf.maf2</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>
 				<array>
-					<string>maf</string>
-					<string>macpaf</string>
+					<string>maf2</string>
 				</array>
 			</dict>
 		</dict>

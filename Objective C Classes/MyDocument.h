@@ -19,7 +19,7 @@
 @class MAFPedigreeView;
 @class MAFDocument;
 
-@interface MyDocument : NSPersistentDocument
+@interface MyDocument : NSPersistentDocument <NSToolbarDelegate>
 @property (weak) IBOutlet NSTableView *childrenTable;
 @property (weak) IBOutlet NSWindow *mainWindow;  
 @property (weak) IBOutlet NSWindow *reportsWindow;  

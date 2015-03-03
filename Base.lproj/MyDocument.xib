@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7519.1" systemVersion="14C109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
-        <deployment defaultVersion="1080" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7519.1"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MyDocument">
@@ -41,8 +41,8 @@
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <customObject id="-3" userLabel="Application"/>
-        <window title="MacPAF" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" wantsToBeColor="NO" visibleAtLaunch="NO" frameAutosaveName="mainWindow" animationBehavior="default" id="5" userLabel="mainWindow">
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window title="MacPAF" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="mainWindow" animationBehavior="default" id="5" userLabel="mainWindow">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="219" y="302" width="720" height="554"/>
@@ -76,10 +76,10 @@
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <tableView verticalHuggingPriority="750" tag="1" allowsExpansionToolTips="YES" alternatingRowBackgroundColors="YES" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" id="196">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="183" height="172"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="183" height="19"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <size key="intercellSpacing" width="3" height="2"/>
-                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                                     <tableColumns>
                                                                         <tableColumn identifier="num" editable="NO" width="24" minWidth="10" maxWidth="40" id="146">
@@ -147,10 +147,10 @@
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <tableView verticalHuggingPriority="750" tag="2" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" id="121">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="179" height="172"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="179" height="19"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <size key="intercellSpacing" width="3" height="2"/>
-                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                                     <tableColumns>
                                                                         <tableColumn editable="NO" width="176" minWidth="40" maxWidth="1000" id="190">
@@ -695,7 +695,7 @@
                                             <rect key="frame" x="20" y="176" width="271" height="13"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" title="Number of Individuals: " id="1403">
-                                                <font key="font" size="10" name="LucidaGrande"/>
+                                                <font key="font" metaFont="system" size="10"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
@@ -736,10 +736,10 @@
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" alternatingRowBackgroundColors="YES" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" headerView="1526" id="1060">
-                                                        <rect key="frame" x="0.0" y="0.0" width="638" height="243"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="623" height="19"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <size key="intercellSpacing" width="3" height="2"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                         <tableColumns>
                                                             <tableColumn editable="NO" width="43" minWidth="40" maxWidth="1000" id="1062">
@@ -862,10 +862,10 @@ DQ
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <subviews>
                                                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" alternatingRowBackgroundColors="YES" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" headerView="1529" id="996">
-                                                        <rect key="frame" x="0.0" y="0.0" width="638" height="243"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="626" height="19"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <size key="intercellSpacing" width="3" height="2"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                         <tableColumns>
                                                             <tableColumn editable="NO" width="46" minWidth="40" maxWidth="1000" id="999">
@@ -994,7 +994,7 @@ DQ
                                             <rect key="frame" x="20" y="176" width="271" height="13"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" title="Number of Families: " id="1411">
-                                                <font key="font" size="10" name="LucidaGrande"/>
+                                                <font key="font" metaFont="system" size="10"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
@@ -1046,10 +1046,10 @@ DQ
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <subviews>
                                                     <tableView verticalHuggingPriority="750" tag="1" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="14" id="1021">
-                                                        <rect key="frame" x="0.0" y="0.0" width="319" height="115"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="319" height="16"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <size key="intercellSpacing" width="3" height="2"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                         <tableColumns>
                                                             <tableColumn identifier="childNumber" editable="NO" width="24" minWidth="20" maxWidth="1000" id="1024">
@@ -1126,69 +1126,11 @@ DQ
                     </tabView>
                 </subviews>
             </view>
-            <toolbar key="toolbar" implicitIdentifier="880DBE38-6760-4EC3-8375-8D81900B8BC5" displayMode="iconAndLabel" sizeMode="regular" id="p66-UM-iec">
-                <allowedToolbarItems>
-                    <toolbarItem implicitItemIdentifier="NSToolbarPrintItem" id="cbj-Q0-HGT"/>
-                    <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="1US-NW-Eij"/>
-                    <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="W8h-uL-icP"/>
-                    <toolbarItem implicitItemIdentifier="NSToolbarSeparatorItem" id="0Dr-nt-3HH"/>
-                    <toolbarItem implicitItemIdentifier="NSToolbarCustomizeToolbarItem" id="JmT-JF-irR"/>
-                    <toolbarItem implicitItemIdentifier="46BB5CB6-C370-411F-BE1F-FA2F1FA58162" explicitItemIdentifier="AddFamily" label="Family" paletteLabel="Add Family" tag="-1" image="Badge Add" id="JuJ-xF-qYo">
-                        <connections>
-                            <action selector="addNewFamily:" target="-2" id="3YS-Mr-Onu"/>
-                        </connections>
-                    </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="EEEE8A1B-833A-46E0-A555-51632BBC4DA4" explicitItemIdentifier="AddIndividual" label="Person" paletteLabel="Add Individual" tag="-1" image="Badge Add" id="BKb-3e-Rdx">
-                        <connections>
-                            <action selector="addNewIndividual:" target="-2" id="LEN-RW-iHW"/>
-                        </connections>
-                    </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="42297D6B-8D4B-4479-8B67-65D5B9A2A9C2" explicitItemIdentifier="ViewPedigree" label="Pedigree" paletteLabel="View Pedigree" tag="-1" image="Pedigree" id="ESH-pd-34D">
-                        <connections>
-                            <action selector="viewPedigree:" target="-2" id="tUD-3z-NZE"/>
-                        </connections>
-                    </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="668ECED3-E585-455A-9E38-21F8A8A14290" explicitItemIdentifier="FindFamily" label="Family" paletteLabel="Find Family" tag="-1" image="Magnifing Glass" id="9ho-lV-CJR">
-                        <connections>
-                            <action selector="findFamily:" target="-2" id="jZF-uV-Pi0"/>
-                        </connections>
-                    </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="615B6AD2-BBE8-4455-8D32-BCDE49BEB193" explicitItemIdentifier="FindIndividual" label="Person" paletteLabel="Find Person" tag="-1" image="Magnifing Glass" id="lIy-PG-dk2">
-                        <connections>
-                            <action selector="findIndividual:" target="-2" id="DjH-tI-wAN"/>
-                        </connections>
-                    </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="CA8A4CFA-0BB6-4D72-BC3A-8982783A0894" explicitItemIdentifier="IndividualList" label="Individuals" paletteLabel="Show Individuals" tag="-1" image="Metal Window" id="uCc-lF-iHH">
-                        <connections>
-                            <action selector="showIndividualList:" target="-2" id="Mc4-41-zk6"/>
-                        </connections>
-                    </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="A81DE3B9-ED61-4F0F-916F-421D9C3FC91D" explicitItemIdentifier="FamilyList" label="Families" paletteLabel="Family List" tag="-1" image="Metal Window" id="idf-Q5-8cC">
-                        <connections>
-                            <action selector="showFamilyList:" target="-2" id="xoL-i1-sUn"/>
-                        </connections>
-                    </toolbarItem>
-                    <toolbarItem implicitItemIdentifier="7483123E-7354-4751-84D3-026419062D96" explicitItemIdentifier="EditNotes" label="Notes" paletteLabel="Show Notes" tag="-1" image="notepad" id="XPw-OU-t0K">
-                        <connections>
-                            <action selector="editNotes:" target="-2" id="A4E-PL-CWU"/>
-                        </connections>
-                    </toolbarItem>
-                </allowedToolbarItems>
-                <defaultToolbarItems>
-                    <toolbarItem reference="BKb-3e-Rdx"/>
-                    <toolbarItem reference="JuJ-xF-qYo"/>
-                    <toolbarItem reference="XPw-OU-t0K"/>
-                    <toolbarItem reference="uCc-lF-iHH"/>
-                    <toolbarItem reference="idf-Q5-8cC"/>
-                    <toolbarItem reference="W8h-uL-icP"/>
-                    <toolbarItem reference="cbj-Q0-HGT"/>
-                </defaultToolbarItems>
-            </toolbar>
             <connections>
                 <outlet property="delegate" destination="-2" id="17"/>
             </connections>
         </window>
-        <window title="IndividualEdit" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" wantsToBeColor="NO" visibleAtLaunch="NO" animationBehavior="default" id="226" userLabel="individualEditWindow">
+        <window title="IndividualEdit" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="226" userLabel="individualEditWindow">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="509" y="213" width="531" height="611"/>
@@ -1585,7 +1527,7 @@ DQ
                                             <rect key="frame" x="26" y="103" width="30" height="13"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Date:" id="1435">
-                                                <font key="font" size="10" name="LucidaGrande"/>
+                                                <font key="font" metaFont="system" size="10"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
@@ -1594,7 +1536,7 @@ DQ
                                             <rect key="frame" x="194" y="101" width="44" height="13"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Temple:" id="1436">
-                                                <font key="font" size="10" name="LucidaGrande"/>
+                                                <font key="font" metaFont="system" size="10"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
@@ -1603,7 +1545,7 @@ DQ
                                             <rect key="frame" x="26" y="55" width="30" height="13"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Date:" id="1437">
-                                                <font key="font" size="10" name="LucidaGrande"/>
+                                                <font key="font" metaFont="system" size="10"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
@@ -1621,7 +1563,7 @@ DQ
                                             <rect key="frame" x="194" y="53" width="44" height="13"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Temple:" id="1439">
-                                                <font key="font" size="10" name="LucidaGrande"/>
+                                                <font key="font" metaFont="system" size="10"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
@@ -1680,7 +1622,7 @@ DQ
                                             <rect key="frame" x="194" y="6" width="44" height="13"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Temple:" id="1444">
-                                                <font key="font" size="10" name="LucidaGrande"/>
+                                                <font key="font" metaFont="system" size="10"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
@@ -1689,7 +1631,7 @@ DQ
                                             <rect key="frame" x="26" y="8" width="30" height="13"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Date:" id="1445">
-                                                <font key="font" size="10" name="LucidaGrande"/>
+                                                <font key="font" metaFont="system" size="10"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
@@ -1708,7 +1650,7 @@ DQ
                                             <autoresizingMask key="autoresizingMask"/>
                                             <buttonCell key="cell" type="bevel" title="Notes" bezelStyle="regularSquare" image="notepad" imagePosition="above" alignment="center" borderStyle="border" inset="2" id="1447">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" size="10" name="LucidaGrande"/>
+                                                <font key="font" metaFont="system" size="10"/>
                                             </buttonCell>
                                             <connections>
                                                 <action selector="makeKeyAndOrderFront:" target="711" id="718"/>
@@ -1741,20 +1683,20 @@ DQ
                             <tabViewItem label="Details" identifier="" id="951">
                                 <view key="view" id="953">
                                     <rect key="frame" x="10" y="33" width="544" height="455"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" findBarPosition="aboveHorizontalRuler" id="954">
                                             <rect key="frame" x="20" y="268" width="495" height="167"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <clipView key="contentView" id="umc-Zy-Gdh">
                                                 <rect key="frame" x="1" y="17" width="493" height="149"/>
-                                                <autoresizingMask key="autoresizingMask"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" headerView="1534" id="955">
-                                                        <rect key="frame" x="0.0" y="0.0" width="493" height="149"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="493" height="19"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <size key="intercellSpacing" width="3" height="2"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                         <tableColumns>
                                                             <tableColumn identifier="type" editable="NO" width="95" minWidth="40" maxWidth="1000" id="956">
@@ -1809,7 +1751,7 @@ DQ
                                                 <rect key="frame" x="1" y="-30" width="478" height="15"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
-                                            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="1535">
+                                            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="1535">
                                                 <rect key="frame" x="-30" y="17" width="15" height="149"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
@@ -1832,13 +1774,13 @@ DQ
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <clipView key="contentView" id="BjV-qc-ioK">
                                                 <rect key="frame" x="1" y="17" width="493" height="148"/>
-                                                <autoresizingMask key="autoresizingMask"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" headerView="1537" id="961">
-                                                        <rect key="frame" x="0.0" y="0.0" width="493" height="148"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="493" height="19"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <size key="intercellSpacing" width="3" height="2"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                         <tableColumns>
                                                             <tableColumn identifier="type" editable="NO" width="95" minWidth="40" maxWidth="1000" id="962">
@@ -1893,7 +1835,7 @@ DQ
                                                 <rect key="frame" x="1" y="-30" width="478" height="15"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
-                                            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="1538">
+                                            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="1538">
                                                 <rect key="frame" x="-30" y="17" width="15" height="148"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
@@ -1967,7 +1909,7 @@ DQ
                 <outlet property="initialFirstResponder" destination="458" id="1281"/>
             </connections>
         </window>
-        <window title="FamilyEdit" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" wantsToBeColor="NO" visibleAtLaunch="NO" animationBehavior="default" id="248" userLabel="familyEditWindow">
+        <window title="FamilyEdit" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="248" userLabel="familyEditWindow">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="561" y="191" width="530" height="550"/>
@@ -2004,7 +1946,7 @@ DQ
                         <autoresizingMask key="autoresizingMask"/>
                         <buttonCell key="cell" type="bevel" title="Husband" bezelStyle="regularSquare" alignment="justified" borderStyle="border" inset="2" id="1458">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" size="10" name="LucidaGrande"/>
+                            <font key="font" metaFont="system" size="10"/>
                         </buttonCell>
                         <connections>
                             <action selector="editHusband:" target="635" id="664"/>
@@ -2025,7 +1967,7 @@ DQ
                         <autoresizingMask key="autoresizingMask"/>
                         <buttonCell key="cell" type="bevel" title="Wife" bezelStyle="regularSquare" alignment="justified" borderStyle="border" inset="2" id="1460">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" size="10" name="LucidaGrande"/>
+                            <font key="font" metaFont="system" size="10"/>
                         </buttonCell>
                         <connections>
                             <action selector="editWife:" target="635" id="665"/>
@@ -2062,17 +2004,17 @@ DQ
                                                         <rect key="frame" x="14" y="14" width="487" height="211"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <clipView key="contentView" id="1fQ-BP-JhL">
-                                                            <rect key="frame" x="1" y="1" width="469" height="209"/>
+                                                            <rect key="frame" x="1" y="1" width="485" height="209"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" id="254">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="469" height="209"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="469" height="19"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <size key="intercellSpacing" width="3" height="2"/>
-                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                    <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                                     <tableColumns>
-                                                                        <tableColumn identifier="num" editable="NO" width="40" minWidth="40" maxWidth="1000" id="252">
+                                                                        <tableColumn identifier="num" editable="NO" width="44" minWidth="40" maxWidth="1000" id="252">
                                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                                                 <font key="font" metaFont="smallSystem"/>
                                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -2085,7 +2027,7 @@ DQ
                                                                             </textFieldCell>
                                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                         </tableColumn>
-                                                                        <tableColumn identifier="name" editable="NO" width="143" minWidth="40" maxWidth="1000" id="253">
+                                                                        <tableColumn identifier="name" editable="NO" width="147" minWidth="40" maxWidth="1000" id="253">
                                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                                                 <font key="font" metaFont="smallSystem"/>
                                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -2098,7 +2040,7 @@ DQ
                                                                             </textFieldCell>
                                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                         </tableColumn>
-                                                                        <tableColumn identifier="birthdate" editable="NO" width="142" minWidth="10" maxWidth="1000" id="266">
+                                                                        <tableColumn identifier="birthdate" editable="NO" width="147" minWidth="10" maxWidth="1000" id="266">
                                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                                                 <font key="font" metaFont="smallSystem"/>
                                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -2111,7 +2053,7 @@ DQ
                                                                             </textFieldCell>
                                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                         </tableColumn>
-                                                                        <tableColumn identifier="birthplace" editable="NO" width="132" minWidth="4" maxWidth="1000" id="267">
+                                                                        <tableColumn identifier="birthplace" editable="NO" width="135" minWidth="4" maxWidth="1000" id="267">
                                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                                                 <font key="font" metaFont="smallSystem"/>
                                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -2196,7 +2138,7 @@ DQ
                                             <rect key="frame" x="35" y="275" width="30" height="13"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Date:" id="1462">
-                                                <font key="font" size="10" name="LucidaGrande"/>
+                                                <font key="font" metaFont="system" size="10"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
@@ -2218,7 +2160,7 @@ DQ
                                             <rect key="frame" x="203" y="273" width="44" height="13"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Temple:" id="1464">
-                                                <font key="font" size="10" name="LucidaGrande"/>
+                                                <font key="font" metaFont="system" size="10"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
@@ -2283,10 +2225,10 @@ DQ
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <subviews>
                                                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" headerView="1542" id="976">
-                                                        <rect key="frame" x="0.0" y="0.0" width="505" height="129"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="505" height="19"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <size key="intercellSpacing" width="3" height="2"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                         <tableColumns>
                                                             <tableColumn identifier="type" editable="NO" width="95" minWidth="40" maxWidth="1000" id="977">
@@ -2341,7 +2283,7 @@ DQ
                                                 <rect key="frame" x="1" y="-30" width="490" height="15"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
-                                            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="1543">
+                                            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="1543">
                                                 <rect key="frame" x="-30" y="17" width="15" height="114"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
@@ -2393,7 +2335,7 @@ DQ
                 <outlet property="initialFirstResponder" destination="640" id="695"/>
             </connections>
         </window>
-        <window title="IndividualEdit2" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" wantsToBeColor="NO" visibleAtLaunch="NO" animationBehavior="default" id="395" userLabel="individualEditWindow1">
+        <window title="IndividualEdit2" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="395" userLabel="individualEditWindow1">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="516" y="85" width="530" height="496"/>
@@ -2521,7 +2463,7 @@ DQ
                 <outlet property="document" destination="-2" id="522"/>
             </connections>
         </customObject>
-        <customObject id="529" userLabel="IndividualEditController" customClass="IndividualEditController">
+        <customObject id="529" userLabel="IndividualEditController" customClass="IndividualEditController" customModule="MAF" customModuleProvider="target">
             <connections>
                 <outlet property="afn" destination="760" id="762"/>
                 <outlet property="attributeTableController" destination="1234" id="1243"/>
@@ -2537,7 +2479,7 @@ DQ
                 <outlet property="gender" destination="420" id="622"/>
                 <outlet property="givenNames" destination="454" id="621"/>
                 <outlet property="notesIndividualName" destination="716" id="1347"/>
-                <outlet property="notesTextView" destination="714" id="1349"/>
+                <outlet property="notesScrollView" destination="713" id="fFt-GL-Qn9"/>
                 <outlet property="photo" destination="444" id="624"/>
                 <outlet property="prefix" destination="768" id="797"/>
                 <outlet property="rin" destination="766" id="767"/>
@@ -2549,7 +2491,7 @@ DQ
                 <outlet property="window" destination="226" id="531"/>
             </connections>
         </customObject>
-        <customObject id="635" userLabel="FamilyEditController" customClass="FamilyEditController">
+        <customObject id="635" userLabel="FamilyEditController" customClass="FamilyEditController" customModule="MAF" customModuleProvider="target">
             <connections>
                 <outlet property="children" destination="254" id="653"/>
                 <outlet property="eventTableController" destination="1235" id="1242"/>
@@ -2565,7 +2507,7 @@ DQ
         </customObject>
         <customObject id="707" userLabel="SurnameList" customClass="MAFSurnameList"/>
         <customObject id="709" userLabel="LocationList" customClass="MAFLocationList"/>
-        <window title="Individual Notes" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" wantsToBeColor="NO" visibleAtLaunch="NO" animationBehavior="default" id="711" userLabel="noteWindow">
+        <window title="Individual Notes" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="711" userLabel="noteWindow">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="561" y="340" width="480" height="360"/>
@@ -2613,7 +2555,7 @@ DQ
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" id="716">
-                        <rect key="frame" x="86" y="321" width="377" height="17"/>
+                        <rect key="frame" x="86.000001024632198" y="321" width="377" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Person Name" id="1475">
                             <font key="font" metaFont="system"/>
@@ -2624,7 +2566,7 @@ DQ
                 </subviews>
             </view>
         </window>
-        <window title="Print Reports" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" wantsToBeColor="NO" visibleAtLaunch="NO" animationBehavior="default" id="720" userLabel="reportsWindow">
+        <window title="Print Reports" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="720" userLabel="reportsWindow">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="273" y="384" width="290" height="208"/>
@@ -2760,22 +2702,22 @@ DQ
                 <outlet property="wifeDetailsText" destination="1014" id="1182"/>
             </connections>
         </customObject>
-        <customObject id="1203" userLabel="EventTableController2" customClass="EventTableController">
+        <customObject id="1203" userLabel="EventTableController2" customClass="EventTableController" customModule="MAF" customModuleProvider="target">
             <connections>
                 <outlet property="eventTable" destination="955" id="1233"/>
             </connections>
         </customObject>
-        <customObject id="1234" userLabel="EventTableController" customClass="EventTableController">
+        <customObject id="1234" userLabel="EventTableController" customClass="EventTableController" customModule="MAF" customModuleProvider="target">
             <connections>
                 <outlet property="eventTable" destination="961" id="1236"/>
             </connections>
         </customObject>
-        <customObject id="1235" userLabel="EventTableController1" customClass="EventTableController">
+        <customObject id="1235" userLabel="EventTableController1" customClass="EventTableController" customModule="MAF" customModuleProvider="target">
             <connections>
                 <outlet property="eventTable" destination="976" id="1238"/>
             </connections>
         </customObject>
-        <window title="Report a Problem" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" wantsToBeColor="NO" visibleAtLaunch="NO" animationBehavior="default" id="1258" userLabel="BugReportWindow">
+        <window title="Report a Problem" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" visibleAtLaunch="NO" animationBehavior="default" id="1258" userLabel="BugReportWindow">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="440" y="215" width="606" height="488"/>
@@ -2872,7 +2814,7 @@ DQ
                 <outlet property="initialFirstResponder" destination="1262" id="1269"/>
             </connections>
         </window>
-        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" wantsToBeColor="NO" visibleAtLaunch="NO" animationBehavior="default" id="1330" userLabel="TaskProgressSheetWindow">
+        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="1330" userLabel="TaskProgressSheetWindow">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
             <rect key="contentRect" x="444" y="450" width="452" height="131"/>
@@ -2897,10 +2839,6 @@ DQ
         <customObject id="1345" userLabel="GedcomLoaderJDOM" customClass="com.redbugz.maf.jdom.GedcomLoaderJDOM"/>
     </objects>
     <resources>
-        <image name="Badge Add" width="32" height="32"/>
-        <image name="Magnifing Glass" width="32" height="32"/>
-        <image name="Metal Window" width="32.450702667236328" height="32.450702667236328"/>
-        <image name="Pedigree" width="128" height="128"/>
         <image name="notepad" width="40" height="37"/>
     </resources>
 </document>

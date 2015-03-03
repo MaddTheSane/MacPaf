@@ -21,7 +21,7 @@
 		02DDDD270A12BA9C003BC70E /* UKCrashReporter Readme.txt in Resources */ = {isa = PBXBuildFile; fileRef = 02DDDD230A12BA9C003BC70E /* UKCrashReporter Readme.txt */; };
 		02DDDD290A12BA9C003BC70E /* UKCrashReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 02DDDD250A12BA9C003BC70E /* UKCrashReporter.m */; };
 		02DDDDB40A147208003BC70E /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02DDDDB30A147208003BC70E /* Sparkle.framework */; };
-		02DDDDEA0A147462003BC70E /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 02DDDDB30A147208003BC70E /* Sparkle.framework */; };
+		02DDDDEA0A147462003BC70E /* Sparkle.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = 02DDDDB30A147208003BC70E /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		02DDDE100A165EF6003BC70E /* MAF Help in Resources */ = {isa = PBXBuildFile; fileRef = 02DDDDF70A165EF5003BC70E /* MAF Help */; };
 		02DE769509E96A04003B896A /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2A37F4B9FDCFA73011CA2CEA /* Credits.rtf */; };
 		02DE769809E96A04003B896A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165FFE840EACC02AAC07 /* InfoPlist.strings */; };
@@ -36,7 +36,10 @@
 		556AC8A21806432F0046242E /* FamilyListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 556AC8A01806432F0046242E /* FamilyListController.m */; };
 		556AC8A51806A6210046242E /* MyDocument.xib in Resources */ = {isa = PBXBuildFile; fileRef = 556AC8A71806A6210046242E /* MyDocument.xib */; };
 		556AC8AB1806A94C0046242E /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 556AC8AA1806A94C0046242E /* Media.xcassets */; };
-		557B653C180B6B50009FABAE /* MyDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 557B6539180B6B50009FABAE /* MyDocument.m */; };
+		557CDDEA1AA6561E009CCB3B /* MyDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 557B6539180B6B50009FABAE /* MyDocument.m */; };
+		557CDDF21AA66030009CCB3B /* IndividualEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557CDDF11AA66030009CCB3B /* IndividualEditController.swift */; };
+		557CDDF41AA664F2009CCB3B /* EventTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557CDDF31AA664F2009CCB3B /* EventTableController.swift */; };
+		557CDDF61AA66646009CCB3B /* FamilyEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557CDDF51AA66646009CCB3B /* FamilyEditController.swift */; };
 		559A716618060F51005DE4AE /* UKProgressPanelTask.xib in Resources */ = {isa = PBXBuildFile; fileRef = 559A716818060F51005DE4AE /* UKProgressPanelTask.xib */; };
 		559A71761806101D005DE4AE /* RecordSelectionWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 559A71701806101D005DE4AE /* RecordSelectionWindow.xib */; };
 		559A717718061026005DE4AE /* FamilyListWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 559A717918061026005DE4AE /* FamilyListWindow.xib */; };
@@ -240,10 +243,12 @@
 		556AC8A31806A5900046242E /* Temple List.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Temple List.plist"; sourceTree = "<group>"; };
 		556AC8A61806A6210046242E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MyDocument.xib; sourceTree = "<group>"; };
 		556AC8AA1806A94C0046242E /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
-		557B6534180B0E5F009FABAE /* MainToolbarDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainToolbarDelegate.h; sourceTree = "<group>"; };
-		557B6535180B0E5F009FABAE /* MainToolbarDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainToolbarDelegate.m; sourceTree = "<group>"; };
 		557B6538180B6B50009FABAE /* MyDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyDocument.h; sourceTree = "<group>"; };
 		557B6539180B6B50009FABAE /* MyDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyDocument.m; sourceTree = "<group>"; };
+		557CDDF01AA66030009CCB3B /* MAF-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "MAF-Bridging-Header.h"; path = "Objective C Classes/MAF-Bridging-Header.h"; sourceTree = "<group>"; };
+		557CDDF11AA66030009CCB3B /* IndividualEditController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndividualEditController.swift; sourceTree = "<group>"; };
+		557CDDF31AA664F2009CCB3B /* EventTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableController.swift; sourceTree = "<group>"; };
+		557CDDF51AA66646009CCB3B /* FamilyEditController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilyEditController.swift; sourceTree = "<group>"; };
 		559A716718060F51005DE4AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/UKProgressPanelTask.xib; sourceTree = "<group>"; };
 		559A716A18060F57005DE4AE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/UKProgressPanelTask.strings; sourceTree = "<group>"; };
 		559A71701806101D005DE4AE /* RecordSelectionWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecordSelectionWindow.xib; sourceTree = "<group>"; };
@@ -602,6 +607,7 @@
 		32DBCF800370BD9700C91783 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				557CDDEF1AA65FF9009CCB3B /* Controllers */,
 				556AC892180635D70046242E /* Delegates */,
 				0263E4E10A20F4450087A335 /* ApplicationStartupHelper.h */,
 				0263E4E20A20F4450087A335 /* ApplicationStartupHelper.m */,
@@ -613,8 +619,6 @@
 				02D0062B0B4A445600C3CDF4 /* TransparentSplashScreenWindow.m */,
 				556AC89B180641F40046242E /* MAFTempleList.h */,
 				556AC89C180641F40046242E /* MAFTempleList.m */,
-				557B6534180B0E5F009FABAE /* MainToolbarDelegate.h */,
-				557B6535180B0E5F009FABAE /* MainToolbarDelegate.m */,
 				557B6538180B6B50009FABAE /* MyDocument.h */,
 				557B6539180B6B50009FABAE /* MyDocument.m */,
 				55D8D4AD180F722B0045C98F /* MAFDocument.h */,
@@ -633,6 +637,7 @@
 				02DDDD200A12BA9B003BC70E /* UKCrashReporter */,
 				0205627C0BB7355700CB9F64 /* ThreadWorker.h */,
 				0205627D0BB7355700CB9F64 /* ThreadWorker.m */,
+				557CDDF01AA66030009CCB3B /* MAF-Bridging-Header.h */,
 				32DBCF820370BDBC00C91783 /* MAF_Prefix.h */,
 				2A37F4B0FDCFA73011CA2CEA /* main.m */,
 			);
@@ -654,6 +659,16 @@
 				55C930331819C5FD00D9E072 /* ApplicationUtilities.m */,
 			);
 			name = Delegates;
+			sourceTree = "<group>";
+		};
+		557CDDEF1AA65FF9009CCB3B /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				557CDDF11AA66030009CCB3B /* IndividualEditController.swift */,
+				557CDDF31AA664F2009CCB3B /* EventTableController.swift */,
+				557CDDF51AA66646009CCB3B /* FamilyEditController.swift */,
+			);
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 		55C8A29918072CDB00A7BB42 /* TempleListGenerator */ = {
@@ -765,7 +780,7 @@
 		2A37F4A9FDCFA73011CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0630;
 			};
 			buildConfigurationList = 02BC1D21086ECAAD00BD394E /* Build configuration list for PBXProject "MAF" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -824,19 +839,22 @@
 				55C8A2A81807302900A7BB42 /* MAFXMLTempleParserDelegate.m in Sources */,
 				55D8D4B4181067EF0045C98F /* MAFPerson.m in Sources */,
 				02DDDD290A12BA9C003BC70E /* UKCrashReporter.m in Sources */,
+				557CDDEA1AA6561E009CCB3B /* MyDocument.m in Sources */,
+				557CDDF21AA66030009CCB3B /* IndividualEditController.swift in Sources */,
 				556AC8A21806432F0046242E /* FamilyListController.m in Sources */,
 				55D8D4BC181069740045C98F /* MAFLocation.m in Sources */,
 				0263E4E40A20F4450087A335 /* ApplicationStartupHelper.m in Sources */,
 				55D8D4B0180F722B0045C98F /* MAFDocument.m in Sources */,
 				02B51F050B23D727003C1D2E /* PAF21Data.m in Sources */,
+				557CDDF41AA664F2009CCB3B /* EventTableController.swift in Sources */,
 				55D8D4B8181069740045C98F /* MAFFamily.m in Sources */,
 				55C930311819B85100D9E072 /* IndividualDetailController.m in Sources */,
 				02C8769A0B3EF267005E8B53 /* UKProgressPanel.m in Sources */,
 				556AC89E180641F40046242E /* MAFTempleList.m in Sources */,
 				02C8769C0B3EF267005E8B53 /* UKProgressPanelTask.m in Sources */,
 				556AC89A180636760046242E /* IndividualListController.m in Sources */,
+				557CDDF61AA66646009CCB3B /* FamilyEditController.swift in Sources */,
 				02D001460B482EDB00C3CDF4 /* ImportSheetController.m in Sources */,
-				557B653C180B6B50009FABAE /* MyDocument.m in Sources */,
 				02D0062D0B4A445600C3CDF4 /* TransparentSplashScreenWindow.m in Sources */,
 				022394AA0BA2246900D268F1 /* NSData+RSHexDump.m in Sources */,
 				0205627F0BB7355700CB9F64 /* ThreadWorker.m in Sources */,
@@ -974,7 +992,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				LLVM_LTO = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -990,7 +1008,7 @@
 				GCC_OPTIMIZATION_LEVEL = fast;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				LLVM_LTO = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -999,6 +1017,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1010,7 +1029,10 @@
 				GCC_PREPROCESSOR_DEFINITIONS = "USEAPPKITFUNCTIONS=1";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = MAF;
+				SWIFT_OBJC_BRIDGING_HEADER = "Objective C Classes/MAF-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1019,6 +1041,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1030,7 +1053,9 @@
 				GCC_PREPROCESSOR_DEFINITIONS = "USEAPPKITFUNCTIONS=1";
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = MAF;
+				SWIFT_OBJC_BRIDGING_HEADER = "Objective C Classes/MAF-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -1039,7 +1064,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -1076,7 +1100,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(NATIVE_ARCH_ACTUAL)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;

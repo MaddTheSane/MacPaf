@@ -22,6 +22,7 @@
                 <outlet property="individualEditWindow" destination="226" id="242"/>
                 <outlet property="individualFamilyButton" destination="317" id="391"/>
                 <outlet property="individualList" destination="515" id="517"/>
+                <outlet property="locationList" destination="709" id="7RC-e1-ULd"/>
                 <outlet property="mainTabView" destination="132" id="1224"/>
                 <outlet property="maternalGrandfatherButton" destination="313" id="389"/>
                 <outlet property="maternalGrandmotherButton" destination="315" id="390"/>
@@ -394,7 +395,7 @@
                             <tabViewItem label="Pedigree View" identifier="" id="148">
                                 <view key="view" id="183">
                                     <rect key="frame" x="10" y="33" width="680" height="488"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button tag="1" id="1069">
                                             <rect key="frame" x="0.0" y="233" width="204" height="32"/>
@@ -2215,14 +2216,14 @@ DQ
                             <tabViewItem label="Details" identifier="" id="972">
                                 <view key="view" id="974">
                                     <rect key="frame" x="10" y="33" width="559" height="393"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" findBarPosition="aboveHorizontalRuler" id="975">
                                             <rect key="frame" x="20" y="228" width="507" height="147"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <clipView key="contentView" id="3X5-o2-8QG">
                                                 <rect key="frame" x="1" y="17" width="505" height="129"/>
-                                                <autoresizingMask key="autoresizingMask"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" headerView="1542" id="976">
                                                         <rect key="frame" x="0.0" y="0.0" width="505" height="19"/>
@@ -2304,7 +2305,7 @@ DQ
                                         <button id="989">
                                             <rect key="frame" x="20" y="206" width="20" height="21"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <buttonCell key="cell" type="square" title="+" alternateTitle="Add" bezelStyle="shadowlessSquare" alignment="center" lineBreakMode="clipping" borderStyle="border" inset="2" id="1470">
+                                            <buttonCell key="cell" type="square" alternateTitle="Add" bezelStyle="shadowlessSquare" image="NSAddTemplate" imagePosition="only" alignment="center" lineBreakMode="clipping" borderStyle="border" inset="2" id="1470">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
@@ -2315,7 +2316,7 @@ DQ
                                         <button id="990">
                                             <rect key="frame" x="39" y="206" width="20" height="21"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <buttonCell key="cell" type="square" title="-" alternateTitle="Remove" bezelStyle="shadowlessSquare" alignment="center" lineBreakMode="clipping" borderStyle="border" inset="2" id="1471">
+                                            <buttonCell key="cell" type="square" alternateTitle="Remove" bezelStyle="shadowlessSquare" image="NSRemoveTemplate" imagePosition="only" alignment="center" lineBreakMode="clipping" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="1471">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
@@ -2458,7 +2459,7 @@ DQ
                 <outlet property="document" destination="-2" id="523"/>
             </connections>
         </customObject>
-        <customObject id="515" userLabel="IndividualList" customClass="IndividualList">
+        <customObject id="515" userLabel="IndividualList" customClass="IndividualList" customModule="MAF" customModuleProvider="target">
             <connections>
                 <outlet property="document" destination="-2" id="522"/>
             </connections>
@@ -2505,8 +2506,8 @@ DQ
                 <outlet property="window" destination="248" id="660"/>
             </connections>
         </customObject>
-        <customObject id="707" userLabel="SurnameList" customClass="MAFSurnameList"/>
-        <customObject id="709" userLabel="LocationList" customClass="MAFLocationList"/>
+        <customObject id="707" userLabel="SurnameList" customClass="SurnameList" customModule="MAF" customModuleProvider="target"/>
+        <customObject id="709" userLabel="LocationList" customClass="LocationList"/>
         <window title="Individual Notes" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="711" userLabel="noteWindow">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -2652,7 +2653,7 @@ DQ
                 <outlet property="delegate" destination="732" id="733"/>
             </connections>
         </window>
-        <customObject id="732" userLabel="ReportsController" customClass="ReportsController">
+        <customObject id="732" userLabel="ReportsController" customClass="ReportsController" customModule="MAF" customModuleProvider="target">
             <connections>
                 <outlet property="personField" destination="948" id="1257"/>
                 <outlet property="reportsRadio" destination="722" id="736"/>
@@ -2666,7 +2667,7 @@ DQ
             </connections>
         </customObject>
         <customObject id="934" userLabel="HistoryController" customClass="HistoryController"/>
-        <customObject id="1122" userLabel="PedigreeViewController" customClass="PedigreeViewController">
+        <customObject id="1122" userLabel="PedigreeViewController" customClass="PedigreeViewController" customModule="MAF" customModuleProvider="target">
             <connections>
                 <outlet property="maternalGrandfatherButton" destination="1196" id="1199"/>
                 <outlet property="maternalGrandmotherButton" destination="1197" id="1198"/>
@@ -2674,6 +2675,7 @@ DQ
                 <outlet property="paternalGrandmotherButton" destination="1195" id="1200"/>
                 <outlet property="primaryIndividualButton" destination="1069" id="1123"/>
                 <outlet property="relatedPopup" destination="1249" id="1255"/>
+                <outlet property="view" destination="132" id="gBR-ov-iaF"/>
             </connections>
         </customObject>
         <customObject id="1147" userLabel="IndividualListController" customClass="IndividualListController">
@@ -2694,10 +2696,11 @@ DQ
                 <outlet property="searchField" destination="1002" id="1153"/>
             </connections>
         </customObject>
-        <customObject id="1180" userLabel="FamilyDetailController" customClass="FamilyDetailController">
+        <customObject id="1180" userLabel="FamilyDetailController" customClass="FamilyDetailController" customModule="MAF" customModuleProvider="target">
             <connections>
                 <outlet property="childrenCountText" destination="1025" id="1183"/>
-                <outlet property="childrenTable" destination="1021" id="1184"/>
+                <outlet property="childrenTable" destination="254" id="fka-Ww-OJY"/>
+                <outlet property="eventTable" destination="976" id="M6V-tU-XIy"/>
                 <outlet property="husbandDetailsText" destination="1013" id="1185"/>
                 <outlet property="wifeDetailsText" destination="1014" id="1182"/>
             </connections>
@@ -2836,9 +2839,11 @@ DQ
                 <outlet property="loader" destination="1345" id="1346"/>
             </connections>
         </customObject>
-        <customObject id="1345" userLabel="GedcomLoaderJDOM" customClass="com.redbugz.maf.jdom.GedcomLoaderJDOM"/>
+        <customObject id="1345" userLabel="GedcomLoaderJDOM" customClass="GedcomLoader" customModule="MAF" customModuleProvider="target"/>
     </objects>
     <resources>
+        <image name="NSAddTemplate" width="11" height="11"/>
+        <image name="NSRemoveTemplate" width="11" height="11"/>
         <image name="notepad" width="40" height="37"/>
     </resources>
 </document>

@@ -40,6 +40,13 @@
 		557CDDF21AA66030009CCB3B /* IndividualEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557CDDF11AA66030009CCB3B /* IndividualEditController.swift */; };
 		557CDDF41AA664F2009CCB3B /* EventTableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557CDDF31AA664F2009CCB3B /* EventTableController.swift */; };
 		557CDDF61AA66646009CCB3B /* FamilyEditController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557CDDF51AA66646009CCB3B /* FamilyEditController.swift */; };
+		557CDDF81AA66838009CCB3B /* ReportsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557CDDF71AA66838009CCB3B /* ReportsController.swift */; };
+		557CDDFB1AA66910009CCB3B /* IndividualList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557CDDFA1AA66910009CCB3B /* IndividualList.swift */; };
+		557CDDFE1AA669DA009CCB3B /* GedcomLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557CDDFD1AA669DA009CCB3B /* GedcomLoader.swift */; };
+		557CDE001AA66A5F009CCB3B /* LocationList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557CDDFF1AA66A5F009CCB3B /* LocationList.swift */; };
+		557CDE021AA66B96009CCB3B /* SurnameList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557CDE011AA66B96009CCB3B /* SurnameList.swift */; };
+		557CDE041AA66E00009CCB3B /* FamilyDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557CDE031AA66E00009CCB3B /* FamilyDetailController.swift */; };
+		557CDE061AA67182009CCB3B /* PedigreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557CDE051AA67182009CCB3B /* PedigreeViewController.swift */; };
 		559A716618060F51005DE4AE /* UKProgressPanelTask.xib in Resources */ = {isa = PBXBuildFile; fileRef = 559A716818060F51005DE4AE /* UKProgressPanelTask.xib */; };
 		559A71761806101D005DE4AE /* RecordSelectionWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 559A71701806101D005DE4AE /* RecordSelectionWindow.xib */; };
 		559A717718061026005DE4AE /* FamilyListWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 559A717918061026005DE4AE /* FamilyListWindow.xib */; };
@@ -249,6 +256,13 @@
 		557CDDF11AA66030009CCB3B /* IndividualEditController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndividualEditController.swift; sourceTree = "<group>"; };
 		557CDDF31AA664F2009CCB3B /* EventTableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableController.swift; sourceTree = "<group>"; };
 		557CDDF51AA66646009CCB3B /* FamilyEditController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilyEditController.swift; sourceTree = "<group>"; };
+		557CDDF71AA66838009CCB3B /* ReportsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReportsController.swift; sourceTree = "<group>"; };
+		557CDDFA1AA66910009CCB3B /* IndividualList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndividualList.swift; sourceTree = "<group>"; };
+		557CDDFD1AA669DA009CCB3B /* GedcomLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GedcomLoader.swift; sourceTree = "<group>"; };
+		557CDDFF1AA66A5F009CCB3B /* LocationList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationList.swift; sourceTree = "<group>"; };
+		557CDE011AA66B96009CCB3B /* SurnameList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SurnameList.swift; sourceTree = "<group>"; };
+		557CDE031AA66E00009CCB3B /* FamilyDetailController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FamilyDetailController.swift; sourceTree = "<group>"; };
+		557CDE051AA67182009CCB3B /* PedigreeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PedigreeViewController.swift; sourceTree = "<group>"; };
 		559A716718060F51005DE4AE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/UKProgressPanelTask.xib; sourceTree = "<group>"; };
 		559A716A18060F57005DE4AE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/UKProgressPanelTask.strings; sourceTree = "<group>"; };
 		559A71701806101D005DE4AE /* RecordSelectionWindow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RecordSelectionWindow.xib; sourceTree = "<group>"; };
@@ -607,18 +621,14 @@
 		32DBCF800370BD9700C91783 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				557CDDFC1AA66987009CCB3B /* Importers */,
+				557CDDF91AA668E3009CCB3B /* Lists */,
 				557CDDEF1AA65FF9009CCB3B /* Controllers */,
 				556AC892180635D70046242E /* Delegates */,
 				0263E4E10A20F4450087A335 /* ApplicationStartupHelper.h */,
 				0263E4E20A20F4450087A335 /* ApplicationStartupHelper.m */,
-				02B51F020B23D727003C1D2E /* PAF21Data.h */,
-				02B51F030B23D727003C1D2E /* PAF21Data.m */,
-				02D001410B482EDB00C3CDF4 /* ImportSheetController.h */,
-				02D001420B482EDB00C3CDF4 /* ImportSheetController.m */,
 				02D0062A0B4A445600C3CDF4 /* TransparentSplashScreenWindow.h */,
 				02D0062B0B4A445600C3CDF4 /* TransparentSplashScreenWindow.m */,
-				556AC89B180641F40046242E /* MAFTempleList.h */,
-				556AC89C180641F40046242E /* MAFTempleList.m */,
 				557B6538180B6B50009FABAE /* MyDocument.h */,
 				557B6539180B6B50009FABAE /* MyDocument.m */,
 				55D8D4AD180F722B0045C98F /* MAFDocument.h */,
@@ -667,8 +677,35 @@
 				557CDDF11AA66030009CCB3B /* IndividualEditController.swift */,
 				557CDDF31AA664F2009CCB3B /* EventTableController.swift */,
 				557CDDF51AA66646009CCB3B /* FamilyEditController.swift */,
+				557CDDF71AA66838009CCB3B /* ReportsController.swift */,
+				02D001410B482EDB00C3CDF4 /* ImportSheetController.h */,
+				02D001420B482EDB00C3CDF4 /* ImportSheetController.m */,
+				557CDDFA1AA66910009CCB3B /* IndividualList.swift */,
+				557CDE031AA66E00009CCB3B /* FamilyDetailController.swift */,
+				557CDE051AA67182009CCB3B /* PedigreeViewController.swift */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		557CDDF91AA668E3009CCB3B /* Lists */ = {
+			isa = PBXGroup;
+			children = (
+				556AC89B180641F40046242E /* MAFTempleList.h */,
+				556AC89C180641F40046242E /* MAFTempleList.m */,
+				557CDDFF1AA66A5F009CCB3B /* LocationList.swift */,
+				557CDE011AA66B96009CCB3B /* SurnameList.swift */,
+			);
+			name = Lists;
+			sourceTree = "<group>";
+		};
+		557CDDFC1AA66987009CCB3B /* Importers */ = {
+			isa = PBXGroup;
+			children = (
+				02B51F020B23D727003C1D2E /* PAF21Data.h */,
+				02B51F030B23D727003C1D2E /* PAF21Data.m */,
+				557CDDFD1AA669DA009CCB3B /* GedcomLoader.swift */,
+			);
+			name = Importers;
 			sourceTree = "<group>";
 		};
 		55C8A29918072CDB00A7BB42 /* TempleListGenerator */ = {
@@ -837,25 +874,32 @@
 			files = (
 				02DE76B309E96A04003B896A /* main.m in Sources */,
 				55C8A2A81807302900A7BB42 /* MAFXMLTempleParserDelegate.m in Sources */,
+				557CDE001AA66A5F009CCB3B /* LocationList.swift in Sources */,
 				55D8D4B4181067EF0045C98F /* MAFPerson.m in Sources */,
+				557CDDFE1AA669DA009CCB3B /* GedcomLoader.swift in Sources */,
 				02DDDD290A12BA9C003BC70E /* UKCrashReporter.m in Sources */,
 				557CDDEA1AA6561E009CCB3B /* MyDocument.m in Sources */,
 				557CDDF21AA66030009CCB3B /* IndividualEditController.swift in Sources */,
+				557CDDFB1AA66910009CCB3B /* IndividualList.swift in Sources */,
 				556AC8A21806432F0046242E /* FamilyListController.m in Sources */,
 				55D8D4BC181069740045C98F /* MAFLocation.m in Sources */,
 				0263E4E40A20F4450087A335 /* ApplicationStartupHelper.m in Sources */,
 				55D8D4B0180F722B0045C98F /* MAFDocument.m in Sources */,
 				02B51F050B23D727003C1D2E /* PAF21Data.m in Sources */,
+				557CDDF81AA66838009CCB3B /* ReportsController.swift in Sources */,
 				557CDDF41AA664F2009CCB3B /* EventTableController.swift in Sources */,
 				55D8D4B8181069740045C98F /* MAFFamily.m in Sources */,
 				55C930311819B85100D9E072 /* IndividualDetailController.m in Sources */,
 				02C8769A0B3EF267005E8B53 /* UKProgressPanel.m in Sources */,
 				556AC89E180641F40046242E /* MAFTempleList.m in Sources */,
+				557CDE041AA66E00009CCB3B /* FamilyDetailController.swift in Sources */,
 				02C8769C0B3EF267005E8B53 /* UKProgressPanelTask.m in Sources */,
 				556AC89A180636760046242E /* IndividualListController.m in Sources */,
 				557CDDF61AA66646009CCB3B /* FamilyEditController.swift in Sources */,
+				557CDE021AA66B96009CCB3B /* SurnameList.swift in Sources */,
 				02D001460B482EDB00C3CDF4 /* ImportSheetController.m in Sources */,
 				02D0062D0B4A445600C3CDF4 /* TransparentSplashScreenWindow.m in Sources */,
+				557CDE061AA67182009CCB3B /* PedigreeViewController.swift in Sources */,
 				022394AA0BA2246900D268F1 /* NSData+RSHexDump.m in Sources */,
 				0205627F0BB7355700CB9F64 /* ThreadWorker.m in Sources */,
 				55D8D4AC180F71890045C98F /* MAFDocumentData.xcdatamodeld in Sources */,

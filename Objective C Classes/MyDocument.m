@@ -12,7 +12,7 @@
 #import "MAFFamily.h"
 #import "MAFLocation.h"
 #import "IndividualListController.h"
-
+#import "MAF-Swift.h"
 
 #define ADD_FAMILY_IDENTIFIER @"AddFamily"
 #define ADD_INDIVIDUAL_IDENTIFIER @"AddIndividual"

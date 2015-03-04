@@ -33,5 +33,16 @@ static MAFTempleList *permTempleList;
 		permTempleList = [[MAFTempleList alloc] init];
 	});
 }
-	
+
+- (NSInteger)numberOfItemsInComboBox:(NSComboBox *)aComboBox
+{
+	return 0;
+}
+
+- (id)comboBox:(NSComboBox *)aComboBox objectValueForItemAtIndex:(NSInteger)index
+{
+	return nil;
+}
+
+
 @end

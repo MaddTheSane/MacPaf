@@ -16,6 +16,7 @@
 
 @class UKProgressPanelTask;	
 @class MAFDocument;
+@class MyDocument;
 
 @interface ImportSheetController : NSWindowController {
 	IBOutlet NSWindow *importSheet;
@@ -26,13 +27,14 @@
 //	IBOutlet NSView *progressView;
 	IBOutlet NSButton *importButton;
 	
+	
 //	UKProgressPanelTask *task;
 //	NSData *data;
 }
 
 @property (retain) NSString *fileNameToImport;
 @property (retain) MAFDocument *importDocument;
-
+@property (weak) IBOutlet MyDocument *document;
 
 // Notifications to be sent by Java code
 

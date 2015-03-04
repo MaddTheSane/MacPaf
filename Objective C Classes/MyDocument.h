@@ -12,8 +12,8 @@
 
 @class MAFFamilyList;
 @class MAFIndividualList;
-@class MAFSurnameList;
-@class MAFLocationList;
+@class SurnameList;
+@class LocationList;
 @class MAFHistoryController;
 @class MAFPedigreeViewController;
 @class MAFPedigreeView;
@@ -33,8 +33,8 @@
 @property (weak) IBOutlet NSObject *importController;  
 @property (weak) IBOutlet MAFFamilyList *familyList;  
 @property (weak) IBOutlet MAFIndividualList *individualList;  
-@property (weak) IBOutlet MAFSurnameList *surnameList;  
-@property (weak) IBOutlet MAFLocationList *locationList;  
+@property (weak) IBOutlet SurnameList *surnameList;  
+@property (weak) IBOutlet LocationList *locationList;  
 @property (weak) IBOutlet MAFHistoryController *historyController;  
 @property (weak) IBOutlet MAFPedigreeViewController *pedigreeViewController;  
 @property (weak) IBOutlet NSButton *fatherButton;  

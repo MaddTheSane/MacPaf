@@ -3,3 +3,5 @@
 //
 
 #import "MAFDocument.h"
+#import "MyDocument.h"
+#import "ImportSheetController.h"

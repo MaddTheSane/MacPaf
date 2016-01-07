@@ -23,6 +23,7 @@ NSString * const TEMPLEREADY_UPDATE_DOCUMENT_TYPE = @"TempleReady Update File";
 @end
 
 @implementation ImportSheetController
+@dynamic document;
 
 // Class API
 

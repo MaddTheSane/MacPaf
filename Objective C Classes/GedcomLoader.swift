@@ -9,7 +9,7 @@
 import Cocoa
 
 class GedcomLoader: NSObject, MAFJDOM {
-	func loadDataForDocumentWithUpdateDelegate(theDict: [NSObject : AnyObject]!) {
+	func loadDataForDocumentWithUpdateDelegate(theDict: NSMutableDictionary!) {
 		
 	}
 }

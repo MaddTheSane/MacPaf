@@ -5,6 +5,12 @@
         <relationship name="locations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Location" inverseName="base" inverseEntity="Location" syncable="YES"/>
         <relationship name="people" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Person" inverseName="base" inverseEntity="Person" syncable="YES"/>
     </entity>
+    <entity name="Event" representedClassName="MAFEvent" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="dateString" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="eventType" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="place" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" syncable="YES"/>
+    </entity>
     <entity name="Family" representedClassName="MAFFamily" syncable="YES">
         <attribute name="divorceDate" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="marriageDate" optional="YES" attributeType="Date" syncable="YES"/>
@@ -22,6 +28,14 @@
         <attribute name="locationNumber" optional="YES" attributeType="Integer 64" defaultValueString="0" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <relationship name="base" maxCount="1" deletionRule="Nullify" destinationEntity="Base" inverseName="locations" inverseEntity="Base" syncable="YES"/>
+    </entity>
+    <entity name="Ordinance" parentEntity="Event" syncable="YES">
+        <attribute name="bornInCovenant" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="child" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="pre_1970" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="status" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stillborn" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <relationship name="temple" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Temple" syncable="YES"/>
     </entity>
     <entity name="Person" representedClassName="MAFPerson" syncable="YES">
         <attribute name="afn" optional="YES" attributeType="String" syncable="YES"/>
@@ -44,10 +58,14 @@
             <fetchRequest name="fetchedPropertyFetchRequest" entity="Person"/>
         </fetchedProperty>
     </entity>
+    <entity name="Temple" isAbstract="YES" syncable="YES"/>
     <elements>
-        <element name="Base" positionX="0" positionY="0" width="128" height="90"/>
-        <element name="Family" positionX="0" positionY="0" width="128" height="180"/>
-        <element name="Location" positionX="0" positionY="0" width="128" height="120"/>
-        <element name="Person" positionX="0" positionY="0" width="128" height="314"/>
+        <element name="Base" positionX="142" positionY="36" width="128" height="90"/>
+        <element name="Family" positionX="-288" positionY="153" width="128" height="180"/>
+        <element name="Location" positionX="333" positionY="96" width="128" height="120"/>
+        <element name="Person" positionX="-92" positionY="-296" width="128" height="314"/>
+        <element name="Event" positionX="9" positionY="144" width="128" height="103"/>
+        <element name="Ordinance" positionX="-135" positionY="353" width="128" height="133"/>
+        <element name="Temple" positionX="34" positionY="315" width="128" height="45"/>
     </elements>
 </model>

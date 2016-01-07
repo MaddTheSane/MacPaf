@@ -10,7 +10,7 @@
 
 @protocol MAFJDOM <NSObject>
 
-- (void)loadDataForDocumentWithUpdateDelegate:(NSDictionary*)theDict;
+- (void)loadDataForDocumentWithUpdateDelegate:(NSMutableDictionary<NSString*,NSArray*>*)theDict;
 
 @end
 

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <deployment defaultVersion="1080" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="4514"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="UKProgressPanel">
@@ -13,26 +13,24 @@
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <customObject id="-3" userLabel="Application"/>
-        <window title="Tasks" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" releasedWhenClosed="NO" wantsToBeColor="NO" visibleAtLaunch="NO" frameAutosaveName="UKProgressDisplay" animationBehavior="default" id="5" userLabel="ProgressPanel" customClass="NSPanel">
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <window title="Tasks" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hidesOnDeactivate="YES" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="UKProgressDisplay" animationBehavior="default" id="5" userLabel="ProgressPanel" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" resizable="YES" utility="YES" nonactivatingPanel="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="484" y="871" width="307" height="114"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1058"/>
+            <rect key="contentRect" x="484" y="871" width="307" height="133"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="777"/>
             <view key="contentView" id="6">
-                <rect key="frame" x="0.0" y="0.0" width="307" height="114"/>
+                <rect key="frame" x="0.0" y="0.0" width="307" height="133"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" findBarPosition="aboveHorizontalRuler" translatesAutoresizingMaskIntoConstraints="NO" id="8">
-                        <rect key="frame" x="1" y="1" width="305" height="96"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <rect key="frame" x="1" y="1" width="305" height="115"/>
                         <clipView key="contentView" id="kjY-wJ-HxG">
-                            <rect key="frame" x="1" y="1" width="303" height="94"/>
+                            <rect key="frame" x="1" y="1" width="303" height="113"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="7">
-                                    <rect key="frame" x="0.0" y="0.0" width="303" height="94"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="303" height="113"/>
                                 </customView>
                             </subviews>
                             <constraints>
@@ -47,14 +45,13 @@
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                         <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="18">
-                            <rect key="frame" x="288" y="1" width="16" height="94"/>
+                            <rect key="frame" x="288" y="1" width="16" height="113"/>
                             <autoresizingMask key="autoresizingMask"/>
                         </scroller>
                     </scrollView>
-                    <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="9">
-                        <rect key="frame" x="18" y="99" width="87" height="14"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" title="No active tasks." id="16">
+                    <textField horizontalHuggingPriority="248" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="9">
+                        <rect key="frame" x="18" y="118" width="88" height="14"/>
+                        <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" sendsActionOnEndEditing="YES" alignment="left" title="No active tasks." id="16">
                             <font key="font" metaFont="smallSystem"/>
                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -63,6 +60,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="8" firstAttribute="leading" secondItem="6" secondAttribute="leading" constant="1" id="4ts-BZ-YcV"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="9" secondAttribute="trailing" constant="20" symbolic="YES" id="C3F-z6-IHz"/>
                     <constraint firstItem="8" firstAttribute="top" secondItem="9" secondAttribute="bottom" constant="2" id="LNJ-b4-R4S"/>
                     <constraint firstItem="9" firstAttribute="leading" secondItem="6" secondAttribute="leading" constant="20" symbolic="YES" id="Tuz-hB-soB"/>
                     <constraint firstItem="9" firstAttribute="top" secondItem="6" secondAttribute="top" constant="1" id="Y7o-IO-KJF"/>
@@ -70,6 +68,7 @@
                     <constraint firstAttribute="bottom" secondItem="8" secondAttribute="bottom" constant="1" id="uhe-sh-shq"/>
                 </constraints>
             </view>
+            <point key="canvasLocation" x="244.5" y="328.5"/>
         </window>
     </objects>
 </document>

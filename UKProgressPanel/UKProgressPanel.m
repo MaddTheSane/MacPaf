@@ -181,7 +181,7 @@ static	UKProgressPanel*	gMainProgressPanel = nil;			// Here we keep track of our
 	}
 	
 	// Update "number of tasks" status display:
-	[taskStatus setStringValue: [NSString stringWithFormat: NSLocalizedStringFromTable(@"%u tasks in progress...",@"UKProgressPanel", nil), (unsigned long)[subs count]]];
+	[taskStatus setStringValue: [NSString stringWithFormat: NSLocalizedStringFromTable(@"%lu tasks in progress...",@"UKProgressPanel", nil), (unsigned long)[subs count]]];
 	[taskStatus setNeedsDisplay:YES];
 	
 	[taskListWindow orderFront: nil];
@@ -231,7 +231,7 @@ static	UKProgressPanel*	gMainProgressPanel = nil;			// Here we keep track of our
 	if( tCount == 0 )
 		[taskStatus setStringValue: NSLocalizedStringFromTable(@"No active tasks.",@"UKProgressPanel", nil)];
 	else
-		[taskStatus setStringValue: [NSString stringWithFormat: NSLocalizedStringFromTable(@"%u tasks in progress...",@"UKProgressPanel", nil), tCount]];
+		[taskStatus setStringValue: [NSString stringWithFormat: NSLocalizedStringFromTable(@"%lu tasks in progress...",@"UKProgressPanel", nil), tCount]];
 	[taskStatus setNeedsDisplay:YES];
 	
 	// Resize scroller's content area:

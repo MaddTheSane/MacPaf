@@ -194,7 +194,7 @@ might then look like this:
 Enjoy.
 
  */
-+ (ThreadWorker *)
++ (instancetype)
     workOn:(id)target 
     withSelector:(SEL)selector 
     withObject:(id)userInfo

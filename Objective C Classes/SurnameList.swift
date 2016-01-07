@@ -21,11 +21,11 @@ class SurnameList: NSObject, NSComboBoxDataSource {
 	}
 	
 	func comboBox(aComboBox: NSComboBox, indexOfItemWithStringValue string: String) -> Int {
-		return find(surnames, string) ?? NSNotFound
+		return surnames.indexOf(string) ?? NSNotFound
 	}
 	
 	func add(name: String) {
-		if find(surnames, name) == nil {
+		if surnames.indexOf(name) == nil {
 			surnames.append(name)
 		}
 	}

@@ -11,7 +11,7 @@ import Cocoa
 class PedigreeViewController: NSViewController {
 
     override func viewDidLoad() {
-        super.viewDidLoad()
+        //super.viewDidLoad()
     
         // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
     }

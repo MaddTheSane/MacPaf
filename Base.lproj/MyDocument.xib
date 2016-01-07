@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7519.1" systemVersion="14C109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7519.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
+        <capability name="box content view" minToolsVersion="7.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MyDocument">
@@ -65,7 +66,7 @@
                                         <box title="Children" boxType="oldStyle" borderType="none" id="222">
                                             <rect key="frame" x="17" y="4" width="217" height="212"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                            <view key="contentView">
+                                            <view key="contentView" id="UP1-Ir-16y">
                                                 <rect key="frame" x="0.0" y="0.0" width="217" height="194"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
@@ -136,7 +137,7 @@
                                         <box title="Individual's Spouses" boxType="oldStyle" borderType="none" id="224">
                                             <rect key="frame" x="237" y="4" width="205" height="211"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                            <view key="contentView">
+                                            <view key="contentView" id="QuV-xq-dcr">
                                                 <rect key="frame" x="0.0" y="0.0" width="205" height="193"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
@@ -704,7 +705,7 @@
                                         <box title="Box" titlePosition="noTitle" id="1045">
                                             <rect key="frame" x="17" y="8" width="646" height="151"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                            <view key="contentView">
+                                            <view key="contentView" id="Jgd-d4-ieM">
                                                 <rect key="frame" x="2" y="2" width="642" height="147"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
@@ -737,7 +738,7 @@
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" alternatingRowBackgroundColors="YES" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" headerView="1526" id="1060">
-                                                        <rect key="frame" x="0.0" y="0.0" width="623" height="19"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="622.5" height="19"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <size key="intercellSpacing" width="3" height="2"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1003,7 +1004,7 @@ DQ
                                         <box title="Box" titlePosition="noTitle" id="1011">
                                             <rect key="frame" x="17" y="8" width="646" height="151"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                            <view key="contentView">
+                                            <view key="contentView" id="liA-e1-YMr">
                                                 <rect key="frame" x="2" y="2" width="642" height="147"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
@@ -1359,7 +1360,7 @@ DQ
                                         <box title="Birth" boxType="secondary" borderType="bezel" id="472">
                                             <rect key="frame" x="20" y="379" width="384" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <view key="contentView">
+                                            <view key="contentView" id="9mi-LB-kJr">
                                                 <rect key="frame" x="3" y="3" width="378" height="59"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
@@ -1398,7 +1399,7 @@ DQ
                                         <box title="Christening" boxType="secondary" borderType="bezel" id="548">
                                             <rect key="frame" x="20" y="301" width="384" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <view key="contentView">
+                                            <view key="contentView" id="0My-vk-HcV">
                                                 <rect key="frame" x="3" y="3" width="378" height="59"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
@@ -1437,7 +1438,7 @@ DQ
                                         <box title="Death" boxType="secondary" borderType="bezel" id="556">
                                             <rect key="frame" x="20" y="222" width="384" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <view key="contentView">
+                                            <view key="contentView" id="ARq-g2-QuK">
                                                 <rect key="frame" x="3" y="3" width="378" height="59"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
@@ -1476,7 +1477,7 @@ DQ
                                         <box title="Burial" boxType="secondary" borderType="bezel" id="560">
                                             <rect key="frame" x="20" y="143" width="384" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <view key="contentView">
+                                            <view key="contentView" id="zzA-qk-fDG">
                                                 <rect key="frame" x="3" y="3" width="378" height="59"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
@@ -1694,7 +1695,7 @@ DQ
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" headerView="1534" id="955">
-                                                        <rect key="frame" x="0.0" y="0.0" width="493" height="19"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="493" height="149"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <size key="intercellSpacing" width="3" height="2"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1752,7 +1753,7 @@ DQ
                                                 <rect key="frame" x="1" y="-30" width="478" height="15"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
-                                            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="1535">
+                                            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="1535">
                                                 <rect key="frame" x="-30" y="17" width="15" height="149"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
@@ -1778,7 +1779,7 @@ DQ
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" headerView="1537" id="961">
-                                                        <rect key="frame" x="0.0" y="0.0" width="493" height="19"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="493" height="148"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <size key="intercellSpacing" width="3" height="2"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1836,7 +1837,7 @@ DQ
                                                 <rect key="frame" x="1" y="-30" width="478" height="15"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
-                                            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="1538">
+                                            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="1538">
                                                 <rect key="frame" x="-30" y="17" width="15" height="148"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
@@ -1997,7 +1998,7 @@ DQ
                                         <box title="Children" boxType="oldStyle" borderType="none" id="264">
                                             <rect key="frame" x="20" y="20" width="519" height="245"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <view key="contentView">
+                                            <view key="contentView" id="ytr-ic-h0c">
                                                 <rect key="frame" x="0.0" y="0.0" width="519" height="227"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
@@ -2009,13 +2010,13 @@ DQ
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" id="254">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="469" height="19"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="485" height="19"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <size key="intercellSpacing" width="3" height="2"/>
                                                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                                     <tableColumns>
-                                                                        <tableColumn identifier="num" editable="NO" width="44" minWidth="40" maxWidth="1000" id="252">
+                                                                        <tableColumn identifier="num" editable="NO" width="40" minWidth="40" maxWidth="1000" id="252">
                                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                                                 <font key="font" metaFont="smallSystem"/>
                                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -2028,7 +2029,7 @@ DQ
                                                                             </textFieldCell>
                                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                         </tableColumn>
-                                                                        <tableColumn identifier="name" editable="NO" width="147" minWidth="40" maxWidth="1000" id="253">
+                                                                        <tableColumn identifier="name" editable="NO" width="143" minWidth="40" maxWidth="1000" id="253">
                                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                                                 <font key="font" metaFont="smallSystem"/>
                                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -2041,7 +2042,7 @@ DQ
                                                                             </textFieldCell>
                                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                         </tableColumn>
-                                                                        <tableColumn identifier="birthdate" editable="NO" width="147" minWidth="10" maxWidth="1000" id="266">
+                                                                        <tableColumn identifier="birthdate" editable="NO" width="143" minWidth="10" maxWidth="1000" id="266">
                                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                                                 <font key="font" metaFont="smallSystem"/>
                                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -2054,7 +2055,7 @@ DQ
                                                                             </textFieldCell>
                                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                         </tableColumn>
-                                                                        <tableColumn identifier="birthplace" editable="NO" width="135" minWidth="4" maxWidth="1000" id="267">
+                                                                        <tableColumn identifier="birthplace" editable="NO" width="131" minWidth="4" maxWidth="1000" id="267">
                                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                                                 <font key="font" metaFont="smallSystem"/>
                                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -2101,7 +2102,7 @@ DQ
                                         <box title="Marriage" boxType="secondary" borderType="bezel" id="643">
                                             <rect key="frame" x="34" y="313" width="480" height="83"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <view key="contentView">
+                                            <view key="contentView" id="iqf-2C-Knm">
                                                 <rect key="frame" x="3" y="3" width="474" height="62"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
@@ -2226,7 +2227,7 @@ DQ
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" headerView="1542" id="976">
-                                                        <rect key="frame" x="0.0" y="0.0" width="505" height="19"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="505" height="129"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <size key="intercellSpacing" width="3" height="2"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -2284,7 +2285,7 @@ DQ
                                                 <rect key="frame" x="1" y="-30" width="490" height="15"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>
-                                            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="1543">
+                                            <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="1543">
                                                 <rect key="frame" x="-30" y="17" width="15" height="114"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </scroller>

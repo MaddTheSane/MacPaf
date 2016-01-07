@@ -20,7 +20,7 @@
 @property (strong) NSMutableArray *noteList;
 @property (strong) NSMutableArray *individualLinksList;
 
-- (id)initWithData:(NSData *)data;
+- (instancetype)initWithData:(NSData *)data;
 
 - (void)importData;
 - (void)importDataIntoDocument:(MAFDocument *)document;

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="MAFv2" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3400" systemVersion="13A603" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="MAFv2" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15C50" minimumToolsVersion="Xcode 7.0">
     <entity name="Base" representedClassName="MAFBase" syncable="YES">
         <relationship name="families" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Family" inverseName="base" inverseEntity="Family" syncable="YES"/>
         <relationship name="locations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Location" inverseName="base" inverseEntity="Location" syncable="YES"/>
@@ -45,9 +45,9 @@
         </fetchedProperty>
     </entity>
     <elements>
-        <element name="Family" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Location" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Person" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="Base" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="Base" positionX="0" positionY="0" width="128" height="90"/>
+        <element name="Family" positionX="0" positionY="0" width="128" height="180"/>
+        <element name="Location" positionX="0" positionY="0" width="128" height="120"/>
+        <element name="Person" positionX="0" positionY="0" width="128" height="314"/>
     </elements>
 </model>

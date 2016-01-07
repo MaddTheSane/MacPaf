@@ -817,7 +817,9 @@
 		2A37F4A9FDCFA73011CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastSwiftMigration = 0720;
+				LastSwiftUpdateCheck = 0720;
+				LastUpgradeCheck = 0720;
 			};
 			buildConfigurationList = 02BC1D21086ECAAD00BD394E /* Build configuration list for PBXProject "MAF" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1032,6 +1034,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_TESTABILITY = YES;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1074,6 +1077,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.redbugz.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = MAF;
 				SWIFT_OBJC_BRIDGING_HEADER = "Objective C Classes/MAF-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1098,6 +1102,7 @@
 				INFOPLIST_FILE = Info.plist;
 				INSTALL_PATH = "$(HOME)/Applications";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.redbugz.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = MAF;
 				SWIFT_OBJC_BRIDGING_HEADER = "Objective C Classes/MAF-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;

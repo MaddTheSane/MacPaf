@@ -12,20 +12,20 @@ class SurnameList: NSObject, NSComboBoxDataSource {
 	var surnames = [String]()
 
 	
-	func numberOfItemsInComboBox(aComboBox: NSComboBox) -> Int {
+	func numberOfItems(in aComboBox: NSComboBox) -> Int {
 		return surnames.count
 	}
 	
-	func comboBox(aComboBox: NSComboBox, objectValueForItemAtIndex index: Int) -> AnyObject {
+	func comboBox(_ aComboBox: NSComboBox, objectValueForItemAt index: Int) -> Any? {
 		return surnames[index]
 	}
 	
-	func comboBox(aComboBox: NSComboBox, indexOfItemWithStringValue string: String) -> Int {
-		return surnames.indexOf(string) ?? NSNotFound
+	func comboBox(_ aComboBox: NSComboBox, indexOfItemWithStringValue string: String) -> Int {
+		return surnames.index(of: string) ?? NSNotFound
 	}
 	
 	func add(name: String) {
-		if surnames.indexOf(name) == nil {
+		if surnames.index(of: name) == nil {
 			surnames.append(name)
 		}
 	}

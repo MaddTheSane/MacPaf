@@ -181,7 +181,7 @@
 -(void)animate:(id)sender
 {
 	[gUKProgressPanelThreadLock lock];
-	[progressBar animate:sender];
+	[progressBar startAnimation:sender];
 	[progressBar setNeedsDisplay:YES];
 	[gUKProgressPanelThreadLock unlock];
 }

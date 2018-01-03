@@ -1,9 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="9531"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
         <capability name="box content view" minToolsVersion="7.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="MyDocument">
@@ -63,7 +64,7 @@
                                     <rect key="frame" x="10" y="33" width="680" height="488"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <box title="Children" boxType="oldStyle" borderType="none" id="222">
+                                        <box boxType="oldStyle" borderType="none" title="Children" id="222">
                                             <rect key="frame" x="17" y="4" width="217" height="212"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                             <view key="contentView" id="UP1-Ir-16y">
@@ -78,7 +79,7 @@
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <tableView verticalHuggingPriority="750" tag="1" allowsExpansionToolTips="YES" alternatingRowBackgroundColors="YES" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" id="196">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="183" height="19"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="183" height="172"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <size key="intercellSpacing" width="3" height="2"/>
                                                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -117,10 +118,9 @@
                                                                     </connections>
                                                                 </tableView>
                                                             </subviews>
-                                                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         </clipView>
                                                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="1521">
-                                                            <rect key="frame" x="1" y="-30" width="169" height="15"/>
+                                                            <rect key="frame" x="1" y="153.5" width="171" height="16"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                         </scroller>
                                                         <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="1522">
@@ -130,11 +130,9 @@
                                                     </scrollView>
                                                 </subviews>
                                             </view>
-                                            <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                                            <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <font key="titleFont" metaFont="systemBold"/>
                                         </box>
-                                        <box title="Individual's Spouses" boxType="oldStyle" borderType="none" id="224">
+                                        <box boxType="oldStyle" borderType="none" title="Individual's Spouses" id="224">
                                             <rect key="frame" x="237" y="4" width="205" height="211"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                             <view key="contentView" id="QuV-xq-dcr">
@@ -149,13 +147,13 @@
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <tableView verticalHuggingPriority="750" tag="2" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" id="121">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="179" height="19"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="179" height="172"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <size key="intercellSpacing" width="3" height="2"/>
                                                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                                     <tableColumns>
-                                                                        <tableColumn editable="NO" width="176" minWidth="40" maxWidth="1000" id="190">
+                                                                        <tableColumn identifier="" editable="NO" width="176" minWidth="40" maxWidth="1000" id="190">
                                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                                                 <font key="font" metaFont="smallSystem"/>
                                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -175,10 +173,9 @@
                                                                     </connections>
                                                                 </tableView>
                                                             </subviews>
-                                                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         </clipView>
                                                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="1523">
-                                                            <rect key="frame" x="1" y="-30" width="169" height="15"/>
+                                                            <rect key="frame" x="1" y="153.5" width="166.5" height="16"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                         </scroller>
                                                         <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="1524">
@@ -188,8 +185,6 @@
                                                     </scrollView>
                                                 </subviews>
                                             </view>
-                                            <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                                            <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <font key="titleFont" metaFont="systemBold"/>
                                         </box>
                                         <button tag="1" id="251">
@@ -709,17 +704,12 @@
                                                 <rect key="frame" x="2" y="2" width="642" height="147"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <box horizontalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="1066">
+                                                    <box horizontalHuggingPriority="750" boxType="separator" id="1066">
                                                         <rect key="frame" x="314" y="12" width="5" height="123"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                        <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                                                        <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                                        <font key="titleFont" metaFont="system"/>
                                                     </box>
                                                 </subviews>
                                             </view>
-                                            <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                                            <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </box>
                                         <textField verticalHuggingPriority="750" id="1048">
                                             <rect key="frame" x="24" y="20" width="306" height="130"/>
@@ -734,17 +724,17 @@
                                             <rect key="frame" x="20" y="192" width="640" height="261"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <clipView key="contentView" id="TCu-kf-oqf">
-                                                <rect key="frame" x="1" y="17" width="638" height="243"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <rect key="frame" x="1" y="0.0" width="638" height="260"/>
+                                                <autoresizingMask key="autoresizingMask"/>
                                                 <subviews>
                                                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" alternatingRowBackgroundColors="YES" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" headerView="1526" id="1060">
-                                                        <rect key="frame" x="0.0" y="0.0" width="622.5" height="19"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="638" height="243"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <size key="intercellSpacing" width="3" height="2"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                         <tableColumns>
-                                                            <tableColumn editable="NO" width="43" minWidth="40" maxWidth="1000" id="1062">
+                                                            <tableColumn identifier="" editable="NO" width="43" minWidth="40" maxWidth="1000" id="1062">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="ID">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -757,7 +747,7 @@
                                                                 </textFieldCell>
                                                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                             </tableColumn>
-                                                            <tableColumn editable="NO" width="163" minWidth="40" maxWidth="1000" id="1061">
+                                                            <tableColumn identifier="" editable="NO" width="163" minWidth="40" maxWidth="1000" id="1061">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Name">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -770,7 +760,7 @@
                                                                 </textFieldCell>
                                                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                             </tableColumn>
-                                                            <tableColumn editable="NO" width="158" minWidth="10" maxWidth="1000" id="1189">
+                                                            <tableColumn identifier="" editable="NO" width="158" minWidth="10" maxWidth="1000" id="1189">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Birth Date">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -783,7 +773,7 @@
                                                                 </textFieldCell>
                                                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                             </tableColumn>
-                                                            <tableColumn editable="NO" width="246.5263671875" minWidth="59.5263671875" maxWidth="1000" id="1190">
+                                                            <tableColumn identifier="" editable="NO" width="246.5263671875" minWidth="59.5263671875" maxWidth="1000" id="1190">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Birth Place">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -799,7 +789,6 @@
                                                         </tableColumns>
                                                     </tableView>
                                                 </subviews>
-                                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </clipView>
                                             <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="1525">
                                                 <rect key="frame" x="1" y="-30" width="623" height="15"/>
@@ -860,17 +849,17 @@ DQ
                                             <rect key="frame" x="20" y="192" width="640" height="261"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <clipView key="contentView" id="EW4-Tu-YYm">
-                                                <rect key="frame" x="1" y="17" width="638" height="243"/>
+                                                <rect key="frame" x="1" y="0.0" width="638" height="260"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <subviews>
                                                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" alternatingRowBackgroundColors="YES" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" headerView="1529" id="996">
-                                                        <rect key="frame" x="0.0" y="0.0" width="626" height="19"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="638" height="243"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <size key="intercellSpacing" width="3" height="2"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                         <tableColumns>
-                                                            <tableColumn editable="NO" width="46" minWidth="40" maxWidth="1000" id="999">
+                                                            <tableColumn identifier="" editable="NO" width="46" minWidth="40" maxWidth="1000" id="999">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="ID">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -883,7 +872,7 @@ DQ
                                                                 </textFieldCell>
                                                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                             </tableColumn>
-                                                            <tableColumn editable="NO" width="155" minWidth="40" maxWidth="1000" id="1001">
+                                                            <tableColumn identifier="" editable="NO" width="155" minWidth="40" maxWidth="1000" id="1001">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Husband">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -896,7 +885,7 @@ DQ
                                                                 </textFieldCell>
                                                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                             </tableColumn>
-                                                            <tableColumn editable="NO" width="155" minWidth="10" maxWidth="1000" id="1191">
+                                                            <tableColumn identifier="" editable="NO" width="155" minWidth="10" maxWidth="1000" id="1191">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Wife">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -909,7 +898,7 @@ DQ
                                                                 </textFieldCell>
                                                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                             </tableColumn>
-                                                            <tableColumn editable="NO" width="119" minWidth="10" maxWidth="1000" id="1192">
+                                                            <tableColumn identifier="" editable="NO" width="119" minWidth="10" maxWidth="1000" id="1192">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Marriage Date">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -922,7 +911,7 @@ DQ
                                                                 </textFieldCell>
                                                                 <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                             </tableColumn>
-                                                            <tableColumn editable="NO" width="136" minWidth="4" maxWidth="1000" id="1193">
+                                                            <tableColumn identifier="" editable="NO" width="136" minWidth="4" maxWidth="1000" id="1193">
                                                                 <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="center" title="Marriage Place">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -941,7 +930,6 @@ DQ
                                                         </connections>
                                                     </tableView>
                                                 </subviews>
-                                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </clipView>
                                             <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="1528">
                                                 <rect key="frame" x="1" y="-30" width="623" height="15"/>
@@ -1019,8 +1007,6 @@ DQ
                                                     </textField>
                                                 </subviews>
                                             </view>
-                                            <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                                            <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </box>
                                         <textField verticalHuggingPriority="750" id="1013">
                                             <rect key="frame" x="24" y="90" width="292" height="60"/>
@@ -1048,7 +1034,7 @@ DQ
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <subviews>
                                                     <tableView verticalHuggingPriority="750" tag="1" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="14" id="1021">
-                                                        <rect key="frame" x="0.0" y="0.0" width="319" height="16"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="319" height="115"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <size key="intercellSpacing" width="3" height="2"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1096,7 +1082,6 @@ DQ
                                                         </tableColumns>
                                                     </tableView>
                                                 </subviews>
-                                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </clipView>
                                             <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" controlSize="small" horizontal="YES" id="1531">
                                                 <rect key="frame" x="1" y="-22" width="308" height="11"/>
@@ -1357,7 +1342,7 @@ DQ
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                         </button>
-                                        <box title="Birth" boxType="secondary" borderType="bezel" id="472">
+                                        <box boxType="secondary" borderType="bezel" title="Birth" id="472">
                                             <rect key="frame" x="20" y="379" width="384" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <view key="contentView" id="9mi-LB-kJr">
@@ -1392,11 +1377,9 @@ DQ
                                                     </form>
                                                 </subviews>
                                             </view>
-                                            <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                                            <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <font key="titleFont" metaFont="system"/>
                                         </box>
-                                        <box title="Christening" boxType="secondary" borderType="bezel" id="548">
+                                        <box boxType="secondary" borderType="bezel" title="Christening" id="548">
                                             <rect key="frame" x="20" y="301" width="384" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <view key="contentView" id="0My-vk-HcV">
@@ -1431,11 +1414,9 @@ DQ
                                                     </form>
                                                 </subviews>
                                             </view>
-                                            <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                                            <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <font key="titleFont" metaFont="system"/>
                                         </box>
-                                        <box title="Death" boxType="secondary" borderType="bezel" id="556">
+                                        <box boxType="secondary" borderType="bezel" title="Death" id="556">
                                             <rect key="frame" x="20" y="222" width="384" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <view key="contentView" id="ARq-g2-QuK">
@@ -1470,11 +1451,9 @@ DQ
                                                     </form>
                                                 </subviews>
                                             </view>
-                                            <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                                            <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <font key="titleFont" metaFont="system"/>
                                         </box>
-                                        <box title="Burial" boxType="secondary" borderType="bezel" id="560">
+                                        <box boxType="secondary" borderType="bezel" title="Burial" id="560">
                                             <rect key="frame" x="20" y="143" width="384" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <view key="contentView" id="zzA-qk-fDG">
@@ -1509,8 +1488,6 @@ DQ
                                                     </form>
                                                 </subviews>
                                             </view>
-                                            <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                                            <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <font key="titleFont" metaFont="system"/>
                                         </box>
                                         <textField verticalHuggingPriority="750" id="567">
@@ -1691,8 +1668,8 @@ DQ
                                             <rect key="frame" x="20" y="268" width="495" height="167"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <clipView key="contentView" id="umc-Zy-Gdh">
-                                                <rect key="frame" x="1" y="17" width="493" height="149"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <rect key="frame" x="1" y="0.0" width="493" height="166"/>
+                                                <autoresizingMask key="autoresizingMask"/>
                                                 <subviews>
                                                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" headerView="1534" id="955">
                                                         <rect key="frame" x="0.0" y="0.0" width="493" height="149"/>
@@ -1747,7 +1724,6 @@ DQ
                                                         </connections>
                                                     </tableView>
                                                 </subviews>
-                                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </clipView>
                                             <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="1533">
                                                 <rect key="frame" x="1" y="-30" width="478" height="15"/>
@@ -1775,8 +1751,8 @@ DQ
                                             <rect key="frame" x="20" y="49" width="495" height="166"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <clipView key="contentView" id="BjV-qc-ioK">
-                                                <rect key="frame" x="1" y="17" width="493" height="148"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <rect key="frame" x="1" y="0.0" width="493" height="165"/>
+                                                <autoresizingMask key="autoresizingMask"/>
                                                 <subviews>
                                                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" headerView="1537" id="961">
                                                         <rect key="frame" x="0.0" y="0.0" width="493" height="148"/>
@@ -1831,7 +1807,6 @@ DQ
                                                         </connections>
                                                     </tableView>
                                                 </subviews>
-                                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </clipView>
                                             <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="1536">
                                                 <rect key="frame" x="1" y="-30" width="478" height="15"/>
@@ -1995,7 +1970,7 @@ DQ
                                     <rect key="frame" x="10" y="33" width="559" height="393"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <box title="Children" boxType="oldStyle" borderType="none" id="264">
+                                        <box boxType="oldStyle" borderType="none" title="Children" id="264">
                                             <rect key="frame" x="20" y="20" width="519" height="245"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <view key="contentView" id="ytr-ic-h0c">
@@ -2007,16 +1982,16 @@ DQ
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <clipView key="contentView" id="1fQ-BP-JhL">
                                                             <rect key="frame" x="1" y="1" width="485" height="209"/>
-                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" id="254">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="485" height="19"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="485" height="209"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <size key="intercellSpacing" width="3" height="2"/>
                                                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                                     <tableColumns>
-                                                                        <tableColumn identifier="num" editable="NO" width="40" minWidth="40" maxWidth="1000" id="252">
+                                                                        <tableColumn identifier="num" editable="NO" width="44" minWidth="40" maxWidth="1000" id="252">
                                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                                                 <font key="font" metaFont="smallSystem"/>
                                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -2029,7 +2004,7 @@ DQ
                                                                             </textFieldCell>
                                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                         </tableColumn>
-                                                                        <tableColumn identifier="name" editable="NO" width="143" minWidth="40" maxWidth="1000" id="253">
+                                                                        <tableColumn identifier="name" editable="NO" width="147" minWidth="40" maxWidth="1000" id="253">
                                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                                                 <font key="font" metaFont="smallSystem"/>
                                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -2042,7 +2017,7 @@ DQ
                                                                             </textFieldCell>
                                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                         </tableColumn>
-                                                                        <tableColumn identifier="birthdate" editable="NO" width="143" minWidth="10" maxWidth="1000" id="266">
+                                                                        <tableColumn identifier="birthdate" editable="NO" width="147" minWidth="10" maxWidth="1000" id="266">
                                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                                                 <font key="font" metaFont="smallSystem"/>
                                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -2055,7 +2030,7 @@ DQ
                                                                             </textFieldCell>
                                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                         </tableColumn>
-                                                                        <tableColumn identifier="birthplace" editable="NO" width="131" minWidth="4" maxWidth="1000" id="267">
+                                                                        <tableColumn identifier="birthplace" editable="NO" width="135" minWidth="4" maxWidth="1000" id="267">
                                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                                                 <font key="font" metaFont="smallSystem"/>
                                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -2076,7 +2051,6 @@ DQ
                                                                     </connections>
                                                                 </tableView>
                                                             </subviews>
-                                                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                         </clipView>
                                                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="1539">
                                                             <rect key="frame" x="-100" y="-100" width="470" height="15"/>
@@ -2092,14 +2066,12 @@ DQ
                                                     </scrollView>
                                                 </subviews>
                                             </view>
-                                            <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                                            <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <font key="titleFont" metaFont="system"/>
                                             <connections>
                                                 <outlet property="nextKeyView" destination="636" id="699"/>
                                             </connections>
                                         </box>
-                                        <box title="Marriage" boxType="secondary" borderType="bezel" id="643">
+                                        <box boxType="secondary" borderType="bezel" title="Marriage" id="643">
                                             <rect key="frame" x="34" y="313" width="480" height="83"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <view key="contentView" id="iqf-2C-Knm">
@@ -2132,8 +2104,6 @@ DQ
                                                     </form>
                                                 </subviews>
                                             </view>
-                                            <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                                            <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <font key="titleFont" metaFont="system"/>
                                         </box>
                                         <textField verticalHuggingPriority="750" id="647">
@@ -2223,8 +2193,8 @@ DQ
                                             <rect key="frame" x="20" y="228" width="507" height="147"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <clipView key="contentView" id="3X5-o2-8QG">
-                                                <rect key="frame" x="1" y="17" width="505" height="129"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <rect key="frame" x="1" y="0.0" width="505" height="146"/>
+                                                <autoresizingMask key="autoresizingMask"/>
                                                 <subviews>
                                                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" headerView="1542" id="976">
                                                         <rect key="frame" x="0.0" y="0.0" width="505" height="129"/>
@@ -2279,7 +2249,6 @@ DQ
                                                         </connections>
                                                     </tableView>
                                                 </subviews>
-                                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </clipView>
                                             <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="1541">
                                                 <rect key="frame" x="1" y="-30" width="490" height="15"/>
@@ -2465,7 +2434,7 @@ DQ
                 <outlet property="document" destination="-2" id="522"/>
             </connections>
         </customObject>
-        <customObject id="529" userLabel="IndividualEditController" customClass="IndividualEditController" customModule="MAF" customModuleProvider="target">
+        <customObject id="529" customClass="IndividualEditController" customModule="MAF" customModuleProvider="target">
             <connections>
                 <outlet property="afn" destination="760" id="762"/>
                 <outlet property="attributeTableController" destination="1234" id="1243"/>
@@ -2523,20 +2492,17 @@ DQ
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                         <clipView key="contentView" id="ido-f2-1uX">
                             <rect key="frame" x="1" y="1" width="438" height="291"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <autoresizingMask key="autoresizingMask"/>
                             <subviews>
-                                <textView importsGraphics="NO" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="714">
+                                <textView importsGraphics="NO" verticallyResizable="YES" usesFontPanel="YES" usesRuler="YES" spellingCorrection="YES" smartInsertDelete="YES" id="714">
                                     <rect key="frame" x="0.0" y="0.0" width="438" height="291"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <size key="minSize" width="438" height="291"/>
                                     <size key="maxSize" width="440" height="10000000"/>
                                     <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="minSize" width="438" height="291"/>
-                                    <size key="maxSize" width="440" height="10000000"/>
                                 </textView>
                             </subviews>
-                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                         </clipView>
                         <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="1544">
                             <rect key="frame" x="-100" y="-100" width="87" height="18"/>
@@ -2735,17 +2701,15 @@ DQ
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <clipView key="contentView" id="PpY-NX-etm">
                             <rect key="frame" x="1" y="1" width="564" height="268"/>
-                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <autoresizingMask key="autoresizingMask"/>
                             <subviews>
-                                <textView importsGraphics="NO" richText="NO" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="1263">
+                                <textView importsGraphics="NO" richText="NO" verticallyResizable="YES" usesFontPanel="YES" usesRuler="YES" spellingCorrection="YES" smartInsertDelete="YES" id="1263">
                                     <rect key="frame" x="0.0" y="0.0" width="564" height="268"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <size key="minSize" width="564" height="268"/>
                                     <size key="maxSize" width="566" height="10000000"/>
                                     <color key="insertionPointColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                    <size key="minSize" width="564" height="268"/>
-                                    <size key="maxSize" width="566" height="10000000"/>
                                 </textView>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

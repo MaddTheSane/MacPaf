@@ -110,7 +110,7 @@
 		022394A50BA2246900D268F1 /* MIT-License.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "MIT-License.rtf"; sourceTree = "<group>"; };
 		022394A60BA2246900D268F1 /* NSData+RSHexDump.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+RSHexDump.h"; sourceTree = "<group>"; };
 		022394A70BA2246900D268F1 /* NSData+RSHexDump.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+RSHexDump.m"; sourceTree = "<group>"; };
-		022DDB4708E36C1D00AAA6B1 /* FamilyDetailController.java */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.java; name = FamilyDetailController.java; path = src/FamilyDetailController.java; sourceTree = "<group>"; };
+		022DDB4708E36C1D00AAA6B1 /* FamilyDetailController.java */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.java; path = FamilyDetailController.java; sourceTree = "<group>"; };
 		0237A2CE07B66682003D9778 /* CocoaUtils.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = CocoaUtils.java; sourceTree = "<group>"; };
 		023F05BC07AD1592005A4D0A /* MyFamily.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = MyFamily.java; sourceTree = "<group>"; };
 		023F05C007AD16B5005A4D0A /* MultimediaLink.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = MultimediaLink.java; sourceTree = "<group>"; };
@@ -122,21 +122,21 @@
 		0263E4A60A20EF430087A335 /* License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
 		0263E4E10A20F4450087A335 /* ApplicationStartupHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ApplicationStartupHelper.h; path = ../ApplicationStartupHelper.h; sourceTree = "<group>"; };
 		0263E4E20A20F4450087A335 /* ApplicationStartupHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ApplicationStartupHelper.m; path = ../ApplicationStartupHelper.m; sourceTree = "<group>"; };
-		026ED71205D932BC0001D1D2 /* ApplicationUtilities.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = ApplicationUtilities.java; path = src/ApplicationUtilities.java; sourceTree = "<group>"; };
-		026ED73C05D932BD0001D1D2 /* FamilyEditController.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = FamilyEditController.java; path = src/FamilyEditController.java; sourceTree = "<group>"; };
-		026ED73D05D932BD0001D1D2 /* FamilyGroupSheetView.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = FamilyGroupSheetView.java; path = src/FamilyGroupSheetView.java; sourceTree = "<group>"; };
-		026ED73E05D932BD0001D1D2 /* FamilyList.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = FamilyList.java; path = src/FamilyList.java; sourceTree = "<group>"; };
+		026ED71205D932BC0001D1D2 /* ApplicationUtilities.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = ApplicationUtilities.java; sourceTree = "<group>"; };
+		026ED73C05D932BD0001D1D2 /* FamilyEditController.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = FamilyEditController.java; sourceTree = "<group>"; };
+		026ED73D05D932BD0001D1D2 /* FamilyGroupSheetView.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = FamilyGroupSheetView.java; sourceTree = "<group>"; };
+		026ED73E05D932BD0001D1D2 /* FamilyList.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = FamilyList.java; sourceTree = "<group>"; };
 		026ED74005D932BD0001D1D2 /* AnselInputStreamReader.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = AnselInputStreamReader.java; sourceTree = "<group>"; };
 		026ED74105D932BD0001D1D2 /* AnselOutputStreamWriter.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = AnselOutputStreamWriter.java; sourceTree = "<group>"; };
 		026ED74205D932BD0001D1D2 /* GedcomOutputter.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = GedcomOutputter.java; sourceTree = "<group>"; };
 		026ED74305D932BD0001D1D2 /* GedcomParser.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = GedcomParser.java; sourceTree = "<group>"; };
-		026ED74405D932BD0001D1D2 /* ImportController.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = ImportController.java; path = src/ImportController.java; sourceTree = "<group>"; };
-		026ED74505D932BD0001D1D2 /* IndividualEditController.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = IndividualEditController.java; path = src/IndividualEditController.java; sourceTree = "<group>"; };
-		026ED74605D932BD0001D1D2 /* IndividualList.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = IndividualList.java; path = src/IndividualList.java; sourceTree = "<group>"; };
-		026ED74705D932BD0001D1D2 /* IndividualSummaryView.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = IndividualSummaryView.java; path = src/IndividualSummaryView.java; sourceTree = "<group>"; };
-		026ED74805D932BD0001D1D2 /* PedigreeView.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = PedigreeView.java; path = src/PedigreeView.java; sourceTree = "<group>"; };
-		026ED74905D932BD0001D1D2 /* ReportsController.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = ReportsController.java; path = src/ReportsController.java; sourceTree = "<group>"; };
-		026ED74A05D932BD0001D1D2 /* TestData.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = TestData.java; path = src/TestData.java; sourceTree = "<group>"; };
+		026ED74405D932BD0001D1D2 /* ImportController.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = ImportController.java; sourceTree = "<group>"; };
+		026ED74505D932BD0001D1D2 /* IndividualEditController.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = IndividualEditController.java; sourceTree = "<group>"; };
+		026ED74605D932BD0001D1D2 /* IndividualList.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = IndividualList.java; sourceTree = "<group>"; };
+		026ED74705D932BD0001D1D2 /* IndividualSummaryView.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = IndividualSummaryView.java; sourceTree = "<group>"; };
+		026ED74805D932BD0001D1D2 /* PedigreeView.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = PedigreeView.java; sourceTree = "<group>"; };
+		026ED74905D932BD0001D1D2 /* ReportsController.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = ReportsController.java; sourceTree = "<group>"; };
+		026ED74A05D932BD0001D1D2 /* TestData.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = TestData.java; sourceTree = "<group>"; };
 		026ED7A805D932E50001D1D2 /* GedcomToHtml.xsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = GedcomToHtml.xsl; sourceTree = "<group>"; };
 		026ED7A905D932E50001D1D2 /* GedcomToXml.xsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = GedcomToXml.xsl; sourceTree = "<group>"; };
 		026ED7AF05D932E50001D1D2 /* Temple Codes (official).xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "Temple Codes (official).xml"; sourceTree = "<group>"; };
@@ -147,14 +147,14 @@
 		026ED7B505D932E50001D1D2 /* temple-mapping.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = "temple-mapping.xml"; sourceTree = "<group>"; };
 		026ED7B605D932E50001D1D2 /* TempleList.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = TempleList.xml; sourceTree = "<group>"; };
 		026ED7B705D932E50001D1D2 /* XmlToGedcom.xsl */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = XmlToGedcom.xsl; sourceTree = "<group>"; };
-		02753D02066A46890059C930 /* PocketPedigreeView.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = PocketPedigreeView.java; path = src/PocketPedigreeView.java; sourceTree = "<group>"; };
-		027D36AA0707D05600F146F8 /* MainToolbar.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = MainToolbar.java; path = src/MainToolbar.java; sourceTree = "<group>"; };
+		02753D02066A46890059C930 /* PocketPedigreeView.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = PocketPedigreeView.java; sourceTree = "<group>"; };
+		027D36AA0707D05600F146F8 /* MainToolbar.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = MainToolbar.java; sourceTree = "<group>"; };
 		027D36B20707D41E00F146F8 /* Metal Window.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Metal Window.psd"; sourceTree = "<group>"; };
 		027D36B30707D41E00F146F8 /* Page.psd */ = {isa = PBXFileReference; lastKnownFileType = file; path = Page.psd; sourceTree = "<group>"; };
-		02907685060568E800F1763A /* IndividualDetailController.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = IndividualDetailController.java; path = src/IndividualDetailController.java; sourceTree = "<group>"; };
+		02907685060568E800F1763A /* IndividualDetailController.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = IndividualDetailController.java; sourceTree = "<group>"; };
 		02A778E908AFB24C007897F4 /* JDOMUtils.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = JDOMUtils.java; sourceTree = "<group>"; };
-		02A778FF08B011E6007897F4 /* FamilyListController.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = FamilyListController.java; path = src/FamilyListController.java; sourceTree = "<group>"; };
-		02A7790008B011E6007897F4 /* IndividualListController.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = IndividualListController.java; path = src/IndividualListController.java; sourceTree = "<group>"; };
+		02A778FF08B011E6007897F4 /* FamilyListController.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = FamilyListController.java; sourceTree = "<group>"; };
+		02A7790008B011E6007897F4 /* IndividualListController.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = IndividualListController.java; sourceTree = "<group>"; };
 		02B3D17D077B11CD0069077B /* Address.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = Address.java; sourceTree = "<group>"; };
 		02B3D17E077B11CD0069077B /* Event.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = Event.java; sourceTree = "<group>"; };
 		02B3D17F077B11CD0069077B /* Family.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = Family.java; sourceTree = "<group>"; };
@@ -209,7 +209,7 @@
 		02B3D1B4077B11CF0069077B /* XMLTest.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = XMLTest.java; sourceTree = "<group>"; };
 		02B51F020B23D727003C1D2E /* PAF21Data.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PAF21Data.h; path = ../PAF21Data.h; sourceTree = "<group>"; };
 		02B51F030B23D727003C1D2E /* PAF21Data.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PAF21Data.m; path = ../PAF21Data.m; sourceTree = "<group>"; wrapsLines = 1; };
-		02B8AC5008F045D700AE39EC /* HistoryController.java */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.java; name = HistoryController.java; path = src/HistoryController.java; sourceTree = "<group>"; };
+		02B8AC5008F045D700AE39EC /* HistoryController.java */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.java; path = HistoryController.java; sourceTree = "<group>"; };
 		02C5BE4F0939F8EF0086B510 /* ValidationException.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = ValidationException.java; sourceTree = "<group>"; };
 		02C5BFBD0948218C0086B510 /* GedcomLoaderJDOM.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = GedcomLoaderJDOM.java; sourceTree = "<group>"; };
 		02C8768E0B3EF267005E8B53 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/UKProgressPanel.strings; sourceTree = "<group>"; };
@@ -229,12 +229,12 @@
 		02DDDDF80A165EF5003BC70E /* MAF Help */ = {isa = PBXFileReference; lastKnownFileType = folder; name = "MAF Help"; path = "English.lproj/MAF Help"; sourceTree = "<group>"; };
 		02DE76D009E96A05003B896A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		02E2897B09E9FA94000846AC /* MAF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MAF.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		02E8DAB30CB911220035F786 /* EventTableController.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = EventTableController.java; path = src/EventTableController.java; sourceTree = "<group>"; };
-		02E8DAB40CB911220035F786 /* FilteredTableViewDataSource.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = FilteredTableViewDataSource.java; path = src/FilteredTableViewDataSource.java; sourceTree = "<group>"; };
-		02E8DAB50CB911220035F786 /* SortableFilteredTableViewDataSource.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = SortableFilteredTableViewDataSource.java; path = src/SortableFilteredTableViewDataSource.java; sourceTree = "<group>"; };
+		02E8DAB30CB911220035F786 /* EventTableController.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = EventTableController.java; sourceTree = "<group>"; };
+		02E8DAB40CB911220035F786 /* FilteredTableViewDataSource.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = FilteredTableViewDataSource.java; sourceTree = "<group>"; };
+		02E8DAB50CB911220035F786 /* SortableFilteredTableViewDataSource.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = SortableFilteredTableViewDataSource.java; sourceTree = "<group>"; };
 		089C1660FE840EACC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7A7FEA54F5311CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
-		2A37F4ACFDCFA73011CA2CEA /* MyDocument.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; name = MyDocument.java; path = src/MyDocument.java; sourceTree = "<group>"; };
+		2A37F4ACFDCFA73011CA2CEA /* MyDocument.java */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.java; path = MyDocument.java; sourceTree = "<group>"; };
 		2A37F4B0FDCFA73011CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		2A37F4BAFDCFA73011CA2CEA /* English */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = English; path = English.lproj/Credits.rtf; sourceTree = "<group>"; };
 		2A37F4C4FDCFA73011CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
@@ -363,8 +363,7 @@
 			children = (
 				02433C2B0C9D850A00FE5892 /* gdbi */,
 			);
-			name = org;
-			path = src/org;
+			path = org;
 			sourceTree = "<group>";
 		};
 		02433C2B0C9D850A00FE5892 /* gdbi */ = {
@@ -407,8 +406,7 @@
 				026ED74205D932BD0001D1D2 /* GedcomOutputter.java */,
 				026ED74305D932BD0001D1D2 /* GedcomParser.java */,
 			);
-			name = gedml;
-			path = src/gedml;
+			path = gedml;
 			sourceTree = "<group>";
 		};
 		026ED79C05D932E50001D1D2 /* images */ = {
@@ -444,8 +442,7 @@
 			children = (
 				02B3D17B077B11CD0069077B /* redbugz */,
 			);
-			name = com;
-			path = src/com;
+			path = com;
 			sourceTree = "<group>";
 		};
 		02B3D17B077B11CD0069077B /* redbugz */ = {
@@ -769,6 +766,7 @@
 				02B8AC5008F045D700AE39EC /* HistoryController.java */,
 			);
 			name = "Java classes";
+			path = src;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1081,6 +1079,7 @@
 				PRODUCT_NAME = MAF;
 				SWIFT_OBJC_BRIDGING_HEADER = "Objective C Classes/MAF-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1105,6 +1104,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.redbugz.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = MAF;
 				SWIFT_OBJC_BRIDGING_HEADER = "Objective C Classes/MAF-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

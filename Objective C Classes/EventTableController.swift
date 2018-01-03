@@ -11,11 +11,11 @@ import Cocoa
 class EventTableController: NSObject {
 	@IBOutlet weak var eventTable: NSTableView!
 	
-	@IBAction func addEvent(sender: AnyObject?) {
+	@IBAction func addEvent(_ sender: AnyObject?) {
 		
 	}
 	
-	@IBAction func removeEvent(sender: AnyObject?) {
+	@IBAction func removeEvent(_ sender: AnyObject?) {
 		
 	}
 }

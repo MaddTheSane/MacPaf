@@ -8,8 +8,8 @@
 
 import Cocoa
 
-class GedcomLoader: NSObject, MAFJDOM {
-	func loadDataForDocumentWithUpdateDelegate(theDict: NSMutableDictionary!) {
-		
+class GedcomLoader: NSObject, MAFJDOM {	
+	func loadDataForDocument(withUpdateDelegate theDict: NSMutableDictionary!) {
+
 	}
 }

@@ -25,22 +25,22 @@ class FamilyEditController: NSWindowController {
         // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
     }
 
-	@IBAction func addChild(sender: AnyObject?) {
+	@IBAction func addChild(_ sender: AnyObject?) {
 		
 	}
-	@IBAction func cancel(sender: AnyObject?) {
+	@IBAction func cancel(_ sender: AnyObject?) {
 		
 	}
-	@IBAction func editHusband(sender: AnyObject?) {
+	@IBAction func editHusband(_ sender: AnyObject?) {
 		
 	}
-	@IBAction func editWife(sender: AnyObject?) {
+	@IBAction func editWife(_ sender: AnyObject?) {
 		
 	}
-	@IBAction func removeChild(sender: AnyObject?) {
+	@IBAction func removeChild(_ sender: AnyObject?) {
 		
 	}
-	@IBAction func save(sender: AnyObject?) {
+	@IBAction func save(_ sender: AnyObject?) {
 		
 	}
 }
